@@ -1,0 +1,32 @@
+
+name: "Continuous Integration"
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - ".github/workflows/continuous-integration.yml"
+      - "composer.*"
+      - "lib/**"
+      - "phpunit.xml.dist"
+      - "tests/**"
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - ".github/workflows/continuous-integration.yml"
+      - "composer.*"
+      - "lib/**"
+      - "phpunit.xml.dist"
+      - "tests/**"
+
+env:
+  fail-fast: true
+
+jobs:
+  phpunit:
+    name: "PHPUnit"
+    uses: "doctrine/.github/.github/workflows/continuous-integration.yml@2.1.0"
+    with:
+      php-versions: '["7.4", "8.0", "8.1", "8.2"]'
