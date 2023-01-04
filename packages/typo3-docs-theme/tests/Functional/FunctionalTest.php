@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace T3Docs\Tests\Theme\Functional;
 
-use Doctrine\RST\Builder;
 use Doctrine\RST\Configuration;
 use Doctrine\RST\Formats\Format;
-use Doctrine\RST\Kernel;
 use Doctrine\RST\Parser;
 use Exception;
 use Gajus\Dindent\Indenter;

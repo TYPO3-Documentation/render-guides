@@ -1,1 +1,1 @@
-Press :kbd:`Ctrl` + :kbd:`C`
+:kbd:`C`
