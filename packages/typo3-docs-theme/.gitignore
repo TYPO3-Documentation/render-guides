@@ -1,6 +1,0 @@
-/composer.lock
-/vendor/
-/.phpcs-cache
-/tests/*/output
-/.phpunit.result.cache
-/tests/Functional/_sphinx/
