@@ -1,0 +1,40 @@
+{% extends "structure/layout.html.twig" %}
+
+{% block head %}
+    {%- for headerNode in node.headerNodes -%}
+        {{ renderNode(headerNode) }}
+    {%- endfor -%}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block navbar %}
+    {% include "structure/navigation/navbar.html.twig" %}
+{% endblock %}
+
+{% block menu_doc %}
+    {% include "structure/navigation/menu_doc.html.twig" %}
+{% endblock %}
+
+{% block body %}
+    {% for child in node.children -%}
+        {{ renderNode(child) }}
+    {%~ endfor -%}
+{% endblock %}
+
+
+{% block breadcrumb %}
+    {% include "structure/navigation/breadcrumb.html.twig" %}
+{% endblock %}
+
+{% block content %}
+    {{ renderNode(node) }}
+{% endblock %}
+
+{% block footer %}
+    {% if parts.footer %}
+        {% for child in parts.footer -%}
+            {{ renderNode(child) }}
+        {%~ endfor -%}
+    {% endif %}
+{% endblock %}
