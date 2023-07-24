@@ -1,9 +1,17 @@
-{% apply spaceless %}
-    {% for entry in node.entries %}
+{%- apply spaceless -%}
+    {%- for entry in menuEntry.children -%}
         <li class="toctree-l2">
-            <a class="reference internal" href="{{ renderLink(entry.url) }}" {% if entry.options.active %}  aria-current="page" {% endif %}>
+            <a href="{{ renderLink(entry.url) }}"
+               class="nav-link {% if entry.options.active %} active {% endif %}"
+                {%- if entry.options.active %}  aria-current="page" {% endif -%} >
                 {{ renderNode(entry.value.value) }}
             </a>
+
+            {%- if entry.children|length %}
+                {% include "body/menu/mainmenu/menu-level.html.twig" with {
+                    menuEntry:entry
+                } %}
+            {%- endif -%}
         </li>
-    {% endfor %}
-{% endapply %}
+    {%- endfor -%}
+{%- endapply -%}

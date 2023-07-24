@@ -1,7 +1,0 @@
-
-<li class="toctree-l1"><a class="reference internal" href="{{ url }}">{{ renderNode(node.value.value) }}</a></li>
-{%- if node.children|length %}
-    {% include "body/menu/menu-level.html.twig" with {
-        tocItems:tocItem.children
-    } %}
-{%- endif -%}
