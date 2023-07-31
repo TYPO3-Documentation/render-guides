@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="Welcome!" name="docsearch:name"/>
+    <meta content="{{ title }}" name="docsearch:name"/>
     <meta content="" name="docsearch:package_type"/>
     <meta content="master" name="docsearch:release"/>
     <meta content="2.0" name="docsearch:version"/>
@@ -11,16 +11,23 @@
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc"/>
     <meta content="2020-10-30T07:03:47+00:00" name="dc.modified"/>
     <meta content="2020-10-30T07:03:47+00:00" property="article:modified_time"/>
-    <title>Welcome to the official TYPO3 Documentation — Welcome! master documentation</title>
+    <title>{{ title }}
+        {%- if title!=null and env.projectNode.title!=null %} - {% endif -%}
+        {%- if env.projectNode.title -%}{{ env.projectNode.title }}{%- endif -%} documentation {{ env.projectNode.version }}</title>
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.7.9/css/fontawesome.css" rel="stylesheet" type="text/css"/>
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.7.9/css/webfonts.css" rel="stylesheet" type="text/css"/>
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.7.9/css/theme.css" rel="stylesheet" type="text/css"/>
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.7.9/css/codeblock.css" rel="stylesheet" type="text/css"/>
     <!-- linktags -->
-    <link href="genindex.html" rel="index" title="Index"/>
-    <link href="search.html" rel="search" title="Search"/>
-    <link href="#" rel="top" title="Welcome! master documentation"/>
-    <link href="Home/GuidesAndTutorials.html" rel="next" title="Tutorials and Guides"/>
+    {%- if env.projectNode.genindexLink %}
+    <link href="{{ env.projectNode.genindexLink }}" rel="index" title="Index"/>{% endif -%}
+    {%- if env.projectNode.searchLink %}
+    <link href="{{ env.projectNode.searchLink }}" rel="search" title="Search"/>{% endif -%}
+    <link href="#" rel="top" title="{{ title }}"/>
+    {%- if env.projectNode.prevLink %}
+        <link href="{{ env.projectNode.prevLink }}" rel="prev" title="{{ env.projectNode.prevTitle }}"/>{% endif -%}
+    {%- if env.projectNode.nextLink %}
+    <link href="{{ env.projectNode.nextLink }}" rel="next" title="{{ env.projectNode.nextTitle }}"/>{% endif -%}
     <!-- /linktags -->
     <!-- extrahead --><!-- /extrahead -->
     <script src="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.7.9/js/modernizr.min.js"></script>
@@ -57,7 +64,7 @@
                     <input class="toc-checkbox" id="toggleToc" type="checkbox"/>
                     <div class="toc-header">
                         <div class="toc-title">
-                            <a class="toc-title-project" href="/Index.html">&lt;project&gt;</a>
+                            <a class="toc-title-project" href="{{ env.projectNode.homeLink }}">{{ env.projectNode.title }}</a>
                         </div>
                         <div class="toc-actions">
                             <label class="toc-toggle" for="toggleToc">
@@ -66,13 +73,15 @@
                         </div>
                     </div>
                     <div class="toc-collapse">
+                        {% if env.projectNode.searchLink -%}
                         <div class="toc-search" id="searchbox" role="search">
-                            <form action="/search.html" autocomplete="off" id="search-form" method="get">
+                            <form action="{{ env.projectNode.genindexLink }}" autocomplete="off" id="search-form" method="get">
                                 <input aria-label="Search this project" class="form-control" id="searchinput" name="q" placeholder="Search this project" type="text">
                                 <input name="check_keywords" type="hidden" value="yes">
                                 <input name="area" type="hidden" value="default">
                             </form>
                         </div>
+                        {% endif %}
                         <div aria-label="main navigation" class="toc" role="navigation">
                             <!-- menu -->
                             {% block menu_doc %}
@@ -84,9 +93,9 @@
             </div>
             <div class="page-main-content">
                 <div class="rst-content">
-                    <!-- pager-hidden.html -->
-                    <a accesskey="n" class="no-focus" href="Home/GuidesAndTutorials.html" tabindex="-1"></a>
-                    <!-- /pager-hidden.html -->
+                    {%- if env.projectNode.nextLink %}
+                    <a accesskey="n" class="no-focus" href="{{ env.projectNode.nextLink }}" tabindex="-1"></a>
+                    {%- endif  %}
                     {% block breadcrumb %}
                     {% endblock %}
                     <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
@@ -100,11 +109,20 @@
                     <!-- pager.html -->
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
+                            {%- if env.projectNode.prevLink %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ env.projectNode.prevLink }}" title="Accesskey Alt(+Shift)+p">
+                                        Previous
+                                    </a>
+                                </li>
+                            {%- endif  %}
+                            {%- if env.projectNode.nextLink %}
                             <li class="page-item">
-                                <a class="page-link" href="Home/GuidesAndTutorials.html" title="Accesskey Alt(+Shift)+n">
+                                <a class="page-link" href="{{ env.projectNode.nextLink }}" title="Accesskey Alt(+Shift)+n">
                                     Next
                                 </a>
                             </li>
+                            {%- endif  %}
                         </ul>
                     </nav>
                     <!-- /pager.html -->
