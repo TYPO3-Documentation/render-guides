@@ -3,7 +3,7 @@
     "description": "A theme for use in the phpdocumentor",
     "type": "library",
     "license": "MIT",
-    "homepage": "https://www.phpdoc.org",
+    "homepage": "https://docs.typo3.org",
     "autoload": {
         "psr-4": {
             "T3Docs\\Typo3DocsTheme\\": "src/"
