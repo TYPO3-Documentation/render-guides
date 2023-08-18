@@ -18,7 +18,6 @@
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/fontawesome.css" rel="stylesheet" type="text/css"/>
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/webfonts.css" rel="stylesheet" type="text/css"/>
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/theme.css" rel="stylesheet" type="text/css"/>
-    <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/codeblock.css" rel="stylesheet" type="text/css"/>
     <!-- linktags -->
     {%- if env.projectNode.genindexLink %}
     <link href="{{ env.projectNode.genindexLink }}" rel="index" title="Index"/>{% endif -%}
@@ -37,7 +36,7 @@
     <script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
     <!-- UNIVERSE BAR END -->>
 </head>
-<body>
+<body data-cbs-theme="light" cz-shortcut-listen="true">
 <div class="page">
     <div class="page-topbar">
         <div class="page-topbar-inner">
@@ -65,7 +64,7 @@
                     <input class="toc-checkbox" id="toggleToc" type="checkbox"/>
                     <div class="toc-header">
                         <div class="toc-title">
-                            <a class="toc-title-project" href="{{ env.projectNode.homeLink }}">{{ env.projectNode.title }}</a>
+                            <a class="toc-title-project" href="/{{ env.projectNode.homeLink }}">{{ env.projectNode.title }}</a>
                         </div>
                         <div class="toc-actions">
                             <label class="toc-toggle" for="toggleToc">
@@ -166,7 +165,7 @@
 <script type="text/javascript">
     var DOCUMENTATION_OPTIONS = {
         URL_ROOT: './',
-        VERSION: 'master',
+        VERSION: 'main',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE: true
