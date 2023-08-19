@@ -1,0 +1,3 @@
+{% apply spaceless %}
+    <a class="reference external {%- if node.class %} {{ node.class }}{% endif %}" href="https://forge.typo3.org/issues/{{ node.value }}">forge#{{ node.value }}</a>
+{% endapply %}
