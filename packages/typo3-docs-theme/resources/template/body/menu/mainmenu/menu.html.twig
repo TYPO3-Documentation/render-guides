@@ -3,16 +3,9 @@
     <!-- menu -->
     <ul>
         {% for entry in node.menuEntries -%}
-            <li class="toctree-l1"><a class="reference internal"
-                                      href="{{ renderLink(entry.url) }}">{{ renderNode(entry.value.value) }}</a>
-                {%- if entry.children|length -%}
-                    <ul>
-                        {% include "body/menu/mainmenu/menu-level.html.twig" with {
-                            menuEntry:entry
-                        } %}
-                    </ul>
-                {%- endif -%}
-            </li>
+            {% include "body/menu/mainmenu/menu-level.html.twig" with {
+                menuEntry:entry
+            } %}
         {% endfor %}
     </ul>
 </div>
