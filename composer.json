@@ -1,0 +1,27 @@
+{
+    "name": "t3docs/render-guides",
+    "license": "OPL-1.0",
+    "require": {
+        "php": "^8.2",
+        "phpdocumentor/guides-theme-bootstrap": "dev-main",
+        "symfony/http-client": "^6.3",
+        "t3docs/typo3-docs-theme": "dev-main"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.30",
+        "phpdocumentor/guides-cli": "dev-main@dev"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
+        "bin-dir": ".Build/bin",
+        "sort-packages": true,
+        "vendor-dir": ".Build/vendor"
+    },
+    "scripts": {
+        "render": ".Build/bin/guides Documentation output --theme=typo3docs"
+    }
+}

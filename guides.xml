@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<guides>
+    <extensions>
+        <bootstrap>
+            <class>\phpDocumentor\Guides\Bootstrap\DependencyInjection\BootstrapExtension</class>
+        </bootstrap>
+        <typo3docs>
+            <class>\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension</class>
+        </typo3docs>
+    </extensions>
+</guides>
