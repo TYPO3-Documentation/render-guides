@@ -16,6 +16,12 @@ Usage with Docker (locally)
     docker run --rm --volume ${PWD}/Documentation:/var/www/html/Documentation --volume ${PWD}/output:/var/www/html/output typo3-docs:local ./Documentation ./output --theme=typo3docs
     // output is now in folder "output"
 
+Good to know for debugging::
+
+    docker run --entrypoint=sh -it --rm typo3-docs:local
+
+Let's you go in the shell so you can look around.
+
 
 
 Usage with DDEV:
