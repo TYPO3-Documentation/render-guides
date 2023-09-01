@@ -5,6 +5,19 @@ render-guides
 
 Render TYPO3 Documentation with `phpdocumentor/guides`.
 
+Usage with Docker (locally)
+===========================
+
+::
+
+    git clone git@github.com:TYPO3-Documentation/render-guides.git
+    cd render-guides
+    docker build --file Dockerfile --tag typo3-docs:local .
+    docker run --rm --volume ${PWD}/Documentation:/var/www/html/Documentation --volume ${PWD}/output:/var/www/html/output typo3-docs:local ./Documentation ./output --theme=typo3docs
+    // output is now in folder "output"
+
+
+
 Usage with DDEV:
 ================
 
