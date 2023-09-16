@@ -1,0 +1,14 @@
+<div class="sphinx-tabs docutils du-container">
+    <div aria-label="Tabbed content" class="closeable" role="tablist">
+        {% for tab in node.tabs -%}
+            {% include "directive/tabs/tabs-body.html.twig" with {
+                tab:tab
+            } %}
+        {%- endfor %}
+    </div>
+    {% for tab in node.tabs -%}
+        {% include "directive/tabs/tabs-body.html.twig" with {
+            tab:tab
+        } %}
+    {%- endfor %}
+</div>
