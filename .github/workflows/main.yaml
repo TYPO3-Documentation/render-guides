@@ -6,6 +6,9 @@ on: # yamllint disable-line rule:truthy
     branches:
       - "main"
 
+env:
+  DEFAULT_PHP_VERSION: "8.1"
+
 jobs:
   monorepo-validate:
     runs-on: "ubuntu-latest"
@@ -17,7 +20,7 @@ jobs:
         uses: "shivammathur/setup-php@v2"
         with:
           coverage: "none"
-          php-version: "8.2"
+          php-version: "${{ env.DEFAULT_PHP_VERSION }}"
 
       - name: "Install dependencies with Composer"
         uses: "ramsey/composer-install@v2"

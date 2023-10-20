@@ -2,7 +2,7 @@
     "name": "t3docs/render-guides",
     "license": "OPL-1.0",
     "require": {
-        "php": "^8.2",
+        "php": "^8.1",
         "phpdocumentor/guides-theme-bootstrap": "dev-main",
         "symfony/http-client": "^6.3"
     },
