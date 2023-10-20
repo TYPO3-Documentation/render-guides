@@ -4,15 +4,18 @@
     "require": {
         "php": "^8.2",
         "phpdocumentor/guides-theme-bootstrap": "dev-main",
-        "symfony/http-client": "^6.3",
-        "t3docs/typo3-docs-theme": "dev-main"
+        "symfony/http-client": "^6.3"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.30",
-        "phpdocumentor/guides-cli": "dev-main@dev"
+        "phpdocumentor/guides-cli": "dev-main@dev",
+        "symplify/monorepo-builder": "^11.2"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/"
+        }
+    },
     "config": {
         "allow-plugins": {
             "ergebnis/composer-normalize": true
@@ -22,6 +25,13 @@
         "vendor-dir": ".Build/vendor"
     },
     "scripts": {
-        "render": ".Build/bin/guides Documentation output --theme=typo3docs"
-    }
+        "render": ".Build/bin/guides Documentation output --theme=typo3docs",
+        "monorepo:validate": ".Build/bin/monorepo-builder validate",
+        "monorepo:merge": ".Build/bin/monorepo-builder merge"
+    },
+    "replace": {
+        "t3docs/typo3-docs-theme": "self.version"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
