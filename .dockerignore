@@ -1,7 +1,7 @@
-.Build/
 .ddev/
 .git/
 .idea/
 tools/
+vendor/
 Dockerfile
 *.rst

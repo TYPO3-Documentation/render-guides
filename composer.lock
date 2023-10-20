@@ -3162,6 +3162,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "phpdocumentor/guides-cli": 20,
         "phpdocumentor/guides-theme-bootstrap": 20
     },
     "prefer-stable": true,

@@ -10,9 +10,8 @@ FROM php:8.2-cli-alpine
 COPY . /opt/guides
 WORKDIR /opt/guides
 
-COPY --from=Builder /opt/guides/.Build /opt/guides/.Build
-RUN cp guides.xml .Build/guides.xml
+COPY --from=Builder /opt/guides/vendor /opt/guides/vendor
 
 WORKDIR /project
-ENTRYPOINT ["/opt/guides/.Build/bin/guides"]
+ENTRYPOINT ["/opt/guides/vendor/bin/guides"]
 CMD ["-h"]
