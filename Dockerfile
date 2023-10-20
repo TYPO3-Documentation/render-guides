@@ -1,10 +1,17 @@
-FROM php:8.2-cli
+FROM composer:2 as Builder
+
+WORKDIR /opt/guides
+COPY . /opt/guides
+
+RUN composer install --no-dev --no-interaction --no-progress  \
+    --no-suggest --optimize-autoloader --classmap-authoritative
+
+FROM php:8.2-cli-alpine
 COPY . /opt/guides
 WORKDIR /opt/guides
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer install \
-    && cp guides.xml .Build/guides.xml
+COPY --from=Builder /opt/guides/.Build /opt/guides/.Build
+RUN cp guides.xml .Build/guides.xml
 
 WORKDIR /project
 ENTRYPOINT ["/opt/guides/.Build/bin/guides"]
