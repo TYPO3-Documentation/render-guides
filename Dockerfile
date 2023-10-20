@@ -11,7 +11,6 @@ COPY . /opt/guides
 WORKDIR /opt/guides
 
 COPY --from=Builder /opt/guides/vendor /opt/guides/vendor
-RUN cp guides.xml guides.xml
 
 WORKDIR /project
 ENTRYPOINT ["/opt/guides/vendor/bin/guides"]
