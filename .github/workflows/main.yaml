@@ -1,0 +1,32 @@
+name: "Main"
+
+on: # yamllint disable-line rule:truthy
+  pull_request: null
+  push:
+    branches:
+      - "main"
+
+env:
+  DEFAULT_PHP_VERSION: "8.1"
+
+jobs:
+  monorepo-validate:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v4"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          coverage: "none"
+          php-version: "${{ env.DEFAULT_PHP_VERSION }}"
+
+      - name: "Install dependencies with Composer"
+        uses: "ramsey/composer-install@v2"
+        with:
+          dependency-versions: "locked"
+
+      - name: "Validate monorepo"
+        run: "composer run monorepo:validate"
+
