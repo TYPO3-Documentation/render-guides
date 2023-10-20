@@ -1,0 +1,153 @@
+//
+// Colors are matching Read the Docs
+// DO NOT ADJUST
+//
+// Similar:
+// - Admotion
+// - Bignums
+// - Horizontal Buttons
+// 'primary', 'secondary', 'success', 'info',
+// 'warning', 'danger', 'light', 'dark'
+//
+$bignum-normal: 1.15rem !default;
+$bignum-xxl:    1.5rem !default;
+
+// defined classes:
+//    .bignums, .bignums-xxl
+//    .bignums-hint == .bignums-info == .bignums-tip
+//    .bignums-attention == .bignums-caution == .bignum-warning
+//    .bignums-important == .bignums-seealso == .bignums-tip
+
+// Remove background-color, add border
+// https://github.com/TYPO3-Documentation/sphinx_typo3_theme/issues/173
+
+/**
+ * Bignums
+ */
+.bignums {
+    padding: 0;
+    counter-reset: li-counter;
+    > li {
+        list-style: none;
+        position: relative;
+        padding: $spacer;
+        padding-left: (($bignum-normal * 2.5) + $spacer);
+        padding-top: $spacer + ($bignum-normal * .25);
+        // background-color: theme-color-level('dark', -11);
+        border: 1px solid theme-color('dark');
+        border-radius: $border-radius;
+        min-height: (($bignum-normal * 2) + $spacer * 2);
+        > .first,
+        p:first-child {
+            font-weight: $font-weight-bold;
+            font-size: $bignum-normal;
+        }
+        // https://github.com/TYPO3-Documentation/sphinx_typo3_theme/issues/172
+        //*:last-child {
+        //    margin-bottom: 0;
+        //}
+        &:before {
+            font-size: $bignum-normal;
+            display: block;
+            position: absolute;
+            top: $spacer;
+            left: $spacer;
+            height: 2em;
+            width: 2em;
+            line-height: 2em;
+            text-align: center;
+            background-color: theme-color('dark');
+            color: color-yiq(theme-color('dark'));
+            border-radius: 50%;
+            content: counter(li-counter, decimal);
+            counter-increment: li-counter;
+            font-weight: $font-weight-bold;
+        }
+        + li {
+            margin-top: $spacer;
+        }
+    }
+}
+.bignums-hint,
+.bignums-note,
+.bignums-info {
+    @extend .bignums;
+    > li {
+        // background-color: theme-color-level('info', -11);
+        border-color: theme-color('info');
+        &:before {
+            background-color: theme-color('info');
+            color: color-yiq(theme-color('info'));
+        }
+    }
+}
+.bignums-caution,
+.bignums-warning,
+.bignums-attention {
+    @extend .bignums;
+    > li {
+        // background-color: theme-color-level('warning', -11);
+        border-color: theme-color('warning');
+        &:before {
+            background-color: theme-color('warning');
+            color: color-yiq(theme-color('warning'));
+        }
+    }
+}
+.bignums-important,
+.bignums-seealso,
+.bignums-tip {
+    @extend .bignums;
+    > li {
+        // background-color: theme-color-level('success', -11);
+        border-color: theme-color('success');
+        &:before {
+            background-color: theme-color('success');
+            color: color-yiq(theme-color('success'));
+        }
+    }
+}
+.bignums-danger,
+.bignums-error {
+    @extend .bignums;
+    > li {
+        // background-color: theme-color-level('danger', -11);
+        border-color: theme-color('danger');
+        &:before {
+            background-color: theme-color('danger');
+            color: color-yiq(theme-color('danger'));
+        }
+    }
+}
+
+/**
+ * Bignums XXL
+ */
+.bignums-xxl {
+    @extend .bignums;
+    > li {
+        padding: 0;
+        padding-left: ($bignum-xxl * 2.5);
+        padding-top: ($bignum-xxl * .25);
+        background-color: transparent;
+        border-style: none;
+        min-height: ($bignum-xxl * 2);
+        > .first,
+        p:first-child {
+            font-size: $bignum-xxl;
+        }
+        &:before {
+            font-size: $bignum-xxl;
+            top: 0;
+            left: 0;
+        }
+        + li {
+            border-top: 1px solid rgba(0, 0, 0, .15);
+            margin-top: $spacer + ($bignum-xxl * .25);
+            padding-top: $spacer + ($bignum-xxl * .25);
+            &:before {
+                top: $spacer;
+            }
+        }
+    }
+}

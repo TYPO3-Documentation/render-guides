@@ -1,0 +1,13 @@
+{% if node.options.menu == 'mainmenu' %}
+    {% include "body/menu/mainmenu/menu.html.twig" %}
+{% elseif node.options.menu == 'navbar' %}
+    {% include "body/menu/navbar/menu.html.twig" %}
+{% else %}
+    <div class="toctree-wrapper compound">
+        <ul>
+            {% for entry in node.entries -%}
+                {{ renderNode(entry) }}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

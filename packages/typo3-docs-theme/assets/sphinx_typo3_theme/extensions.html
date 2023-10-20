@@ -1,0 +1,46 @@
+{#
+    extensions.html
+    ~~~~~~~~~~~~
+
+    Like normal page PLUS javascript form for extension selection
+
+    :copyright: Copyright 2007-2016 by the Sphinx team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+#}
+{%- extends "layout.html" %}
+{%- block scripts2 %}
+<script type="text/javascript" src="extensions.js"></script>
+<script type="text/javascript" src="extensions-search.js"></script>
+{% endblock -%}
+{% block body %}
+
+<!-- extensions.html -->
+<p class="h1">Extension Manual Search</p>
+<div class="sphinx-bs container docutils">
+    <div class="row docutils">
+        <div class="d-flex col-12 padding-0-important docutils">
+            <div class="card w-100 docutils">
+                <div class="card-body docutils">
+
+
+    <form action="extensions.html" name="filter" id="extension_filter_form">
+        <div class="b-form-row">
+            <label style="">Search for extensions by key:</label>
+            <div class="b-form-inputs">
+                <input type="text" name="extension_filter" id="extension_filter"/>
+            </div>
+        </div>
+    </form>
+    <p id="search_results">Type at least three characters in the search field.</p>
+    <div id="extension_list"></div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /extensions.html -->
+
+{{ body }}
+{% endblock %}

@@ -1,0 +1,10 @@
+
+<ol class="breadcrumb">
+    {% for entry in rootline -%}
+        {%- if entry.current %}
+            <li aria-current="page"  class="breadcrumb-item  active">{{ entry.value.toString }}</li>
+        {% else -%}
+            <li class="breadcrumb-item"><a href="{{ renderLink(entry.url) }}">{{ entry.value.toString }}</a></li>
+        {% endif -%}
+    {% endfor %}
+</ol>

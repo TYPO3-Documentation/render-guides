@@ -1,0 +1,15 @@
+<dl class="field-list simple {{ node.classesString }}">
+    {% for item in node.children %}
+        <dt class="field-odd">{{ item.term }}</dt>
+
+        <dd class="field-odd">
+            {% if item.children %}
+                {%- for definition in item.children -%}
+                    {{ renderNode(definition) }}
+                {%- endfor -%}
+            {% else %}
+                &nbsp;
+            {% endif %}
+        </dd>
+    {% endfor %}
+</dl>

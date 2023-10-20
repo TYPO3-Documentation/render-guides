@@ -1,0 +1,19 @@
+{%- apply spaceless -%}
+        <li class="toctree-l{{ menuEntry.level }} {%- if menuEntry.isInRootline %} current {% endif %}">
+            <a href="{{ renderLink(menuEntry.url) }}"
+               class="nav-link {% if menuEntry.options.active %} active {% endif %}"
+                {%- if menuEntry.options.active %}  aria-current="page" {% endif -%} >
+                {{ renderNode(menuEntry.value.value) }}
+            </a>
+
+            {%- if menuEntry.children|length %}
+                <ul>
+                    {%- for entry in menuEntry.children -%}
+                        {% include "body/menu/mainmenu/menu-level.html.twig" with {
+                            menuEntry:entry
+                        } %}
+                    {%- endfor -%}
+                </ul>
+            {%- endif -%}
+        </li>
+{%- endapply -%}
