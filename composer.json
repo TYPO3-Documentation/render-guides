@@ -12,6 +12,11 @@
         "symplify/monorepo-builder": "^11.2",
         "typo3/coding-standards": "^0.7.1"
     },
+    "replace": {
+        "t3docs/typo3-docs-theme": "self.version"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/"
@@ -24,15 +29,10 @@
         "sort-packages": true
     },
     "scripts": {
-        "render": "vendor/bin/guides Documentation output --theme=typo3docs",
-        "monorepo:validate": "vendor/bin/monorepo-builder validate",
-        "monorepo:merge": "vendor/bin/monorepo-builder merge",
         "check:php:cs": "vendor/bin/php-cs-fixer check",
-        "fix:php:cs": "vendor/bin/php-cs-fixer fix"
-    },
-    "replace": {
-        "t3docs/typo3-docs-theme": "self.version"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+        "fix:php:cs": "vendor/bin/php-cs-fixer fix",
+        "monorepo:merge": "vendor/bin/monorepo-builder merge",
+        "monorepo:validate": "vendor/bin/monorepo-builder validate",
+        "render": "vendor/bin/guides Documentation output --theme=typo3docs"
+    }
 }
