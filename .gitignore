@@ -1,3 +1,4 @@
 /output/
 /vendor/
 /Documentation/
+/.php-cs-fixer.cache

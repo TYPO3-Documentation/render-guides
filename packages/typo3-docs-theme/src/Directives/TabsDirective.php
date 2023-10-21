@@ -13,18 +13,13 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Directives;
 
-use phpDocumentor\Guides\Nodes\DocumentNode;
+use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
-use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
-use T3Docs\Typo3DocsTheme\Nodes\ConfvalNode;
-use T3Docs\Typo3DocsTheme\Nodes\GroupTabNode;
 use T3Docs\Typo3DocsTheme\Nodes\TabsNode;
 
-/**
- */
 class TabsDirective extends SubDirective
 {
     public function getName(): string

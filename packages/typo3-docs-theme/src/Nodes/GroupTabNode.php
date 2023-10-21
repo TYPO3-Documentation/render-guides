@@ -19,7 +19,7 @@ final class GroupTabNode extends GeneralDirectiveNode
     ) {
         parent::__construct($name, $plainContent, $content, $value);
         $this->key = strtolower($plainContent);
-        $this->key = strval(preg_replace('/^[a-zA-Z0-9-_]/', '', $this->key));
+        $this->key = (string)(preg_replace('/^[a-zA-Z0-9-_]/', '', $this->key));
     }
 
     public function getKey(): string

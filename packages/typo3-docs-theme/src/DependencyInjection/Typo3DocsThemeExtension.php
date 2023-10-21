@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\DependencyInjection;
 
+use function dirname;
+
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
-use phpDocumentor\Guides\RestructuredText\Nodes\VersionChangeNode;
 use phpDocumentor\Guides\TemplateRenderer;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalNode;
-use function dirname;
 
 class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface
 {
