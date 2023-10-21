@@ -1,0 +1,7 @@
+/.ddev/ export-ignore
+/.dockerignore export-ignore
+/.editorconfig export-ignore
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/monorepo-builder.php export-ignore
