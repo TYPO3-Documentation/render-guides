@@ -31,6 +31,9 @@ jobs:
       - name: CGL
         run: composer run check:php:cs
 
+      - name: "Run integration tests"
+        run: "composer run check:integration"
+
   monorepo-validate:
     runs-on: "ubuntu-latest"
     steps:
