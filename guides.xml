@@ -4,6 +4,9 @@
         <bootstrap>
             <class>\phpDocumentor\Guides\Bootstrap\DependencyInjection\BootstrapExtension</class>
         </bootstrap>
+        <graphs>
+            <class>\phpDocumentor\Guides\Graphs\DependencyInjection\GraphsExtension</class>
+        </graphs>
         <typo3docs>
             <class>\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension</class>
         </typo3docs>
