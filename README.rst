@@ -33,7 +33,7 @@ Usage with DDEV:
     cd render-guides
     ddev start
     ddev composer install
-    cp -R /path/to/my/docs/Documentation Documentation
+    cp -R /path/to/my/docs/Documentation fixtures-local
     ddev composer render
     // output is now in folder "output"
     ddev launch Index.html
