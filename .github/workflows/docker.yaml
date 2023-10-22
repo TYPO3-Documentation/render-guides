@@ -86,6 +86,10 @@ jobs:
     needs:
       - build
     steps:
+      - name: Prepare image name
+        run: |
+          echo IMAGE_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
+
       -
         name: Download digests
         uses: actions/download-artifact@v3
