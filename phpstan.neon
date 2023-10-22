@@ -11,4 +11,4 @@ parameters:
   treatPhpDocTypesAsCertain: false
   paths:
     - packages/typo3-docs-theme/src
-  tmpDir: .build/phpstan/
+  tmpDir: .cache/phpstan/
