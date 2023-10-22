@@ -3,3 +3,4 @@
 /fixtures-local/
 /.cache/
 /.Build/
+/**/temp/
