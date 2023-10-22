@@ -1,0 +1,23 @@
+=============
+UML-directive
+=============
+
+..  uml::
+
+    artifact Foo1 {
+        folder Foo2
+    }
+
+    folder Foo3 {
+        artifact Foo4
+    }
+
+    frame Foo5 {
+        database Foo6
+    }
+
+    cloud vpc {
+        node ec2 {
+            stack stack
+        }
+    }
