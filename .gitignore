@@ -2,3 +2,4 @@
 /vendor/
 /fixtures-local/
 /.php-cs-fixer.cache
+/.build/

@@ -31,6 +31,9 @@ jobs:
       - name: CGL
         run: composer run check:php:cs
 
+      - name: PHPSTAN
+        run: composer run check:php:stan
+
   monorepo-validate:
     runs-on: "ubuntu-latest"
     steps:

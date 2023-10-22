@@ -1,0 +1,6 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\TabsNode\\:\\:\\$tabs \\(array\\<T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\GroupTabNode\\>\\) does not accept array\\<T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\GroupTabNode\\|T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\TabsNode\\>\\.$#"
+			count: 1
+			path: packages/typo3-docs-theme/src/Nodes/TabsNode.php
