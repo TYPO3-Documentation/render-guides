@@ -35,11 +35,11 @@
     },
     "scripts": {
         "check:php": [
-            "composer check:php:cs",
-            "composer check:php:stan"
+            "composer check:php:php-cs-fixer",
+            "composer check:php:phpstan"
         ],
-        "check:php:cs": "vendor/bin/php-cs-fixer check",
-        "check:php:stan": "vendor/bin/phpstan --configuration=phpstan.neon",
+        "check:php:php-cs-fixer": "vendor/bin/php-cs-fixer check",
+        "check:php:phpstan": "vendor/bin/phpstan --configuration=phpstan.neon",
         "fix:php:cs": "vendor/bin/php-cs-fixer fix",
         "monorepo:merge": "vendor/bin/monorepo-builder merge",
         "monorepo:validate": "vendor/bin/monorepo-builder validate",

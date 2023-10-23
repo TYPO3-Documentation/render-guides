@@ -29,10 +29,10 @@ jobs:
           dependency-versions: "locked"
 
       - name: CGL
-        run: composer run check:php:cs
+        run: composer run check:php:php-cs-fixer
 
       - name: PHPSTAN
-        run: composer run check:php:stan
+        run: composer run check:php:phpstan
 
   monorepo-validate:
     runs-on: "ubuntu-latest"
