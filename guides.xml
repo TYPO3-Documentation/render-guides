@@ -10,8 +10,11 @@
         <markdown>
             <class>\phpDocumentor\Guides\Markdown\DependencyInjection\MarkdownExtension</class>
         </markdown>
-        <typo3docs>
+        <typo3theme>
             <class>\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension</class>
+        </typo3theme>
+        <typo3docs>
+            <class>\T3Docs\GuidesExtension\DependencyInjection\Typo3GuidesExtension</class>
         </typo3docs>
     </extensions>
 </guides>

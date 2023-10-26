@@ -1,0 +1,14 @@
+{
+    "name": "t3docs/typo3-guides-extension",
+    "description": "Extension for phpDocumentor guide adding typo3 behavior",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "T3Docs\\GuidesExtension\\": "src/"
+        }
+    },
+    "require": {
+        "phpdocumentor/guides-cli": "dev-main"
+    }
+}
