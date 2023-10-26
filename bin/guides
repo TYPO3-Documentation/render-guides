@@ -1,4 +1,7 @@
 !#/usr/bin/env php
 <?php
 
-require_once __DIR__ . '/vendor/bin/guides';
+$root = dirname(__DIR__);
+
+require_once  $root . '/vendor/autoload.php';
+require_once  $root . '/vendor/phpdocumentor/guides-cli/bin/guides';
