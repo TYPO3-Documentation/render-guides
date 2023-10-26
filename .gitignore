@@ -2,3 +2,4 @@
 /vendor/
 /fixtures-local/
 /.cache/
+/.Build/

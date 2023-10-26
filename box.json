@@ -1,0 +1,13 @@
+{
+    "main": "bin/guides",
+    "output": ".Build/render-guides.phar",
+    "directories-bin": [
+        "packages/"
+    ],
+    "files": [
+        "vendor/phpdocumentor/guides-cli/bin/guides"
+    ],
+    "blacklist": [
+        "packages/typo3-docs-theme/assets"
+    ]
+}

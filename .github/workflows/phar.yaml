@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request: null
+  release:
+    types:
+      - published
+
+name: Phar
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          coverage: "none"
+          php-version: "${{ env.DEFAULT_PHP_VERSION }}"
+          tools: "composer"
+
+      - name: "Create phar"
+        run: composer build:phar
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: phar
+          path: .Build/*
+          if-no-files-found: error
+          retention-days: 1

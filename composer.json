@@ -6,6 +6,7 @@
         "phpdocumentor/guides-cli": "dev-main",
         "phpdocumentor/guides-graphs": "dev-main",
         "phpdocumentor/guides-theme-bootstrap": "dev-main",
+        "symfony/finder": "^6.3",
         "symfony/http-client": "^6.3"
     },
     "require-dev": {
@@ -43,6 +44,7 @@
         "fix:php:cs": "vendor/bin/php-cs-fixer fix",
         "monorepo:merge": "vendor/bin/monorepo-builder merge",
         "monorepo:validate": "vendor/bin/monorepo-builder validate",
-        "render": "vendor/bin/guides fixtures-local output --theme=typo3docs"
+        "render": "vendor/bin/guides fixtures-local output --theme=typo3docs",
+        "build:phar": "tools/build-phar.sh"
     }
 }
