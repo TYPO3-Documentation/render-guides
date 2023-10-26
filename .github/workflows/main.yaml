@@ -54,3 +54,23 @@ jobs:
       - name: "Validate monorepo"
         run: "composer run monorepo:validate"
 
+  test-self-action:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v4"
+
+      - name: "prepare action"
+        ##################################################################
+        # This is a workaround for the fact that the action.yml file
+        # does not support templating. We replace the image with the
+        # Dockerfile, so that we can use the Dockerfile from the current
+        # branch.
+        ##################################################################
+        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' action.yml"
+
+      - name: "Create output directory"
+        run: "mkdir -p RenderedDocumentation"
+
+      - name: "Run action"
+        uses: "./"

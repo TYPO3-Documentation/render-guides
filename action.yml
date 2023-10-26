@@ -11,7 +11,10 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/jaapio/render-guides:main'
+  image: 'docker://ghcr.io/typo3-documentation/render-guides:main'
+  args:
+    - '${{ inputs.input }}'
+    - '${{ inputs.output }}'
 
 branding:
   icon: 'book-open'
