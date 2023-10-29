@@ -5,6 +5,7 @@
         "php": "^8.1",
         "phpdocumentor/guides-cli": "dev-main",
         "phpdocumentor/guides-graphs": "dev-main",
+        "phpdocumentor/guides-markdown": "dev-main",
         "phpdocumentor/guides-theme-bootstrap": "dev-main",
         "symfony/finder": "^6.3",
         "symfony/http-client": "^6.3"
