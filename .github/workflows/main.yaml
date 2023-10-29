@@ -34,6 +34,9 @@ jobs:
       - name: PHPSTAN
         run: composer run check:php:phpstan
 
+      - name: "Run integration tests"
+        run: "composer run test:integration"
+
   monorepo-validate:
     runs-on: "ubuntu-latest"
     steps:
