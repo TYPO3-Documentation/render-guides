@@ -1,0 +1,4 @@
+
+.. _`phpDocumentor/guides`: https://github.com/phpDocumentor/guides/
+..  _twig: https://twig.symfony.com/
+.. _bootstrap: https://getbootstrap.com/
