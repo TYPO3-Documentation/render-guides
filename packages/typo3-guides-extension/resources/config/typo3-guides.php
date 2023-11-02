@@ -16,5 +16,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(RunDecorator::class)
         ->decorate(
             Run::class,
-        )->args([service('.inner')]);
+        )->args([service('.inner')])
+        ->set(\T3Docs\GuidesExtension\Command\ConfigureCommand::class)
+        ->tag('phpdoc.guides.cli.command');
 };
