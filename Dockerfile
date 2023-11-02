@@ -13,5 +13,5 @@ WORKDIR /opt/guides
 COPY --from=Builder /opt/guides/vendor /opt/guides/vendor
 
 WORKDIR /project
-ENTRYPOINT ["/opt/guides/vendor/bin/guides"]
+ENTRYPOINT [ "/opt/guides/entrypoint.sh", "/opt/guides/vendor/bin/guides"]
 CMD ["-h"]
