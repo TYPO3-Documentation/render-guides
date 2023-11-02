@@ -34,7 +34,7 @@
     <!-- UNIVERSE BAR START -->
     <script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
     <script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
-    <!-- UNIVERSE BAR END -->>
+    <!-- UNIVERSE BAR END -->
 </head>
 <body data-cbs-theme="light" cz-shortcut-listen="true">
 <div class="page">
@@ -65,6 +65,17 @@
                     <div class="toc-header">
                         <div class="toc-title">
                             <a class="toc-title-project" href="/{{ env.projectNode.homeLink }}">{{ env.projectNode.title }}</a>
+                            {% if env.projectNode.version -%}
+                                <div class="toc-version-wrapper" id="toc-version-wrapper">
+                                    <div id="toc-version" class="toc-version">
+                                        <span class="toc-version-prefix">Release:</span>
+                                        <span class="toc-version-number">{{ env.projectNode.version }}</span>
+                                    </div>
+                                    <div id="toc-version-options" class="toc-version-options">
+                                        <p><span class="fa fa-spinner fa-spin"></span> Loading data.</p>
+                                    </div>
+                                </div>
+                            {%- endif -%}
                         </div>
                         <div class="toc-actions">
                             <label class="toc-toggle" for="toggleToc">
