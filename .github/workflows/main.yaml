@@ -77,3 +77,5 @@ jobs:
 
       - name: "Run action"
         uses: "./"
+
+      - run: ls -al RenderedDocumentation
