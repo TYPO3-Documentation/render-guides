@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<guides>
+<guides links-are-relative="true">
     <extensions>
         <bootstrap>
             <class>\phpDocumentor\Guides\Bootstrap\DependencyInjection\BootstrapExtension</class>
