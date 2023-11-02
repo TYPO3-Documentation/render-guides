@@ -19,4 +19,6 @@ if [ "$(id -u)" -eq "0" ]; then
   chmod a+x /usr/local/bin/invocation.sh
 
   su - typo3 -c "/usr/local/bin/invocation.sh"
+else
+  sh -c "$@"
 fi
