@@ -73,7 +73,7 @@ final class IntegrationTest extends ApplicationTestCase
                     'output' => $outputPath,
                     '--theme' => 'typo3docs',
                     '--log-path' => $outputPath . '/logs',
-                    '--output-format' => ['html', 'intersphinx'],
+                    '--output-format' => ['html', 'interlinks'],
                 ],
                 $command->getDefinition(),
             );
