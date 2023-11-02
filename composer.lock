@@ -1028,16 +1028,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "cead6637226456b35e1175cc53797dd585d85545"
+                "reference": "a9d127dd6a203ce6d255b2e2db49759f7506e015"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/cead6637226456b35e1175cc53797dd585d85545",
-                "reference": "cead6637226456b35e1175cc53797dd585d85545",
+                "url": "https://api.github.com/repos/nette/utils/zipball/a9d127dd6a203ce6d255b2e2db49759f7506e015",
+                "reference": "a9d127dd6a203ce6d255b2e2db49759f7506e015",
                 "shasum": ""
             },
             "require": {
@@ -1108,9 +1108,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v4.0.2"
+                "source": "https://github.com/nette/utils/tree/v4.0.3"
             },
-            "time": "2023-09-19T11:58:07+00:00"
+            "time": "2023-10-29T21:02:13+00:00"
         },
         {
             "name": "phpdocumentor/flyfinder",
@@ -1169,12 +1169,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "c30479724002a1007b7a6257231536b69ee96a65"
+                "reference": "219b71c3f1bc4692a72380e300b571b7a45543b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/c30479724002a1007b7a6257231536b69ee96a65",
-                "reference": "c30479724002a1007b7a6257231536b69ee96a65",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/219b71c3f1bc4692a72380e300b571b7a45543b1",
+                "reference": "219b71c3f1bc4692a72380e300b571b7a45543b1",
                 "shasum": ""
             },
             "require": {
@@ -1185,7 +1185,7 @@
                 "php": "^8.1",
                 "phpdocumentor/flyfinder": "^1.1",
                 "psr/event-dispatcher": "^1.0",
-                "symfony/http-client": "^6.3.6",
+                "symfony/http-client": "^6.3.7",
                 "symfony/string": "^5.4 || ^6.3",
                 "symfony/translation-contracts": "^2.1 || ^3.0",
                 "twig/twig": "~2.15 || ^3.0",
@@ -1211,7 +1211,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-10-25T12:30:26+00:00"
+            "time": "2023-11-02T08:42:48+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1219,12 +1219,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "af98ace79c4741cab04b91a782fad8f6330839dc"
+                "reference": "91fa423ce600d3d5ee9c6be5305c9b9baf1017d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/af98ace79c4741cab04b91a782fad8f6330839dc",
-                "reference": "af98ace79c4741cab04b91a782fad8f6330839dc",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/91fa423ce600d3d5ee9c6be5305c9b9baf1017d6",
+                "reference": "91fa423ce600d3d5ee9c6be5305c9b9baf1017d6",
                 "shasum": ""
             },
             "require": {
@@ -1261,7 +1261,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-cli/tree/main"
             },
-            "time": "2023-10-23T17:33:53+00:00"
+            "time": "2023-11-02T09:27:01+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -1269,12 +1269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-graphs.git",
-                "reference": "29cb1663f2a70e52d5aa65443a37c1ad1c2e1133"
+                "reference": "3947327823af52274f7a622b4d79f462c59ba72f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-graphs/zipball/29cb1663f2a70e52d5aa65443a37c1ad1c2e1133",
-                "reference": "29cb1663f2a70e52d5aa65443a37c1ad1c2e1133",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-graphs/zipball/3947327823af52274f7a622b4d79f462c59ba72f",
+                "reference": "3947327823af52274f7a622b4d79f462c59ba72f",
                 "shasum": ""
             },
             "require": {
@@ -1303,9 +1303,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-graphs/issues",
-                "source": "https://github.com/phpDocumentor/guides-graphs/tree/0.2.0"
+                "source": "https://github.com/phpDocumentor/guides-graphs/tree/main"
             },
-            "time": "2023-10-03T18:07:51+00:00"
+            "time": "2023-11-02T08:42:48+00:00"
         },
         {
             "name": "phpdocumentor/guides-markdown",
@@ -1313,12 +1313,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-markdown.git",
-                "reference": "6aa3e2f89ce57f4b19f93f471d08683891699806"
+                "reference": "6e2977449d6abce06f1f7f443d42a3c45dc78382"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-markdown/zipball/6aa3e2f89ce57f4b19f93f471d08683891699806",
-                "reference": "6aa3e2f89ce57f4b19f93f471d08683891699806",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-markdown/zipball/6e2977449d6abce06f1f7f443d42a3c45dc78382",
+                "reference": "6e2977449d6abce06f1f7f443d42a3c45dc78382",
                 "shasum": ""
             },
             "require": {
@@ -1341,9 +1341,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-markdown/issues",
-                "source": "https://github.com/phpDocumentor/guides-markdown/tree/0.2.0"
+                "source": "https://github.com/phpDocumentor/guides-markdown/tree/main"
             },
-            "time": "2023-09-26T19:01:09+00:00"
+            "time": "2023-11-02T08:42:48+00:00"
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
@@ -1351,12 +1351,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "103594ed3fb73b3fb966801ffadcf71d774b291e"
+                "reference": "0a210ef09dcdb415362b5a0fcd00f54411ae7f33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/103594ed3fb73b3fb966801ffadcf71d774b291e",
-                "reference": "103594ed3fb73b3fb966801ffadcf71d774b291e",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/0a210ef09dcdb415362b5a0fcd00f54411ae7f33",
+                "reference": "0a210ef09dcdb415362b5a0fcd00f54411ae7f33",
                 "shasum": ""
             },
             "require": {
@@ -1382,7 +1382,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-10-26T16:44:41+00:00"
+            "time": "2023-11-02T08:42:48+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -1390,12 +1390,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-bootstrap.git",
-                "reference": "8e925b06790a647983a93e824d4f7cd228d7c808"
+                "reference": "4304d952273a11ad62629b242e2c73e99d336a29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/8e925b06790a647983a93e824d4f7cd228d7c808",
-                "reference": "8e925b06790a647983a93e824d4f7cd228d7c808",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/4304d952273a11ad62629b242e2c73e99d336a29",
+                "reference": "4304d952273a11ad62629b242e2c73e99d336a29",
                 "shasum": ""
             },
             "require": {
@@ -1417,9 +1417,9 @@
             "description": "A theme for phpdocumentor/guides based on Bootstrap",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/0.2.0"
+                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/main"
             },
-            "time": "2023-09-12T07:03:47+00:00"
+            "time": "2023-11-02T08:42:48+00:00"
         },
         {
             "name": "psr/container",
@@ -2225,16 +2225,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v6.3.6",
+            "version": "v6.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "ab8446f997efb9913627e9da10fa784d2182fe92"
+                "reference": "cd67fcaf4524ec6ae5d9b2d9497682d7ad3ce57d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/ab8446f997efb9913627e9da10fa784d2182fe92",
-                "reference": "ab8446f997efb9913627e9da10fa784d2182fe92",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/cd67fcaf4524ec6ae5d9b2d9497682d7ad3ce57d",
+                "reference": "cd67fcaf4524ec6ae5d9b2d9497682d7ad3ce57d",
                 "shasum": ""
             },
             "require": {
@@ -2297,7 +2297,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v6.3.6"
+                "source": "https://github.com/symfony/http-client/tree/v6.3.7"
             },
             "funding": [
                 {
@@ -2313,7 +2313,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-06T10:08:56+00:00"
+            "time": "2023-10-29T12:41:36+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -3950,16 +3950,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.37.0",
+            "version": "v3.37.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "d5ccc3807fd496ac2b448e8e5e57aa0772f0d18b"
+                "reference": "c3fe76976081ab871aa654e872da588077e19679"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/d5ccc3807fd496ac2b448e8e5e57aa0772f0d18b",
-                "reference": "d5ccc3807fd496ac2b448e8e5e57aa0772f0d18b",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/c3fe76976081ab871aa654e872da588077e19679",
+                "reference": "c3fe76976081ab871aa654e872da588077e19679",
                 "shasum": ""
             },
             "require": {
@@ -4031,7 +4031,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.37.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.37.1"
             },
             "funding": [
                 {
@@ -4039,7 +4039,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-28T14:49:50+00:00"
+            "time": "2023-10-29T20:51:23+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -4443,16 +4443,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.39",
+            "version": "1.10.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "d9dedb0413f678b4d03cbc2279a48f91592c97c4"
+                "reference": "93c84b5bf7669920d823631e39904d69b9c7dc5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d9dedb0413f678b4d03cbc2279a48f91592c97c4",
-                "reference": "d9dedb0413f678b4d03cbc2279a48f91592c97c4",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/93c84b5bf7669920d823631e39904d69b9c7dc5d",
+                "reference": "93c84b5bf7669920d823631e39904d69b9c7dc5d",
                 "shasum": ""
             },
             "require": {
@@ -4501,25 +4501,25 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-17T15:46:26+00:00"
+            "time": "2023-10-30T14:48:31+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
-            "version": "1.5.1",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-strict-rules.git",
-                "reference": "b21c03d4f6f3a446e4311155f4be9d65048218e6"
+                "reference": "7a50e9662ee9f3942e4aaaf3d603653f60282542"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/b21c03d4f6f3a446e4311155f4be9d65048218e6",
-                "reference": "b21c03d4f6f3a446e4311155f4be9d65048218e6",
+                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/7a50e9662ee9f3942e4aaaf3d603653f60282542",
+                "reference": "7a50e9662ee9f3942e4aaaf3d603653f60282542",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2 || ^8.0",
-                "phpstan/phpstan": "^1.10"
+                "phpstan/phpstan": "^1.10.34"
             },
             "require-dev": {
                 "nikic/php-parser": "^4.13.0",
@@ -4548,9 +4548,9 @@
             "description": "Extra strict and opinionated rules for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-strict-rules/issues",
-                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/1.5.1"
+                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/1.5.2"
             },
-            "time": "2023-03-29T14:47:40+00:00"
+            "time": "2023-10-30T14:35:06+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
