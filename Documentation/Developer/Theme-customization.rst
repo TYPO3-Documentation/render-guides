@@ -6,7 +6,7 @@
 Theme Customization
 ===================
 
-The theme provided by this package is prepared to be integrated into the typo3
+The theme provided by this package is prepared to be integrated into the TYPO3 documentation
 website. Templates are written in twig_ and uses components provided by
 `phpDocumentor/guides`_. The theme is using bootstrap_ as a base framework.
 

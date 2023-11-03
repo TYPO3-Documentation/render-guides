@@ -1,4 +1,4 @@
-..  include:: ../Includes.rst.txt
+..  include:: /Includes.rst.txt
 
 ..  _installation:
 
@@ -6,13 +6,13 @@
 Installation
 =============
 
-This project is not an typo3 extension, but a stand alone application.
+This project is not a TYPO3 extension, but a standalone application
 used to render documentation. If you want to learn more about how to write
-documentation, please check the typo3 website.
+documentation, please check the TYPO3 documentation website.
 
 .. add a link to the typo3 website using interlinking?
 
-We provide 2 methods to install the project on your local machine.
+Two methods are provided to install the project on your local machine.
 
 - Using Docker
 - Using PHP
@@ -26,7 +26,7 @@ We provide 2 methods to install the project on your local machine.
 Docker
 ------
 
-The docker image is available on github packages. You can pull the image with
+The docker image is available on GitHub packages. You can pull the image with
 the following command.
 
 ::
@@ -34,7 +34,7 @@ the following command.
     docker pull ghcr.io/typo3-documentation/render-guides:main
 
 For all available tags, please check the `github packages page`_.
-Once you have pulled the image, you can run the image to render your projects documentation.
+Once you have pulled the image, you can run the image to render your project's documentation.
 
 ::
 

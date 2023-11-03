@@ -29,17 +29,17 @@ The ``.ddev`` directory contains the configuration for the local development env
 for people using DDEV.
 
 The ``.github`` directory contains the configuration for the GitHub workflows.
-Triggered by pull requests and pushes to the main branch. The main workflow
+They are triggered by pull requests and pushes to the main branch. The main workflow
 contains the quality assurance steps. The phar workflow builds the phar file on
 release and nightly builds. Same applies for the docker workflow on the docker side.
 
 The ``bin`` directory contains the executable scripts for the project. The file
 in there is needed for the phar build.
 
-The ``fixtures`` directory contains the fixtures for local developement tests.
+The ``fixtures`` directory contains the fixtures for local development tests.
 
-The ``packages`` directory contains the TYPO3 extensions. The ``typo3-docs-theme``
-extension contains the theme for the documentation, and typo3 specific directives.
+The ``packages`` directory contains the TYPO3-specific extensions. The ``typo3-docs-theme``
+extension contains the theme for the documentation, and TYPO3-specific directives.
 The ``typo3-guides-extension`` extension contains extensions on the base tool.
 This are customizations to make the tool fit the TYPO3 documentation needs.
 
