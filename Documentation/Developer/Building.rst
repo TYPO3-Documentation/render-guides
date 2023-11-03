@@ -27,7 +27,7 @@ Once the build is finished you can execute your fresh image using::
 Using PHP
 ---------
 
-We do ship a phar_ binary with this repository. In short, a phar file is an
+A phar_ binary is shipped with this repository. In short, a phar file is an
 executable PHP file. You can run it like any other executable.
 
 To build the phar file we use box_, with some wrapper script. To build the phar

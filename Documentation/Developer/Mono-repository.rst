@@ -25,7 +25,7 @@ If you add a new dependency to a package, you can run
 
 This will update the root composer.json file with the new dependency.
 
-We do recommend to run the validation check before you commit.
+It is recommended to run the validation check before you commit.
 
 ::
 
