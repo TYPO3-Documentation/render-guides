@@ -11,7 +11,7 @@ configuration to render documentation is in this repository. This includes
 scripts to build the documentation, the configuration for the CI/CD pipeline.
 
 To ensure the mono-repo setup works, and also works in separate repositories,
-we are using a tool called monorepo-buider_. This tool will help us to keep the
+we are using a tool called _monorepo-builder_. This tool will help us to keep the
 dependencies over packages in sync.
 
 If you add a new dependency to a package, you can run

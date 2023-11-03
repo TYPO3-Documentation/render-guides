@@ -70,7 +70,7 @@ final class IntegrationTest extends ApplicationTestCase
             $input = new ArrayInput(
                 [
                     'input' => $inputPath,
-                    'output' => $outputPath,
+                    '--output' => $outputPath,
                     '--theme' => 'typo3docs',
                     '--log-path' => $outputPath . '/logs',
                 ],

@@ -32,7 +32,7 @@ test-integration: ## Runs integration tests with phpunit/phpunit
 
 .PHONY: test-docs
 test-docs: ## Generate projects docs without warnings
-	$(PHP_BIN) vendor/bin/guides -vvv --no-progress Documentation "/tmp/test" --fail-on-log
+	$(PHP_BIN) vendor/bin/guides -vvv --no-progress Documentation --output="/tmp/test" --fail-on-log
 
 .PHONY: cleanup
 cleanup: cleanup-tests cleanup-cache
