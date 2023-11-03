@@ -12,6 +12,14 @@ Usage with Docker
     mkdir Documentation-GENERATED-temp
     docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main Documentation Documentation-GENERATED-temp
 
+Contributing
+============
+
+When contributing please run all tests before committing::
+
+    make pre-commit-test
+
+
 Usage with Docker (locally)
 ===========================
 
