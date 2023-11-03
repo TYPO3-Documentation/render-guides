@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<guides
+    links-are-relative="true"
+    input-file="README.md"
+    input-format="md"
+>
+    <theme>typo3docs</theme>
+</guides>
