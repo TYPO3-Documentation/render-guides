@@ -39,6 +39,7 @@ class FullyQualifiedNameService
         $matches = [];
         if ($this->isFullyQualifiedName($name, $matches)) {
             $namespace = $matches[1];
+            $namespace = trim($namespace, '\\');
             $baseName = $matches[2];
             return new FullyQualifiedNameNode($baseName, new PhpNamespaceNode($namespace));
         }

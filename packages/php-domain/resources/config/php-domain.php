@@ -13,6 +13,7 @@ use T3Docs\PhpDomain\Directives\Php\InterfaceDirective;
 
 use T3Docs\PhpDomain\PhpDomain\FullyQualifiedNameService;
 use T3Docs\PhpDomain\PhpDomain\NamespaceRepository;
+use T3Docs\PhpDomain\TextRoles\InterfaceTextRole;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
@@ -26,5 +27,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(InterfaceDirective::class)
         ->set(FullyQualifiedNameService::class)
         ->set(NamespaceRepository::class)
+
+        ->set(InterfaceTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role', ['domain' => 'php'])
     ;
 };

@@ -32,6 +32,6 @@ class FullyQualifiedNameNode extends AbstractNode
         if ($this->namespaceNode === null) {
             return $this->name;
         }
-        return $this->namespaceNode->toString() . '\\' . $this->name;
+        return '\\' . $this->namespaceNode->toString() . '\\' . $this->name;
     }
 }
