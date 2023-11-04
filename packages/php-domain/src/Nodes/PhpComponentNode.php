@@ -8,7 +8,7 @@ use phpDocumentor\Guides\Nodes\CompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
 
 /**
- * Stores data on PHP classes, interfaces and traits
+ * Stores data on PHP classes, interfaces, traits and enums
  *
  * @extends CompoundNode<Node>
  */

@@ -1,6 +1,6 @@
-==============
-PHP Domain
-==============
+=====================================
+PHP Interface with implicit namespace
+=====================================
 
 ..  php:interface:: TYPO3\CMS\Core\TestInterface
 

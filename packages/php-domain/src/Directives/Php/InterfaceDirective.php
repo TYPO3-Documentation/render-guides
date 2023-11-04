@@ -27,17 +27,13 @@ final class InterfaceDirective extends SubDirective
         return 'php:interface';
     }
 
-    /** {@inheritDoc}
-     *
-     * @param Directive $directive
-     */
     protected function processSub(
         BlockContext $blockContext,
         CollectionNode $collectionNode,
         Directive $directive,
     ): Node|null {
         $name = trim($directive->getData());
-        $fqn = $this->fullyQualifiedNameService->getFullyQualifiedName($name);
+        $fqn = $this->fullyQualifiedNameService->getFullyQualifiedName($name, true);
 
         $interfaceNode = new PhpInterfaceNode(
             $fqn,
