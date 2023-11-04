@@ -18,6 +18,9 @@
         requireCoverageMetadata="false"
 >
     <testsuites>
+        <testsuite name="unit">
+            <directory>packages/**/tests/unit/</directory>
+        </testsuite>
         <testsuite name="integration">
             <directory>./tests/Integration/</directory>
         </testsuite>

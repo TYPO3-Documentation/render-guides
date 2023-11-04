@@ -37,6 +37,9 @@ jobs:
       - name: "Run integration tests"
         run: "composer run test:integration"
 
+      - name: "Run unit tests"
+        run: "composer run test:unit"
+
   monorepo-validate:
     runs-on: "ubuntu-latest"
     steps:

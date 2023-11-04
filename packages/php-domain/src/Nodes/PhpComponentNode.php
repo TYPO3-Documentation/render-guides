@@ -21,7 +21,7 @@ abstract class PhpComponentNode extends CompoundNode
      */
     public function __construct(
         private readonly string $type,
-        private readonly string $name,
+        private readonly FullyQualifiedNameNode $name,
         array $value = [],
         private PhpNamespaceNode|null $namespace = null,
         private array $members = [],
@@ -40,19 +40,30 @@ abstract class PhpComponentNode extends CompoundNode
         $this->namespace = $namespace;
     }
 
+    /**
+     * @return list<PhpMemberNode>
+     */
     public function getMembers(): array
     {
         return $this->members;
     }
 
+    /**
+     * @param list<PhpMemberNode> $members
+     */
     public function setMembers(array $members): void
     {
         $this->members = $members;
     }
 
-    public function getName(): string
+    public function getName(): FullyQualifiedNameNode
     {
         return $this->name;
+    }
+
+    public function toString(): string
+    {
+        return $this->name->toString();
     }
 
     public function getType(): string
@@ -60,6 +71,9 @@ abstract class PhpComponentNode extends CompoundNode
         return $this->type;
     }
 
+    /**
+     * @return list<string>
+     */
     public function getModifiers(): array
     {
         return $this->modifiers;

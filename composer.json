@@ -57,6 +57,11 @@
         "monorepo:merge": "vendor/bin/monorepo-builder merge",
         "monorepo:validate": "vendor/bin/monorepo-builder validate",
         "render": "vendor/bin/guides fixtures-local",
-        "test:integration": "vendor/bin/phpunit --testsuite=integration"
+        "test": [
+            "composer test:unit",
+            "composer test:integration"
+        ],
+        "test:integration": "vendor/bin/phpunit --testsuite=integration",
+        "test:unit": "vendor/bin/phpunit --testsuite=unit"
     }
 }

@@ -9,10 +9,19 @@ use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
+use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use T3Docs\PhpDomain\Nodes\PhpInterfaceNode;
+use T3Docs\PhpDomain\PhpDomain\FullyQualifiedNameService;
 
 final class InterfaceDirective extends SubDirective
 {
+    public function __construct(
+        Rule $startingRule,
+        private readonly FullyQualifiedNameService $fullyQualifiedNameService
+    ) {
+        parent::__construct($startingRule);
+    }
+
     public function getName(): string
     {
         return 'php:interface';
@@ -27,12 +36,16 @@ final class InterfaceDirective extends SubDirective
         CollectionNode $collectionNode,
         Directive $directive,
     ): Node|null {
-        return new PhpInterfaceNode(
-            $directive->getData(),
+        $name = trim($directive->getData());
+        $fqn = $this->fullyQualifiedNameService->getFullyQualifiedName($name);
+
+        $interfaceNode = new PhpInterfaceNode(
+            $fqn,
             $collectionNode->getChildren(),
             null,
             [],
             [],
         );
+        return $interfaceNode;
     }
 }
