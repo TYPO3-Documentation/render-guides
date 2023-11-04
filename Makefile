@@ -24,7 +24,11 @@ phpstan:
 	$(PHP_BIN) -d memory_limit=1024M vendor/bin/phpstan --configuration=phpstan.neon
 
 .PHONY: test
-test: test-integration test-docs## Runs all test suites with phpunit/phpunit
+test: test-integration test-unit test-docs## Runs all test suites with phpunit/phpunit
+
+.PHONY: test-unit
+test-unit: ## Runs integration tests with phpunit/phpunit
+	$(PHP_BIN) vendor/bin/phpunit --testsuite=unit
 
 .PHONY: test-integration
 test-integration: ## Runs integration tests with phpunit/phpunit

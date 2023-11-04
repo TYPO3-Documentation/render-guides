@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace T3Docs\PhpDomain\Nodes;
 
 use phpDocumentor\Guides\Nodes\AbstractNode;
@@ -10,10 +8,11 @@ use phpDocumentor\Guides\Nodes\AbstractNode;
  * Stores data on PHP namespaces
  * @extends AbstractNode<string>
  */
-final class PhpNamespaceNode extends AbstractNode
+class FullyQualifiedNameNode extends AbstractNode
 {
     public function __construct(
         private readonly string $name,
+        private readonly PhpNamespaceNode|null $namespaceNode,
     ) {
         $this->value = $name;
     }
@@ -23,8 +22,13 @@ final class PhpNamespaceNode extends AbstractNode
         return $this->name;
     }
 
+    public function getNamespaceNode(): ?PhpNamespaceNode
+    {
+        return $this->namespaceNode;
+    }
+
     public function toString(): string
     {
-        return $this->name;
+        return $this->namespaceNode?->toString() . '\\' . $this->name;
     }
 }
