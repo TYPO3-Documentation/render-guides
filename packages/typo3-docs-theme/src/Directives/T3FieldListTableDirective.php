@@ -16,6 +16,7 @@ namespace T3Docs\Typo3DocsTheme\Directives;
 use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
+use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 
 class T3FieldListTableDirective extends SubDirective
@@ -25,11 +26,8 @@ class T3FieldListTableDirective extends SubDirective
         return 't3-field-list-table';
     }
 
-    /** {@inheritDoc}
-     *
-     * @param Directive $directive
-     */
     protected function processSub(
+        BlockContext $blockContext,
         CollectionNode $collectionNode,
         Directive $directive,
     ): Node|null {

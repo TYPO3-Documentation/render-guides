@@ -48,8 +48,8 @@ final class RunDecorator extends Command
             $guessedInput = $this->guessInput($output);
         }
 
-        if ($arguments['output'] === null) {
-            $arguments['output'] = getcwd() . '/' . self::DEFAULT_OUTPUT_DIRECTORY;
+        if (!isset($options['--output'])) {
+            $options['--output'] = getcwd() . '/' . self::DEFAULT_OUTPUT_DIRECTORY;
         }
 
         $input = new ArrayInput(

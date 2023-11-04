@@ -53,7 +53,7 @@
         "fix:php:cs": "vendor/bin/php-cs-fixer fix",
         "monorepo:merge": "vendor/bin/monorepo-builder merge",
         "monorepo:validate": "vendor/bin/monorepo-builder validate",
-        "render": "vendor/bin/guides fixtures-local output --theme=typo3docs",
+        "render": "vendor/bin/guides fixtures-local",
         "test:integration": "vendor/bin/phpunit --testsuite=integration"
     }
 }

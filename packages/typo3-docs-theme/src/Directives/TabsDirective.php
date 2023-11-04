@@ -17,6 +17,7 @@ use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
+use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use T3Docs\Typo3DocsTheme\Nodes\TabsNode;
 
@@ -27,11 +28,8 @@ class TabsDirective extends SubDirective
         return 'tabs';
     }
 
-    /** {@inheritDoc}
-     *
-     * @param Directive $directive
-     */
     protected function processSub(
+        BlockContext $blockContext,
         CollectionNode $collectionNode,
         Directive $directive,
     ): Node|null {
