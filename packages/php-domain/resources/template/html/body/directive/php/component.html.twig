@@ -1,0 +1,13 @@
+<dl class="php interface">
+    <dt class="sig sig-object php"
+        id="TYPO3\CMS\Core\Error\ErrorHandlerInterface">
+        <em class="property"><span class="pre">{{ node.type }}</span> </em>
+        {% if  node.namespace != null -%}
+        <span  class="sig-prename descclassname"><span class="pre">{{ node.namespace.name }}</span></span>
+        {% endif -%}
+        <span class="sig-name descname"><span class="pre">{{ node.name }}</span></span>
+    </dt>
+    <dd>
+        {{ renderNode(node.value) }}
+    </dd>
+</dl>
