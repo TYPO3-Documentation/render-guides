@@ -1,0 +1,5 @@
+==============
+PHP Domain
+==============
+
+..  interface:: test
