@@ -1,5 +1,0 @@
-==============
-PHP Domain
-==============
-
-..  interface:: test
