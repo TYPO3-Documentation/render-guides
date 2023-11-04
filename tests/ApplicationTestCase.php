@@ -12,6 +12,7 @@ use phpDocumentor\Guides\Markdown\DependencyInjection\MarkdownExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use T3Docs\PhpDomain\DependencyInjection\PhpDomainExtension;
 use T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension;
 
 abstract class ApplicationTestCase extends TestCase
@@ -40,6 +41,7 @@ abstract class ApplicationTestCase extends TestCase
             new TestExtension(),
             new MarkdownExtension(),
             new BootstrapExtension(),
+            new PhpDomainExtension(),
             new Typo3DocsThemeExtension(),
             ...$extraExtensions,
         ]);
