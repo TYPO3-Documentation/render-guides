@@ -12,6 +12,10 @@ class FullyQualifiedNameService
     private const BASE_NAME_PATTERN = '/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/';
     public const FULL_NAME_PATTERN = '/^(.+\\\\)([^\\\\]+)$/';
 
+    public function __construct(
+        private readonly NamespaceRepository $namespaceRepository
+    ) {}
+
     /**
      * @param list<string> $matches
      */
@@ -24,9 +28,12 @@ class FullyQualifiedNameService
         return (bool)preg_match(self::BASE_NAME_PATTERN, $name);
     }
 
-    public function getFullyQualifiedName(string $name): FullyQualifiedNameNode
+    public function getFullyQualifiedName(string $name, bool $useCurrentNamespace = false): FullyQualifiedNameNode
     {
         if ($this->isBaseName($name)) {
+            if ($useCurrentNamespace) {
+                return new FullyQualifiedNameNode($name, $this->namespaceRepository->getCurrentNamespace());
+            }
             return new FullyQualifiedNameNode($name, null);
         }
         $matches = [];

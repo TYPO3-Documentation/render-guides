@@ -1,5 +1,5 @@
 ==============
-PHP Domain
+PHP Interface
 ==============
 
 ..  php:interface:: TestInterface

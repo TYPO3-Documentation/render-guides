@@ -29,6 +29,9 @@ class FullyQualifiedNameNode extends AbstractNode
 
     public function toString(): string
     {
-        return $this->namespaceNode?->toString() . '\\' . $this->name;
+        if ($this->namespaceNode === null) {
+            return $this->name;
+        }
+        return $this->namespaceNode->toString() . '\\' . $this->name;
     }
 }
