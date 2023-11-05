@@ -10,8 +10,10 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
+
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\TabsDirective;
+use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\TextRoles\IssueReferenceTextRole;
 
 return static function (ContainerConfigurator $container): void {
@@ -27,5 +29,6 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(GroupTabDirective::class)
         ->set(T3FieldListTableDirective::class)
-        ->set(TabsDirective::class);
+        ->set(TabsDirective::class)
+        ->set(YoutubeDirective::class);
 };
