@@ -2,28 +2,21 @@
 
 namespace T3Docs\Typo3DocsTheme\Nodes;
 
+use phpDocumentor\Guides\Bootstrap\Nodes\AbstractTabNode;
 use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
-use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
-final class GroupTabNode extends GeneralDirectiveNode
+final class GroupTabNode extends AbstractTabNode
 {
-    private string $key;
-
     /** @param list<Node> $value */
     public function __construct(
-        protected readonly string $name,
-        protected readonly string $plainContent,
-        protected readonly InlineCompoundNode $content,
+        string $name,
+        string $plainContent,
+        InlineCompoundNode $content,
         array $value = [],
     ) {
-        parent::__construct($name, $plainContent, $content, $value);
-        $this->key = strtolower($plainContent);
-        $this->key = (string)(preg_replace('/^[a-zA-Z0-9-_]/', '', $this->key));
-    }
-
-    public function getKey(): string
-    {
-        return $this->key;
+        $key = strtolower($plainContent);
+        $key = (string)(preg_replace('/^[a-zA-Z0-9-_]/', '', $key));
+        parent::__construct($name, $plainContent, $content, $key, false, $value);
     }
 }
