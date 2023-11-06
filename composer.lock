@@ -1169,12 +1169,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "219b71c3f1bc4692a72380e300b571b7a45543b1"
+                "reference": "acf6688b7ba78ecb26a99ae7c69be301f6a0e600"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/219b71c3f1bc4692a72380e300b571b7a45543b1",
-                "reference": "219b71c3f1bc4692a72380e300b571b7a45543b1",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/acf6688b7ba78ecb26a99ae7c69be301f6a0e600",
+                "reference": "acf6688b7ba78ecb26a99ae7c69be301f6a0e600",
                 "shasum": ""
             },
             "require": {
@@ -1211,7 +1211,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-11-02T08:42:48+00:00"
+            "time": "2023-11-03T17:49:05+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1351,12 +1351,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "a87acf32c24f35648827678017efa893f5ee687c"
+                "reference": "524ab8fdc1ce6c0b1c2027219f2d0595ca2a6f2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/a87acf32c24f35648827678017efa893f5ee687c",
-                "reference": "a87acf32c24f35648827678017efa893f5ee687c",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/524ab8fdc1ce6c0b1c2027219f2d0595ca2a6f2c",
+                "reference": "524ab8fdc1ce6c0b1c2027219f2d0595ca2a6f2c",
                 "shasum": ""
             },
             "require": {
@@ -1382,7 +1382,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-11-03T17:26:58+00:00"
+            "time": "2023-11-04T10:07:30+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -1390,12 +1390,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-bootstrap.git",
-                "reference": "135877cee899bafcc79fa96b4bedafd33e2c99dc"
+                "reference": "2849249a5dab67448302d93ad8d81072381787de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/135877cee899bafcc79fa96b4bedafd33e2c99dc",
-                "reference": "135877cee899bafcc79fa96b4bedafd33e2c99dc",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/2849249a5dab67448302d93ad8d81072381787de",
+                "reference": "2849249a5dab67448302d93ad8d81072381787de",
                 "shasum": ""
             },
             "require": {
@@ -1419,7 +1419,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/main"
             },
-            "time": "2023-11-03T17:26:58+00:00"
+            "time": "2023-11-05T03:43:02+00:00"
         },
         {
             "name": "psr/container",
