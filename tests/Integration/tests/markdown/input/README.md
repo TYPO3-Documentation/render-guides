@@ -20,7 +20,7 @@ one.
 1. **Choose a Sturdy Location:** Select a location with a sturdy beam or swing
    set structure capable of supporting the weight of the swing and the child.
 
-2. **Securely Attach the Swing:** Use strong and reliable [ropes](https://example.com/ropes)
+2. **Securely Attach the Swing:** Use strong and reliable [ropes](https://example.com/ropes)&nbsp;
    or chains to securely attach the swing to the chosen location. Double-check
    the knots or hardware to ensure they are tight and safe.
 
