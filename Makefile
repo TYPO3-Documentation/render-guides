@@ -23,6 +23,10 @@ phpstan-baseline:
 phpstan:
 	$(PHP_BIN) -d memory_limit=1024M vendor/bin/phpstan --configuration=phpstan.neon
 
+.PHONE: githooks
+githooks: ## Runs script that injects githook pre-commit, so that 'make pre-commit-test' is performed on each commit.
+	./tools/add-githooks.sh
+
 .PHONY: test
 test: test-integration test-unit test-docs## Runs all test suites with phpunit/phpunit
 

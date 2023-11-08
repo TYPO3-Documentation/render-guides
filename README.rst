@@ -19,6 +19,11 @@ When contributing please run all tests before committing::
 
     make pre-commit-test
 
+You can use a helper script to set this up once in your project::
+
+    make githooks
+
+Those git hooks will also check your commit message for line length.
 
 Usage with Docker (locally)
 ===========================

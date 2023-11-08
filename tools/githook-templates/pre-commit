@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# very basic pre-commit hook
+# just runs 'make pre-commit-test'
+ABORT_ON_ERROR=yes
+echo "Checking coding guidelines via 'make pre-commit-test' ..."
+make pre-commit-test 2>&1
+ERROR_CODE=$?
+
+if [ ${ERROR_CODE} -ne 0 ];then
+    echo -e "\n-----------------------------------------------------------------\n"
+    echo -e "  >> ERROR: There was a coding guideline problem in one or more of  "
+    echo -e "              your files.                                           "
+    echo -e "------------------------------------------------------------------\n"
+    if [[ ${ABORT_ON_ERROR} == "yes" ]];then
+        echo -e "   Your commit is being aborted ... Fix and try again!          "
+        USE_EXIT_CODE=1
+    else
+        echo -e "   You must fix this and then commit again (git commit --amend) "
+    fi
+fi
+
+exit ${USE_EXIT_CODE}
