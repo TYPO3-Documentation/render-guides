@@ -11,11 +11,6 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 use T3Docs\PhpDomain\Directives\Php\InterfaceDirective;
 
-use T3Docs\PhpDomain\NodeRenderers\PhpNodeRenderer;
-use T3Docs\PhpDomain\Nodes\FullyQualifiedNameNode;
-use T3Docs\PhpDomain\Nodes\PhpComponentNode;
-use T3Docs\PhpDomain\Nodes\PhpNamespaceNode;
-
 use T3Docs\PhpDomain\PhpDomain\FullyQualifiedNameService;
 use T3Docs\PhpDomain\PhpDomain\NamespaceRepository;
 
@@ -31,14 +26,5 @@ return static function (ContainerConfigurator $container): void {
         ->set(InterfaceDirective::class)
         ->set(FullyQualifiedNameService::class)
         ->set(NamespaceRepository::class)
-
-        ->set(PhpNodeRenderer::class)
-        ->arg('$templateMatching', [
-            PhpComponentNode::class => 'body/directive/php/component.html.twig',
-            FullyQualifiedNameNode::class => 'body/directive/php/fullyQualifiedName.html.twig',
-            PhpNamespaceNode::class => 'body/directive/php/namespace.html.twig',
-        ])
-        ->tag('phpdoc.guides.noderenderer.html')
-
     ;
 };
