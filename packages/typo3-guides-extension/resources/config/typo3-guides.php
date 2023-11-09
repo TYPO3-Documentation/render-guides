@@ -16,5 +16,20 @@ return static function (ContainerConfigurator $container): void {
         ->set(RunDecorator::class)
         ->decorate(
             Run::class,
-        )->args([service('.inner')]);
+        )->args([service('.inner')])
+        ->set(\T3Docs\GuidesExtension\Renderer\SinglePageRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.singlepage',
+                'format' => 'singlepage',
+            ],
+        )
+        ->set(\T3Docs\GuidesExtension\Renderer\NodeRenderer\SinglePageDocumentRenderer::class)
+        ->tag('phpdoc.guides.noderenderer.singlepage')
+
+        ->set(\phpDocumentor\Guides\NodeRenderers\DelegatingNodeRenderer::class)
+        ->call('setNodeRendererFactory', [service('phpdoc.guides.noderenderer.factory.html')])
+        ->tag('phpdoc.guides.noderenderer.singlepage')
+    ;
 };

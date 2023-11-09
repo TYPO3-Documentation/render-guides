@@ -17,18 +17,23 @@ use function implode;
 use const LC_ALL;
 
 use phpDocumentor\Guides\Cli\Command\Run;
+
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 
 use function setlocale;
+
 use function str_ends_with;
 use function str_replace;
 
 use Symfony\Component\Console\Input\ArrayInput;
+
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 
 use function system;
+
+use T3Docs\GuidesExtension\Command\RunDecorator;
 
 use T3Docs\Typo3DocsTheme\ApplicationTestCase;
 
@@ -65,7 +70,7 @@ final class IntegrationTest extends ApplicationTestCase
 
             $this->prepareContainer($configurationFile);
             $command = $this->getContainer()->get(Run::class);
-            assert($command instanceof Run);
+            assert($command instanceof Run || $command instanceof RunDecorator);
 
             $input = new ArrayInput(
                 [

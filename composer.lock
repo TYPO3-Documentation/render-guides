@@ -1222,12 +1222,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "5bdb46c43d7ab8999614ea4ad0c8c01c8e6cf44a"
+                "reference": "a09d00cceb3bcd16db6a4179542c39b3cf0f3ab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/5bdb46c43d7ab8999614ea4ad0c8c01c8e6cf44a",
-                "reference": "5bdb46c43d7ab8999614ea4ad0c8c01c8e6cf44a",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/a09d00cceb3bcd16db6a4179542c39b3cf0f3ab1",
+                "reference": "a09d00cceb3bcd16db6a4179542c39b3cf0f3ab1",
                 "shasum": ""
             },
             "require": {
@@ -1264,7 +1264,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-cli/tree/main"
             },
-            "time": "2023-11-09T14:52:19+00:00"
+            "time": "2023-11-09T18:31:12+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",

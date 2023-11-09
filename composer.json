@@ -56,7 +56,6 @@
         "fix:php:cs": "vendor/bin/php-cs-fixer fix",
         "monorepo:merge": "vendor/bin/monorepo-builder merge",
         "monorepo:validate": "vendor/bin/monorepo-builder validate",
-        "render": "vendor/bin/guides fixtures-local",
         "test": [
             "composer test:unit",
             "composer test:integration"
