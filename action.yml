@@ -4,7 +4,13 @@ description: 'Documentation render tool for typo3 documentation'
 inputs:
   input:
     description: 'Input directory'
+    required: false
+    default: null
+
+  config:
+    description: 'Configuration file location'
     default: 'Documentation'
+
   output:
     description: 'Output directory'
     default: 'RenderedDocumentation'
@@ -13,8 +19,9 @@ runs:
   using: 'docker'
   image: 'docker://ghcr.io/typo3-documentation/render-guides:main'
   args:
-    - '${{ inputs.input }}'
+    - '--config=${{ inputs.config }}'
     - '--output=${{ inputs.output }}'
+    - '${{ inputs.input }}'
 
 branding:
   icon: 'book-open'
