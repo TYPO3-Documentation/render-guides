@@ -1,4 +1,5 @@
 PHP_BIN ?= docker run -it --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.2-cli php -d memory_limit=1024M
+PHP_PROJECT_BIN = docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/project typo3-docs:local php -d memory_limit=1024M
 ## This can be adapted in the .git/hooks/pre-commit call of this step. If you change this line (i.e. new PHP version), also change it in that template
 
 .PHONY: help
@@ -56,11 +57,11 @@ cleanup-cache:
 
 .PHONY: test-monorepo
 test-monorepo:
-	$(PHP_BIN) ./vendor/bin/monorepo-builder validate
+	$(PHP_PROJECT_BIN) ./vendor/bin/monorepo-builder validate
 
 vendor: composer.json composer.lock
-	composer validate --no-check-publish
-	composer install --no-interaction --no-progress  --ignore-platform-reqs
+	$(PHP_PROJECT_BIN) composer validate --no-check-publish
+	$(PHP_PROJECT_BIN) composer install --no-interaction --no-progress  --ignore-platform-reqs
 
 .PHONY: docs
 docs: ## Generate projects docs
