@@ -8,9 +8,7 @@ Installation
 
 This project is not a TYPO3 extension, but a standalone application
 used to render documentation. If you want to learn more about how to write
-documentation, please check the TYPO3 documentation website.
-
-.. add a link to the typo3 website using interlinking?
+documentation, please check the :ref:`Contributing Guide - How to Document <2document:contribute>`.
 
 Two methods are provided to install the project on your local machine.
 
