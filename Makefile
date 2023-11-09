@@ -1,4 +1,5 @@
-PHP_BIN = docker run -it --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.2-cli php -d memory_limit=1024M
+PHP_BIN ?= docker run -it --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.2-cli php -d memory_limit=1024M
+## This can be adapted in the .git/hooks/pre-commit call of this step. If you change this line (i.e. new PHP version), also change it in that template
 
 .PHONY: help
 help: ## Displays this list of targets with descriptions

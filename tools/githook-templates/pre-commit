@@ -4,7 +4,13 @@
 # just runs 'make pre-commit-test'
 ABORT_ON_ERROR=yes
 echo "Checking coding guidelines via 'make pre-commit-test' ..."
-make pre-commit-test 2>&1
+
+# This variable reflects what is configured in the Makefile, but does not use a TTY
+# If this is changed or gets changed, always harmonize that with the entry in the 
+# Makefile
+PHP_BIN="docker run -i --rm --user=$(id -u):$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.2-cli php -d memory_limit=1024M"
+make PHP_BIN="$PHP_BIN" pre-commit-test 2>&1
+
 ERROR_CODE=$?
 
 if [ ${ERROR_CODE} -ne 0 ];then
