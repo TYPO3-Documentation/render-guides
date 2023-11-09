@@ -36,7 +36,7 @@ Once you have pulled the image, you can run the image to render your project's d
 
 ::
 
-    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress --config ./Documentation
 
 Unlike other docker images this image will detect the owner-user of the mounted
 project. This means that the files created by the docker image will have the
