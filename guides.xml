@@ -20,6 +20,8 @@
             <class>\T3Docs\PhpDomain\DependencyInjection\PhpDomainExtension</class>
         </phpdomain>
     </extensions>
-    <inventory id="h2document" url="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/" />
+    <inventories>
+        <inventory id="h2document" url="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/" />
+    </inventories>
     <theme>typo3docs</theme>
 </guides>

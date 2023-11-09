@@ -2,9 +2,9 @@
 
 .. _start:
 
-=========
-<project>
-=========
+=============
+Render guides
+=============
 
 :Package name:
     render-guides
