@@ -32,7 +32,7 @@ class FullyQualifiedNameServiceTest extends TestCase
     {
         return [
             // Valid FQN with both namespace and class name
-            ['YourClassName', 'Your\\Namespace\\', 'Your\\Namespace\\YourClassName'],
+            ['YourClassName', 'Your\\Namespace', 'Your\\Namespace\\YourClassName'],
 
             // Valid FQN with only class name
             ['AnotherClassName', null, 'AnotherClassName'],
@@ -53,10 +53,10 @@ class FullyQualifiedNameServiceTest extends TestCase
     {
         return [
             // Valid FQN with both namespace and class name
-            ['YourClassName', 'Your\\Namespace\\', 'Your\\Namespace\\YourClassName', 'Another\\Namespace\\'],
+            ['YourClassName', 'Your\\Namespace', 'Your\\Namespace\\YourClassName', 'Another\\Namespace'],
 
             // Valid FQN with only class name
-            ['AnotherClassName', 'Another\\Namespace\\', 'AnotherClassName', 'Another\\Namespace\\'],
+            ['AnotherClassName', 'Another\\Namespace', 'AnotherClassName', 'Another\\Namespace'],
         ];
     }
     #[DataProvider('inValidFqnProvider')]

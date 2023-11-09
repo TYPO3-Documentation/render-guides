@@ -15,12 +15,13 @@ final class PhpInterfaceNode extends PhpComponentNode
      * @param list<Node> $value
      */
     public function __construct(
+        string $id,
         FullyQualifiedNameNode $name,
         array $value = [],
         PhpNamespaceNode|null $namespace = null,
         array $members = [],
         array $modifiers = [],
     ) {
-        parent::__construct(self::TYPE, $name, $value, $namespace, $members, $modifiers);
+        parent::__construct($id, self::TYPE, $name, $value, $namespace, $members, $modifiers);
     }
 }

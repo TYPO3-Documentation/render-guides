@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace T3Docs\PhpDomain\Nodes;
 
 use phpDocumentor\Guides\Nodes\CompoundNode;
+use phpDocumentor\Guides\Nodes\LinkTargetNode;
 use phpDocumentor\Guides\Nodes\Node;
 
 /**
@@ -12,7 +13,7 @@ use phpDocumentor\Guides\Nodes\Node;
  *
  * @extends CompoundNode<Node>
  */
-abstract class PhpComponentNode extends CompoundNode
+abstract class PhpComponentNode extends CompoundNode implements LinkTargetNode
 {
     /**
      * @param list<PhpMemberNode> $members
@@ -20,6 +21,7 @@ abstract class PhpComponentNode extends CompoundNode
      * @param list<Node> $value
      */
     public function __construct(
+        private readonly string $id,
         private readonly string $type,
         private readonly FullyQualifiedNameNode $name,
         array $value = [],
@@ -28,6 +30,20 @@ abstract class PhpComponentNode extends CompoundNode
         private array $modifiers = [],
     ) {
         parent::__construct($value);
+    }
+
+    public function getLinkType(): string
+    {
+        return 'php:' . $this->type;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+    public function getLinkText(): string
+    {
+        return $this->toString();
     }
 
     public function getNamespace(): ?PhpNamespaceNode
