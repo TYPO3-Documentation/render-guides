@@ -67,5 +67,8 @@ vendor: composer.json composer.lock
 docs: ## Generate projects docs
 	$(PHP_BIN) vendor/bin/guides -vvv --no-progress Documentation
 
+docker-build: ## Build docker image for local debugging
+	docker build -t typo3-docs:local .
+
 .PHONY: pre-commit-test
 pre-commit-test: fix-code-style test code-style static-code-analysis test-monorepo
