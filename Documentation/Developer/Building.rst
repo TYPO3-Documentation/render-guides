@@ -34,6 +34,7 @@ To build the phar file we use box_, with some wrapper script. To build the phar
 file you can run the following command.
 
 ::
+
     composer run build:phar
 
 This will create a file called guides.phar in the build directory. You can execute
