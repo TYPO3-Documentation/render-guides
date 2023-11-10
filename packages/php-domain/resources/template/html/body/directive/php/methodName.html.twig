@@ -1,0 +1,11 @@
+
+<span class="sig-name descname"><span class="pre">{{ node.name }}</span></span>
+<span class="sig-paren">(</span>
+{% for param in node.params -%}
+    <em class="sig-param"><span class="pre">{{ param }}</span></em>
+    {%- if not loop.last %}, {% endif -%}
+{%- endfor %}
+<span class="sig-paren">)</span>
+{% if node.return %}
+<em class="sig-returns"><span class="pre">: {{ node.return }}</span></em>
+{% endif %}

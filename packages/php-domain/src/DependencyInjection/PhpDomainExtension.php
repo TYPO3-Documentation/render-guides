@@ -12,10 +12,13 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use T3Docs\PhpDomain\Nodes\FullyQualifiedNameNode;
+use T3Docs\PhpDomain\Nodes\MethodNameNode;
+
 use T3Docs\PhpDomain\Nodes\PhpComponentNode;
+use T3Docs\PhpDomain\Nodes\PhpMethodNode;
 use T3Docs\PhpDomain\Nodes\PhpNamespaceNode;
 
 final class PhpDomainExtension extends Extension implements PrependExtensionInterface
@@ -40,6 +43,8 @@ final class PhpDomainExtension extends Extension implements PrependExtensionInte
                     template(FullyQualifiedNameNode::class, 'body/directive/php/fullyQualifiedName.html.twig'),
                     template(PhpComponentNode::class, 'body/directive/php/component.html.twig'),
                     template(PhpNamespaceNode::class, 'body/directive/php/namespace.html.twig'),
+                    template(PhpMethodNode::class, 'body/directive/php/method.html.twig'),
+                    template(MethodNameNode::class, 'body/directive/php/methodName.html.twig'),
                 ],
             ],
         );
