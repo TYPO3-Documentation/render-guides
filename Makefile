@@ -65,7 +65,7 @@ vendor: composer.json composer.lock
 
 .PHONY: docs
 docs: ## Generate projects docs
-	$(PHP_BIN) vendor/bin/guides -vvv --no-progress Documentation
+	$(PHP_BIN) vendor/bin/guides -vvv --no-progress --config=Documentation
 
 .PHONY: pre-commit-test
 pre-commit-test: fix-code-style test code-style static-code-analysis test-monorepo
