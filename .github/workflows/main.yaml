@@ -40,6 +40,9 @@ jobs:
       - name: "Run unit tests"
         run: "composer run test:unit"
 
+      - name: "Lint xml configs"
+        run: "tools/xmllint.sh"
+
   monorepo-validate:
     runs-on: "ubuntu-latest"
     steps:
