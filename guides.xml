@@ -31,4 +31,5 @@
     <theme>typo3docs</theme>
     <output-format>html</output-format>
     <output-format>singlepage</output-format>
+    <output-format>interlink</output-format>
 </guides>
