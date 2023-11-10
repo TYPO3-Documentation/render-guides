@@ -1,0 +1,7 @@
+{% extends "structure/layout.html.twig" %}
+
+{% block body %}
+    {% for document in documents -%}
+        {{ renderNode(document) }}
+    {%~ endfor -%}
+{% endblock %}
