@@ -31,4 +31,7 @@
             <directory suffix=".php">packages/**/src</directory>
         </include>
     </source>
+    <listeners>
+        <listener class="\Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
+    </listeners>
 </phpunit>

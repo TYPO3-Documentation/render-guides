@@ -7,10 +7,10 @@
     <meta content="" name="docsearch:package_type"/>
     <meta content="master" name="docsearch:release"/>
     <meta content="2.0" name="docsearch:version"/>
-    <meta content="2020-10-30T07:03:47+00:00" name="docsearch:modified"/>
+    <meta content="{{ "now"|date("c") }}" name="docsearch:modified"/>
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc"/>
-    <meta content="2020-10-30T07:03:47+00:00" name="dc.modified"/>
-    <meta content="2020-10-30T07:03:47+00:00" property="article:modified_time"/>
+    <meta content="{{ "now"|date("c") }}" name="dc.modified"/>
+    <meta content="{{ "now"|date("c") }}" property="article:modified_time"/>
     <title>{{ title }}
         {%- if title!=null and env.projectNode.title!=null %} - {% endif -%}
         {%- if env.projectNode.title -%}{{ env.projectNode.title }}{%- endif -%} documentation {{ env.projectNode.version }}</title>

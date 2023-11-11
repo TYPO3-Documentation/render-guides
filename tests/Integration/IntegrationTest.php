@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Integration;
 
+use Symfony\Bridge\PhpUnit\ClockMock;
 use function array_filter;
 use function array_merge;
 use function array_walk;
@@ -44,6 +45,8 @@ final class IntegrationTest extends ApplicationTestCase
     protected function setUp(): void
     {
         setlocale(LC_ALL, 'en_US.utf8');
+        ClockMock::register(IntegrationTest::class);
+        ClockMock::withClockMock(strtotime('2023-01-01 12:00:00'));
     }
 
     /** @param list<string> $compareFiles */
