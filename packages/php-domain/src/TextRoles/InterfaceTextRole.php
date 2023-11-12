@@ -17,7 +17,7 @@ final class InterfaceTextRole implements TextRole
     /**
      * @see https://regex101.com/r/OyN05v/1
      */
-    private const INTERFACE_NAME_REGEX = '/^([a-zA-Z0-9]+):(.*$)/';
+    private const INTERLINK_NAME_REGEX = '/^([a-zA-Z0-9]+):(.*$)/';
 
     private readonly InlineLexer $lexer;
 
