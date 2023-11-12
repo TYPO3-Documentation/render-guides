@@ -28,7 +28,7 @@ class MethodNameService
             }
             return new MethodNameNode($methodName, $parametersArray, $returnType);
         }
-        $this->logger->warning(sprintf('Method siganture %s is invalid. ', $name));
+        $this->logger->warning(sprintf('Method signature %s is invalid. ', $name));
         return new MethodNameNode($name, [], null);
     }
 }
