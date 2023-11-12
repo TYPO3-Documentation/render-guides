@@ -101,7 +101,7 @@ final class InterfaceTextRole implements TextRole
     /** @return ReferenceNode */
     protected function createNode(string $referenceTarget, string|null $referenceName, string $role): AbstractLinkInlineNode
     {
-        if (preg_match(self::INTERFACE_NAME_REGEX, $referenceTarget, $matches)) {
+        if (preg_match(self::INTERLINK_NAME_REGEX, $referenceTarget, $matches)) {
             $interlinkDomain = $matches[1];
             $id = $this->anchorReducer->reduceAnchor($matches[2]);
         } else {
