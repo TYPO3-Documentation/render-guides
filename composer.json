@@ -17,6 +17,7 @@
         "phpstan/phpstan-strict-rules": "^1.5",
         "phpunit/phpunit": "^10.4",
         "symplify/monorepo-builder": "^11.2",
+        "symplify/phpstan-rules": "^12.4",
         "typo3/coding-standards": "^0.7.1"
     },
     "replace": {

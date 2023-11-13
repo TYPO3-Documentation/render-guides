@@ -14,7 +14,13 @@ use Psr\Log\LoggerInterface;
 
 final class InterfaceTextRole implements TextRole
 {
+    /**
+     * @see https://regex101.com/r/OyN05v/1
+     */
+    private const INTERLINK_NAME_REGEX = '/^([a-zA-Z0-9]+):(.*$)/';
+
     private readonly InlineLexer $lexer;
+
     public function __construct(
         private readonly LoggerInterface $logger,
         private readonly AnchorReducer $anchorReducer,
@@ -95,8 +101,7 @@ final class InterfaceTextRole implements TextRole
     /** @return ReferenceNode */
     protected function createNode(string $referenceTarget, string|null $referenceName, string $role): AbstractLinkInlineNode
     {
-        $pattern = '/^([a-zA-Z0-9]+):(.*$)/';
-        if (preg_match($pattern, $referenceTarget, $matches)) {
+        if (preg_match(self::INTERLINK_NAME_REGEX, $referenceTarget, $matches)) {
             $interlinkDomain = $matches[1];
             $id = $this->anchorReducer->reduceAnchor($matches[2]);
         } else {

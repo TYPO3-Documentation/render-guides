@@ -24,6 +24,12 @@ use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 
 class YoutubeDirective extends BaseDirective
 {
+    /**
+     * @see https://www.wikidata.org/wiki/Property:P1651#P8966
+     * @see https://regex101.com/r/aKvAce/1
+     */
+    private const YOUTUBE_IDENTIFIER_REGEX = '/^[a-zA-Z0-9_-]{11}$/';
+
     public function __construct(
         private readonly LoggerInterface $logger
     ) {}
@@ -38,7 +44,7 @@ class YoutubeDirective extends BaseDirective
         Directive $directive,
     ): Node {
         $videoId = trim($directive->getData());
-        if (!preg_match('/^[a-zA-Z0-9_-]{11}$/', $videoId)) {
+        if (!preg_match(self::YOUTUBE_IDENTIFIER_REGEX, $videoId)) {
             $this->logger->warning(sprintf('The following youtube id is not valid: %s', $videoId), $blockContext->getLoggerInformation());
             return new ParagraphNode([InlineCompoundNode::getPlainTextInlineNode('Video cannot be displayed')]);
         }

@@ -9,8 +9,15 @@ use T3Docs\PhpDomain\Nodes\PhpNamespaceNode;
 
 class FullyQualifiedNameService
 {
-    private const BASE_NAME_PATTERN = '/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/';
-    public const FULL_NAME_PATTERN = '/^(.+\\\\)([^\\\\]+)$/';
+    /**
+     * @see https://regex101.com/r/j89USB/1
+     */
+    private const BASE_NAME_PATTERN_REGEX = '/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/';
+
+    /**
+     * @see https://regex101.com/r/bt7r5S/1
+     */
+    public const FULL_NAME_PATTERN_REGEX = '/^(.+\\\\)([^\\\\]+)$/';
 
     public function __construct(
         private readonly NamespaceRepository $namespaceRepository
@@ -21,11 +28,11 @@ class FullyQualifiedNameService
      */
     public function isFullyQualifiedName(string $name, array &$matches): bool
     {
-        return (bool)preg_match(self::FULL_NAME_PATTERN, $name, $matches);
+        return (bool)preg_match(self::FULL_NAME_PATTERN_REGEX, $name, $matches);
     }
     public function isBaseName(string $name): bool
     {
-        return (bool)preg_match(self::BASE_NAME_PATTERN, $name);
+        return (bool)preg_match(self::BASE_NAME_PATTERN_REGEX, $name);
     }
 
     public function getFullyQualifiedName(string $name, bool $useCurrentNamespace = false): FullyQualifiedNameNode
