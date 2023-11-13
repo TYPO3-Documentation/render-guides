@@ -12,12 +12,12 @@ use phpDocumentor\Guides\Nodes\Node;
  *
  * @extends CompoundNode<Node>
  */
-final class PhpMemberNode extends CompoundNode
+abstract class PhpMemberNode extends CompoundNode
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $type,
         private readonly string $name,
-        private readonly PhpComponentNode $parent,
         array $value = [],
     ) {
         parent::__construct($value);
@@ -33,8 +33,8 @@ final class PhpMemberNode extends CompoundNode
         return $this->type;
     }
 
-    public function getParent(): PhpComponentNode
+    public function getId(): string
     {
-        return $this->parent;
+        return $this->id;
     }
 }
