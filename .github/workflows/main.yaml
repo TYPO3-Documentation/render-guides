@@ -58,7 +58,7 @@ jobs:
           dependency-versions: "locked"
 
       - name: "Validate monorepo"
-        run: "make monorepo-test ENV=local"
+        run: "make test-monorepo ENV=local"
 
   test-self-action:
     runs-on: "ubuntu-latest"
