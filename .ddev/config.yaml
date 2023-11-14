@@ -1,7 +1,7 @@
 name: render-guides
 type: php
 docroot: output
-php_version: "8.2"
+php_version: "8.1"
 webserver_type: nginx-fpm
 router_http_port: "80"
 router_https_port: "443"
@@ -15,6 +15,7 @@ composer_version: "2"
 web_environment: []
 nodejs_version: "16"
 omit_containers: [db, ddev-ssh-agent]
+webimage_extra_packages: [build-essential]
 
 # Key features of ddev's config.yaml:
 

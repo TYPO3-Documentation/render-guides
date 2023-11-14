@@ -28,17 +28,17 @@ jobs:
         with:
           dependency-versions: "locked"
 
-      - name: CGL
-        run: composer run check:php:php-cs-fixer
+      - name: "CGL"
+        run: "make code-style ENV=local"
 
-      - name: PHPSTAN
-        run: composer run check:php:phpstan
+      - name: "PHPSTAN"
+        run: "make phpstan ENV=local"
 
       - name: "Run integration tests"
-        run: "composer run test:integration"
+        run: "make test-integration ENV=local"
 
       - name: "Run unit tests"
-        run: "composer run test:unit"
+        run: "make test-unit ENV=local"
 
   monorepo-validate:
     runs-on: "ubuntu-latest"
@@ -58,7 +58,7 @@ jobs:
           dependency-versions: "locked"
 
       - name: "Validate monorepo"
-        run: "composer run monorepo:validate"
+        run: "make monorepo-test ENV=local"
 
   test-self-action:
     runs-on: "ubuntu-latest"

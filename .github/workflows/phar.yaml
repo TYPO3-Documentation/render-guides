@@ -22,7 +22,7 @@ jobs:
           tools: "composer"
 
       - name: "Create phar"
-        run: composer build:phar
+        run: make build-phar
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
