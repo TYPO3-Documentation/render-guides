@@ -9,6 +9,10 @@ PHP_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -
 ## This container provides a runtime for the `guides` project
 PHP_PROJECT_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/project typo3-docs:local
 
+## Docker wrapper to use for a typo3-docs:local container.
+## This container provides a composer-runtime; mounts project on /app
+PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:latest
+
 ## These variables can be overriden by other tasks, i.e. by `make PHP_ARGS=-d memory_limit=2G pre-commit-tests`.
 
 ## Parse the "make (target) ENV=(local|docker)" argument to set the environment. Defaults to docker.
@@ -16,6 +20,7 @@ ifdef ENV
 	ifeq ($(ENV),local)
 		PHP_BIN = php $(PHP_ARGS)
 		PHP_PROJECT_BIN = php $(PHP_ARGS) ./vendor/bin/guides
+		PHP_COMPOSER_BIN = composer
 		ENV_INFO=ENVIRONMENT: Local (also DDEV)
 	else
 		ENV_INFO=ENVIRONMENT: Docker
@@ -133,5 +138,5 @@ pre-commit-test: fix-code-style test code-style static-code-analysis test-monore
 
 vendor: composer.json composer.lock
 	@echo "$(ENV_INFO)"
-	$(PHP_BIN) composer validate --no-check-publish
-	$(PHP_BIN) composer install --no-interaction --no-progress  --ignore-platform-reqs
+	$(PHP_COMPOSER_BIN) composer validate --no-check-publish
+	$(PHP_COMPOSER_BIN) composer install --no-interaction --no-progress  --ignore-platform-reqs
