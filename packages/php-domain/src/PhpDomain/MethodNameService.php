@@ -9,7 +9,9 @@ use T3Docs\PhpDomain\Nodes\MethodNameNode;
 
 class MethodNameService
 {
-    /** https://regex101.com/r/QrrSXk/1 */
+    /**
+     * @see https://regex101.com/r/QrrSXk/1
+     */
     private const METHOD_SIGNATURE_REGEX = '/^\s*(\w+)\s*\(\s*(.*?)\s*\)\s*(?::\s*(\w+))?\s*$/';
 
     public function __construct(

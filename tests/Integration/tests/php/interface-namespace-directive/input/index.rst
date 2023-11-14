@@ -1,6 +1,6 @@
-==================================================
-PHP Interface with current namespace from dirctive
-==================================================
+===================================================
+PHP Interface with current namespace from directive
+===================================================
 
 ..  php:namespace:: TYPO3\CMS\Core
 
