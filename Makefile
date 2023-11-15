@@ -48,7 +48,6 @@ show-env: ## Shows PHP environment options (buildinfo)
 	@echo ""
 
 	@echo "Project within Docker:"
-    # TODO: See Issue #72, does not work yet
 	docker run --rm --user $$(id -u):$$(id -g) -v${PWD}:/project typo3-docs:local --version
 	$(PHP_PROJECT_BIN) --version
 	@echo ""
