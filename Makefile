@@ -11,9 +11,12 @@ PHP_PROJECT_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/proje
 
 ## Docker wrapper to use for a typo3-docs:local container.
 ## This container provides a composer-runtime; mounts project on /app
-PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:latest
+PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:2
 
 ## These variables can be overriden by other tasks, i.e. by `make PHP_ARGS=-d memory_limit=2G pre-commit-tests`.
+
+## NOTE: Dependencies listed here (PHP 8.1, composer 2) need to be kept
+##       in sync with those inside the Dockerfile and composer.json
 
 ## Parse the "make (target) ENV=(local|docker)" argument to set the environment. Defaults to docker.
 ifdef ENV
