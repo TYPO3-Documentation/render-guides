@@ -22,7 +22,7 @@ Usage with Docker (via supplied container)
 
     # Execute the Docker container that is provided remotely.
     # Renders all files in the `Documentation` and store in `Documentation-GENERATED-temp`.
-    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main --output Documentation-GENERATED-temp Documentation
+    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main --progress
 
 (see :ref:`_Setup_Docker:Docker containers` for complete documentation)
 
@@ -35,7 +35,7 @@ Usage with Docker (via custom container)
     docker build --file Dockerfile --tag typo3-docs:local .
 
     # Execute the Docker container that is provided locally, build Documentation
-    docker run --rm --user=$(id -u):$(id -g) --volume ${PWD}:/project typo3-docs:local ./Documentation ./Documentation-GENERATED-temp --theme=typo3docs
+    docker run --rm --user=$(id -u):$(id -g) --volume ${PWD}:/project typo3-docs:local --progress
 
 (see :ref:`_Setup_Docker:Docker containers` for complete documentation)
 
