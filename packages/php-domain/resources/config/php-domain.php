@@ -12,7 +12,9 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use T3Docs\PhpDomain\Directives\Php\EnumDirective;
 
 use T3Docs\PhpDomain\Directives\Php\InterfaceDirective;
+
 use T3Docs\PhpDomain\Directives\Php\MethodDirective;
+use T3Docs\PhpDomain\Directives\Php\NamespaceDirective;
 
 use T3Docs\PhpDomain\PhpDomain\FullyQualifiedNameService;
 
@@ -32,6 +34,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(EnumDirective::class)
         ->set(InterfaceDirective::class)
         ->set(MethodDirective::class)
+        ->set(NamespaceDirective::class)
         ->set(FullyQualifiedNameService::class)
         ->set(MethodNameService::class)
         ->set(NamespaceRepository::class)
