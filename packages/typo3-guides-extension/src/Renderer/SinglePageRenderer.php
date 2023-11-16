@@ -25,7 +25,7 @@ final class SinglePageRenderer implements TypeRenderer
         );
 
         $context->getDestination()->put(
-            $renderCommand->getDestinationPath() . '/index.html',
+            $renderCommand->getDestinationPath() . '/singlehtml/Index.html',
             $this->renderer->renderTemplate(
                 $context,
                 'structure/singlepage.html.twig',

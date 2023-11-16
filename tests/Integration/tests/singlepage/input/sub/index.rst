@@ -2,6 +2,6 @@
 Sub index
 ==========
 
-Lorem Ipsum Dolor. link_
+Lorem Ipsum Dolor. index_
 
-.. _link: http://example.com
+.. _index: https://typ03.org
