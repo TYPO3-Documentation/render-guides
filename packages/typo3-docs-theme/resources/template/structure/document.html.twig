@@ -17,9 +17,11 @@
 {% endblock %}
 
 {% block body %}
+    <!-- content start -->
     {% for child in node.children -%}
         {{ renderNode(child) }}
     {%~ endfor -%}
+    <!-- content end -->
 {% endblock %}
 
 {% block breadcrumb %}

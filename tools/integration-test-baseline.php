@@ -12,8 +12,6 @@ function copyTests(string $directory): void
         ->in($directory)
         ->depth('== 0');
 
-    $tests = [];
-
     foreach ($finder as $dir) {
         if (!file_exists($dir->getPathname() . '/input')) {
             copyTests($dir->getPathname());
@@ -22,7 +20,7 @@ function copyTests(string $directory): void
         $tempDir = $dir->getPathname() . '/temp';
         $expectedDir = $dir->getPathname() . '/expected';
         if (!file_exists($tempDir)) {
-            echo "Skipped $dir - temp directory does not exist\n";
+            echo sprintf("Skipped %s - temp directory does not exist\n", $dir);
             continue;
         }
 
@@ -35,11 +33,41 @@ function copyTests(string $directory): void
             $tempFile = $tempDir . '/' . $fileName;
             $outputFile = $expectedDir . '/' . $fileName;
             if (file_exists($tempFile)) {
-                copy($tempFile, $outputFile);
-                echo "Updated $outputFile\n";
+                if (pathinfo($tempFile, PATHINFO_EXTENSION) === 'html') {
+                    // Handle HTML file with content markers
+                    copyHtmlWithMarkers($tempFile, $outputFile);
+                } else {
+                    // Copy non-HTML files as-is
+                    copy($tempFile, $outputFile);
+                    echo sprintf("Updated %s\n", $outputFile);
+                }
+                echo sprintf("Updated %s\n", $outputFile);
             } else {
-                echo "Skipped $outputFile - $tempFile does not exist\n";
+                echo sprintf("Skipped %s - %s does not exist\n", $outputFile, $tempFile);
             }
         }
     }
+}
+
+/**
+ * Copy HTML file with content markers.
+ */
+function copyHtmlWithMarkers(string $sourceFile, string $destinationFile): void
+{
+    $startMarker = '<!-- content start -->';
+    $endMarker = '<!-- content end -->';
+
+    $fileContent = file_get_contents($sourceFile);
+    assert(is_string($fileContent));
+    $startPos = strpos($fileContent, $startMarker);
+    $endPos = strpos($fileContent, $endMarker, $startPos + strlen($startMarker));
+
+    if ($startPos === false || $endPos === false) {
+        echo sprintf("Skipped %s - Start or end marker not found\n", $destinationFile);
+        return;
+    }
+
+    $contentBetweenMarkers = substr($fileContent, $startPos, $endPos + strlen($endMarker) - $startPos);
+    file_put_contents($destinationFile, $contentBetweenMarkers);
+    echo sprintf("Updated %s\n", $destinationFile);
 }
