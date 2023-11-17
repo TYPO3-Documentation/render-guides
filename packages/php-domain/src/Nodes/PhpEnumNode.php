@@ -11,9 +11,9 @@ final class PhpEnumNode extends PhpComponentNode
     private const TYPE = 'enum';
 
     /**
-     * @param Node $members
+     * @param list<PhpMemberNode> $members
      * @param list<string> $modifiers
-     * @param Node $value
+     * @param list<Node> $value
      */
     public function __construct(
         string $id,
