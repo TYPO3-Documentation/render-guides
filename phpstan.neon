@@ -17,6 +17,7 @@ parameters:
     - packages/typo3-guides-extension/src
     - packages/php-domain/src
     - packages/php-domain/tests
+    - tools
   scanFiles:
     - vendor/phpdocumentor/guides/src/DependencyInjection/GuidesExtension.php
   tmpDir: .cache/phpstan/
