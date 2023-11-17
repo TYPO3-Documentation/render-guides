@@ -19,7 +19,9 @@ use const LC_ALL;
 use phpDocumentor\Guides\Cli\Command\Run;
 
 use PHPUnit\Framework\Attributes\DataProvider;
+
 use PHPUnit\Framework\ExpectationFailedException;
+use RuntimeException;
 
 use function setlocale;
 
@@ -41,19 +43,12 @@ use function trim;
 
 final class IntegrationTest extends ApplicationTestCase
 {
-    protected function setUp(): void
-    {
-        setlocale(LC_ALL, 'en_US.utf8');
-    }
+    private const CONTENT_START = '<!-- content start -->';
+    private const CONTENT_END = '<!-- content end -->';
 
     /** @param list<string> $compareFiles */
-    #[DataProvider('getTestsForDirectoryTest')]
-    public function testHtmlIntegration(
-        string $inputPath,
-        string $expectedPath,
-        string $outputPath,
-        array $compareFiles,
-    ): void {
+    private function compareHtmlIntegration(string $outputPath, string $inputPath, string $expectedPath, array $compareFiles, bool $htmlOnlyBetweenMarkers): void
+    {
         system('rm -rf ' . escapeshellarg($outputPath));
         self::assertDirectoryExists($inputPath);
         self::assertDirectoryExists($expectedPath);
@@ -100,6 +95,14 @@ final class IntegrationTest extends ApplicationTestCase
                 $outputFile = str_replace($expectedPath, $outputPath, $compareFile);
                 if (str_ends_with($compareFile, '.log')) {
                     self::assertFileContainsLines($compareFile, $outputFile);
+                } elseif ($htmlOnlyBetweenMarkers && str_ends_with($compareFile, '.html')) {
+                    self::assertFileEqualsTrimmedBetweenMarkers(
+                        $compareFile,
+                        $outputFile,
+                        'Expected file path: ' . $compareFile,
+                        self::CONTENT_START,
+                        self::CONTENT_END
+                    );
                 } else {
                     self::assertFileEqualsTrimmed($compareFile, $outputFile, 'Expected file path: ' . $compareFile);
                 }
@@ -113,6 +116,65 @@ final class IntegrationTest extends ApplicationTestCase
         }
 
         self::assertFalse($skip, 'Test passes while marked as SKIP.');
+    }
+
+    protected function setUp(): void
+    {
+        setlocale(LC_ALL, 'en_US.utf8');
+    }
+
+    /** @param list<string> $compareFiles */
+    #[DataProvider('getTestsForDirectoryTest')]
+    public function testHtmlIntegrationBetweenMarkers(
+        string $inputPath,
+        string $expectedPath,
+        string $outputPath,
+        array $compareFiles,
+    ): void {
+        $this->compareHtmlIntegration($outputPath, $inputPath, $expectedPath, $compareFiles, true);
+    }
+
+    /** @param list<string> $compareFiles */
+    #[DataProvider('getTestsForDirectoryTestsFull')]
+    public function testHtmlIntegrationFullFile(
+        string $inputPath,
+        string $expectedPath,
+        string $outputPath,
+        array $compareFiles,
+    ): void {
+        $this->compareHtmlIntegration($outputPath, $inputPath, $expectedPath, $compareFiles, false);
+    }
+
+    /**
+     * Asserts that each line of the expected file is contained in actual
+     *
+     * @throws ExpectationFailedException
+     */
+    private static function assertFileEqualsTrimmedBetweenMarkers(string $expected, string $actual, string $message, string $startMarker, string $endMarker): void
+    {
+        self::assertFileExists($expected);
+        self::assertFileExists($actual);
+
+        $expectedContent = self::extractContentBetweenMarkers($expected, $startMarker, $endMarker);
+        $actualContent = self::extractContentBetweenMarkers($expected, $startMarker, $endMarker);
+
+        self::assertEquals(self::getTrimmedFileContent($expectedContent), self::getTrimmedFileContent($actualContent), $message);
+    }
+
+    /**
+     * Extract content between specified markers in a file.
+     */
+    private static function extractContentBetweenMarkers(string $filePath, string $startMarker, string $endMarker): string
+    {
+        $fileContent = file_get_contents($filePath);
+        $startPos = strpos($fileContent, $startMarker);
+        $endPos = strpos($fileContent, $endMarker, $startPos + strlen($startMarker));
+
+        if ($startPos === false || $endPos === false) {
+            throw new RuntimeException('Start or end marker not found in file: ' . $filePath);
+        }
+
+        return substr($fileContent, $startPos + strlen($startMarker), $endPos - $startPos - strlen($startMarker));
     }
 
     /**
@@ -143,12 +205,12 @@ final class IntegrationTest extends ApplicationTestCase
         self::assertFileExists($expected, $message);
         self::assertFileExists($actual, $message);
 
-        self::assertEquals(self::getTrimmedFileContent($expected), self::getTrimmedFileContent($actual), $message);
+        self::assertEquals(self::getTrimmedFileContent(file_get_contents($expected)), self::getTrimmedFileContent(file_get_contents($actual)), $message);
     }
 
-    private static function getTrimmedFileContent(string $file): string
+    private static function getTrimmedFileContent(string $content): string
     {
-        $contentArray = explode("\n", file_get_contents($file));
+        $contentArray = explode("\n", $content);
         array_walk($contentArray, static function (&$value): void {
             $value = trim($value);
         });
@@ -163,6 +225,12 @@ final class IntegrationTest extends ApplicationTestCase
     public static function getTestsForDirectoryTest(): array
     {
         return self::getTestsForDirectory(__DIR__ . '/tests');
+    }
+
+    /** @return array{string, string, string, list<string>} */
+    public static function getTestsForDirectoryTestsFull(): array
+    {
+        return self::getTestsForDirectory(__DIR__ . '/tests-full');
     }
 
     /** @return array{string, string, string, list<string>} */
