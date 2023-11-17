@@ -44,7 +44,7 @@ use function trim;
 final class IntegrationTest extends ApplicationTestCase
 {
     private const CONTENT_START = '<!-- content start -->';
-    public const CONTENT_END = '<!-- content end -->';
+    private const CONTENT_END = '<!-- content end -->';
 
     /** @param list<string> $compareFiles */
     private function compareHtmlIntegration(string $outputPath, string $inputPath, string $expectedPath, array $compareFiles, bool $htmlOnlyBetweenMarkers): void
