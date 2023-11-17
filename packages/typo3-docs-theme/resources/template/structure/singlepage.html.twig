@@ -1,7 +1,9 @@
 {% extends "structure/layout.html.twig" %}
 
 {% block body %}
+    <!-- content start -->
     {% for document in documents -%}
         {{ renderNode(document) }}
     {%~ endfor -%}
+    <!-- content end -->
 {% endblock %}
