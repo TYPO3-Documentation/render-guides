@@ -3,6 +3,6 @@ With line number start
 ======================
 
 ..  code-block:: ruby
-    :lineno-start: 10
+    :linenos:
 
     Some more Ruby code, with line numbering starting at 10.

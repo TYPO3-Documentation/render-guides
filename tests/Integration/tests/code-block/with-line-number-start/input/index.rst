@@ -3,6 +3,6 @@ With line numbers
 =================
 
 ..  code-block:: ruby
-    :linenos:
+    :lineno-start: 10
 
     Some more Ruby code.
