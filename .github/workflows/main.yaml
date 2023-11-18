@@ -40,6 +40,14 @@ jobs:
       - name: "Run unit tests"
         run: "composer run test:unit"
 
+      - name: "Install libxml2-utils"
+        run: |
+          sudo apt-get update
+          sudo apt -y install libxml2-utils
+
+      - name: "Lint xml configs"
+        run: "tools/xmllint.sh"
+
   monorepo-validate:
     runs-on: "ubuntu-latest"
     steps:
