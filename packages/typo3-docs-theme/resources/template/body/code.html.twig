@@ -7,7 +7,7 @@
             <span class="caption-text">{{ node.caption }}</span>
         </div>
     {%- endif -%}
-    <div class="highlight-{{ node.language }} notranslate {%- if node.classes %} {{ node.classesString }}{% endif %}">
+    <div translate="no" class="highlight-{{ node.language }} {%- if node.classes %} {{ node.classesString }}{% endif %}">
         <div class="highlight">
             <pre><code class="{{ node.startingLineNumber ? ' line-numbers' }}" {{- node.startingLineNumber ? ' data-start=' ~ node.startingLineNumber }}><span>{{ node.value }}</span></code></pre>
         </div>
