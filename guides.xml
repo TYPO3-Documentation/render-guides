@@ -4,31 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
     links-are-relative="true"
+    theme="typo3docs"
 >
-    <extensions>
-        <bootstrap>
-            <class>\phpDocumentor\Guides\Bootstrap\DependencyInjection\BootstrapExtension</class>
-        </bootstrap>
-        <graphs>
-            <class>\phpDocumentor\Guides\Graphs\DependencyInjection\GraphsExtension</class>
-        </graphs>
-        <markdown>
-            <class>\phpDocumentor\Guides\Markdown\DependencyInjection\MarkdownExtension</class>
-        </markdown>
-        <typo3theme>
-            <class>\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension</class>
-        </typo3theme>
-        <typo3docs>
-            <class>\T3Docs\GuidesExtension\DependencyInjection\Typo3GuidesExtension</class>
-        </typo3docs>
-        <phpdomain>
-            <class>\T3Docs\PhpDomain\DependencyInjection\PhpDomainExtension</class>
-        </phpdomain>
-    </extensions>
-    <inventories>
-        <inventory id="h2document" url="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/" />
-    </inventories>
-    <theme>typo3docs</theme>
+    <extension class="\phpDocumentor\Guides\Bootstrap\DependencyInjection\BootstrapExtension"/>
+    <extension class="\phpDocumentor\Guides\Graphs\DependencyInjection\GraphsExtension"/>
+    <extension class="\phpDocumentor\Guides\Markdown\DependencyInjection\MarkdownExtension"/>
+    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"/>
+    <extension class="\T3Docs\GuidesExtension\DependencyInjection\Typo3GuidesExtension"/>
+    <extension class="\T3Docs\PhpDomain\DependencyInjection\PhpDomainExtension"/>
+    <inventory id="h2document" url="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/" />
     <output-format>html</output-format>
     <output-format>singlepage</output-format>
     <output-format>interlink</output-format>

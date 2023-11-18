@@ -30,7 +30,7 @@ githooks: ## Runs script that injects githook pre-commit, so that 'make pre-comm
 	./tools/add-githooks.sh
 
 .PHONY: test
-test: test-integration test-unit test-docs## Runs all test suites with phpunit/phpunit
+test: test-integration test-unit test-xml test-docs## Runs all test suites with phpunit/phpunit
 
 .PHONY: test-unit
 test-unit: ## Runs integration tests with phpunit/phpunit
@@ -43,6 +43,11 @@ test-integration: ## Runs integration tests with phpunit/phpunit
 .PHONY: test-docs
 test-docs: ## Generate projects docs without warnings
 	$(PHP_BIN) vendor/bin/guides -vvv --no-progress Documentation --output="/tmp/test" --fail-on-log
+
+.PHONY: test-xml
+test-xml: ## Lint all guides.xml
+	./tools/xmllint.sh
+
 
 .PHONY: cleanup
 cleanup: cleanup-tests cleanup-cache
