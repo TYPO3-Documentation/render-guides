@@ -9,7 +9,7 @@
     {%- endif -%}
     <div translate="no" class="highlight-{{ node.language }} {%- if node.classes %} {{ node.classesString }}{% endif %}">
         <div class="highlight">
-            <pre><code class="{{ node.startingLineNumber ? ' line-numbers' }}" {{- node.startingLineNumber ? ' data-start=' ~ node.startingLineNumber }}><span>{{ node.value }}</span></code></pre>
+            <pre><code class="{{ node.startingLineNumber ? ' line-numbers' }}" {%- if node.startingLineNumber %} data-start="{{ node.startingLineNumber }}"{% endif %}><span>{{ node.value }}</span></code></pre>
         </div>
     </div>
 {%- endif -%}

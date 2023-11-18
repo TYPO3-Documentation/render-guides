@@ -1172,12 +1172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "14994850269aa53d9126bbda0855fdbd9a3092e3"
+                "reference": "bcdb409857c2d07a9d819e20eacb240fd9ebb33e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/14994850269aa53d9126bbda0855fdbd9a3092e3",
-                "reference": "14994850269aa53d9126bbda0855fdbd9a3092e3",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/bcdb409857c2d07a9d819e20eacb240fd9ebb33e",
+                "reference": "bcdb409857c2d07a9d819e20eacb240fd9ebb33e",
                 "shasum": ""
             },
             "require": {
@@ -1214,7 +1214,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-11-16T11:24:27+00:00"
+            "time": "2023-11-18T12:33:04+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1354,12 +1354,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "0994f229fe410e55287ebb93ee229804314d941e"
+                "reference": "4e42752789cfda46e4101f3d4f8d79083568cb80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/0994f229fe410e55287ebb93ee229804314d941e",
-                "reference": "0994f229fe410e55287ebb93ee229804314d941e",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/4e42752789cfda46e4101f3d4f8d79083568cb80",
+                "reference": "4e42752789cfda46e4101f3d4f8d79083568cb80",
                 "shasum": ""
             },
             "require": {
@@ -1385,7 +1385,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-11-07T19:39:53+00:00"
+            "time": "2023-11-18T12:33:04+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -6410,5 +6410,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
