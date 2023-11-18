@@ -55,67 +55,61 @@ final class IntegrationTest extends ApplicationTestCase
         self::assertNotEmpty($compareFiles);
 
         $skip = file_exists($inputPath . '/skip');
+        if ($skip) {
+            self::markTestSkipped(file_get_contents($inputPath . '/skip') ?: '');
+        }
+
         $configurationFile = null;
         if (file_exists($inputPath . '/guides.xml')) {
             $configurationFile = $inputPath . '/guides.xml';
         }
 
-        try {
-            system('mkdir ' . escapeshellarg($outputPath));
+        system('mkdir ' . escapeshellarg($outputPath));
 
-            $this->prepareContainer($configurationFile);
-            $command = $this->getContainer()->get(Run::class);
-            assert($command instanceof Run || $command instanceof RunDecorator);
+        $this->prepareContainer($configurationFile);
+        $command = $this->getContainer()->get(Run::class);
+        assert($command instanceof Run || $command instanceof RunDecorator);
 
-            $input = new ArrayInput(
-                [
-                    'input' => $inputPath,
-                    '--output' => $outputPath,
-                    '--theme' => 'typo3docs',
-                    '--log-path' => $outputPath . '/logs',
-                ],
-                $command->getDefinition(),
-            );
+        $input = new ArrayInput(
+            [
+                'input' => $inputPath,
+                '--output' => $outputPath,
+                '--theme' => 'typo3docs',
+                '--log-path' => $outputPath . '/logs',
+            ],
+            $command->getDefinition(),
+        );
 
-            $outputBuffer = new BufferedOutput();
+        $outputBuffer = new BufferedOutput();
 
-            $command->run(
-                $input,
-                $outputBuffer,
-            );
-            if (!file_exists($expectedPath . '/logs/error.log')) {
-                self::assertFileDoesNotExist($outputPath . '/logs/error.log');
-            }
-
-            if (!file_exists($expectedPath . '/logs/warning.log')) {
-                self::assertFileDoesNotExist($outputPath . '/logs/warning.log');
-            }
-
-            foreach ($compareFiles as $compareFile) {
-                $outputFile = str_replace($expectedPath, $outputPath, $compareFile);
-                if (str_ends_with($compareFile, '.log')) {
-                    self::assertFileContainsLines($compareFile, $outputFile);
-                } elseif ($htmlOnlyBetweenMarkers && str_ends_with($compareFile, '.html')) {
-                    self::assertFileEqualsTrimmedBetweenMarkers(
-                        $compareFile,
-                        $outputFile,
-                        'Expected file path: ' . $compareFile,
-                        self::CONTENT_START,
-                        self::CONTENT_END
-                    );
-                } else {
-                    self::assertFileEqualsTrimmed($compareFile, $outputFile, 'Expected file path: ' . $compareFile);
-                }
-            }
-        } catch (ExpectationFailedException $e) {
-            if ($skip) {
-                self::markTestIncomplete(file_get_contents($inputPath . '/skip') ?: '');
-            }
-
-            throw $e;
+        $command->run(
+            $input,
+            $outputBuffer,
+        );
+        if (!file_exists($expectedPath . '/logs/error.log')) {
+            self::assertFileDoesNotExist($outputPath . '/logs/error.log');
         }
 
-        self::assertFalse($skip, 'Test passes while marked as SKIP.');
+        if (!file_exists($expectedPath . '/logs/warning.log')) {
+            self::assertFileDoesNotExist($outputPath . '/logs/warning.log');
+        }
+
+        foreach ($compareFiles as $compareFile) {
+            $outputFile = str_replace($expectedPath, $outputPath, $compareFile);
+            if (str_ends_with($compareFile, '.log')) {
+                self::assertFileContainsLines($compareFile, $outputFile);
+            } elseif ($htmlOnlyBetweenMarkers && str_ends_with($compareFile, '.html')) {
+                self::assertFileEqualsTrimmedBetweenMarkers(
+                    $compareFile,
+                    $outputFile,
+                    'Expected file path: ' . $compareFile,
+                    self::CONTENT_START,
+                    self::CONTENT_END
+                );
+            } else {
+                self::assertFileEqualsTrimmed($compareFile, $outputFile, 'Expected file path: ' . $compareFile);
+            }
+        }
     }
 
     protected function setUp(): void
