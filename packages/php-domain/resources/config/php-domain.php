@@ -9,6 +9,8 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
+use T3Docs\PhpDomain\Directives\Php\EnumDirective;
+
 use T3Docs\PhpDomain\Directives\Php\InterfaceDirective;
 
 use T3Docs\PhpDomain\Directives\Php\MethodDirective;
@@ -29,6 +31,7 @@ return static function (ContainerConfigurator $container): void {
         ->bind('$startingRule', service(DirectiveContentRule::class))
         ->instanceof(BaseDirective::class)
         ->tag('phpdoc.guides.directive')
+        ->set(EnumDirective::class)
         ->set(InterfaceDirective::class)
         ->set(MethodDirective::class)
         ->set(NamespaceDirective::class)
