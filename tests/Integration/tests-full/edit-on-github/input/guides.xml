@@ -3,11 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
     links-are-relative="true"
-    input-file="README.md"
-    input-format="md"
 >
 
     <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
-               copy-sources="false"
+               edit-on-github="TYPO3-Documentation/TYPO3CMS-Reference-CoreApi"
+               edit-on-github-branch="documentation-draft"
     />
 </guides>
