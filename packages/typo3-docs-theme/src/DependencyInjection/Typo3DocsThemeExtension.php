@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\DependencyInjection;
 
+use phpDocumentor\Guides\Settings\SettingsManager;
+use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use function dirname;
 
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
