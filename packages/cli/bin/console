@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+namespace T3Docs\Cli;
+
+use T3Docs\Cli\Command\Console;
+use Symfony\Component\Console\Application;
+
+$vendorDir = dirname(__DIR__) . '/../../vendor';
+$autoloadDirectory = $vendorDir . '/autoload.php';
+if (file_exists($autoloadDirectory)){
+    require_once $autoloadDirectory;
+} else {
+    // Search for autoload.php
+    if (($rootPath = getcwd()) === false) {
+        throw new \RuntimeException("Error while determining the current directory.", 1636451407);
+    }
+
+    $vendorDir = __DIR__ . '/vendor';
+    while (!file_exists($vendorDir . '/autoload.php')) {
+        if ($vendorDir === $rootPath) {
+            throw new \RuntimeException("Could not find autoload.php", 1636451408);
+        }
+        $vendorDir = \dirname($vendorDir);
+    }
+    require $vendorDir . '/autoload.php';
+}
+
+
+$application = new Application('cli', '0.0.1');
+$command = new Console();
+
+$application->add($command);
+
+$application->setDefaultCommand($command->getName(), true);
+$application->run();
