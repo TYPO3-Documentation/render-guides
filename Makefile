@@ -80,6 +80,9 @@ githooks: ## Runs script that injects githooks (for contributors)
 build-phar: ## Creates a guides.phar file (github workflow)
 	./tools/build-phar.sh
 
+.PHONY: test
+test: test-integration test-unit test-xml test-docs ## Runs all test suites with phpunit/phpunit
+
 .PHONY: test-unit
 test-unit: ## Runs unit tests with phpunit
 	@echo "$(ENV_INFO)"
@@ -104,6 +107,13 @@ test-monorepo: ## Runs monorepo-builder tests
 monorepo: ## Runs monorepo-builder
 	@echo "$(ENV_INFO)"
 	$(PHP_BIN) ./vendor/bin/monorepo-builder merge
+
+.PHONY: test-xml
+test-xml: ## Lint all guides.xml
+	./tools/xmllint.sh
+
+.PHONY: cleanup
+cleanup: cleanup-tests cleanup-cache
 
 .PHONY: cleanup-tests
 cleanup-tests: ## Cleans up temp directories created by test-integration

@@ -41,6 +41,14 @@ jobs:
       - name: "Run unit tests"
         run: "make test-unit ENV=${{ env.RUN_ENVIRONMENT }}"
 
+      - name: "Install libxml2-utils"
+        run: |
+          sudo apt-get update
+          sudo apt -y install libxml2-utils
+
+      - name: "Lint xml configs"
+        run: "tools/xmllint.sh"
+
   monorepo-validate:
     runs-on: "ubuntu-latest"
     steps:

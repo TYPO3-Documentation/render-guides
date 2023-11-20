@@ -156,7 +156,7 @@ final class IntegrationTest extends ApplicationTestCase
         self::assertFileExists($actual);
 
         $expectedContent = self::extractContentBetweenMarkers($expected, $startMarker, $endMarker);
-        $actualContent = self::extractContentBetweenMarkers($expected, $startMarker, $endMarker);
+        $actualContent = self::extractContentBetweenMarkers($actual, $startMarker, $endMarker);
 
         self::assertEquals(self::getTrimmedFileContent($expectedContent), self::getTrimmedFileContent($actualContent), $message);
     }
