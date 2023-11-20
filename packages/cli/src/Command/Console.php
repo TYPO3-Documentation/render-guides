@@ -165,12 +165,15 @@ final class Console extends Command
         // Add <inventory> Element. This gets filled with the old "intersphinx_mapping" section.
         if (isset($settings['intersphinx_mapping']) && is_array($settings['intersphinx_mapping'])) {
             foreach($settings['intersphinx_mapping'] as $inventoryKey => $inventoryUrl) {
-                $convertedSettings++;
-                $inventory = $dom->createElement('inventory');
-                $inventory->setAttribute('id', $inventoryKey);
-                $inventory->setAttribute('url', $inventoryUrl);
-                $guides->appendChild($inventory);
                 unset($unmigratedSettings['intersphinx_mapping'][$inventoryKey]);
+                $convertedSettings++;
+                $inventoryKey = trim($inventoryKey);
+                if (substr($inventoryKey, 0, 1) !== '#') {
+                    $inventory = $dom->createElement('inventory');
+                    $inventory->setAttribute('id', $inventoryKey);
+                    $inventory->setAttribute('url', $inventoryUrl);
+                    $guides->appendChild($inventory);
+                }
             }
         }
 
