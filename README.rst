@@ -3,60 +3,69 @@
 render-guides
 =============
 
-Render TYPO3 Documentation with `phpdocumentor/guides`.
+This is the documentation rendering tool for TYPO3 projects. It is based on
+`phpDocumentor/guides`_ and can be used as a drop-in replacement for Sphinx.
+The tool is used by the automated documentation rendering system of the
+TYPO3 project. And can be used by documentation authors to validate their
+documentation.
 
-Usage with Docker
-=================
+Some basic commands are listed below, for more information, see the
+`Documentation` subdirectory of this project.
+
+Usage with Docker (via supplied container)
+==========================================
 
 ::
+
+    # Create output directory.
     mkdir Documentation-GENERATED-temp
-    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main --output Documentation-GENERATED-temp Documentation
+
+    # Execute the Docker container that is provided remotely.
+    # Renders all files in the `Documentation` and store in `Documentation-GENERATED-temp`.
+    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main --progress
+
+(see :ref:`_Setup_Docker:Docker containers` for complete documentation)
+
+Usage with Docker (via custom container)
+========================================
+
+::
+
+    # Build the custom local Docker container
+    docker build --file Dockerfile --tag typo3-docs:local .
+
+    # Execute the Docker container that is provided locally, build Documentation
+    docker run --rm --user=$(id -u):$(id -g) --volume ${PWD}:/project typo3-docs:local --progress
+
+(see :ref:`_Setup_Docker:Docker containers` for complete documentation)
+
+You can inspect the created container by running a shell::
+
+    docker run --entrypoint=sh -it --rm typo3-docs:local
+
+
+Usage with DDEV
+===============
+
+::
+
+    # Renders all files in the `Documentation` and store in `Documentation-GENERATED-temp`.
+    ddev composer make docs
+
+(see :ref:`_Setup_DDEV:DDEV` for complete documentation)
+
+Usage with local PHP
+====================
+
+::
+
+    # Renders all files in the `Documentation` and store in `Documentation-GENERATED-temp`.
+    make docs
+
+(see :ref:`_Setup_PHP:Local PHP` for complete documentation)
 
 Contributing
 ============
 
-When contributing please run all tests before committing::
-
-    make pre-commit-test
-
-You can use a helper script to set this up once in your project::
-
-    make githooks
-
-Those git hooks will also check your commit message for line length.
-
-Both commands utilize the Makefile syntax and docker.
-
-Usage with Docker (locally)
-===========================
-
-::
-
-    git clone git@github.com:TYPO3-Documentation/render-guides.git
-    cd render-guides
-    docker build --file Dockerfile --tag typo3-docs:local .
-    docker run --rm --user=$(id -u):$(id -g) --volume ${PWD}:/project typo3-docs:local ./Documentation ./Documentation-GENERATED-temp --theme=typo3docs
-    // output is now in folder "output"
-
-Good to know for debugging::
-
-    docker run --entrypoint=sh -it --rm typo3-docs:local
-
-Let's you go in the shell so you can look around.
-
-
-
-Usage with DDEV:
-================
-
-::
-
-    git clone git@github.com:TYPO3-Documentation/render-guides.git
-    cd render-guides
-    ddev start
-    ddev composer install
-    cp -R /path/to/my/docs/Documentation fixtures-local
-    ddev composer render
-    // output is now in folder "output"
-    ddev launch Index.html
+See :ref:`Contributing` for more information.
 

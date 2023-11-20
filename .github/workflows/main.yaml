@@ -8,6 +8,7 @@ on: # yamllint disable-line rule:truthy
 
 env:
   DEFAULT_PHP_VERSION: "8.1"
+  RUN_ENVIRONMENT: "local"
 
 jobs:
   quality:
@@ -28,17 +29,17 @@ jobs:
         with:
           dependency-versions: "locked"
 
-      - name: CGL
-        run: composer run check:php:php-cs-fixer
+      - name: "CGL"
+        run: "make code-style ENV=${{ env.RUN_ENVIRONMENT }}"
 
-      - name: PHPSTAN
-        run: composer run check:php:phpstan
+      - name: "PHPSTAN"
+        run: "make phpstan ENV=${{ env.RUN_ENVIRONMENT }}"
 
       - name: "Run integration tests"
-        run: "composer run test:integration"
+        run: "make test-integration ENV=${{ env.RUN_ENVIRONMENT }}"
 
       - name: "Run unit tests"
-        run: "composer run test:unit"
+        run: "make test-unit ENV=${{ env.RUN_ENVIRONMENT }}"
 
       - name: "Install libxml2-utils"
         run: |
@@ -66,7 +67,7 @@ jobs:
           dependency-versions: "locked"
 
       - name: "Validate monorepo"
-        run: "composer run monorepo:validate"
+        run: "make test-monorepo ENV=${{ env.RUN_ENVIRONMENT }}"
 
   test-self-action:
     runs-on: "ubuntu-latest"

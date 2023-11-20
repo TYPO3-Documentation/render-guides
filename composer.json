@@ -1,6 +1,7 @@
 {
     "name": "t3docs/render-guides",
     "license": "OPL-1.0",
+    "description": "phpDocumentor-based Documentation rendering for docs.typo3.org or custom extensions.",
     "require": {
         "php": "^8.1",
         "phpdocumentor/guides-cli": "dev-main",
@@ -47,21 +48,6 @@
         "sort-packages": true
     },
     "scripts": {
-        "build:phar": "tools/build-phar.sh",
-        "check:php": [
-            "composer check:php:php-cs-fixer",
-            "composer check:php:phpstan"
-        ],
-        "check:php:php-cs-fixer": "vendor/bin/php-cs-fixer check",
-        "check:php:phpstan": "vendor/bin/phpstan --configuration=phpstan.neon",
-        "fix:php:cs": "vendor/bin/php-cs-fixer fix",
-        "monorepo:merge": "vendor/bin/monorepo-builder merge",
-        "monorepo:validate": "vendor/bin/monorepo-builder validate",
-        "test": [
-            "composer test:unit",
-            "composer test:integration"
-        ],
-        "test:integration": "vendor/bin/phpunit --testsuite=integration",
-        "test:unit": "vendor/bin/phpunit --testsuite=unit"
+        "make": "make ENV=local $COMPOSER_SCRIPT_ARGS"
     }
 }

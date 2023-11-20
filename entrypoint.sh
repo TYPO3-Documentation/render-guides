@@ -26,5 +26,5 @@ if [ "$(id -u)" -eq "0" ]; then
       su - typo3 -c "/usr/local/bin/invocation.sh"
   fi
 else
-  sh -c "$@"
+  php "$@"
 fi
