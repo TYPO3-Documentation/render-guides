@@ -1,11 +1,11 @@
 
 ===========================================
-PHP domain directives for Restructured Text
+Toolbox for render-guides CLI operations
 ===========================================
 
-You can also require this theme in your composer.json::
+You can also require this package in your composer.json::
 
-    composer req t3docs/php-domain
+    composer req t3docs/cli
 
-This theme uses the `phpDocumentor Guides <https://github.com/phpDocumentor/guides>`__
+This package uses the `phpDocumentor Guides <https://github.com/phpDocumentor/guides>`__
 for parsing and rendering restructuredText.
