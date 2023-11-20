@@ -4,8 +4,66 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9b44c69780943569e8d89432562a530",
+    "content-hash": "32f309bb3a4d165defae5764d4476f7d",
     "packages": [
+        {
+            "name": "brotkrueml/code-highlight-twig-extension",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brotkrueml/code-highlight-twig-extension.git",
+                "reference": "73f534ed18f8499207a6bc42bc717abe3f962377"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brotkrueml/code-highlight-twig-extension/zipball/73f534ed18f8499207a6bc42bc717abe3f962377",
+                "reference": "73f534ed18f8499207a6bc42bc717abe3f962377",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 8.1",
+                "scrivo/highlight.php": "^9.18",
+                "twig/twig": "^3.7"
+            },
+            "require-dev": {
+                "brotkrueml/coding-standards": "~5.0.0",
+                "ergebnis/composer-normalize": "~2.39.0",
+                "phpstan/phpstan": "1.10.41",
+                "phpunit/phpunit": "^10.4",
+                "rector/rector": "0.18.7"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Brotkrueml\\CodeHighlightTwigExtension\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Brotkrueml\\CodeHighlightTwigExtension\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Müller",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Twig extension for code highlighting using highlight.php",
+            "keywords": [
+                "syntax highlighter",
+                "twig"
+            ],
+            "support": {
+                "source": "https://github.com/brotkrueml/code-highlight-twig-extension/tree/main",
+                "issues": "https://github.com/brotkrueml/code-highlight-twig-extension/issues"
+            },
+            "time": "2023-11-20T12:37:39+00:00"
+        },
         {
             "name": "dflydev/dot-access-data",
             "version": "v3.0.2",
@@ -1684,6 +1742,84 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "scrivo/highlight.php",
+            "version": "v9.18.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scrivo/highlight.php.git",
+                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/850f4b44697a2552e892ffe71490ba2733c2fc6e",
+                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8|^5.7",
+                "sabberworm/php-css-parser": "^8.3",
+                "symfony/finder": "^2.8|^3.4|^5.4",
+                "symfony/var-dumper": "^2.8|^3.4|^5.4"
+            },
+            "suggest": {
+                "ext-mbstring": "Allows highlighting code with unicode characters and supports language with unicode keywords"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "HighlightUtilities/functions.php"
+                ],
+                "psr-0": {
+                    "Highlight\\": "",
+                    "HighlightUtilities\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Geert Bergman",
+                    "homepage": "http://www.scrivo.org/",
+                    "role": "Project Author"
+                },
+                {
+                    "name": "Vladimir Jimenez",
+                    "homepage": "https://allejo.io",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Martin Folkers",
+                    "homepage": "https://twobrain.io",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Server side syntax highlighter that supports 185 languages. It's a PHP port of highlight.js",
+            "keywords": [
+                "code",
+                "highlight",
+                "highlight.js",
+                "highlight.php",
+                "syntax"
+            ],
+            "support": {
+                "issues": "https://github.com/scrivo/highlight.php/issues",
+                "source": "https://github.com/scrivo/highlight.php"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/allejo",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-12-17T21:53:22+00:00"
         },
         {
             "name": "symfony/config",
@@ -6399,6 +6535,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "brotkrueml/code-highlight-twig-extension": 20,
         "phpdocumentor/guides-cli": 20,
         "phpdocumentor/guides-graphs": 20,
         "phpdocumentor/guides-markdown": 20,

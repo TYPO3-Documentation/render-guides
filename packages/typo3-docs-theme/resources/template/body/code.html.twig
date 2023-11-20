@@ -7,9 +7,27 @@
             <span class="caption-text">{{ node.caption }}</span>
         </div>
     {%- endif -%}
+    <div translate="no">
+        {# todo:
+            - consider "node.classes" and "node.classesString"
+            - consider emphasizing of lines
+        #}
+        {% set showLineNumbers = false %}
+        {% set startWithLineNumber = 1 %}
+        {% if node.startingLineNumber %}
+            {% set showLineNumbers = true %}
+            {% set startWithLineNumber = node.startingLineNumber %}
+        {% endif %}
+
+        {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber)}}
+    </div>
+    <pre>
+</pre>
+{#
     <div translate="no" class="highlight-{{ node.language }} {%- if node.classes %} {{ node.classesString }}{% endif %}">
         <div class="highlight">
             <pre><code class="{{ node.startingLineNumber ? ' line-numbers' }}" {%- if node.startingLineNumber %} data-start="{{ node.startingLineNumber }}"{% endif %}><span>{{ node.value }}</span></code></pre>
         </div>
     </div>
+#}
 {%- endif -%}
