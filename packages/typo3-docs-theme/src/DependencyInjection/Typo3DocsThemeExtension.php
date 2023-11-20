@@ -7,17 +7,19 @@ namespace T3Docs\Typo3DocsTheme\DependencyInjection;
 use function dirname;
 
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
+
 use phpDocumentor\Guides\TemplateRenderer;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
-
 use Symfony\Component\DependencyInjection\Extension\Extension;
+
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
-
 use Symfony\Component\DependencyInjection\Reference;
+
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
+use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface
 {
@@ -40,6 +42,18 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             $definition->addTag('phpdoc.guides.noderenderer.html');
 
             $container->setDefinition('phpdoc.guides.rst.' . substr(strrchr($node, '\\') ?: '', 1), $definition);
+            $definition = new Definition(
+                Typo3DocsThemeSettings::class,
+                [
+                    '$settings' => [
+                        'edit_on_github' => $configs[1]['edit_on_github'] ?? '',
+                        'edit_on_github_branch' => $configs[1]['edit_on_github_branch'] ?? 'main',
+                        'how_to_edit' => $configs[1]['how_to_edit'] ?? 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html',
+                        'copy_sources' => $configs[1]['copy_sources'] ?? 'true',
+                    ],
+                ],
+            );
+            $container->setDefinition(Typo3DocsThemeSettings::class, $definition);
         }
     }
 
