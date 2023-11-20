@@ -21,14 +21,14 @@ If you add a new dependency to a package, you can run
 
 ::
 
-    composer run monorepo:merge
+    make monorepo
 
-This will update the root composer.json file with the new dependency.
+This will update the root `composer.json` file with the new dependency.
 
-It is recommended to run the validation check before you commit.
+It is recommended to run the validation check before you commit:
 
 ::
 
-    composer run monorepo:validate
+    make test-monorepo
 
 .. _`monorepo-builder`: https://github.com/symplify/monorepo-builder

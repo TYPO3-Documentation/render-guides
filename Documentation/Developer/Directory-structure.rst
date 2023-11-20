@@ -16,7 +16,7 @@ The directory structure of the project is as follows::
     │   │   ├── phar.yml
     │   │   ├── docker.yml
     ├── bin
-    ├── fixtures
+    ├── Documentation
     ├── packages
     │   ├── typo3-docs-theme
     │   ├── typo3-guides-extension
@@ -31,12 +31,10 @@ for people using DDEV.
 The ``.github`` directory contains the configuration for the GitHub workflows.
 They are triggered by pull requests and pushes to the main branch. The main workflow
 contains the quality assurance steps. The phar workflow builds the phar file on
-release and nightly builds. Same applies for the docker workflow on the docker side.
+release and nightly builds. Same applies for the Docker workflow on the docker side.
 
 The ``bin`` directory contains the executable scripts for the project. The file
 in there is needed for the phar build.
-
-The ``fixtures`` directory contains the fixtures for local development tests.
 
 The ``packages`` directory contains the TYPO3-specific extensions. The ``typo3-docs-theme``
 extension contains the theme for the documentation, and TYPO3-specific directives.
@@ -48,4 +46,7 @@ are located in the ``Integration`` directory. During the integration tests the
 tool is executed as it was run by the user.
 
 The ``tools`` directory contains the tools needed for the project. Like scripts
-to build the phar file, or the docker image.
+to build the phar file, or the Docker image.
+
+The ``Documentation`` directory holds the Documentation you are now reading. It
+is the default documentation being build by the project, too.

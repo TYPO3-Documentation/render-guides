@@ -6,4 +6,8 @@
     input-file="README.md"
     input-format="md"
 >
+
+    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+               copy-sources="false"
+    />
 </guides>

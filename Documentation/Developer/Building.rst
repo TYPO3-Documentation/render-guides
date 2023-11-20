@@ -8,21 +8,25 @@ Building
 
 While the components of this repository are split into separate packages, it can
 be build as a standalone application. Two ways are provided to use this project
-on your own device.
+on your own environment.
 
 Using Docker
 ------------
 
-A docker image is available on GitHub packages. If you want to build your own
+A Docker image is available on GitHub packages. If you want to build your own
 image you can use the following command, in the root of this repository.
 
 ::
 
-    docker build -t typo3-docs:local .
+    make docker-build
 
-Once the build is finished you can execute your fresh image using::
+Once the build is finished you can execute your own image using::
 
   docker run --rm -v $(pwd):/project typo3-docs:local --progress
+
+For macOS you also need to specify the argument ``user``::
+
+  docker run --rm -v $(pwd):/project --user=$(id -u):$(id -g) typo3-docs:local --progress
 
 Using PHP
 ---------
@@ -31,11 +35,11 @@ A phar_ binary is shipped with this repository. In short, a phar file is an
 executable PHP file. You can run it like any other executable.
 
 To build the phar file we use box_, with some wrapper script. To build the phar
-file you can run the following command.
+file yourself, you can run the following command.
 
 ::
 
-    composer run build:phar
+    make build-phar
 
 This will create a file called guides.phar in the build directory. You can execute
 the phar file like a PHP file using::

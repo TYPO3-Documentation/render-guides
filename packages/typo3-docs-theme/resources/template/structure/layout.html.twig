@@ -18,17 +18,9 @@
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/fontawesome.css" rel="stylesheet" type="text/css"/>
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/webfonts.css" rel="stylesheet" type="text/css"/>
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/theme.css" rel="stylesheet" type="text/css"/>
-    <!-- linktags -->
-    {%- if env.projectNode.genindexLink %}
-    <link href="{{ env.projectNode.genindexLink }}" rel="index" title="Index"/>{% endif -%}
-    {%- if env.projectNode.searchLink %}
-    <link href="{{ env.projectNode.searchLink }}" rel="search" title="Search"/>{% endif -%}
-    <link href="#" rel="top" title="{{ title }}"/>
-    {%- if env.projectNode.prevLink %}
-        <link href="{{ env.projectNode.prevLink }}" rel="prev" title="{{ env.projectNode.prevTitle }}"/>{% endif -%}
-    {%- if env.projectNode.nextLink %}
-    <link href="{{ env.projectNode.nextLink }}" rel="next" title="{{ env.projectNode.nextTitle }}"/>{% endif -%}
-    <!-- /linktags -->
+    <link href="https://docs.typo3.org/search/" rel="search" title="Search"/>
+    {% block headerLinks %}
+    {% endblock %}
     <!-- extrahead --><!-- /extrahead -->
     <script src="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/js/modernizr.min.js"></script>
     <!-- UNIVERSE BAR START -->
@@ -117,26 +109,8 @@
                             <!-- /body -->
                         </div>
                     </div>
-                    <!-- pager.html -->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            {%- if env.projectNode.prevLink %}
-                                <li class="page-item">
-                                    <a class="page-link" href="{{ env.projectNode.prevLink }}" title="Accesskey Alt(+Shift)+p">
-                                        Previous
-                                    </a>
-                                </li>
-                            {%- endif  %}
-                            {%- if env.projectNode.nextLink %}
-                            <li class="page-item">
-                                <a class="page-link" href="{{ env.projectNode.nextLink }}" title="Accesskey Alt(+Shift)+n">
-                                    Next
-                                </a>
-                            </li>
-                            {%- endif  %}
-                        </ul>
-                    </nav>
-                    <!-- /pager.html -->
+                    {% block pager %}
+                    {% endblock %}
                 </div>
             </div>
         </div>

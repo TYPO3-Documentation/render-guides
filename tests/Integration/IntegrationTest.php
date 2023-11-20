@@ -54,7 +54,12 @@ final class IntegrationTest extends ApplicationTestCase
         self::assertDirectoryExists($expectedPath);
         self::assertNotEmpty($compareFiles);
 
-        $skip = file_exists($inputPath . '/skip');
+        $isIncomplete = file_exists($inputPath . '/incomplete');
+        $isSkipped = file_exists($inputPath . '/skip');
+        if ($isSkipped) {
+            self::markTestSkipped(file_get_contents($inputPath . '/skip') ?: '');
+        }
+
         $configurationFile = null;
         if (file_exists($inputPath . '/guides.xml')) {
             $configurationFile = $inputPath . '/guides.xml';
@@ -108,14 +113,14 @@ final class IntegrationTest extends ApplicationTestCase
                 }
             }
         } catch (ExpectationFailedException $e) {
-            if ($skip) {
-                self::markTestIncomplete(file_get_contents($inputPath . '/skip') ?: '');
+            if ($isIncomplete) {
+                self::markTestIncomplete(file_get_contents($inputPath . '/incomplete') ?: '');
             }
 
             throw $e;
         }
 
-        self::assertFalse($skip, 'Test passes while marked as SKIP.');
+        self::assertFalse($isIncomplete, 'Test passes while marked as incomplete.');
     }
 
     protected function setUp(): void
