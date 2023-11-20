@@ -14,10 +14,10 @@ When contributing please run all tests before committing:
     make pre-commit-test
 
     # Using composer
-    composer pre-commit-test
+    composer make pre-commit-test
 
     # Using ddev
-    ddev composer pre-commit-test
+    ddev composer make pre-commit-test
 
 
 You can use a helper script to set this up once in your project, so that

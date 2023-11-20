@@ -8,6 +8,7 @@ on: # yamllint disable-line rule:truthy
 
 env:
   DEFAULT_PHP_VERSION: "8.1"
+  RUN_ENVIRONMENT: "local"
 
 jobs:
   quality:
@@ -29,16 +30,16 @@ jobs:
           dependency-versions: "locked"
 
       - name: "CGL"
-        run: "make code-style ENV=local"
+        run: "make code-style ENV=${{ env.RUN_ENVIRONMENT }}"
 
       - name: "PHPSTAN"
-        run: "make phpstan ENV=local"
+        run: "make phpstan ENV=${{ env.RUN_ENVIRONMENT }}"
 
       - name: "Run integration tests"
-        run: "make test-integration ENV=local"
+        run: "make test-integration ENV=${{ env.RUN_ENVIRONMENT }}"
 
       - name: "Run unit tests"
-        run: "make test-unit ENV=local"
+        run: "make test-unit ENV=${{ env.RUN_ENVIRONMENT }}"
 
   monorepo-validate:
     runs-on: "ubuntu-latest"
@@ -58,7 +59,7 @@ jobs:
           dependency-versions: "locked"
 
       - name: "Validate monorepo"
-        run: "make test-monorepo ENV=local"
+        run: "make test-monorepo ENV=${{ env.RUN_ENVIRONMENT }}"
 
   test-self-action:
     runs-on: "ubuntu-latest"

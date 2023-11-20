@@ -22,9 +22,9 @@ jobs:
           tools: "composer"
 
       - name: "Create phar"
-        run: make build-phar
+        run: "make build-phar ENV=${{ env.RUN_ENVIRONMENT }}"
 
-      - name: Upload artifact
+      - name: "Upload artifact"
         uses: actions/upload-artifact@v3
         with:
           name: phar

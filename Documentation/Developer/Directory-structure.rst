@@ -16,7 +16,6 @@ The directory structure of the project is as follows::
     │   │   ├── phar.yml
     │   │   ├── docker.yml
     ├── bin
-    ├── fixtures-local
     ├── Documentation
     ├── packages
     │   ├── typo3-docs-theme
@@ -36,8 +35,6 @@ release and nightly builds. Same applies for the Docker workflow on the docker s
 
 The ``bin`` directory contains the executable scripts for the project. The file
 in there is needed for the phar build.
-
-The ``fixtures-local`` directory contains the fixtures for local development tests.
 
 The ``packages`` directory contains the TYPO3-specific extensions. The ``typo3-docs-theme``
 extension contains the theme for the documentation, and TYPO3-specific directives.
