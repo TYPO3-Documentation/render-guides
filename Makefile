@@ -40,6 +40,59 @@ help: ## Displays this list of targets with descriptions
 
 ## LIST: Targets that can be executed directly
 
+.PHONE: build-phar
+build-phar: ## Creates a guides.phar file (github workflow)
+	./tools/build-phar.sh
+
+.PHONY: cleanup
+cleanup: cleanup-tests cleanup-cache
+
+.PHONY: cleanup-cache
+cleanup-cache: ## Cleans up phpstan .cache directory
+	@sudo rm -rf .cache
+
+.PHONY: cleanup-tests
+cleanup-tests: ## Cleans up temp directories created by test-integration
+	@find ./tests -type d -name 'temp' -exec sudo rm -rf {} \;
+
+.PHONY: code-style
+code-style: ## Executes php-cs-fixer with "check" option
+	@echo "$(ENV_INFO)"
+	$(PHP_BIN) vendor/bin/php-cs-fixer check
+
+.PHONY: docs
+docs: ## Generate projects docs (from "Documentation" directory)
+	@echo "$(ENV_INFO)"
+	$(PHP_BIN) vendor/bin/guides -vvv --no-progress --config=Documentation
+
+.PHONY: docker-build
+docker-build: ## Build docker image 'typo3-docs:local' for local debugging
+	docker build -t typo3-docs:local .
+
+.PHONY: fix-code-style
+fix-code-style: ## Executes php-cs-fixer with "fix" option
+	@echo "$(ENV_INFO)"
+	$(PHP_BIN) vendor/bin/php-cs-fixer fix
+
+.PHONE: githooks
+githooks: ## Runs script that injects githooks (for contributors)
+	./tools/add-githooks.sh
+
+.PHONY: monorepo
+monorepo: ## Runs monorepo-builder
+	@echo "$(ENV_INFO)"
+	$(PHP_BIN) ./vendor/bin/monorepo-builder merge
+
+.PHONY: phpstan
+phpstan: ## Execute phpstan
+	@echo "$(ENV_INFO)"
+	$(PHP_BIN) vendor/bin/phpstan --configuration=phpstan.neon
+
+.PHONY: phpstan-baseline
+phpstan-baseline: ## Generates phpstan baseline
+	@echo "$(ENV_INFO)"
+	$(PHP_BIN) vendor/bin/phpstan --configuration=phpstan.neon --generate-baseline
+
 .PHONY: show-env
 show-env: ## Shows PHP environment options (buildinfo)
 	@echo "$(ENV_INFO)"
@@ -52,99 +105,47 @@ show-env: ## Shows PHP environment options (buildinfo)
 	$(PHP_PROJECT_BIN) --version
 	@echo ""
 
-.PHONY: code-style
-code-style: ## Executes php-cs-fixer with "check" option
-	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/php-cs-fixer check
-
-.PHONY: fix-code-style
-fix-code-style: ## Executes php-cs-fixer with "fix" option
-	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/php-cs-fixer fix
-
-.PHONY: phpstan-baseline
-phpstan-baseline: ## Generates phpstan baseline
-	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/phpstan --configuration=phpstan.neon --generate-baseline
-
-.PHONY: phpstan
-phpstan: ## Execute phpstan
-	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/phpstan --configuration=phpstan.neon
-
-.PHONE: githooks
-githooks: ## Runs script that injects githooks (for contributors)
-	./tools/add-githooks.sh
-
-.PHONE: build-phar
-build-phar: ## Creates a guides.phar file (github workflow)
-	./tools/build-phar.sh
-
 .PHONY: test
 test: test-integration test-unit test-xml test-docs ## Runs all test suites with phpunit/phpunit
-
-.PHONY: test-unit
-test-unit: ## Runs unit tests with phpunit
-	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/phpunit --testsuite=unit
-
-.PHONY: test-integration
-test-integration: ## Runs integration tests with phpunit
-	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/phpunit --testsuite=integration
 
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
 	@echo "$(ENV_INFO)"
 	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation --output="/tmp/test" --fail-on-log
 
+.PHONY: test-integration
+test-integration: ## Runs integration tests with phpunit
+	@echo "$(ENV_INFO)"
+	$(PHP_BIN) vendor/bin/phpunit --testsuite=integration
+
 .PHONY: test-monorepo
 test-monorepo: ## Runs monorepo-builder tests
 	@echo "$(ENV_INFO)"
 	$(PHP_BIN) ./vendor/bin/monorepo-builder validate
 
-.PHONY: monorepo
-monorepo: ## Runs monorepo-builder
+.PHONY: test-unit
+test-unit: ## Runs unit tests with phpunit
 	@echo "$(ENV_INFO)"
-	$(PHP_BIN) ./vendor/bin/monorepo-builder merge
+	$(PHP_BIN) vendor/bin/phpunit --testsuite=unit
 
 .PHONY: test-xml
 test-xml: ## Lint all guides.xml
 	./tools/xmllint.sh
 
-.PHONY: cleanup
-cleanup: cleanup-tests cleanup-cache
-
-.PHONY: cleanup-tests
-cleanup-tests: ## Cleans up temp directories created by test-integration
-	@find ./tests -type d -name 'temp' -exec sudo rm -rf {} \;
-
-.PHONY: cleanup-cache
-cleanup-cache: ## Cleans up phpstan .cache directory
-	@sudo rm -rf .cache
-
-.PHONY: docs
-docs: ## Generate projects docs (from "Documentation" directory)
-	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/guides -vvv --no-progress --config=Documentation
-
-.PHONY: docker-build
-docker-build: ## Build docker image 'typo3-docs:local' for local debugging
-	docker build -t typo3-docs:local .
 
 ## LIST: Compound targets that are triggers for others.
-
-.PHONY: static-code-analysis
-static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan (ensures composer)
-
-.PHONY: test
-test: test-integration test-unit test-docs ## Runs all test suites with phpunit
 
 .PHONY: cleanup
 cleanup: cleanup-tests cleanup-cache ## Runs all cleanup tasks
 
 .PHONY: pre-commit-test
 pre-commit-test: fix-code-style test code-style static-code-analysis test-monorepo ## Runs all tests and code guideline checks (for contributors)
+
+.PHONY: static-code-analysis
+static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan (ensures composer)
+
+.PHONY: test
+test: test-integration test-unit test-docs ## Runs all test suites with phpunit
 
 ## LIST: Triggered targets that operate on specific file changes
 
