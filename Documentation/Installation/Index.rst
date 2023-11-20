@@ -48,6 +48,12 @@ project. This means that the files created by the Docker image will have the
 same owner as the files in your project. No more permission issues should occur,
 when files are getting generated inside the image.
 
+This may fail on macOS, in which case you need to specify the `user` argument:
+
+::
+
+    docker run --rm --user=$(id -u):$(id -g) -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress --config ./Documentation
+
 Another way to utilize Docker is to create your own image/container. This is aimed at people
 who want to contribute to the underlying Documentation tool. Please see :ref:`_Building`
 for those steps.

@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-
+# TODO: This detection seems to fail on macOS. If no "--user" argument is specified to make Docker run
+#       as that user, it cannot deduce ownership properly. Probably the Dockerfile needs to be adapted
+#       so that a user-switch to the "typo3" user is done? This can have side-effects though.
 if [ "$(id -u)" -eq "0" ]; then
 
   UID=$(stat -c "%u" $(pwd))
@@ -22,7 +24,7 @@ if [ "$(id -u)" -eq "0" ]; then
 
       # su behaves inconsistently with -c followed by flags
       # Workaround: run the entrypoint and commands as a standalone script
-      echo "#!/usr/bin/env sh" >> /usr/local/bin/invocation.sh
+      echo "#!/usr/bin/env sh" > /usr/local/bin/invocation.sh
       echo >> /usr/local/bin/invocation.sh
       for ARG in "$@"; do
           printf "${ARG} " >> /usr/local/bin/invocation.sh
