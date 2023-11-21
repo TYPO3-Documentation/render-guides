@@ -9,6 +9,7 @@
         }
     },
     "require": {
-        "phpdocumentor/guides-cli": "dev-main"
+        "phpdocumentor/guides-cli": "dev-main",
+        "symfony/clock": "^6.3"
     }
 }

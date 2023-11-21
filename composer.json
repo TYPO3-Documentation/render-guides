@@ -27,8 +27,6 @@
         "t3docs/typo3-docs-theme": "self.version",
         "t3docs/typo3-guides-extension": "self.version"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "T3Docs\\GuidesExtension\\": "packages/typo3-guides-extension/src/",
@@ -50,5 +48,7 @@
     },
     "scripts": {
         "make": "make ENV=local $COMPOSER_SCRIPT_ARGS"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
