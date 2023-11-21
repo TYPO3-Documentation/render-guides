@@ -7,6 +7,11 @@ inputs:
     required: false
     default: null
 
+  working-directory:
+    description: 'Working directory'
+    required: false
+    default: './'
+
   config:
     description: 'Configuration file location'
     default: 'Documentation'
@@ -19,6 +24,7 @@ runs:
   using: 'docker'
   image: 'docker://ghcr.io/typo3-documentation/render-guides:main'
   args:
+    - '--working-dir=${{ inputs.working-directory }}'
     - '--config=${{ inputs.config }}'
     - '--output=${{ inputs.output }}'
     - '${{ inputs.input }}'

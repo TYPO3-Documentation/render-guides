@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7ca20c40ce2bd08d0a355db6b554177",
+    "content-hash": "77497a35a371234279a27a895d413a5f",
     "packages": [
         {
             "name": "dflydev/dot-access-data",
@@ -1172,12 +1172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "4805b23ed56d0184f3dca58e27fb8b3e767367b9"
+                "reference": "79142298de1e6ac1507459372eeae4144ff19323"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/4805b23ed56d0184f3dca58e27fb8b3e767367b9",
-                "reference": "4805b23ed56d0184f3dca58e27fb8b3e767367b9",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/79142298de1e6ac1507459372eeae4144ff19323",
+                "reference": "79142298de1e6ac1507459372eeae4144ff19323",
                 "shasum": ""
             },
             "require": {
@@ -1214,7 +1214,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-11-18T12:45:53+00:00"
+            "time": "2023-11-21T09:16:08+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1222,12 +1222,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "787d0b67cff5bddbdefc139b4aea18b766c05f49"
+                "reference": "3055b89d9fbd138297c69f6205d0bf33f86682fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/787d0b67cff5bddbdefc139b4aea18b766c05f49",
-                "reference": "787d0b67cff5bddbdefc139b4aea18b766c05f49",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/3055b89d9fbd138297c69f6205d0bf33f86682fc",
+                "reference": "3055b89d9fbd138297c69f6205d0bf33f86682fc",
                 "shasum": ""
             },
             "require": {
@@ -1264,7 +1264,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-cli/tree/main"
             },
-            "time": "2023-11-18T11:37:34+00:00"
+            "time": "2023-11-20T19:13:47+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -1354,12 +1354,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "4e42752789cfda46e4101f3d4f8d79083568cb80"
+                "reference": "5f76c50e637424932486c9bde8b8aa05cbe862c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/4e42752789cfda46e4101f3d4f8d79083568cb80",
-                "reference": "4e42752789cfda46e4101f3d4f8d79083568cb80",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/5f76c50e637424932486c9bde8b8aa05cbe862c9",
+                "reference": "5f76c50e637424932486c9bde8b8aa05cbe862c9",
                 "shasum": ""
             },
             "require": {
@@ -1385,7 +1385,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-11-18T12:33:04+00:00"
+            "time": "2023-11-21T09:16:08+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -1393,12 +1393,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-bootstrap.git",
-                "reference": "2849249a5dab67448302d93ad8d81072381787de"
+                "reference": "a48b2e9e10cf639e29ec844f23eab210bc6de3ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/2849249a5dab67448302d93ad8d81072381787de",
-                "reference": "2849249a5dab67448302d93ad8d81072381787de",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/a48b2e9e10cf639e29ec844f23eab210bc6de3ef",
+                "reference": "a48b2e9e10cf639e29ec844f23eab210bc6de3ef",
                 "shasum": ""
             },
             "require": {
@@ -1422,7 +1422,55 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/main"
             },
-            "time": "2023-11-05T03:43:02+00:00"
+            "time": "2023-11-21T08:14:20+00:00"
+        },
+        {
+            "name": "psr/clock",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/clock.git",
+                "reference": "e41a24703d4560fd0acb709162f73b8adfc3aa0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/clock/zipball/e41a24703d4560fd0acb709162f73b8adfc3aa0d",
+                "reference": "e41a24703d4560fd0acb709162f73b8adfc3aa0d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0 || ^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Clock\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for reading the clock.",
+            "homepage": "https://github.com/php-fig/clock",
+            "keywords": [
+                "clock",
+                "now",
+                "psr",
+                "psr-20",
+                "time"
+            ],
+            "support": {
+                "issues": "https://github.com/php-fig/clock/issues",
+                "source": "https://github.com/php-fig/clock/tree/1.0.0"
+            },
+            "time": "2022-11-25T14:36:26+00:00"
         },
         {
             "name": "psr/container",
@@ -1684,6 +1732,79 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "symfony/clock",
+            "version": "v6.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/clock.git",
+                "reference": "a74086d3db70d0f06ffd84480daa556248706e98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/clock/zipball/a74086d3db70d0f06ffd84480daa556248706e98",
+                "reference": "a74086d3db70d0f06ffd84480daa556248706e98",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "psr/clock": "^1.0"
+            },
+            "provide": {
+                "psr/clock-implementation": "1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "Resources/now.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Component\\Clock\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Decouples applications from the system clock",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "clock",
+                "psr20",
+                "time"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/clock/tree/v6.3.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-07-31T11:35:03+00:00"
         },
         {
             "name": "symfony/config",
@@ -6402,8 +6523,7 @@
         "phpdocumentor/guides-cli": 20,
         "phpdocumentor/guides-graphs": 20,
         "phpdocumentor/guides-markdown": 20,
-        "phpdocumentor/guides-theme-bootstrap": 20,
-        "t3docs/cli": 20
+        "phpdocumentor/guides-theme-bootstrap": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

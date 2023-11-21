@@ -4,11 +4,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
 >
-    <project title="Render guides"/>
+    <project title="Example Project" version="12.4"/>
     <extension
         class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
         edit-on-github="TYPO3-Documentation/render-guides"
         edit-on-github-branch="main"
     />
-    <inventory id="h2document" url="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/" />
 </guides>

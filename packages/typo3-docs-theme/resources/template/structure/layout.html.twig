@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="{{ title }}" name="docsearch:name"/>
+    <meta content="{{ env.projectNode.title }}" name="docsearch:name"/>
     <meta content="" name="docsearch:package_type"/>
-    <meta content="master" name="docsearch:release"/>
-    <meta content="2.0" name="docsearch:version"/>
-    <meta content="2020-10-30T07:03:47+00:00" name="docsearch:modified"/>
+    <meta content="{{ env.projectNode.version }}" name="docsearch:release"/>
+    <meta content="{{ env.projectNode.version }}" name="docsearch:version"/>
+    <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" name="docsearch:modified"/>
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc"/>
-    <meta content="2020-10-30T07:03:47+00:00" name="dc.modified"/>
-    <meta content="2020-10-30T07:03:47+00:00" property="article:modified_time"/>
+    <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" name="dc.modified"/>
+    <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" property="article:modified_time"/>
     <title>{{ title }}
-        {%- if title!=null and env.projectNode.title!=null %} - {% endif -%}
-        {%- if env.projectNode.title -%}{{ env.projectNode.title }}{%- endif -%} documentation {{ env.projectNode.version }}</title>
+        {%- if title!=null and env.projectNode.title!=null %} — {% endif -%}
+        {%- if env.projectNode.title -%}{{ env.projectNode.title }} {% endif -%} {{ env.projectNode.version }} documentation</title>
 
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/fontawesome.css" rel="stylesheet" type="text/css"/>
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/webfonts.css" rel="stylesheet" type="text/css"/>
@@ -127,7 +127,7 @@
                             <li><a href="https://github.com/TYPO3-Documentation/DocsTypo3Org-Homepage" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
                         </ul>
                         <div class="footer-additional">
-
+                            <p class="text-center">Last rendered: {{ env.projectNode.lastRendered|date("M d, Y H:i") }}</p>
                         </div>
                         <div class="footer-meta">
                             <div class="footer-meta-copyright">
@@ -150,7 +150,7 @@
 <script type="text/javascript">
     var DOCUMENTATION_OPTIONS = {
         URL_ROOT: './',
-        VERSION: 'main',
+        VERSION: '{{ env.projectNode.version }}',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE: true
