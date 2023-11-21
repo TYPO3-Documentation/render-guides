@@ -17,11 +17,4 @@
 
         {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber, emphasizeLines=node.emphasizeLines, classes=node.classesString)}}
     </div>
-{#
-    <div translate="no" class="highlight-{{ node.language }} {%- if node.classes %} {{ node.classesString }}{% endif %}">
-        <div class="highlight">
-            <pre><code class="{{ node.startingLineNumber ? ' line-numbers' }}" {%- if node.startingLineNumber %} data-start="{{ node.startingLineNumber }}"{% endif %}><span>{{ node.value }}</span></code></pre>
-        </div>
-    </div>
-#}
 {%- endif -%}
