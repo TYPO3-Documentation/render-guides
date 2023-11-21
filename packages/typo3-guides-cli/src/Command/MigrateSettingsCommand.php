@@ -37,7 +37,7 @@ final class MigrateSettingsCommand extends Command
      * Maps a Settings.cfg key for [general] to the XML <project> element
      */
     private const MAPPING_PROJECT = [
-        'project' => 'project',
+        'project' => 'title',
         'release' => 'release',
         'version' => 'version',
         'copyright' => 'copyright',
