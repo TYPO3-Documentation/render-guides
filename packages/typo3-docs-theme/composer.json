@@ -10,13 +10,13 @@
         }
     },
     "require": {
-        "brotkrueml/code-highlight-twig-extension": "dev-main",
+        "brotkrueml/twig-codehighlight": "dev-main",
         "phpdocumentor/guides-theme-bootstrap": "dev-main"
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/brotkrueml/code-highlight-twig-extension"
+            "url": "https://github.com/brotkrueml/twig-codehighlight"
         }
     ]
 }

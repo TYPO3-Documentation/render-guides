@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5b7b47dfbcfccc0d528b29d244116d0",
+    "content-hash": "4f38f2a21217688141425844cbc63cc5",
     "packages": [
         {
-            "name": "brotkrueml/code-highlight-twig-extension",
+            "name": "brotkrueml/twig-codehighlight",
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/brotkrueml/code-highlight-twig-extension.git",
-                "reference": "0db645cda39eb8c2ec7685d797ea1c55468eaaee"
+                "url": "https://github.com/brotkrueml/twig-codehighlight.git",
+                "reference": "89dbad18d7f8185434ed62b1194d168006907ecb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brotkrueml/code-highlight-twig-extension/zipball/0db645cda39eb8c2ec7685d797ea1c55468eaaee",
-                "reference": "0db645cda39eb8c2ec7685d797ea1c55468eaaee",
+                "url": "https://api.github.com/repos/brotkrueml/twig-codehighlight/zipball/89dbad18d7f8185434ed62b1194d168006907ecb",
+                "reference": "89dbad18d7f8185434ed62b1194d168006907ecb",
                 "shasum": ""
             },
             "require": {
@@ -36,12 +36,12 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Brotkrueml\\CodeHighlightTwigExtension\\": "src"
+                    "Brotkrueml\\TwigCodeHighlight\\": "src"
                 }
             },
             "autoload-dev": {
                 "psr-4": {
-                    "Brotkrueml\\CodeHighlightTwigExtension\\Tests\\": "tests/"
+                    "Brotkrueml\\TwigCodeHighlight\\Tests\\": "tests/"
                 }
             },
             "license": [
@@ -59,10 +59,10 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/brotkrueml/code-highlight-twig-extension/tree/main",
-                "issues": "https://github.com/brotkrueml/code-highlight-twig-extension/issues"
+                "source": "https://github.com/brotkrueml/twig-codehighlight/tree/main",
+                "issues": "https://github.com/brotkrueml/twig-codehighlight/issues"
             },
-            "time": "2023-11-20T19:47:04+00:00"
+            "time": "2023-11-21T09:08:47+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -6656,7 +6656,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "brotkrueml/code-highlight-twig-extension": 20,
+        "brotkrueml/twig-codehighlight": 20,
         "phpdocumentor/guides-cli": 20,
         "phpdocumentor/guides-graphs": 20,
         "phpdocumentor/guides-markdown": 20,
