@@ -3,9 +3,9 @@
 
 declare(strict_types=1);
 
-namespace T3Docs\Cli;
+namespace T3Docs\GuidesCli;
 
-use T3Docs\Cli\Command\Console;
+use T3Docs\GuidesCli\Command\MigrateSettingsCommand;
 use Symfony\Component\Console\Application;
 
 $vendorDir = dirname(__DIR__) . '/../../vendor';
@@ -29,8 +29,8 @@ if (file_exists($autoloadDirectory)){
 }
 
 
-$application = new Application('cli', '0.0.1');
-$command = new Console();
+$application = new Application('typo3-guides');
+$command = new MigrateSettingsCommand();
 
 $application->add($command);
 

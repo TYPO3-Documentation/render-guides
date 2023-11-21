@@ -20,21 +20,20 @@
         "symfony/console": "^6.3",
         "symplify/monorepo-builder": "^11.2",
         "symplify/phpstan-rules": "^12.4",
-        "t3docs/cli": "@dev",
         "typo3/coding-standards": "^0.7.1"
     },
     "replace": {
-        "t3docs/cli": "self.version",
         "t3docs/php-domain": "self.version",
         "t3docs/typo3-docs-theme": "self.version",
-        "t3docs/typo3-guides-extension": "self.version"
+        "t3docs/typo3-guides-extension": "self.version",
+        "t3docs/typo3-guides-cli": "self.version"
     },
     "autoload": {
         "psr-4": {
-            "T3Docs\\Cli\\": "packages/cli/src/",
             "T3Docs\\GuidesExtension\\": "packages/typo3-guides-extension/src/",
             "T3Docs\\PhpDomain\\": "packages/php-domain/src/",
-            "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/"
+            "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/",
+            "T3Docs\\GuidesCli\\": "packages/typo3-guides-cli/src/"
         }
     },
     "autoload-dev": {
