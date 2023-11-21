@@ -1230,12 +1230,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "4805b23ed56d0184f3dca58e27fb8b3e767367b9"
+                "reference": "ddca7f4cab6e0bb0b6807122692471f6d731bfb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/4805b23ed56d0184f3dca58e27fb8b3e767367b9",
-                "reference": "4805b23ed56d0184f3dca58e27fb8b3e767367b9",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/ddca7f4cab6e0bb0b6807122692471f6d731bfb5",
+                "reference": "ddca7f4cab6e0bb0b6807122692471f6d731bfb5",
                 "shasum": ""
             },
             "require": {
@@ -1272,7 +1272,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-11-18T12:45:53+00:00"
+            "time": "2023-11-21T08:14:20+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1412,12 +1412,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "4e42752789cfda46e4101f3d4f8d79083568cb80"
+                "reference": "f33561a5f962434b60ea8f3c9573000d6e7613a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/4e42752789cfda46e4101f3d4f8d79083568cb80",
-                "reference": "4e42752789cfda46e4101f3d4f8d79083568cb80",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/f33561a5f962434b60ea8f3c9573000d6e7613a1",
+                "reference": "f33561a5f962434b60ea8f3c9573000d6e7613a1",
                 "shasum": ""
             },
             "require": {
@@ -1443,7 +1443,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-11-18T12:33:04+00:00"
+            "time": "2023-11-20T20:41:12+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -1451,12 +1451,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-bootstrap.git",
-                "reference": "2849249a5dab67448302d93ad8d81072381787de"
+                "reference": "a48b2e9e10cf639e29ec844f23eab210bc6de3ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/2849249a5dab67448302d93ad8d81072381787de",
-                "reference": "2849249a5dab67448302d93ad8d81072381787de",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/a48b2e9e10cf639e29ec844f23eab210bc6de3ef",
+                "reference": "a48b2e9e10cf639e29ec844f23eab210bc6de3ef",
                 "shasum": ""
             },
             "require": {
@@ -1480,7 +1480,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/main"
             },
-            "time": "2023-11-05T03:43:02+00:00"
+            "time": "2023-11-21T08:14:20+00:00"
         },
         {
             "name": "psr/clock",
@@ -4758,16 +4758,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.41",
+            "version": "1.10.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "c6174523c2a69231df55bdc65b61655e72876d76"
+                "reference": "2c4129f6ca8c7cfa870098884b8869b410a5a361"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c6174523c2a69231df55bdc65b61655e72876d76",
-                "reference": "c6174523c2a69231df55bdc65b61655e72876d76",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/2c4129f6ca8c7cfa870098884b8869b410a5a361",
+                "reference": "2c4129f6ca8c7cfa870098884b8869b410a5a361",
                 "shasum": ""
             },
             "require": {
@@ -4816,7 +4816,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-05T12:57:57+00:00"
+            "time": "2023-11-19T19:55:25+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
@@ -6521,16 +6521,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e"
+                "reference": "b2ad5003ca10d4ee50a12da31de12a5774ba6b96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/34a41e998c2183e22995f158c581e7b5e755ab9e",
-                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/b2ad5003ca10d4ee50a12da31de12a5774ba6b96",
+                "reference": "b2ad5003ca10d4ee50a12da31de12a5774ba6b96",
                 "shasum": ""
             },
             "require": {
@@ -6559,7 +6559,7 @@
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "support": {
                 "issues": "https://github.com/theseer/tokenizer/issues",
-                "source": "https://github.com/theseer/tokenizer/tree/1.2.1"
+                "source": "https://github.com/theseer/tokenizer/tree/1.2.2"
             },
             "funding": [
                 {
@@ -6567,7 +6567,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-07-28T10:34:58+00:00"
+            "time": "2023-11-20T00:12:19+00:00"
         },
         {
             "name": "typo3/coding-standards",
@@ -6668,5 +6668,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
