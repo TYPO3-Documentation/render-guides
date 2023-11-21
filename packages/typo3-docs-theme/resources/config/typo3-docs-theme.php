@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Brotkrueml\CodeHighlightTwigExtension\CodeHighlight;
+use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
