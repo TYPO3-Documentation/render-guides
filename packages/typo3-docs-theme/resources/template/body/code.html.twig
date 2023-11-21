@@ -8,9 +8,6 @@
         </div>
     {%- endif -%}
     <div translate="no">
-        {# todo:
-            - consider "node.classes" and "node.classesString"
-        #}
         {% set showLineNumbers = false %}
         {% set startWithLineNumber = 1 %}
         {% if node.startingLineNumber %}
@@ -18,7 +15,7 @@
             {% set startWithLineNumber = node.startingLineNumber %}
         {% endif %}
 
-        {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber, emphasizeLines=node.emphasizeLines)}}
+        {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber, emphasizeLines=node.emphasizeLines, classes=node.classesString)}}
     </div>
 {#
     <div translate="no" class="highlight-{{ node.language }} {%- if node.classes %} {{ node.classesString }}{% endif %}">

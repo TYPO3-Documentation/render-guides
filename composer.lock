@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/brotkrueml/twig-codehighlight.git",
-                "reference": "26799dc1f755257df6be2c820f0d704c75ef66c2"
+                "reference": "8bf60f6fefeab3e8a951c9fb99bb6d521246e7ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brotkrueml/twig-codehighlight/zipball/26799dc1f755257df6be2c820f0d704c75ef66c2",
-                "reference": "26799dc1f755257df6be2c820f0d704c75ef66c2",
+                "url": "https://api.github.com/repos/brotkrueml/twig-codehighlight/zipball/8bf60f6fefeab3e8a951c9fb99bb6d521246e7ee",
+                "reference": "8bf60f6fefeab3e8a951c9fb99bb6d521246e7ee",
                 "shasum": ""
             },
             "require": {
@@ -63,7 +63,7 @@
                 "source": "https://github.com/brotkrueml/twig-codehighlight/tree/main",
                 "issues": "https://github.com/brotkrueml/twig-codehighlight/issues"
             },
-            "time": "2023-11-21T17:58:48+00:00"
+            "time": "2023-11-21T21:09:42+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
