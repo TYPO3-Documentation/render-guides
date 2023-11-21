@@ -18,9 +18,13 @@
 
 {% block body %}
     <!-- content start -->
+    {% if env.currentFileName == 'Sitemap' %}
+        {% include "pagetemplates/sitemap.html.twig" %}
+    {% else %}
     {% for child in node.children -%}
         {{ renderNode(child) }}
     {%~ endfor -%}
+    {% endif %}
     <!-- content end -->
 {% endblock %}
 

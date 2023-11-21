@@ -1,0 +1,7 @@
+
+{% for child in node.children -%}
+    {{ renderNode(child) }}
+{%~ endfor -%}
+<div class="section">
+    {{ renderMenu('sitemap') }}
+</div>

@@ -2,9 +2,10 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-copyTests(__DIR__ . '/../tests');
+copyTests(__DIR__ . '/../tests/Integration/tests');
+copyTests(__DIR__ . '/../tests/Integration/tests-full', false);
 
-function copyTests(string $directory): void
+function copyTests(string $directory, bool $shortenHtml = true): void
 {
     $finder = new \Symfony\Component\Finder\Finder();
     $finder
@@ -14,7 +15,7 @@ function copyTests(string $directory): void
 
     foreach ($finder as $dir) {
         if (!file_exists($dir->getPathname() . '/input')) {
-            copyTests($dir->getPathname());
+            copyTests($dir->getPathname(), $shortenHtml);
             continue;
         }
         $tempDir = $dir->getPathname() . '/temp';
@@ -33,14 +34,18 @@ function copyTests(string $directory): void
             $tempFile = $tempDir . '/' . $fileName;
             $outputFile = $expectedDir . '/' . $fileName;
             if (file_exists($tempFile)) {
-                if (pathinfo($tempFile, PATHINFO_EXTENSION) === 'html') {
+                if (pathinfo($tempFile, PATHINFO_EXTENSION) === 'log') {
+                    echo sprintf("Ignoring log file %s\n", $outputFile);
+                    continue;
+                }
+                if ($shortenHtml && pathinfo($tempFile, PATHINFO_EXTENSION) === 'html') {
                     // Handle HTML file with content markers
                     copyHtmlWithMarkers($tempFile, $outputFile);
-                } else {
-                    // Copy non-HTML files as-is
-                    copy($tempFile, $outputFile);
                     echo sprintf("Updated %s\n", $outputFile);
+                    continue;
                 }
+                // Copy non-HTML files as-is
+                copy($tempFile, $outputFile);
                 echo sprintf("Updated %s\n", $outputFile);
             } else {
                 echo sprintf("Skipped %s - %s does not exist\n", $outputFile, $tempFile);
@@ -68,6 +73,10 @@ function copyHtmlWithMarkers(string $sourceFile, string $destinationFile): void
     }
 
     $contentBetweenMarkers = substr($fileContent, $startPos, $endPos + strlen($endMarker) - $startPos);
-    file_put_contents($destinationFile, $contentBetweenMarkers);
+    $lines = explode("\n", $contentBetweenMarkers);
+    $trimmedLines = array_map('rtrim', $lines);
+    $trimmedContent = implode("\n", $trimmedLines) . "\n";
+
+    file_put_contents($destinationFile, $trimmedContent);
     echo sprintf("Updated %s\n", $destinationFile);
 }

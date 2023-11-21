@@ -9,6 +9,7 @@
         "phpdocumentor/guides-graphs": "dev-main",
         "phpdocumentor/guides-markdown": "dev-main",
         "phpdocumentor/guides-theme-bootstrap": "dev-main",
+        "symfony/clock": "^6.3",
         "symfony/finder": "^6.3",
         "symfony/http-client": "^6.3"
     },

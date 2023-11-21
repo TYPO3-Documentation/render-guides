@@ -2,6 +2,8 @@
     {% include "body/menu/mainmenu/menu.html.twig" %}
 {% elseif node.options.menu == 'navbar' %}
     {% include "body/menu/navbar/menu.html.twig" %}
+{% elseif node.options.menu == 'sitemap' %}
+    {% include "body/menu/sitemap.html.twig" %}
 {% else %}
     <div class="toctree-wrapper compound">
         <ul>
