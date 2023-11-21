@@ -1,16 +1,16 @@
 {
     "std:doc": {
         "index": [
-            null,
-            null,
+            "Example Project",
+            "12.4",
             "index.html",
             "Document Title"
         ]
     },
     "std:label": {
         "document-title": [
-            null,
-            null,
+            "Example Project",
+            "12.4",
             "index.html#document-title",
             "Document Title"
         ]
