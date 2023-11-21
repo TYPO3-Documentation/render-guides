@@ -30,7 +30,7 @@ final class MigrateSettingsCommand extends Command
         'github_branch' => 'edit-on-github-branch',
         'github_repository' => 'edit-on-github',
         'github_sphinx_locale' => 'github-sphinx-locale',
-        'github_commit_hash' => 'github-commit-hash'
+        'github_commit_hash' => 'github-commit-hash',
     ];
 
     /**
@@ -48,7 +48,7 @@ final class MigrateSettingsCommand extends Command
      */
     private const MAPPING_DEPRECATED_SECTIONS = [
         'notify',
-        'latex_elements'
+        'latex_elements',
     ];
 
     /**
@@ -57,7 +57,7 @@ final class MigrateSettingsCommand extends Command
     private const MAPPING_ACCEPTED_SECTIONS = [
         'html_theme_options',
         'general',
-        'intersphinx_mapping'
+        'intersphinx_mapping',
     ];
 
     /** @var \DOMDocument Holds the XML document that will be written (guides.xml) */
@@ -75,7 +75,8 @@ final class MigrateSettingsCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Migrates Settings.cfg to guides.xml format.');
-        $this->setHelp(<<<'EOT'
+        $this->setHelp(
+            <<<'EOT'
                     The <info>%command.name%</info> command migrated a Settings.cfg in side the
                     specified input directory, tries to parse it and convert all known settings
                     to the XML format used in the guides.xml file.
@@ -96,7 +97,7 @@ final class MigrateSettingsCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'When set, overwrites the guides.xml file, if it exists.'
-            )
+            ),
         ]);
     }
 
@@ -142,7 +143,6 @@ final class MigrateSettingsCommand extends Command
         return $guides;
     }
 
-
     /**
      * Add <extension> Element. This gets filled with the old "html_theme_options" section.
      **/
@@ -151,7 +151,7 @@ final class MigrateSettingsCommand extends Command
         $extension = $this->xmlDocument->createElement('extension');
         $extension->setAttribute('class', '\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension');
         if (is_array($this->settings['html_theme_options'] ?? false)) {
-            foreach(self::MAPPING_SETTING AS $settingsKey => $guidesKey) {
+            foreach (self::MAPPING_SETTING as $settingsKey => $guidesKey) {
                 if (isset($this->settings['html_theme_options'][$settingsKey])) {
                     $this->convertedSettings++;
                     $extension->setAttribute($guidesKey, $this->settings['html_theme_options'][$settingsKey]);
@@ -173,7 +173,7 @@ final class MigrateSettingsCommand extends Command
     {
         $project = $this->xmlDocument->createElement('project');
         if (is_array($this->settings['general'] ?? false)) {
-            foreach(self::MAPPING_PROJECT AS $settingsKey => $guidesKey) {
+            foreach (self::MAPPING_PROJECT as $settingsKey => $guidesKey) {
                 if (isset($this->settings['general'][$settingsKey])) {
                     $this->convertedSettings++;
                     $project->setAttribute($guidesKey, $this->settings['general'][$settingsKey]);
@@ -192,11 +192,11 @@ final class MigrateSettingsCommand extends Command
     /**
      * Add <inventory> Element. This gets filled with the old "intersphinx_mapping" section.
      **/
-    protected function createXmlSectionInventory(\DOMElement $parentNode) : bool
+    protected function createXmlSectionInventory(\DOMElement $parentNode): bool
     {
         if (is_array($this->settings['intersphinx_mapping'] ?? false)) {
             $hasAnyMapping = false;
-            foreach($this->settings['intersphinx_mapping'] as $inventoryKey => $inventoryUrl) {
+            foreach ($this->settings['intersphinx_mapping'] as $inventoryKey => $inventoryUrl) {
                 unset($this->unmigratedSettings['intersphinx_mapping'][$inventoryKey]);
                 $this->convertedSettings++;
                 $inventoryKey = trim($inventoryKey);
@@ -217,17 +217,17 @@ final class MigrateSettingsCommand extends Command
         return false;
     }
 
-    protected function checkUnmigratedSettings(OutputInterface $output) : bool
+    protected function checkUnmigratedSettings(OutputInterface $output): bool
     {
         // Iterate remaining settings, remove all empty sections.
         // What remains are then missing settings.
-        foreach($this->unmigratedSettings AS $section => $sectionKeys) {
+        foreach ($this->unmigratedSettings as $section => $sectionKeys) {
             if (count($sectionKeys) == 0) {
                 unset($this->unmigratedSettings[$section]);
             }
         }
 
-        foreach(self::MAPPING_DEPRECATED_SECTIONS AS $deprecatedSection) {
+        foreach (self::MAPPING_DEPRECATED_SECTIONS as $deprecatedSection) {
             if (isset($this->unmigratedSettings[$deprecatedSection])) {
                 unset($this->unmigratedSettings[$deprecatedSection]);
             }
@@ -236,12 +236,12 @@ final class MigrateSettingsCommand extends Command
         // Ignored settings that have no new matching, but we are aware of it
         if (count($this->unmigratedSettings) > 0) {
             $output->writeln('Note: Some of your settings could not be converted:');
-            foreach($this->unmigratedSettings as $unmigratedSettingSection => $unmigratedSettingValues) {
+            foreach ($this->unmigratedSettings as $unmigratedSettingSection => $unmigratedSettingValues) {
                 $output->writeln('  * ' . $unmigratedSettingSection);
 
                 // For known sections we output the remaining keys
                 if (in_array($unmigratedSettingSection, self::MAPPING_ACCEPTED_SECTIONS, true)) {
-                    foreach($unmigratedSettingValues AS $unmigratedSettingKey => $unmigratedSettingValue) {
+                    foreach ($unmigratedSettingValues as $unmigratedSettingKey => $unmigratedSettingValue) {
                         $output->writeln('    * ' . $unmigratedSettingKey);
                     }
                 }
@@ -254,7 +254,7 @@ final class MigrateSettingsCommand extends Command
         return false;
     }
 
-    protected function writeXmlDocument(string $outputFile, OutputInterface $output) : bool
+    protected function writeXmlDocument(string $outputFile, OutputInterface $output): bool
     {
         $fp = fopen($outputFile, 'w');
         if (!$fp) {
@@ -287,7 +287,7 @@ final class MigrateSettingsCommand extends Command
         // This array will hold all setting values that we could not migrate to guides.xml
         $this->unmigratedSettings = $settings;
 
-        $this->xmlDocument = new \DOMDocument("1.0", "UTF-8");
+        $this->xmlDocument = new \DOMDocument('1.0', 'UTF-8');
         $this->xmlDocument->preserveWhiteSpace = true;
         $this->xmlDocument->formatOutput = true;
 
