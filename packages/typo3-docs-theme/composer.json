@@ -10,7 +10,7 @@
         }
     },
     "require": {
-        "brotkrueml/code-highlight-twig-extension": "dev-main@dev",
+        "brotkrueml/code-highlight-twig-extension": "dev-main",
         "phpdocumentor/guides-theme-bootstrap": "dev-main"
     },
     "repositories": [
