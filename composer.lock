@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/brotkrueml/twig-codehighlight.git",
-                "reference": "8bf60f6fefeab3e8a951c9fb99bb6d521246e7ee"
+                "reference": "ae9775ca23d5a3e4375317ff2c23a445858d3cde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brotkrueml/twig-codehighlight/zipball/8bf60f6fefeab3e8a951c9fb99bb6d521246e7ee",
-                "reference": "8bf60f6fefeab3e8a951c9fb99bb6d521246e7ee",
+                "url": "https://api.github.com/repos/brotkrueml/twig-codehighlight/zipball/ae9775ca23d5a3e4375317ff2c23a445858d3cde",
+                "reference": "ae9775ca23d5a3e4375317ff2c23a445858d3cde",
                 "shasum": ""
             },
             "require": {
@@ -63,7 +63,7 @@
                 "source": "https://github.com/brotkrueml/twig-codehighlight/tree/main",
                 "issues": "https://github.com/brotkrueml/twig-codehighlight/issues"
             },
-            "time": "2023-11-21T21:09:42+00:00"
+            "time": "2023-11-22T10:11:48+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -1231,12 +1231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "aa424bf982de4ec340eb9ddc11e7d20087797193"
+                "reference": "21d3739cfd4038a572288f7d02367cf3b2ee2c87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/aa424bf982de4ec340eb9ddc11e7d20087797193",
-                "reference": "aa424bf982de4ec340eb9ddc11e7d20087797193",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/21d3739cfd4038a572288f7d02367cf3b2ee2c87",
+                "reference": "21d3739cfd4038a572288f7d02367cf3b2ee2c87",
                 "shasum": ""
             },
             "require": {
@@ -1247,6 +1247,7 @@
                 "php": "^8.1",
                 "phpdocumentor/flyfinder": "^1.1",
                 "psr/event-dispatcher": "^1.0",
+                "symfony/clock": "^6.3",
                 "symfony/http-client": "^6.3.8",
                 "symfony/string": "^5.4 || ^6.3",
                 "symfony/translation-contracts": "^3.4.0",
@@ -1273,7 +1274,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-11-21T20:00:56+00:00"
+            "time": "2023-11-22T15:12:15+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1281,12 +1282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "0950eedb4d8028fa0444cb3d6f15d8518ef94186"
+                "reference": "77b90c731829c4b6860b63d05c7ccce8d78e38ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/0950eedb4d8028fa0444cb3d6f15d8518ef94186",
-                "reference": "0950eedb4d8028fa0444cb3d6f15d8518ef94186",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/77b90c731829c4b6860b63d05c7ccce8d78e38ec",
+                "reference": "77b90c731829c4b6860b63d05c7ccce8d78e38ec",
                 "shasum": ""
             },
             "require": {
@@ -1323,7 +1324,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-cli/tree/main"
             },
-            "time": "2023-11-21T10:55:46+00:00"
+            "time": "2023-11-22T11:19:09+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -1413,12 +1414,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "561da3ca8916a20b5809048b3f7c1e5cea9589e3"
+                "reference": "52125a8c0a5e32bb01d658e58256bd419e31259e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/561da3ca8916a20b5809048b3f7c1e5cea9589e3",
-                "reference": "561da3ca8916a20b5809048b3f7c1e5cea9589e3",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/52125a8c0a5e32bb01d658e58256bd419e31259e",
+                "reference": "52125a8c0a5e32bb01d658e58256bd419e31259e",
                 "shasum": ""
             },
             "require": {
@@ -1444,7 +1445,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-11-21T19:57:00+00:00"
+            "time": "2023-11-22T15:12:15+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -4267,16 +4268,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.38.2",
+            "version": "v3.39.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "d872cdd543797ade030aaa307c0a4954a712e081"
+                "reference": "04bf7b28fc847185b247d112cab617da941e3cca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/d872cdd543797ade030aaa307c0a4954a712e081",
-                "reference": "d872cdd543797ade030aaa307c0a4954a712e081",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/04bf7b28fc847185b247d112cab617da941e3cca",
+                "reference": "04bf7b28fc847185b247d112cab617da941e3cca",
                 "shasum": ""
             },
             "require": {
@@ -4286,16 +4287,16 @@
                 "ext-tokenizer": "*",
                 "php": "^7.4 || ^8.0",
                 "sebastian/diff": "^4.0 || ^5.0",
-                "symfony/console": "^5.4 || ^6.0",
-                "symfony/event-dispatcher": "^5.4 || ^6.0",
-                "symfony/filesystem": "^5.4 || ^6.0",
-                "symfony/finder": "^5.4 || ^6.0",
-                "symfony/options-resolver": "^5.4 || ^6.0",
+                "symfony/console": "^5.4 || ^6.0 || ^7.0",
+                "symfony/event-dispatcher": "^5.4 || ^6.0 || ^7.0",
+                "symfony/filesystem": "^5.4 || ^6.0 || ^7.0",
+                "symfony/finder": "^5.4 || ^6.0 || ^7.0",
+                "symfony/options-resolver": "^5.4 || ^6.0 || ^7.0",
                 "symfony/polyfill-mbstring": "^1.27",
                 "symfony/polyfill-php80": "^1.27",
                 "symfony/polyfill-php81": "^1.27",
-                "symfony/process": "^5.4 || ^6.0",
-                "symfony/stopwatch": "^5.4 || ^6.0"
+                "symfony/process": "^5.4 || ^6.0 || ^7.0",
+                "symfony/stopwatch": "^5.4 || ^6.0 || ^7.0"
             },
             "require-dev": {
                 "facile-it/paraunit": "^1.3 || ^2.0",
@@ -4309,8 +4310,8 @@
                 "phpspec/prophecy": "^1.16",
                 "phpspec/prophecy-phpunit": "^2.0",
                 "phpunit/phpunit": "^9.5",
-                "symfony/phpunit-bridge": "^6.2.3",
-                "symfony/yaml": "^5.4 || ^6.0"
+                "symfony/phpunit-bridge": "^6.2.3 || ^7.0",
+                "symfony/yaml": "^5.4 || ^6.0 || ^7.0"
             },
             "suggest": {
                 "ext-dom": "For handling output formats in XML",
@@ -4348,7 +4349,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.38.2"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.39.0"
             },
             "funding": [
                 {
@@ -4356,7 +4357,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-14T00:19:22+00:00"
+            "time": "2023-11-22T11:20:09+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
