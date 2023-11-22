@@ -1,0 +1,10 @@
+
+{% if parts.mainmenu %}
+    {% for child in parts.mainmenu -%}
+        {{ renderNode(child) }}
+    {%~ endfor -%}
+{% else %}
+    <div aria-label="main navigation" class="toc" role="navigation">
+        {{ renderMenu('mainmenu') }}
+    </div>
+{% endif %}
