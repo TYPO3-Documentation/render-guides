@@ -46,6 +46,8 @@ final class RunDecorator extends Command
         $arguments = $input->getArguments();
         if ($arguments['input'] === null) {
             $guessedInput = $this->guessInput($output);
+        } else {
+            $guessedInput = [];
         }
 
         if (!isset($options['--output'])) {
@@ -56,10 +58,23 @@ final class RunDecorator extends Command
             [
                 ...$arguments,
                 ...$options,
-                ...$guessedInput ?? [],
+                ...$guessedInput,
             ],
             $this->getDefinition()
         );
+
+        if ($output->isDebug()) {
+            $readableOutput = "<info>Options:</info>\n";
+            $readableOutput .= print_r($input->getOptions(), true);
+
+            $readableOutput .= "<info>Arguments:</info>\n";
+            $readableOutput .= print_r($input->getArguments(), true);
+
+            $readableOutput .= "<info>Guessed Input:</info>\n";
+            $readableOutput .= print_r($guessedInput, true);
+
+            $output->writeln(sprintf("<info>DEBUG</info> Using parameters:\n%s", $readableOutput));
+        }
 
         return $this->innerCommand->execute($input, $output);
     }
@@ -111,6 +126,10 @@ final class RunDecorator extends Command
     {
         $currentDirectory = getcwd();
         if ($currentDirectory === false) {
+            if ($output->isDebug()) {
+                $output->writeln('<info>DEBUG</info> Could not fetch current working directory.');
+            }
+
             return [];
         }
 
@@ -118,11 +137,15 @@ final class RunDecorator extends Command
 
         if (is_dir($inputDirectory)) {
             if ($output->isVerbose()) {
-                $output->writeln(sprintf('Input directory not specified, using %s', $inputDirectory));
+                $output->writeln(sprintf('<info>INFO</info> Input directory not specified, using %s', $inputDirectory));
             }
 
             foreach (self::INDEX_FILE_NAMES as $filename => $extension) {
                 if (file_exists($inputDirectory . DIRECTORY_SEPARATOR . $filename)) {
+                    if ($output->isDebug()) {
+                        $output->writeln(sprintf('<info>DEBUG</info> Using entrypoint %s', $filename));
+                    }
+
                     return [
                         'input' => $inputDirectory,
                         '--input-format' => $extension,
@@ -132,11 +155,15 @@ final class RunDecorator extends Command
         }
 
         if ($output->isVerbose()) {
-            $output->writeln('Index documentation file not found, trying README.rst or README.md');
+            $output->writeln('<info>INFO</info> Index documentation file not found, trying README.rst or README.md');
         }
 
         foreach (self::FALLBACK_FILE_NAMES as $filename => $extension) {
             if (file_exists($currentDirectory . DIRECTORY_SEPARATOR . $filename)) {
+                if ($output->isVerbose()) {
+                    $output->writeln(sprintf('<info>DEBUG</info> Using entrypoint %s', $filename));
+                }
+
                 return [
                     'input' => $currentDirectory,
                     '--input-file' => $currentDirectory . DIRECTORY_SEPARATOR . $filename,
