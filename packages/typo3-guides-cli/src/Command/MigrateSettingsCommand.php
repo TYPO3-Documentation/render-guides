@@ -131,7 +131,7 @@ final class MigrateSettingsCommand extends Command
     /**
      * Setup basic DOM Document
      **/
-    protected function createXmlSectionGuides(): \DOMElement
+    private function createXmlSectionGuides(): \DOMElement
     {
         // Add static <guides> element with proper XMLNS
         $guides = $this->xmlDocument->createElement('guides');
@@ -146,7 +146,7 @@ final class MigrateSettingsCommand extends Command
     /**
      * Add <extension> Element. This gets filled with the old "html_theme_options" section.
      **/
-    protected function createXmlSectionExtension(\DOMElement $parentNode): bool
+    private function createXmlSectionExtension(\DOMElement $parentNode): bool
     {
         $extension = $this->xmlDocument->createElement('extension');
         $extension->setAttribute('class', '\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension');
@@ -169,7 +169,7 @@ final class MigrateSettingsCommand extends Command
     /**
      * Add <project> Element. This gets filled with the old "general" section.
      **/
-    protected function createXmlSectionProject(\DOMElement $parentNode): bool
+    private function createXmlSectionProject(\DOMElement $parentNode): bool
     {
         $project = $this->xmlDocument->createElement('project');
         if (is_array($this->settings['general'] ?? false)) {
@@ -192,7 +192,7 @@ final class MigrateSettingsCommand extends Command
     /**
      * Add <inventory> Element. This gets filled with the old "intersphinx_mapping" section.
      **/
-    protected function createXmlSectionInventory(\DOMElement $parentNode): bool
+    private function createXmlSectionInventory(\DOMElement $parentNode): bool
     {
         if (is_array($this->settings['intersphinx_mapping'] ?? false)) {
             $hasAnyMapping = false;
@@ -217,7 +217,7 @@ final class MigrateSettingsCommand extends Command
         return false;
     }
 
-    protected function checkUnmigratedSettings(OutputInterface $output): bool
+    private function checkUnmigratedSettings(OutputInterface $output): bool
     {
         // Iterate remaining settings, remove all empty sections.
         // What remains are then missing settings.
@@ -254,7 +254,7 @@ final class MigrateSettingsCommand extends Command
         return false;
     }
 
-    protected function writeXmlDocument(string $outputFile, OutputInterface $output): bool
+    private function writeXmlDocument(string $outputFile, OutputInterface $output): bool
     {
         $fp = fopen($outputFile, 'w');
         if (!$fp) {
@@ -269,7 +269,7 @@ final class MigrateSettingsCommand extends Command
         return true;
     }
 
-    protected function convertSettingsToGuide(OutputInterface $output, string $inputFile, string $outputFile): bool
+    private function convertSettingsToGuide(OutputInterface $output, string $inputFile, string $outputFile): bool
     {
         // Settings.cfg can be parsed as an INI file. If it fails, bail out.
         try {
