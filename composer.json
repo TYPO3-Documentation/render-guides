@@ -4,6 +4,7 @@
     "description": "phpDocumentor-based Documentation rendering for docs.typo3.org or custom extensions.",
     "require": {
         "php": "^8.1",
+        "brotkrueml/twig-codehighlight": "dev-main",
         "phpdocumentor/guides-cli": "dev-main",
         "phpdocumentor/guides-graphs": "dev-main",
         "phpdocumentor/guides-markdown": "dev-main",
@@ -39,6 +40,12 @@
             "T3Docs\\Typo3DocsTheme\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/brotkrueml/twig-codehighlight"
+        }
+    ],
     "config": {
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
