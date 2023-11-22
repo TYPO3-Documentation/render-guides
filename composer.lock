@@ -4,8 +4,67 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "198419127e4e6ff0f5d1b1fe145c268d",
+    "content-hash": "4f38f2a21217688141425844cbc63cc5",
     "packages": [
+        {
+            "name": "brotkrueml/twig-codehighlight",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brotkrueml/twig-codehighlight.git",
+                "reference": "8bf60f6fefeab3e8a951c9fb99bb6d521246e7ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brotkrueml/twig-codehighlight/zipball/8bf60f6fefeab3e8a951c9fb99bb6d521246e7ee",
+                "reference": "8bf60f6fefeab3e8a951c9fb99bb6d521246e7ee",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 8.1",
+                "scrivo/highlight.php": "^9.18",
+                "twig/twig": "^3.7"
+            },
+            "require-dev": {
+                "brotkrueml/coding-standards": "~5.0.0",
+                "ergebnis/composer-normalize": "~2.39.0",
+                "infection/infection": "^0.27.8",
+                "phpstan/phpstan": "1.10.41",
+                "phpunit/phpunit": "^10.4",
+                "rector/rector": "0.18.7"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Brotkrueml\\TwigCodeHighlight\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Brotkrueml\\TwigCodeHighlight\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Müller",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Twig extension for code highlighting using highlight.php",
+            "keywords": [
+                "syntax highlighter",
+                "twig"
+            ],
+            "support": {
+                "source": "https://github.com/brotkrueml/twig-codehighlight/tree/main",
+                "issues": "https://github.com/brotkrueml/twig-codehighlight/issues"
+            },
+            "time": "2023-11-21T21:09:42+00:00"
+        },
         {
             "name": "dflydev/dot-access-data",
             "version": "v3.0.2",
@@ -1172,12 +1231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "ddca7f4cab6e0bb0b6807122692471f6d731bfb5"
+                "reference": "dc5a957358e3f692f2747142b4ffec7aa6965f75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/ddca7f4cab6e0bb0b6807122692471f6d731bfb5",
-                "reference": "ddca7f4cab6e0bb0b6807122692471f6d731bfb5",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/dc5a957358e3f692f2747142b4ffec7aa6965f75",
+                "reference": "dc5a957358e3f692f2747142b4ffec7aa6965f75",
                 "shasum": ""
             },
             "require": {
@@ -1214,7 +1273,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-11-21T08:14:20+00:00"
+            "time": "2023-11-21T14:15:50+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1222,12 +1281,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "3055b89d9fbd138297c69f6205d0bf33f86682fc"
+                "reference": "0950eedb4d8028fa0444cb3d6f15d8518ef94186"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/3055b89d9fbd138297c69f6205d0bf33f86682fc",
-                "reference": "3055b89d9fbd138297c69f6205d0bf33f86682fc",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/0950eedb4d8028fa0444cb3d6f15d8518ef94186",
+                "reference": "0950eedb4d8028fa0444cb3d6f15d8518ef94186",
                 "shasum": ""
             },
             "require": {
@@ -1264,7 +1323,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-cli/tree/main"
             },
-            "time": "2023-11-20T19:13:47+00:00"
+            "time": "2023-11-21T10:55:46+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -1354,12 +1413,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "f33561a5f962434b60ea8f3c9573000d6e7613a1"
+                "reference": "5f76c50e637424932486c9bde8b8aa05cbe862c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/f33561a5f962434b60ea8f3c9573000d6e7613a1",
-                "reference": "f33561a5f962434b60ea8f3c9573000d6e7613a1",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/5f76c50e637424932486c9bde8b8aa05cbe862c9",
+                "reference": "5f76c50e637424932486c9bde8b8aa05cbe862c9",
                 "shasum": ""
             },
             "require": {
@@ -1385,7 +1444,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-11-20T20:41:12+00:00"
+            "time": "2023-11-21T09:16:08+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -1732,6 +1791,84 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "scrivo/highlight.php",
+            "version": "v9.18.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scrivo/highlight.php.git",
+                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/850f4b44697a2552e892ffe71490ba2733c2fc6e",
+                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8|^5.7",
+                "sabberworm/php-css-parser": "^8.3",
+                "symfony/finder": "^2.8|^3.4|^5.4",
+                "symfony/var-dumper": "^2.8|^3.4|^5.4"
+            },
+            "suggest": {
+                "ext-mbstring": "Allows highlighting code with unicode characters and supports language with unicode keywords"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "HighlightUtilities/functions.php"
+                ],
+                "psr-0": {
+                    "Highlight\\": "",
+                    "HighlightUtilities\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Geert Bergman",
+                    "homepage": "http://www.scrivo.org/",
+                    "role": "Project Author"
+                },
+                {
+                    "name": "Vladimir Jimenez",
+                    "homepage": "https://allejo.io",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Martin Folkers",
+                    "homepage": "https://twobrain.io",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Server side syntax highlighter that supports 185 languages. It's a PHP port of highlight.js",
+            "keywords": [
+                "code",
+                "highlight",
+                "highlight.js",
+                "highlight.php",
+                "syntax"
+            ],
+            "support": {
+                "issues": "https://github.com/scrivo/highlight.php/issues",
+                "source": "https://github.com/scrivo/highlight.php"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/allejo",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-12-17T21:53:22+00:00"
         },
         {
             "name": "symfony/clock",
@@ -6520,6 +6657,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "brotkrueml/twig-codehighlight": 20,
         "phpdocumentor/guides-cli": 20,
         "phpdocumentor/guides-graphs": 20,
         "phpdocumentor/guides-markdown": 20,
@@ -6531,5 +6669,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

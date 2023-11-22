@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
@@ -34,5 +35,8 @@ return static function (ContainerConfigurator $container): void {
 
         ->set(GroupTabDirective::class)
         ->set(T3FieldListTableDirective::class)
-        ->set(YoutubeDirective::class);
+        ->set(YoutubeDirective::class)
+        ->set(CodeHighlight::class)
+        ->tag('twig.extension')
+        ->autowire();
 };
