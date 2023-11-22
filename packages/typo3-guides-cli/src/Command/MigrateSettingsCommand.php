@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class MigrateSettingsCommand extends Command
 {
-    protected static $defaultName = 'typo3-guides';
+    protected static $defaultName = 'migrate';
 
     /**
      * Maps a Settings.cfg key for [html_theme_options] to the XML <extension> element
@@ -77,7 +77,7 @@ final class MigrateSettingsCommand extends Command
         $this->setDescription('Migrates Settings.cfg to guides.xml format.');
         $this->setHelp(
             <<<'EOT'
-                    The <info>%command.name%</info> command migrated a Settings.cfg in side the
+                    The <info>%command.name%</info> command migrates a Settings.cfg in side the
                     specified input directory, tries to parse it and convert all known settings
                     to the XML format used in the guides.xml file.
 

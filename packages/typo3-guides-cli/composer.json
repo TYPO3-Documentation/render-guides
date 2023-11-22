@@ -10,7 +10,8 @@
         }
     },
     "require": {
-        "ext-dom": "*"
+        "ext-dom": "*",
+        "ext-libxml": "*"
     },
     "bin": [
         "bin/typo3-guides"

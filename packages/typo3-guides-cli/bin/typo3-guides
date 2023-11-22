@@ -6,6 +6,9 @@ declare(strict_types=1);
 namespace T3Docs\GuidesCli;
 
 use T3Docs\GuidesCli\Command\MigrateSettingsCommand;
+use T3Docs\GuidesCli\Command\ConfigureCommand;
+use T3Docs\GuidesCli\Command\XmlLintCommand;
+
 use Symfony\Component\Console\Application;
 
 $vendorDir = dirname(__DIR__) . '/../../vendor';
@@ -30,9 +33,9 @@ if (file_exists($autoloadDirectory)){
 
 
 $application = new Application('typo3-guides');
-$command = new MigrateSettingsCommand();
 
-$application->add($command);
+$application->add(new MigrateSettingsCommand());
+$application->add(new ConfigureCommand());
+$application->add(new XmlLintCommand());
 
-$application->setDefaultCommand($command->getName(), true);
 $application->run();
