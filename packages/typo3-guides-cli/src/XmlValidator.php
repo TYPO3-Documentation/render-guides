@@ -16,9 +16,8 @@ final class XmlValidator
     public function __construct(
         private readonly string $xmlFilePath,
         private readonly string $xsdFilePath,
-        private array           $errors = [])
-    {
-    }
+        private array $errors = []
+    ) {}
 
     public function validate(): bool
     {
@@ -51,10 +50,10 @@ final class XmlValidator
             $errors = libxml_get_errors();
             foreach ($errors as $error) {
                 $this->errors[] = sprintf(
-                        "  * Line %d, Column %d: %s",
-                        $error->line,
-                        $error->column,
-                        trim($error->message)
+                    '  * Line %d, Column %d: %s',
+                    $error->line,
+                    $error->column,
+                    trim($error->message)
                 );
             }
 
@@ -71,14 +70,14 @@ final class XmlValidator
     }
 
     // Custom error handler function within the class
-    private function errorHandler(mixed $errno, string $errstr) : void
+    private function errorHandler(mixed $errno, string $errstr): void
     {
-        $this->errors[] = "xxx" . $errno . ': ' . $errstr;
+        $this->errors[] = 'xxx' . $errno . ': ' . $errstr;
     }
 
-    public function showErrors(OutputInterface $output) : void
+    public function showErrors(OutputInterface $output): void
     {
-        foreach($this->errors as $error) {
+        foreach ($this->errors as $error) {
             $output->writeln($error);
         }
     }

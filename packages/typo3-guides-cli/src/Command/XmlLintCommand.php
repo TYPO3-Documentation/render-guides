@@ -7,9 +7,8 @@ namespace T3Docs\GuidesCli\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 use T3Docs\GuidesCli\XmlValidator;
 
 final class XmlLintCommand extends Command
@@ -67,9 +66,9 @@ final class XmlLintCommand extends Command
     /**
      * @param array<int, string> $files
      */
-    private function lintFiles(OutputInterface $output, array $files) : bool
+    private function lintFiles(OutputInterface $output, array $files): bool
     {
-        foreach($files AS $file) {
+        foreach ($files as $file) {
             $validator = new XmlValidator($file, $this->xsdSchema);
             if (!$validator->validate()) {
                 if ($output->isVerbose()) {
@@ -79,9 +78,8 @@ final class XmlLintCommand extends Command
                 }
 
                 return false;
-            } else {
-                $output->writeln(sprintf('+ <info>%s</info> validates.', $file));
             }
+            $output->writeln(sprintf('+ <info>%s</info> validates.', $file));
         }
 
         return true;
@@ -91,7 +89,7 @@ final class XmlLintCommand extends Command
      * @param string $baseDirectory
      * @return array<int, string>
      */
-    private function gatherFiles(string $baseDirectory) : array
+    private function gatherFiles(string $baseDirectory): array
     {
         $finder = new Finder();
 
@@ -101,11 +99,10 @@ final class XmlLintCommand extends Command
             ->name('guides.xml');
 
         $files = [];
-        foreach($finder AS $file) {
+        foreach ($finder as $file) {
             $files[] = $file->getRealPath();
         }
 
         return $files;
     }
-
 }

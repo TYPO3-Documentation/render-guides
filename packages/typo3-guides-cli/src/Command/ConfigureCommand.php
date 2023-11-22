@@ -118,7 +118,7 @@ final class ConfigureCommand extends Command
         // guides[input, input-file, output, input-format, log-path, fail-on-log, show-progress, theme, default-code-language, links-are-relative
 
         $projectElement = null;
-        foreach($projectVariables AS $projectAttribute => $projectValue) {
+        foreach ($projectVariables as $projectAttribute => $projectValue) {
             if ($projectValue === null) {
                 continue;
             }
@@ -189,5 +189,4 @@ final class ConfigureCommand extends Command
 
         return true;
     }
-
 }
