@@ -11,7 +11,7 @@
     <extension class="\phpDocumentor\Guides\Markdown\DependencyInjection\MarkdownExtension"/>
     <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"/>
     <extension class="\T3Docs\GuidesExtension\DependencyInjection\Typo3GuidesExtension"/>
-    <extension class="\T3Docs\PhpDomain\DependencyInjection\PhpDomainExtension"/>
+    <extension class="\T3Docs\GuidesPhpDomain\DependencyInjection\GuidesPhpDomainExtension"/>
     <output-format>html</output-format>
     <output-format>singlepage</output-format>
     <output-format>interlink</output-format>
