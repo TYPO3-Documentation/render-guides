@@ -15,6 +15,7 @@
         {%- if title!=null and env.projectNode.title!=null %} — {% endif -%}
         {%- if env.projectNode.title -%}{{ env.projectNode.title }} {% endif -%} {{ env.projectNode.version }} documentation</title>
 
+    <link href="{{ getRelativePath('_assets/github.css') }}" rel="stylesheet">
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/fontawesome.css" rel="stylesheet">
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/webfonts.css" rel="stylesheet">
     <link href="https://typo3.azureedge.net/typo3documentation/theme/sphinx_typo3_theme/4.9.0/css/theme.css" rel="stylesheet">

@@ -30,12 +30,20 @@ final class TwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-
+            new TwigFunction('getRelativePath', $this->getRelativePath(...), ['needs_context' => true]),
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getPrevNextLinks', $this->getPrevNextLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getSettings', $this->getSettings(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('copyDownload', $this->copyDownload(...), ['is_safe' => ['html'], 'needs_context' => true]),
         ];
+    }
+
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getRelativePath(array $context, string $path): string
+    {
+        return $this->urlGenerator->generateInternalPathFromRelativeUrl($context['env'] ?? null, $path);
     }
 
     /**
