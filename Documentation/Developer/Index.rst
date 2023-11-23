@@ -13,7 +13,7 @@ process.
 Under the hood this tool is based on `phpDocumentor/guides`_
 
 The repository ships a wide range of commands that are used to render the documentation,
-build and execute development helpers, and they can be utilized by Github Actions.
+build and execute development helpers, and they can be utilized by GitHub Actions.
 
 The "single source of truth" for these commands is within the `Makefile`. You can
 see all available commands via:
@@ -84,7 +84,7 @@ same commands within the DDEV container:
     ddev composer make docker-build
 
 All these options are provided to allow for maximum convenience for any contributor
-and the Github pipelines, while internally only using `Makefile` syntax.
+and the GitHub pipelines, while internally only using `Makefile` syntax.
 
 ..  toctree::
     :maxdepth: 2
