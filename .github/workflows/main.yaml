@@ -41,7 +41,7 @@ jobs:
       - name: "Run unit tests"
         run: "make test-unit ENV=${{ env.RUN_ENVIRONMENT }}"
 
-      - name: "Lint guides.xml configs"
+      - name: "Lint guides.xml configurations"
         run: "make test-xml ENV=${{ env.RUN_ENVIRONMENT }}"
 
   monorepo-validate:
