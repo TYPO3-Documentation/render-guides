@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class RunDecorator extends Command
 {
-    private const DEFAULT_OUTPUT_DIRECTORY = 'Documentation-GENERATED-temp';
+    private const DEFAULT_OUTPUT_DIRECTORY = 'output';
 
     private const INDEX_FILE_NAMES = [
         'Index.rst' => 'rst',

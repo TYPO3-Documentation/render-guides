@@ -71,3 +71,13 @@ Contributing
 
 See :ref:`Contributing` for more information.
 
+
+Build Sources
+=============
+
+```
+ddev ssh
+cd packages/typo3-docs-theme
+npm install
+npm run build
+```

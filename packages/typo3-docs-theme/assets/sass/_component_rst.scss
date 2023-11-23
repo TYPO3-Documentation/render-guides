@@ -249,7 +249,7 @@
             display: inline-block;
             font-size: 90%;
             padding: .25em .5em;
-            margin-bottom: ($spacer / 2);
+            margin-bottom: calc(#{$spacer} / 2);
             position: relative;
             border-top: solid 3px theme-color('info');
             background-color: theme-color-level('info', -11);
@@ -283,8 +283,8 @@
             background-color: theme-color-level('light', 1);
             color: color-yiq(theme-color-level('light', 1));
             font-weight: normal;
-            padding: ($spacer / 2) $spacer;
-            margin-left: ($spacer * 2);
+            padding: calc(#{$spacer} / 2) $spacer;
+            margin-left: calc(#{$spacer} * 2);
         }
         dd {
             background-color: theme-color('light');

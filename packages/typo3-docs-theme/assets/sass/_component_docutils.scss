@@ -50,9 +50,7 @@ table.docutils {
         @extend .table;
         @extend .table-bordered;
         @extend .table-striped;
-        thead {
-            @extend .thead-light;
-        }
+        @extend .table-light;
     }
     &.field-list {
         .field-name {
