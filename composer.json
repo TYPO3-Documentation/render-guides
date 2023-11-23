@@ -1,7 +1,7 @@
 {
     "name": "t3docs/render-guides",
-    "license": "OPL-1.0",
     "description": "phpDocumentor-based Documentation rendering for docs.typo3.org or custom extensions.",
+    "license": "OPL-1.0",
     "require": {
         "php": "^8.1",
         "brotkrueml/twig-codehighlight": "dev-main",
@@ -11,7 +11,8 @@
         "phpdocumentor/guides-theme-bootstrap": "dev-main",
         "symfony/clock": "^6.3",
         "symfony/finder": "^6.3",
-        "symfony/http-client": "^6.3"
+        "symfony/http-client": "^6.3",
+        "t3docs/guides-php-domain": "dev-main"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.30",
@@ -25,23 +26,9 @@
         "typo3/coding-standards": "^0.7.1"
     },
     "replace": {
-        "t3docs/php-domain": "self.version",
         "t3docs/typo3-docs-theme": "self.version",
         "t3docs/typo3-guides-extension": "self.version",
         "t3docs/typo3-guides-cli": "self.version"
-    },
-    "autoload": {
-        "psr-4": {
-            "T3Docs\\GuidesExtension\\": "packages/typo3-guides-extension/src/",
-            "T3Docs\\PhpDomain\\": "packages/php-domain/src/",
-            "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/",
-            "T3Docs\\GuidesCli\\": "packages/typo3-guides-cli/src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "T3Docs\\Typo3DocsTheme\\": "tests/"
-        }
     },
     "repositories": [
         {
@@ -49,6 +36,20 @@
             "url": "https://github.com/brotkrueml/twig-codehighlight"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "T3Docs\\GuidesExtension\\": "packages/typo3-guides-extension/src/",
+            "T3Docs\\GuidesCli\\": "packages/typo3-guides-cli/src/",
+            "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "T3Docs\\Typo3DocsTheme\\": "tests/"
+        }
+    },
     "config": {
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
@@ -58,7 +59,5 @@
     },
     "scripts": {
         "make": "make ENV=local $COMPOSER_SCRIPT_ARGS"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
