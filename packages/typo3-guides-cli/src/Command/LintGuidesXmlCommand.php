@@ -11,9 +11,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use T3Docs\GuidesCli\XmlValidator;
 
-final class XmlLintCommand extends Command
+final class LintGuidesXmlCommand extends Command
 {
-    protected static $defaultName = 'xml-lint';
+    protected static $defaultName = 'lint-guides-xml';
 
     private string $xsdSchema = './vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd';
 
