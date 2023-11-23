@@ -131,7 +131,7 @@ test-unit: ## Runs unit tests with phpunit
 
 .PHONY: test-xml
 test-xml: ## Lint all guides.xml
-	./tools/xmllint.sh
+	$(PHP_BIN) packages/typo3-guides-cli/bin/typo3-guides lint-guides-xml
 
 
 ## LIST: Compound targets that are triggers for others.

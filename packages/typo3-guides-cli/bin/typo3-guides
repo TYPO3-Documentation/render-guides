@@ -7,7 +7,7 @@ namespace T3Docs\GuidesCli;
 
 use T3Docs\GuidesCli\Command\MigrateSettingsCommand;
 use T3Docs\GuidesCli\Command\ConfigureCommand;
-use T3Docs\GuidesCli\Command\XmlLintCommand;
+use T3Docs\GuidesCli\Command\LintGuidesXmlCommand;
 
 use Symfony\Component\Console\Application;
 
@@ -36,6 +36,6 @@ $application = new Application('typo3-guides');
 
 $application->add(new MigrateSettingsCommand());
 $application->add(new ConfigureCommand());
-$application->add(new XmlLintCommand());
+$application->add(new LintGuidesXmlCommand());
 
 $application->run();
