@@ -272,11 +272,14 @@ final class MigrateSettingsCommand extends Command
     private function convertSettingsToGuide(OutputInterface $output, string $inputFile, string $outputFile): bool
     {
         // Settings.cfg can be parsed as an INI file. If it fails, bail out.
-        try {
-            $settings = @parse_ini_file($inputFile, true, INI_SCANNER_RAW);
-        } catch (\Exception) {
+        $settingsContent = file_get_contents($inputFile);
+
+        if (!is_string($settingsContent)) {
             return false;
         }
+        // Remove lines starting with a hashtag and optional whitespace
+        $filteredContent = preg_replace('/^\s*#.*$/m', '', $settingsContent);
+        $settings = parse_ini_string($filteredContent, true, INI_SCANNER_RAW);
 
         if (!is_array($settings)) {
             return false;
