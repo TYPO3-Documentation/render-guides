@@ -6,5 +6,5 @@
 Known problems
 ==============
 
-Find a list of `open issues on Github
+Find a list of `open issues on GitHub
 <https://github.com/TYPO3-Documentation/render-guides/issues>`__.

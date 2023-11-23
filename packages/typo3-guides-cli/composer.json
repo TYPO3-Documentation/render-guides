@@ -1,0 +1,19 @@
+{
+    "name": "t3docs/typo3-guides-cli",
+    "description": "A collection of CLI binaries for the TYPO3 documentation theme",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://docs.typo3.org",
+    "autoload": {
+        "psr-4": {
+            "T3Docs\\GuidesCli\\": "src/"
+        }
+    },
+    "require": {
+        "ext-dom": "*",
+        "ext-libxml": "*"
+    },
+    "bin": [
+        "bin/typo3-guides"
+    ]
+}

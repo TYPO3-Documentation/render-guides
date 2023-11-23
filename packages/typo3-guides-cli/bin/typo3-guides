@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+namespace T3Docs\GuidesCli;
+
+use T3Docs\GuidesCli\Command\MigrateSettingsCommand;
+use T3Docs\GuidesCli\Command\ConfigureCommand;
+use T3Docs\GuidesCli\Command\XmlLintCommand;
+
+use Symfony\Component\Console\Application;
+
+$vendorDir = dirname(__DIR__) . '/../../vendor';
+$autoloadDirectory = $vendorDir . '/autoload.php';
+if (file_exists($autoloadDirectory)){
+    require_once $autoloadDirectory;
+} else {
+    // Search for autoload.php
+    if (($rootPath = getcwd()) === false) {
+        throw new \RuntimeException("Error while determining the current directory.", 1636451407);
+    }
+
+    $vendorDir = __DIR__ . '/vendor';
+    while (!file_exists($vendorDir . '/autoload.php')) {
+        if ($vendorDir === $rootPath) {
+            throw new \RuntimeException("Could not find autoload.php", 1636451408);
+        }
+        $vendorDir = \dirname($vendorDir);
+    }
+    require $vendorDir . '/autoload.php';
+}
+
+
+$application = new Application('typo3-guides');
+
+$application->add(new MigrateSettingsCommand());
+$application->add(new ConfigureCommand());
+$application->add(new XmlLintCommand());
+
+$application->run();
