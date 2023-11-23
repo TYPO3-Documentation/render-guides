@@ -176,7 +176,7 @@ final class ConfigureCommand extends Command
         // Defaults
         $guides->setAttribute('xmlns', 'https://www.phpdoc.org/guides');
         $guides->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
-        $guides->setAttribute('xsi:schemaLocation', 'https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd');
+        $guides->setAttribute('xsi:schemaLocation', 'https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd');
         $guides->setAttribute('links-are-relative', 'true');
 
         $this->xmlDocument->appendChild($guides);
