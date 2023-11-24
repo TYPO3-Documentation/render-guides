@@ -17,3 +17,6 @@ documentation.
     This tool is still in development, there will be bugs and missing features.
     If you are looking for the current way to render documentation head over to
     :ref:`How to document <h2document:start>`.
+
+
+..  _phpDocumentor/guides: https://github.com/phpDocumentor/guides
