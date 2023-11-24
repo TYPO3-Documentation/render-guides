@@ -1,5 +1,5 @@
 {% apply spaceless %}
-    <code class="file docutils literal notranslate {%- if node.class %} {{ node.class }}{% endif %}">
+    <code class="file docutils literal {%- if node.class %} {{ node.class }}{% endif %}" translate="no">
         <span class="pre">{{ node.value }}</span>
     </code>
 {% endapply %}
