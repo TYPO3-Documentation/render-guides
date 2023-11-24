@@ -70,4 +70,3 @@ Contributing
 ============
 
 See :ref:`Contributing` for more information.
-

@@ -1,42 +1,46 @@
-// variables
-@import "variables";
+// Variables
+@import '../../node_modules/bootstrap/scss/functions';
+@import 'variables';
 
 // dependencies
-@import "../node_modules/@fortawesome/fontawesome-free/scss/mixins";
-@import "../node_modules/@fortawesome/fontawesome-free/scss/variables";
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/functions';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/variables';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/mixins';
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+@import 'mixins/container';
 
 // tweak bootstrap components
-@import "card";
+@import 'card';
 
 // components
-@import "component_page";
-@import "component_footer";
-@import "component_logo";
-@import "component_frame";
-@import "component_breadcrumb";
-@import "component_button";
-@import "component_toc";
-@import "component_docutils";
-@import "component_admotion";
-@import "component_bignums";
-@import "component_sidebar";
-@import "component_rst";
-@import "component_sphinx_tabs";
-@import "component_math";
-@import "component_tablerow";
-@import "component_horizbuttons";
-@import "component_highlightblock";
-@import "component_search";
-@import "component_panel";
-@import "component_displaysettings";
-@import "rst_dl_fieldlist";
-@import "rst_dl_confval";
-@import "rst_dl_sphinxcontrib_phpdomain";
-@import "rst_sphinx_tabs";
+@import 'components/frame';
+@import 'components/button';
+@import 'component_page';
+@import 'component_footer';
+@import 'component_logo';
+@import 'component_breadcrumb';
+@import 'component_toc';
+@import 'component_docutils';
+@import 'component_admotion';
+@import 'component_bignums';
+@import 'component_sidebar';
+@import 'component_rst';
+@import 'component_sphinx_tabs';
+@import 'component_math';
+@import 'component_tablerow';
+@import 'component_horizbuttons';
+@import 'component_highlightblock';
+@import 'component_search';
+@import 'component_panel';
+@import 'component_displaysettings';
+@import 'rst_dl_fieldlist';
+@import 'rst_dl_confval';
+@import 'rst_dl_sphinxcontrib_phpdomain';
+@import 'rst_sphinx_tabs';
 
 // misc
-@import "utilities";
+@import 'utilities';
 
 // loaded as extra and ready made css file:
 //    codeblocks.css

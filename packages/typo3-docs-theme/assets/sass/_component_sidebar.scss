@@ -15,7 +15,7 @@
         font-weight: $font-weight-bold;
         color: color-yiq(theme-color('dark'));
         background-color: theme-color('dark');
-        padding: ($spacer / 2) $spacer;
+        padding: calc(#{$spacer} / 2) $spacer;
         margin: -$spacer;
         margin-bottom: $spacer;
     }

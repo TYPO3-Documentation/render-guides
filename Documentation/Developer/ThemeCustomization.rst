@@ -28,6 +28,17 @@ array of nodes. You can iterate over this array to render the children using the
 ``render_node`` function. This function will render the node using the correct
 template.
 
+Build Sources
+=============
+
+To build the public assets execute the following commands::
+
+    ddev ssh
+    cd packages/typo3-docs-theme
+    npm ci
+    npm run build
+
+
 ..  _Bootstrap: https://getbootstrap.com/
 ..  _phpDocumentor/guides: https://github.com/phpDocumentor/guides
 ..  _Twig: https://twig.symfony.com/

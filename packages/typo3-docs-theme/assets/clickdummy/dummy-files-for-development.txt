@@ -1,3 +1,0 @@
-
-Files in sphinx_typo3_theme/clickdummy
-are used for development only.

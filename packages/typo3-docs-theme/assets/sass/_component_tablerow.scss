@@ -10,7 +10,7 @@
     clear: both;
     border-bottom: 4px solid white;
     background-color: transparent;
-    padding: ($spacer / 2) $spacer;
+    padding: calc(#{$spacer} / 2) $spacer;
     > *:last-child {
         margin-bottom: 0;
     }

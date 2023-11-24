@@ -34,7 +34,7 @@
         display: block;
         color: inherit;
         line-height: 1.25;
-        padding: ($spacer / 4) 0;
+        padding: calc(#{$spacer} / 4) 0;
         padding-right: 1.5em;
         text-decoration: none;
     }
@@ -49,7 +49,7 @@
     .toctree-expand {
         position: absolute;
         display: block;
-        top: (($spacer / 4) + ($font-size-base * 1.25 / 2));
+        top: calc((#{$spacer} / 4) + (#{$font-size-base} * 1.25 / 2));
         right: 0;
         transform: translate(0, -50%);
         height: 1em;
@@ -149,7 +149,7 @@
 }
 .toc-version-options {
     display: none;
-    margin-top: $spacer / 2;
+    margin-top: calc(#{$spacer} / 2);
     margin-bottom: 0;
     border-radius: $btn-border-radius;
     overflow: hidden;

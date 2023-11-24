@@ -36,7 +36,7 @@
             color: theme-color-level('info', 3);
             display: inline-block;
             font-size: $font-size-base;
-            margin-bottom: ($spacer / 2);
+            margin-bottom: calc(#{$spacer} / 2);
             padding: .25em .5em;
             position: relative;
         }

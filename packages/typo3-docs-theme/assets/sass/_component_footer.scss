@@ -3,14 +3,14 @@
 //
 @include media-breakpoint-up('md') {
     .footer-main {
-        margin: -($grid-gutter-width / 2);
+        margin: calc(#{$grid-gutter-width} / 2 * -1);
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
     .footer-menu,
     .footer-contact {
-        padding: ($grid-gutter-width / 2);
+        padding: calc(#{$grid-gutter-width} / 2);
     }
 }
 
