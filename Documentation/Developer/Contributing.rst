@@ -21,7 +21,7 @@ When contributing please run all tests before committing:
 
 
 You can use a helper script to set this up once in your project, so that
-these checks are performed before any GIT commit:
+these checks are performed before any Git commit:
 
 ::
 
@@ -34,5 +34,5 @@ these checks are performed before any GIT commit:
     # Using ddev
     ddev composer make githooks
 
-Those git hooks will also check your commit message for line length.
+Those Git hooks will also check your commit message for line length.
 
