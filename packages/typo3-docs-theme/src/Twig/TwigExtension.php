@@ -6,6 +6,7 @@ namespace T3Docs\Typo3DocsTheme\Twig;
 
 use League\Flysystem\Exception;
 use LogicException;
+use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\SectionNode;
@@ -233,32 +234,25 @@ final class TwigExtension extends AbstractExtension
     private function getNextDocumentEntry(RenderContext $renderContext): DocumentEntryNode|null
     {
         $current = $renderContext->getCurrentFileName();
-        $allDocuments = $renderContext->getProjectNode()->getAllDocumentEntries();
-
-        $found = false;
-        foreach ($allDocuments as $document) {
-            if ($found) {
-                // Next hit after the document itself
-                return $document;
+        $iterator = $renderContext->getIterator();
+        do {
+            assert($iterator->current() instanceof DocumentNode);
+            if ($iterator->current()->getFile() === $current) {
+                return $iterator->nextNode()?->getDocumentEntry();
             }
-            if ($document->getFile() === $current) {
-                $found = true;
-            }
-        }
+        } while ($iterator->nextNode() != null);
         return null;
     }
 
     private function getPrevDocumentEntry(RenderContext $renderContext): DocumentEntryNode|null
     {
         $current = $renderContext->getCurrentFileName();
-        $allDocuments = $renderContext->getProjectNode()->getAllDocumentEntries();
-
-        $prev = null;
-        foreach ($allDocuments as $document) {
-            if ($document->getFile() === $current) {
-                return $prev;
+        $iterator = $renderContext->getIterator();
+        while ($iterator->nextNode() != null) {
+            assert($iterator->current() instanceof DocumentNode);
+            if ($iterator->current()->getFile() === $current) {
+                return $iterator->previousNode()?->getDocumentEntry();
             }
-            $prev = $document;
         }
         return null;
     }
