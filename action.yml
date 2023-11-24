@@ -23,6 +23,8 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/typo3-documentation/render-guides:main'
+  env:
+    SHELL_VERBOSITY: '3'
   args:
     - '--working-dir=${{ inputs.working-directory }}'
     - '--config=${{ inputs.config }}'
