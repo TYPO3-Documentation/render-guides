@@ -8,20 +8,21 @@ Installation
 
 This project is not a TYPO3 extension, but a standalone application
 used to render documentation. If you want to learn more about how to write
-documentation, please check the :ref:`Contributing Guide - How to Document <h2document:contribute>`.
+documentation, please check the
+:ref:`Contributing Guide - How to Document <h2document:contribute>`.
 
 Multiple methods are provided to install the project on your local machine.
 You can choose whatever is easiest for you:
 
-- Using Docker natively, with an existing image
-- Using Docker natively, with a locally-generated image
-- Using DDEV (utilizing Docker)
-- Using PHP
+-   Using Docker natively, with an existing image
+-   Using Docker natively, with a locally-generated image
+-   Using DDEV (utilizing Docker)
+-   Using PHP
 
-.. note::
+..  note::
 
     The Docker image is the recommended way to use this project. It will
-    automatically set-up all dependencies and will not interfere with your
+    automatically set up all dependencies and will not interfere with your
     local PHP installation.
 
 ..  _Setup_Docker:
@@ -36,8 +37,9 @@ the following command.
 
     docker pull ghcr.io/typo3-documentation/render-guides:main
 
-For all available tags, please check the `github packages page`_.
-Once you have pulled the image, you can run the image to render your project's documentation.
+For all available tags, please check the `GitHub packages page`_.
+Once you have pulled the image, you can run the image to render your project's
+documentation.
 
 ::
 
@@ -66,10 +68,10 @@ DDEV
 `DDEV <https://ddev.com/>`__ is a utility layer on top of Docker. It allows to easily
 build and maintain local development instances with specific environments.
 
-This project also ships a `.ddev` configuration directory, that allows you to start
-a specifc container in which you can render Documentation, and have an environment
-where you can contribute to this repository without any other requirement than
-Docker and DDEV.
+This project also ships a :file:`.ddev/` configuration directory, that allows
+you to start a specific container in which you can render Documentation, and
+have an environment where you can contribute to this repository without any
+other requirement than Docker and DDEV.
 
 To render the documentation you can run
 
@@ -84,8 +86,8 @@ To render the documentation you can run
 PHP
 ---
 
-If your host environment already has a `php` binary and is able to run `composer`,
-as well as interpret `Makefile` syntax (i.e. through a `build-essential` package),
+If your host environment already has a PHP binary and is able to run Composer,
+as well as interpret Makefile syntax (i.e. through a `build-essential` package),
 you can create documentation natively, without needing docker.
 
 You can run these commands locally:
@@ -95,4 +97,4 @@ You can run these commands locally:
     composer install
     make docs
 
-.. _`github packages page`: https://github.com/TYPO3-Documentation/render-guides/pkgs/container/render-guides
+.. _`GitHub packages page`: https://github.com/TYPO3-Documentation/render-guides/pkgs/container/render-guides

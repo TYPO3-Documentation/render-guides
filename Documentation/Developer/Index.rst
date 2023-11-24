@@ -48,15 +48,14 @@ Most `make` commands can be prepended or appended with the parameter `ENV=local`
     # (Re)-Create Docker container
     make docker-build ENV=local
 
-By default most `make` commands all utilize `Docker` to run within
-a container.
+By default most :bash:`make` commands all utilize Docker to run within a container.
 If the parameter `ENV=local` is appended or prepended to the command, they can
 also be run locally, without Docker. This can speed up processing and saves
-resources on build pipelines. This requires `php` on your host.
+resources on build pipelines. This requires PHP on your host.
 
-The `Makefile` can also be executed via composer. All commands in the `make` range
-are just passed onto the `Makefile` via a composer script, and automatically
-then use the `ENV=local` scope:
+The :file:`Makefile` can also be executed via composer. All commands in the
+:bash:`make` range are just passed onto the `Makefile` via a composer script,
+and automatically then use the `ENV=local` scope:
 
 ::
 
@@ -69,8 +68,8 @@ then use the `ENV=local` scope:
     # (Re)-Create Docker container
     composer make docker-build
 
-If your local environment does not provide `make` you can use DDEV to wrap the
-same commands within the DDEV container:
+If your local environment does not provide :bash:`make` you can use DDEV to wrap
+the same commands within the DDEV container:
 
 ::
 
@@ -84,14 +83,17 @@ same commands within the DDEV container:
     ddev composer make docker-build
 
 All these options are provided to allow for maximum convenience for any contributor
-and the GitHub pipelines, while internally only using `Makefile` syntax.
+and the GitHub pipelines, while internally only using :file:`Makefile` syntax.
 
 ..  toctree::
     :maxdepth: 2
     :titlesonly:
 
-    Mono-repository
-    Directory-structure
+    MonoRepository
+    DirectoryStructure
     Building
     Contributing
-    Theme-customization
+    ThemeCustomization
+
+
+..  _phpDocumentor/guides: https://github.com/phpDocumentor/guides
