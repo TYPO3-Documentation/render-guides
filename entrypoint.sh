@@ -26,6 +26,7 @@ if [ "$(id -u)" -eq "0" ]; then
       # Workaround: run the entrypoint and commands as a standalone script
       echo "#!/usr/bin/env sh" > /usr/local/bin/invocation.sh
       echo >> /usr/local/bin/invocation.sh
+      echo "export SHELL_VERBOSITY=$SHELL_VERBOSITY" >> /usr/local/bin/invocation.sh
       for ARG in "$@"; do
           printf "${ARG} " >> /usr/local/bin/invocation.sh
       done

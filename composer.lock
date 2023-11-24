@@ -1282,12 +1282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "77b90c731829c4b6860b63d05c7ccce8d78e38ec"
+                "reference": "18620ce0541ecbe9a2b7ee9c312d65a5beb50e3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/77b90c731829c4b6860b63d05c7ccce8d78e38ec",
-                "reference": "77b90c731829c4b6860b63d05c7ccce8d78e38ec",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/18620ce0541ecbe9a2b7ee9c312d65a5beb50e3e",
+                "reference": "18620ce0541ecbe9a2b7ee9c312d65a5beb50e3e",
                 "shasum": ""
             },
             "require": {
@@ -1324,7 +1324,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-cli/tree/main"
             },
-            "time": "2023-11-22T11:19:09+00:00"
+            "time": "2023-11-24T13:45:23+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -1414,12 +1414,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "52125a8c0a5e32bb01d658e58256bd419e31259e"
+                "reference": "8f93858784f7a3cc6334fdcdf58c17e58028d73d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/52125a8c0a5e32bb01d658e58256bd419e31259e",
-                "reference": "52125a8c0a5e32bb01d658e58256bd419e31259e",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/8f93858784f7a3cc6334fdcdf58c17e58028d73d",
+                "reference": "8f93858784f7a3cc6334fdcdf58c17e58028d73d",
                 "shasum": ""
             },
             "require": {
@@ -1445,7 +1445,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-11-22T15:12:15+00:00"
+            "time": "2023-11-24T09:14:03+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
