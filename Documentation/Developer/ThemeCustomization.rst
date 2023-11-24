@@ -35,7 +35,7 @@ To build the public assets execute the following commands::
 
     ddev ssh
     cd packages/typo3-docs-theme
-    npm install
+    npm ci
     npm run build
 
 
