@@ -6,7 +6,6 @@ namespace T3Docs\Typo3DocsTheme\Twig;
 
 use League\Flysystem\Exception;
 use LogicException;
-use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\SectionNode;
@@ -233,28 +232,12 @@ final class TwigExtension extends AbstractExtension
 
     private function getNextDocumentEntry(RenderContext $renderContext): DocumentEntryNode|null
     {
-        $current = $renderContext->getCurrentFileName();
-        $iterator = $renderContext->getIterator();
-        do {
-            assert($iterator->current() instanceof DocumentNode);
-            if ($iterator->current()->getFile() === $current) {
-                return $iterator->nextNode()?->getDocumentEntry();
-            }
-        } while ($iterator->nextNode() != null);
-        return null;
+        return $renderContext->getIterator()->nextNode()?->getDocumentEntry();
     }
 
     private function getPrevDocumentEntry(RenderContext $renderContext): DocumentEntryNode|null
     {
-        $current = $renderContext->getCurrentFileName();
-        $iterator = $renderContext->getIterator();
-        while ($iterator->nextNode() != null) {
-            assert($iterator->current() instanceof DocumentNode);
-            if ($iterator->current()->getFile() === $current) {
-                return $iterator->previousNode()?->getDocumentEntry();
-            }
-        }
-        return null;
+        return $renderContext->getIterator()->previousNode()?->getDocumentEntry();
     }
 
     private function getTopDocumentEntry(RenderContext $renderContext): DocumentEntryNode
