@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use T3Docs\GuidesCli\Repository\LegacySettingsRepository;
 
 final class MigrateSettingsCommand extends Command
 {
@@ -60,6 +61,8 @@ final class MigrateSettingsCommand extends Command
         'intersphinx_mapping',
     ];
 
+    private readonly LegacySettingsRepository $legacySettingsRepository;
+
     /** @var \DOMDocument Holds the XML document that will be written (guides.xml) */
     private \DOMDocument $xmlDocument;
 
@@ -71,6 +74,12 @@ final class MigrateSettingsCommand extends Command
 
     /** @var int The number of successfully converted settings */
     private int $convertedSettings = 0;
+
+    public function __construct(string $name = null)
+    {
+        parent::__construct($name);
+        $this->legacySettingsRepository = new LegacySettingsRepository();
+    }
 
     protected function configure(): void
     {
@@ -106,11 +115,6 @@ final class MigrateSettingsCommand extends Command
         $settingsFile = $input->getArgument('input') . '/Settings.cfg';
         $guidesFile = $input->getArgument('input') . '/guides.xml';
 
-        if (!file_exists($settingsFile) || !is_readable($settingsFile)) {
-            $output->writeln('<error>Could not locate or open ' . $settingsFile . '</error>');
-            return Command::FAILURE;
-        }
-
         if (file_exists($guidesFile) && !$input->getOption('force')) {
             $output->writeln('<error>Target file already exists in specified directory (' . $guidesFile . ')</error>');
             return Command::FAILURE;
@@ -118,9 +122,13 @@ final class MigrateSettingsCommand extends Command
 
         $output->writeln('Migrating ' . $settingsFile . ' to ' . $guidesFile . ' ...');
 
-        if (!$this->convertSettingsToGuide($output, $settingsFile, $guidesFile)) {
-            $output->writeln('<error>Settings could not be converted. Please check for proper syntax.</error>');
-            return Command::FAILURE;
+        try {
+            if (!$this->convertSettingsToGuide($output, $settingsFile, $guidesFile)) {
+                $output->writeln('<error>Settings could not be converted. Please check for proper syntax.</error>');
+                return Command::FAILURE;
+            }
+        } catch (\Exception $e) {
+            $output->writeln('<error>' . $e->getMessage() . '</error>');
         }
 
         $output->writeln('Settings converted. You can now delete Settings.cfg and add guides.xml to your repository.');
@@ -271,24 +279,10 @@ final class MigrateSettingsCommand extends Command
 
     private function convertSettingsToGuide(OutputInterface $output, string $inputFile, string $outputFile): bool
     {
-        // Settings.cfg can be parsed as an INI file. If it fails, bail out.
-        $settingsContent = file_get_contents($inputFile);
-
-        if (!is_string($settingsContent)) {
-            return false;
-        }
-        // Remove lines starting with a hashtag and optional whitespace
-        $filteredContent = preg_replace('/^\s*#.*$/m', '', $settingsContent);
-        $settings = parse_ini_string($filteredContent, true, INI_SCANNER_RAW);
-
-        if (!is_array($settings)) {
-            return false;
-        }
-
-        $this->settings = $settings;
+        $this->settings = $this->legacySettingsRepository->get($inputFile);
 
         // This array will hold all setting values that we could not migrate to guides.xml
-        $this->unmigratedSettings = $settings;
+        $this->unmigratedSettings = $this->settings;
 
         $this->xmlDocument = new \DOMDocument('1.0', 'UTF-8');
         $this->xmlDocument->preserveWhiteSpace = true;

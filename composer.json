@@ -47,6 +47,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "T3Docs\\GuidesCli\\Tests\\": "tests/",
             "T3Docs\\Typo3DocsTheme\\": "tests/"
         }
     },
