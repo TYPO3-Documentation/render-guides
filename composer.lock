@@ -1231,12 +1231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "21d3739cfd4038a572288f7d02367cf3b2ee2c87"
+                "reference": "98adb65d9fe25a9e54aea9d336caab7af26fe8cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/21d3739cfd4038a572288f7d02367cf3b2ee2c87",
-                "reference": "21d3739cfd4038a572288f7d02367cf3b2ee2c87",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/98adb65d9fe25a9e54aea9d336caab7af26fe8cd",
+                "reference": "98adb65d9fe25a9e54aea9d336caab7af26fe8cd",
                 "shasum": ""
             },
             "require": {
@@ -1274,7 +1274,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-11-22T15:12:15+00:00"
+            "time": "2023-11-25T13:56:49+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -3510,12 +3510,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3-Documentation/guides-php-domain.git",
-                "reference": "97e25b910e2e48bc0c97c6e8fe953bd6b04c5433"
+                "reference": "e951aff5620a66ad12f693f725045b195badbae5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/97e25b910e2e48bc0c97c6e8fe953bd6b04c5433",
-                "reference": "97e25b910e2e48bc0c97c6e8fe953bd6b04c5433",
+                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/e951aff5620a66ad12f693f725045b195badbae5",
+                "reference": "e951aff5620a66ad12f693f725045b195badbae5",
                 "shasum": ""
             },
             "require": {
@@ -3550,7 +3550,7 @@
                 "issues": "https://github.com/TYPO3-Documentation/guides-php-domain/issues",
                 "source": "https://github.com/TYPO3-Documentation/guides-php-domain/tree/main"
             },
-            "time": "2023-11-23T08:08:15+00:00"
+            "time": "2023-11-25T15:08:32+00:00"
         },
         {
             "name": "twig/twig",
@@ -4316,16 +4316,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.39.0",
+            "version": "v3.39.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "04bf7b28fc847185b247d112cab617da941e3cca"
+                "reference": "857046d26b0d92dc13c4be769309026b100b517e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/04bf7b28fc847185b247d112cab617da941e3cca",
-                "reference": "04bf7b28fc847185b247d112cab617da941e3cca",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/857046d26b0d92dc13c4be769309026b100b517e",
+                "reference": "857046d26b0d92dc13c4be769309026b100b517e",
                 "shasum": ""
             },
             "require": {
@@ -4397,7 +4397,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.39.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.39.1"
             },
             "funding": [
                 {
@@ -4405,7 +4405,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-22T11:20:09+00:00"
+            "time": "2023-11-24T22:59:03+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -4920,16 +4920,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "10.1.8",
+            "version": "10.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "84838eed9ded511f61dc3e8b5944a52d9017b297"
+                "reference": "a56a9ab2f680246adcf3db43f38ddf1765774735"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/84838eed9ded511f61dc3e8b5944a52d9017b297",
-                "reference": "84838eed9ded511f61dc3e8b5944a52d9017b297",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/a56a9ab2f680246adcf3db43f38ddf1765774735",
+                "reference": "a56a9ab2f680246adcf3db43f38ddf1765774735",
                 "shasum": ""
             },
             "require": {
@@ -4986,7 +4986,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.8"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.9"
             },
             "funding": [
                 {
@@ -4994,7 +4994,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-15T13:31:15+00:00"
+            "time": "2023-11-23T12:23:20+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",

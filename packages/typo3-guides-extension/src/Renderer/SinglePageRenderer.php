@@ -22,7 +22,7 @@ final class SinglePageRenderer implements TypeRenderer
             $renderCommand->getDestination(),
             $renderCommand->getDestinationPath(),
             'singlepage',
-        );
+        )->withIterator($renderCommand->getDocumentIterator());
 
         $context->getDestination()->put(
             $renderCommand->getDestinationPath() . '/singlehtml/Index.html',
