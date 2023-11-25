@@ -9,6 +9,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use T3Docs\GuidesCli\Repository\Exception\FileException;
+use T3Docs\GuidesCli\Repository\GuidesSettingsRepository;
 use T3Docs\GuidesCli\Repository\LegacySettingsRepository;
 
 final class MigrateSettingsCommand extends Command
@@ -62,6 +64,7 @@ final class MigrateSettingsCommand extends Command
     ];
 
     private readonly LegacySettingsRepository $legacySettingsRepository;
+    private readonly GuidesSettingsRepository $guidesSettingsRepository;
 
     /** @var \DOMDocument Holds the XML document that will be written (guides.xml) */
     private \DOMDocument $xmlDocument;
@@ -79,6 +82,7 @@ final class MigrateSettingsCommand extends Command
     {
         parent::__construct($name);
         $this->legacySettingsRepository = new LegacySettingsRepository();
+        $this->guidesSettingsRepository = new GuidesSettingsRepository();
     }
 
     protected function configure(): void
@@ -123,12 +127,11 @@ final class MigrateSettingsCommand extends Command
         $output->writeln('Migrating ' . $settingsFile . ' to ' . $guidesFile . ' ...');
 
         try {
-            if (!$this->convertSettingsToGuide($output, $settingsFile, $guidesFile)) {
-                $output->writeln('<error>Settings could not be converted. Please check for proper syntax.</error>');
-                return Command::FAILURE;
-            }
-        } catch (\Exception $e) {
+            $this->convertSettingsToGuide($output, $settingsFile, $guidesFile);
+            $output->writeln('<info>' . $this->convertedSettings . ' settings were migrated.</info>');
+        } catch (FileException $e) {
             $output->writeln('<error>' . $e->getMessage() . '</error>');
+            return Command::FAILURE;
         }
 
         $output->writeln('Settings converted. You can now delete Settings.cfg and add guides.xml to your repository.');
@@ -262,22 +265,7 @@ final class MigrateSettingsCommand extends Command
         return false;
     }
 
-    private function writeXmlDocument(string $outputFile, OutputInterface $output): bool
-    {
-        $fp = fopen($outputFile, 'w');
-        if (!$fp) {
-            $output->writeln('<error>Could not create file ' . $outputFile . '</error>');
-            return false;
-        }
-
-        fwrite($fp, (string)$this->xmlDocument->saveXML());
-
-        $output->writeln('<info>' . $this->convertedSettings . ' settings were migrated.</info>');
-
-        return true;
-    }
-
-    private function convertSettingsToGuide(OutputInterface $output, string $inputFile, string $outputFile): bool
+    private function convertSettingsToGuide(OutputInterface $output, string $inputFile, string $outputFile): void
     {
         $this->settings = $this->legacySettingsRepository->get($inputFile);
 
@@ -298,6 +286,6 @@ final class MigrateSettingsCommand extends Command
         // Attach the <guides> element to the root XML
         $this->xmlDocument->appendChild($guides);
 
-        return $this->writeXmlDocument($outputFile, $output);
+        $this->guidesSettingsRepository->create($outputFile, $this->xmlDocument);
     }
 }

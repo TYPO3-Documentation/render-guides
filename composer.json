@@ -4,6 +4,7 @@
     "license": "OPL-1.0",
     "require": {
         "php": "^8.1",
+        "ext-dom": "*",
         "brotkrueml/twig-codehighlight": "dev-main",
         "phpdocumentor/guides-cli": "dev-main",
         "phpdocumentor/guides-graphs": "dev-main",

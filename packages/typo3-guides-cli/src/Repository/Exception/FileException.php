@@ -26,6 +26,16 @@ final class FileException extends \RuntimeException
         );
     }
 
+    public static function notWritable(string $filePath): self
+    {
+        return new self(
+            \sprintf(
+                'File "%s" cannot be written!',
+                $filePath,
+            )
+        );
+    }
+
     public static function notParsable(string $filePath): self
     {
         return new self(

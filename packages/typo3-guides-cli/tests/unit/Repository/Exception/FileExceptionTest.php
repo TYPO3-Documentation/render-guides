@@ -39,6 +39,17 @@ final class FileExceptionTest extends TestCase
     }
 
     #[Test]
+    public function notWritable(): void
+    {
+        $actual = FileException::notWritable('/some/path/to/guides.xml');
+
+        $expectedMessage = 'File "/some/path/to/guides.xml" cannot be written!';
+
+        self::assertInstanceOf(FileException::class, $actual);
+        self::assertSame($expectedMessage, $actual->getMessage());
+    }
+
+    #[Test]
     public function notParsable(): void
     {
         $actual = FileException::notParsable('/some/path/to/Settings.cfg');
