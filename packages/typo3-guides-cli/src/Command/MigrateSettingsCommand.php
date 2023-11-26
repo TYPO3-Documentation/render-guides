@@ -9,57 +9,15 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use T3Docs\GuidesCli\Migration\Deprecated;
+use T3Docs\GuidesCli\Migration\HtmlThemeOptions;
+use T3Docs\GuidesCli\Migration\Project;
+use T3Docs\GuidesCli\Migration\Sections;
 use T3Docs\GuidesCli\Repository\LegacySettingsRepository;
 
 final class MigrateSettingsCommand extends Command
 {
     protected static $defaultName = 'migrate';
-
-    /**
-     * Maps a Settings.cfg key for [html_theme_options] to the XML <extension> element
-     */
-    private const MAPPING_SETTING = [
-        'project_home' => 'project-home',
-        'project_contact' => 'project-contact',
-        'project_repository' => 'project-repository',
-        'project_issues' => 'project-issues',
-        'project_discussions' => 'project-discussions',
-
-        'use_opensearch' => 'use-opensearch',
-
-        'github_revision_msg' => 'github-revision-msg',
-        'github_branch' => 'edit-on-github-branch',
-        'github_repository' => 'edit-on-github',
-        'github_sphinx_locale' => 'github-sphinx-locale',
-        'github_commit_hash' => 'github-commit-hash',
-    ];
-
-    /**
-     * Maps a Settings.cfg key for [general] to the XML <project> element
-     */
-    private const MAPPING_PROJECT = [
-        'project' => 'title',
-        'release' => 'release',
-        'version' => 'version',
-        'copyright' => 'copyright',
-    ];
-
-    /**
-     * Maps all Settings.cfg sections that are not covered by this converter
-     */
-    private const MAPPING_DEPRECATED_SECTIONS = [
-        'notify',
-        'latex_elements',
-    ];
-
-    /**
-     * Maps all Settings.cfg sections that are converted
-     */
-    private const MAPPING_ACCEPTED_SECTIONS = [
-        'html_theme_options',
-        'general',
-        'intersphinx_mapping',
-    ];
 
     private readonly LegacySettingsRepository $legacySettingsRepository;
 
@@ -159,11 +117,11 @@ final class MigrateSettingsCommand extends Command
         $extension = $this->xmlDocument->createElement('extension');
         $extension->setAttribute('class', '\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension');
         if (is_array($this->settings['html_theme_options'] ?? false)) {
-            foreach (self::MAPPING_SETTING as $settingsKey => $guidesKey) {
-                if (isset($this->settings['html_theme_options'][$settingsKey])) {
+            foreach (HtmlThemeOptions::cases() as $option) {
+                if (isset($this->settings['html_theme_options'][$option->name])) {
                     $this->convertedSettings++;
-                    $extension->setAttribute($guidesKey, $this->settings['html_theme_options'][$settingsKey]);
-                    unset($this->unmigratedSettings['html_theme_options'][$settingsKey]);
+                    $extension->setAttribute($option->value, $this->settings['html_theme_options'][$option->name]);
+                    unset($this->unmigratedSettings['html_theme_options'][$option->name]);
                 }
             }
 
@@ -181,11 +139,11 @@ final class MigrateSettingsCommand extends Command
     {
         $project = $this->xmlDocument->createElement('project');
         if (is_array($this->settings['general'] ?? false)) {
-            foreach (self::MAPPING_PROJECT as $settingsKey => $guidesKey) {
-                if (isset($this->settings['general'][$settingsKey])) {
+            foreach (Project::cases() as $option) {
+                if (isset($this->settings['general'][$option->name])) {
                     $this->convertedSettings++;
-                    $project->setAttribute($guidesKey, $this->settings['general'][$settingsKey]);
-                    unset($this->unmigratedSettings['general'][$settingsKey]);
+                    $project->setAttribute($option->value, $this->settings['general'][$option->name]);
+                    unset($this->unmigratedSettings['general'][$option->name]);
                 }
             }
 
@@ -235,9 +193,9 @@ final class MigrateSettingsCommand extends Command
             }
         }
 
-        foreach (self::MAPPING_DEPRECATED_SECTIONS as $deprecatedSection) {
-            if (isset($this->unmigratedSettings[$deprecatedSection])) {
-                unset($this->unmigratedSettings[$deprecatedSection]);
+        foreach (Deprecated::cases() as $option) {
+            if (isset($this->unmigratedSettings[$option->name])) {
+                unset($this->unmigratedSettings[$option->name]);
             }
         }
 
@@ -248,7 +206,7 @@ final class MigrateSettingsCommand extends Command
                 $output->writeln('  * ' . $unmigratedSettingSection);
 
                 // For known sections we output the remaining keys
-                if (in_array($unmigratedSettingSection, self::MAPPING_ACCEPTED_SECTIONS, true)) {
+                if (in_array($unmigratedSettingSection, Sections::names(), true)) {
                     foreach ($unmigratedSettingValues as $unmigratedSettingKey => $unmigratedSettingValue) {
                         $output->writeln('    * ' . $unmigratedSettingKey);
                     }
