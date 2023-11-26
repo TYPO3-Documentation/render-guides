@@ -11,7 +11,7 @@ using the render-guides, the file :file:`Documentation/Settings.cfg` has to be
 replaced by an XML file, :file:`Documentation/guides.xml`.
 
 To facilitate migration the extension `t3docs/typo3-guides-cli` in this
-mono-repository comes with a Symfony Console Command to automatically migrate
+mono-repository comes with a Symfony console command to automatically migrate
 the outdated :file:`Settings.cfg`.
 
 With make
