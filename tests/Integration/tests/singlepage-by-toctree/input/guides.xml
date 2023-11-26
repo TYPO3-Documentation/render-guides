@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<guides xmlns="https://www.phpdoc.org/guides"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+        default-code-language="php"
+        theme="typo3docs"
+        links-are-relative="true"
+>
+
+    <extension
+        class="\phpDocumentor\Guides\Bootstrap\DependencyInjection\BootstrapExtension"/>
+    <extension
+        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"/>
+    <extension
+        class="\T3Docs\GuidesExtension\DependencyInjection\Typo3GuidesExtension"/>
+    <output-format>singlepage</output-format>
+</guides>

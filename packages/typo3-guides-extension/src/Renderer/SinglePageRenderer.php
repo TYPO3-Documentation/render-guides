@@ -31,7 +31,7 @@ final class SinglePageRenderer implements TypeRenderer
                 'structure/singlepage.html.twig',
                 [
                     'project' => $projectNode,
-                    'documents' =>  $renderCommand->getDocumentArray(),
+                    'documents' =>  $renderCommand->getDocumentIterator(),
                 ],
             ),
         );
