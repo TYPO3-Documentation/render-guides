@@ -133,6 +133,13 @@ test-unit: ## Runs unit tests with phpunit
 test-xml: ## Lint all guides.xml
 	$(PHP_BIN) packages/typo3-guides-cli/bin/typo3-guides lint-guides-xml
 
+.PHONY: migrate-settings
+migrate-settings: ## Migrate Settings.cfg to guides.xml
+	@if [ -z "$(path)" ]; then \
+        echo "Please provide a path using 'make migrate-settings path=/your/path'"; \
+        exit 1; \
+    fi
+	$(PHP_BIN) packages/typo3-guides-cli/bin/typo3-guides migrate $(path)
 
 ## LIST: Compound targets that are triggers for others.
 

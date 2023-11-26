@@ -44,6 +44,7 @@ to extend the tool.
     Installation/Index
     Configuration/Index
     Developer/Index
+    Migration/Index
     KnownProblems/Index
 
 ..  Meta Menu
