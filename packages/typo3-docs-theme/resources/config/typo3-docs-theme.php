@@ -37,6 +37,11 @@ return static function (ContainerConfigurator $container): void {
         ->set(T3FieldListTableDirective::class)
         ->set(YoutubeDirective::class)
         ->set(CodeHighlight::class)
+        ->arg('$languageAliases', [
+            'none' => 'plaintext',
+            'text' => 'plaintext',
+            'typoscript' => 'plaintext',
+        ])
         ->tag('twig.extension')
         ->autowire();
 };
