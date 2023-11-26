@@ -27,3 +27,10 @@ With ddev
 ..  code-block:: sh
 
     ddev composer make migrate-settings path=path/to/Documentation
+
+With PHP
+========
+
+..  code-block:: sh
+
+    packages/typo3-guides-cli/bin/typo3-guides migrate path/to/Documentation
