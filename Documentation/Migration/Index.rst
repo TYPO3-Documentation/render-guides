@@ -26,4 +26,4 @@ With ddev
 
 ..  code-block:: sh
 
-    ddev exec ddev composer make migrate-settings path=path/to/Documentation
+    ddev composer make migrate-settings path=path/to/Documentation
