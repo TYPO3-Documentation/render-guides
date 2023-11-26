@@ -7,6 +7,10 @@ on:
     types:
       - published
 
+env:
+  DEFAULT_PHP_VERSION: "8.1"
+  RUN_ENVIRONMENT: "local"
+
 name: Phar
 jobs:
   build:
