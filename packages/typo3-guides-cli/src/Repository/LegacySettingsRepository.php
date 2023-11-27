@@ -9,7 +9,7 @@ use T3Docs\GuidesCli\Repository\Exception\FileException;
 class LegacySettingsRepository
 {
     /**
-     * @return array<string, string>
+     * @return array<string, array<string, string>>
      */
     public function get(string $filePath): array
     {
