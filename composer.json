@@ -4,6 +4,8 @@
     "license": "OPL-1.0",
     "require": {
         "php": "^8.1",
+        "ext-dom": "*",
+        "ext-libxml": "*",
         "brotkrueml/twig-codehighlight": "dev-main",
         "phpdocumentor/guides-cli": "dev-main",
         "phpdocumentor/guides-graphs": "dev-main",
@@ -27,8 +29,8 @@
     },
     "replace": {
         "t3docs/typo3-docs-theme": "self.version",
-        "t3docs/typo3-guides-extension": "self.version",
-        "t3docs/typo3-guides-cli": "self.version"
+        "t3docs/typo3-guides-cli": "self.version",
+        "t3docs/typo3-guides-extension": "self.version"
     },
     "repositories": [
         {
@@ -40,8 +42,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "T3Docs\\GuidesExtension\\": "packages/typo3-guides-extension/src/",
             "T3Docs\\GuidesCli\\": "packages/typo3-guides-cli/src/",
+            "T3Docs\\GuidesExtension\\": "packages/typo3-guides-extension/src/",
             "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/"
         }
     },

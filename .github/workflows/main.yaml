@@ -29,6 +29,9 @@ jobs:
         with:
           dependency-versions: "locked"
 
+      - name: "Check for normalized composer.json"
+        run: "composer normalize --dry-run"
+
       - name: "CGL"
         run: "make code-style ENV=${{ env.RUN_ENVIRONMENT }}"
 
