@@ -1235,12 +1235,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "98adb65d9fe25a9e54aea9d336caab7af26fe8cd"
+                "reference": "add1f47c8af32fdfe10b9cf4f6aa2d38a65ed810"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/98adb65d9fe25a9e54aea9d336caab7af26fe8cd",
-                "reference": "98adb65d9fe25a9e54aea9d336caab7af26fe8cd",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/add1f47c8af32fdfe10b9cf4f6aa2d38a65ed810",
+                "reference": "add1f47c8af32fdfe10b9cf4f6aa2d38a65ed810",
                 "shasum": ""
             },
             "require": {
@@ -1278,7 +1278,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-11-25T13:56:49+00:00"
+            "time": "2023-11-27T09:02:56+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1418,12 +1418,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "8f93858784f7a3cc6334fdcdf58c17e58028d73d"
+                "reference": "9198c4c19dba4ee3f1a0c416fee140b24a3da970"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/8f93858784f7a3cc6334fdcdf58c17e58028d73d",
-                "reference": "8f93858784f7a3cc6334fdcdf58c17e58028d73d",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/9198c4c19dba4ee3f1a0c416fee140b24a3da970",
+                "reference": "9198c4c19dba4ee3f1a0c416fee140b24a3da970",
                 "shasum": ""
             },
             "require": {
@@ -1449,7 +1449,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-11-24T09:14:03+00:00"
+            "time": "2023-11-27T09:02:56+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -3514,12 +3514,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3-Documentation/guides-php-domain.git",
-                "reference": "598c70e05846074d6a8e2986e893859c9000caa3"
+                "reference": "cd9c7138fb7d4c261f7306f1e078dc38fe3f20ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/598c70e05846074d6a8e2986e893859c9000caa3",
-                "reference": "598c70e05846074d6a8e2986e893859c9000caa3",
+                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/cd9c7138fb7d4c261f7306f1e078dc38fe3f20ff",
+                "reference": "cd9c7138fb7d4c261f7306f1e078dc38fe3f20ff",
                 "shasum": ""
             },
             "require": {
@@ -3554,7 +3554,7 @@
                 "issues": "https://github.com/TYPO3-Documentation/guides-php-domain/issues",
                 "source": "https://github.com/TYPO3-Documentation/guides-php-domain/tree/main"
             },
-            "time": "2023-11-25T15:40:34+00:00"
+            "time": "2023-11-26T18:39:21+00:00"
         },
         {
             "name": "twig/twig",
@@ -4324,12 +4324,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "45a453070b124fa3eed296b6d451a079420f21c9"
+                "reference": "27d2b3265b5d550ec411b4319967ae7cfddfb2e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/45a453070b124fa3eed296b6d451a079420f21c9",
-                "reference": "45a453070b124fa3eed296b6d451a079420f21c9",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/27d2b3265b5d550ec411b4319967ae7cfddfb2e0",
+                "reference": "27d2b3265b5d550ec411b4319967ae7cfddfb2e0",
                 "shasum": ""
             },
             "require": {
@@ -4409,7 +4409,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-26T07:28:10+00:00"
+            "time": "2023-11-26T09:25:53+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -4813,16 +4813,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.44",
+            "version": "1.10.45",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "bf84367c53a23f759513985c54ffe0d0c249825b"
+                "reference": "2f024fbb47432e2e62ad8a8032387aa2dd631c73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/bf84367c53a23f759513985c54ffe0d0c249825b",
-                "reference": "bf84367c53a23f759513985c54ffe0d0c249825b",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/2f024fbb47432e2e62ad8a8032387aa2dd631c73",
+                "reference": "2f024fbb47432e2e62ad8a8032387aa2dd631c73",
                 "shasum": ""
             },
             "require": {
@@ -4871,7 +4871,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-21T16:30:46+00:00"
+            "time": "2023-11-27T14:15:06+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
