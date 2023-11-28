@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9d52e303a6e78151e9dcf44c8c04b5a",
+    "content-hash": "b7125411379a4ab1700dca2468dd3f70",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -6623,89 +6623,6 @@
                 }
             ],
             "time": "2023-11-20T00:12:19+00:00"
-        },
-        {
-            "name": "typo3/coding-standards",
-            "version": "v0.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/TYPO3/coding-standards.git",
-                "reference": "b53fc46dc3fc997f98c96bc630d24c1e12028646"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3/coding-standards/zipball/b53fc46dc3fc997f98c96bc630d24c1e12028646",
-                "reference": "b53fc46dc3fc997f98c96bc630d24c1e12028646",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "friendsofphp/php-cs-fixer": "^3.11",
-                "php": "^8.0",
-                "symfony/console": "^4.4.30 || ^5.3.7 || ^6.0",
-                "symfony/filesystem": "^4.4 || ^5.0 || ^6.0"
-            },
-            "require-dev": {
-                "composer/package-versions-deprecated": "^1.11.99.4",
-                "ergebnis/composer-normalize": "*",
-                "keradus/cli-executor": "^1.5",
-                "maglnet/composer-require-checker": "*",
-                "nikic/php-parser": "^4.13.1",
-                "overtrue/phplint": "^3.0",
-                "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan-deprecation-rules": "^1.0",
-                "phpstan/phpstan-phpunit": "^1.0",
-                "phpstan/phpstan-strict-rules": "^1.0",
-                "phpstan/phpstan-symfony": "^1.0",
-                "phpunit/phpunit": "^9.5.18",
-                "symfony/finder": ">=4.4",
-                "symfony/process": ">=4.4"
-            },
-            "bin": [
-                "t3-cs",
-                "typo3-coding-standards"
-            ],
-            "type": "coding-standards",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "0.7.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TYPO3\\CodingStandards\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Benni Mack",
-                    "email": "benni@typo3.org"
-                },
-                {
-                    "name": "Simon Gilli",
-                    "email": "simon.gilli@typo3.org"
-                }
-            ],
-            "description": "A set of coding guidelines for any TYPO3-related project or extension",
-            "homepage": "https://typo3.org/",
-            "keywords": [
-                "Code style",
-                "cms",
-                "editorconfig",
-                "php-cs-fixer",
-                "typo3"
-            ],
-            "support": {
-                "chat": "https://typo3.org/help",
-                "docs": "https://docs.typo3.org",
-                "issues": "https://github.com/TYPO3/coding-standards/issues",
-                "source": "https://github.com/TYPO3/coding-standards"
-            },
-            "time": "2022-12-20T16:02:01+00:00"
         }
     ],
     "aliases": [],

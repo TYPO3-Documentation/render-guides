@@ -4,6 +4,16 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Integration;
 
+use phpDocumentor\Guides\Cli\Command\Run;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\ExpectationFailedException;
+use RuntimeException;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Finder\Finder as SymfonyFinder;
+use T3Docs\GuidesExtension\Command\RunDecorator;
+use T3Docs\Typo3DocsTheme\ApplicationTestCase;
+
 use function array_filter;
 use function array_merge;
 use function array_walk;
@@ -13,33 +23,13 @@ use function explode;
 use function file_exists;
 use function file_get_contents;
 use function implode;
-
-use const LC_ALL;
-
-use phpDocumentor\Guides\Cli\Command\Run;
-
-use PHPUnit\Framework\Attributes\DataProvider;
-
-use PHPUnit\Framework\ExpectationFailedException;
-use RuntimeException;
-
 use function setlocale;
-
 use function str_ends_with;
 use function str_replace;
-
-use Symfony\Component\Console\Input\ArrayInput;
-
-use Symfony\Component\Console\Output\BufferedOutput;
-use Symfony\Component\Finder\Finder as SymfonyFinder;
-
 use function system;
-
-use T3Docs\GuidesExtension\Command\RunDecorator;
-
-use T3Docs\Typo3DocsTheme\ApplicationTestCase;
-
 use function trim;
+
+use const LC_ALL;
 
 final class IntegrationTest extends ApplicationTestCase
 {

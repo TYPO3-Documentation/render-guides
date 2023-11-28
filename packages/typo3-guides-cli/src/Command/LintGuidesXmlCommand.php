@@ -22,12 +22,12 @@ final class LintGuidesXmlCommand extends Command
         $this->setDescription('Validates all guides.xml settings files.');
         $this->setHelp(
             <<<'EOT'
-                    The <info>%command.name%</info> command iterates all found files
-                    called <info>guides.xml</info> and checks the for XSD conformity.
+                The <info>%command.name%</info> command iterates all found files
+                called <info>guides.xml</info> and checks the for XSD conformity.
 
-                    <info>$ php %command.name% [parameters]</info>
+                <info>$ php %command.name% [parameters]</info>
 
-                    EOT
+                EOT
         );
         $this->setDefinition([
             new InputArgument(
