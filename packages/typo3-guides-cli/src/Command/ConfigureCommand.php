@@ -23,14 +23,14 @@ final class ConfigureCommand extends Command
         $this->setDescription('Configure guides.xml attributes programmatically.');
         $this->setHelp(
             <<<'EOT'
-                    The <info>%command.name%</info> command helps to set configuration options
-                    and attributes of the project to be rendered. These options are saved
-                    in a file <info>guides.xml</info>.
-                    You can use this CLI instead of manually editing the xml file.
+                The <info>%command.name%</info> command helps to set configuration options
+                and attributes of the project to be rendered. These options are saved
+                in a file <info>guides.xml</info>.
+                You can use this CLI instead of manually editing the xml file.
 
-                    <info>$ php %command.name% [parameters]</info>
+                <info>$ php %command.name% [parameters]</info>
 
-                    EOT
+                EOT
         );
         $this->setDefinition([
             new InputOption(
