@@ -10,13 +10,14 @@ use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRul
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 use T3Docs\Typo3DocsTheme\EventListeners\CopyStaticAssets;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
-
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
+
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\TextRoles\IssueReferenceTextRole;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()

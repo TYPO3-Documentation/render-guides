@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace T3Docs\Typo3DocsTheme\EventListeners;
-
 
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Config;
@@ -20,9 +18,7 @@ final class CopyStaticAssets
 
     public function __construct(
         private readonly LoggerInterface $logger,
-    )
-    {
-    }
+    ) {}
 
     public function __invoke(PostRenderProcess $event): void
     {
