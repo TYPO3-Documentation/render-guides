@@ -43,7 +43,7 @@ final class TwigExtension extends AbstractExtension
      */
     public function getRelativePath(array $context, string $path): string
     {
-        return $this->urlGenerator->generateInternalPathFromRelativeUrl($context['env'] ?? null, $path);
+        return $this->urlGenerator->generateInternalUrl($context['env'] ?? null, $path);
     }
 
     /**
