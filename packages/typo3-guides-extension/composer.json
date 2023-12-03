@@ -10,7 +10,7 @@
     },
     "require": {
         "phpdocumentor/guides-cli": "dev-main",
-        "symfony/clock": "^6.3",
+        "symfony/clock": "^6.4",
         "t3docs/guides-php-domain": "dev-main"
     }
 }
