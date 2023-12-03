@@ -40,6 +40,10 @@ final class CopyStaticAssets
 
         foreach ($finder as $file) {
             $stream = $source->readStream($file->getFilename());
+            if ($stream === false) {
+                $this->logger->warning(sprintf('Cannot read stream from "%s"', $file->getFilename()));
+                continue;
+            }
             $destination->putStream(self::DESTINATION_ASSETS_PATH . '/' . $file->getFilename(), $stream);
             is_resource($stream) && fclose($stream);
         }
