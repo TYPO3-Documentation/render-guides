@@ -18,13 +18,13 @@ build and execute development helpers, and they can be utilized by GitHub Action
 The "single source of truth" for these commands is within the `Makefile`. You can
 see all available commands via:
 
-::
+..  code-block:: shell
 
     make help
 
 The most common commands are probably:
 
-::
+..  code-block:: shell
 
     # Render documentation
     make docs
@@ -37,7 +37,7 @@ The most common commands are probably:
 
 Most `make` commands can be prepended or appended with the parameter `ENV=local`:
 
-::
+..  code-block:: shell
 
     # Render documentation
     make docs ENV=local
@@ -57,7 +57,7 @@ The :file:`Makefile` can also be executed via composer. All commands in the
 :bash:`make` range are just passed onto the `Makefile` via a composer script,
 and automatically then use the `ENV=local` scope:
 
-::
+..  code-block:: shell
 
     # Render documentation
     composer make docs
@@ -71,7 +71,7 @@ and automatically then use the `ENV=local` scope:
 If your local environment does not provide :bash:`make` you can use DDEV to wrap
 the same commands within the DDEV container:
 
-::
+..  code-block:: shell
 
     # Render documentation
     ddev composer make docs

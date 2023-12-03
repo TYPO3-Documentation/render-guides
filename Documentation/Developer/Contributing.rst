@@ -8,7 +8,7 @@ Contributing
 
 When contributing please run all tests before committing:
 
-::
+..  code-block:: shell
 
     # Using Makefile (append ENV=local if you don't require docker)
     make pre-commit-test
@@ -23,7 +23,7 @@ When contributing please run all tests before committing:
 You can use a helper script to set this up once in your project, so that
 these checks are performed before any Git commit:
 
-::
+..  code-block:: shell
 
     # Using Makefile
     make githooks

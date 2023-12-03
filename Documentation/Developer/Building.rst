@@ -16,17 +16,21 @@ Using Docker
 A Docker image is available on `GitHub packages`_. If you want to build your own
 image you can use the following command, in the root of this repository.
 
-::
+..  code-block:: shell
 
     make docker-build
 
-Once the build is finished you can execute your own image using::
+Once the build is finished you can execute your own image using:
 
-  docker run --rm -v $(pwd):/project typo3-docs:local --progress
+..  code-block:: shell
 
-For macOS you also need to specify the argument ``user``::
+    docker run --rm -v $(pwd):/project typo3-docs:local --progress
 
-  docker run --rm -v $(pwd):/project --user=$(id -u):$(id -g) typo3-docs:local --progress
+For macOS you also need to specify the argument ``user``:
+
+..  code-block:: shell
+
+    docker run --rm -v $(pwd):/project --user=$(id -u):$(id -g) typo3-docs:local --progress
 
 Using PHP
 ---------
@@ -37,12 +41,14 @@ executable PHP file. You can run it like any other executable.
 To build the phar file we use Box_, with some wrapper script. To build the phar
 file yourself, you can run the following command.
 
-::
+..  code-block:: shell
 
     make build-phar
 
 This will create a file called :file:`guides.phar` in the build directory. You
-can execute the phar file like a PHP file using::
+can execute the phar file like a PHP file using:
+
+..  code-block:: shell
 
     php build/guides.phar
 

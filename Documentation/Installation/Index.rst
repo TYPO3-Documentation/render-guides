@@ -33,7 +33,7 @@ Docker
 The Docker image is available on GitHub packages. You can pull the image with
 the following command.
 
-::
+..  code-block:: shell
 
     docker pull ghcr.io/typo3-documentation/render-guides:main
 
@@ -41,7 +41,7 @@ For all available tags, please check the `GitHub packages page`_.
 Once you have pulled the image, you can run the image to render your project's
 documentation.
 
-::
+..  code-block:: shell
 
     docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress --config ./Documentation
 
@@ -52,7 +52,7 @@ when files are getting generated inside the image.
 
 This may fail on macOS, in which case you need to specify the `user` argument:
 
-::
+..  code-block:: shell
 
     docker run --rm --user=$(id -u):$(id -g) -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress --config ./Documentation
 
@@ -75,7 +75,7 @@ other requirement than Docker and DDEV.
 
 To render the documentation you can run
 
-::
+..  code-block:: shell
 
     ddev start
     ddev composer install
@@ -92,7 +92,7 @@ you can create documentation natively, without needing docker.
 
 You can run these commands locally:
 
-::
+..  code-block:: shell
 
     composer install
     make docs

@@ -31,7 +31,9 @@ template.
 Build Sources
 =============
 
-To build the public assets execute the following commands::
+To build the public assets execute the following commands:
+
+..  code-block:: shell
 
     ddev ssh
     cd packages/typo3-docs-theme

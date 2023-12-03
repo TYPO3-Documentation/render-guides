@@ -6,26 +6,28 @@
 Directory structure
 ===================
 
-The directory structure of the project is as follows::
+The directory structure of the project is as follows:
+
+..  code-block:: plaintext
 
     .
     ├── .ddev
     ├── .github
-    │   ├── workflows
-    │   │   ├── main.yml
-    │   │   ├── phar.yml
-    │   │   ├── docker.yml
+    │   ├── workflows
+    │   │   ├── main.yml
+    │   │   ├── phar.yml
+    │   │   ├── docker.yml
     ├── bin
     ├── Documentation
     ├── packages
-    │   ├── typo3-docs-theme
-    │   ├── typo3-guides-extension
+    │   ├── typo3-docs-theme
+    │   ├── typo3-guides-extension
     ├── tests
-    │   ├── Integration
+    │   ├── Integration
     ├── tools
 
 
-The :file:`.ddev` directory contains the configuration for the local development
+The :file:`.ddev/` directory contains the configuration for the local development
 environment for people using `DDEV`_.
 
 The :file:`.github/` directory contains the configuration for the GitHub workflows.

@@ -19,7 +19,7 @@ the dependencies over packages in sync.
 
 If you add a new dependency to a package, you can run
 
-::
+..  code-block:: shell
 
     make monorepo
 
@@ -27,7 +27,7 @@ This will update the root :file:`composer.json` file with the new dependency.
 
 It is recommended to run the validation check before you commit:
 
-::
+..  code-block:: shell
 
     make test-monorepo
 
