@@ -14,5 +14,5 @@ COPY --from=Builder /opt/guides/vendor /opt/guides/vendor
 RUN echo "memory_limit=1G" >> /usr/local/etc/php/conf.d/typo3.ini
 
 WORKDIR /project
-ENTRYPOINT [ "/opt/guides/entrypoint.sh", "/opt/guides/vendor/bin/guides"]
+ENTRYPOINT [ "/opt/guides/entrypoint.sh" ]
 CMD ["-h"]
