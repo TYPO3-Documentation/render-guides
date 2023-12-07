@@ -10,10 +10,11 @@ When contributing please run all tests before committing:
 
 ..  code-block:: shell
 
-    # Using Makefile (append ENV=local if you don't require docker)
+    # Using Makefile (append ENV=local if you don't utilize docker)
     make pre-commit-test
 
-    # Using composer
+    # Using composer (also uses "make" command internally, your OS may need a
+    # package like "build-essential")
     composer make pre-commit-test
 
     # Using ddev
