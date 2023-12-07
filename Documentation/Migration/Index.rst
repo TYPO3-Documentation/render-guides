@@ -14,6 +14,18 @@ To facilitate migration the extension `t3docs/typo3-guides-cli` in this
 mono-repository comes with a Symfony console command to automatically migrate
 the outdated :file:`Settings.cfg`.
 
+After migration, you can add your :file:`guides.xml` file to your custom repository,
+and optionally also remove the old :file:`Settings.cfg` file.
+
+With official Docker container
+==============================
+
+(Work in progress)
+
+..  code-block:: sh
+
+    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main migrate
+
 With make
 =========
 

@@ -26,7 +26,7 @@ Once the build is finished you can execute your own image using:
 
     docker run --rm -v $(pwd):/project typo3-docs:local --progress
 
-For macOS you also need to specify the argument ``user``:
+For macOS you may need to specify the argument ``user``:
 
 ..  code-block:: shell
 

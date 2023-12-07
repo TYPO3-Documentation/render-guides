@@ -14,16 +14,17 @@ documentation, please check the
 Multiple methods are provided to install the project on your local machine.
 You can choose whatever is easiest for you:
 
--   Using Docker natively, with an existing image
--   Using Docker natively, with a locally-generated image
+-   Using Docker natively, with a provided official container
+-   Using Docker natively, with a locally-generated container
 -   Using DDEV (utilizing Docker)
 -   Using PHP
 
 ..  note::
 
-    The Docker image is the recommended way to use this project. It will
-    automatically set up all dependencies and will not interfere with your
-    local PHP installation.
+    The Docker container is the recommended way to use this project for
+    end-users. It will automatically set up all dependencies and will not interfere
+    with your local PHP installation or project. The container can be
+    used in any project (and in any GitHub action) without further dependencies.
 
 ..  _Setup_Docker:
 
@@ -50,11 +51,39 @@ project. This means that the files created by the Docker image will have the
 same owner as the files in your project. No more permission issues should occur,
 when files are getting generated inside the image.
 
-This may fail on macOS, in which case you need to specify the `user` argument:
+If this fail, you can resort to specifying the user:
 
 ..  code-block:: shell
 
     docker run --rm --user=$(id -u):$(id -g) -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress --config ./Documentation
+
+The provided image allows you to also perform a few other actions:
+
+..  code-block:: shell
+
+    # Convert Settings.cfg to guides.xml:
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main migrate ./Documentation
+
+    # Check guides.xml files for XML conformity
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main lint-guides-xml
+
+    # Adapt guides.xml programmatically (work in progress)
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main configure \
+      --project-version="2.2" \
+      --project-title="My project title" \
+      --project-release="2023" \
+      --project-copyright="2000-2023" ./Documentation
+
+In case of errors you can increase verbose output by prefixing any command with the argument
+:bash:`verbose`:
+
+..  code-block:: shell
+
+    # Execute verbose commands with inline setting
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main verbose (render|migrate|lint-guides-xml|configure) [arguments/options]
+
+    # Execute verbose commands with inline setting, useful for i.e. external actions
+    SHELL_VERBOSITY=3 docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main (render|migrate|lint-guides-xml|configure) [arguments/options]
 
 Another way to utilize Docker is to create your own image/container. This is aimed at people
 who want to contribute to the underlying Documentation tool. Please see :ref:`_Building`
@@ -96,5 +125,11 @@ You can run these commands locally:
 
     composer install
     make docs
+
+The provided Symfony Commands can be executed via:
+
+..  code-block:: shell
+
+    ./packages/typo3-guides-cli/bin/typo3-guides (migrate|lint-guides-xml|configure)
 
 .. _`GitHub packages page`: https://github.com/TYPO3-Documentation/render-guides/pkgs/container/render-guides
