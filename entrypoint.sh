@@ -69,6 +69,9 @@ elif [ "$1" = "lint-guides-xml" ]; then
 elif [ "$1" = "configure" ]; then
     ENTRYPOINT="${ENTRYPOINT_SYMFONY_COMMANDS} configure"
     shift
+elif [ "$1" = "render" ]; then
+    ENTRYPOINT="${ENTRYPOINT_DEFAULT}"
+    shift
 else
     # Default: "render"; no shifting.
     ENTRYPOINT="${ENTRYPOINT_DEFAULT}"
