@@ -13,6 +13,8 @@ if [ "$MY_UID" -eq "0" ]; then
 
   if [ "$UID" -eq "0" ]; then
       echo "Run-as: root"
+      echo "Invocation: php $@"
+      php "$@"
   else
       echo "Run-as: $UID (custom invocation)"
       addgroup typo3 --gid=$GID;
