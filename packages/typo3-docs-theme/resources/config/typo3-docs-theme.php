@@ -9,7 +9,7 @@ use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-use T3Docs\Typo3DocsTheme\EventListeners\CopyStaticAssets;
+use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
@@ -47,6 +47,6 @@ return static function (ContainerConfigurator $container): void {
         ->tag('twig.extension')
         ->autowire()
 
-        ->set(CopyStaticAssets::class)
+        ->set(CopyResources::class)
         ->tag('event_listener', ['event' => PostRenderProcess::class]);
 };
