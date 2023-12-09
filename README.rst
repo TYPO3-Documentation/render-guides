@@ -23,7 +23,7 @@ Usage with Docker (via supplied container)
     # Execute the Docker container that is provided remotely.
     # Renders all files in the `Documentation` and store in `Documentation-GENERATED-temp`.
     # On macOS you need to specify the parameter "--user=$(id -u):$(id -g)"
-    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main --progress
+    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main --config=Documentation
 
 (see :ref:`_Setup_Docker:Docker containers` for complete documentation)
 
