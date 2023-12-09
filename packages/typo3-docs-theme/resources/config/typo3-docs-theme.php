@@ -43,6 +43,7 @@ return static function (ContainerConfigurator $container): void {
             'text' => 'plaintext',
             'typoscript' => 'plaintext',
         ])
+        ->arg('$classes', 'code-block')
         ->tag('twig.extension')
         ->autowire()
 
