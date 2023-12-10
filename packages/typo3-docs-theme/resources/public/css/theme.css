@@ -12446,7 +12446,6 @@ textarea.form-control-lg {
 */
 .hljs {
   color: #24292e;
-  background: #ffffff;
 }
 
 .hljs-doctag,
@@ -12592,7 +12591,8 @@ textarea.form-control-lg {
 }
 
 /**
- * The class "code-inline" is used for inline textroles like ":file:" or ":php:"
+ * The class "code-inline" is used for inline textroles like ":file:", ":code:",
+ * ":literal:" or ":php:"
  */
 .code-inline {
   font-family: "Source Code Pro", monospace;
