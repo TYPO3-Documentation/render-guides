@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="phpdocumentor/guides" name="generator">
     <meta content="{{ env.projectNode.title }}" name="docsearch:name">
     <meta content="" name="docsearch:package_type">
     <meta content="{{ env.projectNode.version }}" name="docsearch:release">
@@ -11,7 +12,6 @@
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
     <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" name="dc.modified">
     <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" property="article:modified_time">
-    <meta content="phpdocumentor" name="docsearch:engine">
     <title>{{ title }}
         {%- if title!=null and env.projectNode.title!=null %} — {% endif -%}
         {%- if env.projectNode.title -%}{{ env.projectNode.title }} {% endif -%} {{ env.projectNode.version }} documentation</title>
