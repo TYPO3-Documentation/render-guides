@@ -11,6 +11,7 @@
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
     <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" name="dc.modified">
     <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" property="article:modified_time">
+    <meta content="phpdocumentor" name="docsearch:engine">
     <title>{{ title }}
         {%- if title!=null and env.projectNode.title!=null %} — {% endif -%}
         {%- if env.projectNode.title -%}{{ env.projectNode.title }} {% endif -%} {{ env.projectNode.version }} documentation</title>
