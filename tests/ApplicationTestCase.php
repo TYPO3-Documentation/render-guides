@@ -55,5 +55,10 @@ abstract class ApplicationTestCase extends TestCase
         }
 
         $this->container = $containerFactory->create(dirname(__DIR__) . '/vendor');
+
+        // Sets a dedicated environment variable so that i.e. the TwigExtension can
+        // detect if it's being run within CI AND a PHPUnit testcase, to prevent using
+        // Azure URLs but instead local URLs for assets.
+        $_ENV['CI_PHPUNIT'] = true;
     }
 }

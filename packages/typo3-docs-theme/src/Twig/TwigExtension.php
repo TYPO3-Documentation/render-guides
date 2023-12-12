@@ -19,12 +19,26 @@ use Twig\TwigFunction;
 
 final class TwigExtension extends AbstractExtension
 {
+    private string $typo3AzureEdgeURI = '';
+
     public function __construct(
         private readonly LoggerInterface $logger,
         private readonly UrlGeneratorInterface $urlGenerator,
         private readonly Typo3DocsThemeSettings $themeSettings,
         private readonly DocumentNameResolverInterface $documentNameResolver,
-    ) {}
+    ) {
+        if (getenv('CI') !== '' && !isset($_ENV['CI_PHPUNIT'])) {
+            // CI gets special treatment, then we use a fixed URI for assets.
+            // The environment variable 'typo3AzureEdgeURIVersion' is set during
+            // the creation of our Docker image, and holds the last pushed version
+            // number. This version number will then only be utilized in CI GitHub Action
+            // executions, and sets links to resources/assets to a public CDN.
+            // Outside CI (and for local development) all Assets are linked locally.
+            // This is prevented when being run within PHPUnit.
+            // TODO: Check in which GHA this is actually performed. Simulate with my own host.
+            $this->typo3AzureEdgeURI = 'https://typo3.azureedge.net/typo3documentation/theme/render-guides/' . getenv('typo3AzureEdgeURIVersion');
+        }
+    }
 
     /** @return TwigFunction[] */
     public function getFunctions(): array
@@ -43,7 +57,12 @@ final class TwigExtension extends AbstractExtension
      */
     public function getRelativePath(array $context, string $path): string
     {
-        return $this->urlGenerator->generateInternalUrl($context['env'] ?? null, $path);
+        if ($this->typo3AzureEdgeURI !== '') {
+            // CI gets special treatment, then we use a fixed URI for assets.
+            return $this->typo3AzureEdgeURI . $path;
+        } else {
+            return $this->urlGenerator->generateInternalUrl($context['env'] ?? null, $path);
+        }
     }
 
     /**
