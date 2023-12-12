@@ -105,7 +105,7 @@ jobs:
         # Dockerfile, so that we can use the Dockerfile from the current
         # branch.
         ##################################################################
-        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g'.github/actions/configure-guides-step/action.yml"
+        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' .github/actions/configure-guides-step/action.yml"
 
       - name: "prepare action (adjust render-guides-step)"
         run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' .github/actions/render-guides-step/action.yml"
