@@ -3,33 +3,51 @@ description: 'Documentation render tool for typo3 documentation'
 
 inputs:
   input:
-    description: 'Input directory'
+    description: 'Input directory (i.e. "Documentation")'
     required: false
     default: null
 
   working-directory:
-    description: 'Working directory'
+    description: 'Working directory (i.e. "./", or "t3docsproject")'
     required: false
     default: './'
 
   config:
-    description: 'Configuration file location'
+    description: 'Configuration file location (i.e. "Documentation/")'
     default: 'Documentation'
 
   output:
-    description: 'Output directory'
+    description: 'Output directory (i.e. "RenderedDocumentation/Result/project/0.0.0")'
     default: 'RenderedDocumentation'
 
+  configure-branch:
+    description: 'guides.xml configuration override (optional): Name of rendered GIT branch (i.e. "main" or "9.5"). Overrides <extension edit-on-github-branch="X">'
+    default: ''
+
+  configure-project-release:
+    description: 'guides.xml configuration override (optional): Project release version (i.e. "draft" or "main"), based on deployment target directory. Overrides <project release="X">'
+    default: ''
+
+  configure-project-version:
+    description: 'guides.xml configuration override (optional): Project version (i.e. "draft", "main", "9.5"). Overrides <project version="X">'
+    default: ''
+
 runs:
-  using: 'docker'
-  image: 'docker://ghcr.io/typo3-documentation/render-guides:main'
-  env:
-    SHELL_VERBOSITY: '3'
-  args:
-    - '--working-dir=${{ inputs.working-directory }}'
-    - '--config=${{ inputs.config }}'
-    - '--output=${{ inputs.output }}'
-    - '${{ inputs.input }}'
+  using: "composite"
+  steps:
+    - uses: TYPO3-Documentation/render-guides/.github/actions/configure-guides-step@main
+      with:
+          config: ${{ inputs.config }}
+          configure-branch: ${{ inputs.configure-branch }}
+          configure-project-release: ${{ inputs.configure-project-release }}
+          configure-project-version: ${{ inputs.configure-project-version }}
+
+    - uses: TYPO3-Documentation/render-guides/.github/actions/render-guides-step@main
+      with:
+        working-directory: ${{ inputs.working-directory }}
+        config: ${{ inputs.config }}
+        output: ${{ inputs.output }}
+        input: ${{ inputs.input }}
 
 branding:
   icon: 'book-open'
