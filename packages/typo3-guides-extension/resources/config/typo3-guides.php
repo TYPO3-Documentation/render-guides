@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 use phpDocumentor\Guides\Cli\Command\Run;
+use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use T3Docs\GuidesExtension\Command\ApplicationEventListener;
 use T3Docs\GuidesExtension\Command\RunDecorator;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
@@ -30,5 +32,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(\phpDocumentor\Guides\NodeRenderers\DelegatingNodeRenderer::class)
         ->call('setNodeRendererFactory', [service('phpdoc.guides.noderenderer.factory.html')])
         ->tag('phpdoc.guides.noderenderer.singlepage')
+        ->set(ApplicationEventListener::class)
+        ->tag('event_listener', ['event' => ConsoleEvents::COMMAND, 'method' => '__invoke']);
     ;
 };
