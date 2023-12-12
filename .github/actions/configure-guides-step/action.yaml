@@ -31,7 +31,3 @@ runs:
     - '--extension-attribute="edit-on-github-branch"'
     - '--extension-value="${{ inputs.configure-branch }}"'
     - '${{ inputs.config }}'
-
-branding:
-  icon: 'book-open'
-  color: 'orange'

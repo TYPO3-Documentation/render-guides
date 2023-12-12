@@ -31,7 +31,3 @@ runs:
     - '--config=${{ inputs.config }}'
     - '--output=${{ inputs.output }}'
     - '${{ inputs.input }}'
-
-branding:
-  icon: 'book-open'
-  color: 'orange'
