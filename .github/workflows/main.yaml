@@ -111,7 +111,7 @@ jobs:
         run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' .github/actions/render-guides-step/action.yml"
 
       - name: "prepare action (use relative repository)"
-        run: "sed -i 's/^    - uses: TYPO3-Documentation\/render-guides\/(.+)@.+$/    - uses: \1/g' action.yml"
+        run: "sed -i 's/^    - uses: TYPO3-Documentation\/render-guides\/(.+)@.+$/    - uses: \\1/g' action.yml"
 
       - name: "Create output directory"
         run: "mkdir -p RenderedDocumentation"
