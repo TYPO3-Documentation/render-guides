@@ -113,7 +113,7 @@ jobs:
       - name: "prepare action (use relative repository, no @main)"
         run: |
           sed -i 's/^    - uses: TYPO3-Documentation\/render-guides\//    - uses: /g' action.yml
-          sed -i 's/@main//g' action.yml
+          sed -i 's/@main/@HEAD/g' action.yml
 
       - name: "Create output directory"
         run: "mkdir -p RenderedDocumentation"
