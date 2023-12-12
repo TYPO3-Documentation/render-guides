@@ -24,7 +24,7 @@ With official Docker container
 
 ..  code-block:: sh
 
-    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main migrate /path/to/Settings.cfg
+    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main migrate /path/to/Documentation
 
 With make
 =========
