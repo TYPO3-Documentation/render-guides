@@ -42,8 +42,11 @@ For all available tags, please check the `GitHub packages page`_.
 Once you have pulled the image, you can run the image to render your project's
 documentation.
 
-Note that we will use `:stable` at a later point to always provide stable
-images with a locked dependency and theme asset set.
+..  note::
+
+    Eventually instead of `render-guides:main` we will use `render-guides:stable` to provide
+    stable versions, once the initial development of this project is more settled.
+    An asset URI will then be able to refer to tagged versions.
 
 ..  code-block:: shell
 
