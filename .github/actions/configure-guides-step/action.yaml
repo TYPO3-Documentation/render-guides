@@ -24,7 +24,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/TYPO3-Documentation/render-guides:main'
+  image: 'docker://ghcr.io/typo3-documentation/render-guides:main'
   env:
     SHELL_VERBOSITY: '3'
   args:
