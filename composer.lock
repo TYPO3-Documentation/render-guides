@@ -1419,12 +1419,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "ac2b79e8e341c613731877ce66a94a9ab73e7bbd"
+                "reference": "472367be6230369f9904bada5ce5c22dd6771d8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/ac2b79e8e341c613731877ce66a94a9ab73e7bbd",
-                "reference": "ac2b79e8e341c613731877ce66a94a9ab73e7bbd",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/472367be6230369f9904bada5ce5c22dd6771d8f",
+                "reference": "472367be6230369f9904bada5ce5c22dd6771d8f",
                 "shasum": ""
             },
             "require": {
@@ -1450,7 +1450,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-12-12T18:13:00+00:00"
+            "time": "2023-12-12T20:23:03+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -3602,12 +3602,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3-Documentation/guides-php-domain.git",
-                "reference": "d28541f653e3964598737e7dfb19a081bfa01bd1"
+                "reference": "e92c96e23e4e319c4cf6f0dc7277fa2655ea2797"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/d28541f653e3964598737e7dfb19a081bfa01bd1",
-                "reference": "d28541f653e3964598737e7dfb19a081bfa01bd1",
+                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/e92c96e23e4e319c4cf6f0dc7277fa2655ea2797",
+                "reference": "e92c96e23e4e319c4cf6f0dc7277fa2655ea2797",
                 "shasum": ""
             },
             "require": {
@@ -3642,7 +3642,7 @@
                 "issues": "https://github.com/TYPO3-Documentation/guides-php-domain/issues",
                 "source": "https://github.com/TYPO3-Documentation/guides-php-domain/tree/main"
             },
-            "time": "2023-12-12T15:45:46+00:00"
+            "time": "2023-12-12T20:07:42+00:00"
         },
         {
             "name": "twig/twig",
@@ -5334,16 +5334,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.2",
+            "version": "10.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "5aedff46afba98dddecaa12349ec044d9103d4fe"
+                "reference": "6fce887c71076a73f32fd3e0774a6833fc5c7f19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5aedff46afba98dddecaa12349ec044d9103d4fe",
-                "reference": "5aedff46afba98dddecaa12349ec044d9103d4fe",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6fce887c71076a73f32fd3e0774a6833fc5c7f19",
+                "reference": "6fce887c71076a73f32fd3e0774a6833fc5c7f19",
                 "shasum": ""
             },
             "require": {
@@ -5415,7 +5415,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.2"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.3"
             },
             "funding": [
                 {
@@ -5431,7 +5431,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-05T14:54:33+00:00"
+            "time": "2023-12-13T07:25:23+00:00"
         },
         {
             "name": "sebastian/cli-parser",
