@@ -1,0 +1,4 @@
+<div class="admonition {{ class ? (' '~class) }}{% if node.classes %} {{ node.classesString }}{% endif %}" role="alert">
+    {%- if node.value  %}<p class="admonition-title">{{ node.value }}</p>{% endif %}
+    {{ renderNode(node) }}
+</div>

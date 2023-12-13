@@ -1,0 +1,15 @@
+{% if name == 'important' %}
+    {% include "body/admonitions/important.html.twig" %}
+{% elseif name == 'attention' %}
+    {% include "body/admonitions/attention.html.twig" %}
+{% elseif name == 'note' %}
+    {% include "body/admonitions/note.html.twig" %}
+{% elseif name == 'warning' or name == 'caution' %}
+    {% include "body/admonitions/warning.html.twig" %}
+{% elseif name == 'tip' or name == 'hint' %}
+    {% include "body/admonitions/tip.html.twig" %}
+{% elseif name == 'seealso' %}
+    {% include "body/admonitions/seealso.html.twig" %}
+{% else %}
+    {% include "body/admonitions/default.html.twig" %}
+{% endif %}
