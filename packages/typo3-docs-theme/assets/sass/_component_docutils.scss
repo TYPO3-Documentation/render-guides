@@ -25,7 +25,7 @@
     &:after {
         @include fa-icon;
         content: fa-content($fa-var-link);
-        font-family: 'Font Awesome 5 Free';
+        font-family: "Font Awesome 6 Free";
         font-weight: 900;
         margin-left: -.35em;
     }
