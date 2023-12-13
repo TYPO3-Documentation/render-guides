@@ -12430,6 +12430,15 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+/* Bootstrap 5 tweak: do not underline links unless hovered over */
+a:not([class*=btn]) {
+  text-decoration: none;
+}
+
+a:not([class*=btn]):hover {
+  text-decoration: underline;
+}
+
 .card-body *:last-child {
   margin-bottom: 0;
 }
