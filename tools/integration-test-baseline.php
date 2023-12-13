@@ -11,11 +11,11 @@ function copyTests(string $directory, bool $shortenHtml = true): void
     $finder
         ->directories()
         ->in($directory)
-        ->depth('== 0');
+        ->depth('>= 0');
 
     foreach ($finder as $dir) {
-        if (!file_exists($dir->getPathname() . '/input')) {
-            copyTests($dir->getPathname(), $shortenHtml);
+        $inputDirectory = $dir->getRealPath() . '/input';
+        if (!is_dir($inputDirectory)) {
             continue;
         }
         $tempDir = $dir->getPathname() . '/temp';
@@ -28,25 +28,24 @@ function copyTests(string $directory, bool $shortenHtml = true): void
         $fileFinder = new \Symfony\Component\Finder\Finder();
         $fileFinder
             ->files()
-            ->in($dir->getPathname() . '/expected');
+            ->in($dir->getPathname() . '/expected')
+            ->depth('>= 0');
         foreach ($fileFinder as $file) {
-            $fileName = $file->getFilename();
-            $tempFile = $tempDir . '/' . $fileName;
-            $outputFile = $expectedDir . '/' . $fileName;
+            $relativePath = $file->getRelativePathname();
+            $tempFile = $tempDir . '/' . $relativePath;
+            $outputFile = $expectedDir . '/' . $relativePath;
             if (file_exists($tempFile)) {
                 if (pathinfo($tempFile, PATHINFO_EXTENSION) === 'log') {
                     echo sprintf("Ignoring log file %s\n", $outputFile);
-                    continue;
-                }
-                if ($shortenHtml && pathinfo($tempFile, PATHINFO_EXTENSION) === 'html') {
+                } elseif ($shortenHtml && pathinfo($tempFile, PATHINFO_EXTENSION) === 'html') {
                     // Handle HTML file with content markers
                     copyHtmlWithMarkers($tempFile, $outputFile);
                     echo sprintf("Updated %s\n", $outputFile);
-                    continue;
+                } else {
+                    // Copy non-HTML files as-is
+                    copy($tempFile, $outputFile);
+                    echo sprintf("Updated %s\n", $outputFile);
                 }
-                // Copy non-HTML files as-is
-                copy($tempFile, $outputFile);
-                echo sprintf("Updated %s\n", $outputFile);
             } else {
                 echo sprintf("Skipped %s - %s does not exist\n", $outputFile, $tempFile);
             }
