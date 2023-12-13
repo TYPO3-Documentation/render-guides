@@ -1,0 +1,73 @@
+# NOTE: Azure Assets are only deployed when a commit+push happens in
+# "stable" branch AND changes anything in packages/typo3-docs-theme/
+# If no files there are changed, no upload needs to take place.
+# For the target upload version, the most recent GIT tag matching
+# (v)X.Y.Z is used (because GIT tags are not bound to branches, we
+# cannot retrieve "last tag committed to branch 'stable').
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+      - '*.*.*'
+    branches:
+      - stable
+    paths:
+      - "packages/typo3-docs-theme/**"
+  pull_request: null
+  release:
+    types:
+      - published
+
+env:
+  REGISTRY: ghcr.io
+
+name: Deploy typo3-docs-theme on Azure (on STABLE)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get latest tag
+        id: get-latest-tag
+        run: |
+            # Fetch tags
+            git fetch --tags
+
+            # Get the latest tag (globally, see note above)
+            latest_tag=$(git tag -l --sort=-creatordate "*.*.*" | head -n 1)
+
+            # Set the output variable
+            echo LATEST_TAG=$latest_tag >> $GITHUB_ENV
+
+            echo "Using latest tag: $latest_tag"
+
+      - name: Check assets to be uploaded
+        run: |
+          echo "Prepare to upload to ${{ env.LATEST_TAG }}"
+          find packages/typo3-docs-theme/resources/public
+
+      # (DEBUG) Dummy action to upload via SSH instead of Azure
+      #- name: Upload Assets SSH
+      #  uses: appleboy/scp-action@master
+      #  with:
+      #    host: ${{ secrets.DEPLOY_DOCS_HOST }}
+      #    username: ${{ secrets.DEPLOY_DOCS_USERNAME }}
+      #    key: ${{ secrets.DEPLOY_KEY }}
+      #    source: "packages/typo3-docs-theme/resources/public/"
+      #    strip_components: 4
+      #    rm: true
+      #    target: ${{ secrets.TARGET_PATH }}/${{ env.LATEST_TAG }}/
+
+      - name: Bundle for Azure upload (in "cdn")
+        run: |
+          mkdir -p cdn/theme/typo3-docs-theme/${{ env.LATEST_TAG }}/
+          cp -r packages/typo3-docs-theme/resources/public/* cdn/theme/typo3-docs-theme/${{ env.LATEST_TAG }}/
+
+      - name: Upload to Azure
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_ACCOUNT }}
+          AZURE_STORAGE_KEY: ${{ secrets.AZURE_KEY }}
+        run: |
+          #az storage blob upload-batch --source packages/typo3-docs-theme/resources/public/ --destination ${{ secrets.AZURE_CONTAINER }}
