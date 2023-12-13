@@ -42,6 +42,9 @@ For all available tags, please check the `GitHub packages page`_.
 Once you have pulled the image, you can run the image to render your project's
 documentation.
 
+Note that we will use `:stable` at a later point to always provide stable
+images with a locked dependency and theme asset set.
+
 ..  code-block:: shell
 
     docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress --config ./Documentation
