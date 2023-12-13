@@ -10,6 +10,10 @@ on:
       - '*.*.*'
     branches:
       - stable
+  pull_request: null
+  release:
+    types:
+      - published
 
 name: Deploy typo3-docs-theme on Azure
 
