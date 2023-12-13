@@ -5,18 +5,22 @@ inputs:
   config:
     description: 'Configuration file location (i.e. "Documentation/")'
     default: 'Documentation'
+    required: true
 
   configure-branch:
     description: 'guides.xml configuration override (optional): Name of rendered GIT branch (i.e. "main" or "9.5"). Overrides <extension edit-on-github-branch="X">'
     default: ''
+    required: false
 
   configure-project-release:
     description: 'guides.xml configuration override (optional): Project release version (i.e. "draft" or "main"), based on deployment target directory. Overrides <project release="X">'
     default: ''
+    required: false
 
   configure-project-version:
     description: 'guides.xml configuration override (optional): Project version (i.e. "draft", "main", "9.5"). Overrides <project version="X">'
     default: ''
+    required: false
 
 runs:
   using: 'docker'
