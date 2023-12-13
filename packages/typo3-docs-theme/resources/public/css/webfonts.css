@@ -1,34 +1,34 @@
-/* source-code-pro-regular - latin-ext_latin */
+/* source-code-pro-regular - latin_latin-ext */
 @font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Source Code Pro";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/source-code-pro-v20-latin-ext_latin-regular.eot");
-  src: local(""), url("../fonts/source-code-pro-v20-latin-ext_latin-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/source-code-pro-v20-latin-ext_latin-regular.woff2") format("woff2"), url("../fonts/source-code-pro-v20-latin-ext_latin-regular.woff") format("woff"), url("../fonts/source-code-pro-v20-latin-ext_latin-regular.ttf") format("truetype"), url("../fonts/source-code-pro-v20-latin-ext_latin-regular.svg#SourceCodePro") format("svg");
+  src: url("../fonts/source-code-pro/source-code-pro-v23-latin_latin-ext-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* source-code-pro-700 - latin-ext_latin */
+/* source-code-pro-italic - latin_latin-ext */
 @font-face {
-  font-family: "Source Code Pro";
-  font-style: normal;
-  font-weight: 700;
-  src: url("../fonts/source-code-pro-v20-latin-ext_latin-700.eot");
-  src: local(""), url("../fonts/source-code-pro-v20-latin-ext_latin-700.eot?#iefix") format("embedded-opentype"), url("../fonts/source-code-pro-v20-latin-ext_latin-700.woff2") format("woff2"), url("../fonts/source-code-pro-v20-latin-ext_latin-700.woff") format("woff"), url("../fonts/source-code-pro-v20-latin-ext_latin-700.ttf") format("truetype"), url("../fonts/source-code-pro-v20-latin-ext_latin-700.svg#SourceCodePro") format("svg");
-}
-/* source-code-pro-italic - latin-ext_latin */
-@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Source Code Pro";
   font-style: italic;
   font-weight: 400;
-  src: url("../fonts/source-code-pro-v20-latin-ext_latin-italic.eot");
-  src: local(""), url("../fonts/source-code-pro-v20-latin-ext_latin-italic.eot?#iefix") format("embedded-opentype"), url("../fonts/source-code-pro-v20-latin-ext_latin-italic.woff2") format("woff2"), url("../fonts/source-code-pro-v20-latin-ext_latin-italic.woff") format("woff"), url("../fonts/source-code-pro-v20-latin-ext_latin-italic.ttf") format("truetype"), url("../fonts/source-code-pro-v20-latin-ext_latin-italic.svg#SourceCodePro") format("svg");
+  src: url("../fonts/source-code-pro/source-code-pro-v23-latin_latin-ext-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* source-code-pro-700italic - latin-ext_latin */
+/* source-code-pro-700 - latin_latin-ext */
 @font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/source-code-pro/source-code-pro-v23-latin_latin-ext-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* source-code-pro-700italic - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Source Code Pro";
   font-style: italic;
   font-weight: 700;
-  src: url("../fonts/source-code-pro-v20-latin-ext_latin-700italic.eot");
-  src: local(""), url("../fonts/source-code-pro-v20-latin-ext_latin-700italic.eot?#iefix") format("embedded-opentype"), url("../fonts/source-code-pro-v20-latin-ext_latin-700italic.woff2") format("woff2"), url("../fonts/source-code-pro-v20-latin-ext_latin-700italic.woff") format("woff"), url("../fonts/source-code-pro-v20-latin-ext_latin-700italic.ttf") format("truetype"), url("../fonts/source-code-pro-v20-latin-ext_latin-700italic.svg#SourceCodePro") format("svg");
+  src: url("../fonts/source-code-pro/source-code-pro-v23-latin_latin-ext-700italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* source-sans-3-200 - latin_latin-ext */
 @font-face {
