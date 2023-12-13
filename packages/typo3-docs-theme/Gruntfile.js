@@ -112,10 +112,6 @@ module.exports = function (grunt) {
           comments: false
         }
       },
-      autocomplete: {
-        src: 'node_modules/autocompleter/autocomplete.js',
-        dest: '<%= paths.output %>js/autocomplete.min.js'
-      },
       underscore: {
         src: 'node_modules/underscore/underscore.js',
         dest: '<%= paths.output %>js/underscore.min.js'
