@@ -98,14 +98,17 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v4"
 
-      - name: "prepare action"
+      - name: "prepare action (adjust configure-guides-step)"
         ##################################################################
         # This is a workaround for the fact that the action.yml file
         # does not support templating. We replace the image with the
         # Dockerfile, so that we can use the Dockerfile from the current
         # branch.
         ##################################################################
-        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' action.yml"
+        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' .github/actions/configure-guides-step/action.yaml"
+
+      - name: "prepare action (adjust render-guides-step)"
+        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' .github/actions/render-guides-step/action.yaml"
 
       - name: "Create output directory"
         run: "mkdir -p RenderedDocumentation"

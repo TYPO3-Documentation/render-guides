@@ -1,0 +1,33 @@
+name: 'render-guides-step'
+description: 'Documentation render tool for typo3 documentation'
+
+inputs:
+  input:
+    description: 'Input directory (i.e. "Documentation")'
+    required: false
+    default: null
+
+  working-directory:
+    description: 'Working directory (i.e. "./", or "t3docsproject")'
+    required: false
+    default: './'
+
+  config:
+    description: 'Configuration file location (i.e. "Documentation/")'
+    default: 'Documentation'
+
+  output:
+    description: 'Output directory (i.e. "RenderedDocumentation/Result/project/0.0.0")'
+    default: 'RenderedDocumentation'
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/TYPO3-Documentation/render-guides:main'
+  env:
+    SHELL_VERBOSITY: '3'
+  args:
+    - 'render'
+    - '--working-dir=${{ inputs.working-directory }}'
+    - '--config=${{ inputs.config }}'
+    - '--output=${{ inputs.output }}'
+    - '${{ inputs.input }}'

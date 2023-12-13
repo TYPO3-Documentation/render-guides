@@ -53,6 +53,7 @@ fi
 if [ "${SHELL_VERBOSITY}" -gt 0 ]; then
     echo "SHELL_VERBOSITY is:    ${SHELL_VERBOSITY}"
     echo "UID of executing user: ${MY_UID}"
+    echo "Parameter order:       $1 | $2 | $3 | $4 | ..."
 fi
 
 ENTRYPOINT_DEFAULT="/opt/guides/vendor/bin/guides"
