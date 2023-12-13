@@ -16,4 +16,3 @@ You can also require this theme in your composer.json::
 This theme uses the `phpDocumentor Guides <https://github.com/phpDocumentor/guides>`__
 for parsing and rendering restructuredText.
 
-
