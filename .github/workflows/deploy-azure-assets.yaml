@@ -43,4 +43,4 @@ jobs:
           AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_ACCOUNT }}
           AZURE_STORAGE_KEY: ${{ secrets.AZURE_KEY }}
         run: |
-          az storage blob upload-batch --source cdn --destination ${{ secrets.AZURE_CONTAINER }}
+          az storage blob upload-batch --overwrite --source cdn --destination ${{ secrets.AZURE_CONTAINER }}
