@@ -34,6 +34,31 @@
     }
 }
 
+.code-block-wrapper {
+    position: relative;
+}
+
+.code-block-copy {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.code-block-copy-icon {
+    fill: none;
+    opacity: .5;
+    stroke: #000;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+    transition: opacity .3s;
+
+    &:hover {
+        opacity: 1;
+    }
+}
 
 /**
  * The class "code-inline" is used for inline textroles like ":file:", ":code:",
