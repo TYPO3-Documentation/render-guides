@@ -25,7 +25,13 @@ Usage with Docker (via supplied container)
     # On macOS you need to specify the parameter "--user=$(id -u):$(id -g)"
     docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:main --config=Documentation
 
-(see :ref:`_Setup_Docker:Docker containers` for complete documentation)
+(see :ref:`_Setup_Docker:Docker containers` for complete documentation.)
+
+..  note::
+
+    Eventually instead of `render-guides:main` we will use `render-guides:stable` to provide
+    stable versions, once the initial development of this project is more settled.
+
 
 Usage with Docker (via custom container)
 ========================================

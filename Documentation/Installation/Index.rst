@@ -42,6 +42,12 @@ For all available tags, please check the `GitHub packages page`_.
 Once you have pulled the image, you can run the image to render your project's
 documentation.
 
+..  note::
+
+    Eventually instead of `render-guides:main` we will use `render-guides:stable` to provide
+    stable versions, once the initial development of this project is more settled.
+    An asset URI will then be able to refer to tagged versions.
+
 ..  code-block:: shell
 
     docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress --config ./Documentation

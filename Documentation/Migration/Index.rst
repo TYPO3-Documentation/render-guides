@@ -20,7 +20,10 @@ and optionally also remove the old :file:`Settings.cfg` file.
 With official Docker container
 ==============================
 
-(Work in progress)
+..  note::
+
+    Work in progress - Note that we will use `:stable` at a later point to always provide stable
+    images with a locked dependency and theme asset set.
 
 ..  code-block:: sh
 
