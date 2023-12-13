@@ -7,21 +7,11 @@
 on:
   push:
     tags:
-      - 'v*.*.*'
       - '*.*.*'
     branches:
       - stable
-    paths:
-      - "packages/typo3-docs-theme/**"
-  pull_request: null
-  release:
-    types:
-      - published
 
-env:
-  REGISTRY: ghcr.io
-
-name: Deploy typo3-docs-theme on Azure (on STABLE)
+name: Deploy typo3-docs-theme on Azure
 
 jobs:
   build:
@@ -29,41 +19,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get latest tag
-        id: get-latest-tag
+      - name: Get the version
+        id: get-version
         run: |
-            # Fetch tags
-            git fetch --tags
-
-            # Get the latest tag (globally, see note above)
-            latest_tag=$(git tag -l --sort=-creatordate "*.*.*" | head -n 1)
-
-            # Set the output variable
-            echo LATEST_TAG=$latest_tag >> $GITHUB_ENV
-
-            echo "Using latest tag: $latest_tag"
+          if [[ "$GITHUB_REF" == *"refs/tags"* ]]; then
+            echo VERSION=$(echo ${GITHUB_REF#refs/tags/} | sed 's/v//g') >> $GITHUB_ENV
+          else
+            echo VERSION=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g') >> $GITHUB_ENV
+          fi
 
       - name: Check assets to be uploaded
         run: |
-          echo "Prepare to upload to ${{ env.LATEST_TAG }}"
+          echo "Prepare to upload to ${{ env.VERSION }}"
           find packages/typo3-docs-theme/resources/public
-
-      # (DEBUG) Dummy action to upload via SSH instead of Azure
-      #- name: Upload Assets SSH
-      #  uses: appleboy/scp-action@master
-      #  with:
-      #    host: ${{ secrets.DEPLOY_DOCS_HOST }}
-      #    username: ${{ secrets.DEPLOY_DOCS_USERNAME }}
-      #    key: ${{ secrets.DEPLOY_KEY }}
-      #    source: "packages/typo3-docs-theme/resources/public/"
-      #    strip_components: 4
-      #    rm: true
-      #    target: ${{ secrets.TARGET_PATH }}/${{ env.LATEST_TAG }}/
 
       - name: Bundle for Azure upload (in "cdn")
         run: |
-          mkdir -p cdn/theme/typo3-docs-theme/${{ env.LATEST_TAG }}/
-          cp -r packages/typo3-docs-theme/resources/public/* cdn/theme/typo3-docs-theme/${{ env.LATEST_TAG }}/
+          mkdir -p cdn/theme/typo3-docs-theme/${{ env.VERSION }}/
+          cp -r packages/typo3-docs-theme/resources/public/* cdn/theme/typo3-docs-theme/${{ env.VERSION }}/
 
       - name: Upload to Azure
         env:
