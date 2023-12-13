@@ -107,7 +107,7 @@
   --bs-dark-border-subtle: gray;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
-  --bs-font-sans-serif: "Source Sans Pro", sans-serif;
+  --bs-font-sans-serif: "Source Sans 3", sans-serif;
   --bs-font-monospace: "Source Code Pro", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
@@ -14763,7 +14763,7 @@ div[class^=highlight-] pre {
   border-bottom: 1px solid gray;
 }
 .rst-content .sphinx-tabs-tab {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   color: #1a1a1a;
 }
 .rst-content .sphinx-tabs-tab[aria-selected=true] {
