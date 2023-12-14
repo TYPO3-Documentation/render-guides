@@ -36,31 +36,3 @@
 *:hover > .headerlink:after {
     visibility: visible;
 }
-
-/**
-* Tables
-*/
-table.docutils {
-    th :last-child,
-    td :last-child {
-        margin-bottom: 0;
-    }
-    &:not(.field-list) {
-        border: 0;
-        @extend .table;
-        @extend .table-bordered;
-        @extend .table-striped;
-        @extend .table-light;
-    }
-    &.field-list {
-        .field-name {
-            padding-right: 1rem;
-        }
-    }
-}
-.table-responsive {
-    table.docutils {
-        margin-bottom: 0;
-    }
-    margin-bottom: $spacer;
-}

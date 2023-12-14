@@ -12343,7 +12343,7 @@ progress {
     --bs-gutter-y: 3rem;
   }
 }
-.table, table.docutils:not(.field-list) {
+.table {
   --bs-table-color-type: initial;
   --bs-table-bg-type: initial;
   --bs-table-color-state: initial;
@@ -12363,17 +12363,17 @@ progress {
   vertical-align: top;
   border-color: var(--bs-table-border-color);
 }
-.table > :not(caption) > * > *, table.docutils:not(.field-list) > :not(caption) > * > * {
+.table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
   color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)));
   background-color: var(--bs-table-bg);
   border-bottom-width: var(--bs-border-width);
   box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
 }
-.table > tbody, table.docutils:not(.field-list) > tbody {
+.table > tbody {
   vertical-align: inherit;
 }
-.table > thead, table.docutils:not(.field-list) > thead {
+.table > thead {
   vertical-align: bottom;
 }
 
@@ -12389,10 +12389,10 @@ progress {
   padding: 0.25rem 0.25rem;
 }
 
-.table-bordered > :not(caption) > *, table.docutils:not(.field-list) > :not(caption) > * {
+.table-bordered > :not(caption) > * {
   border-width: var(--bs-border-width) 0;
 }
-.table-bordered > :not(caption) > * > *, table.docutils:not(.field-list) > :not(caption) > * > * {
+.table-bordered > :not(caption) > * > * {
   border-width: 0 var(--bs-border-width);
 }
 
@@ -12403,7 +12403,7 @@ progress {
   border-top-width: 0;
 }
 
-.table-striped > tbody > tr:nth-of-type(odd) > *, table.docutils:not(.field-list) > tbody > tr:nth-of-type(odd) > * {
+.table-striped > tbody > tr:nth-of-type(odd) > *, .table:not(.field-list) > tbody > tr:nth-of-type(odd) > * {
   --bs-table-color-type: var(--bs-table-striped-color);
   --bs-table-bg-type: var(--bs-table-striped-bg);
 }
@@ -12507,7 +12507,7 @@ progress {
   border-color: var(--bs-table-border-color);
 }
 
-.table-light, table.docutils:not(.field-list) {
+.table-light {
   --bs-table-color: #000000;
   --bs-table-bg: #f2f2f2;
   --bs-table-border-color: #c2c2c2;
@@ -23780,9 +23780,19 @@ a:not([class*=btn]):hover {
   --bs-btn-disabled-border-color: #ff8700;
 }
 
-.table:not(.table-uni) > tbody > tr:nth-of-type(odd) > *, table.docutils:not(.table-uni):not(.field-list) > tbody > tr:nth-of-type(odd) > * {
-  --bs-table-color-type: var(--bs-table-striped-color);
-  --bs-table-bg-type: var(--bs-table-striped-bg);
+.table th :last-child,
+.table td :last-child {
+  margin-bottom: 0;
+}
+.table.field-list .field-name {
+  padding-right: 1rem;
+}
+
+.table-responsive {
+  margin-bottom: 1rem;
+}
+.table-responsive table.table {
+  margin-bottom: 0;
 }
 
 .page {
@@ -24284,27 +24294,6 @@ a:not([class*=btn]):hover {
 
 *:hover > .headerlink:after {
   visibility: visible;
-}
-
-/**
-* Tables
-*/
-table.docutils th :last-child,
-table.docutils td :last-child {
-  margin-bottom: 0;
-}
-table.docutils:not(.field-list) {
-  border: 0;
-}
-table.docutils.field-list .field-name {
-  padding-right: 1rem;
-}
-
-.table-responsive {
-  margin-bottom: 1rem;
-}
-.table-responsive table.docutils {
-  margin-bottom: 0;
 }
 
 .admonition {
