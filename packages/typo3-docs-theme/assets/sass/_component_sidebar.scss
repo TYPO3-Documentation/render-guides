@@ -4,8 +4,9 @@
     padding: $spacer;
     border-radius: $border-radius;
     overflow: hidden;
-    background: theme-color-level('dark', -11);
+    background: $white;
     font-size: $font-size-sm;
+    border: 1px solid $dark;
     @include media-breakpoint-up(sm) {
         float: right;
         width: 18rem;
@@ -13,8 +14,8 @@
     }
     > .sidebar-title {
         font-weight: $font-weight-bold;
-        color: color-yiq(theme-color('dark'));
-        background-color: theme-color('dark');
+        color: $white;
+        background-color: $dark;
         padding: calc(#{$spacer} / 2) $spacer;
         margin: -$spacer;
         margin-bottom: $spacer;
