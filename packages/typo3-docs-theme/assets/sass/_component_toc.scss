@@ -102,10 +102,15 @@
         border-bottom: 1px solid rgba(0, 0, 0, .15);
     }
 }
-.toc-title-project {
+a.toc-title-project {
     display: block;
     font-size: 1.5em;
     line-height: 1.25;
+    color: $primary;
+    text-decoration: none;
+    &:hover {
+        color: darken($primary, 15%);
+    }
 }
 .toc-search {
     margin-top: $spacer;
