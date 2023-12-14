@@ -30,10 +30,10 @@
             padding-left: 1em;
         }
         & > dt {
-            background-color: theme-color-level('info', -11);
+            background-color: lighten($info, 50%);
             border-radius: $border-radius;
-            border-top: solid 3px theme-color('info');
-            color: theme-color-level('info', 3);
+            border-top: solid 3px $info;
+            color: darken($info, 50%);
             display: inline-block;
             font-size: $font-size-base;
             margin-bottom: calc(#{$spacer} / 2);
@@ -41,9 +41,9 @@
             position: relative;
         }
         dl.php > dt {
-            background-color: theme-color-level('light', -1);
-            border-top: 2px solid theme-color-level('light', 3);
-            color: color-yiq(theme-color-level('light', -1));
+            background-color: $lighter;
+            border-top: 2px solid darken($lighter, 30%);
+            color: color-contrast($lighter);
         }
     }
 }
