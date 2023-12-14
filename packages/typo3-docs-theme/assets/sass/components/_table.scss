@@ -1,6 +1,14 @@
-.table:not(.table-uni) {
-    > tbody > tr:nth-of-type(#{$table-striped-order}) > * {
-        --#{$prefix}table-color-type: var(--#{$prefix}table-striped-color);
-        --#{$prefix}table-bg-type: var(--#{$prefix}table-striped-bg);
+.table {
+    @extend .table-striped;
+    th :last-child,
+    td :last-child {
+        margin-bottom: 0;
     }
+}
+
+.table-responsive {
+    table.table {
+        margin-bottom: 0;
+    }
+    margin-bottom: $spacer;
 }
