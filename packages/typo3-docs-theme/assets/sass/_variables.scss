@@ -32,7 +32,7 @@ $secondary:         #333333;
 $secondary-dark:    shade-color($secondary, 20%);
 $secondary-light:   tint-color($secondary, 20%);
 
-$tertiary:          #538bb3;
+$tertiary:          #005E85;
 $tertiary-dark:     shade-color($tertiary, 20%);
 $tertiary-light:    lighten($tertiary, 20%);
 
@@ -67,8 +67,8 @@ $theme-colors: (
     darker: $darker
 );
 
-$link-color:                   $primary;
-$link-hover-color:             darken($link-color, 15%);
+$link-color:                   $tertiary;
+$link-hover-color:             lighten($link-color, 15%);
 $link-alternate-color:         #ffffff;
 $link-alternate-hover-color:   darken($link-alternate-color, 15%);
 

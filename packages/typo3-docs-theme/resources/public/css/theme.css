@@ -10534,7 +10534,7 @@ readers do not read off random characters that represent icons */
   --bs-gray-900: #333333;
   --bs-primary: #ff8700;
   --bs-secondary: #333333;
-  --bs-tertiary: #538bb3;
+  --bs-tertiary: #005E85;
   --bs-quaternary: #75a75a;
   --bs-success: #5cb85c;
   --bs-info: #319fc0;
@@ -10548,7 +10548,7 @@ readers do not read off random characters that represent icons */
   --bs-darker: #333333;
   --bs-primary-rgb: 255, 135, 0;
   --bs-secondary-rgb: 51, 51, 51;
-  --bs-tertiary-rgb: 83, 139, 179;
+  --bs-tertiary-rgb: 0, 94, 133;
   --bs-quaternary-rgb: 117, 167, 90;
   --bs-success-rgb: 92, 184, 92;
   --bs-info-rgb: 49, 159, 192;
@@ -10608,11 +10608,11 @@ readers do not read off random characters that represent icons */
   --bs-tertiary-bg: #fafafa;
   --bs-tertiary-bg-rgb: 250, 250, 250;
   --bs-heading-color: inherit;
-  --bs-link-color: #ff8700;
-  --bs-link-color-rgb: 255, 135, 0;
+  --bs-link-color: #005E85;
+  --bs-link-color-rgb: 0, 94, 133;
   --bs-link-decoration: underline;
-  --bs-link-hover-color: #b35f00;
-  --bs-link-hover-color-rgb: 179, 95, 0;
+  --bs-link-hover-color: #0094d2;
+  --bs-link-hover-color-rgb: 0, 148, 210;
   --bs-code-color: hsl(350, 100%, 40%);
   --bs-highlight-color: #333333;
   --bs-highlight-bg: #fff7cc;
@@ -13495,20 +13495,20 @@ textarea.form-control-lg {
 }
 
 .btn-tertiary {
-  --bs-btn-color: #000000;
-  --bs-btn-bg: #538bb3;
-  --bs-btn-border-color: #538bb3;
-  --bs-btn-hover-color: #000000;
-  --bs-btn-hover-bg: #6d9cbe;
-  --bs-btn-hover-border-color: #6497bb;
-  --bs-btn-focus-shadow-rgb: 71, 118, 152;
-  --bs-btn-active-color: #000000;
-  --bs-btn-active-bg: #75a2c2;
-  --bs-btn-active-border-color: #6497bb;
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #005E85;
+  --bs-btn-border-color: #005E85;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #005071;
+  --bs-btn-hover-border-color: #004b6a;
+  --bs-btn-focus-shadow-rgb: 38, 118, 151;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #004b6a;
+  --bs-btn-active-border-color: #004764;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #000000;
-  --bs-btn-disabled-bg: #538bb3;
-  --bs-btn-disabled-border-color: #538bb3;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #005E85;
+  --bs-btn-disabled-border-color: #005E85;
 }
 
 .btn-quaternary {
@@ -13733,19 +13733,19 @@ textarea.form-control-lg {
 }
 
 .btn-outline-tertiary {
-  --bs-btn-color: #538bb3;
-  --bs-btn-border-color: #538bb3;
-  --bs-btn-hover-color: #000000;
-  --bs-btn-hover-bg: #538bb3;
-  --bs-btn-hover-border-color: #538bb3;
-  --bs-btn-focus-shadow-rgb: 83, 139, 179;
-  --bs-btn-active-color: #000000;
-  --bs-btn-active-bg: #538bb3;
-  --bs-btn-active-border-color: #538bb3;
+  --bs-btn-color: #005E85;
+  --bs-btn-border-color: #005E85;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #005E85;
+  --bs-btn-hover-border-color: #005E85;
+  --bs-btn-focus-shadow-rgb: 0, 94, 133;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #005E85;
+  --bs-btn-active-border-color: #005E85;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #538bb3;
+  --bs-btn-disabled-color: #005E85;
   --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: #538bb3;
+  --bs-btn-disabled-border-color: #005E85;
   --bs-gradient: none;
 }
 
@@ -13948,7 +13948,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #999999;
   --bs-btn-disabled-border-color: transparent;
   --bs-btn-box-shadow: 0 0 0 #000;
-  --bs-btn-focus-shadow-rgb: 217, 115, 0;
+  --bs-btn-focus-shadow-rgb: 38, 118, 151;
   text-decoration: underline;
 }
 .btn-link:focus-visible {
@@ -17607,7 +17607,7 @@ textarea.form-control-lg {
 }
 
 .text-bg-tertiary {
-  color: #000000 !important;
+  color: #ffffff !important;
   background-color: RGBA(var(--bs-tertiary-rgb), var(--bs-bg-opacity, 1)) !important;
 }
 
@@ -17689,8 +17689,8 @@ textarea.form-control-lg {
   text-decoration-color: RGBA(var(--bs-tertiary-rgb), var(--bs-link-underline-opacity, 1)) !important;
 }
 .link-tertiary:hover, .link-tertiary:focus {
-  color: RGBA(117, 162, 194, var(--bs-link-opacity, 1)) !important;
-  text-decoration-color: RGBA(117, 162, 194, var(--bs-link-underline-opacity, 1)) !important;
+  color: RGBA(0, 75, 106, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(0, 75, 106, var(--bs-link-underline-opacity, 1)) !important;
 }
 
 .link-quaternary {
@@ -22909,12 +22909,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-/* Bootstrap 5 tweak: do not underline links unless hovered over */
 a:not([class*=btn]) {
-  text-decoration: none;
-}
-
-a:not([class*=btn]):hover {
   text-decoration: underline;
 }
 
@@ -23158,8 +23153,8 @@ a:not([class*=btn]):hover {
 
 :root {
   --frame-color: inherit;
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #005E85;
+  --frame-link-hover-color: #0094d2;
   --frame-background: transparent;
   --frame-embedded-border-radius: 0.5rem;
   --frame-width-large: 1600px;
@@ -23556,78 +23551,78 @@ a:not([class*=btn]):hover {
 .frame-background-secondary {
   --frame-color: #ffffff;
   --frame-background: #333333;
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #005E85;
+  --frame-link-hover-color: #0094d2;
 }
 
 .frame-background-secondary-gradient {
   --frame-color: #ffffff;
   --frame-background: linear-gradient(135deg, #2b2b2b 15%, #525252 85%);
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #005E85;
+  --frame-link-hover-color: #0094d2;
 }
 
 .frame-background-tertiary {
-  --frame-color: #000000;
-  --frame-background: #538bb3;
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-color: #ffffff;
+  --frame-background: #005E85;
+  --frame-link-color: #ffffff;
+  --frame-link-hover-color: #d9d9d9;
 }
 
 .frame-background-tertiary-gradient {
-  --frame-color: #000000;
-  --frame-background: linear-gradient(135deg, #477698 15%, #6d9cbe 85%);
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-color: #ffffff;
+  --frame-background: linear-gradient(135deg, #005071 15%, #267697 85%);
+  --frame-link-color: #005E85;
+  --frame-link-hover-color: #0094d2;
 }
 
 .frame-background-quaternary {
   --frame-color: #000000;
   --frame-background: #75a75a;
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #005E85;
+  --frame-link-hover-color: #0094d2;
 }
 
 .frame-background-quaternary-gradient {
   --frame-color: #000000;
   --frame-background: linear-gradient(135deg, #638e4d 15%, #8ab473 85%);
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #005E85;
+  --frame-link-hover-color: #0094d2;
 }
 
 .frame-background-white {
   --frame-color: #000000;
   --frame-background: #ffffff;
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #005E85;
+  --frame-link-hover-color: #0094d2;
 }
 
 .frame-background-lighter {
   --frame-color: #000000;
   --frame-background: #fafafa;
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #005E85;
+  --frame-link-hover-color: #0094d2;
 }
 
 .frame-background-light {
   --frame-color: #000000;
   --frame-background: #f2f2f2;
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #005E85;
+  --frame-link-hover-color: #0094d2;
 }
 
 .frame-background-dark {
   --frame-color: #ffffff;
   --frame-background: #4d4d4d;
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #ffffff;
+  --frame-link-hover-color: #d9d9d9;
 }
 
 .frame-background-darker {
   --frame-color: #ffffff;
   --frame-background: #333333;
-  --frame-link-color: #ff8700;
-  --frame-link-hover-color: #b35f00;
+  --frame-link-color: #ffffff;
+  --frame-link-hover-color: #d9d9d9;
 }
 
 .frame-backgroundimage-container {
@@ -24153,10 +24148,15 @@ a:not([class*=btn]):hover {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.toc-title-project {
+a.toc-title-project {
   display: block;
   font-size: 1.5em;
   line-height: 1.25;
+  color: #ff8700;
+  text-decoration: none;
+}
+a.toc-title-project:hover {
+  color: #b35f00;
 }
 
 .toc-search {
