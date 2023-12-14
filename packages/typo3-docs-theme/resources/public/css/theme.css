@@ -12403,7 +12403,7 @@ progress {
   border-top-width: 0;
 }
 
-.table-striped > tbody > tr:nth-of-type(odd) > *, .table:not(.field-list) > tbody > tr:nth-of-type(odd) > * {
+.table-striped > tbody > tr:nth-of-type(odd) > *, .table > tbody > tr:nth-of-type(odd) > * {
   --bs-table-color-type: var(--bs-table-striped-color);
   --bs-table-bg-type: var(--bs-table-striped-bg);
 }
@@ -23784,9 +23784,6 @@ a:not([class*=btn]):hover {
 .table td :last-child {
   margin-bottom: 0;
 }
-.table.field-list .field-name {
-  padding-right: 1rem;
-}
 
 .table-responsive {
   margin-bottom: 1rem;
@@ -24592,8 +24589,9 @@ a:not([class*=btn]):hover {
   padding: 1rem;
   border-radius: 0.375rem;
   overflow: hidden;
-  background: theme-color-level("dark", -11);
+  background: #ffffff;
   font-size: 0.875rem;
+  border: 1px solid #4d4d4d;
 }
 @media (min-width: 576px) {
   .sidebar {
@@ -24604,8 +24602,8 @@ a:not([class*=btn]):hover {
 }
 .sidebar > .sidebar-title {
   font-weight: 600;
-  color: color-yiq(theme-color("dark"));
-  background-color: theme-color("dark");
+  color: #ffffff;
+  background-color: #4d4d4d;
   padding: calc(1rem / 2) 1rem;
   margin: -1rem;
   margin-bottom: 1rem;
