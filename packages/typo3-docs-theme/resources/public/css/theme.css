@@ -23780,6 +23780,11 @@ a:not([class*=btn]):hover {
   --bs-btn-disabled-border-color: #ff8700;
 }
 
+.table:not(.table-uni) > tbody > tr:nth-of-type(odd) > *, table.docutils:not(.table-uni):not(.field-list) > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-color-type: var(--bs-table-striped-color);
+  --bs-table-bg-type: var(--bs-table-striped-bg);
+}
+
 .page {
   display: flex;
   flex-direction: column;
@@ -24970,42 +24975,6 @@ table.docutils.field-list .field-name {
 
 span[id*=MathJax-Span] {
   color: #333333;
-}
-
-.t3-row {
-  background-color: theme-color("light");
-  border-top: 2px solid theme-color-level("light", 2);
-  margin: 1rem 0;
-  padding: 0;
-  clear: both;
-}
-
-.t3-cell {
-  width: auto;
-  clear: both;
-  border-bottom: 4px solid white;
-  background-color: transparent;
-  padding: calc(1rem / 2) 1rem;
-}
-.t3-cell > *:last-child {
-  margin-bottom: 0;
-}
-.t3-cell .term {
-  font-size: 0.875rem;
-  font-weight: normal;
-  color: #ff8700;
-  margin-bottom: 0;
-}
-
-.t3-cell-property,
-.t3-cell-datatype,
-.t3-cell-key,
-.t3-cell-default {
-  float: left;
-  clear: none;
-  font-weight: bold;
-  min-width: 30%;
-  border-right: 4px solid white;
 }
 
 ul[class*=horizbuttons-] {
