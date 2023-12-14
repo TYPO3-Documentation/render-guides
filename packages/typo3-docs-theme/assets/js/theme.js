@@ -50,43 +50,6 @@ function makeTablesResponsive() { 'use strict';
 makeTablesResponsive();
 
 
-/* global autocomplete:false, Search:false */
-// add autocompletion to search field
-document.addEventListener('DOMContentLoaded', function () { 'use strict';
-  var searchform = document.getElementById("search-form");
-  var searchinput = document.getElementById("searchinput");
-  if (searchform && searchinput) {
-    autocomplete({
-      input: searchinput,
-      fetch: function (text, update) {
-        if (typeof window.T3Docs.autocomplete === 'undefined') {
-          window.T3Docs.autocomplete = [];
-          Object.keys(Search._index.terms).forEach(function (item, index) {
-            window.T3Docs.autocomplete[index] = { label: item };
-          });
-        }
-        var suggestions = window.T3Docs.autocomplete.filter(function (entry) {
-          return entry.label.toLowerCase().startsWith(text.toLowerCase());
-        });
-        update(suggestions);
-      },
-      minLength: 4,
-      emptyMsg: 'Not found in word stems',
-      render: function (item) {
-        var div = document.createElement("div");
-        div.textContent = item.label;
-        return div;
-      },
-      onSelect: function (item) {
-        searchinput.value = item.label;
-        searchform.submit();
-      },
-      disableAutoSelect: true
-    });
-  }
-});
-
-
 jQuery(document).ready(function () { 'use strict';
 
   function setVersionContent(content) {

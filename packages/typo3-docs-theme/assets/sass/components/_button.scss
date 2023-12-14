@@ -11,3 +11,7 @@
         margin-left: calc(#{$spacer} / 2);
     }
 }
+
+.btn-primary {
+    @include button-variant($primary, $primary, $white, shade-color($primary, $btn-hover-bg-shade-amount), shade-color($primary, $btn-hover-bg-shade-amount), $white);
+}

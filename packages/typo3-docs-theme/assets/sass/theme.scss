@@ -1,3 +1,6 @@
+@import 'fontawesome';
+@import 'webfonts';
+
 // Variables
 @import '../../node_modules/bootstrap/scss/functions';
 @import 'variables';
@@ -9,6 +12,9 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
 @import 'mixins/container';
+
+// tweak bootstrap styles
+@import 'text';
 
 // tweak bootstrap components
 @import 'card';
@@ -32,7 +38,6 @@
 @import 'component_tablerow';
 @import 'component_horizbuttons';
 @import 'component_highlightblock';
-@import 'component_search';
 @import 'component_panel';
 @import 'component_displaysettings';
 @import 'rst_dl_fieldlist';
