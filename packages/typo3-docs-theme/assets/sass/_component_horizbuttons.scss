@@ -1,12 +1,3 @@
-//
-// Colors are matching Read the Docs
-// DO NOT ADJUST
-//
-// Similar:
-// - Admotion
-// - Bignums
-// - Horizontal Buttons
-//
 ul[class*="horizbuttons-"] {
     padding: 0;
     > li {
@@ -31,34 +22,34 @@ ul[class*="horizbuttons-"] {
     &[class*="-warning-"],
     &[class*="-attention-"] {
         > li {
-            color: color-yiq(theme-color('warning'));
-            background-color: theme-color('warning');
+            color: color-contrast($warning);
+            background-color: $warning;
         }
     }
     &[class*="-tip-"],
     &[class*="-important-"] {
         > li {
-            color: color-yiq(theme-color('success'));
-            background-color: theme-color('success');
+            color: color-contrast($success);
+            background-color: $success;
         }
     }
     &[class*="-note-"] {
         > li {
-            color: color-yiq(theme-color('info'));
-            background-color: theme-color('info');
+            color: color-contrast($info);
+            background-color: $info;
         }
     }
     &[class*="-typo3-"],
     &[class*="-primary-"] {
         > li {
-            color: color-yiq(theme-color('primary'));
-            background-color: theme-color('primary');
+            color: color-contrast($primary);
+            background-color: $primary;
         }
     }
     &[class*="-striking-"] {
         > li {
-            color: color-yiq(theme-color('secondary'));
-            background-color: theme-color('secondary');
+            color: color-contrast($secondary);
+            background-color: $secondary;
         }
     }
 }

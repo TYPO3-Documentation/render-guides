@@ -1,25 +1,6 @@
-//
-// Colors are matching Read the Docs
-// DO NOT ADJUST
-//
-// Similar:
-// - Admotion
-// - Bignums
-// - Horizontal Buttons
-// 'primary', 'secondary', 'success', 'info',
-// 'warning', 'danger', 'light', 'dark'
-//
+
 $bignum-normal: 1.15rem !default;
 $bignum-xxl:    1.5rem !default;
-
-// defined classes:
-//    .bignums, .bignums-xxl
-//    .bignums-hint == .bignums-info == .bignums-tip
-//    .bignums-attention == .bignums-caution == .bignum-warning
-//    .bignums-important == .bignums-seealso == .bignums-tip
-
-// Remove background-color, add border
-// https://github.com/TYPO3-Documentation/sphinx_typo3_theme/issues/173
 
 /**
  * Bignums
@@ -33,8 +14,7 @@ $bignum-xxl:    1.5rem !default;
         padding: $spacer;
         padding-left: (($bignum-normal * 2.5) + $spacer);
         padding-top: $spacer + ($bignum-normal * .25);
-        // background-color: theme-color-level('dark', -11);
-        border: 1px solid theme-color('dark');
+        border: 1px solid $dark;
         border-radius: $border-radius;
         min-height: (($bignum-normal * 2) + $spacer * 2);
         > .first,
@@ -42,10 +22,6 @@ $bignum-xxl:    1.5rem !default;
             font-weight: $font-weight-bold;
             font-size: $bignum-normal;
         }
-        // https://github.com/TYPO3-Documentation/sphinx_typo3_theme/issues/172
-        //*:last-child {
-        //    margin-bottom: 0;
-        //}
         &:before {
             font-size: $bignum-normal;
             display: block;
@@ -56,8 +32,8 @@ $bignum-xxl:    1.5rem !default;
             width: 2em;
             line-height: 2em;
             text-align: center;
-            background-color: theme-color('dark');
-            color: color-yiq(theme-color('dark'));
+            background-color: $dark;
+            color: color-contrast($dark);
             border-radius: 50%;
             content: counter(li-counter, decimal);
             counter-increment: li-counter;
@@ -73,11 +49,10 @@ $bignum-xxl:    1.5rem !default;
 .bignums-info {
     @extend .bignums;
     > li {
-        // background-color: theme-color-level('info', -11);
-        border-color: theme-color('info');
+        border-color: $info;
         &:before {
-            background-color: theme-color('info');
-            color: color-yiq(theme-color('info'));
+            background-color: $info;
+            color: color-contrast($info);
         }
     }
 }
@@ -86,11 +61,10 @@ $bignum-xxl:    1.5rem !default;
 .bignums-attention {
     @extend .bignums;
     > li {
-        // background-color: theme-color-level('warning', -11);
-        border-color: theme-color('warning');
+        border-color: $warning;
         &:before {
-            background-color: theme-color('warning');
-            color: color-yiq(theme-color('warning'));
+            background-color: $warning;
+            color: color-contrast($warning);
         }
     }
 }
@@ -99,11 +73,10 @@ $bignum-xxl:    1.5rem !default;
 .bignums-tip {
     @extend .bignums;
     > li {
-        // background-color: theme-color-level('success', -11);
-        border-color: theme-color('success');
+        border-color: $success;
         &:before {
-            background-color: theme-color('success');
-            color: color-yiq(theme-color('success'));
+            background-color: $success;
+            color: color-contrast($success);
         }
     }
 }
@@ -111,11 +84,10 @@ $bignum-xxl:    1.5rem !default;
 .bignums-error {
     @extend .bignums;
     > li {
-        // background-color: theme-color-level('danger', -11);
-        border-color: theme-color('danger');
+        border-color: $danger;
         &:before {
-            background-color: theme-color('danger');
-            color: color-yiq(theme-color('danger'));
+            background-color: $danger;
+            color: color-contrast($danger);
         }
     }
 }
