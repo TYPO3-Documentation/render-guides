@@ -25021,62 +25021,55 @@ ul[class*=horizbuttons-][class*=-striking-] > li {
   margin-right: 1em;
 }
 
-.rst-content .field-list p {
-  margin: 0;
+dl.confval {
+  background-color: #ffffff;
+  border-radius: 0.375rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.3rem;
+  border: solid 3px #f2f2f2;
+  border-top-color: #b3b3b3;
 }
-.rst-content .field-list ul {
-  margin: 0;
-  padding-left: 1em;
+dl.confval > dt {
+  display: block;
+  background-color: #f2f2f2;
+  color: #000000;
+  font-size: 1.25em;
+  padding: 0.25em 0.5em;
+  margin-bottom: 0.75em;
+}
+dl.confval > dt code {
+  color: #000000;
+}
+dl.confval > dd {
+  margin-right: 1rem;
 }
 
-.rst-content .field-name {
-  -moz-hyphens: manual;
-  -ms-hyphens: manual;
-  -webkit-hyphens: manual;
-  hyphens: manual;
-}
-
-.rst-content dl.field-list {
+dl.field-list {
   display: grid;
   grid-template-columns: fit-content(30%) auto;
 }
-.rst-content dl.field-list dt {
+dl.field-list dt {
   font-weight: bold;
   word-break: break-word;
   padding-left: 0;
   padding-right: 0.5em;
   margin-bottom: 0.25rem;
 }
-.rst-content dl.field-list > dt:after {
+dl.field-list > dt:after {
   content: ":";
 }
-.rst-content dl.field-list dd {
+dl.field-list dd {
   padding-left: 0.5em;
   margin-top: 0;
   margin-left: 0;
   margin-bottom: 0.25rem;
 }
-
-.rst-content dl.std:not(.option-list):not(.field-list):not(.footnote):not(.citation):not(.glossary):not(.simple) {
-  background-color: hsl(0, 0%, 96%);
-  border-radius: 0.375rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.3rem;
+dl.field-list p {
+  margin: 0;
 }
-.rst-content dl.std:not(.option-list):not(.field-list):not(.footnote):not(.citation):not(.glossary):not(.simple) > dt {
-  background-color: hsl(0, 0%, 90%);
-  border-radius: 0.375rem;
-  border-top: solid 3px #666666;
-  display: inline-block;
-  font-size: 1.25em;
-  padding: 0.25em 0.5em;
-  margin-bottom: 0.75em;
-}
-.rst-content dl.std:not(.option-list):not(.field-list):not(.footnote):not(.citation):not(.glossary):not(.simple) > dd {
-  margin-right: 1rem;
-}
-.rst-content dl.std.confval > dt {
-  font-family: "Source Code Pro", monospace;
+dl.field-list ul {
+  margin: 0;
+  padding-left: 1em;
 }
 
 .rst-content dl.php {

@@ -1,22 +1,4 @@
-//
-// Field lists
-//
-.rst-content .field-list {
-    p {
-        margin: 0;
-    }
-    ul {
-        margin: 0;
-        padding-left: 1em;
-    }
-}
-.rst-content .field-name {
-    -moz-hyphens: manual;
-    -ms-hyphens: manual;
-    -webkit-hyphens: manual;
-    hyphens: manual;
-}
-.rst-content dl.field-list {
+dl.field-list {
     display: grid;
     grid-template-columns: fit-content(30%) auto;
     dt {
@@ -34,5 +16,12 @@
         margin-top: 0;
         margin-left: 0;
         margin-bottom: $spacer * .25;
+    }
+    p {
+          margin: 0;
+    }
+    ul {
+        margin: 0;
+        padding-left: 1em;
     }
 }

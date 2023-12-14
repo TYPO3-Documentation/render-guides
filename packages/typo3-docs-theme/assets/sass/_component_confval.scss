@@ -1,0 +1,23 @@
+
+dl.confval {
+    background-color: $white;
+    border-radius: $border-radius;
+    margin-bottom: $spacer * 1.5;
+    padding-bottom: $spacer * .3;
+    border: solid 3px $light;
+    border-top-color: $gray-500;
+    & > dt {
+        display: block;
+        background-color: $light;
+        color: color-contrast($light);
+        font-size: $h4-font-size;
+        padding: .25em .5em;
+        margin-bottom: .75em;
+        code {
+            color: color-contrast($light);
+        }
+    }
+    & > dd {
+        margin-right: 1rem;
+    }
+}
