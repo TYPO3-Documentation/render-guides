@@ -1,5 +1,5 @@
 <tbody>
 {% for tableRow in tableRows %}
-    {% include "body/table/table-row.html.twig" with {'rowClass': cycle(['row-odd', 'row-even'], loop.index0)} %}
+    {% include "body/table/table-row.html.twig" %}
 {% endfor %}
 </tbody>
