@@ -13,10 +13,9 @@ final class GroupTabNode extends AbstractTabNode
         string $name,
         string $plainContent,
         InlineCompoundNode $content,
+        string $key,
         array $value = [],
     ) {
-        $key = strtolower($plainContent);
-        $key = (string)(preg_replace('/^[a-zA-Z0-9-_]/', '', $key));
         parent::__construct($name, $plainContent, $content, $key, false, $value);
     }
 }
