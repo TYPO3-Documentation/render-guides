@@ -24,6 +24,7 @@
 @import 'components/frame';
 @import 'components/button';
 @import 'components/table';
+@import 'components/tabs';
 @import 'component_page';
 @import 'component_footer';
 @import 'component_logo';
@@ -34,7 +35,6 @@
 @import 'component_bignums';
 @import 'component_sidebar';
 @import 'component_rst';
-@import 'component_sphinx_tabs';
 @import 'component_math';
 @import 'component_horizbuttons';
 @import 'component_highlightblock';
@@ -43,7 +43,6 @@
 @import 'rst_dl_fieldlist';
 @import 'rst_dl_confval';
 @import 'rst_dl_sphinxcontrib_phpdomain';
-@import 'rst_sphinx_tabs';
 
 // misc
 @import 'utilities';

@@ -23787,6 +23787,13 @@ a:not([class*=btn]) {
   margin-bottom: 0;
 }
 
+.tab-content {
+  border: 1px solid var(--bs-border-color);
+  border-top: none;
+  padding: 1rem;
+  margin-bottom: 1em;
+}
+
 .page {
   display: flex;
   flex-direction: column;
@@ -24908,58 +24915,6 @@ a.toc-title-project:hover {
   padding: 0 !important;
 }
 
-.rst-content {
-  /**
-   * Sphinx extension sphinx-tabs
-   */
-  /* Probably sphinx 1.8.5 inserts these .docutils.container that are in
-     conflict with our grid. We need to fix wrong styles here. */
-}
-.rst-content .sphinx-tabs {
-  margin-bottom: 2em;
-}
-.rst-content .sphinx-tabs:last-child {
-  margin-bottom: 1em;
-}
-.rst-content .sphinx-tabs .sphinx-menu .item p {
-  margin: 0;
-}
-.rst-content .sphinx-tabs .sphinx-menu a.item {
-  color: #333333 !important;
-}
-.rst-content .sphinx-tabs .sphinx-menu {
-  border-bottom-color: rgba(0, 0, 0, 0.25) !important;
-  display: flex;
-  flex-flow: row wrap;
-}
-.rst-content .sphinx-tabs .sphinx-menu a.active.item {
-  border-color: rgba(0, 0, 0, 0.25) !important;
-}
-.rst-content .sphinx-tab {
-  border-color: rgba(0, 0, 0, 0.25) !important;
-  box-sizing: border-box;
-}
-.rst-content .sphinx-tab.tab.active {
-  margin-bottom: 0;
-}
-.rst-content .code-tab.tab {
-  padding: 0.4em !important;
-}
-.rst-content .code-tab.tab div[class^=highlight] {
-  border: none;
-}
-.rst-content .sphinx-tabs .docutils.container {
-  margin: 0;
-  width: auto;
-}
-.rst-content .sphinx-tabs.docutils.container {
-  max-width: 100%;
-  padding: 0;
-}
-.rst-content .sphinx-tabs .top.tabular.menu.docutils.container {
-  padding: 0;
-}
-
 span[id*=MathJax-Span] {
   color: #333333;
 }
@@ -25180,22 +25135,6 @@ div[class^=highlight-] pre {
   background-color: theme-color-level("light", -1);
   border-top: 2px solid theme-color-level("light", 3);
   color: color-yiq(theme-color-level("light", -1));
-}
-
-.rst-content [role=tablist] {
-  border-bottom: 1px solid #b3b3b3;
-}
-.rst-content .sphinx-tabs-tab {
-  font-family: "Source Sans 3", sans-serif;
-  color: #333333;
-}
-.rst-content .sphinx-tabs-tab[aria-selected=true] {
-  border: 1px solid #b3b3b3;
-  border-bottom: 1px solid white;
-}
-.rst-content .sphinx-tabs-panel {
-  border: 1px solid #b3b3b3;
-  border-top: none;
 }
 
 .no-focus {
