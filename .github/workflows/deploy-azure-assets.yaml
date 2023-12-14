@@ -8,9 +8,6 @@ on:
   push:
     tags:
       - '*.*.*'
-    branches:
-      - stable
-  pull_request: null
   release:
     types:
       - published

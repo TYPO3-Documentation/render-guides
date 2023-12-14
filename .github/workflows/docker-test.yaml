@@ -1,0 +1,54 @@
+on: # yamllint disable-line rule:truthy
+  pull_request: null
+
+  push:
+    paths:
+      - "Dockerfile"
+
+name: "Test Dockerfile"
+
+env:
+  DEFAULT_PHP_VERSION: "8.1"
+  RUN_ENVIRONMENT: "local"
+
+jobs:
+  test-self-action:
+    name: "Test Docker container image creation"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v4"
+
+      - name: "Prepare action (adjust configure-guides-step)"
+        ##################################################################
+        # This is a workaround for the fact that the action.yml file
+        # does not support templating. We replace the image with the
+        # Dockerfile, so that we can use the Dockerfile from the current
+        # branch.
+        ##################################################################
+        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' .github/actions/configure-guides-step/action.yaml"
+
+      - name: "prepare action (adjust render-guides-step)"
+        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' .github/actions/render-guides-step/action.yaml"
+
+      - name: "Create output directory"
+        run: "mkdir -p RenderedDocumentation"
+
+      - name: "Run action"
+        ##################################################################
+        #
+        # TODO
+        #
+        # The `action.yaml` root file references:
+        #  - uses: TYPO3-Documentation/render-guides/.github/actions/configure-guides-step@main
+        # This does not seem to allow using the actual github action
+        # within THIS repository. We cannot just drop "@main" at the end,
+        # but also cannot just locally reference it via:
+        #  - uses: .github/actions/configure-guides-step
+        # So currently it will always only use exactly the action as specified
+        # in "main". We cannot make a test run on the image with the modified
+        # action just yet.
+        ##################################################################
+        uses: "./"
+
+      - run: ls -al RenderedDocumentation
