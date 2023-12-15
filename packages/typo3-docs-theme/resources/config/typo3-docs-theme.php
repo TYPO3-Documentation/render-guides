@@ -40,6 +40,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(CodeHighlight::class)
         ->arg('$languageAliases', [
             'none' => 'plaintext',
+            'rst' => 'plaintext',
             'text' => 'plaintext',
         ])
         ->arg('$additionalLanguages', [
