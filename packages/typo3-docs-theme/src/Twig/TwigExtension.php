@@ -27,7 +27,7 @@ final class TwigExtension extends AbstractExtension
         private readonly Typo3DocsThemeSettings $themeSettings,
         private readonly DocumentNameResolverInterface $documentNameResolver,
     ) {
-        if (strlen((string)getenv('CI')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
+        if (strlen((string)getenv('GITHUB_ACTIONS')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
             // The environment variable 'TYPO3AZUREEDGEURIVERSION' is set during
             // the creation of our Docker image, and holds the last pushed version
