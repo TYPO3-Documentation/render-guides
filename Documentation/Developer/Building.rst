@@ -163,19 +163,18 @@ repository like this:
 
 ..  code-block:: shell
 
-jobs:
-  render-documentation:
-    runs-on: ubuntu-latest
-    name: "Render Documentation for this repository and upload"
-    steps:
-      - name: Render Repository
-        uses: TYPO3-Documentation/gh-render-action@main
-        id: rendering
-        with:
-          repository_url: https://github.com/$GITHUB_REPOSITORY
-          source_branch: main
-          target_branch_directory: main
-
+    jobs:
+      render-documentation:
+        runs-on: ubuntu-latest
+        name: "Render Documentation for this repository and upload"
+        steps:
+          - name: Render Repository
+            uses: TYPO3-Documentation/gh-render-action@main
+            id: rendering
+            with:
+              repository_url: https://github.com/$GITHUB_REPOSITORY
+              source_branch: main
+              target_branch_directory: main
 
 Then it does not even matter, if the repository uses the old or new rendering,
 everything is done through the intermediate layer of `gh-render-action`.
@@ -277,14 +276,20 @@ Pull Request (PR).
 
 It performs basic code quality analysis and execution of unit/integration tests:
 
-
 -   Tests:
+
     -   `Run unit tests`
+
     -   `Run integration tests`
+
 -   Quality:
+
     -   `CGL`
+
     -   `PHPSTAN`
+
     -   `Lint guides.xml configurations`
+
 -   Validate monorepo structure
 
 GitHub workflow: phar
