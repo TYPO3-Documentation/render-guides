@@ -1,0 +1,16 @@
+<div class="versionchange {{ node.type }}">
+    <p class="versionmodified">
+        <span class="versionicon">
+        {%- if node.type=="deprecated" -%}
+            <i class="fa-solid fa-ban"></i>
+        {%- elseif node.type=="versionadded" -%}
+            <i class="fa-solid fa-rocket"></i>
+        {%- elseif node.type=="versionchanged" -%}
+            <i class="fa-solid fa-arrows-rotate"></i>
+        {%- endif -%}
+        </span>
+        {{ node.versionLabel }}</p>
+    <article>
+        {{ renderNode(node.value) }}
+    </article>
+</div>

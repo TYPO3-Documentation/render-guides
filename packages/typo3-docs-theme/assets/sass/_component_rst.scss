@@ -33,30 +33,7 @@
     //    margin: 0;
     //}
 
-    /**
-     * Version Added, Changed, Deprecated
-     */
-    div {
-        .deprecated,
-        .versionadded,
-        .versionchanged {
-            border-left: 2px solid hsl(26.5, 84.3%, 85%);
-            padding-left: 1em;
-        }
-    }
 
-    /**
-     * Version Modified
-     */
-    .versionmodified {
-        background-color: hsl(26.5, 84.3%, 95%);
-        border-radius: 3px;
-        border: 1px solid hsl(26.5, 84.3%, 85%);
-        color: $code-color-typoscript;
-        font-style: italic;
-        margin: 0 3px 0 0;
-        padding: 0 2px;
-    }
 
     /**
      * Images and objects
