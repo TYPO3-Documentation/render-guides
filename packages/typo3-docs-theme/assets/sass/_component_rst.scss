@@ -1,50 +1,6 @@
 .rst-content {
 
     /**
-     * Headlines
-     */
-    h3 {
-        padding-bottom: .5rem;
-        border-bottom: 1px solid rgba(0, 0, 0, .1);
-    }
-
-    /**
-     * Code
-     */
-    tt {
-        font-family: $font-family-monospace;
-        font-size: 75%;
-        border-radius: $border-radius;
-        background-color: theme-color('light');
-        border: 1px solid #ffffff;
-    }
-
-
-    /**
-     * Code block with caption
-     */
-    .literal-block-wrapper {
-        .code-block-caption {
-            font-size: $font-size-sm;
-            background-color: hsla(0, 0%, 100%, .05);
-        }
-    }
-    // the html postprocessing should turn the following class 'container'
-    // into 'du-container' to make the following rule superfluous
-    .literal-block-wrapper.docutils.container {
-        padding: 0;
-    }
-
-    /**
-     * Literals
-     */
-    .literal-block {
-        background-color: theme-color('light');
-        border-radius: $border-radius;
-        padding: $spacer;
-    }
-
-    /**
      * Lists
      */
     .toctree-wrapper ul,
@@ -78,16 +34,6 @@
     //}
 
     /**
-     * Keyboard Shortcuts
-     */
-    kbd {
-        color: $body-color;
-        background-color: theme-color('light');
-        border: 1px solid theme-color-level('light', 2);
-        box-shadow: $box-shadow-sm, inset 0 0 0 2px #ffffff;
-    }
-
-    /**
      * Version Added, Changed, Deprecated
      */
     div {
@@ -110,17 +56,6 @@
         font-style: italic;
         margin: 0 3px 0 0;
         padding: 0 2px;
-    }
-
-    /**
-     * GUI-Label
-     */
-    .guilabel {
-        font-size: 75%;
-        padding: .25em .5em;
-        background-color: theme-color-level('info', -8);
-        color: theme-color-level('info', 8);
-        border-radius: $border-radius;
     }
 
     /**

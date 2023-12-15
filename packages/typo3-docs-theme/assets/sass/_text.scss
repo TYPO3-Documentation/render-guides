@@ -1,3 +1,14 @@
-a:not([class*="btn"]) {
-    text-decoration: underline;
+
+article {
+    a:not([class*="btn"]) {
+        text-decoration: underline;
+    }
+
+    /**
+     * Headlines todo: why only h3 has an underline?
+     */
+    h3 {
+        padding-bottom: .5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
 }

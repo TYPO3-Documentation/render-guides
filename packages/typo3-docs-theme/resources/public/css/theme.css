@@ -22909,8 +22909,17 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-a:not([class*=btn]) {
+article {
+  /**
+   * Headlines todo: why only h3 has an underline?
+   */
+}
+article a:not([class*=btn]) {
   text-decoration: underline;
+}
+article h3, article .h3 {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .card-body *:last-child {
@@ -24627,31 +24636,13 @@ a.toc-title-project:hover {
 
 .rst-content {
   /**
-   * Headlines
-   */
-  /**
-   * Code
-   */
-  /**
-   * Code block with caption
-   */
-  /**
-   * Literals
-   */
-  /**
    * Lists
-   */
-  /**
-   * Keyboard Shortcuts
    */
   /**
    * Version Added, Changed, Deprecated
    */
   /**
    * Version Modified
-   */
-  /**
-   * GUI-Label
    */
   /**
    * Images and objects
@@ -24665,29 +24656,6 @@ a.toc-title-project:hover {
   /**
    * Index page "genindex.html"
    */
-}
-.rst-content h3, .rst-content .h3 {
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-.rst-content tt {
-  font-family: "Source Code Pro", monospace;
-  font-size: 75%;
-  border-radius: 0.375rem;
-  background-color: theme-color("light");
-  border: 1px solid #ffffff;
-}
-.rst-content .literal-block-wrapper .code-block-caption {
-  font-size: 0.875rem;
-  background-color: hsla(0, 0%, 100%, 0.05);
-}
-.rst-content .literal-block-wrapper.docutils.container {
-  padding: 0;
-}
-.rst-content .literal-block {
-  background-color: theme-color("light");
-  border-radius: 0.375rem;
-  padding: 1rem;
 }
 .rst-content .toctree-wrapper ul li,
 .rst-content .toctree-wrapper ol li,
@@ -24713,12 +24681,6 @@ a.toc-title-project:hover {
     margin: 0;
   }
 }
-.rst-content kbd {
-  color: #333333;
-  background-color: theme-color("light");
-  border: 1px solid theme-color-level("light", 2);
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 2px #ffffff;
-}
 .rst-content div .deprecated,
 .rst-content div .versionadded,
 .rst-content div .versionchanged {
@@ -24733,13 +24695,6 @@ a.toc-title-project:hover {
   font-style: italic;
   margin: 0 3px 0 0;
   padding: 0 2px;
-}
-.rst-content .guilabel {
-  font-size: 75%;
-  padding: 0.25em 0.5em;
-  background-color: theme-color-level("info", -8);
-  color: theme-color-level("info", 8);
-  border-radius: 0.375rem;
 }
 .rst-content img,
 .rst-content object {
@@ -25070,6 +25025,33 @@ dl.field-list p {
 dl.field-list ul {
   margin: 0;
   padding-left: 1em;
+}
+
+/**
+ * Keyboard Shortcuts, text role :kbd:
+ */
+kbd {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 2px #ffffff;
+  background-color: white;
+  color: #000000;
+  border-radius: 0.375rem;
+  border: 1px solid #f2f2f2;
+}
+
+/**
+ * GUI-Label
+ */
+.guilabel {
+  font-size: 75%;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 2px #ffffff;
+  background-color: #f4fafc;
+  color: #000000;
+  border-radius: 0.375rem;
+  border: 1px solid #319fc0;
 }
 
 .rst-content dl.php {

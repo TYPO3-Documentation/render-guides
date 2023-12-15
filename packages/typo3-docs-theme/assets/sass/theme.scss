@@ -12,6 +12,7 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
 @import 'mixins/container';
+@import 'mixins/inline_styles';
 
 // tweak bootstrap styles
 @import 'text';
@@ -41,6 +42,7 @@
 @import 'component_displaysettings';
 @import 'component_confval.scss';
 @import 'component_fieldlist';
+@import 'component_textroles';
 @import 'rst_dl_sphinxcontrib_phpdomain';
 
 // misc
