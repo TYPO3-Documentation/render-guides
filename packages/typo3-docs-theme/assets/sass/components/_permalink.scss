@@ -1,0 +1,21 @@
+article {
+    a.headerlink, a.permalink {
+        position: relative;
+        font-size: .65em;
+        visibility: hidden;
+        top: -.15em;
+        text-decoration: none;
+        &:after {
+            @include fa-icon;
+            content: fa-content($fa-var-link);
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-left: -.35em;
+        }
+    }
+    *:hover {
+        & > a.headerlink:after, & > a.permalink:after {
+            visibility: visible;
+        }
+    }
+}
