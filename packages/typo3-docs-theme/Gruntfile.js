@@ -112,10 +112,6 @@ module.exports = function (grunt) {
           comments: false
         }
       },
-      underscore: {
-        src: 'node_modules/underscore/underscore.js',
-        dest: '<%= paths.output %>js/underscore.min.js'
-      },
       codeClipboard: {
         src: '<%= paths.source %>js/code-clipboard.js',
         dest: '<%= paths.output %>js/code-clipboard.min.js'
