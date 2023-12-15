@@ -24,7 +24,7 @@ jobs:
           persist-credentials: "false"
       - uses: "frankdejonge/use-github-token@1.0.2"
         with:
-          authentication: "garvinhicking-bot:${{ secrets.BOT_TOKEN_TEST }}"
+          authentication: "typo3-documentation-team:${{ secrets.BOT_TOKEN }}"
           user_name: "TYPO3 Documentation Team"
           user_email: "documentation-automation@typo3.com"
       - name: "Cache splitsh-lite"
