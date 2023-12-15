@@ -24962,19 +24962,6 @@ ul[class*=horizbuttons-][class*=-striking-] > li {
   background-color: #333333;
 }
 
-div[class^=highlight-] {
-  overflow-x: auto;
-  margin-bottom: 1rem;
-}
-div[class^=highlight-] pre {
-  margin: 0;
-  display: block;
-  overflow: auto;
-  border-radius: 0.2rem;
-  padding: 0.75rem;
-  font-size: 92%;
-}
-
 .panel {
   background: var(--bs-body-bg);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
