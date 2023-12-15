@@ -57,8 +57,10 @@ final class TwigExtension extends AbstractExtension
     public function getRelativePath(array $context, string $path): string
     {
         if ($this->typo3AzureEdgeURI !== '') {
-            // CI gets special treatment, then we use a fixed URI for assets.
-            return $this->typo3AzureEdgeURI . $path;
+            // CI (GitHub Actions) gets special treatment, then we use a fixed URI for assets.
+            // TODO: Fixate the "_resources" string as a class/config constant, not hardcoded
+            // (see packages/typo3-docs-theme/src/EventListeners/CopyResources.php)
+            return str_replace('/_resources/', '/', $this->typo3AzureEdgeURI . $path);
         } else {
             return $this->urlGenerator->generateInternalUrl($context['env'] ?? null, $path);
         }
