@@ -41,7 +41,9 @@ return static function (ContainerConfigurator $container): void {
         ->arg('$languageAliases', [
             'none' => 'plaintext',
             'text' => 'plaintext',
-            'typoscript' => 'plaintext',
+        ])
+        ->arg('$additionalLanguages', [
+            ['typoscript', __DIR__ . '/../languages/typoscript.json'],
         ])
         ->arg('$classes', 'code-block')
         ->tag('twig.extension')

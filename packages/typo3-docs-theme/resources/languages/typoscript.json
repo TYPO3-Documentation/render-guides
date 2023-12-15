@@ -1,0 +1,80 @@
+{
+    "aliases": [
+        "tsconfig"
+    ],
+    "case_insensitive": false,
+    "keywords": "ADJUST BOX CASE COA COA_INT CONTENT CROP EFFECT ELLIPSE EMBOSS EXTBASEPLUGIN FILES FLUIDTEMPLATE HMENU IMAGE IMG_RESOURCE LOAD_REGISTER OUTLINE PAGE RECORDS RESTORE_REGISTER SCALE SHADOW SVG TEXT TMENU TMENUITEM USER USER_INT WORKAREA",
+    "contains": [
+        {
+            "__comment": "One-line comment: `# Some comment` or `10 = TEXT # Some comment`",
+            "className": "comment",
+            "begin": "#",
+            "end": "$"
+        },
+        {
+            "__comment": "One-line comment: `// Some comment` or `10 = TEXT // Some comment`",
+            "className": "comment",
+            "begin": "\/\/",
+            "end": "$"
+        },
+        {
+            "__comment": "Multi-line comment: `/* Some comment */`",
+            "className": "comment",
+            "begin": "\/\\*",
+            "end": "\\*\/"
+        },
+        {
+            "__comment": "Array number: `10 =` or `  10 =`",
+            "className": "title",
+            "begin": "\\b[1-9][0-9]*(?=\\s?\\=)"
+        },
+        {
+            "__comment": "Array number: `10.` or `  10.`",
+            "className": "title",
+            "begin": "\\b[1-9][0-9]*(?=\\.)"
+        },
+        {
+            "__comment": "Array number: `10 {` or `  10 {`",
+            "className": "title",
+            "begin": "\\b[1-9][0-9]*(?=\\s?\\{)"
+        },
+        {
+            "__comment": "Functions: `.stdWrap`",
+            "className": "symbol",
+            "begin": "(?<=\\.)[A-Za-z][A-Za-z0-9_]+"
+        },
+        {
+            "__comment": "Functions: `  stdWrap =` or `  stdWrap {`",
+            "className": "symbol",
+            "begin": "(?<=[\\s{2,}])[A-Za-z][A-Za-z0-9_]+(?=\\s?[\\=|\\{])"
+        },
+        {
+            "__comment": "Key in function references: `data = date : U` (date)",
+            "className": "name",
+            "begin": "(?<=\\=\\s)[a-zA-Z]+(?=\\s\\:)"
+        },
+        {
+            "__comment": "Condition: `[date(\"j\") == 9]`",
+            "className": "meta",
+            "begin": "\\[.+\\]",
+            "end": "$"
+        },
+        {
+            "__comment": "Import: `@import 'EXT:my_extension/Configuration/TypoScript/bar.typoscript'`",
+            "className": "name",
+            "begin": "@import",
+            "end": "$"
+        },
+        {
+            "__comment": "Import: `<INCLUDE_TYPOSCRIPT: source=\"FILE:EXT:my_extension/Configuration/TypoScript/myMenu.typoscript\">`",
+            "className": "name",
+            "begin": "<INCLUDE_TYPOSCRIPT:",
+            "end": "$"
+        },
+        {
+            "__comment": "An ordinary number",
+            "className": "number",
+            "begin": "[0-9]+"
+        }
+    ]
+}
