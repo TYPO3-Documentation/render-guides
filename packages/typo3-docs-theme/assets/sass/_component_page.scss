@@ -71,3 +71,12 @@
     min-width: 0;
     flex-grow: 1;
 }
+
+/**
+* Sections
+*/
+section {
+    @include clearfix;
+    margin-top: ($spacer * 2.5);
+    margin-bottom: ($spacer * 2.5);
+}

@@ -22,8 +22,9 @@
 
 // components
 @import 'code';
-@import 'components/frame';
 @import 'components/button';
+@import 'components/frame';
+@import 'components/permalink';
 @import 'components/table';
 @import 'components/tabs';
 @import 'component_page';
@@ -31,7 +32,6 @@
 @import 'component_logo';
 @import 'component_breadcrumb';
 @import 'component_toc';
-@import 'component_docutils';
 @import 'component_admonition';
 @import 'component_bignums';
 @import 'component_sidebar';
