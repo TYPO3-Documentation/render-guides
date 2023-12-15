@@ -1,8 +1,7 @@
 on:
   push:
-    branches:
-      - main
-  pull_request: null
+    tags:
+      - '*.*.*'
   release:
     types:
       - published
@@ -35,7 +34,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest,enable=true
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
@@ -56,6 +55,8 @@ jobs:
 
       - name: Build and push
         id: build
+        env:
+          TYPO3AZUREEDGEURIVERSION: ${{ env.DOCKER_METADATA_OUTPUT_VERSION }}
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -63,6 +64,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
+          build-args: TYPO3AZUREEDGEURIVERSION=${{ env.DOCKER_METADATA_OUTPUT_VERSION }}
           cache-to: type=gha,mode=max
           outputs: type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true,push=true
       -
@@ -105,6 +107,11 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=raw,value=latest,enable=true
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3

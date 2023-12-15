@@ -73,6 +73,7 @@ jobs:
         run: "make test-xml ENV=${{ env.RUN_ENVIRONMENT }}"
 
   monorepo-validate:
+    name: "Validate monorepo structure"
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout"
@@ -91,29 +92,3 @@ jobs:
 
       - name: "Validate monorepo"
         run: "make test-monorepo ENV=${{ env.RUN_ENVIRONMENT }}"
-
-  test-self-action:
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: "Checkout"
-        uses: "actions/checkout@v4"
-
-      - name: "prepare action (adjust configure-guides-step)"
-        ##################################################################
-        # This is a workaround for the fact that the action.yml file
-        # does not support templating. We replace the image with the
-        # Dockerfile, so that we can use the Dockerfile from the current
-        # branch.
-        ##################################################################
-        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' .github/actions/configure-guides-step/action.yaml"
-
-      - name: "prepare action (adjust render-guides-step)"
-        run: "sed -i 's/^  image:.*$/  image: \"Dockerfile\"/g' .github/actions/render-guides-step/action.yaml"
-
-      - name: "Create output directory"
-        run: "mkdir -p RenderedDocumentation"
-
-      - name: "Run action"
-        uses: "./"
-
-      - run: ls -al RenderedDocumentation

@@ -1,0 +1,47 @@
+# NOTE: Azure Assets are only deployed when a commit+push happens in
+# "stable" branch AND changes anything in packages/typo3-docs-theme/
+# If no files there are changed, no upload needs to take place.
+# For the target upload version, the most recent GIT tag matching
+# (v)X.Y.Z is used (because GIT tags are not bound to branches, we
+# cannot retrieve "last tag committed to branch 'stable').
+on:
+  push:
+    tags:
+      - '*.*.*'
+  release:
+    types:
+      - published
+
+name: Deploy typo3-docs-theme on Azure
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get the version
+        id: get-version
+        run: |
+          if [[ "$GITHUB_REF" == *"refs/tags"* ]]; then
+            echo VERSION=$(echo ${GITHUB_REF#refs/tags/} | sed 's/v//g') >> $GITHUB_ENV
+          else
+            echo VERSION=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g') >> $GITHUB_ENV
+          fi
+
+      - name: Check assets to be uploaded
+        run: |
+          echo "Prepare to upload to ${{ env.VERSION }}"
+          find packages/typo3-docs-theme/resources/public
+
+      - name: Bundle for Azure upload (in "cdn")
+        run: |
+          mkdir -p cdn/theme/typo3-docs-theme/${{ env.VERSION }}/
+          cp -r packages/typo3-docs-theme/resources/public/* cdn/theme/typo3-docs-theme/${{ env.VERSION }}/
+
+      - name: Upload to Azure
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_ACCOUNT }}
+          AZURE_STORAGE_KEY: ${{ secrets.AZURE_KEY }}
+        run: |
+          az storage blob upload-batch --overwrite --source cdn --destination ${{ secrets.AZURE_CONTAINER }}
