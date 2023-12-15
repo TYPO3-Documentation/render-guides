@@ -53,7 +53,8 @@ fi
 if [ "${SHELL_VERBOSITY}" -gt 0 ]; then
     echo "SHELL_VERBOSITY is:    ${SHELL_VERBOSITY}"
     echo "UID of executing user: ${MY_UID}"
-    echo "Parameter order:       $1 | $2 | $3 | $4 | ..."
+    echo "GITHUB_ACTIONS:        ${GITHUB_ACTIONS}"
+    echo "CDN VERSION:           ${TYPO3AZUREEDGEURIVERSION}"
 fi
 
 ENTRYPOINT_DEFAULT="/opt/guides/vendor/bin/guides"
@@ -111,6 +112,9 @@ if [ "${MY_UID}" -eq "0" ]; then
         echo "#!/usr/bin/env sh" > /usr/local/bin/invocation.sh
         echo >> /usr/local/bin/invocation.sh
         echo "export SHELL_VERBOSITY=${SHELL_VERBOSITY}" >> /usr/local/bin/invocation.sh
+        echo "export TYPO3AZUREEDGEURIVERSION=${TYPO3AZUREEDGEURIVERSION}"  >> /usr/local/bin/invocation.sh
+        echo "export GITHUB_ACTIONS=${GITHUB_ACTIONS}"  >> /usr/local/bin/invocation.sh
+
         for ARG in "${ENTRYPOINT}"; do
             printf "${ARG} " >> /usr/local/bin/invocation.sh
         done
