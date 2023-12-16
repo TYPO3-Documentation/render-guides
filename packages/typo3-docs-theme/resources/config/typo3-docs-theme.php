@@ -40,11 +40,11 @@ return static function (ContainerConfigurator $container): void {
         ->set(CodeHighlight::class)
         ->arg('$languageAliases', [
             'none' => 'plaintext',
-            'rst' => 'plaintext',
             'text' => 'plaintext',
         ])
         ->arg('$additionalLanguages', [
             ['typoscript', __DIR__ . '/../languages/typoscript.json'],
+            ['rst', __DIR__ . '/../languages/rst.json'],
         ])
         ->arg('$classes', 'code-block')
         ->tag('twig.extension')
