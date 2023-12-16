@@ -1,0 +1,91 @@
+{
+    "aliases": [
+        "tsconfig"
+    ],
+    "case_insensitive": false,
+    "keywords": "",
+    "contains": [
+        {
+            "className": "section",
+            "begin": "^[=\\-~\"'^#*$`]{3,}$"
+        },
+        {
+            "className": "strong",
+            "begin": "[*_]{2}.+?[*_]{2}"
+        },
+        {
+            "className": "emphasis",
+            "begin": "\\*.+?\\*"
+        },
+        {
+            "__comment": "List * at start of line",
+            "className": "symbol",
+            "variants": [
+                {
+                    "begin": "^\\s*\\*"
+                },
+                {
+                    "begin": "^\\s*\\#\\."
+                },
+                {
+                    "begin": "^\\s*[0-9]+\\."
+                }
+            ]
+        },
+        {
+            "__comment": "Directive: .. something::",
+            "begin": "^\\s*\\.\\.\\s+([a-zA-Z0-9:\\-_]+)\\:\\:",
+            "className": "meta"
+        },
+        {
+            "__comment": "Fieldlist / Option :alt: Cards, example output",
+            "begin": "^\\s*\\:[a-zA-Z0-9:\\-_]+\\:\\s+.*$",
+            "className": "symbol",
+            "returnBegin": true,
+            "contains": [
+                {
+                    "className": "name",
+                    "begin": "^\\s*\\:",
+                    "end": "\\:"
+                },
+                {
+                    "className": "string",
+                    "begin": ".",
+                    "end": "$",
+                    "returnBegin": false,
+                    "excludeBegin": true
+                }
+            ]
+        },
+        {
+            "__comment": "Text role:  :something:`my content`",
+            "begin": "(?:(?<=\\s|^)\\:([a-zA-Z0-9:-_]+)\\:`([^`]+)`(?=\\s|$))",
+            "className": "name"
+        },
+        {
+            "__comment": "Reference:  `t3o <https://typo3.org>`__",
+            "begin": "(?:(?<=\\s|^)`([^`]+)`_{1,2}(?=\\W|\\s|$))",
+            "className": "name"
+        },
+        {
+            "__comment": "Reference:  t3o_",
+            "begin": "(?:(?<=\\s|^)([a-zA-Z0-9\\-\\_]+)_(?=\\W|\\s|$))",
+            "className": "name"
+        },
+        {
+            "__comment": "Link definition  _t3o: https://typo3.org",
+            "begin": "^\\s*_([a-zA-Z0-9:\\-]+)\\:",
+            "className": "name"
+        },
+        {
+            "__comment": "Link definition  _`t3o something`: https://typo3.org",
+            "begin": "^\\s*_`([^`]+)`\\:",
+            "className": "name"
+        },
+        {
+            "__comment": "Comment",
+            "begin": "^\\s*\\.\\.\\s.*$",
+            "className": "comment"
+        }
+    ]
+}
