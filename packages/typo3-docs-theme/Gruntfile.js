@@ -112,14 +112,14 @@ module.exports = function (grunt) {
           comments: false
         }
       },
-      codeClipboard: {
-        src: '<%= paths.source %>js/code-clipboard.js',
-        dest: '<%= paths.output %>js/code-clipboard.min.js'
-      },
-      theme: {
-        src: '<%= paths.source %>js/theme.js',
-        dest: '<%= paths.output %>js/theme.min.js'
-      },
+      target: {
+        files: {
+          '<%= paths.output %>js/theme.min.js': [
+            '<%= paths.source %>js/code-clipboard.js',
+            '<%= paths.source %>js/theme.js',
+          ]
+        }
+      }
     },
 
     // remove sourcemaps from dist files
