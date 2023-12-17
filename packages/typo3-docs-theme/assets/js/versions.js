@@ -1,56 +1,5 @@
-// T3Docs
-
-// ensure our own namespace
-if (typeof window.T3Docs === 'undefined') {
-  window.T3Docs = {};
-}
-
-// toggle expand-collapse state of menu item
-function toggleCurrent(event) { 'use strict';
-  event.preventDefault();
-  var link = event.currentTarget.parentElement;
-  var element = link.parentElement;
-  var siblings = element.parentElement.parentElement.querySelectorAll('li.current');
-  for (var i = 0; i < siblings.length; i++) {
-    if (siblings[i] !== element) {
-      siblings[i].classList.remove('current');
-    }
-  }
-  element.classList.toggle('current');
-}
-
-// add toggle icon to a-tags of menu items in .toc navigations
-function makeMenuExpandable() { 'use strict';
-  var tocs = document.getElementsByClassName('toc');
-  for (var i = 0; i < tocs.length; i++) {
-    var links = tocs[i].getElementsByTagName('a');
-    for (var ii = 0; ii < links.length; ii++) {
-      if (links[ii].nextSibling) {
-        var expand = document.createElement('span');
-        expand.classList.add('toctree-expand');
-        expand.addEventListener('click', toggleCurrent, true);
-        links[ii].prepend(expand);
-      }
-    }
-  }
-}
-makeMenuExpandable();
-
-
-// wrap tables to make them responsive
-function makeTablesResponsive() { 'use strict';
-  var tables = document.querySelectorAll('.rst-content table.docutils');
-  for (var i = 0; i < tables.length; i++) {
-    var wrapper = document.createElement('div');
-    wrapper.classList.add('table-responsive');
-    tables[i].parentNode.insertBefore(wrapper, tables[i]);
-    wrapper.appendChild(tables[i]);
-  }
-}
-makeTablesResponsive();
-
-
-jQuery(document).ready(function () { 'use strict';
+jQuery(document).ready(function () {
+  'use strict';
 
   function setVersionContent(content) {
     var options = document.createElement('dl');
@@ -85,9 +34,6 @@ jQuery(document).ready(function () { 'use strict';
     });
   }
 
-  // start with collapsed menu on a TYPO3 Exceptions page
-  jQuery('li.toctree-l1.current').filter(":contains('TYPO3 Exceptions')").removeClass('current');
-
   // fill in version hints
   if (!!DOCUMENTATION_OPTIONS && !!DOCUMENTATION_OPTIONS.URL_ROOT) {
     var coll = document.getElementsByClassName('version-hints-inner');
@@ -100,5 +46,4 @@ jQuery(document).ready(function () { 'use strict';
       });
     }
   }
-
 });

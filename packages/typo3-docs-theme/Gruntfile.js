@@ -115,8 +115,7 @@ module.exports = function (grunt) {
       target: {
         files: {
           '<%= paths.output %>js/theme.min.js': [
-            '<%= paths.source %>js/code-clipboard.js',
-            '<%= paths.source %>js/theme.js',
+            '<%= paths.source %>js/*.js',
           ]
         }
       }
