@@ -1,0 +1,141 @@
+<!-- content start -->
+                <section class="section" id="with-language-typoscript">
+    <h1>With language &quot;typoscript&quot;<a class="headerlink" href="#with-language-typoscript" title="Permalink to this headline">¶</a></h1>
+
+            <section class="section" id="imports">
+    <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+
+            <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-name">@import '<span class="hljs-bullet">EXT:myproject/Configuration/TypoScript/*.typoscript</span>'</span>
+<span class="hljs-name">@import '<span class="hljs-bullet">./userIsLoggedIn.typoscript</span>'</span>
+<span class="hljs-name">@import "<span class="hljs-bullet">./subDirectory/*.setup.typoscript</span>"</span>
+
+<span class="hljs-name">&lt;INCLUDE_TYPOSCRIPT: source="<span class="hljs-bullet">FILE:EXT:my_extension/Configuration/TypoScript/myMenu.typoscript</span>"&gt;</span>
+<span class="hljs-name">&lt;INCLUDE_TYPOSCRIPT: source="<span class="hljs-bullet">DIR:fileadmin/templates/</span>" extensions="typoscript"&gt;</span>
+<span class="hljs-name">&lt;INCLUDE_TYPOSCRIPT: source="<span class="hljs-bullet">FILE:EXT:my_extension/Configuration/TypoScript/user.typoscript</span>" condition="<span class="hljs-meta">[frontend.user.isLoggedIn]</span>"&gt;</span></code></pre>
+        <button class="code-block-copy" title="Copy to clipboard"><svg class="code-block-copy-icon" width="24" height="24"><title>Copy to clipboard</title><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path></svg></button>
+    </div>
+    </section>
+
+            <section class="section" id="conditions">
+    <h2>Conditions<a class="headerlink" href="#conditions" title="Permalink to this headline">¶</a></h2>
+
+            <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-meta">[date("j") == 9]</span>
+    <span class="hljs-comment"># ...</span>
+<span class="hljs-meta">[END]</span>
+
+<span class="hljs-meta">[date("j") == {$foo.bar}]</span>
+    <span class="hljs-comment"># ...</span>
+<span class="hljs-meta">[ELSE]</span>
+    <span class="hljs-comment"># ...</span>
+<span class="hljs-meta">[GLOBAL]</span></code></pre>
+        <button class="code-block-copy" title="Copy to clipboard"><svg class="code-block-copy-icon" width="24" height="24"><title>Copy to clipboard</title><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path></svg></button>
+    </div>
+    </section>
+
+            <section class="section" id="quoting-of-sql-identifiers">
+    <h2>Quoting of SQL identifiers<a class="headerlink" href="#quoting-of-sql-identifiers" title="Permalink to this headline">¶</a></h2>
+
+            <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs typoscript">select.where = (<span class="hljs-name">{#title}</span> LIKE <span class="hljs-name">{#%SOMETHING%}</span> AND NOT <span class="hljs-name">{#doktype}</span>)</code></pre>
+        <button class="code-block-copy" title="Copy to clipboard"><svg class="code-block-copy-icon" width="24" height="24"><title>Copy to clipboard</title><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path></svg></button>
+    </div>
+    </section>
+
+            <section class="section" id="variables">
+    <h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+
+            <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs typoscript">something = <span class="hljs-name">{$foo.bar}</span></code></pre>
+        <button class="code-block-copy" title="Copy to clipboard"><svg class="code-block-copy-icon" width="24" height="24"><title>Copy to clipboard</title><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path></svg></button>
+    </div>
+    </section>
+
+            <section class="section" id="comments">
+    <h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+
+            <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-comment"># Some comment</span>
+
+something = 42 <span class="hljs-comment"># Some comment</span>
+
+<span class="hljs-comment">// Another comment</span>
+
+something = 42 <span class="hljs-comment">// Another comment</span>
+
+<span class="hljs-comment">/* Some
+multiline
+comment */</span>
+
+something = 42 <span class="hljs-comment">/* some
+multiline
+comment */</span> and more</code></pre>
+        <button class="code-block-copy" title="Copy to clipboard"><svg class="code-block-copy-icon" width="24" height="24"><title>Copy to clipboard</title><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path></svg></button>
+    </div>
+    </section>
+
+            <section class="section" id="register">
+    <h2>Register<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h2>
+
+            <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs typoscript">dataWrap = &lt;ul class="<span class="hljs-name">{register:ulClass}</span>"&gt;|&lt;/ul&gt;</code></pre>
+        <button class="code-block-copy" title="Copy to clipboard"><svg class="code-block-copy-icon" width="24" height="24"><title>Copy to clipboard</title><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path></svg></button>
+    </div>
+    </section>
+
+            <section class="section" id="colors">
+    <h2>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h2>
+
+            <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs typoscript">something = <span class="hljs-number">#123</span>
+
+something = <span class="hljs-number">#abcdef</span>
+
+something = 1234 <span class="hljs-comment"># not recognized as color</span></code></pre>
+        <button class="code-block-copy" title="Copy to clipboard"><svg class="code-block-copy-icon" width="24" height="24"><title>Copy to clipboard</title><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path></svg></button>
+    </div>
+    </section>
+
+            <section class="section" id="array-numbers">
+    <h2>Array numbers<a class="headerlink" href="#array-numbers" title="Permalink to this headline">¶</a></h2>
+
+            <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
+<span class="hljs-title">10</span>.value = something
+
+<span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
+<span class="hljs-title">10</span> {
+    value = something
+}</code></pre>
+        <button class="code-block-copy" title="Copy to clipboard"><svg class="code-block-copy-icon" width="24" height="24"><title>Copy to clipboard</title><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path></svg></button>
+    </div>
+    </section>
+
+            <section class="section" id="keywords">
+    <h2>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h2>
+
+            <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
+
+<span class="hljs-title">10</span> = <span class="hljs-keyword">GIFBUILDER</span>
+
+<span class="hljs-title">10</span> = <span class="hljs-keyword">TMENU</span>
+
+<span class="hljs-title">10</span> = <span class="hljs-keyword">NO</span></code></pre>
+        <button class="code-block-copy" title="Copy to clipboard"><svg class="code-block-copy-icon" width="24" height="24"><title>Copy to clipboard</title><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path></svg></button>
+    </div>
+    </section>
+
+    </section>
+
+<!-- content end -->

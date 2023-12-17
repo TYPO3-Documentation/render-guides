@@ -3,12 +3,37 @@
         "tsconfig"
     ],
     "case_insensitive": false,
-    "keywords": "ADJUST BOX CASE COA COA_INT CONTENT CROP EFFECT ELLIPSE EMBOSS EXTBASEPLUGIN FILES FLUIDTEMPLATE HMENU IMAGE IMG_RESOURCE LOAD_REGISTER OUTLINE PAGE RECORDS RESTORE_REGISTER SCALE SHADOW SVG TEXT TMENU TMENUITEM USER USER_INT WORKAREA",
+    "keywords": "ACT ACTIFSUB ADJUST BOX CASE COA COA_INT CONTENT CROP CUR CURIFSUB EFFECT ELLIPSE EMBOSS EXTBASEPLUGIN FILES FLUIDTEMPLATE GIFBUILDER HMENU IFSUB IMAGE IMG_RESOURCE LOAD_REGISTER NO OUTLINE PAGE RECORDS RESTORE_REGISTER SCALE SHADOW SPC SVG TEXT TMENU USER USER_INT USERDEF1 USERDEF2 USR WORKAREA",
     "contains": [
         {
             "__comment": "EXT: paths: `EXT:my_extension/Configuration/TypoScript/bar.typoscript` or `FILE:EXT:my_extension/Configuration/TypoScript/myMenu.typoscript`",
             "className": "bullet",
-            "begin": "(FILE:)?EXT:[A-Za-z0-9_\\-\\/\\.]+"
+            "begin": "(EXT:|FILE:EXT:|DIR:)[A-Za-z0-9_\\-\\/\\.\\*]+"
+        },
+        {
+            "__comment": "fileadmin paths: `fileadmin/logo.gif`",
+            "className": "bullet",
+            "begin": "fileadmin\\/[A-Za-z0-9_\\-\\/\\.]+"
+        },
+        {
+            "__comment": "A constant: {$foo.bar}",
+            "className": "name",
+            "begin": "\\{[$[A-Za-z0-9\\._]+\\}"
+        },
+        {
+            "__comment": "A register: `{register:ulClass}`",
+            "className": "name",
+            "begin": "\\{register\\:[A-Za-z0-9_]+\\}"
+        },
+        {
+        "__comment": "Quoting of SQL fields - must be before the comments!",
+            "className": "name",
+            "begin": "\\{#[a-zA-Z0-9_%]+\\}"
+        },
+        {
+            "__comment": "Color: `#123` and `#abcdef` - must be before the comments!",
+            "className": "number",
+            "begin": "#([0-9a-f]{3}|[0-9a-f]{6})$"
         },
         {
             "__comment": "One-line comment: `# Some comment` or `10 = TEXT # Some comment`",
@@ -57,6 +82,11 @@
             "contains": [
                 {
                     "$ref": "#contains.0"
+                },
+                {
+                    "__comment": "Path: `./subDirectory/*.setup.typoscript`",
+                    "className": "bullet",
+                    "begin": "[A-Za-z0-9\\.\\/\\*]+"
                 }
             ]
         },
@@ -68,13 +98,13 @@
             "contains": [
                 {
                     "$ref": "#contains.0"
+                },
+                {
+                    "__comment": "Condition: `condition=\"[frontend.user.isLoggedIn]\"`",
+                    "className": "meta",
+                    "begin": "(?<=condition=\\\").*?(?=\\\")"
                 }
             ]
-        },
-        {
-            "__comment": "An ordinary number",
-            "className": "number",
-            "begin": "[0-9]+"
         }
     ]
 }
