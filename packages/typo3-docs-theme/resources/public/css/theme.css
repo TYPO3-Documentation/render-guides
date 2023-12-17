@@ -24956,36 +24956,6 @@ ul[class*=horizbuttons-][class*=-striking-] > li {
   background-color: rgba(var(--bs-body-color-rgb), 0.03);
 }
 
-.displaysettingsui {
-  display: none;
-}
-@media (min-width: 1200px) {
-  .displaysettingsui {
-    display: block;
-  }
-}
-.displaysettingsui .dsDivCogwheel {
-  text-align: right;
-  float: right;
-}
-.displaysettingsui .dsDivCogwheel i {
-  cursor: pointer;
-  color: hsl(32, 100%, 50%);
-}
-.displaysettingsui .dsPanel {
-  border-radius: 0.2em;
-  display: none;
-  background-color: hsl(0, 0%, 95%);
-  border: 1px solid hsl(0, 0%, 85%);
-  padding: 1em;
-}
-.displaysettingsui .dsPanel input {
-  margin-right: 0.5em;
-}
-.displaysettingsui .dsPanel label {
-  margin-right: 1em;
-}
-
 .rst-content dl.php {
   border-radius: 0.375rem;
   margin-bottom: 1rem;
