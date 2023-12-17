@@ -36,7 +36,7 @@ the following command.
 
 ..  code-block:: shell
 
-    docker pull ghcr.io/typo3-documentation/render-guides:main
+    docker pull ghcr.io/typo3-documentation/render-guides:latest
 
 For all available tags, please check the `GitHub packages page`_.
 Once you have pulled the image, you can run the image to render your project's
@@ -44,13 +44,13 @@ documentation.
 
 ..  note::
 
-    Eventually instead of `render-guides:main` we will use `render-guides:stable` to provide
-    stable versions, once the initial development of this project is more settled.
-    An asset URI will then be able to refer to tagged versions.
+    The Docker container internally contains a tagged release version of
+    this repository, and use that version as well to reference asset
+    URIs of the theme on our CDN.
 
 ..  code-block:: shell
 
-    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress --config ./Documentation
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest --progress --config ./Documentation
 
 Unlike other Docker images, this image will detect the owner-user of the mounted
 project. This means that the files created by the Docker image will have the
@@ -61,20 +61,20 @@ If this fail, you can resort to specifying the user:
 
 ..  code-block:: shell
 
-    docker run --rm --user=$(id -u):$(id -g) -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main --progress --config ./Documentation
+    docker run --rm --user=$(id -u):$(id -g) -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest --progress --config ./Documentation
 
 The provided image allows you to also perform a few other actions:
 
 ..  code-block:: shell
 
     # Convert Settings.cfg to guides.xml:
-    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main migrate ./Documentation
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest migrate ./Documentation
 
     # Check guides.xml files for XML conformity
-    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main lint-guides-xml
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest lint-guides-xml
 
     # Adapt guides.xml programmatically (work in progress)
-    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main configure \
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest configure \
       --project-version="2.2" \
       --project-title="My project title" \
       --project-release="2023" \
@@ -86,10 +86,10 @@ In case of errors you can increase verbose output by prefixing any command with 
 ..  code-block:: shell
 
     # Execute verbose commands with inline setting
-    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main verbose (render|migrate|lint-guides-xml|configure) [arguments/options]
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest verbose (render|migrate|lint-guides-xml|configure) [arguments/options]
 
     # Execute verbose commands with inline setting, useful for i.e. external actions
-    SHELL_VERBOSITY=3 docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:main (render|migrate|lint-guides-xml|configure) [arguments/options]
+    SHELL_VERBOSITY=3 docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest (render|migrate|lint-guides-xml|configure) [arguments/options]
 
 Another way to utilize Docker is to create your own image/container. This is aimed at people
 who want to contribute to the underlying Documentation tool. Please see :ref:`_Building`
