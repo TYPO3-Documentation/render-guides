@@ -1,4 +1,4 @@
 <div class="sidebar">
-    {% if title %}<p class="sidebar-title">{{ title }}</p>{% endif %}
+    {% if title %}<p class="sidebar-title">{{ renderNode(title) }}</p>{% endif %}
     {{ renderNode(node) }}
 </div>
