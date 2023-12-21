@@ -17,9 +17,7 @@ final class IssueReferenceTextRole extends AbstractReferenceTextRole
 
     public function __construct(
         private readonly LoggerInterface $logger,
-    ) {
-        parent::__construct($this->logger);
-    }
+    ) {}
 
     final public const NAME = 'issue';
 
