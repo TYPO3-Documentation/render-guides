@@ -47,6 +47,8 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                         'edit_on_github' => $configs[1]['edit_on_github'] ?? '',
                         'edit_on_github_branch' => $configs[1]['edit_on_github_branch'] ?? 'main',
                         'how_to_edit' => $configs[1]['how_to_edit'] ?? 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html',
+                        'official_manual_interlink_shortcode' => $configs[1]['official_manual_interlink_shortcode'] ?? '',
+                        'official_manual_interlink_predefined' => $configs[1]['official_manual_interlink_predefined'] ?? '0',
                         'copy_sources' => $configs[1]['copy_sources'] ?? 'true',
                     ],
                 ],
