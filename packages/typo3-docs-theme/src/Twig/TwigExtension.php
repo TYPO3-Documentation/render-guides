@@ -6,7 +6,9 @@ namespace T3Docs\Typo3DocsTheme\Twig;
 
 use League\Flysystem\Exception;
 use LogicException;
+use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
+use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
@@ -43,12 +45,57 @@ final class TwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('getAnchorIdOfSection', $this->getAnchorIdOfSection(...), ['needs_context' => true]),
+            new TwigFunction('getEditOnGitHubLink', $this->getEditOnGitHubLink(...), ['needs_context' => true]),
+            new TwigFunction('getCurrentFilename', $this->getCurrentFilename(...), ['needs_context' => true]),
             new TwigFunction('getRelativePath', $this->getRelativePath(...), ['needs_context' => true]),
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getPrevNextLinks', $this->getPrevNextLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getSettings', $this->getSettings(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('copyDownload', $this->copyDownload(...), ['is_safe' => ['html'], 'needs_context' => true]),
         ];
+    }
+
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getAnchorIdOfSection(array $context, SectionNode $sectionNode): string
+    {
+        foreach ($sectionNode->getChildren() as $childNode) {
+            if ($childNode instanceof AnchorNode) {
+                return $childNode->toString();
+            }
+        }
+        return '';
+    }
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getEditOnGitHubLink(array $context): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        $githubButton = $this->themeSettings->getSettings('edit_on_github');
+        if ($githubButton === '') {
+            return '';
+        }
+        $githubBranch = $this->themeSettings->getSettings('edit_on_github_branch', 'main');
+        $currentFileName = $this->getCurrentFilename($context);
+        if ($currentFileName === '') {
+            return '';
+        }
+        return sprintf("https://github.com/%s/edit/%s/Documentation/%s.rst", $githubButton, $githubBranch, $currentFileName);
+    }
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getCurrentFilename(array $context): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        try {
+            return  $renderContext->getCurrentFileName();
+        } catch (\Exception) {
+            return '';
+        }
     }
 
     /**

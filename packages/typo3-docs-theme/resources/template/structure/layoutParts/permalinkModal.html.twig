@@ -1,0 +1,52 @@
+{%- set officialManualShortcode = getSettings('official_manual_interlink_shortcode') -%}
+{%- set isOfficialManualPredefined = getSettings('official_manual_interlink_predefined') -%}
+<div class="modal fade" id="permalinkModal" tabindex="-1" aria-labelledby="permalinkModalLabel"
+    aria-hidden="true" data-current-filename="{{ getCurrentFilename() }}"
+    {%- if isOfficialManualPredefined %} data-interlink-predefined-manual="true"{% endif -%}
+    {%- if officialManualShortcode %} data-interlink-shortcode="{{ officialManualShortcode }}"{% endif -%}
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="permalinkModalLabel">Create permalink</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <label for="permalink-uri" class="col-form-label">Permalink</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri"/>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p>Copy and freely share the link</p>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">
+                        {%- set gitHubLink = getEditOnGitHubLink() -%}
+                        This link target has no permanent anchor assigned. {%- if (gitHubLink)  %}
+                        You can make a <a href="{{ getEditOnGitHubLink() }}">pull request on GitHub</a> to suggest an anchor.
+                        {% endif -%}
+                        The link bellow can be used but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">reStructuredText (reST):</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst"></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p>Copy this link into your TYPO3 manual. </p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">HTML:</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html"></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
