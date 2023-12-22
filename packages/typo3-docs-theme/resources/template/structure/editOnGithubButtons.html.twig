@@ -13,9 +13,9 @@
         <span class="btn-text">How to edit</span>
     </a>
     {% endif -%}
-    {%- set githubButton = getSettings('edit_on_github') -%}
-    {%- if (githubButton)  %}
-    <a class="btn btn-sm btn-primary" href="https://github.com/{{ githubButton }}/edit/{{ getSettings('edit_on_github_branch') }}/Documentation/{{ env.currentFileName }}.rst" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
+    {%- set gitHubLink = getEditOnGitHubLink() -%}
+    {%- if (gitHubLink)  %}
+    <a class="btn btn-sm btn-primary" href="{{ gitHubLink }}" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
         <span class="btn-icon"><span class="fab fa-github"></span></span>
         <span class="btn-text">Edit on GitHub</span>
     </a>

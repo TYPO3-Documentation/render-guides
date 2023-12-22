@@ -1,4 +1,7 @@
-<section class="section{% if node.classes %} {{ node.classesString }}{% endif %}" id="{{ node.title.id }}">
+{%- set anchorId = getAnchorIdOfSection(node) -%}
+<section class="section{% if node.classes %} {{ node.classesString }}{% endif %}" id="{{ node.title.id }}"
+         {%- if anchorId %} data-rst-anchor="{{ anchorId }}"{% endif %}
+>
     {% for childNode in node.children %}
         {{ renderNode(childNode) }}
     {% endfor %}
