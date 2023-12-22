@@ -1236,12 +1236,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "d6fffc4edc7126d01dc0341b74cf3a7a429420db"
+                "reference": "918eccad43faee4c481e3e41fcec42af12988ea2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/d6fffc4edc7126d01dc0341b74cf3a7a429420db",
-                "reference": "d6fffc4edc7126d01dc0341b74cf3a7a429420db",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/918eccad43faee4c481e3e41fcec42af12988ea2",
+                "reference": "918eccad43faee4c481e3e41fcec42af12988ea2",
                 "shasum": ""
             },
             "require": {
@@ -1279,7 +1279,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-12-20T17:28:46+00:00"
+            "time": "2023-12-22T09:42:56+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1419,12 +1419,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "8e9ff03cc2a7e9a9a0a012ddda8c5b6e87cb39a4"
+                "reference": "ba9903c1f0aa885bec1e900e9d4b2cabf71f2d42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/8e9ff03cc2a7e9a9a0a012ddda8c5b6e87cb39a4",
-                "reference": "8e9ff03cc2a7e9a9a0a012ddda8c5b6e87cb39a4",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/ba9903c1f0aa885bec1e900e9d4b2cabf71f2d42",
+                "reference": "ba9903c1f0aa885bec1e900e9d4b2cabf71f2d42",
                 "shasum": ""
             },
             "require": {
@@ -1450,7 +1450,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-12-20T17:28:46+00:00"
+            "time": "2023-12-22T08:12:27+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -5736,16 +5736,16 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "5.0.3",
+            "version": "5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "912dc2fbe3e3c1e7873313cc801b100b6c68c87b"
+                "reference": "fbf413a49e54f6b9b17e12d900ac7f6101591b7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/912dc2fbe3e3c1e7873313cc801b100b6c68c87b",
-                "reference": "912dc2fbe3e3c1e7873313cc801b100b6c68c87b",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/fbf413a49e54f6b9b17e12d900ac7f6101591b7f",
+                "reference": "fbf413a49e54f6b9b17e12d900ac7f6101591b7f",
                 "shasum": ""
             },
             "require": {
@@ -5758,7 +5758,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "5.0-dev"
+                    "dev-main": "5.1-dev"
                 }
             },
             "autoload": {
@@ -5791,7 +5791,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/diff/issues",
                 "security": "https://github.com/sebastianbergmann/diff/security/policy",
-                "source": "https://github.com/sebastianbergmann/diff/tree/5.0.3"
+                "source": "https://github.com/sebastianbergmann/diff/tree/5.1.0"
             },
             "funding": [
                 {
@@ -5799,7 +5799,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-05-01T07:48:21+00:00"
+            "time": "2023-12-22T10:55:06+00:00"
         },
         {
             "name": "sebastian/environment",
