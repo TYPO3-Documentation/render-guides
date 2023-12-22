@@ -7,15 +7,15 @@
 
     const link = event.currentTarget.parentElement;
     const element = link.parentElement;
-    const siblings = element.parentElement.parentElement.querySelectorAll('li.current');
+    const siblings = element.parentElement.parentElement.querySelectorAll('li.active');
 
     Array.from(siblings).forEach(sibling => {
       if (sibling !== element) {
-        sibling.classList.remove('current');
+        sibling.classList.remove('active');
       }
     });
 
-    element.classList.toggle('current');
+    element.classList.toggle('active');
   }
 
   // Add toggle icon to a-tags of menu items in .toc navigations
@@ -41,11 +41,11 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const currentFirstLevelEntries = document.querySelectorAll('li.toctree-l1.current');
+  const currentFirstLevelEntries = document.querySelectorAll('li.toctree-l1.active');
 
   Array.from(currentFirstLevelEntries).filter(entry => {
     if (entry.textContent.trim().startsWith('TYPO3 Exceptions')) {
-      entry.classList.remove('current');
+      entry.classList.remove('active');
     }
   });
 });
