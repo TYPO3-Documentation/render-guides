@@ -15,6 +15,7 @@ class Typo3DocsThemeSettings
     {
         return isset($this->settings[$key]);
     }
+
     public function getSettings(string $key, string $default = ''): string
     {
         if (!$this->hasSettings($key)) {
