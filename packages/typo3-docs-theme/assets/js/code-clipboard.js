@@ -18,5 +18,4 @@
       navigator.clipboard.writeText(codeBlockElement.textContent);
     });
   });
-
 })();
