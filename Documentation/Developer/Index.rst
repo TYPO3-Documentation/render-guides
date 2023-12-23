@@ -91,6 +91,7 @@ and the GitHub pipelines, while internally only using :file:`Makefile` syntax.
     Building
     Contributing
     ThemeCustomization
+    InterlinkInventories
 
 
 ..  _phpDocumentor/guides: https://github.com/phpDocumentor/guides

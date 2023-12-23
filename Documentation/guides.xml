@@ -10,6 +10,12 @@
         edit-on-github="TYPO3-Documentation/render-guides"
         edit-on-github-branch="main"
         interlink-shortcode="t3docsRenderGuides"
+        typo3-core-preferred="stable"
     />
-    <inventory id="h2document" url="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/" />
+    <!-- The following inventories are used as examples in the chapter `Developer/InterlinkInventories` -->
+    <!-- explicitly link to version 8.7 of TYPO3 Explained -->
+    <inventory id="t3coreapi_v8" url="https://docs.typo3.org/m/typo3/reference-coreapi/8.7/en-us/"/>
+    <!-- ext_sys_note and ext_sys_note_stable should always link to main-->
+    <inventory id="ext_sys_note" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"/>
+    <inventory id="ext_sys_note_stable" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"/>
 </guides>

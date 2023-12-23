@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use phpDocumentor\Guides\Event\PostRenderProcess;
+use phpDocumentor\Guides\Interlink\InventoryRepository;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
@@ -14,9 +15,11 @@ use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
+use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\TextRoles\IssueReferenceTextRole;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 return static function (ContainerConfigurator $container): void {
