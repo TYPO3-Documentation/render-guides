@@ -6,7 +6,7 @@
 Migration
 =========
 
-If you want to migrate from using Sphinx to render TYPO3 documentation to
+If you want to migrate from using Sphinx to render TYPO3 documentation
 using the render-guides, the file :file:`Documentation/Settings.cfg` has to be
 replaced by an XML file, :file:`Documentation/guides.xml`.
 
@@ -25,27 +25,53 @@ With official Docker container
     Work in progress - Note that we will use `:stable` at a later point to always provide stable
     images with a locked dependency and theme asset set.
 
-..  code-block:: sh
+To migrate your settings to the new rendering method, run the following
+command in your project's root folder:
 
-    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:latest migrate /path/to/Documentation
+..  code-block:: shell
+
+    docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:latest migrate Documentation
+
+The last option is the folder (here: :file:`Documentation`). When running the
+command from another folder than the project's root folder, adapt the given
+path accordingly.
 
 With make
 =========
 
-..  code-block:: sh
+To migrate your settings to the new rendering method, run the following
+command in your project's root folder:
 
-    make migrate-settings path=path/to/Documentation
+..  code-block:: shell
+
+    make migrate-settings path=Documentation
+
+When running the command from another folder than the project's root folder,
+adapt the given path accordingly.
 
 With ddev
 =========
 
-..  code-block:: sh
+To migrate your settings to the new rendering method, run the following
+command in your project's root folder:
 
-    ddev composer make migrate-settings path=path/to/Documentation
+..  code-block:: shell
+
+    ddev composer make migrate-settings path=Documentation
+
+When running the command from another folder than the project's root folder,
+adapt the given path accordingly.
 
 With PHP
 ========
 
-..  code-block:: sh
+To migrate your settings to the new rendering method, run the following
+command in your project's root folder:
 
-    packages/typo3-guides-cli/bin/typo3-guides migrate path/to/Documentation
+..  code-block:: shell
+
+    packages/typo3-guides-cli/bin/typo3-guides migrate Documentation
+
+The last option is the folder (here: :file:`Documentation`). When running the
+command from another folder than the project's root folder, adapt the given
+path accordingly.
