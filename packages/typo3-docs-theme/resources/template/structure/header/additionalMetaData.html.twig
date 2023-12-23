@@ -1,9 +1,0 @@
-{%- set officialManualShortcode = getSettings('official_manual_interlink_shortcode') -%}
-{%- set isOfficialManualPredefined = getSettings('official_manual_interlink_predefined') -%}
-
-{%- if isOfficialManualPredefined -%}
-    <meta name="t3docs-guides:interlink-predefined-manual" content="true">
-{% endif -%}
-{%- if officialManualShortcode -%}
-    <meta name="t3docs-guides:interlink-shortcode" content="{{ officialManualShortcode }}">
-{% endif -%}

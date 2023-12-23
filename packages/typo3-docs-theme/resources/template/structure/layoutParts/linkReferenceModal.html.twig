@@ -1,14 +1,12 @@
-{%- set officialManualShortcode = getSettings('official_manual_interlink_shortcode') -%}
-{%- set isOfficialManualPredefined = getSettings('official_manual_interlink_predefined') -%}
-<div class="modal fade" id="permalinkModal" tabindex="-1" aria-labelledby="permalinkModalLabel"
+{%- set interlinkShortcode = getSettings('interlink_shortcode') -%}
+<div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
     aria-hidden="true" data-current-filename="{{ getCurrentFilename() }}"
-    {%- if isOfficialManualPredefined %} data-interlink-predefined-manual="true"{% endif -%}
-    {%- if officialManualShortcode %} data-interlink-shortcode="{{ officialManualShortcode }}"{% endif -%}
+    {%- if interlinkShortcode %} data-interlink-shortcode="{{ interlinkShortcode }}"{% endif -%}
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="permalinkModalLabel">Create permalink</h5>
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
