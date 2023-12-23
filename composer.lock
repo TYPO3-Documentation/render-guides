@@ -1419,12 +1419,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "ba9903c1f0aa885bec1e900e9d4b2cabf71f2d42"
+                "reference": "c862967e515a1caafe6f3549c6004df44e8028cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/ba9903c1f0aa885bec1e900e9d4b2cabf71f2d42",
-                "reference": "ba9903c1f0aa885bec1e900e9d4b2cabf71f2d42",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/c862967e515a1caafe6f3549c6004df44e8028cc",
+                "reference": "c862967e515a1caafe6f3549c6004df44e8028cc",
                 "shasum": ""
             },
             "require": {
@@ -1450,7 +1450,7 @@
             "support": {
                 "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/main"
             },
-            "time": "2023-12-22T08:12:27+00:00"
+            "time": "2023-12-22T14:23:06+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
