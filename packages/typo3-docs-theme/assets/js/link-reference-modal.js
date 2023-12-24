@@ -9,7 +9,8 @@
   const SELECTOR_COPY_BUTTON = '.copy-button';
 
   function generateUri(section, rstAnchor) {
-    if (window.location.origin == null) {
+    // Firefox returns the string "null", whereas Chromium returns "file://"
+    if (window.location.origin === 'null' || window.location.origin === 'file://') {
       return null;
     }
     return rstAnchor ? `${window.location.origin}${window.location.pathname}#${rstAnchor}` : `${window.location.origin}${window.location.pathname}#${section?.id || ''}`;
@@ -38,6 +39,9 @@
   function updateInputsAndTextareas(linkReferenceModal, headerText, uri, rstLink) {
     if (uri === null) {
       // this can happen when opening a local file
+      linkReferenceModal.querySelector(SELECTOR_PERMALINK_URI).value = '';
+      linkReferenceModal.querySelector(SELECTOR_PERMALINK_HTML).value = '';
+    } else {
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_URI).value = uri;
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_HTML).value = `<a href="${uri}">${headerText}</a>`;
     }
