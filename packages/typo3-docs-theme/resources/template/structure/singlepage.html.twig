@@ -3,7 +3,9 @@
 {% block body %}
     <!-- content start -->
     {% for document in documents -%}
-        {{ renderNode(document) }}
+        <article>
+            {{ renderNode(document) }}
+        </article>
     {%~ endfor -%}
     <!-- content end -->
 {% endblock %}

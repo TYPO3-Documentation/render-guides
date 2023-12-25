@@ -22,7 +22,8 @@ final class SinglePageRenderer implements TypeRenderer
             $renderCommand->getDestination(),
             $renderCommand->getDestinationPath(),
             'singlepage',
-        )->withIterator($renderCommand->getDocumentIterator());
+        )->withIterator($renderCommand->getDocumentIterator())
+        ->withOutputFilePath('singlehtml/Index.html');
 
         $context->getDestination()->put(
             $renderCommand->getDestinationPath() . '/singlehtml/Index.html',
