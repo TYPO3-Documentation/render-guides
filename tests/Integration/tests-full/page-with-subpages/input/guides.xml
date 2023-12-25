@@ -6,4 +6,7 @@
         theme="typo3docs"
         links-are-relative="true"
     >
+    <output-format>html</output-format>
+    <output-format>singlepage</output-format>
+    <output-format>interlink</output-format>
 </guides>

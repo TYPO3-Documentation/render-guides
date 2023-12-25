@@ -103,6 +103,7 @@ final class TwigExtension extends AbstractExtension
      */
     public function getRelativePath(array $context, string $path): string
     {
+        $renderContext = $this->getRenderContext($context);
         if ($this->typo3AzureEdgeURI !== '') {
             // CI (GitHub Actions) gets special treatment, then we use a fixed URI for assets.
             // TODO: Fixate the "_resources" string as a class/config constant, not hardcoded
