@@ -1,0 +1,31 @@
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "16:00"
+      timezone: "Europe/Berlin"
+    allow:
+      - dependency-type: "development"
+    versioning-strategy: "increase"
+    commit-message:
+      prefix: "[TASK]"
+    labels:
+      - "dependencies"
+      - "composer"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/typo3-docs-theme/"
+    schedule:
+      interval: "daily"
+      time: "16:00"
+      timezone: "Europe/Berlin"
+    versioning-strategy: "increase"
+    commit-message:
+      prefix: "[TASK]"
+    labels:
+      - "dependencies"
+      - "npm"
