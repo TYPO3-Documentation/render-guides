@@ -58,7 +58,12 @@
                     <input class="toc-checkbox" id="toggleToc" type="checkbox">
                     <div class="toc-header">
                         <div class="toc-title">
-                            <a class="toc-title-project" href="/{{ env.projectNode.homeLink }}">{{ env.projectNode.title }}</a>
+                            {% set pagerLinks = getPagerLinks() %}
+                            {%- for link in pagerLinks -%}
+                            {%- if link.relation=='top' -%}
+                                <a class="toc-title-project" href="{{ link.url }}">{{ env.projectNode.title }}</a>
+                            {% endif -%}
+                            {%- endfor -%}
                             {% if env.projectNode.version -%}
                                 <div class="toc-version-wrapper" id="toc-version-wrapper">
                                     <div id="toc-version" class="toc-version">
