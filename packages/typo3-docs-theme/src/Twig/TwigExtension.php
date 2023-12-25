@@ -197,12 +197,19 @@ final class TwigExtension extends AbstractExtension
     public function getPagerLinks(array $context): array
     {
         $renderContext = $this->getRenderContext($context);
-        $documentEntries = [
-            'prev' => $this->getPrevDocumentEntry($renderContext),
-            'next' => $this->getNextDocumentEntry($renderContext),
-            'top' => $this->getTopDocumentEntry($renderContext),
-        ];
-        return $this->getPageLinks($documentEntries, $renderContext);
+        try {
+            $documentEntries = [
+                'prev' => $this->getPrevDocumentEntry($renderContext),
+                'next' => $this->getNextDocumentEntry($renderContext),
+                'top' => $this->getTopDocumentEntry($renderContext),
+            ];
+            return $this->getPageLinks($documentEntries, $renderContext);
+        } catch (\Exception) {
+            $documentEntries = [
+                'top' => $this->getTopDocumentEntry($renderContext),
+            ];
+            return $this->getPageLinks($documentEntries, $renderContext);
+        }
     }
 
     /**
@@ -212,11 +219,15 @@ final class TwigExtension extends AbstractExtension
     public function getPrevNextLinks(array $context): array
     {
         $renderContext = $this->getRenderContext($context);
-        $documentEntries = [
-            'prev' => $this->getPrevDocumentEntry($renderContext),
-            'next' => $this->getNextDocumentEntry($renderContext),
-        ];
-        return $this->getPageLinks($documentEntries, $renderContext);
+        try {
+            $documentEntries = [
+                'prev' => $this->getPrevDocumentEntry($renderContext),
+                'next' => $this->getNextDocumentEntry($renderContext),
+            ];
+            return $this->getPageLinks($documentEntries, $renderContext);
+        } catch (\Exception) {
+            return [];
+        }
     }
 
     private function getNextDocumentEntry(RenderContext $renderContext): DocumentEntryNode|null
