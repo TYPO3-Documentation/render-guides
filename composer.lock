@@ -1236,12 +1236,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "b6dbadf8f9df0f0e06e0e24cbb03848cb1a88616"
+                "reference": "ecc92b908580a1255b632a471b581abcd9992727"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/b6dbadf8f9df0f0e06e0e24cbb03848cb1a88616",
-                "reference": "b6dbadf8f9df0f0e06e0e24cbb03848cb1a88616",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/ecc92b908580a1255b632a471b581abcd9992727",
+                "reference": "ecc92b908580a1255b632a471b581abcd9992727",
                 "shasum": ""
             },
             "require": {
@@ -1279,7 +1279,7 @@
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
                 "source": "https://github.com/phpDocumentor/guides-core/tree/main"
             },
-            "time": "2023-12-24T05:54:40+00:00"
+            "time": "2023-12-25T19:10:33+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
