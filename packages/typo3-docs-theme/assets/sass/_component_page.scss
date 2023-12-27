@@ -49,8 +49,8 @@
 .page-main-navigation {
     flex-grow: 0;
     margin-left: calc(#{$grid-gutter-width} / 2 * -1);
-    margin-right: calc(#{grid-gutter-width} / 2 * -1);
-    padding: calc(#{grid-gutter-width} / 2);
+    margin-right: calc(#{$grid-gutter-width} / 2 * -1);
+    padding: calc(#{$grid-gutter-width} / 2);
     border-bottom: 1px solid rgba(0, 0, 0, .15);
     @include media-breakpoint-up(lg) {
         padding: ($spacer * 2) 0;
@@ -58,7 +58,6 @@
         width: 15rem;
         margin: 0;
         margin-right: $grid-gutter-width;
-        padding-right: calc(#{$grid-gutter-width} / 2);
         padding-right: calc(#{$grid-gutter-width} / 2);
         border-bottom: none;
         border-right: 1px solid rgba(0, 0, 0, .15);
