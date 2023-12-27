@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace T3Docs\GuidesCli\Tests\Command;
 
 use PHPUnit\Framework\Attributes\Test;
@@ -38,16 +37,16 @@ final class MigrateSettingsCommandTest extends TestCase
             ->willReturn([21, ['first message', 'second message']]);
 
         $this->commandTester->execute([
-            'input' => $tmpFolder
+            'input' => $tmpFolder,
         ]);
 
         $this->commandTester->assertCommandIsSuccessful();
         self::assertSame(<<< EXPECTED
-Migrating /tmp/Settings.cfg to /tmp/guides.xml ...
-first message
-second message
-21 settings converted. You can now delete Settings.cfg and add guides.xml to your repository.
-EXPECTED, trim($this->commandTester->getDisplay()));
+            Migrating /tmp/Settings.cfg to /tmp/guides.xml ...
+            first message
+            second message
+            21 settings converted. You can now delete Settings.cfg and add guides.xml to your repository.
+            EXPECTED, trim($this->commandTester->getDisplay()));
     }
 
     #[Test]

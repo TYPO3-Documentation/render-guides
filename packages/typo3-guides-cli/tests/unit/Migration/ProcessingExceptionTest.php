@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace T3Docs\GuidesCli\Tests\Migration;
 
 use PHPUnit\Framework\Attributes\Test;

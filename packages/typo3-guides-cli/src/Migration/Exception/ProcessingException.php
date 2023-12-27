@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace T3Docs\GuidesCli\Migration\Exception;
-
 
 final class ProcessingException extends \RuntimeException
 {
