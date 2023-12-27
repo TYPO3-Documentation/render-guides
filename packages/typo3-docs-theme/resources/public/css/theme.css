@@ -23832,8 +23832,8 @@ article *:hover > a.headerlink:after, article *:hover > a.permalink:after {
 .page-main-navigation {
   flex-grow: 0;
   margin-left: calc(40px / 2 * -1);
-  margin-right: calc(grid-gutter-width / 2 * -1);
-  padding: calc(grid-gutter-width / 2);
+  margin-right: calc(40px / 2 * -1);
+  padding: calc(40px / 2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 @media (min-width: 992px) {
@@ -23843,7 +23843,6 @@ article *:hover > a.headerlink:after, article *:hover > a.permalink:after {
     width: 15rem;
     margin: 0;
     margin-right: 40px;
-    padding-right: calc(40px / 2);
     padding-right: calc(40px / 2);
     border-bottom: none;
     border-right: 1px solid rgba(0, 0, 0, 0.15);
