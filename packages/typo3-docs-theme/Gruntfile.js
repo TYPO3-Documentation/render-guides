@@ -172,7 +172,6 @@ module.exports = function (grunt) {
   grunt.registerTask('update', ['copy']);
   grunt.registerTask('js', ['uglify']);
   grunt.registerTask('default', ['clean', 'update', 'stylelint', 'sass', 'js', 'removesourcemap']);
-  grunt.registerTask('frontend', ['default']);
   grunt.registerTask('build', ['default']);
   grunt.registerTask('render', ['clean:build']);
 };
