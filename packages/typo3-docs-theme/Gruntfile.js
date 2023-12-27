@@ -30,7 +30,8 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
     paths: {
       source: 'assets/',
-      output: 'resources/public/'
+      output: 'resources/public/',
+      debugDestination: '../../Documentation-GENERATED-temp/_resources/',
     },
 
     // copy
@@ -76,7 +77,18 @@ module.exports = function (grunt) {
             dest: '<%= paths.output %>js/bootstrap.min.js'
           }
         ]
-      }
+      },
+
+      debug: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= paths.source %>', // Adjust the source directory
+            src: ['**/*'],
+            dest: '<%= paths.debugDestination %>', // Use the debug destination variable
+          },
+        ],
+      },
     },
 
     // stylelint
@@ -101,6 +113,18 @@ module.exports = function (grunt) {
           '<%= paths.output %>css/fontawesome.css': '<%= paths.source %>sass/fontawesome.scss',
           '<%= paths.output %>css/theme.css': '<%= paths.source %>sass/theme.scss',
           '<%= paths.output %>css/webfonts.css': '<%= paths.source %>sass/webfonts.scss'
+        }
+      },
+
+      debug: {
+        options: {
+          sourceMap: true, // Enable sourcemaps for debugging
+        },
+        files: {
+          '<%= paths.debugDestination %>css/codeblock.css': '<%= paths.source %>sass/codeblock.scss',
+          '<%= paths.debugDestination %>css/fontawesome.css': '<%= paths.source %>sass/fontawesome.scss',
+          '<%= paths.debugDestination %>css/theme.css': '<%= paths.source %>sass/theme.scss',
+          '<%= paths.debugDestination %>css/webfonts.css': '<%= paths.source %>sass/webfonts.scss'
         }
       }
     },
@@ -174,4 +198,5 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['clean', 'update', 'stylelint', 'sass', 'js', 'removesourcemap']);
   grunt.registerTask('build', ['default']);
   grunt.registerTask('render', ['clean:build']);
+  grunt.registerTask('debug', ['clean', 'update', 'stylelint', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
 };

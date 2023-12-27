@@ -40,6 +40,39 @@ To build the public assets execute the following commands:
     npm ci
     npm run build
 
+Or use the custom ddev commands:
+
+..  code-block:: shell
+
+    ddev npm-ci
+    ddev npm-build
+
+
+Debug assets
+============
+
+You can build the assets for debugging with the following commands:
+
+..  code-block:: shell
+
+    ddev ssh
+    cd packages/typo3-docs-theme
+    npm ci
+    npm run debug
+
+Or use the custom ddev commands:
+
+..  code-block:: shell
+
+    ddev npm-ci
+    ddev npm-debug
+
+The generated assets are copied directly into :file:`Documentation-GENERATED-temp/_resources`
+and source maps are not removed. Upon inspection in the browsers web developer
+tools you can therefore see in which source scss file certain styles were
+defined. Before committing you must run :shell:`npm run build` so that you can
+commit the generated asset files into the theme.
+
 
 ..  _Bootstrap: https://getbootstrap.com/
 ..  _phpDocumentor/guides: https://github.com/phpDocumentor/guides
