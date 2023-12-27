@@ -1,52 +1,58 @@
-@import 'fontawesome';
-@import 'webfonts';
+// Fonts
+@import 'fonts/fontawesome';
+@import 'fonts/webfonts';
+
+// Functions
+@import '../../node_modules/bootstrap/scss/functions';
 
 // Variables
-@import '../../node_modules/bootstrap/scss/functions';
 @import 'variables';
 
-// dependencies
+// Dependencies
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/functions';
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/variables';
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/mixins';
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
+// Mixings
 @import 'mixins/container';
 @import 'mixins/inline_styles';
 
 // tweak bootstrap styles
 @import 'text';
 
-// tweak bootstrap components
-@import 'card';
-
 // components
-@import 'code';
 @import 'components/button';
+@import 'components/card';
+@import 'components/code';
 @import 'components/frame';
+@import 'components/math';
+@import 'components/panel';
 @import 'components/permalink';
+@import 'components/rst';
 @import 'components/table';
 @import 'components/tabs';
-@import 'component_page';
-@import 'component_footer';
-@import 'component_logo';
-@import 'component_breadcrumb';
-@import 'component_toc';
-@import 'component_admonition';
-@import 'component_bignums';
-@import 'component_sidebar';
-@import 'component_rst';
-@import 'component_math';
-@import 'component_horizbuttons';
-@import 'component_panel';
-@import 'component_phpdomain';
-@import 'component_confval.scss';
-@import 'component_fieldlist';
-@import 'component_textroles';
-@import 'component_versionchanged';
+@import 'components/textroles';
+
+// Additional classes that can be applied by .. rst-class::
+@import 'components/customClasses/bignums';
+@import 'components/customClasses/horizbuttons';
+
+// Styles for special directives
+@import 'components/directives/admonition';
+@import 'components/directives/confval.scss';
+@import 'components/directives/fieldlist';
+@import 'components/directives/phpdomain';
+@import 'components/directives/sidebar';
+@import 'components/directives/versionchanged';
+
+// Page structure
+@import 'layout/breadcrumb';
+@import 'layout/footer';
+@import 'layout/logo';
+@import 'layout/navigation/main_navigation';
+@import 'layout/structure';
 
 // misc
 @import 'utilities';
 
-// loaded as extra and ready made css file:
-//    codeblocks.css
