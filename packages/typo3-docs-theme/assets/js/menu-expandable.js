@@ -41,7 +41,7 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const currentFirstLevelEntries = document.querySelectorAll('li.toctree-l1.active');
+  const currentFirstLevelEntries = document.querySelectorAll('.menu-level-1 > li.active');
 
   Array.from(currentFirstLevelEntries).filter(entry => {
     if (entry.textContent.trim().startsWith('TYPO3 Exceptions')) {

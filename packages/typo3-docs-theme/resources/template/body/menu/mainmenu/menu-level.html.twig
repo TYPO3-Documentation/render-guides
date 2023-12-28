@@ -1,11 +1,11 @@
-<li class="toctree-l{{ menuEntry.level }} {%- if menu.currentPath == entry.url %} current {%- endif -%}{% if entry.url in menu.rootlinePaths %} active {%- endif -%}">
+<li class="{%- if menu.currentPath == entry.url %} current {%- endif -%}{% if entry.url in menu.rootlinePaths %} active {%- endif -%}">
     <a href="{{ renderLink(menuEntry.url) }}"
        class="reference internal {%- if entry.url in menu.rootlinePaths %} active {%- endif -%}">
         {{ renderNode(menuEntry.value.value) }}
     </a>
 
     {%- if menuEntry.children|length %}
-        <ul>
+        <ul class="menu-level-{{ menuEntry.level }}">
             {%- for entry in menuEntry.children -%}
                 {% include "body/menu/sitemap-level.html.twig" with {
                     menuEntry:entry
