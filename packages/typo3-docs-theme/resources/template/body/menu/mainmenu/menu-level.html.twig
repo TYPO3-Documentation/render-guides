@@ -1,13 +1,14 @@
 <li class="{%- if menu.currentPath == entry.url %} current {%- endif -%}{% if entry.url in menu.rootlinePaths %} active {%- endif -%}">
     <a href="{{ renderLink(menuEntry.url) }}"
-       class="reference internal {%- if entry.url in menu.rootlinePaths %} active {%- endif -%}">
+       class="reference internal" {%- if menu.currentPath == entry.url %} aria-current="page" {%- endif -%}>
         {{ renderNode(menuEntry.value.value) }}
     </a>
 
     {%- if menuEntry.children|length %}
         <ul class="menu-level-{{ menuEntry.level }}">
             {%- for entry in menuEntry.children -%}
-                {% include "body/menu/sitemap-level.html.twig" with {
+                {% include "body/menu/mainmenu/menu-level.html.twig" with {
+                    menu: node,
                     menuEntry:entry
                 } %}
             {%- endfor -%}
