@@ -20,9 +20,9 @@
 
   // Add toggle icon to a-tags of menu items in .toc navigations
   function makeMenuExpandable() {
-    const tocs = document.getElementsByClassName('toc');
+    const mainMenues = document.getElementsByClassName('main_menu');
 
-    Array.from(tocs).forEach(tocEntry => {
+    Array.from(mainMenues).forEach(tocEntry => {
       const links = tocEntry.getElementsByTagName('a');
 
       Array.from(links).forEach(link => {
