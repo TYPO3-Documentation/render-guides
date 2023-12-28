@@ -1,0 +1,68 @@
+
+/**
+ * Version Selector
+ */
+.toc-version {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    &:after {
+        content: '';
+        display: inline-block;
+        margin-left: .25em;
+        vertical-align: middle;
+        border: .25em solid transparent;
+        border-bottom: none;
+        border-top-color: inherit;
+    }
+}
+.toc-version-number {
+    margin-left: .25em;
+    font-weight: bold;
+}
+.toc-version-toggle {
+    margin-left: auto;
+}
+.toc-version-wrapper {
+    margin-top: .5rem;
+    border-radius: $btn-border-radius;
+}
+.toc-version-options {
+    display: none;
+    margin-top: calc(#{$spacer} / 2);
+    margin-bottom: 0;
+    border-radius: $btn-border-radius;
+    overflow: hidden;
+    color: color-contrast($light);
+    background-color: $light;
+    a {
+        padding: $btn-padding-y $btn-padding-x;
+        display: block;
+        color: inherit;
+        &:hover {
+            text-decoration: none;
+            color: color-contrast($tertiary);
+            background-color: $tertiary;
+        }
+    }
+    p,
+    dl,
+    dd {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        padding: $btn-padding-y $btn-padding-x;
+    }
+}
+.toc-version-wrapper-active {
+    .toc-version-options {
+        display: block;
+    }
+    .toc-version:after {
+        border: .25em solid transparent;
+        border-top: none;
+        border-bottom-color: inherit;
+    }
+}
