@@ -9,30 +9,21 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use T3Docs\GuidesCli\Migration\SettingsMigrator;
-use T3Docs\GuidesCli\Repository\LegacySettingsRepository;
+use T3Docs\GuidesCli\Migration\Processor;
 
 final class MigrateSettingsCommand extends Command
 {
     protected static $defaultName = 'migrate';
 
-    private readonly LegacySettingsRepository $legacySettingsRepository;
-    private readonly SettingsMigrator $settingsMigrator;
+    private readonly Processor $processor;
 
-    /** @var \DOMDocument Holds the XML document that will be written (guides.xml) */
-    private \DOMDocument $xmlDocument;
-
-    /** @var array Will hold an array of messages for output */
-    private array $migrationMessages = [];
-
-    /** @var int The number of successfully converted settings */
-    private int $convertedSettings = 0;
-
-    public function __construct(string $name = null)
+    /**
+     * Arguments for testing only!
+     */
+    public function __construct(?Processor $processor = null)
     {
-        parent::__construct($name);
-        $this->legacySettingsRepository = new LegacySettingsRepository();
-        $this->settingsMigrator = new SettingsMigrator();
+        parent::__construct();
+        $this->processor = $processor ?? new Processor();
     }
 
     protected function configure(): void
@@ -77,44 +68,22 @@ final class MigrateSettingsCommand extends Command
         $output->writeln('Migrating ' . $settingsFile . ' to ' . $guidesFile . ' ...');
 
         try {
-            if (!$this->convertSettingsToGuide($output, $settingsFile, $guidesFile)) {
-                $output->writeln('<error>Settings could not be converted. Please check for proper syntax.</error>');
-                return Command::FAILURE;
-            }
-
-            foreach ($this->migrationMessages as $message) {
+            [$convertedSettings, $migrationMessages] = $this->processor->process($settingsFile, $guidesFile);
+            foreach ($migrationMessages as $message) {
                 $output->writeln($message);
             }
         } catch (\Exception $e) {
             $output->writeln('<error>' . $e->getMessage() . '</error>');
+            return Command::FAILURE;
         }
 
-        $output->writeln('Settings converted. You can now delete Settings.cfg and add guides.xml to your repository.');
+        $output->writeln(
+            \sprintf(
+                '%d settings converted. You can now delete Settings.cfg and add guides.xml to your repository.',
+                $convertedSettings,
+            )
+        );
 
         return Command::SUCCESS;
-    }
-
-    private function convertSettingsToGuide(OutputInterface $output, string $inputFile, string $outputFile): bool
-    {
-        $legacySettings = $this->legacySettingsRepository->get($inputFile);
-        [$this->xmlDocument, $this->convertedSettings, $this->migrationMessages]
-            = $this->settingsMigrator->migrate($legacySettings);
-
-        return $this->writeXmlDocument($outputFile, $output);
-    }
-
-    private function writeXmlDocument(string $outputFile, OutputInterface $output): bool
-    {
-        $fp = fopen($outputFile, 'w');
-        if (!$fp) {
-            $output->writeln('<error>Could not create file ' . $outputFile . '</error>');
-            return false;
-        }
-
-        fwrite($fp, (string)$this->xmlDocument->saveXML());
-
-        $output->writeln('<info>' . $this->convertedSettings . ' settings were migrated.</info>');
-
-        return true;
     }
 }
