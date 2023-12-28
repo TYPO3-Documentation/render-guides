@@ -7,7 +7,7 @@
     {%- if menuEntry.children|length %}
         <ul class="menu-level-{{ menuEntry.level }}">
             {%- for entry in menuEntry.children -%}
-                {% include "body/menu/mainmenu/menu-level.html.twig" with {
+                {% include "structure/navigation/menu-level.html.twig" with {
                     menu: node,
                     menuEntry:entry
                 } %}

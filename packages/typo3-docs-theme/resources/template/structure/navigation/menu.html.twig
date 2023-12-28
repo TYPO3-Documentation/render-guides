@@ -1,10 +1,9 @@
-
 {%- if node.caption %}
 <p class="caption"><span class="caption-text">{{ renderNode(node.caption) }}</span></p>
 {% endif -%}
 <ul class="menu-level-1">
     {% for entry in node.menuEntries -%}
-        {% include "body/menu/mainmenu/menu-level.html.twig" with {
+        {% include "structure/navigation/menu-level.html.twig" with {
             menu: node,
             menuEntry:entry
         } %}
