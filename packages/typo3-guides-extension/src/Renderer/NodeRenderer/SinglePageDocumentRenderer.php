@@ -16,9 +16,9 @@ class SinglePageDocumentRenderer implements NodeRenderer
     public function __construct(
         private readonly TemplateRenderer $renderer,
     ) {}
-    public function supports(Node $node): bool
+    public function supports(string $nodeFqcn): bool
     {
-        return $node instanceof DocumentNode;
+        return DocumentNode::class === $nodeFqcn;
     }
 
     public function render(Node $node, RenderContext $renderContext): string
