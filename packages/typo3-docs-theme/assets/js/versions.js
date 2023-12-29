@@ -1,36 +1,52 @@
-jQuery(document).ready(function () {
+(() => {
   'use strict';
 
-  function setVersionContent(content) {
-    var options = document.createElement('dl');
-    options.innerHTML = content;
-    var versionOptions = document.getElementById("toc-version-options");
-    versionOptions.innerHTML = '';
-    versionOptions.appendChild(options);
+  const URL_TEMPLATE = 'https://docs.typo3.org/services/ajaxversions.php?url=';
+
+  const SELECTOR_VERSION_ID = 'toc-version';
+  const SELECTOR_VERSION_OPTIONS_ID = 'toc-version-options';
+  const SELECTOR_VERSION_WRAPPER_ID = 'toc-version-wrapper';
+  const SELECTOR_VERSION_WRAPPER_ACTIVE_CLASS = 'toc-version-wrapper-active';
+
+  const versionElement = document.getElementById(SELECTOR_VERSION_ID);
+  if (!versionElement) {
+    return;
   }
 
-  var versionNode = document.getElementById("toc-version");
-  if (versionNode) {
-    versionNode.addEventListener('click', function () {
-      var versionWrapper = document.getElementById("toc-version-wrapper");
-      versionWrapper.classList.toggle('toc-version-wrapper-active');
-      var versionOptions = document.getElementById("toc-version-options");
-      if (!versionOptions.dataset.ready) {
-        var versionsUri = 'https://docs.typo3.org/services/ajaxversions.php?url=' + encodeURI(document.URL);
-        jQuery.ajax({
-          url: versionsUri,
-          success: function (result) {
-            setVersionContent(result);
-            var versionOptions = document.getElementById("toc-version-options");
-            versionOptions.dataset.ready = true;
-          },
-          error: function () {
-            setVersionContent('<p>No data available.</p>');
-            var versionOptions = document.getElementById("toc-version-options");
-            versionOptions.dataset.ready = true;
-          }
-        });
+  async function retrieveListOfVersions() {
+    const url = URL_TEMPLATE + encodeURI(document.URL);
+    const response = await fetch(url);
+    if (!response.ok) {
+      return '';
+    }
+
+    return response.text();
+  }
+
+  function setVersionContent(parentElement, content) {
+    const options = document.createElement('dl');
+    options.innerHTML = content;
+    parentElement.innerHTML = '';
+    parentElement.appendChild(options);
+  }
+
+  function addListOfVersions() {
+    const versionWrapperElement = document.getElementById(SELECTOR_VERSION_WRAPPER_ID);
+    const versionOptions = document.getElementById(SELECTOR_VERSION_OPTIONS_ID);
+
+    versionWrapperElement.classList.toggle(SELECTOR_VERSION_WRAPPER_ACTIVE_CLASS);
+    if (versionOptions.dataset.ready) {
+      return;
+    }
+
+    retrieveListOfVersions().then(data => {
+      if (data === '') {
+        data = '<p>No data available.</p>';
       }
+      setVersionContent(versionOptions, data);
+      versionOptions.dataset.ready = 'true';
     });
   }
-});
+
+  document.addEventListener('click', addListOfVersions);
+})();
