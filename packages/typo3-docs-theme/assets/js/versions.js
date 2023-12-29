@@ -33,17 +33,4 @@ jQuery(document).ready(function () {
       }
     });
   }
-
-  // fill in version hints
-  if (!!DOCUMENTATION_OPTIONS && !!DOCUMENTATION_OPTIONS.URL_ROOT) {
-    var coll = document.getElementsByClassName('version-hints-inner');
-    if (!!coll && coll.length==1 && coll[0].dataset && coll[0].dataset.runAjax==='yes') {
-      jQuery.ajax({
-        url: DOCUMENTATION_OPTIONS.URL_ROOT+"_static/ajax-version-hints.html",
-        success: function (texthtml) {
-          jQuery(".version-hints-inner").html(texthtml);
-        }
-      });
-    }
-  }
 });
