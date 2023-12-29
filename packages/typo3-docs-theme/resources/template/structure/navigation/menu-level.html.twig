@@ -1,0 +1,17 @@
+<li class="{%- if menu.currentPath == entry.url %} current {%- endif -%}{% if entry.url in menu.rootlinePaths %} active {%- endif -%}">
+    <a href="{{ renderLink(menuEntry.url) }}"
+       {%- if menu.currentPath == entry.url %} aria-current="page" {%- endif -%}>
+        {{ renderNode(menuEntry.value.value) }}
+    </a>
+
+    {%- if menuEntry.children|length %}
+        <ul class="menu-level-{{ menuEntry.level - 1 }}">
+            {%- for entry in menuEntry.children -%}
+                {% include "structure/navigation/menu-level.html.twig" with {
+                    menu: node,
+                    menuEntry:entry
+                } %}
+            {%- endfor -%}
+        </ul>
+    {%- endif -%}
+</li>

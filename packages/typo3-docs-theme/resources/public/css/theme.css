@@ -24767,15 +24767,15 @@ dl.field-list ul {
   justify-content: space-between;
 }
 
-.toc {
+.main_menu {
   margin: 1rem 0;
   display: block;
 }
-.toc .caption {
+.main_menu .caption {
   font-weight: bold;
   margin: 0;
 }
-.toc a {
+.main_menu a {
   position: relative;
   display: block;
   color: inherit;
@@ -24784,15 +24784,15 @@ dl.field-list ul {
   padding-right: 1.5em;
   text-decoration: none;
 }
-.toc ul {
+.main_menu ul {
   padding-left: 1rem;
   list-style-type: none;
 }
-.toc li {
+.main_menu li {
   border-radius: 0.375rem;
   overflow: hidden;
 }
-.toc .toctree-expand {
+.main_menu .toctree-expand {
   position: absolute;
   display: block;
   top: calc(1rem / 4 + 1rem * 1.25 / 2);
@@ -24803,48 +24803,48 @@ dl.field-list ul {
   background-color: #f2f2f2;
   border-radius: 0.375rem;
 }
-.toc .toctree-expand:after, .toc .toctree-expand:before {
+.main_menu .toctree-expand:after, .main_menu .toctree-expand:before {
   position: absolute;
   content: "";
   top: 50%;
   left: 50%;
 }
-.toc .toctree-expand:after {
+.main_menu .toctree-expand:after {
   width: 10px;
   height: 0;
   border-top: 2px solid;
   transform: translate(-50%, -50%);
 }
-.toc .toctree-expand:before {
+.main_menu .toctree-expand:before {
   width: 0;
   height: 10px;
   border-left: 2px solid;
   transform: translate(-50%, -50%);
 }
-.toc .active > a {
+.main_menu .active > a {
   color: #005E85;
   text-decoration: underline;
 }
-.toc .active > a > .toctree-expand {
+.main_menu .active > a > .toctree-expand {
   background-color: #005E85;
   color: #ffffff;
 }
-.toc .active > a > .toctree-expand:before {
+.main_menu .active > a > .toctree-expand:before {
   display: none;
 }
-.toc .current > a {
+.main_menu .current > a {
   font-weight: bold;
 }
-.toc > ul {
+.main_menu > ul {
   padding-left: 0;
 }
-.toc > ul .active > ul {
+.main_menu > ul .active > ul {
   display: block !important;
 }
-.toc > ul > li ul {
+.main_menu > ul > li ul {
   display: none;
 }
-.toc > ul:not(:last-child) {
+.main_menu > ul:not(:last-child) {
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }

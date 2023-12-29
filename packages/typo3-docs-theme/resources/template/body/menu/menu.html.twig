@@ -1,7 +1,6 @@
+
 {% if node.options.menu == 'mainmenu' %}
-    {% include "body/menu/mainmenu/menu.html.twig" %}
-{% elseif node.options.menu == 'navbar' %}
-    {% include "body/menu/navbar/menu.html.twig" %}
+    {% include "structure/navigation/menu.html.twig" %}
 {% elseif node.options.menu == 'sitemap' %}
     {% include "body/menu/sitemap.html.twig" %}
 {% else %}

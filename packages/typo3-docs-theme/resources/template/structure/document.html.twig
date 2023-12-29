@@ -7,12 +7,10 @@
     {{ parent() }}
 {% endblock %}
 
-{% block navbar %}
-    {% include "structure/navigation/navbar.html.twig" %}
-{% endblock %}
-
 {% block menu_doc %}
-    {% include "structure/navigation/menu_doc.html.twig" %}
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+        {{ renderMenu('mainmenu') }}
+    </div>
 {% endblock %}
 
 {% block body %}
