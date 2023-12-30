@@ -65,10 +65,6 @@ module.exports = function (grunt) {
       libs: {
         files: [
           {
-            src: 'node_modules/jquery/dist/jquery.min.js',
-            dest: '<%= paths.output %>js/jquery.min.js'
-          },
-          {
             src: 'node_modules/@popperjs/core/dist/umd/popper.min.js',
             dest: '<%= paths.output %>js/popper.min.js'
           },
@@ -149,7 +145,6 @@ module.exports = function (grunt) {
     removesourcemap: {
       contrib: {
         files: {
-          '<%= paths.output %>js/jquery.min.js': '<%= paths.output %>js/jquery.min.js',
           '<%= paths.output %>js/bootstrap.min.js': '<%= paths.output %>js/bootstrap.min.js',
           '<%= paths.output %>js/popper.min.js': '<%= paths.output %>js/popper.min.js'
         }
