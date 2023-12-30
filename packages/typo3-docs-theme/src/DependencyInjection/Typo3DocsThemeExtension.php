@@ -27,6 +27,11 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
     /** @param mixed[] $configs */
     public function load(array $configs, ContainerBuilder $container): void
     {
+        $loader = new PhpFileLoader(
+            $container,
+            new FileLocator(dirname(__DIR__, 2) . '/resources/config'),
+        );
+        $loader->load('typo3-docs-theme.php');
         foreach (self::HTML as $node => $template) {
             $definition = new Definition(
                 TemplateNodeRenderer::class,
@@ -58,10 +63,6 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
 
     public function prepend(ContainerBuilder $container): void
     {
-        $loader = new PhpFileLoader(
-            $container,
-            new FileLocator(dirname(__DIR__, 2) . '/resources/config'),
-        );
         $container->prependExtensionConfig('guides', [
             'themes' => [
                 'typo3docs' => [
@@ -70,6 +71,5 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 ],
             ],
         ]);
-        $loader->load('typo3-docs-theme.php');
     }
 }

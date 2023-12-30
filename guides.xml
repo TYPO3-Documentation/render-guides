@@ -6,6 +6,7 @@
     links-are-relative="true"
     theme="typo3docs"
 >
+    <extension class="\phpDocumentor\Guides\RestructuredText\DependencyInjection\ReStructuredTextExtension"/>
     <extension class="\phpDocumentor\Guides\Bootstrap\DependencyInjection\BootstrapExtension"/>
     <extension class="\phpDocumentor\Guides\Graphs\DependencyInjection\GraphsExtension"/>
     <extension class="\phpDocumentor\Guides\Markdown\DependencyInjection\MarkdownExtension"/>
