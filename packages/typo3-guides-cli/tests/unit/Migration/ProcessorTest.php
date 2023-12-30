@@ -49,8 +49,8 @@ final class ProcessorTest extends TestCase
         $actual = $this->subject->process('/path/to/Settings.cfg', $outputFile);
 
         self::assertXmlStringEqualsXmlString('<?xml version="1.0"?><guidesForTesting/>', file_get_contents($outputFile));
-        self::assertSame(42, $actual[0]);
-        self::assertSame(['some message', 'another message'], $actual[1]);
+        self::assertSame(42, $actual->numberOfConvertedSettings);
+        self::assertSame(['some message', 'another message'], $actual->migrationMessages);
     }
 
     #[Test]

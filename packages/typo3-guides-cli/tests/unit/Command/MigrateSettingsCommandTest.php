@@ -10,6 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use T3Docs\GuidesCli\Command\MigrateSettingsCommand;
 use PHPUnit\Framework\TestCase;
+use T3Docs\GuidesCli\Migration\Dto\ProcessingResult;
 use T3Docs\GuidesCli\Migration\Exception\ProcessingException;
 use T3Docs\GuidesCli\Migration\Processor;
 
@@ -34,7 +35,7 @@ final class MigrateSettingsCommandTest extends TestCase
         $this->processorStub
             ->method('process')
             ->with($tmpFolder . '/Settings.cfg', $tmpFolder . '/guides.xml')
-            ->willReturn([21, ['first message', 'second message']]);
+            ->willReturn(new ProcessingResult(21, ['first message', 'second message']));
 
         $this->commandTester->execute([
             'input' => $tmpFolder,
@@ -72,7 +73,7 @@ final class MigrateSettingsCommandTest extends TestCase
         $this->processorStub
             ->method('process')
             ->with($tmpFolder . '/Settings.cfg', $tmpFolder . '/guides.xml')
-            ->willReturn([1, []]);
+            ->willReturn(new ProcessingResult(1, []));
 
         $this->commandTester->execute([
             'input' => $tmpFolder,

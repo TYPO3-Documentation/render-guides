@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Migration;
 
+use T3Docs\GuidesCli\Migration\Dto\ProcessingResult;
 use T3Docs\GuidesCli\Migration\Exception\ProcessingException;
 use T3Docs\GuidesCli\Repository\LegacySettingsRepository;
 
@@ -23,13 +24,10 @@ class Processor
         $this->settingsMigrator = $settingsMigrator ?? new SettingsMigrator();
     }
 
-    /**
-     * @return array{0: int, 1: list<string>}
-     */
-    public function process(string $inputFile, string $outputFile): array
+    public function process(string $inputFile, string $outputFile): ProcessingResult
     {
         $legacySettings = $this->legacySettingsRepository->get($inputFile);
-        [$xmlDocument, $convertedSettings, $migrationMessages]
+        [$xmlDocument, $numberOfConvertedSettings, $migrationMessages]
             = $this->settingsMigrator->migrate($legacySettings);
 
         $fp = @fopen($outputFile, 'w') ?: throw ProcessingException::fileCannotBeCreated($outputFile);
@@ -37,6 +35,6 @@ class Processor
         fwrite($fp, $xmlString);
         fclose($fp);
 
-        return [$convertedSettings, $migrationMessages];
+        return new ProcessingResult($numberOfConvertedSettings, $migrationMessages);
     }
 }
