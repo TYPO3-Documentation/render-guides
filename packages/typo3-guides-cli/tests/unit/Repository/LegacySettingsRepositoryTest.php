@@ -11,6 +11,8 @@ use T3Docs\GuidesCli\Repository\LegacySettingsRepository;
 
 final class LegacySettingsRepositoryTest extends TestCase
 {
+    private LegacySettingsRepository $subject;
+
     protected function setUp(): void
     {
         $this->subject = new LegacySettingsRepository();
