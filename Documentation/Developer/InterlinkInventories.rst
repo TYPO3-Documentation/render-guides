@@ -8,6 +8,10 @@ Interlink Inventories
 
 Sections in other manuals than the current one can be linked during rendering
 by prefixing an anchor link or page link with the name of the manual.
+
+Interlinks to official manuals
+==============================
+
 By using suffixes the version of the manual to be linked can be
 specified:
 
@@ -92,7 +96,7 @@ The following links:
 
 
 Adding a new TYPO3 version or manual
-====================================
+------------------------------------
 
 In the event of a change in long-term support, adjustments to the corresponding
 TYPO3 versions can be made directly in the theme within the enum
@@ -100,3 +104,53 @@ TYPO3 versions can be made directly in the theme within the enum
 
 The default manuals to be supported can be managed in enum
 :php:`\T3Docs\Typo3DocsTheme\Inventory\DefaultInventories`.
+
+
+Interlinks to TYPO3 extensions
+==============================
+
+You can link to the main version of the manual of a TYPO3 extension if
+that extension's manual has been rendered on our server.
+
+To create an interlink to a third-party extension prefix the extensions
+composer name with `ext-` and replace the slash with `-` for example:
+
+..  code-block:: rst
+
+    *   :doc:`News <ext-georgringer/news:Index>`
+    *   :ref:`External Imports <ext-cobweb/external_import:start>`
+
+This will be rendered as:
+
+*   :doc:`News <ext-georgringer/news:Index>`
+*   :ref:`External Imports <ext-cobweb/external_import:start>`
+
+
+If an extension author need to link to a specific version of an extensions manual,
+they have to define that version manually in the manual's :file:`guides.xml`:
+
+..  code-block:: xml
+    :caption: Documentation/guides.xml
+
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <guides
+        xmlns="https://www.phpdoc.org/guides"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+    >
+        <project title="Render guides"/>
+        <extension
+            class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+            typo3-core-preferred="stable"
+        />
+        <!-- explicitly link to version 11.3 of the news manual -->
+        <inventory id="ext-georgringer-news-11-3" url="https://docs.typo3.org/p/georgringer/news/11.3/en-us/"/>
+    </guides>
+
+..  code-block:: rst
+
+    *   :doc:`News <ext-georgringer/news-11-3:Index>`
+
+This will be rendered as:
+
+*   :doc:`News <ext-georgringer/news-11-3:Index>`

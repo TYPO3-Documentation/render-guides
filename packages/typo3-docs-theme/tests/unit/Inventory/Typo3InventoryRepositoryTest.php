@@ -1,10 +1,14 @@
 <?php
 
+use phpDocumentor\Guides\Interlink\DefaultInventoryLoader;
 use phpDocumentor\Guides\Interlink\InventoryLoader;
+use phpDocumentor\Guides\Interlink\JsonLoader;
 use phpDocumentor\Guides\ReferenceResolvers\SluggerAnchorReducer;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
@@ -12,6 +16,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
 {
     private Typo3InventoryRepository $subject;
     private Typo3DocsThemeSettings $settings;
+    private JsonLoader&MockObject $jsonLoaderMock;
 
     /** @var array<int, array<string, string>> $inventoryConfigs */
     private array $inventoryConfigs;
@@ -24,6 +29,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
         );
         $this->inventoryConfigs = [
         ];
+        $this->jsonLoaderMock =  $this->createMock(JsonLoader::class);
         $this->subject = $this->getInventoryRepository($this->settings, $this->inventoryConfigs);
     }
 
@@ -100,11 +106,60 @@ final class Typo3InventoryRepositoryTest extends TestCase
         ];
     }
 
+    #[Test]
+    #[DataProvider('providerForExtensionInventoryUrl')]
+    public function extensionInventoryUrl(string $inventoryKey, string $expected): void
+    {
+        self::assertEquals($this->subject->getInventory($inventoryKey)->getBaseUrl(), $expected);
+    }
+
+    public static function providerForExtensionInventoryUrl(): \Generator
+    {
+        yield "extension-without-dash" => [
+            'inventoryKey' => 'ext-georgringer-news',
+            'expected' => "https://docs.typo3.org/p/georgringer/news/main/en-us/",
+        ];
+        yield "extension-with-dash" => [
+            'inventoryKey' => 'ext-sjbr-static-info-tables',
+            'expected' => "https://docs.typo3.org/p/sjbr/static-info-tables/main/en-us/",
+        ];
+    }
+
+
+    #[Test]
+    #[DataProvider('providerForExtensionNameScheme')]
+    public function extensionNameScheme(string $inventoryKey, bool $expected): void
+    {
+        self::assertEquals($this->subject->hasInventory($inventoryKey), $expected);
+    }
+    public static function providerForExtensionNameScheme(): \Generator
+    {
+        yield "extension-without-dash" => [
+            'inventoryKey' => 'ext-georgringer-news',
+            'expected' => true,
+        ];
+        yield "extension-with-dash" => [
+            'inventoryKey' => 'ext-sjbr-static-info-tables',
+            'expected' => true,
+        ];
+        yield "extension-without-vendor" => [
+            'inventoryKey' => 'ext-news',
+            'expected' => false,
+        ];
+        yield "extension-without-prefix" => [
+            'inventoryKey' => 'georgringer-news',
+            'expected' => false,
+        ];
+    }
+
+
     private function getInventoryRepository(Typo3DocsThemeSettings $settings, array $inventoryConfigs)
     {
         return new Typo3InventoryRepository(
+            new NullLogger(),
             new SluggerAnchorReducer(),
-            $this->createMock(InventoryLoader::class),
+            new DefaultInventoryLoader(new NullLogger(), $this->jsonLoaderMock),
+            $this->jsonLoaderMock,
             $settings,
             $inventoryConfigs,
         );

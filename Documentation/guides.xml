@@ -18,4 +18,6 @@
     <!-- ext_sys_note and ext_sys_note_stable should always link to main-->
     <inventory id="ext_sys_note" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"/>
     <inventory id="ext_sys_note_stable" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"/>
+    <!-- explicitly link to version 11.3 of the news manual -->
+    <inventory id="ext-georgringer-news-11-3" url="https://docs.typo3.org/p/georgringer/news/11.3/en-us/"/>
 </guides>
