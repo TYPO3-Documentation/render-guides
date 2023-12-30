@@ -25,7 +25,7 @@ final class SettingsMigratorTest extends TestCase
     #[DataProvider('providerForMigrateReturnsXmlDocumentCorrectly')]
     public function migrateReturnsXmlDocumentCorrectly(array $legacySettings, string $expected): void
     {
-        $actual = $this->subject->migrate($legacySettings)[0]->saveXML() ?: '';
+        $actual = $this->subject->migrate($legacySettings)->xmlDocument->saveXML() ?: '';
 
         self::assertXmlStringEqualsXmlString($expected, $actual);
     }
@@ -186,7 +186,7 @@ final class SettingsMigratorTest extends TestCase
             ],
         ];
 
-        $actual = $this->subject->migrate($legacySettings)[1];
+        $actual = $this->subject->migrate($legacySettings)->numberOfConvertedSettings;
 
         self::assertSame(6, $actual);
     }
@@ -199,7 +199,7 @@ final class SettingsMigratorTest extends TestCase
     #[DataProvider('providerForMigrateReturnsMessagesCorrectly')]
     public function migrateReturnsMessagesCorrectly(array $legacySettings, array $expected): void
     {
-        $actual = $this->subject->migrate($legacySettings)[2];
+        $actual = $this->subject->migrate($legacySettings)->messages;
 
         self::assertSame($expected, $actual);
     }

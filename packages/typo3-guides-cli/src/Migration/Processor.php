@@ -27,14 +27,13 @@ class Processor
     public function process(string $inputFile, string $outputFile): ProcessingResult
     {
         $legacySettings = $this->legacySettingsRepository->get($inputFile);
-        [$xmlDocument, $numberOfConvertedSettings, $migrationMessages]
-            = $this->settingsMigrator->migrate($legacySettings);
+        $migrationResult = $this->settingsMigrator->migrate($legacySettings);
 
         $fp = @fopen($outputFile, 'w') ?: throw ProcessingException::fileCannotBeCreated($outputFile);
-        $xmlString = $xmlDocument->saveXML() ?: throw ProcessingException::xmlCannotBeGenerated();
+        $xmlString = $migrationResult->xmlDocument->saveXML() ?: throw ProcessingException::xmlCannotBeGenerated();
         fwrite($fp, $xmlString);
         fclose($fp);
 
-        return new ProcessingResult($numberOfConvertedSettings, $migrationMessages);
+        return new ProcessingResult($migrationResult->numberOfConvertedSettings, $migrationResult->messages);
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace T3Docs\GuidesCli\Tests\Migration;
 
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\MockObject\Stub;
+use T3Docs\GuidesCli\Migration\Dto\MigrationResult;
 use T3Docs\GuidesCli\Migration\Exception\ProcessingException;
 use T3Docs\GuidesCli\Migration\Processor;
 use PHPUnit\Framework\TestCase;
@@ -30,14 +30,16 @@ final class ProcessorTest extends TestCase
         $settingsMigratorStub
             ->method('migrate')
             ->with(['section' => ['key' => 'value']])
-            ->willReturn([
-                $xmlDocument,
-                42,
-                [
-                    'some message',
-                    'another message',
-                ],
-            ]);
+            ->willReturn(
+                new MigrationResult(
+                    $xmlDocument,
+                    42,
+                    [
+                        'some message',
+                        'another message',
+                    ],
+                )
+            );
 
         $this->subject = new Processor($legacySettingsRepositoryStub, $settingsMigratorStub);
     }
