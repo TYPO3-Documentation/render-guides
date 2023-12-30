@@ -68,8 +68,8 @@ final class MigrateSettingsCommand extends Command
         $output->writeln('Migrating ' . $settingsFile . ' to ' . $guidesFile . ' ...');
 
         try {
-            [$convertedSettings, $migrationMessages] = $this->processor->process($settingsFile, $guidesFile);
-            foreach ($migrationMessages as $message) {
+            $actual = $this->processor->process($settingsFile, $guidesFile);
+            foreach ($actual->migrationMessages as $message) {
                 $output->writeln($message);
             }
         } catch (\Exception $e) {
@@ -80,7 +80,7 @@ final class MigrateSettingsCommand extends Command
         $output->writeln(
             \sprintf(
                 '%d settings converted. You can now delete Settings.cfg and add guides.xml to your repository.',
-                $convertedSettings,
+                $actual->numberOfConvertedSettings
             )
         );
 
