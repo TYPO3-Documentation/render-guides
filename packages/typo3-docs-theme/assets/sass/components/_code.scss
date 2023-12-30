@@ -3,8 +3,11 @@
 :root {
     --code-block-background-color: #f7f7f7;
     --code-block-background-border-color: #e6e6e6;
-    --code-block-linenos-text-color: #656e77;
+    --code-block-copy-check-color: #1a7f37;
     --code-block-emphasize-background-color: #ffc;
+    --code-block-linenos-text-color: #656e77;
+    --code-block-tooltip-background-color: #333;
+    --code-block-tooltip-text-color: #fff;
 }
 
 /*
@@ -42,22 +45,43 @@
     background: none;
     border: none;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 8px;
+    top: 8px;
+
+    .fa-copy {
+        opacity: .5;
+        transition: opacity .3s;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .fa-check::before {
+        color: var(--code-block-copy-check-color);
+    }
 }
 
-.code-block-copy-icon {
-    fill: none;
-    opacity: .5;
-    stroke: #000;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.5;
-    transition: opacity .3s;
+.code-block-check-tooltip {
+    background: var(--code-block-tooltip-background-color);
+    border-radius: .2rem;
+    color: var(--code-block-tooltip-text-color);
+    font-size: 80%;
+    padding: 2px 5px;
+    position: absolute;
+    right: 40px;
+    top: 8px;
 
-    &:hover {
-        opacity: 1;
+    &::after {
+        border: 10px solid;
+        border-color: transparent transparent transparent var(--code-block-tooltip-background-color);
+        content: "";
+        position: absolute;
     }
+}
+
+.code-block-hide {
+    display: none;
 }
 
 /**

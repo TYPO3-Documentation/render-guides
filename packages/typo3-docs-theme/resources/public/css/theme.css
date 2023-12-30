@@ -23031,8 +23031,11 @@ article h3, article .h3 {
 :root {
   --code-block-background-color: #f7f7f7;
   --code-block-background-border-color: #e6e6e6;
-  --code-block-linenos-text-color: #656e77;
+  --code-block-copy-check-color: #1a7f37;
   --code-block-emphasize-background-color: #ffc;
+  --code-block-linenos-text-color: #656e77;
+  --code-block-tooltip-background-color: #333;
+  --code-block-tooltip-text-color: #fff;
 }
 
 /*
@@ -23068,21 +23071,39 @@ article h3, article .h3 {
   background: none;
   border: none;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 8px;
+  top: 8px;
 }
-
-.code-block-copy-icon {
-  fill: none;
+.code-block-copy .fa-copy {
   opacity: 0.5;
-  stroke: #000;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.5;
   transition: opacity 0.3s;
 }
-.code-block-copy-icon:hover {
+.code-block-copy .fa-copy:hover {
   opacity: 1;
+}
+.code-block-copy .fa-check::before {
+  color: var(--code-block-copy-check-color);
+}
+
+.code-block-check-tooltip {
+  background: var(--code-block-tooltip-background-color);
+  border-radius: 0.2rem;
+  color: var(--code-block-tooltip-text-color);
+  font-size: 80%;
+  padding: 2px 5px;
+  position: absolute;
+  right: 40px;
+  top: 8px;
+}
+.code-block-check-tooltip::after {
+  border: 10px solid;
+  border-color: transparent transparent transparent var(--code-block-tooltip-background-color);
+  content: "";
+  position: absolute;
+}
+
+.code-block-hide {
+  display: none;
 }
 
 /**
