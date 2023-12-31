@@ -18,7 +18,7 @@ Usage with Docker (via supplied container)
 ::
 
     # Create output directory.
-    mkdir Documentation-GENERATED-temp
+    mkdir -p Documentation-GENERATED-temp
 
     # Execute the Docker container that is provided remotely.
     # Renders all files in the `Documentation` and store in `Documentation-GENERATED-temp`.
