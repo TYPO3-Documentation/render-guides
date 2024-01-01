@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Migration;
 
+use T3Docs\GuidesCli\Migration\Dto\MigrationResult;
+
 class SettingsMigrator
 {
     private \DOMDocument $xmlDocument;
@@ -22,9 +24,8 @@ class SettingsMigrator
      * a list of messages for output
      *
      * @param array<string, array<string, string>> $legacySettings
-     * @return array{0: \DOMDocument, 1: int, 2: list<string>}
      */
-    public function migrate(array $legacySettings): array
+    public function migrate(array $legacySettings): MigrationResult
     {
         $this->legacySettings = $legacySettings;
         $this->unmigratedSettings = $legacySettings;
@@ -43,7 +44,7 @@ class SettingsMigrator
         // Attach the <guides> element to the root XML
         $this->xmlDocument->appendChild($guides);
 
-        return [$this->xmlDocument, $this->convertedSettings, $messages];
+        return new MigrationResult($this->xmlDocument, $this->convertedSettings, $messages);
     }
 
     private function createRootElement(): \DOMElement
