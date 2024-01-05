@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="phpdocumentor/guides" name="generator">
-    <meta content="" name="docsearch:name">
+    <meta content="Test Manual" name="docsearch:name">
     <meta content="" name="docsearch:package_type">
-    <meta content="" name="docsearch:release">
-    <meta content="" name="docsearch:version">
+    <meta content="1.0" name="docsearch:release">
+    <meta content="1.0" name="docsearch:version">
     <meta content="2023-01-01T12:00:00+00:00" name="docsearch:modified">
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
     <meta content="2023-01-01T12:00:00+00:00" name="dc.modified">
     <meta content="2023-01-01T12:00:00+00:00" property="article:modified_time">
-    <title>Document Title documentation</title>
+    <title>Document Title — Test Manual 1.0 documentation</title>
 
     <link href="_resources/css/theme.css" rel="stylesheet">
     <link href="https://docs.typo3.org/search/" rel="search" title="Search">
-                        <link href="page1.html" rel="next" title="Page 1"/>
+                        <link href="someDirectory/anotherDirectory/index.html" rel="next" title="Another Page"/>
             <link href="#" rel="top" title="Document Title"/>
         <!-- extrahead --><!-- /extrahead -->
     <!-- UNIVERSE BAR START -->
@@ -54,8 +54,16 @@
                     <input class="toc-checkbox" id="toggleToc" type="checkbox">
                     <div class="toc-header">
                         <div class="toc-title">
-                            <a class="toc-title-project" href="#"></a>
-                            </div>
+                            <a class="toc-title-project" href="#">Test Manual</a>
+                            <div class="toc-version-wrapper" id="toc-version-wrapper">
+                                    <div id="toc-version" class="toc-version">
+                                        <span class="toc-version-prefix">Release:</span>
+                                        <span class="toc-version-number">1.0</span>
+                                    </div>
+                                    <div id="toc-version-options" class="toc-version-options">
+                                        <p><span class="fa fa-spinner fa-spin"></span> Loading data.</p>
+                                    </div>
+                                </div></div>
                         <div class="toc-actions">
                             <label class="toc-toggle" for="toggleToc">
                                 Menu
@@ -69,13 +77,21 @@
         
     <ul class="menu-level-1">
     <li class="">
-    <a href="page1.html">
-        Page 1
+    <a href="someDirectory/index.html">
+        Some Page
+    </a>        <ul class="menu-level-1"><li class="">
+    <a href="someDirectory/anotherDirectory/index.html">
+        Another Page
+    </a>        <ul class="menu-level-2"><li class="">
+    <a href="someDirectory/anotherDirectory/yetAnotherDirectory/index.html">
+        Yet Another Page
+    </a>        <ul class="menu-level-3"><li class="">
+    <a href="someDirectory/anotherDirectory/yetAnotherDirectory/andYetAnotherDirectory/index.html">
+        And Yet Another Page
     </a></li>
-    <li class="">
-    <a href="subpages/index.html">
-        Subpages
-    </a></li>
+</ul></li>
+</ul></li>
+</ul></li>
     </ul>
 
 
@@ -100,25 +116,21 @@
         <span class="btn-icon"><span class="fas fa-info-circle"></span></span>
         <span class="btn-text">How to edit</span>
     </a>
-        <a class="btn btn-sm btn-primary" href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/index.rst" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
-        <span class="btn-icon"><span class="fab fa-github"></span></span>
-        <span class="btn-text">Edit on GitHub</span>
-    </a>
     </div>
     </nav>
                             
 <article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
     <div itemprop="articleBody">
         <!-- content start -->
-                <section class="section" id="document-title">
+                
+
+<section class="section" id="document-title">
             <h1>Document Title<a class="headerlink" href="#document-title" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
 
             <p>Lorem Ipsum Dolor.</p>
             <div class="toctree-wrapper compound">
     <ul class="menu-level">
-    <li class="toc-item"><a href="page1.html#page-1">Page 1</a></li>
-
-    <li class="toc-item"><a href="subpages/index.html#subpages">Subpages</a></li>
+    <li class="toc-item"><a href="someDirectory/index.html#some-page">Some Page</a></li>
 
     </ul>
 </div>
@@ -131,7 +143,7 @@
                         
             <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center"><li class="page-item">
-                            <a class="page-link" href="page1.html"
+                            <a class="page-link" href="someDirectory/anotherDirectory/index.html"
                                title="Accesskey Alt(+Shift)+n">
                                 Next
                             </a>
@@ -162,8 +174,7 @@
                     <p>Copy and freely share the link</p>
                 </div>
                 <div class="mb-3">
-                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.                        You can make a <a href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/index.rst">pull request on GitHub</a> to suggest an anchor.
-                        The link below can be used, but is prone to change if the page gets moved.
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
                     </div>
                     <label for="permalink-rst" class="col-form-label">reStructuredText (reST):</label>
                     <div class="input-group">
@@ -208,7 +219,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="footer-meta">
                         <div class="footer-meta-copyright">
-                                                        </div>
+                                        <p>Generated by <a href="https://www.phpdoc.org/">phpDocumentor</a>.</p>
+                        </div>
                         <ul class="footer-meta-navigation">
                             <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
                             <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
