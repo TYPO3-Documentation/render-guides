@@ -42,15 +42,6 @@ to extend the tool.
 
     Introduction/Index
     Installation/Index
-    Configuration/Index
     Developer/Index
     Migration/Index
     KnownProblems/Index
-
-..  Meta Menu
-
-..  toctree::
-    :hidden:
-
-    Sitemap
-    genindex
