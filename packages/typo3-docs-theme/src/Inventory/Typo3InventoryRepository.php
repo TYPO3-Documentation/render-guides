@@ -11,6 +11,8 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Symfony\Component\HttpClient\Exception\ClientException;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
+use T3Docs\VersionHandling\DefaultInventories;
+use T3Docs\VersionHandling\Typo3VersionMapping;
 
 final class Typo3InventoryRepository implements InventoryRepository
 {

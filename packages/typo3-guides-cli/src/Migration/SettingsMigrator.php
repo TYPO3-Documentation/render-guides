@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace T3Docs\GuidesCli\Migration;
 
 use T3Docs\GuidesCli\Migration\Dto\MigrationResult;
+use T3Docs\VersionHandling\DefaultInventories;
+use T3Docs\VersionHandling\Typo3VersionMapping;
 
 class SettingsMigrator
 {
@@ -18,6 +20,7 @@ class SettingsMigrator
      */
     private array $unmigratedSettings = [];
     private int $convertedSettings = 0;
+    private string $detectedVersion = 'stable';
 
     /**
      * Return the XML document, the number of converted settings and
@@ -35,9 +38,18 @@ class SettingsMigrator
         $this->xmlDocument->formatOutput = true;
 
         $guides = $this->createRootElement();
-        $this->createExtensionSection($guides);
-        $this->createProjectSection($guides);
-        $this->createInventorySection($guides);
+        $extension = $this->createExtensionSection();
+        $project = $this->createProjectSection();
+        $inventories = $this->createInventorySection();
+        $extension->setAttribute('typo3-core-preferred', $this->detectedVersion);
+
+        $guides->append($extension);
+        if ($project !== null) {
+            $guides->append($project);
+        }
+        foreach ($inventories as $inventory) {
+            $guides->append($inventory);
+        }
 
         $messages = $this->collectUnmigratedLegacySettings();
 
@@ -59,15 +71,15 @@ class SettingsMigrator
     }
 
     /**
-     * Add <extension> Element. This gets filled with the old "html_theme_options" section.
+     * Create <extension> Element. This gets filled with the old "html_theme_options" section.
      **/
-    private function createExtensionSection(\DOMElement $parentNode): void
+    private function createExtensionSection(): \DOMElement
     {
         $extension = $this->xmlDocument->createElement('extension');
         $extension->setAttribute('class', '\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension');
 
         if (!is_array($this->legacySettings['html_theme_options'] ?? false)) {
-            return;
+            return $extension;
         }
 
         foreach (HtmlThemeOptions::cases() as $option) {
@@ -78,17 +90,17 @@ class SettingsMigrator
             }
         }
 
-        $parentNode->append($extension);
+        return $extension;
     }
 
     /**
-     * Add <project> Element. This gets filled with the old "general" section.
+     * Create <project> Element. This gets filled with the old "general" section.
      **/
-    private function createProjectSection(\DOMElement $parentNode): void
+    private function createProjectSection(): \DOMElement|null
     {
         $project = $this->xmlDocument->createElement('project');
         if (!is_array($this->legacySettings['general'] ?? false)) {
-            return;
+            return null;
         }
 
         foreach (Project::cases() as $option) {
@@ -101,28 +113,49 @@ class SettingsMigrator
                 unset($this->unmigratedSettings['general'][$option->name]);
             }
         }
-
-        $parentNode->append($project);
+        return $project;
     }
 
     /**
      * Add <inventory> Element. This gets filled with the old "intersphinx_mapping" section.
+     * @return list<\DOMElement>
      **/
-    private function createInventorySection(\DOMElement $parentNode): void
+    private function createInventorySection(): array
     {
+        $inventories = [];
         if (!is_array($this->legacySettings['intersphinx_mapping'] ?? false)) {
-            return;
+            return [];
         }
+        $version = null;
 
         foreach ($this->legacySettings['intersphinx_mapping'] as $id => $url) {
             unset($this->unmigratedSettings['intersphinx_mapping'][$id]);
             $this->convertedSettings++;
 
+            if ($defaultInventory = DefaultInventories::tryFrom($id)) {
+                $defaultUrl = $defaultInventory->getUrl();
+                if ($url === $defaultUrl) {
+                    continue;
+                } else {
+                    $allowedVersions = Typo3VersionMapping::getAllVersions();
+                    $urlDifference = $this->getStringDifference($url, $defaultUrl);
+                    if (in_array($urlDifference, $allowedVersions, true)) {
+                        $version ??= $urlDifference;
+                        if ($version === $urlDifference) {
+                            continue;
+                        }
+                    }
+                }
+            }
             $inventory = $this->xmlDocument->createElement('inventory');
             $inventory->setAttribute('id', $id);
             $inventory->setAttribute('url', $url);
-            $parentNode->appendChild($inventory);
+            $inventories[] = $inventory;
         }
+        if (is_string($version) && Typo3VersionMapping::Stable->getVersion() !== $version) {
+            $this->detectedVersion = $version;
+        }
+        return $inventories;
     }
 
     private function collectUnmigratedLegacySettings(): array
@@ -159,5 +192,17 @@ class SettingsMigrator
         }
 
         return $messages;
+    }
+
+    public function getStringDifference(string $url, string $defaultUrl): string
+    {
+        $commonPrefixLength = strspn($url, $defaultUrl);
+
+        $differingPart1 = substr($url, $commonPrefixLength);
+        $differingPart2 = substr($defaultUrl, $commonPrefixLength);
+
+        $commonSuffixLength = strspn(strrev($differingPart1), strrev($differingPart2));
+        $differingPart1 = substr($differingPart1, 0, -$commonSuffixLength);
+        return $differingPart1;
     }
 }

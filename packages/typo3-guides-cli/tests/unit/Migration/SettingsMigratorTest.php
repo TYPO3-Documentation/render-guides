@@ -36,7 +36,9 @@ final class SettingsMigratorTest extends TestCase
             'legacy settings' => [],
             'expected' => <<<EXPECTED
                 <?xml version="1.0" encoding="UTF-8"?>
-                <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd" links-are-relative="true"/>
+                <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd" links-are-relative="true">
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="stable"/>
+                </guides>
                 EXPECTED,
         ];
 
@@ -71,6 +73,7 @@ final class SettingsMigratorTest extends TestCase
                         project-home="https://example.org/"
                         project-issues="https://example.org/issues"
                         project-repository="https://example.org/repository"
+                        typo3-core-preferred="stable"
                     />
                 </guides>
                 EXPECTED,
@@ -84,10 +87,7 @@ final class SettingsMigratorTest extends TestCase
             ],
             'expected' => <<<EXPECTED
                 <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
-                    <extension
-                        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
-                        project-home="https://example.org/"
-                    />
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" project-home="https://example.org/" typo3-core-preferred="stable"/>
                 </guides>
                 EXPECTED,
         ];
@@ -103,6 +103,7 @@ final class SettingsMigratorTest extends TestCase
             ],
             'expected' => <<<EXPECTED
                 <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="stable"/>
                     <project
                         copyright="Some copyright"
                         release="1.0.3"
@@ -121,6 +122,7 @@ final class SettingsMigratorTest extends TestCase
             ],
             'expected' => <<<EXPECTED
                 <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="stable"/>
                     <project
                         title="Some project"
                     />
@@ -138,9 +140,70 @@ final class SettingsMigratorTest extends TestCase
             ],
             'expected' => <<<EXPECTED
                 <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="stable"/>
                     <inventory id="manual_1" url="https://example.com/manual-1/"/>
                     <inventory id="manual_2" url="https://example.com/manual-2/"/>
                     <inventory id="manual_3" url="https://example.com/manual-3/"/>
+                </guides>
+                EXPECTED,
+        ];
+
+        yield 'with intersphinx_default_mapping given' => [
+            'legacy settings' => [
+                'intersphinx_mapping' => [
+                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/',
+                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/12.4/en-us/',
+                    'manual_3' => 'https://example.com/manual-3/',
+                ],
+            ],
+            'expected' => <<<EXPECTED
+                <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="stable"/>
+                    <inventory id="manual_3" url="https://example.com/manual-3/"/>
+                </guides>
+                EXPECTED,
+        ];
+
+        yield 'with intersphinx with default id but unknown url' => [
+            'legacy settings' => [
+                'intersphinx_mapping' => [
+                    't3coreapi' => 'https://example.com/manual-3/',
+                ],
+            ],
+            'expected' => <<<EXPECTED
+                <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="stable"/>
+                    <inventory id="t3coreapi" url="https://example.com/manual-3/"/>
+                </guides>
+                EXPECTED,
+        ];
+
+
+        yield 'with intersphinx default id, conflicting versions given' => [
+            'legacy settings' => [
+                'intersphinx_mapping' => [
+                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/',
+                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/11.5/en-us/',
+                ],
+            ],
+            'expected' => <<<EXPECTED
+                <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="stable"/>
+                    <inventory id="t3viewhelper" url="https://docs.typo3.org/other/typo3/view-helper-reference/11.5/en-us/"/>
+                </guides>
+                EXPECTED,
+        ];
+        yield 'with intersphinx default id, non-stable preferred TYPO3 version' => [
+            'legacy settings' => [
+                'intersphinx_mapping' => [
+                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/11.5/en-us/',
+                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/',
+                ],
+            ],
+            'expected' => <<<EXPECTED
+                <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="11.5"/>
+                    <inventory id="t3coreapi" url="https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/"/>
                 </guides>
                 EXPECTED,
         ];
@@ -159,7 +222,7 @@ final class SettingsMigratorTest extends TestCase
             ],
             'expected' => <<<EXPECTED
                 <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
-                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" project-home="https://example.org/"/>
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" project-home="https://example.org/"  typo3-core-preferred="stable"/>
                     <project title="Some project"/>
                     <inventory id="manual_1" url="https://example.com/manual-1/"/>
                 </guides>

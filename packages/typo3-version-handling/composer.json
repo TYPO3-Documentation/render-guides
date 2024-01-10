@@ -1,0 +1,11 @@
+{
+    "name": "t3docs/typo3-version-handling",
+    "description": "Version Handling for TYPO3 Documentation",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "T3Docs\\VersionHandling\\": "src/"
+        }
+    }
+}
