@@ -1,6 +1,6 @@
 <?php
 
-namespace T3Docs\Typo3DocsTheme\Inventory;
+namespace T3Docs\VersionHandling;
 
 enum Typo3VersionMapping: string
 {
@@ -36,5 +36,13 @@ enum Typo3VersionMapping: string
     public static function getDefault(): Typo3VersionMapping
     {
         return Typo3VersionMapping::Stable;
+    }
+
+    /**
+     * @return list<string>
+     */
+    public static function getAllVersions(): array
+    {
+        return array_map(static fn(Typo3VersionMapping $enumValue) => $enumValue->getVersion(), self::cases());
     }
 }

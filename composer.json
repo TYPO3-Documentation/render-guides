@@ -30,7 +30,8 @@
     "replace": {
         "t3docs/typo3-docs-theme": "self.version",
         "t3docs/typo3-guides-cli": "self.version",
-        "t3docs/typo3-guides-extension": "self.version"
+        "t3docs/typo3-guides-extension": "self.version",
+        "t3docs/typo3-version-handling": "self.version"
     },
     "repositories": [
         {
@@ -38,13 +39,12 @@
             "url": "https://github.com/brotkrueml/twig-codehighlight"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "T3Docs\\GuidesCli\\": "packages/typo3-guides-cli/src/",
             "T3Docs\\GuidesExtension\\": "packages/typo3-guides-extension/src/",
-            "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/"
+            "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/",
+            "T3Docs\\VersionHandling\\": "packages/typo3-version-handling/src/"
         }
     },
     "autoload-dev": {
@@ -62,5 +62,7 @@
     },
     "scripts": {
         "make": "make ENV=local $COMPOSER_SCRIPT_ARGS"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

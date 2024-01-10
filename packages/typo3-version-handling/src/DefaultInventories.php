@@ -1,6 +1,6 @@
 <?php
 
-namespace T3Docs\Typo3DocsTheme\Inventory;
+namespace T3Docs\VersionHandling;
 
 enum DefaultInventories: string
 {

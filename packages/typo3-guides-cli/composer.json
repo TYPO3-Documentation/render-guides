@@ -11,7 +11,8 @@
     },
     "require": {
         "ext-dom": "*",
-        "ext-libxml": "*"
+        "ext-libxml": "*",
+        "t3docs/typo3-version-handling": "self.version"
     },
     "bin": [
         "bin/typo3-guides"
