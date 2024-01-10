@@ -14,6 +14,7 @@ parameters:
   treatPhpDocTypesAsCertain: false
   paths:
     - packages/typo3-docs-theme/src
+    - packages/typo3-guides-cli/src
     - packages/typo3-guides-extension/src
     - tools
   scanFiles:
