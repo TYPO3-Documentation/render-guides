@@ -1,15 +1,28 @@
 {% if name == 'important' %}
-    {% include "body/admonitions/important.html.twig" %}
+    {% set titleOfSeverity='Important' %}
 {% elseif name == 'attention' %}
-    {% include "body/admonitions/attention.html.twig" %}
+    {% set titleOfSeverity='Attention' %}
 {% elseif name == 'note' %}
-    {% include "body/admonitions/note.html.twig" %}
-{% elseif name == 'warning' or name == 'caution' %}
-    {% include "body/admonitions/warning.html.twig" %}
-{% elseif name == 'tip' or name == 'hint' %}
-    {% include "body/admonitions/tip.html.twig" %}
+    {% set titleOfSeverity='Note' %}
+{% elseif name == 'warning' %}
+    {% set titleOfSeverity='Warning' %}
+{% elseif name == 'caution' %}
+    {% set titleOfSeverity='Caution' %}
+{% elseif name == 'hint' %}
+    {% set titleOfSeverity='Hint' %}
+{% elseif name == 'tip' %}
+    {% set titleOfSeverity='Tip' %}
 {% elseif name == 'seealso' %}
-    {% include "body/admonitions/seealso.html.twig" %}
-{% else %}
-    {% include "body/admonitions/default.html.twig" %}
+    {% set titleOfSeverity='See also' %}
 {% endif %}
+
+<div class="admonition {{ name }}{{ class ? (' '~class) }}{% if node.classes %} {{ node.classesString }}{% endif %}" role="alert">
+    {% if titleOfSeverity %}<p class="admonition-title">{{ titleOfSeverity }}</p>
+    {% endif %}
+    {% if title and isTitled %}<p class="admonition-title">{{ renderNode(title) }}</p>
+    {% endif %}
+    {% if title and not isTitled %}<p>{{ renderNode(title) }}</p>
+    {% endif %}
+    {{ renderNode(node) }}
+</div>
+
