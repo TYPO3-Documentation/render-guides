@@ -39,6 +39,8 @@
             "url": "https://github.com/brotkrueml/twig-codehighlight"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "T3Docs\\GuidesCli\\": "packages/typo3-guides-cli/src/",
@@ -62,7 +64,5 @@
     },
     "scripts": {
         "make": "make ENV=local $COMPOSER_SCRIPT_ARGS"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
