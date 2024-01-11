@@ -32,6 +32,9 @@ Tip
 ..  hint::
     A Hint
 
+
+..  hint:: One line hint
+
 ..  index:: reST directives; warning
 
 Warning
