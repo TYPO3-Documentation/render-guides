@@ -1,0 +1,15 @@
+{
+  "name": "render-guides.browsersync",
+  "version": "0.1.0",
+  "description": "Starts a webpack+browsersync proxy server to view documentation, reloads browser when files are changed for preview.",
+  "main": "app.js",
+  "author": "TYPO3 Documentation Team",
+  "license": "MIT",
+  "scripts": {
+    "start": "gulp serve"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.2",
+    "gulp": "^4.0.2"
+  }
+}

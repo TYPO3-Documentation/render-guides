@@ -130,7 +130,7 @@ You can run these commands locally:
 ..  code-block:: shell
 
     composer install
-    make docs
+    make docs ENV=local
 
 The provided Symfony Commands can be executed via:
 
