@@ -11,6 +11,7 @@
     },
     "require": {
         "brotkrueml/twig-codehighlight": "dev-main",
+        "phpdocumentor/guides-graphs": "dev-main",
         "phpdocumentor/guides-theme-bootstrap": "dev-main",
         "t3docs/typo3-version-handling": "self.version"
     },

@@ -7,6 +7,7 @@ namespace T3Docs\Typo3DocsTheme;
 use phpDocumentor\Guides\Bootstrap\DependencyInjection\BootstrapExtension;
 use phpDocumentor\Guides\Cli\DependencyInjection\ApplicationExtension;
 use phpDocumentor\Guides\Cli\DependencyInjection\ContainerFactory;
+use phpDocumentor\Guides\Graphs\DependencyInjection\GraphsExtension;
 use phpDocumentor\Guides\Markdown\DependencyInjection\MarkdownExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
@@ -45,6 +46,7 @@ abstract class ApplicationTestCase extends TestCase
             new Typo3DocsThemeExtension(),
             new Typo3GuidesExtension(),
             new GuidesPhpDomainExtension(),
+            new GraphsExtension(),
             ...$extraExtensions,
         ]);
 

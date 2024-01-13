@@ -14,6 +14,8 @@ use Symfony\Component\Finder\Finder as SymfonyFinder;
 use T3Docs\GuidesExtension\Command\RunDecorator;
 use T3Docs\Typo3DocsTheme\ApplicationTestCase;
 
+use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+
 use function array_filter;
 use function array_merge;
 use function array_walk;
@@ -61,6 +63,10 @@ final class IntegrationTest extends ApplicationTestCase
             $this->prepareContainer($configurationFile);
             $command = $this->getContainer()->get(Run::class);
             assert($command instanceof Run || $command instanceof RunDecorator);
+
+            $plantuml = $this->getContainer()->get(DecoratingPlantumlRenderer::class);
+            assert($plantuml instanceof DecoratingPlantumlRenderer);
+            $plantuml->setDisabled(true);
 
             $input = new ArrayInput(
                 [
