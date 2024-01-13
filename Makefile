@@ -112,7 +112,7 @@ test: test-integration test-unit test-xml test-docs ## Runs all test suites with
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
 	@echo "$(ENV_INFO)"
-	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation --output="/tmp/test" --fail-on-log
+	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation --output="/tmp/test" --config=Documentation --fail-on-log
 
 .PHONY: test-integration
 test-integration: ## Runs integration tests with phpunit
