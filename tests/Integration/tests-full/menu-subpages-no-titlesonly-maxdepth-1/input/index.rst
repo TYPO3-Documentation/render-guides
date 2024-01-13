@@ -14,5 +14,6 @@ Lorem Ipsum Dolor.
 ..  toctree::
     :glob:
     :maxdepth: 1
+    :titlesonly:
 
     */index
