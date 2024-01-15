@@ -1,8 +1,12 @@
 <?php
 
-use phpDocumentor\Guides\Interlink\DefaultInventoryLoader;
-use phpDocumentor\Guides\Interlink\JsonLoader;
-use phpDocumentor\Guides\ReferenceResolvers\SluggerAnchorReducer;
+use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
+use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\DefaultInventoryLoader;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\JsonLoader;
+use phpDocumentor\Guides\ReferenceResolvers\Messages;
+use phpDocumentor\Guides\ReferenceResolvers\SluggerAnchorNormalizer;
+use phpDocumentor\Guides\RenderContext;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -16,12 +20,15 @@ final class Typo3InventoryRepositoryTest extends TestCase
     private Typo3InventoryRepository $subject;
     private Typo3DocsThemeSettings $settings;
     private JsonLoader&MockObject $jsonLoaderMock;
+    private AnchorNormalizer $anchorNormalizer;
+    private RenderContext&MockObject $renderContext;
 
     /** @var array<int, array<string, string>> $inventoryConfigs */
     private array $inventoryConfigs;
 
     protected function setUp(): void
     {
+        $this->anchorNormalizer = new SluggerAnchorNormalizer();
         $this->settings = new Typo3DocsThemeSettings(
             [
             ]
@@ -30,6 +37,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
         ];
         $this->jsonLoaderMock =  $this->createMock(JsonLoader::class);
         $this->subject = $this->getInventoryRepository($this->settings, $this->inventoryConfigs);
+        $this->renderContext = $this->createMock(RenderContext::class);
     }
 
     #[Test]
@@ -78,8 +86,11 @@ final class Typo3InventoryRepositoryTest extends TestCase
     #[DataProvider('providerForInventoryKeysWithVersionsAndUrl')]
     public function versionInventoryCreatesVersionedUrl(string $inventoryKey, string $expected): void
     {
+        $messages = new Messages();
+        $node = new ReferenceNode('someReference', '', $inventoryKey);
         self::assertTrue($this->subject->hasInventory($inventoryKey));
-        self::assertEquals($expected, $this->subject->getInventory($inventoryKey)->getBaseUrl());
+        self::assertEquals($expected, $this->subject->getInventory($node, $this->renderContext, $messages)->getBaseUrl());
+        self::assertCount(0, $messages->getWarnings());
     }
 
     public static function providerForInventoryKeysWithVersionsAndUrl(): \Generator
@@ -118,8 +129,11 @@ final class Typo3InventoryRepositoryTest extends TestCase
     #[DataProvider('providerForExtensionInventoryUrl')]
     public function extensionInventoryUrl(string $inventoryKey, string $expected): void
     {
+        $messages = new Messages();
+        $node = new ReferenceNode('someReference', '', $inventoryKey);
         self::assertTrue($this->subject->hasInventory($inventoryKey));
-        self::assertEquals($expected, $this->subject->getInventory($inventoryKey)->getBaseUrl());
+        self::assertEquals($expected, $this->subject->getInventory($node, $this->renderContext, $messages)->getBaseUrl());
+        self::assertCount(0, $messages->getWarnings());
     }
 
     public static function providerForExtensionInventoryUrl(): \Generator
@@ -209,8 +223,8 @@ final class Typo3InventoryRepositoryTest extends TestCase
     {
         return new Typo3InventoryRepository(
             new NullLogger(),
-            new SluggerAnchorReducer(),
-            new DefaultInventoryLoader(new NullLogger(), $this->jsonLoaderMock),
+            $this->anchorNormalizer,
+            new DefaultInventoryLoader(new NullLogger(), $this->jsonLoaderMock, $this->anchorNormalizer),
             $this->jsonLoaderMock,
             $settings,
             $inventoryConfigs,
