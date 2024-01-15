@@ -4,7 +4,6 @@ namespace T3Docs\Typo3DocsTheme\EventListeners;
 
 use phpDocumentor\Guides\Event\PreParseProcess;
 use phpDocumentor\Guides\Settings\SettingsManager;
-use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 
 /**

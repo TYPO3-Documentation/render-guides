@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Command;
 
-use PHPStan\Command\Output;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\EventListeners;
 
 use League\Flysystem\Adapter\Local;
-use League\Flysystem\Config;
 use League\Flysystem\Filesystem;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use Psr\Log\LoggerInterface;
