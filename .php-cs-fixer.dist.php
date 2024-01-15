@@ -23,5 +23,6 @@ return (new PhpCsFixer\Config())
         ],
         'method_argument_space' => true,
         'single_line_empty_body' => true,
+        'no_unused_imports' => true,
     ])
     ->setFinder($finder);

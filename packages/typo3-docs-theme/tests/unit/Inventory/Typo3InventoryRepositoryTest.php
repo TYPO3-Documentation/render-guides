@@ -1,7 +1,6 @@
 <?php
 
 use phpDocumentor\Guides\Interlink\DefaultInventoryLoader;
-use phpDocumentor\Guides\Interlink\InventoryLoader;
 use phpDocumentor\Guides\Interlink\JsonLoader;
 use phpDocumentor\Guides\ReferenceResolvers\SluggerAnchorReducer;
 use PHPUnit\Framework\Attributes\DataProvider;

@@ -21,10 +21,6 @@ use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
-use phpDocumentor\Guides\RestructuredText\TextRoles\GenericLinkProvider;
-use Psr\Log\LoggerInterface;
-use T3Docs\GuidesPhpDomain\PhpDomain\FullyQualifiedNameService;
-use T3Docs\GuidesPhpDomain\PhpDomain\ModifierService;
 use T3Docs\Typo3DocsTheme\Nodes\GroupTabNode;
 
 class GroupTabDirective extends SubDirective

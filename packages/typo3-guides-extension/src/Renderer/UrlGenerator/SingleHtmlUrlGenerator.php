@@ -19,8 +19,6 @@ use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\UrlGenerator\AbstractUrlGenerator;
 use phpDocumentor\Guides\Renderer\UrlGenerator\RelativeUrlGenerator;
 
-use function rtrim;
-
 final class SingleHtmlUrlGenerator extends AbstractUrlGenerator
 {
     public function __construct(
