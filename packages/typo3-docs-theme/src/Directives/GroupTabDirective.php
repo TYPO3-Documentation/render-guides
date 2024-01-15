@@ -16,7 +16,7 @@ namespace T3Docs\Typo3DocsTheme\Directives;
 use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
-use phpDocumentor\Guides\ReferenceResolvers\AnchorReducer;
+use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
@@ -26,8 +26,8 @@ use T3Docs\Typo3DocsTheme\Nodes\GroupTabNode;
 class GroupTabDirective extends SubDirective
 {
     public function __construct(
-        Rule $startingRule,
-        private readonly AnchorReducer $anchorReducer,
+        Rule                              $startingRule,
+        private readonly AnchorNormalizer $anchorNormalizer,
     ) {
         parent::__construct($startingRule);
     }
@@ -41,7 +41,7 @@ class GroupTabDirective extends SubDirective
         CollectionNode $collectionNode,
         Directive $directive,
     ): Node|null {
-        $key = $this->anchorReducer->reduceAnchor($directive->getData());
+        $key = $this->anchorNormalizer->reduceAnchor($directive->getData());
         return new GroupTabNode(
             'group-tab',
             $directive->getData(),

@@ -40,7 +40,7 @@ return static function (ContainerConfigurator $container): void {
         ->autowire()
         ->set(IssueReferenceTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
-        ->set(phpDocumentor\Guides\Interlink\DefaultInventoryLoader::class)
+        ->set(phpDocumentor\Guides\ReferenceResolvers\Interlink\DefaultInventoryLoader::class)
         ->set(InterlinkParser::class, ExtendedInterlinkParser::class)
         ->set(PhpTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')

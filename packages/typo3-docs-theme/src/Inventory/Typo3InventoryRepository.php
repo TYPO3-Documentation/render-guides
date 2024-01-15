@@ -2,13 +2,17 @@
 
 namespace T3Docs\Typo3DocsTheme\Inventory;
 
-use phpDocumentor\Guides\Interlink\DefaultInventoryLoader;
-use phpDocumentor\Guides\Interlink\Inventory;
-use phpDocumentor\Guides\Interlink\InventoryRepository;
-use phpDocumentor\Guides\Interlink\JsonLoader;
-use phpDocumentor\Guides\ReferenceResolvers\AnchorReducer;
+use phpDocumentor\Guides\Nodes\Inline\CrossReferenceNode;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\DefaultInventoryLoader;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\Inventory;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryLink;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\JsonLoader;
+use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
+use phpDocumentor\Guides\ReferenceResolvers\Message;
+use phpDocumentor\Guides\ReferenceResolvers\Messages;
+use phpDocumentor\Guides\RenderContext;
 use Psr\Log\LoggerInterface;
-use RuntimeException;
 use Symfony\Component\HttpClient\Exception\ClientException;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use T3Docs\VersionHandling\DefaultInventories;
@@ -39,7 +43,7 @@ final class Typo3InventoryRepository implements InventoryRepository
     /** @param array<int, array<string, string>> $inventoryConfigs */
     public function __construct(
         private readonly LoggerInterface        $logger,
-        private readonly AnchorReducer          $anchorReducer,
+        private readonly AnchorNormalizer       $anchorNormalizer,
         // We have to use the specific implementation as the interface does not expose the needed methods
         private readonly DefaultInventoryLoader $inventoryLoader,
         private readonly JsonLoader             $jsonLoader,
@@ -47,10 +51,10 @@ final class Typo3InventoryRepository implements InventoryRepository
         array                                   $inventoryConfigs,
     ) {
         foreach ($inventoryConfigs as $inventory) {
-            $this->inventories[$this->anchorReducer->reduceAnchor($inventory['id'])] = new Inventory($inventory['url']);
+            $this->inventories[$this->anchorNormalizer->reduceAnchor($inventory['id'])] = new Inventory($inventory['url'], $anchorNormalizer);
         }
         foreach (DefaultInventories::cases() as $defaultInventory) {
-            $id = $this->anchorReducer->reduceAnchor($defaultInventory->name);
+            $id = $this->anchorNormalizer->reduceAnchor($defaultInventory->name);
             $url = $defaultInventory->getUrl();
             if (!str_contains($url, '{typo3_version}')) {
                 $this->addInventory($id, $url, false);
@@ -96,15 +100,15 @@ final class Typo3InventoryRepository implements InventoryRepository
 
     private function addInventory(string $key, string $url, bool $overrideExisting): void
     {
-        $reducedKey = $this->anchorReducer->reduceAnchor($key);
+        $reducedKey = $this->anchorNormalizer->reduceAnchor($key);
         if ($overrideExisting || !isset($this->inventories[$reducedKey])) {
-            $this->inventories[$reducedKey] = new Inventory($url);
+            $this->inventories[$reducedKey] = new Inventory($url, $this->anchorNormalizer);
         }
     }
 
     public function hasInventory(string $key): bool
     {
-        $reducedKey = $this->anchorReducer->reduceAnchor($key);
+        $reducedKey = $this->anchorNormalizer->reduceAnchor($key);
         if (isset($this->inventories[$reducedKey])) {
             return true;
         }
@@ -162,19 +166,38 @@ final class Typo3InventoryRepository implements InventoryRepository
      */
     private function loadInventoryFromJson(string $inventoryUrl, array $json, string $reducedKey): void
     {
-        $inventory = new Inventory($inventoryUrl);
+        $inventory = new Inventory($inventoryUrl, $this->anchorNormalizer);
         $this->inventoryLoader->loadInventoryFromJson($inventory, $json);
         $this->inventories[$reducedKey] = $inventory;
     }
 
-    public function getInventory(string $key): Inventory
+    public function getInventory(CrossReferenceNode $node, RenderContext $renderContext, Messages $messages): Inventory|null
     {
-        if (!$this->hasInventory($key)) {
-            throw new RuntimeException('Inventory with key ' . $key . ' not found. ', 1_671_398_986);
+        $reducedKey = $this->anchorNormalizer->reduceAnchor($node->getInterlinkDomain());
+        if (!$this->hasInventory($reducedKey)) {
+            $messages->addWarning(
+                new Message(
+                    sprintf(
+                        'Inventory with key %s not found. ',
+                        $node->getInterlinkDomain(),
+                    ),
+                    array_merge($renderContext->getLoggerInformation(), $node->getDebugInformation()),
+                ),
+            );
+
+            return null;
         }
-        $reducedKey = $this->anchorReducer->reduceAnchor($key);
+
         $this->inventoryLoader->loadInventory($this->inventories[$reducedKey]);
 
         return $this->inventories[$reducedKey];
+    }
+
+    public function getLink(CrossReferenceNode $node, RenderContext $renderContext, Messages $messages): InventoryLink|null
+    {
+        $inventory = $this->getInventory($node, $renderContext, $messages);
+        $group = $inventory?->getGroup($node, $renderContext, $messages);
+
+        return $group?->getLink($node, $renderContext, $messages);
     }
 }
