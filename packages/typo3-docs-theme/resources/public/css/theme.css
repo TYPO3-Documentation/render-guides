@@ -11156,7 +11156,7 @@ progress {
   height: auto;
 }
 
-.figure {
+.figure, figure {
   display: inline-block;
 }
 
@@ -11165,7 +11165,7 @@ progress {
   line-height: 1;
 }
 
-.figure-caption {
+.figure-caption, figure figcaption {
   font-size: 0.875em;
   color: var(--bs-secondary-color);
 }
@@ -18123,7 +18123,7 @@ textarea.form-control-lg {
   display: none !important;
 }
 
-.shadow {
+.shadow, img.with-shadow, figure.with-shadow {
   box-shadow: var(--bs-box-shadow) !important;
 }
 
@@ -18873,7 +18873,7 @@ textarea.form-control-lg {
   margin-bottom: 1rem !important;
 }
 
-.mb-4 {
+.mb-4, img.with-shadow, figure.with-shadow {
   margin-bottom: 1.5rem !important;
 }
 
@@ -18925,7 +18925,7 @@ textarea.form-control-lg {
   padding: 0.5rem !important;
 }
 
-.p-3 {
+.p-3, img.with-shadow, figure.with-shadow {
   padding: 1rem !important;
 }
 
@@ -19005,7 +19005,7 @@ textarea.form-control-lg {
   padding-top: 0.25rem !important;
 }
 
-.pt-2 {
+.pt-2, figure figcaption {
   padding-top: 0.5rem !important;
 }
 
@@ -23753,6 +23753,10 @@ article h3, article .h3 {
   visibility: visible;
 }
 
+figure figcaption p:last-child {
+  margin-bottom: 0;
+}
+
 span[id*=MathJax-Span] {
   color: #333333;
 }
@@ -23870,12 +23874,14 @@ article *:hover > a.headerlink:after, article *:hover > a.permalink:after {
 .rst-content .plantuml object {
   height: auto !important;
 }
-.rst-content .figure,
+.rst-content .figure, .rst-content figure,
 .rst-content .figure > img,
-.rst-content .figure > a > img {
+.rst-content figure > img,
+.rst-content .figure > a > img,
+.rst-content figure > a > img {
   display: block;
 }
-.rst-content .figure .caption,
+.rst-content .figure .caption, .rst-content figure .caption,
 .rst-content .figure > img .caption,
 .rst-content .figure > a > img .caption {
   font-size: 0.875rem;

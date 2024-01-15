@@ -1,0 +1,14 @@
+<figure
+    {%- if node.classesString %} class="{{ node.classesString }}"{% endif -%}
+    {%- if node.hasOption('figwidth') %} style="{% if node.hasOption('figwidth') %}width: {{ node.option('figwidth') }};{% endif %}"{% endif -%}
+>
+    {{ renderNode(node.image) }}
+
+    {% if node.document %}
+        {% set caption = renderNode(node.document) %}
+
+        {% if caption|trim %}
+            <figcaption>{{ caption|raw }}</figcaption>
+        {% endif %}
+    {% endif %}
+</figure>
