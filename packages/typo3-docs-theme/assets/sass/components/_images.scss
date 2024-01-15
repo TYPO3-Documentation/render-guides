@@ -1,0 +1,17 @@
+img.with-shadow, figure.with-shadow {
+    @extend .shadow;
+    @extend .p-3;
+    @extend .mb-4;
+}
+
+figure {
+    @extend .figure;
+    figcaption {
+        @extend .pt-2;
+        @extend .figure-caption;
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
