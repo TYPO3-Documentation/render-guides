@@ -173,13 +173,14 @@ final class Typo3InventoryRepository implements InventoryRepository
 
     public function getInventory(CrossReferenceNode $node, RenderContext $renderContext, Messages $messages): Inventory|null
     {
+        $key = $node->getInterlinkDomain();
         $reducedKey = $this->anchorNormalizer->reduceAnchor($node->getInterlinkDomain());
-        if (!$this->hasInventory($reducedKey)) {
+        if (!$this->hasInventory($key)) {
             $messages->addWarning(
                 new Message(
                     sprintf(
                         'Inventory with key %s not found. ',
-                        $node->getInterlinkDomain(),
+                        $key,
                     ),
                     array_merge($renderContext->getLoggerInformation(), $node->getDebugInformation()),
                 ),
