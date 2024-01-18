@@ -6,6 +6,7 @@ use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use phpDocumentor\Guides\Event\PreParseProcess;
 use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
@@ -18,12 +19,14 @@ use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
+use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\IssueReferenceTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\PhpTextRole;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 return static function (ContainerConfigurator $container): void {
@@ -41,6 +44,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(IssueReferenceTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(phpDocumentor\Guides\ReferenceResolvers\Interlink\DefaultInventoryLoader::class)
+        ->set(InventoryRepository::class, Typo3InventoryRepository::class)
+        ->arg('$inventoryConfigs', param('phpdoc.guides.inventories'))
         ->set(InterlinkParser::class, ExtendedInterlinkParser::class)
         ->set(PhpTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
