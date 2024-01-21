@@ -119,6 +119,12 @@ test-integration: ## Runs integration tests with phpunit
 	@echo "$(ENV_INFO)"
 	$(PHP_BIN) vendor/bin/phpunit --testsuite=integration
 
+.PHONY: integration-baseline
+integration-baseline: ## Copies the output files of the integration tests into the expected directories, making a new baseline.
+	@echo "$(ENV_INFO)"
+	-$(PHP_BIN) vendor/bin/phpunit --testsuite=integration
+	$(PHP_BIN) tools/integration-test-baseline.php
+
 .PHONY: test-monorepo
 test-monorepo: ## Runs monorepo-builder tests
 	@echo "$(ENV_INFO)"
