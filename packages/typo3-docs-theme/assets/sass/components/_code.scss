@@ -118,7 +118,7 @@
         @extend .fa-typo3;
     }
 }
-.code-language-js {
+.code-language-js, .code-language-javascript {
     .code-icon-language {
         font-family: $font-family-sans-serif;
         font-style: normal;
@@ -175,7 +175,7 @@
         }
     }
 }
-.code-language-sh {
+.code-language-sh, .code-language-shell, .code-language-bash {
     .code-icon-language {
         @extend .fa-solid;
         @extend .fa-terminal;

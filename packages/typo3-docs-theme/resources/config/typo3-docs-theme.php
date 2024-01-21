@@ -63,6 +63,9 @@ return static function (ContainerConfigurator $container): void {
             'text' => 'plaintext',
             'xlf' => 'xml',
             'fluid' => 'xml',
+            'shell' => 'sh',
+            'bash' => 'sh',
+            'javascript' => 'js',
         ])
         ->arg('$additionalLanguages', [
             ['typoscript', __DIR__ . '/../languages/typoscript.json'],
