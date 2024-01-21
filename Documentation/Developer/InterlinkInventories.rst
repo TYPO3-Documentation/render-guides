@@ -215,12 +215,10 @@ they can define that version manually in the manual's :file:`guides.xml`:
 
 ..  code-block:: rst
 
-This will be rendered as:
-
-..  code-block:: rst
-
     *   :doc:`News <georgringer/news/stable:Index>`
     *   :doc:`External Imports <cobweb/external_import/stable:Index>`
+
+This will be rendered as:
 
 *   :doc:`News <georgringer/news/stable:Index>`
 *   :doc:`External Imports <cobweb/external_import/stable:Index>`
