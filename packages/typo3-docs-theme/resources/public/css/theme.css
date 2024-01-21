@@ -14,10 +14,27 @@
 .fa-sharp,
 .fas,
 .fa-solid,
+.code-language-fluid .code-icon-language,
+.code-language-rst .code-icon-language,
+.code-language-json .code-icon-language,
+.code-language-sh .code-icon-language,
+.code-language-yaml .code-icon-language,
+.code-language-xlf .code-icon-language,
+.code-language-xml .code-icon-language,
+.code-icon .code-icon-bg,
 .far,
 .fa-regular,
+.code-language-folder .code-icon-language,
+.code-language-file .code-icon-language,
 .fab,
-.fa-brands {
+.fa-brands,
+.code-language-css .code-icon-language,
+.code-language-md .code-icon-language,
+.code-language-html .code-icon-language,
+.code-language-js .code-icon-language,
+.code-language-tsconfig .code-icon-language,
+.code-language-typoscript .code-icon-language,
+.code-language-php .code-icon-language {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: var(--fa-display, inline-block);
@@ -30,17 +47,34 @@
 .fas,
 .fa-classic,
 .fa-solid,
+.code-language-fluid .code-icon-language,
+.code-language-rst .code-icon-language,
+.code-language-json .code-icon-language,
+.code-language-sh .code-icon-language,
+.code-language-yaml .code-icon-language,
+.code-language-xlf .code-icon-language,
+.code-language-xml .code-icon-language,
+.code-icon .code-icon-bg,
 .far,
-.fa-regular {
+.fa-regular,
+.code-language-folder .code-icon-language,
+.code-language-file .code-icon-language {
   font-family: "Font Awesome 6 Free";
 }
 
 .fab,
-.fa-brands {
+.fa-brands,
+.code-language-css .code-icon-language,
+.code-language-md .code-icon-language,
+.code-language-html .code-icon-language,
+.code-language-js .code-icon-language,
+.code-language-tsconfig .code-icon-language,
+.code-language-typoscript .code-icon-language,
+.code-language-php .code-icon-language {
   font-family: "Font Awesome 6 Brands";
 }
 
-.fa-1x {
+.fa-1x, .code-icon {
   font-size: 1em;
 }
 
@@ -366,7 +400,7 @@
   transform: rotate(var(--fa-rotate-angle, none));
 }
 
-.fa-stack {
+.fa-stack, .code-icon {
   display: inline-block;
   height: 2em;
   line-height: 2em;
@@ -375,8 +409,9 @@
   width: 2.5em;
 }
 
-.fa-stack-1x,
-.fa-stack-2x {
+.fa-stack-1x, .code-icon .code-icon-language,
+.fa-stack-2x,
+.code-icon .code-icon-bg {
   left: 0;
   position: absolute;
   text-align: center;
@@ -384,15 +419,15 @@
   z-index: var(--fa-stack-z-index, auto);
 }
 
-.fa-stack-1x {
+.fa-stack-1x, .code-icon .code-icon-language {
   line-height: inherit;
 }
 
-.fa-stack-2x {
+.fa-stack-2x, .code-icon .code-icon-bg {
   font-size: 2em;
 }
 
-.fa-inverse {
+.fa-inverse, .code-icon .code-icon-language {
   color: var(--fa-inverse, #fff);
 }
 
@@ -1458,7 +1493,7 @@ readers do not read off random characters that represent icons */
   content: "\f1e3";
 }
 
-.fa-paintbrush::before {
+.fa-paintbrush::before, .code-language-fluid .code-icon-language::before {
   content: "\f1fc";
 }
 
@@ -1898,7 +1933,7 @@ readers do not read off random characters that represent icons */
   content: "\e09a";
 }
 
-.fa-folder::before {
+.fa-folder::before, .code-language-folder .code-icon-language::before {
   content: "\f07b";
 }
 
@@ -3554,7 +3589,7 @@ readers do not read off random characters that represent icons */
   content: "\f7ec";
 }
 
-.fa-language::before {
+.fa-language::before, .code-language-xlf .code-icon-language::before {
   content: "\f1ab";
 }
 
@@ -3610,7 +3645,7 @@ readers do not read off random characters that represent icons */
   content: "\f5c0";
 }
 
-.fa-code::before {
+.fa-code::before, .code-language-xml .code-icon-language::before {
   content: "\f121";
 }
 
@@ -3978,7 +4013,7 @@ readers do not read off random characters that represent icons */
   content: "\f682";
 }
 
-.fa-circle::before {
+.fa-circle::before, .code-icon .code-icon-bg::before {
   content: "\f111";
 }
 
@@ -4066,7 +4101,7 @@ readers do not read off random characters that represent icons */
   content: "\f805";
 }
 
-.fa-wrench::before {
+.fa-wrench::before, .code-language-yaml .code-icon-language::before {
   content: "\f0ad";
 }
 
@@ -4230,7 +4265,7 @@ readers do not read off random characters that represent icons */
   content: "\f54d";
 }
 
-.fa-terminal::before {
+.fa-terminal::before, .code-language-sh .code-icon-language::before {
   content: "\f120";
 }
 
@@ -4558,7 +4593,7 @@ readers do not read off random characters that represent icons */
   content: "\f6e8";
 }
 
-.fa-pen-fancy::before {
+.fa-pen-fancy::before, .code-language-rst .code-icon-language::before {
   content: "\f5ac";
 }
 
@@ -6114,7 +6149,7 @@ readers do not read off random characters that represent icons */
   content: "\f3c5";
 }
 
-.fa-file::before {
+.fa-file::before, .code-language-file .code-icon-language::before {
   content: "\f15b";
 }
 
@@ -7038,7 +7073,7 @@ readers do not read off random characters that represent icons */
   content: "\f67c";
 }
 
-.fa-gears::before {
+.fa-gears::before, .code-language-json .code-icon-language::before {
   content: "\f085";
 }
 
@@ -8242,7 +8277,9 @@ readers do not read off random characters that represent icons */
   src: url("../fonts/fa-regular-400.woff2") format("woff2"), url("../fonts/fa-regular-400.ttf") format("truetype");
 }
 .far,
-.fa-regular {
+.fa-regular,
+.code-language-folder .code-icon-language,
+.code-language-file .code-icon-language {
   font-weight: 400;
 }
 
@@ -8264,7 +8301,15 @@ readers do not read off random characters that represent icons */
   src: url("../fonts/fa-solid-900.woff2") format("woff2"), url("../fonts/fa-solid-900.ttf") format("truetype");
 }
 .fas,
-.fa-solid {
+.fa-solid,
+.code-language-fluid .code-icon-language,
+.code-language-rst .code-icon-language,
+.code-language-json .code-icon-language,
+.code-language-sh .code-icon-language,
+.code-language-yaml .code-icon-language,
+.code-language-xlf .code-icon-language,
+.code-language-xml .code-icon-language,
+.code-icon .code-icon-bg {
   font-weight: 900;
 }
 
@@ -8286,7 +8331,14 @@ readers do not read off random characters that represent icons */
   src: url("../fonts/fa-brands-400.woff2") format("woff2"), url("../fonts/fa-brands-400.ttf") format("truetype");
 }
 .fab,
-.fa-brands {
+.fa-brands,
+.code-language-css .code-icon-language,
+.code-language-md .code-icon-language,
+.code-language-html .code-icon-language,
+.code-language-js .code-icon-language,
+.code-language-tsconfig .code-icon-language,
+.code-language-typoscript .code-icon-language,
+.code-language-php .code-icon-language {
   font-weight: 400;
 }
 
@@ -8378,7 +8430,7 @@ readers do not read off random characters that represent icons */
   content: "\f40b";
 }
 
-.fa-square-js:before {
+.fa-square-js:before, .code-language-js .code-icon-language:before {
   content: "\f3b9";
 }
 
@@ -8542,7 +8594,7 @@ readers do not read off random characters that represent icons */
   content: "\f77a";
 }
 
-.fa-markdown:before {
+.fa-markdown:before, .code-language-md .code-icon-language:before {
   content: "\f60f";
 }
 
@@ -9314,7 +9366,7 @@ readers do not read off random characters that represent icons */
   content: "\f296";
 }
 
-.fa-typo3:before {
+.fa-typo3:before, .code-language-tsconfig .code-icon-language:before, .code-language-typoscript .code-icon-language:before {
   content: "\f42b";
 }
 
@@ -9858,7 +9910,7 @@ readers do not read off random characters that represent icons */
   content: "\f4d5";
 }
 
-.fa-html5:before {
+.fa-html5:before, .code-language-html .code-icon-language:before {
   content: "\f13b";
 }
 
@@ -9958,7 +10010,7 @@ readers do not read off random characters that represent icons */
   content: "\f1d0";
 }
 
-.fa-css3:before {
+.fa-css3:before, .code-language-css .code-icon-language:before {
   content: "\f13c";
 }
 
@@ -10098,7 +10150,7 @@ readers do not read off random characters that represent icons */
   content: "\f09b";
 }
 
-.fa-php:before {
+.fa-php:before, .code-language-php .code-icon-language:before {
   content: "\f457";
 }
 
@@ -23017,17 +23069,39 @@ article h3, article .h3 {
 /*
  * The class "code-block" is used for ".. code-block::" directives
  */
-.code-block {
+.code-block-wrapper {
+  position: relative;
   background: var(--code-block-background-color);
   border: 1px solid var(--code-block-background-border-color);
   border-radius: 0.2rem;
   font-size: 92%;
   line-height: 125%;
-  margin-bottom: 1rem;
   overflow-x: auto;
   padding: 0.75rem;
+  margin-bottom: 1rem;
 }
-.code-block [data-line-number]::before {
+.code-block-wrapper .code-block-caption {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--code-block-background-border-color);
+}
+.code-block-wrapper .code-block-caption .code-icon {
+  color: gray;
+  font-size: 0.75rem;
+}
+.code-block-wrapper .code-block-caption .caption-text {
+  display: inline-block;
+  background: #ffffff;
+  padding: 0.5rem;
+  border-radius: 2rem;
+}
+.code-block-wrapper .code-block-body {
+  position: relative;
+}
+.code-block-wrapper .code-block-body .code-block {
+  margin-bottom: 0;
+}
+.code-block-wrapper .code-block-body .code-block [data-line-number]::before {
   color: var(--code-block-linenos-text-color);
   content: attr(data-line-number);
   display: inline-block;
@@ -23035,12 +23109,12 @@ article h3, article .h3 {
   text-align: right;
   width: 2ch;
 }
-.code-block [data-emphasize-line] {
+.code-block-wrapper .code-block-body .code-block [data-emphasize-line] {
   background: var(--code-block-emphasize-background-color);
 }
 
-.code-block-wrapper {
-  position: relative;
+.code-icon .code-icon-language {
+  line-height: inherit !important;
 }
 
 .code-block-copy {
@@ -23048,7 +23122,7 @@ article h3, article .h3 {
   border: none;
   position: absolute;
   right: 8px;
-  top: 8px;
+  top: 0;
 }
 .code-block-copy .fa-copy {
   opacity: 0.5;

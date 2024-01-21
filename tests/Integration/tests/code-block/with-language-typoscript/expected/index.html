@@ -5,29 +5,32 @@
             <section class="section" id="imports">
             <h2>Imports<a class="headerlink" href="#imports" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
 
-            <div class="code-block-wrapper" translate="no">
+            <div class="code-block-wrapper code-language-typoscript" translate="no">
 
-        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-name">@import '<span class="hljs-bullet">EXT:myproject/Configuration/TypoScript/*.typoscript</span>'</span>
+        <div class="code-block-body">
+            <pre class="code-block"><code class="hljs typoscript"><span class="hljs-name">@import '<span class="hljs-bullet">EXT:myproject/Configuration/TypoScript/*.typoscript</span>'</span>
 <span class="hljs-name">@import '<span class="hljs-bullet">./userIsLoggedIn.typoscript</span>'</span>
 <span class="hljs-name">@import "<span class="hljs-bullet">./subDirectory/*.setup.typoscript</span>"</span>
 
 <span class="hljs-name">&lt;INCLUDE_TYPOSCRIPT: source="<span class="hljs-bullet">FILE:EXT:my_extension/Configuration/TypoScript/myMenu.typoscript</span>"&gt;</span>
 <span class="hljs-name">&lt;INCLUDE_TYPOSCRIPT: source="<span class="hljs-bullet">DIR:fileadmin/templates/</span>" extensions="typoscript"&gt;</span>
 <span class="hljs-name">&lt;INCLUDE_TYPOSCRIPT: source="<span class="hljs-bullet">FILE:EXT:my_extension/Configuration/TypoScript/user.typoscript</span>" condition="<span class="hljs-meta">[frontend.user.isLoggedIn]</span>"&gt;</span></code></pre>
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
     </section>
 
             <section class="section" id="conditions">
             <h2>Conditions<a class="headerlink" href="#conditions" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
 
-            <div class="code-block-wrapper" translate="no">
+            <div class="code-block-wrapper code-language-typoscript" translate="no">
 
-        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-meta">[date("j") == 9]</span>
+        <div class="code-block-body">
+            <pre class="code-block"><code class="hljs typoscript"><span class="hljs-meta">[date("j") == 9]</span>
     <span class="hljs-comment"># ...</span>
 <span class="hljs-meta">[END]</span>
 
@@ -36,48 +39,54 @@
 <span class="hljs-meta">[ELSE]</span>
     <span class="hljs-comment"># ...</span>
 <span class="hljs-meta">[GLOBAL]</span></code></pre>
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
     </section>
 
             <section class="section" id="quoting-of-sql-identifiers">
             <h2>Quoting of SQL identifiers<a class="headerlink" href="#quoting-of-sql-identifiers" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
 
-            <div class="code-block-wrapper" translate="no">
+            <div class="code-block-wrapper code-language-typoscript" translate="no">
 
-        <pre class="code-block"><code class="hljs typoscript">select.where = (<span class="hljs-name">{#title}</span> LIKE <span class="hljs-name">{#%SOMETHING%}</span> AND NOT <span class="hljs-name">{#doktype}</span>)</code></pre>
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        <div class="code-block-body">
+            <pre class="code-block"><code class="hljs typoscript">select.where = (<span class="hljs-name">{#title}</span> LIKE <span class="hljs-name">{#%SOMETHING%}</span> AND NOT <span class="hljs-name">{#doktype}</span>)</code></pre>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
     </section>
 
             <section class="section" id="variables">
             <h2>Variables<a class="headerlink" href="#variables" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
 
-            <div class="code-block-wrapper" translate="no">
+            <div class="code-block-wrapper code-language-typoscript" translate="no">
 
-        <pre class="code-block"><code class="hljs typoscript">something = <span class="hljs-name">{$foo.bar}</span></code></pre>
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        <div class="code-block-body">
+            <pre class="code-block"><code class="hljs typoscript">something = <span class="hljs-name">{$foo.bar}</span></code></pre>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
     </section>
 
             <section class="section" id="comments">
             <h2>Comments<a class="headerlink" href="#comments" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
 
-            <div class="code-block-wrapper" translate="no">
+            <div class="code-block-wrapper code-language-typoscript" translate="no">
 
-        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-comment"># Some comment</span>
+        <div class="code-block-body">
+            <pre class="code-block"><code class="hljs typoscript"><span class="hljs-comment"># Some comment</span>
 
 something = 42 <span class="hljs-comment"># Some comment</span>
 
@@ -92,83 +101,92 @@ comment */</span>
 something = 42 <span class="hljs-comment">/* some
 multiline
 comment */</span> and more</code></pre>
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
     </section>
 
             <section class="section" id="register">
             <h2>Register<a class="headerlink" href="#register" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
 
-            <div class="code-block-wrapper" translate="no">
+            <div class="code-block-wrapper code-language-typoscript" translate="no">
 
-        <pre class="code-block"><code class="hljs typoscript">dataWrap = &lt;ul class="<span class="hljs-name">{register:ulClass}</span>"&gt;|&lt;/ul&gt;</code></pre>
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        <div class="code-block-body">
+            <pre class="code-block"><code class="hljs typoscript">dataWrap = &lt;ul class="<span class="hljs-name">{register:ulClass}</span>"&gt;|&lt;/ul&gt;</code></pre>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
     </section>
 
             <section class="section" id="colors">
             <h2>Colors<a class="headerlink" href="#colors" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
 
-            <div class="code-block-wrapper" translate="no">
+            <div class="code-block-wrapper code-language-typoscript" translate="no">
 
-        <pre class="code-block"><code class="hljs typoscript">something = <span class="hljs-number">#123</span>
+        <div class="code-block-body">
+            <pre class="code-block"><code class="hljs typoscript">something = <span class="hljs-number">#123</span>
 
 something = <span class="hljs-number">#abcdef</span>
 
 something = 1234 <span class="hljs-comment"># not recognized as color</span></code></pre>
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
     </section>
 
             <section class="section" id="array-numbers">
             <h2>Array numbers<a class="headerlink" href="#array-numbers" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
 
-            <div class="code-block-wrapper" translate="no">
+            <div class="code-block-wrapper code-language-typoscript" translate="no">
 
-        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
+        <div class="code-block-body">
+            <pre class="code-block"><code class="hljs typoscript"><span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
 <span class="hljs-title">10</span>.value = something
 
 <span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
 <span class="hljs-title">10</span> {
     value = something
 }</code></pre>
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
     </section>
 
             <section class="section" id="keywords">
             <h2>Keywords<a class="headerlink" href="#keywords" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
 
-            <div class="code-block-wrapper" translate="no">
+            <div class="code-block-wrapper code-language-typoscript" translate="no">
 
-        <pre class="code-block"><code class="hljs typoscript"><span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
+        <div class="code-block-body">
+            <pre class="code-block"><code class="hljs typoscript"><span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
 
 <span class="hljs-title">10</span> = <span class="hljs-keyword">GIFBUILDER</span>
 
 <span class="hljs-title">10</span> = <span class="hljs-keyword">TMENU</span>
 
 <span class="hljs-title">10</span> = <span class="hljs-keyword">NO</span></code></pre>
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
     </section>
 
