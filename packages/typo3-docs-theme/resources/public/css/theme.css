@@ -10426,30 +10426,6 @@ readers do not read off random characters that represent icons */
   font-weight: 700;
   src: url("../fonts/source-sans-3/source-sans-3-v15-latin_latin-ext-700italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* Equilibrium Light by Carlo Abelli - a nice light theme */
-:root {
-  --base16-base00: hsl(0, 0%, 13%);
-  --base16-base01: hsl(200, 19%, 22%);
-  --base16-base02: hsl(190, 20%, 24%);
-  --base16-base03: hsl(199, 18%, 40%);
-  --base16-base04: hsl(197, 31%, 77%);
-  --base16-base05: hsl(180, 100%, 97%);
-  --base16-base06: hsl(180, 100%, 97%);
-  --base16-base07: hsl(0, 0%, 100%);
-  --base16-base08: hsl(357, 81%, 69%);
-  --base16-base09: hsl(14, 90%, 70%);
-  --base16-base0A: hsl(39, 100%, 71%);
-  --base16-base0B: hsl(84, 66%, 73%);
-  --base16-base0C: hsl(197, 100%, 77%);
-  --base16-base0D: hsl(221, 100%, 75%);
-  --base16-base0E: hsl(276, 68%, 75%);
-  --base16-base0F: hsl(350, 100%, 66%);
-  --base16-baseXX: #000000;
-  --base16-baseBG: hsl(0, 0%, 13%);
-  --base16-baseBO: hsl(0, 0%, 13%);
-  --base16-baseFG: hsl(180, 100%, 97%);
-}
-
 /*!
  * Bootstrap  v5.3.2 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
