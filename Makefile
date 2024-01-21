@@ -41,6 +41,18 @@ help: ## Displays this list of targets with descriptions
 
 ## LIST: Targets that can be executed directly
 
+.PHONE: assets
+assets: ## Builds all assets (Css, JavaScript, Fonts etc).
+	ddev npm-build
+
+.PHONE: assets-install
+assets-install: ## Installs the node-modules needed to build the assets.
+	ddev npm-ci
+
+.PHONE: assets-debug
+assets-debug: ## Builds assets, keeping the sourcemap. It copies the output files directly into Documentation-GENERATED-temp so they can be tested without reloading.
+	ddev npm-debug
+
 .PHONE: build-phar
 build-phar: ## Creates a guides.phar file (github workflow)
 	./tools/build-phar.sh
