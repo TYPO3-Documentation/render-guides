@@ -14,10 +14,24 @@
 .fa-sharp,
 .fas,
 .fa-solid,
+.code-language-fluid .code-icon-language,
+.code-language-rst .code-icon-language,
+.code-language-json .code-icon-language,
+.code-language-sh .code-icon-language,
+.code-language-yaml .code-icon-language,
+.code-language-xlf .code-icon-language,
 .far,
 .fa-regular,
+.code-language-folder .code-icon-language,
+.code-language-file .code-icon-language,
 .fab,
-.fa-brands {
+.fa-brands,
+.code-language-css .code-icon-language,
+.code-language-md .code-icon-language,
+.code-language-html .code-icon-language,
+.code-language-js .code-icon-language,
+.code-language-tsconfig .code-icon-language,
+.code-language-typoscript .code-icon-language {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: var(--fa-display, inline-block);
@@ -30,13 +44,27 @@
 .fas,
 .fa-classic,
 .fa-solid,
+.code-language-fluid .code-icon-language,
+.code-language-rst .code-icon-language,
+.code-language-json .code-icon-language,
+.code-language-sh .code-icon-language,
+.code-language-yaml .code-icon-language,
+.code-language-xlf .code-icon-language,
 .far,
-.fa-regular {
+.fa-regular,
+.code-language-folder .code-icon-language,
+.code-language-file .code-icon-language {
   font-family: "Font Awesome 6 Free";
 }
 
 .fab,
-.fa-brands {
+.fa-brands,
+.code-language-css .code-icon-language,
+.code-language-md .code-icon-language,
+.code-language-html .code-icon-language,
+.code-language-js .code-icon-language,
+.code-language-tsconfig .code-icon-language,
+.code-language-typoscript .code-icon-language {
   font-family: "Font Awesome 6 Brands";
 }
 
@@ -1458,7 +1486,7 @@ readers do not read off random characters that represent icons */
   content: "\f1e3";
 }
 
-.fa-paintbrush::before {
+.fa-paintbrush::before, .code-language-fluid .code-icon-language::before {
   content: "\f1fc";
 }
 
@@ -1898,7 +1926,7 @@ readers do not read off random characters that represent icons */
   content: "\e09a";
 }
 
-.fa-folder::before {
+.fa-folder::before, .code-language-folder .code-icon-language::before {
   content: "\f07b";
 }
 
@@ -3554,7 +3582,7 @@ readers do not read off random characters that represent icons */
   content: "\f7ec";
 }
 
-.fa-language::before {
+.fa-language::before, .code-language-xlf .code-icon-language::before {
   content: "\f1ab";
 }
 
@@ -4066,7 +4094,7 @@ readers do not read off random characters that represent icons */
   content: "\f805";
 }
 
-.fa-wrench::before {
+.fa-wrench::before, .code-language-yaml .code-icon-language::before {
   content: "\f0ad";
 }
 
@@ -4230,7 +4258,7 @@ readers do not read off random characters that represent icons */
   content: "\f54d";
 }
 
-.fa-terminal::before {
+.fa-terminal::before, .code-language-sh .code-icon-language::before {
   content: "\f120";
 }
 
@@ -4558,7 +4586,7 @@ readers do not read off random characters that represent icons */
   content: "\f6e8";
 }
 
-.fa-pen-fancy::before {
+.fa-pen-fancy::before, .code-language-rst .code-icon-language::before {
   content: "\f5ac";
 }
 
@@ -6114,7 +6142,7 @@ readers do not read off random characters that represent icons */
   content: "\f3c5";
 }
 
-.fa-file::before {
+.fa-file::before, .code-language-file .code-icon-language::before {
   content: "\f15b";
 }
 
@@ -7038,7 +7066,7 @@ readers do not read off random characters that represent icons */
   content: "\f67c";
 }
 
-.fa-gears::before {
+.fa-gears::before, .code-language-json .code-icon-language::before {
   content: "\f085";
 }
 
@@ -8242,7 +8270,9 @@ readers do not read off random characters that represent icons */
   src: url("../fonts/fa-regular-400.woff2") format("woff2"), url("../fonts/fa-regular-400.ttf") format("truetype");
 }
 .far,
-.fa-regular {
+.fa-regular,
+.code-language-folder .code-icon-language,
+.code-language-file .code-icon-language {
   font-weight: 400;
 }
 
@@ -8264,7 +8294,13 @@ readers do not read off random characters that represent icons */
   src: url("../fonts/fa-solid-900.woff2") format("woff2"), url("../fonts/fa-solid-900.ttf") format("truetype");
 }
 .fas,
-.fa-solid {
+.fa-solid,
+.code-language-fluid .code-icon-language,
+.code-language-rst .code-icon-language,
+.code-language-json .code-icon-language,
+.code-language-sh .code-icon-language,
+.code-language-yaml .code-icon-language,
+.code-language-xlf .code-icon-language {
   font-weight: 900;
 }
 
@@ -8286,7 +8322,13 @@ readers do not read off random characters that represent icons */
   src: url("../fonts/fa-brands-400.woff2") format("woff2"), url("../fonts/fa-brands-400.ttf") format("truetype");
 }
 .fab,
-.fa-brands {
+.fa-brands,
+.code-language-css .code-icon-language,
+.code-language-md .code-icon-language,
+.code-language-html .code-icon-language,
+.code-language-js .code-icon-language,
+.code-language-tsconfig .code-icon-language,
+.code-language-typoscript .code-icon-language {
   font-weight: 400;
 }
 
@@ -8378,7 +8420,7 @@ readers do not read off random characters that represent icons */
   content: "\f40b";
 }
 
-.fa-square-js:before {
+.fa-square-js:before, .code-language-js .code-icon-language:before {
   content: "\f3b9";
 }
 
@@ -8542,7 +8584,7 @@ readers do not read off random characters that represent icons */
   content: "\f77a";
 }
 
-.fa-markdown:before {
+.fa-markdown:before, .code-language-md .code-icon-language:before {
   content: "\f60f";
 }
 
@@ -9314,7 +9356,7 @@ readers do not read off random characters that represent icons */
   content: "\f296";
 }
 
-.fa-typo3:before {
+.fa-typo3:before, .code-language-tsconfig .code-icon-language:before, .code-language-typoscript .code-icon-language:before {
   content: "\f42b";
 }
 
@@ -9858,7 +9900,7 @@ readers do not read off random characters that represent icons */
   content: "\f4d5";
 }
 
-.fa-html5:before {
+.fa-html5:before, .code-language-html .code-icon-language:before {
   content: "\f13b";
 }
 
@@ -9958,7 +10000,7 @@ readers do not read off random characters that represent icons */
   content: "\f1d0";
 }
 
-.fa-css3:before {
+.fa-css3:before, .code-language-css .code-icon-language:before {
   content: "\f13c";
 }
 
@@ -10537,7 +10579,7 @@ readers do not read off random characters that represent icons */
   --bs-link-decoration: underline;
   --bs-link-hover-color: #0094d2;
   --bs-link-hover-color-rgb: 0, 148, 210;
-  --bs-code-color: hsl(350, 100%, 40%);
+  --bs-code-color: #d73a49;
   --bs-highlight-color: #333333;
   --bs-highlight-bg: #fff7cc;
   --bs-border-width: 1px;
@@ -10609,7 +10651,7 @@ readers do not read off random characters that represent icons */
   --bs-link-hover-color: #ffc585;
   --bs-link-color-rgb: 255, 183, 102;
   --bs-link-hover-color-rgb: 255, 197, 133;
-  --bs-code-color: #e0667a;
+  --bs-code-color: #e78992;
   --bs-highlight-color: #e6e6e6;
   --bs-highlight-bg: #665500;
   --bs-border-color: gray;
@@ -23039,10 +23081,6 @@ article h3, article .h3 {
   background: var(--code-block-emphasize-background-color);
 }
 
-.code-block-wrapper {
-  position: relative;
-}
-
 .code-block-copy {
   background: none;
   border: none;
@@ -23087,52 +23125,10 @@ article h3, article .h3 {
  * ":literal:" or ":php:"
  */
 .code-inline {
-  font-family: "Source Code Pro", monospace;
-  font-size: 75%;
-  border-radius: 0.375rem;
-  border: 1px solid #fff;
+  color: #e37580;
 }
-.code-inline.bash {
-  color: hsl(0, 100%, 0%);
-}
-.code-inline.css {
-  color: hsl(275, 100%, 40%);
-}
-.code-inline.file {
-  color: hsl(328, 100%, 50%);
-}
-.code-inline.html {
-  color: hsl(275, 100%, 40%);
-}
-.code-inline.js {
-  color: hsl(128, 100%, 20%);
-}
-.code-inline.method {
-  color: hsl(210, 100%, 35%);
-}
-.code-inline.php {
-  color: hsl(210, 100%, 30%);
-}
-.code-inline.rst {
-  color: hsl(175, 100%, 15%);
-}
-.code-inline.py {
-  color: hsl(210, 100%, 50%);
-}
-.code-inline.shell {
-  color: hsl(0, 100%, 0%);
-}
-.code-inline.sql {
-  color: hsl(175, 100%, 15%);
-}
-.code-inline.typoscript {
-  color: hsl(12, 100%, 20%);
-}
-.code-inline.xml {
-  color: hsl(275, 100%, 40%);
-}
-.code-inline.yaml {
-  color: hsl(170, 80%, 25%);
+.code-inline code {
+  color: #d73a49;
 }
 
 :root {
@@ -24445,7 +24441,7 @@ dl.field-list ul {
 .rst-content dl.php .descname {
   background-color: transparent;
   border: none;
-  color: hsl(350, 100%, 40%);
+  color: #d73a49;
   font-size: 100%;
   padding: 0;
 }

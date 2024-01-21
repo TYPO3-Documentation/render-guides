@@ -37,8 +37,90 @@
     }
 }
 
-.code-block-wrapper {
-    position: relative;
+.code-language-typoscript {
+    .code-icon-language {
+        @extend .fa-brands;
+        @extend .fa-typo3;
+    }
+}
+
+.code-language-tsconfig {
+    .code-icon-language {
+        @extend .fa-brands;
+        @extend .fa-typo3;
+    }
+}
+.code-language-js {
+    .code-icon-language {
+        @extend .fa-brands;
+        @extend .fa-square-js;
+    }
+}
+.code-language-xlf {
+    .code-icon-language {
+        @extend .fa-solid;
+        @extend .fa-language;
+    }
+}
+.code-language-html {
+    .code-icon-language {
+        @extend .fa-brands;
+        @extend .fa-html5;
+    }
+}
+.code-language-yaml {
+    .code-icon-language {
+        @extend .fa-solid;
+        @extend .fa-wrench;
+    }
+}
+.code-language-md {
+    .code-icon-language {
+        @extend .fa-brands;
+        @extend .fa-markdown;
+    }
+}
+.code-language-sh {
+    .code-icon-language {
+        @extend .fa-solid;
+        @extend .fa-terminal;
+    }
+}
+.code-language-json {
+    .code-icon-language {
+        @extend .fa-solid;
+        @extend .fa-gears;
+    }
+}
+.code-language-rst {
+    .code-icon-language {
+        @extend .fa-solid;
+        @extend .fa-pen-fancy;
+    }
+}
+.code-language-fluid {
+    .code-icon-language {
+        @extend .fa-solid;
+        @extend .fa-paintbrush;
+    }
+}
+.code-language-css {
+    .code-icon-language {
+        @extend .fa-brands;
+        @extend .fa-css3;
+    }
+}
+.code-language-file {
+    .code-icon-language {
+        @extend .fa-regular;
+        @extend .fa-file;
+    }
+}
+.code-language-folder {
+    .code-icon-language {
+        @extend .fa-regular;
+        @extend .fa-folder;
+    }
 }
 
 .code-block-copy {
@@ -89,64 +171,8 @@
  * ":literal:" or ":php:"
  */
 .code-inline {
-    font-family: $font-family-monospace;
-    font-size: 75%;
-    border-radius: $border-radius;
-    border: 1px solid #fff;
-
-    &.bash {
-        color: $code-color-bash;
-    }
-
-    &.css {
-        color: $code-color-css;
-    }
-
-    &.file {
-        color: $code-color-file;
-    }
-
-    &.html {
-        color: $code-color-html;
-    }
-
-    &.js {
-        color: $code-color-js;
-    }
-
-    &.method {
-        color: $code-color-method;
-    }
-
-    &.php {
-        color: $code-color-php;
-    }
-
-    &.rst {
-        color: $code-color-rst;
-    }
-
-    &.py {
-        color: $code-color-py;
-    }
-
-    &.shell {
-        color: $code-color-shell;
-    }
-
-    &.sql {
-        color: $code-color-sql;
-    }
-
-    &.typoscript {
-        color: $code-color-typoscript;
-    }
-
-    &.xml {
-        color: $code-color-xml;
-    }
-
-    &.yaml {
-        color: $code-color-yaml;
+    color: $code-icon-color;
+    code {
+        color: $code-color;
     }
 }
