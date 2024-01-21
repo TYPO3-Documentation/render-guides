@@ -74,6 +74,18 @@
     }
 }
 
+.code-icon-language {
+    @extend .fa-solid;
+    @extend .fa-question;
+}
+
+.code-language-none, .code-language-text, .code-language-plaintext {
+    .code-icon-language {
+        @extend .fa-solid;
+        @extend .fa-align-left;
+    }
+}
+
 .code-language-xml {
     .code-icon-language {
         @extend .fa-solid;
@@ -83,8 +95,13 @@
 
 .code-language-php {
     .code-icon-language {
-        @extend .fa-brands;
-        @extend .fa-php;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.70rem;
+        &::before {
+            content: 'PHP'
+        }
     }
 }
 
@@ -103,32 +120,59 @@
 }
 .code-language-js {
     .code-icon-language {
-        @extend .fa-brands;
-        @extend .fa-square-js;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.70rem;
+        &::before {
+            content: 'JS'
+        }
     }
 }
 .code-language-xlf {
     .code-icon-language {
-        @extend .fa-solid;
-        @extend .fa-language;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.70rem;
+        &::before {
+            content: 'XLF'
+        }
     }
 }
 .code-language-html {
     .code-icon-language {
-        @extend .fa-brands;
-        @extend .fa-html5;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.6rem;
+        letter-spacing: -0.05em;
+        &::before {
+            content: 'HTML'
+        }
     }
 }
 .code-language-yaml {
     .code-icon-language {
-        @extend .fa-solid;
-        @extend .fa-wrench;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.6rem;
+        letter-spacing: -0.05em;
+        &::before {
+            content: 'YAML'
+        }
     }
 }
 .code-language-md {
     .code-icon-language {
-        @extend .fa-brands;
-        @extend .fa-markdown;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.70rem;
+        &::before {
+            content: 'md'
+        }
     }
 }
 .code-language-sh {
@@ -139,26 +183,49 @@
 }
 .code-language-json {
     .code-icon-language {
-        @extend .fa-solid;
-        @extend .fa-gears;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.6rem;
+        letter-spacing: -0.05em;
+        &::before {
+            content: 'JSON'
+        }
     }
 }
 .code-language-rst {
     .code-icon-language {
-        @extend .fa-solid;
-        @extend .fa-pen-fancy;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.6rem;
+        letter-spacing: -0.05em;
+        &::before {
+            content: 'ReST'
+        }
     }
 }
 .code-language-fluid {
     .code-icon-language {
-        @extend .fa-solid;
-        @extend .fa-paintbrush;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.6rem;
+        letter-spacing: -0.05em;
+        &::before {
+            content: 'Fluid'
+        }
     }
 }
 .code-language-css {
     .code-icon-language {
-        @extend .fa-brands;
-        @extend .fa-css3;
+        font-family: $font-family-sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.70rem;
+        &::before {
+            content: 'CSS'
+        }
     }
 }
 .code-language-file {

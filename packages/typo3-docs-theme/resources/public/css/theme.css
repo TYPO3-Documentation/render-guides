@@ -14,13 +14,12 @@
 .fa-sharp,
 .fas,
 .fa-solid,
-.code-language-fluid .code-icon-language,
-.code-language-rst .code-icon-language,
-.code-language-json .code-icon-language,
 .code-language-sh .code-icon-language,
-.code-language-yaml .code-icon-language,
-.code-language-xlf .code-icon-language,
 .code-language-xml .code-icon-language,
+.code-language-none .code-icon-language,
+.code-language-text .code-icon-language,
+.code-language-plaintext .code-icon-language,
+.code-icon-language,
 .code-icon .code-icon-bg,
 .far,
 .fa-regular,
@@ -28,13 +27,8 @@
 .code-language-file .code-icon-language,
 .fab,
 .fa-brands,
-.code-language-css .code-icon-language,
-.code-language-md .code-icon-language,
-.code-language-html .code-icon-language,
-.code-language-js .code-icon-language,
 .code-language-tsconfig .code-icon-language,
-.code-language-typoscript .code-icon-language,
-.code-language-php .code-icon-language {
+.code-language-typoscript .code-icon-language {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: var(--fa-display, inline-block);
@@ -47,13 +41,12 @@
 .fas,
 .fa-classic,
 .fa-solid,
-.code-language-fluid .code-icon-language,
-.code-language-rst .code-icon-language,
-.code-language-json .code-icon-language,
 .code-language-sh .code-icon-language,
-.code-language-yaml .code-icon-language,
-.code-language-xlf .code-icon-language,
 .code-language-xml .code-icon-language,
+.code-language-none .code-icon-language,
+.code-language-text .code-icon-language,
+.code-language-plaintext .code-icon-language,
+.code-icon-language,
 .code-icon .code-icon-bg,
 .far,
 .fa-regular,
@@ -64,13 +57,8 @@
 
 .fab,
 .fa-brands,
-.code-language-css .code-icon-language,
-.code-language-md .code-icon-language,
-.code-language-html .code-icon-language,
-.code-language-js .code-icon-language,
 .code-language-tsconfig .code-icon-language,
-.code-language-typoscript .code-icon-language,
-.code-language-php .code-icon-language {
+.code-language-typoscript .code-icon-language {
   font-family: "Font Awesome 6 Brands";
 }
 
@@ -1493,7 +1481,7 @@ readers do not read off random characters that represent icons */
   content: "\f1e3";
 }
 
-.fa-paintbrush::before, .code-language-fluid .code-icon-language::before {
+.fa-paintbrush::before {
   content: "\f1fc";
 }
 
@@ -3589,7 +3577,7 @@ readers do not read off random characters that represent icons */
   content: "\f7ec";
 }
 
-.fa-language::before, .code-language-xlf .code-icon-language::before {
+.fa-language::before {
   content: "\f1ab";
 }
 
@@ -3605,7 +3593,7 @@ readers do not read off random characters that represent icons */
   content: "\f0b0";
 }
 
-.fa-question::before {
+.fa-question::before, .code-icon-language::before {
   content: "\?";
 }
 
@@ -4101,7 +4089,7 @@ readers do not read off random characters that represent icons */
   content: "\f805";
 }
 
-.fa-wrench::before, .code-language-yaml .code-icon-language::before {
+.fa-wrench::before {
   content: "\f0ad";
 }
 
@@ -4593,7 +4581,7 @@ readers do not read off random characters that represent icons */
   content: "\f6e8";
 }
 
-.fa-pen-fancy::before, .code-language-rst .code-icon-language::before {
+.fa-pen-fancy::before {
   content: "\f5ac";
 }
 
@@ -4693,7 +4681,7 @@ readers do not read off random characters that represent icons */
   content: "\f545";
 }
 
-.fa-align-left::before {
+.fa-align-left::before, .code-language-none .code-icon-language::before, .code-language-text .code-icon-language::before, .code-language-plaintext .code-icon-language::before {
   content: "\f036";
 }
 
@@ -7073,7 +7061,7 @@ readers do not read off random characters that represent icons */
   content: "\f67c";
 }
 
-.fa-gears::before, .code-language-json .code-icon-language::before {
+.fa-gears::before {
   content: "\f085";
 }
 
@@ -8302,13 +8290,12 @@ readers do not read off random characters that represent icons */
 }
 .fas,
 .fa-solid,
-.code-language-fluid .code-icon-language,
-.code-language-rst .code-icon-language,
-.code-language-json .code-icon-language,
 .code-language-sh .code-icon-language,
-.code-language-yaml .code-icon-language,
-.code-language-xlf .code-icon-language,
 .code-language-xml .code-icon-language,
+.code-language-none .code-icon-language,
+.code-language-text .code-icon-language,
+.code-language-plaintext .code-icon-language,
+.code-icon-language,
 .code-icon .code-icon-bg {
   font-weight: 900;
 }
@@ -8332,13 +8319,8 @@ readers do not read off random characters that represent icons */
 }
 .fab,
 .fa-brands,
-.code-language-css .code-icon-language,
-.code-language-md .code-icon-language,
-.code-language-html .code-icon-language,
-.code-language-js .code-icon-language,
 .code-language-tsconfig .code-icon-language,
-.code-language-typoscript .code-icon-language,
-.code-language-php .code-icon-language {
+.code-language-typoscript .code-icon-language {
   font-weight: 400;
 }
 
@@ -8430,7 +8412,7 @@ readers do not read off random characters that represent icons */
   content: "\f40b";
 }
 
-.fa-square-js:before, .code-language-js .code-icon-language:before {
+.fa-square-js:before {
   content: "\f3b9";
 }
 
@@ -8594,7 +8576,7 @@ readers do not read off random characters that represent icons */
   content: "\f77a";
 }
 
-.fa-markdown:before, .code-language-md .code-icon-language:before {
+.fa-markdown:before {
   content: "\f60f";
 }
 
@@ -9910,7 +9892,7 @@ readers do not read off random characters that represent icons */
   content: "\f4d5";
 }
 
-.fa-html5:before, .code-language-html .code-icon-language:before {
+.fa-html5:before {
   content: "\f13b";
 }
 
@@ -10010,7 +9992,7 @@ readers do not read off random characters that represent icons */
   content: "\f1d0";
 }
 
-.fa-css3:before, .code-language-css .code-icon-language:before {
+.fa-css3:before {
   content: "\f13c";
 }
 
@@ -10150,7 +10132,7 @@ readers do not read off random characters that represent icons */
   content: "\f09b";
 }
 
-.fa-php:before, .code-language-php .code-icon-language:before {
+.fa-php:before {
   content: "\f457";
 }
 
@@ -23115,6 +23097,111 @@ article h3, article .h3 {
 
 .code-icon .code-icon-language {
   line-height: inherit !important;
+}
+
+.code-language-php .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+.code-language-php .code-icon-language::before {
+  content: "PHP";
+}
+
+.code-language-js .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+.code-language-js .code-icon-language::before {
+  content: "JS";
+}
+
+.code-language-xlf .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+.code-language-xlf .code-icon-language::before {
+  content: "XLF";
+}
+
+.code-language-html .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.6rem;
+  letter-spacing: -0.05em;
+}
+.code-language-html .code-icon-language::before {
+  content: "HTML";
+}
+
+.code-language-yaml .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.6rem;
+  letter-spacing: -0.05em;
+}
+.code-language-yaml .code-icon-language::before {
+  content: "YAML";
+}
+
+.code-language-md .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+.code-language-md .code-icon-language::before {
+  content: "md";
+}
+
+.code-language-json .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.6rem;
+  letter-spacing: -0.05em;
+}
+.code-language-json .code-icon-language::before {
+  content: "JSON";
+}
+
+.code-language-rst .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.6rem;
+  letter-spacing: -0.05em;
+}
+.code-language-rst .code-icon-language::before {
+  content: "ReST";
+}
+
+.code-language-fluid .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.6rem;
+  letter-spacing: -0.05em;
+}
+.code-language-fluid .code-icon-language::before {
+  content: "Fluid";
+}
+
+.code-language-css .code-icon-language {
+  font-family: "Source Sans 3", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+.code-language-css .code-icon-language::before {
+  content: "CSS";
 }
 
 .code-block-copy {
