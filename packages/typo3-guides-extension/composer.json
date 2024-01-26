@@ -9,8 +9,8 @@
         }
     },
     "require": {
-        "phpdocumentor/guides-cli": "dev-main",
+        "phpdocumentor/guides-cli": "^0.3",
         "symfony/clock": "^6.4",
-        "t3docs/guides-php-domain": "dev-main"
+        "t3docs/guides-php-domain": "^0.1"
     }
 }
