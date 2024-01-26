@@ -24,8 +24,14 @@
     padding: .75rem;
     margin-bottom: 1rem;
     .code-block-caption {
-        padding-bottom: .75rem;
-        margin-bottom: .75rem;
+        .caption-text {
+            display: inline-block;;
+            background: $white;
+            padding: 0.5rem;
+            border-radius: 2rem;
+        }
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
         border-bottom: 1px solid var(--code-block-background-border-color);
     }
     .code-block-body {
