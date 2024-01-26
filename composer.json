@@ -7,14 +7,14 @@
         "ext-dom": "*",
         "ext-libxml": "*",
         "brotkrueml/twig-codehighlight": "dev-main",
-        "phpdocumentor/guides-cli": "dev-main",
-        "phpdocumentor/guides-graphs": "dev-main",
-        "phpdocumentor/guides-markdown": "dev-main",
-        "phpdocumentor/guides-theme-bootstrap": "dev-main",
+        "phpdocumentor/guides-cli": "^0.3",
+        "phpdocumentor/guides-graphs": "^0.3",
+        "phpdocumentor/guides-markdown": "^0.3",
+        "phpdocumentor/guides-theme-bootstrap": "^0.3",
         "symfony/clock": "^6.4",
         "symfony/finder": "^6.4",
         "symfony/http-client": "^6.4",
-        "t3docs/guides-php-domain": "dev-main"
+        "t3docs/guides-php-domain": "^0.1"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.39",
