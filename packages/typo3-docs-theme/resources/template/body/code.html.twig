@@ -2,12 +2,12 @@
     {# see the RawDirective for where this is coming from; a refactor is desired to move this onto its own template / renderer #}
     {{ node.value|raw }}
 {%- else -%}
-    {% if node.caption %}
-        <div class="code-block-caption">
-            <span class="caption-text">{{ node.caption }}</span>
-        </div>
-    {%- endif -%}
-    <div class="code-block-wrapper" translate="no">
+    <div class="code-block-wrapper">
+        {% if node.caption %}
+            <div class="code-block-caption">
+                <span class="caption-text">{{ node.caption }}</span>
+            </div>
+        {%- endif -%}
         {% set showLineNumbers = false %}
         {% set startWithLineNumber = 1 %}
         {% if node.startingLineNumber %}
@@ -15,11 +15,13 @@
             {% set startWithLineNumber = node.startingLineNumber %}
         {% endif %}
 
-        {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber, emphasizeLines=node.emphasizeLines, classes=node.classesString)}}
-        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        <div class="code-block-body" translate="no">
+            {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber, emphasizeLines=node.emphasizeLines, classes=node.classesString)}}
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
     </div>
 {%- endif -%}

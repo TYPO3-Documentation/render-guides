@@ -23017,17 +23017,29 @@ article h3, article .h3 {
 /*
  * The class "code-block" is used for ".. code-block::" directives
  */
-.code-block {
+.code-block-wrapper {
+  position: relative;
   background: var(--code-block-background-color);
   border: 1px solid var(--code-block-background-border-color);
   border-radius: 0.2rem;
   font-size: 92%;
   line-height: 125%;
-  margin-bottom: 1rem;
   overflow-x: auto;
   padding: 0.75rem;
+  margin-bottom: 1rem;
 }
-.code-block [data-line-number]::before {
+.code-block-wrapper .code-block-caption {
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--code-block-background-border-color);
+}
+.code-block-wrapper .code-block-body {
+  position: relative;
+}
+.code-block-wrapper .code-block-body .code-block {
+  margin-bottom: 0;
+}
+.code-block-wrapper .code-block-body .code-block [data-line-number]::before {
   color: var(--code-block-linenos-text-color);
   content: attr(data-line-number);
   display: inline-block;
@@ -23035,12 +23047,8 @@ article h3, article .h3 {
   text-align: right;
   width: 2ch;
 }
-.code-block [data-emphasize-line] {
+.code-block-wrapper .code-block-body .code-block [data-emphasize-line] {
   background: var(--code-block-emphasize-background-color);
-}
-
-.code-block-wrapper {
-  position: relative;
 }
 
 .code-block-copy {
@@ -23048,7 +23056,7 @@ article h3, article .h3 {
   border: none;
   position: absolute;
   right: 8px;
-  top: 8px;
+  top: 0;
 }
 .code-block-copy .fa-copy {
   opacity: 0.5;
