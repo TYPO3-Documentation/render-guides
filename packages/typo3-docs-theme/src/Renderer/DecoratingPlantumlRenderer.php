@@ -15,12 +15,12 @@ final class DecoratingPlantumlRenderer implements DiagramRenderer
 
     public function __construct(private readonly PlantumlServerRenderer $innerRenderer) {}
 
-    public function render(RenderContext $renderContext, string $diagram): string|null
+    public function render(string $diagram): string|null
     {
         if ($this->disabled) {
             return 'The PlantUML renderer is not available in test mode.';
         }
-        return $this->innerRenderer->render($renderContext, $diagram);
+        return $this->innerRenderer->render($diagram);
     }
 
     public function isDisabled(): bool
