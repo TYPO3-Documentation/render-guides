@@ -2,7 +2,7 @@
 
 namespace T3Docs\Typo3DocsTheme\Settings;
 
-class Typo3DocsThemeSettings
+final class Typo3DocsThemeSettings
 {
     /**
      * @param array<string, string> $settings
@@ -22,5 +22,13 @@ class Typo3DocsThemeSettings
             return $default;
         }
         return $this->settings[$key];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function getAllSettings(): array
+    {
+        return $this->settings;
     }
 }

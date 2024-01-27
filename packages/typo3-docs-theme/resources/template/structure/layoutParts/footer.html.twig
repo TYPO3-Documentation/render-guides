@@ -3,11 +3,22 @@
     <div class="frame frame-ruler-before frame-background-dark">
         <div class="frame-container">
             <div class="frame-inner">
-                <ul class="footer-simplemenu">
-                    <li><a href="https://typo3.org/community/teams/documentation/#c9886" title="Contact"><span>Contact</span></a></li>
-                    <li><a href="https://github.com/TYPO3-Documentation/DocsTypo3Org-Homepage/issues" rel="nofollow noopener" title="Issues"><span>Issues</span></a></li>
-                    <li><a href="https://github.com/TYPO3-Documentation/DocsTypo3Org-Homepage" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
-                </ul>
+                {% if env.projectNode.variables.project_home or env.projectNode.variables.project_contact or env.projectNode.variables.project_issues or env.projectNode.variables.project_repository -%}
+                    <ul class="footer-simplemenu">
+                        {% if env.projectNode.variables.project_home -%}
+                            <li><a href="{{ renderNode(env.projectNode.variables.project_home) }}" title="Home" rel="nofollow noopener"><span>Home</span></a></li>
+                        {% endif %}
+                        {% if env.projectNode.variables.project_contact -%}
+                            <li><a href="{{ renderNode(env.projectNode.variables.project_contact) }}" title="Contact" rel="nofollow noopener"><span>Contact</span></a></li>
+                        {% endif %}
+                        {% if env.projectNode.variables.project_issues -%}
+                            <li><a href="{{ renderNode(env.projectNode.variables.project_issues) }}" rel="nofollow noopener" title="Issues"><span>Issues</span></a></li>
+                        {% endif %}
+                        {% if env.projectNode.variables.project_repository -%}
+                            <li><a href="{{ renderNode(env.projectNode.variables.project_repository) }}" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
+                        {% endif %}
+                    </ul>
+                {%- endif %}
                 <div class="footer-additional">
                     <p class="text-center">Last rendered: {{ env.projectNode.lastRendered|date("M d, Y H:i") }}</p>
                 </div>
