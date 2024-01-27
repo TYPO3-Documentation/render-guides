@@ -125,34 +125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MKNXD8Q');</script>
     <!-- End Google Tag Manager -->
-
-    <footer class="page-footer">
-        <!-- footer.html -->
-        <div class="frame frame-ruler-before frame-background-dark">
-            <div class="frame-container">
-                <div class="frame-inner">
-                    <ul class="footer-simplemenu"><li><a href="https://typo3.org/community/teams/documentation/#c9886" title="Contact"><span>Contact</span></a></li>
-                        <li><a href="https://github.com/TYPO3-Documentation/DocsTypo3Org-Homepage/issues" rel="nofollow noopener" title="Issues"><span>Issues</span></a></li>
-                        <li><a href="https://github.com/TYPO3-Documentation/DocsTypo3Org-Homepage" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
-                    </ul>
-                    <div class="footer-additional">
-                        <p class="text-center">Last rendered: {{ env.projectNode.lastRendered|date("M d, Y H:i") }}</p>
-                    </div>
-                    <div class="footer-meta">
-                        <div class="footer-meta-copyright">
-                            {% block footer %}
-                            {% endblock %}
-                        </div>
-                        <ul class="footer-meta-navigation">
-                            <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
-                            <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /footer.html -->
-    </footer>
+    {% include "structure/layoutParts/footer.html.twig" %}
 </div>
 
 <script src="{{ getRelativePath('_resources/js/popper.min.js') }}"></script>
