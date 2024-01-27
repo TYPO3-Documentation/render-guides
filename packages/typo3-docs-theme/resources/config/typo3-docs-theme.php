@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
+use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use phpDocumentor\Guides\Event\PreParseProcess;
 use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
@@ -13,6 +14,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
+use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 
@@ -69,6 +71,9 @@ return static function (ContainerConfigurator $container): void {
         ->arg('$classes', 'code-block')
         ->tag('twig.extension')
         ->autowire()
+
+        ->set(AddThemeSettingsToProjectNode::class)
+        ->tag('event_listener', ['event' => PostProjectNodeCreated::class])
 
         ->set(CopyResources::class)
         ->tag('event_listener', ['event' => PostRenderProcess::class])
