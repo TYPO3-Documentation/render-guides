@@ -5,7 +5,9 @@
     xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
 >
     <project
-        title="Render guides"
+        title="Example Project"
+        version="12.4"
+        release="12.4.0-dev"
         copyright="Since 2023 TYPO3 Documentation Team and Contributors"
     />
     <extension
@@ -15,7 +17,4 @@
         interlink-shortcode="t3docsRenderGuides"
         typo3-core-preferred="stable"
     />
-    <!-- explicitly link to stable versions of extensions -->
-    <inventory id="georgringer/news/stable" url="https://docs.typo3.org/p/georgringer/news/11.3/en-us/"/>
-    <inventory id="cobweb/external_import/stable" url="https://docs.typo3.org/p/cobweb/external_import/7.2/en-us/"/>
 </guides>
