@@ -1,87 +1,28 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="phpdocumentor/guides" name="generator">
-    <meta content="{{ env.projectNode.title }}" name="docsearch:name">
-    <meta content="" name="docsearch:package_type">
-    <meta content="{{ env.projectNode.version }}" name="docsearch:release">
-    <meta content="{{ env.projectNode.version }}" name="docsearch:version">
-    <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" name="docsearch:modified">
-    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
-    <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" name="dc.modified">
-    <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" property="article:modified_time">
     <title>{{ title }}
         {%- if title!=null and env.projectNode.title!=null %} — {% endif -%}
         {%- if env.projectNode.title -%}{{ env.projectNode.title }} {% endif -%} {{ env.projectNode.version }} documentation</title>
 
-    <link href="{{ getRelativePath('_resources/css/theme.css') }}" rel="stylesheet">
-    <link href="https://docs.typo3.org/search/" rel="search" title="Search">
+    {% include "structure/layoutParts/metaTags.html.twig" %}
+    {% include "structure/layoutParts/generalHeaderLinks.html.twig" %}
+
     {% block additional_meta_data %}
     {% endblock %}
     {% block headerLinks %}
     {% endblock %}
-    <!-- extrahead --><!-- /extrahead -->
-    <!-- UNIVERSE BAR START -->
-    <script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
-    <script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
-    <!-- UNIVERSE BAR END -->
 </head>
 <body cz-shortcut-listen="true">
 <div class="page">
-    <header>
-        <div class="page-topbar">
-            <div class="page-topbar-inner">
-                <!-- UNIVERSE BAR START -->
-                <typo3-universe active="documentation">
-                    <div style="display: block; height: 44px; background-color: #313131;"></div>
-                </typo3-universe>
-                <!-- UNIVERSE BAR END -->
-            </div>
-        </div>
-        <div class="page-header">
-            <div class="page-header-inner">
-                <!-- pageheader -->
-                <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
-                    <img alt="TYPO3 Logo" class="logo-image" src="{{ getRelativePath('_resources/img/typo3-logo.svg') }}" width="484" height="130">
-                </a>
-                <!-- /pageheader -->
-            </div>
-        </div>
-    </header>
-
+    {% include "structure/layoutParts/pageHeader.html.twig" %}
     <main class="page-main">
         <div class="page-main-inner">
             <div class="page-main-navigation">
                 <nav>
                     <input class="toc-checkbox" id="toggleToc" type="checkbox">
-                    <div class="toc-header">
-                        <div class="toc-title">
-                            {% set pagerLinks = getPagerLinks() %}
-                            {%- for link in pagerLinks -%}
-                            {%- if link.relation=='top' -%}
-                                <a class="toc-title-project" href="{{ link.url }}">{{ env.projectNode.title }}</a>
-                            {% endif -%}
-                            {%- endfor -%}
-                            {% if env.projectNode.version -%}
-                                <div class="toc-version-wrapper" id="toc-version-wrapper">
-                                    <div id="toc-version" class="toc-version">
-                                        <span class="toc-version-prefix">Release:</span>
-                                        <span class="toc-version-number">{{ env.projectNode.version }}</span>
-                                    </div>
-                                    <div id="toc-version-options" class="toc-version-options">
-                                        <p><span class="fa fa-spinner fa-spin"></span> Loading data.</p>
-                                    </div>
-                                </div>
-                            {%- endif -%}
-                        </div>
-                        <div class="toc-actions">
-                            <label class="toc-toggle" for="toggleToc">
-                                Menu
-                            </label>
-                        </div>
-                    </div>
+
+                    {% include "structure/navigation/navigationHeader.html.twig" %}
                     <div class="toc-collapse">
                         {% if env.projectNode.searchLink -%}
                         <div class="toc-search" id="searchbox" role="search">
@@ -93,10 +34,8 @@
                         </div>
                         {% endif %}
                         <div aria-label="main navigation" class="toc" role="navigation">
-                            <!-- menu -->
                             {% block menu_doc %}
                             {% endblock %}
-                            <!-- /menu -->
                         </div>
                     </div>
                 </nav>
@@ -108,8 +47,8 @@
                     {%- endif  %}
                     {% block breadcrumb %}
                     {% endblock %}
-                            {% block body %}
-                            {% endblock %}
+                    {% block body %}
+                    {% endblock %}
                     {% block pager %}
                     {% endblock %}
                 </div>
@@ -118,21 +57,8 @@
     </main>
 
     {% include "structure/layoutParts/linkReferenceModal.html.twig" %}
-    <!-- Google Tag Manager -->
-    <script type="text/plain" data-usercentrics="Google Tag Manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MKNXD8Q');</script>
-    <!-- End Google Tag Manager -->
-    {% include "structure/layoutParts/footer.html.twig" %}
 </div>
 
-<script src="{{ getRelativePath('_resources/js/popper.min.js') }}"></script>
-<script src="{{ getRelativePath('_resources/js/bootstrap.min.js') }}"></script>
-<script src="{{ getRelativePath('_resources/js/theme.min.js') }}"></script>
-
-<script id="R9wBKTwzv" src="https://app.usercentrics.eu/latest/main.js"></script>
-<script data-usercentrics="Matomo" src="/js/piwik.js" type="text/plain"></script>
+{% include "structure/layoutParts/footerAssets.html.twig" %}
 </body>
 </html>

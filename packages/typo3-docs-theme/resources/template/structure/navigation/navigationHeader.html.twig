@@ -1,0 +1,27 @@
+
+<div class="toc-header">
+    <div class="toc-title">
+        {% set pagerLinks = getPagerLinks() %}
+        {%- for link in pagerLinks -%}
+            {%- if link.relation=='top' -%}
+                <a class="toc-title-project" href="{{ link.url }}">{{ env.projectNode.title }}</a>
+            {% endif -%}
+        {%- endfor -%}
+        {% if env.projectNode.version -%}
+            <div class="toc-version-wrapper" id="toc-version-wrapper">
+                <div id="toc-version" class="toc-version">
+                    <span class="toc-version-prefix">Release:</span>
+                    <span class="toc-version-number">{{ env.projectNode.version }}</span>
+                </div>
+                <div id="toc-version-options" class="toc-version-options">
+                    <p><span class="fa fa-spinner fa-spin"></span> Loading data.</p>
+                </div>
+            </div>
+        {%- endif -%}
+    </div>
+    <div class="toc-actions">
+        <label class="toc-toggle" for="toggleToc">
+            Menu
+        </label>
+    </div>
+</div>
