@@ -1,4 +1,6 @@
 name: "Sub-split Publishing"
+# See Documentation/Developer/MonoRepository.rst for details
+# on Sub-tree splitting
 
 on: # yamllint disable-line rule:truthy
   create:
