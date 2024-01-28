@@ -8,8 +8,8 @@ versions for documentation interlinking. It also allows a matching between
 relative versions, for example `stable` and absolute minor versions, for
 example `12.4`.
 
-Additionally it contains an enum with a list of supported standard inventories
-of official manuals. These are used for interlink mapping.
+Additionally, it contains an enum with a list of supported standard inventories
+of official references, tutorials and guides. These are used for interlink mapping.
 
 You can also require this package in your composer.json::
 
