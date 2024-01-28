@@ -14,6 +14,11 @@
       "name": "t3docs-typo3-docs-theme",
       "directory": "packages/typo3-docs-theme",
       "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-docs-theme.git"
+    },
+    {
+        "name": "t3docs-typo3-version-handling",
+        "directory": "packages/typo3-version-handling",
+        "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-version-handling.git"
     }
   ]
 }
