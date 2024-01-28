@@ -46,7 +46,7 @@ action :file:`.github/workflows/split-repositories.yaml`.
 
 To add a new split-repository package, the following is needed:
 
-*   Create a repository on GitHub with the matching composer name, special
+*   Create a repository on GitHub with the matching Composer name, special
     signs replaced by minus.
 *   Configure the repository with :guilabel:`maintain` rights to the group
     `PHP-based-rendering-bot <https://github.com/orgs/TYPO3-Documentation/teams/php-based-rendering-bot>`__
