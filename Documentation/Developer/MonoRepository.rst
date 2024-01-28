@@ -38,7 +38,7 @@ It is recommended to run the validation check before you commit:
 Repository split
 ================
 
-To be made available on packagist each package in the folder packages has
+To be made available on Packagist each package in the folder packages has
 to have its own repository. On merging and creating tag these repositories
 updated by the github action :file:`.github/workflows/split-repositories.yaml`.
 
