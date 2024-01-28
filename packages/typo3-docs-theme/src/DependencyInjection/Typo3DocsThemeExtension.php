@@ -48,21 +48,33 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 Typo3DocsThemeSettings::class,
                 [
                     '$settings' => [
-                        'typo3_version' => $configs[1]['typo3_version'] ?? 'main',
-                        'edit_on_github' => $configs[1]['edit_on_github'] ?? '',
-                        'edit_on_github_branch' => $configs[1]['edit_on_github_branch'] ?? 'main',
-                        'how_to_edit' => $configs[1]['how_to_edit'] ?? 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html',
-                        'interlink_shortcode' => $configs[1]['interlink_shortcode'] ?? '',
-                        'copy_sources' => $configs[1]['copy_sources'] ?? 'true',
-                        'project_home' => $configs[1]['project_home'] ?? '',
-                        'project_contact' => $configs[1]['project_contact'] ?? '',
-                        'project_repository' => $configs[1]['project_repository'] ?? '',
-                        'project_issues' => $configs[1]['project_issues'] ?? '',
+                        'typo3_version' => $this->getConfigValue($configs, 'typo3_version', 'main'),
+                        'edit_on_github' => $this->getConfigValue($configs, 'edit_on_github', ''),
+                        'edit_on_github_branch' => $this->getConfigValue($configs, 'edit_on_github_branch', 'main'),
+                        'how_to_edit' => $this->getConfigValue($configs, 'how_to_edit', 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html'),
+                        'interlink_shortcode' => $this->getConfigValue($configs, 'interlink_shortcode', ''),
+                        'copy_sources' => $this->getConfigValue($configs, 'copy_sources', 'true'),
+                        'project_home' => $this->getConfigValue($configs, 'project_home', ''),
+                        'project_contact' => $this->getConfigValue($configs, 'project_contact', ''),
+                        'project_repository' => $this->getConfigValue($configs, 'project_repository', ''),
+                        'project_issues' => $this->getConfigValue($configs, 'project_issues', ''),
                     ],
                 ],
             );
             $container->setDefinition(Typo3DocsThemeSettings::class, $definition);
         }
+    }
+
+    /**
+     * @param array<int, mixed> $configs
+     * @return string
+     */
+    private function getConfigValue(array $configs, string $key, string $default): string
+    {
+        if (!is_array($configs[1] ?? false) || !isset($configs[1][$key]) || !is_scalar($configs[1][$key])) {
+            return $default;
+        }
+        return strval($configs[1][$key]);
     }
 
     public function prepend(ContainerBuilder $container): void
