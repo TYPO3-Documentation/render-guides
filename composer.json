@@ -6,7 +6,7 @@
         "php": "^8.1",
         "ext-dom": "*",
         "ext-libxml": "*",
-        "brotkrueml/twig-codehighlight": "dev-main",
+        "brotkrueml/twig-codehighlight": "^0.1",
         "phpdocumentor/guides-cli": "^0.3",
         "phpdocumentor/guides-graphs": "^0.3",
         "phpdocumentor/guides-markdown": "^0.3",
@@ -33,12 +33,6 @@
         "t3docs/typo3-guides-extension": "self.version",
         "t3docs/typo3-version-handling": "self.version"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/brotkrueml/twig-codehighlight"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
