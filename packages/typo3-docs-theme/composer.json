@@ -10,7 +10,7 @@
         }
     },
     "require": {
-        "brotkrueml/twig-codehighlight": "dev-main",
+        "brotkrueml/twig-codehighlight": "^0.1",
         "phpdocumentor/guides-graphs": "^0.3",
         "phpdocumentor/guides-theme-bootstrap": "^0.3",
         "t3docs/typo3-version-handling": "self.version"

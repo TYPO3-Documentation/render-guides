@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18e86b9b2958c5e45970530329f08a9f",
+    "content-hash": "f8d40f9e0b53b761d7bc40a104581e07",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
-            "version": "dev-main",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brotkrueml/twig-codehighlight.git",
-                "reference": "eb2a74339b996b1690b47792e8a01264e15ec0c2"
+                "reference": "5ae1280d5148442c6ca7545165816d14406cd4ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brotkrueml/twig-codehighlight/zipball/eb2a74339b996b1690b47792e8a01264e15ec0c2",
-                "reference": "eb2a74339b996b1690b47792e8a01264e15ec0c2",
+                "url": "https://api.github.com/repos/brotkrueml/twig-codehighlight/zipball/5ae1280d5148442c6ca7545165816d14406cd4ba",
+                "reference": "5ae1280d5148442c6ca7545165816d14406cd4ba",
                 "shasum": ""
             },
             "require": {
@@ -26,29 +26,24 @@
                 "twig/twig": "^3.7"
             },
             "require-dev": {
-                "brotkrueml/coding-standards": "~5.0.0",
-                "ergebnis/composer-normalize": "~2.39.0",
-                "infection/infection": "^0.27.8",
-                "phpstan/phpstan": "1.10.47",
+                "brotkrueml/coding-standards": "~5.1.0",
+                "ergebnis/composer-normalize": "~2.41.1",
+                "infection/infection": "^0.27.9",
+                "phpstan/phpstan": "1.10.57",
                 "phpunit/phpunit": "^10.5",
                 "psr/log": "^3.0",
-                "rector/rector": "0.18.11"
+                "rector/rector": "0.19.1"
             },
             "suggest": {
                 "psr/log": "Output a warning when a given language is not available"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Brotkrueml\\TwigCodeHighlight\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Brotkrueml\\TwigCodeHighlight\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -60,14 +55,14 @@
             ],
             "description": "Twig extension for code highlighting using highlight.php",
             "keywords": [
-                "syntax highlighter",
+                "Syntax highlighter",
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/brotkrueml/twig-codehighlight/tree/main",
-                "issues": "https://github.com/brotkrueml/twig-codehighlight/issues"
+                "issues": "https://github.com/brotkrueml/twig-codehighlight/issues",
+                "source": "https://github.com/brotkrueml/twig-codehighlight/tree/v0.1.0"
             },
-            "time": "2023-12-15T14:58:24+00:00"
+            "time": "2024-01-28T06:35:59+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -6708,9 +6703,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "brotkrueml/twig-codehighlight": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
