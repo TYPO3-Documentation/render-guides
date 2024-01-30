@@ -17,7 +17,7 @@
         "t3docs/guides-php-domain": "^0.1"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.39",
+        "ergebnis/composer-normalize": "^2.42",
         "friendsofphp/php-cs-fixer": "^3.48",
         "phpstan/extension-installer": "^1.3",
         "phpstan/phpstan": "^1.10",
