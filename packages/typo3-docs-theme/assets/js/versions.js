@@ -48,5 +48,5 @@
     });
   }
 
-  document.addEventListener('click', addListOfVersions);
+  versionElement.addEventListener('click', addListOfVersions);
 })();
