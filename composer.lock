@@ -1227,16 +1227,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "0.3.2",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "0fa6bab18a93ee3add9003fa25679e1f1bf338cc"
+                "reference": "98c1de4557b3f7cfd2c3b5c57b32030281f2425a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/0fa6bab18a93ee3add9003fa25679e1f1bf338cc",
-                "reference": "0fa6bab18a93ee3add9003fa25679e1f1bf338cc",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/98c1de4557b3f7cfd2c3b5c57b32030281f2425a",
+                "reference": "98c1de4557b3f7cfd2c3b5c57b32030281f2425a",
                 "shasum": ""
             },
             "require": {
@@ -1247,8 +1247,8 @@
                 "php": "^8.1",
                 "phpdocumentor/flyfinder": "^1.1",
                 "psr/event-dispatcher": "^1.0",
-                "symfony/clock": "^6.4.2",
-                "symfony/http-client": "^6.4.2",
+                "symfony/clock": "^6.4.3",
+                "symfony/http-client": "^6.4.3",
                 "symfony/string": "^5.4 || ^6.3 || ^7.0",
                 "symfony/translation-contracts": "^3.4.1",
                 "twig/twig": "~2.15 || ^3.0",
@@ -1271,22 +1271,22 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/0.3.2"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/0.3.3"
             },
-            "time": "2024-01-27T09:39:57+00:00"
+            "time": "2024-01-31T20:23:41+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
-            "version": "0.3.2",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "b7c7041040644e0a342b7daa56eaacd74e4cb8be"
+                "reference": "7a65053814eb9def29f693ab951302dcac347a58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/b7c7041040644e0a342b7daa56eaacd74e4cb8be",
-                "reference": "b7c7041040644e0a342b7daa56eaacd74e4cb8be",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/7a65053814eb9def29f693ab951302dcac347a58",
+                "reference": "7a65053814eb9def29f693ab951302dcac347a58",
                 "shasum": ""
             },
             "require": {
@@ -1320,13 +1320,13 @@
             ],
             "description": "Allows you to run phpDocumentor Guides as a stand alone application as console command",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-cli/tree/0.3.2"
+                "source": "https://github.com/phpDocumentor/guides-cli/tree/0.3.3"
             },
-            "time": "2024-01-21T21:13:45+00:00"
+            "time": "2024-02-08T20:51:50+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
-            "version": "0.3.2",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-graphs.git",
@@ -1363,13 +1363,13 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-graphs/issues",
-                "source": "https://github.com/phpDocumentor/guides-graphs/tree/0.3.2"
+                "source": "https://github.com/phpDocumentor/guides-graphs/tree/0.3.3"
             },
             "time": "2024-01-21T19:16:47+00:00"
         },
         {
             "name": "phpdocumentor/guides-markdown",
-            "version": "0.3.2",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-markdown.git",
@@ -1400,22 +1400,22 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-markdown/issues",
-                "source": "https://github.com/phpDocumentor/guides-markdown/tree/0.3.2"
+                "source": "https://github.com/phpDocumentor/guides-markdown/tree/0.3.3"
             },
             "time": "2024-01-21T19:16:47+00:00"
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
-            "version": "0.3.2",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "945e6e59f668371c535d1e146ddb93050e4698cf"
+                "reference": "e26e3a9109fbb425ffc90affeef5556c62fccb3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/945e6e59f668371c535d1e146ddb93050e4698cf",
-                "reference": "945e6e59f668371c535d1e146ddb93050e4698cf",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/e26e3a9109fbb425ffc90affeef5556c62fccb3f",
+                "reference": "e26e3a9109fbb425ffc90affeef5556c62fccb3f",
                 "shasum": ""
             },
             "require": {
@@ -1438,13 +1438,13 @@
             "description": "Adds reStructuredText Markup support to the phpDocumentor's Guides library.",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/0.3.2"
+                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/0.3.3"
             },
-            "time": "2024-01-21T20:19:11+00:00"
+            "time": "2024-01-30T06:50:46+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
-            "version": "0.3.2",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-bootstrap.git",
@@ -1474,7 +1474,7 @@
             "description": "A theme for phpdocumentor/guides based on Bootstrap",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/0.3.2"
+                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/0.3.3"
             },
             "time": "2024-01-21T19:16:47+00:00"
         },
