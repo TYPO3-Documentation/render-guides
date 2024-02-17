@@ -5,7 +5,7 @@ Document Title
 Lorem Ipsum Dolor.
 
 ..  toctree::
-    :blob:
+    :glob:
 
     *
     */index
