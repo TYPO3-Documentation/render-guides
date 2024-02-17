@@ -35,8 +35,6 @@
         "t3docs/typo3-guides-extension": "self.version",
         "t3docs/typo3-version-handling": "self.version"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "T3Docs\\GuidesCli\\": "packages/typo3-guides-cli/src/",
