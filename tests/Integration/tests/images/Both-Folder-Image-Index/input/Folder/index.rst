@@ -9,3 +9,9 @@ Lorem Ipsum Dolor.
    :alt: Content element wizard with the new content element
 
     Content element wizard with the new content element
+
+..  toctree::
+    :glob:
+    :hidden:
+
+    */index.rst
