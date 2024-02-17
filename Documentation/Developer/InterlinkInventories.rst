@@ -117,12 +117,12 @@ Composer name as interlink domain:
 ..  code-block:: rst
 
     *   :doc:`Adminpanel <typo3/cms-adminpanel:Index>`
-    *   :ref:`RTE <typo3/cms-rte-ckeditor:start>`
+    *   :ref:`RTE <typo3/cms-rte-ckeditor:introduction>`
 
 This will be rendered as:
 
 *   :doc:`Adminpanel <typo3/cms-adminpanel:Index>`
-*   :ref:`RTE <typo3/cms-rte-ckeditor:start>`
+*   :ref:`RTE <typo3/cms-rte-ckeditor:introduction>`
 
 By default they will link to :ref:`your preferred TYPO3 version <typo3-version>`.
 You can link to another version by using the same prefixes as for official
@@ -130,23 +130,23 @@ manuals:
 
 ..  code-block:: rst
 
-    *   :ref:`RTE <typo3/cms-rte-ckeditor/dev:start>`
-    *   :ref:`RTE <typo3/cms-rte-ckeditor/stable:start>`
-    *   :ref:`RTE <typo3/cms-rte-ckeditor/oldstable:start>`
-    *   :ref:`RTE <typo3/cms-rte-ckeditor/v12:start>`
-    *   :ref:`RTE <typo3/cms-rte-ckeditor/12.4:start>`
-    *   :ref:`RTE <typo3/cms-rte-ckeditor/v8:start>`
-    *   :ref:`RTE <typo3/cms-rte-ckeditor/8.7:start>`
+    *   :ref:`RTE <typo3/cms-rte-ckeditor/dev:introduction>`
+    *   :ref:`RTE <typo3/cms-rte-ckeditor/stable:introduction>`
+    *   :ref:`RTE <typo3/cms-rte-ckeditor/oldstable:introduction>`
+    *   :ref:`RTE <typo3/cms-rte-ckeditor/v12:introduction>`
+    *   :ref:`RTE <typo3/cms-rte-ckeditor/12.4:introduction>`
+    *   :ref:`RTE <typo3/cms-rte-ckeditor/v8:introduction>`
+    *   :ref:`RTE <typo3/cms-rte-ckeditor/8.7:introduction>`
 
 This will be rendered as:
 
-*   :ref:`RTE <typo3/cms-rte-ckeditor/dev:start>`
-*   :ref:`RTE <typo3/cms-rte-ckeditor/stable:start>`
-*   :ref:`RTE <typo3/cms-rte-ckeditor/oldstable:start>`
-*   :ref:`RTE <typo3/cms-rte-ckeditor/v12:start>`
-*   :ref:`RTE <typo3/cms-rte-ckeditor/12.4:start>`
-*   :ref:`RTE <typo3/cms-rte-ckeditor/v8:start>`
-*   :ref:`RTE <typo3/cms-rte-ckeditor/8.7:start>`
+*   :ref:`RTE <typo3/cms-rte-ckeditor/dev:introduction>`
+*   :ref:`RTE <typo3/cms-rte-ckeditor/stable:introduction>`
+*   :ref:`RTE <typo3/cms-rte-ckeditor/oldstable:introduction>`
+*   :ref:`RTE <typo3/cms-rte-ckeditor/v12:introduction>`
+*   :ref:`RTE <typo3/cms-rte-ckeditor/12.4:introduction>`
+*   :ref:`RTE <typo3/cms-rte-ckeditor/v8:introduction>`
+*   :ref:`RTE <typo3/cms-rte-ckeditor/8.7:introduction>`
 
 For your convenience the changelog, situated in system extension `typo3/cms-core`
 can also be linked with the prefix `changelog`:
