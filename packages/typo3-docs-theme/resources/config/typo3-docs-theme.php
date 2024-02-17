@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
+use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
 use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use phpDocumentor\Guides\Event\PreParseProcess;
@@ -20,6 +21,7 @@ use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
+use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
@@ -72,11 +74,15 @@ return static function (ContainerConfigurator $container): void {
         ->tag('twig.extension')
         ->autowire()
 
+        // Register Event Listeners
         ->set(AddThemeSettingsToProjectNode::class)
         ->tag('event_listener', ['event' => PostProjectNodeCreated::class])
 
         ->set(CopyResources::class)
         ->tag('event_listener', ['event' => PostRenderProcess::class])
+
+        ->set(IgnoreLocalizationsFolders::class)
+        ->tag('event_listener', ['event' => PostCollectFilesForParsingEvent::class])
 
         ->set(TestingModeActivator::class)
         ->tag('event_listener', ['event' => PreParseProcess::class]);
