@@ -22,4 +22,6 @@
     <!-- explicitly link to stable versions of extensions -->
     <inventory id="georgringer/news/stable" url="https://docs.typo3.org/p/georgringer/news/11.3/en-us/"/>
     <inventory id="cobweb/external_import/stable" url="https://docs.typo3.org/p/cobweb/external_import/7.2/en-us/"/>
+    <!-- explicitly link to version 8.7 of TYPO3 Explained, used in  "Developer/InterlinkInventories" as example-->
+    <inventory id="t3coreapi_v8" url="https://docs.typo3.org/m/typo3/reference-coreapi/8.7/en-us/"/>
 </guides>
