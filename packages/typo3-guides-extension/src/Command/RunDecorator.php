@@ -9,10 +9,17 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 
 final class RunDecorator extends Command
 {
     private const DEFAULT_OUTPUT_DIRECTORY = 'Documentation-GENERATED-temp';
+    private const DEFAULT_INPUT_DIRECTORY = 'Documentation';
+
+    /**
+     * @see https://regex101.com/r/UD4jUt/1
+     */
+    private const LOCALIZATION_DIRECTORY_REGEX = '/Localization\.(([a-z]+)(_[a-z]+)?)$/imsU';
 
     private const INDEX_FILE_NAMES = [
         'Index.rst' => 'rst',
@@ -45,7 +52,7 @@ final class RunDecorator extends Command
 
         $arguments = $input->getArguments();
         if ($arguments['input'] === null) {
-            $guessedInput = $this->guessInput($output);
+            $guessedInput = $this->guessInput(self::DEFAULT_INPUT_DIRECTORY, $output);
         } else {
             $guessedInput = [];
         }
@@ -73,6 +80,113 @@ final class RunDecorator extends Command
             $readableOutput .= "<info>Guessed Input:</info>\n";
             $readableOutput .= print_r($guessedInput, true);
 
+            $output->writeln(sprintf("<info>DEBUG</info> Using parameters:\n%s", $readableOutput));
+        }
+
+        $baseExecution = $this->innerCommand->execute($input, $output);
+
+        if ($baseExecution !== Command::SUCCESS) {
+            return $baseExecution;
+        }
+
+        return $this->renderLocalizations($input, $output);
+    }
+
+    /**
+     * Localization inside the Documentation directories need to be handled as
+     * distinct renderings with their own guides.xml inputs. We render and run it with
+     * all the same parameters, but replace the input/output/config to their own
+     * paths. This will then perform a separate rendering from e.g.
+     * `Documentation/Localization.ru_RU/Index.rst` to
+     * `Documentation-GENERATED-temp/Localization.ru_RU/Index.html`.
+     *
+     * PROBLEMS TODO:
+     * - When we use the root directory of the project ("/Documentation") then links
+     * within Localization/... properly are able to reference "/Localization.ru_RU/Includes.rst".
+     * But then both the menu/document index is empty later on, plus files like "objects.inv" would
+     * always overwrite the local variant.
+     * - If we do NOT use the root, but render each localization as a root, then the link resolving
+     * will no longer work.
+     */
+    public function renderLocalizations(InputInterface $input, OutputInterface $output): int
+    {
+        // Retrieve the original input values of the command
+        $baseInputDirectives = [
+            'input-file' => $input->getArgument('input'),
+            'output' => $input->getOption('output'),
+            'config' => $input->getOption('config'),
+        ];
+
+        // Check the main input directory
+        $path = $baseInputDirectives['input-file'];
+        if (!is_string($path)) {
+            return Command::SUCCESS;
+        }
+        $fullResourcesPath = realpath($path);
+        if ($fullResourcesPath === false) {
+            // No localizations available, this is fine.
+            return Command::SUCCESS;
+        }
+
+        // Iterate the main input directory for directories matching Localization.xx_YY
+        $finder = new Finder();
+        $finder
+            ->directories()
+            ->in($fullResourcesPath)
+            ->depth(0)
+            ->name(self::LOCALIZATION_DIRECTORY_REGEX);
+
+        foreach ($finder as $directory) {
+            $singleLocalizationExecution = $this->renderSingleLocalization(
+                $directory->getRelativePathname(),
+                $baseInputDirectives,
+                $input,
+                $output
+            );
+
+            if ($singleLocalizationExecution !== Command::SUCCESS) {
+                return $singleLocalizationExecution;
+            }
+
+        }
+
+        return Command::SUCCESS;
+    }
+
+    /**
+     * @param array<string, mixed> $baseInputDirectives
+     */
+    public function renderSingleLocalization(string $availableLocalization, array $baseInputDirectives, InputInterface $input, OutputInterface $output): int
+    {
+        $localInputDirectives = [];
+        foreach($baseInputDirectives as $baseInputDirectiveKey => $baseInputDirectiveValue) {
+            $localInputDirectives[$baseInputDirectiveKey] = $baseInputDirectiveValue . DIRECTORY_SEPARATOR . $availableLocalization;
+        }
+        $output->writeln(sprintf('<info>Trying to render %s ...</info>', $availableLocalization));
+
+        $guessInput = $this->guessInput($localInputDirectives['input-file'], $output);
+        if ($guessInput === []) {
+            $output->writeln('<info>Skipping, no entrypoint for localization found.</info>');
+            return Command::SUCCESS;
+        }
+
+        // Re-wire the command arguments to what we need for localization ...
+        $input->setOption('input-file', $guessInput['--input-file']);
+        $input->setOption('input-format', $guessInput['--input-format']);
+        $input->setOption('output', $localInputDirectives['output']);
+        $input->setOption('config', $localInputDirectives['config']);
+
+        if ($output->isDebug()) {
+            $readableOutput = "<info>baseInputDirectives:</info>\n";
+            $readableOutput .= print_r($baseInputDirectives, true);
+            $readableOutput .= "<info>localInputDirectives:</info>\n";
+            $readableOutput .= print_r($localInputDirectives, true);
+            $readableOutput .= "<info>Entry file:</info>\n";
+            $readableOutput .= print_r($guessInput, true);
+            $readableOutput .= "<info>Actual Arguments:</info>\n";
+            $readableOutput .= print_r($input->getArguments(), true);
+            $readableOutput .= "<info>Actual Options:</info>\n";
+            $readableOutput .= print_r($input->getOptions(), true);
             $output->writeln(sprintf("<info>DEBUG</info> Using parameters:\n%s", $readableOutput));
         }
 
@@ -122,7 +236,7 @@ final class RunDecorator extends Command
     }
 
     /** @return array<string, string> */
-    private function guessInput(OutputInterface $output): array
+    private function guessInput(string $inputBaseDirectory, OutputInterface $output): array
     {
         $currentDirectory = getcwd();
         if ($currentDirectory === false) {
@@ -133,11 +247,11 @@ final class RunDecorator extends Command
             return [];
         }
 
-        $inputDirectory = $currentDirectory . '/Documentation';
+        $inputDirectory = $currentDirectory . DIRECTORY_SEPARATOR . $inputBaseDirectory;
 
         if (is_dir($inputDirectory)) {
-            if ($output->isVerbose()) {
-                $output->writeln(sprintf('<info>INFO</info> Input directory not specified, using %s', $inputDirectory));
+            if ($output->isDebug()) {
+                $output->writeln(sprintf('<info>INFO</info> Auto-detecting entry file in directory %s', $inputDirectory));
             }
 
             foreach (self::INDEX_FILE_NAMES as $filename => $extension) {
@@ -148,10 +262,13 @@ final class RunDecorator extends Command
 
                     return [
                         'input' => $inputDirectory,
+                        '--input-file' => $inputDirectory . DIRECTORY_SEPARATOR . $filename,
                         '--input-format' => $extension,
                     ];
                 }
             }
+        } elseif ($output->isVerbose()) {
+            $output->writeln(sprintf('<info>DEBUG</info> Could not search for entry file in missing directory %s', $inputDirectory));
         }
 
         if ($output->isVerbose()) {
