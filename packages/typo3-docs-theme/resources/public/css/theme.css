@@ -23018,13 +23018,7 @@ article h3, article .h3 {
  * The class "code-block" is used for ".. code-block::" directives
  */
 .code-block {
-  background: var(--code-block-background-color);
-  border: 1px solid var(--code-block-background-border-color);
-  border-radius: 0.2rem;
-  font-size: 92%;
-  line-height: 125%;
-  margin-bottom: 1rem;
-  overflow-x: auto;
+  margin-bottom: 0;
   padding: 0.75rem;
 }
 .code-block [data-line-number]::before {
@@ -23040,15 +23034,21 @@ article h3, article .h3 {
 }
 
 .code-block-wrapper {
+  background: var(--code-block-background-color);
+  border: 1px solid var(--code-block-background-border-color);
+  border-radius: 0.2rem;
+  display: flex;
+  font-size: 92%;
+  justify-content: space-between;
+  line-height: 125%;
+  margin-bottom: 1rem;
   position: relative;
 }
 
 .code-block-copy {
   background: none;
   border: none;
-  position: absolute;
-  right: 8px;
-  top: 8px;
+  padding: 0.75rem;
 }
 .code-block-copy .fa-copy {
   opacity: 0.5;
