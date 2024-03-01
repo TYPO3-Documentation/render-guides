@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47675fe2ff3a30f59292fa34ba2c1853",
+    "content-hash": "48402bf29f1b0def57ad9a6ef3def049",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -459,16 +459,16 @@
         },
         {
             "name": "league/csv",
-            "version": "9.14.0",
+            "version": "9.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/csv.git",
-                "reference": "34bf0df7340b60824b9449b5c526fcc3325070d5"
+                "reference": "fa7e2441c0bc9b2360f4314fd6c954f7ff40d435"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/csv/zipball/34bf0df7340b60824b9449b5c526fcc3325070d5",
-                "reference": "34bf0df7340b60824b9449b5c526fcc3325070d5",
+                "url": "https://api.github.com/repos/thephpleague/csv/zipball/fa7e2441c0bc9b2360f4314fd6c954f7ff40d435",
+                "reference": "fa7e2441c0bc9b2360f4314fd6c954f7ff40d435",
                 "shasum": ""
             },
             "require": {
@@ -483,12 +483,12 @@
                 "ext-xdebug": "*",
                 "friendsofphp/php-cs-fixer": "^v3.22.0",
                 "phpbench/phpbench": "^1.2.15",
-                "phpstan/phpstan": "^1.10.50",
+                "phpstan/phpstan": "^1.10.57",
                 "phpstan/phpstan-deprecation-rules": "^1.1.4",
                 "phpstan/phpstan-phpunit": "^1.3.15",
                 "phpstan/phpstan-strict-rules": "^1.5.2",
-                "phpunit/phpunit": "^10.5.3",
-                "symfony/var-dumper": "^6.4.0"
+                "phpunit/phpunit": "^10.5.9",
+                "symfony/var-dumper": "^6.4.2"
             },
             "suggest": {
                 "ext-dom": "Required to use the XMLConverter and the HTMLConverter classes",
@@ -544,7 +544,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-29T07:34:53+00:00"
+            "time": "2024-02-20T20:00:00+00:00"
         },
         {
             "name": "league/flysystem",
@@ -1227,16 +1227,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "0.3.6",
+            "version": "0.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "6e68a5f6e6f22a99ff332608d90b4f393c171e8c"
+                "reference": "8f0a10ff32f220259a23d9cd1b5dc8ee87ae478e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/6e68a5f6e6f22a99ff332608d90b4f393c171e8c",
-                "reference": "6e68a5f6e6f22a99ff332608d90b4f393c171e8c",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/8f0a10ff32f220259a23d9cd1b5dc8ee87ae478e",
+                "reference": "8f0a10ff32f220259a23d9cd1b5dc8ee87ae478e",
                 "shasum": ""
             },
             "require": {
@@ -1249,7 +1249,7 @@
                 "phpdocumentor/flyfinder": "^1.1",
                 "psr/event-dispatcher": "^1.0",
                 "symfony/clock": "^6.4.3",
-                "symfony/http-client": "^6.4.3",
+                "symfony/http-client": "^6.4.4",
                 "symfony/string": "^5.4 || ^6.3 || ^7.0",
                 "symfony/translation-contracts": "^3.4.1",
                 "twig/twig": "~2.15 || ^3.0",
@@ -1259,6 +1259,11 @@
                 "psr/log": "^2.0 || ^3.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "phpDocumentor\\Guides\\": "src/"
@@ -1272,29 +1277,29 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/0.3.6"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/0.3.7"
             },
-            "time": "2024-02-19T17:13:06+00:00"
+            "time": "2024-02-29T19:54:06+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
-            "version": "0.3.6",
+            "version": "0.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "403a325e6e89f14a4c20401b7ceb1ad46acdc782"
+                "reference": "3f98764e385afced1ae16c20e7f395d2f4cccaf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/403a325e6e89f14a4c20401b7ceb1ad46acdc782",
-                "reference": "403a325e6e89f14a4c20401b7ceb1ad46acdc782",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/3f98764e385afced1ae16c20e7f395d2f4cccaf2",
+                "reference": "3f98764e385afced1ae16c20e7f395d2f4cccaf2",
                 "shasum": ""
             },
             "require": {
                 "monolog/monolog": "^2.9 || ^3.0",
                 "php": "^8.1",
-                "phpdocumentor/guides": "self.version",
-                "phpdocumentor/guides-restructured-text": "self.version",
+                "phpdocumentor/guides": "^1.0 || ^0.3",
+                "phpdocumentor/guides-restructured-text": "^1.0 || ^0.3",
                 "symfony/config": "^5.4 || ^6.3 || ^7.0",
                 "symfony/console": "^5.4 || ^6.3 || ^7.0",
                 "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.0",
@@ -1304,6 +1309,11 @@
                 "bin/guides"
             ],
             "type": "project",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "phpDocumentor\\Guides\\Cli\\": "src/"
@@ -1321,29 +1331,29 @@
             ],
             "description": "Allows you to run phpDocumentor Guides as a stand alone application as console command",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-cli/tree/0.3.6"
+                "source": "https://github.com/phpDocumentor/guides-cli/tree/0.3.7"
             },
-            "time": "2024-02-18T08:11:16+00:00"
+            "time": "2024-02-22T12:02:10+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
-            "version": "0.3.6",
+            "version": "0.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-graphs.git",
-                "reference": "fbd1a9d10b650836c02a4c8808bcb19387ca25bf"
+                "reference": "4f49f0949f1665c81916190ec0b28af6e2b948a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-graphs/zipball/fbd1a9d10b650836c02a4c8808bcb19387ca25bf",
-                "reference": "fbd1a9d10b650836c02a4c8808bcb19387ca25bf",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-graphs/zipball/4f49f0949f1665c81916190ec0b28af6e2b948a6",
+                "reference": "4f49f0949f1665c81916190ec0b28af6e2b948a6",
                 "shasum": ""
             },
             "require": {
                 "jawira/plantuml-encoding": "^1.0",
                 "php": "^8.1",
-                "phpdocumentor/guides": "self.version",
-                "phpdocumentor/guides-restructured-text": "self.version",
+                "phpdocumentor/guides": "^1.0 || ^0.3",
+                "phpdocumentor/guides-restructured-text": "^1.0 || ^0.3",
                 "symfony/process": "^5.4 || ^6.3 || ^7.0",
                 "twig/twig": "~2.0 || ^3.0"
             },
@@ -1351,6 +1361,11 @@
                 "jawira/plantuml": "To render graphs locally using plant uml"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "phpDocumentor\\Guides\\": "src/"
@@ -1364,30 +1379,35 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-graphs/issues",
-                "source": "https://github.com/phpDocumentor/guides-graphs/tree/0.3.6"
+                "source": "https://github.com/phpDocumentor/guides-graphs/tree/0.3.7"
             },
-            "time": "2024-01-21T19:16:47+00:00"
+            "time": "2024-02-22T12:02:10+00:00"
         },
         {
             "name": "phpdocumentor/guides-markdown",
-            "version": "0.3.6",
+            "version": "0.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-markdown.git",
-                "reference": "01daab513a3bf254b1e1a2c86c903e0c322ae749"
+                "reference": "5558e4c9185f3b5f139e84aefb7a5668bda2e788"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-markdown/zipball/01daab513a3bf254b1e1a2c86c903e0c322ae749",
-                "reference": "01daab513a3bf254b1e1a2c86c903e0c322ae749",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-markdown/zipball/5558e4c9185f3b5f139e84aefb7a5668bda2e788",
+                "reference": "5558e4c9185f3b5f139e84aefb7a5668bda2e788",
                 "shasum": ""
             },
             "require": {
                 "league/commonmark": "^2.4",
                 "php": "^8.1",
-                "phpdocumentor/guides": "self.version"
+                "phpdocumentor/guides": "^1.0 || ^0.3"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "phpDocumentor\\Guides\\": "src/"
@@ -1401,32 +1421,37 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-markdown/issues",
-                "source": "https://github.com/phpDocumentor/guides-markdown/tree/0.3.6"
+                "source": "https://github.com/phpDocumentor/guides-markdown/tree/0.3.7"
             },
-            "time": "2024-02-17T08:51:09+00:00"
+            "time": "2024-02-22T12:02:10+00:00"
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
-            "version": "0.3.6",
+            "version": "0.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "4850ceaa192dc482f7c34c96713cd0c53b6722df"
+                "reference": "5ea14620095efe1200da5e128b18ee44c93bbd6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/4850ceaa192dc482f7c34c96713cd0c53b6722df",
-                "reference": "4850ceaa192dc482f7c34c96713cd0c53b6722df",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/5ea14620095efe1200da5e128b18ee44c93bbd6f",
+                "reference": "5ea14620095efe1200da5e128b18ee44c93bbd6f",
                 "shasum": ""
             },
             "require": {
                 "doctrine/lexer": "^3.0",
                 "league/csv": "^9.10.0",
                 "php": "^8.1",
-                "phpdocumentor/guides": "self.version",
+                "phpdocumentor/guides": "^1.0 || ^0.3",
                 "webmozart/assert": "^1.11"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "phpDocumentor\\Guides\\": "src/"
@@ -1439,30 +1464,35 @@
             "description": "Adds reStructuredText Markup support to the phpDocumentor's Guides library.",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/0.3.6"
+                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/0.3.7"
             },
-            "time": "2024-02-18T08:11:16+00:00"
+            "time": "2024-02-24T14:15:45+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
-            "version": "0.3.6",
+            "version": "0.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-bootstrap.git",
-                "reference": "9ab52bfcc7710ca98d76e61fbba01a7cc46cc8a9"
+                "reference": "e14c2b596ff2413995c8ddbe8472846932dfd031"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/9ab52bfcc7710ca98d76e61fbba01a7cc46cc8a9",
-                "reference": "9ab52bfcc7710ca98d76e61fbba01a7cc46cc8a9",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/e14c2b596ff2413995c8ddbe8472846932dfd031",
+                "reference": "e14c2b596ff2413995c8ddbe8472846932dfd031",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
-                "phpdocumentor/guides": "self.version",
-                "phpdocumentor/guides-restructured-text": "self.version"
+                "phpdocumentor/guides": "^1.0 || ^0.3",
+                "phpdocumentor/guides-restructured-text": "^1.0 || ^0.3"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "phpDocumentor\\Guides\\": "src/"
@@ -1475,9 +1505,9 @@
             "description": "A theme for phpdocumentor/guides based on Bootstrap",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/0.3.6"
+                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/0.3.7"
             },
-            "time": "2024-01-21T19:16:47+00:00"
+            "time": "2024-02-22T12:02:10+00:00"
         },
         {
             "name": "psr/clock",
@@ -1942,16 +1972,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v6.4.3",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "206482ff3ed450495b1d5b7bad1bc3a852def96f"
+                "reference": "6ea4affc27f2086c9d16b92ab5429ce1e3c38047"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/206482ff3ed450495b1d5b7bad1bc3a852def96f",
-                "reference": "206482ff3ed450495b1d5b7bad1bc3a852def96f",
+                "url": "https://api.github.com/repos/symfony/config/zipball/6ea4affc27f2086c9d16b92ab5429ce1e3c38047",
+                "reference": "6ea4affc27f2086c9d16b92ab5429ce1e3c38047",
                 "shasum": ""
             },
             "require": {
@@ -1997,7 +2027,7 @@
             "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/config/tree/v6.4.3"
+                "source": "https://github.com/symfony/config/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -2013,20 +2043,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-29T13:26:27+00:00"
+            "time": "2024-02-26T07:52:26+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v6.4.3",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "2aaf83b4de5b9d43b93e4aec6f2f8b676f7c567e"
+                "reference": "0d9e4eb5ad413075624378f474c4167ea202de78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/2aaf83b4de5b9d43b93e4aec6f2f8b676f7c567e",
-                "reference": "2aaf83b4de5b9d43b93e4aec6f2f8b676f7c567e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/0d9e4eb5ad413075624378f474c4167ea202de78",
+                "reference": "0d9e4eb5ad413075624378f474c4167ea202de78",
                 "shasum": ""
             },
             "require": {
@@ -2091,7 +2121,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v6.4.3"
+                "source": "https://github.com/symfony/console/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -2107,20 +2137,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T14:51:35+00:00"
+            "time": "2024-02-22T20:27:10+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v6.4.3",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "6871811c5a5c5e180244ddb689746446db02c05b"
+                "reference": "6236e5e843cb763e9d0f74245678b994afea5363"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/6871811c5a5c5e180244ddb689746446db02c05b",
-                "reference": "6871811c5a5c5e180244ddb689746446db02c05b",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/6236e5e843cb763e9d0f74245678b994afea5363",
+                "reference": "6236e5e843cb763e9d0f74245678b994afea5363",
                 "shasum": ""
             },
             "require": {
@@ -2172,7 +2202,7 @@
             "description": "Allows you to standardize and centralize the way objects are constructed in your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/dependency-injection/tree/v6.4.3"
+                "source": "https://github.com/symfony/dependency-injection/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -2188,7 +2218,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-30T08:32:12+00:00"
+            "time": "2024-02-22T20:27:10+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -2542,16 +2572,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v6.4.3",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "a9034bc119fab8238f76cf49c770f3135f3ead86"
+                "reference": "aa6281ddb3be1b3088f329307d05abfbbeb97649"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/a9034bc119fab8238f76cf49c770f3135f3ead86",
-                "reference": "a9034bc119fab8238f76cf49c770f3135f3ead86",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/aa6281ddb3be1b3088f329307d05abfbbeb97649",
+                "reference": "aa6281ddb3be1b3088f329307d05abfbbeb97649",
                 "shasum": ""
             },
             "require": {
@@ -2615,7 +2645,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v6.4.3"
+                "source": "https://github.com/symfony/http-client/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -2631,7 +2661,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-29T15:01:07+00:00"
+            "time": "2024-02-14T16:28:12+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -3108,16 +3138,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v6.4.3",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "31642b0818bfcff85930344ef93193f8c607e0a3"
+                "reference": "710e27879e9be3395de2b98da3f52a946039f297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/31642b0818bfcff85930344ef93193f8c607e0a3",
-                "reference": "31642b0818bfcff85930344ef93193f8c607e0a3",
+                "url": "https://api.github.com/repos/symfony/process/zipball/710e27879e9be3395de2b98da3f52a946039f297",
+                "reference": "710e27879e9be3395de2b98da3f52a946039f297",
                 "shasum": ""
             },
             "require": {
@@ -3149,7 +3179,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v6.4.3"
+                "source": "https://github.com/symfony/process/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -3165,7 +3195,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T14:51:35+00:00"
+            "time": "2024-02-20T12:31:00+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -3251,16 +3281,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v6.4.3",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "7a14736fb179876575464e4658fce0c304e8c15b"
+                "reference": "4e465a95bdc32f49cf4c7f07f751b843bbd6dcd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/7a14736fb179876575464e4658fce0c304e8c15b",
-                "reference": "7a14736fb179876575464e4658fce0c304e8c15b",
+                "url": "https://api.github.com/repos/symfony/string/zipball/4e465a95bdc32f49cf4c7f07f751b843bbd6dcd9",
+                "reference": "4e465a95bdc32f49cf4c7f07f751b843bbd6dcd9",
                 "shasum": ""
             },
             "require": {
@@ -3317,7 +3347,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v6.4.3"
+                "source": "https://github.com/symfony/string/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -3333,7 +3363,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-25T09:26:29+00:00"
+            "time": "2024-02-01T13:16:41+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -3415,16 +3445,16 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v6.4.3",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "a8c12b5448a5ac685347f5eeb2abf6a571ec16b8"
+                "reference": "0bd342e24aef49fc82a21bd4eedd3e665d177e5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/a8c12b5448a5ac685347f5eeb2abf6a571ec16b8",
-                "reference": "a8c12b5448a5ac685347f5eeb2abf6a571ec16b8",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/0bd342e24aef49fc82a21bd4eedd3e665d177e5b",
+                "reference": "0bd342e24aef49fc82a21bd4eedd3e665d177e5b",
                 "shasum": ""
             },
             "require": {
@@ -3470,7 +3500,7 @@
                 "serialize"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-exporter/tree/v6.4.3"
+                "source": "https://github.com/symfony/var-exporter/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -3486,7 +3516,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T14:51:35+00:00"
+            "time": "2024-02-26T08:37:45+00:00"
         },
         {
             "name": "t3docs/guides-php-domain",
@@ -4296,16 +4326,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.49.0",
+            "version": "v3.51.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "8742f7aa6f72a399688b65e4f58992c2d4681fc2"
+                "reference": "127fa74f010da99053e3f5b62672615b72dd6efd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/8742f7aa6f72a399688b65e4f58992c2d4681fc2",
-                "reference": "8742f7aa6f72a399688b65e4f58992c2d4681fc2",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/127fa74f010da99053e3f5b62672615b72dd6efd",
+                "reference": "127fa74f010da99053e3f5b62672615b72dd6efd",
                 "shasum": ""
             },
             "require": {
@@ -4315,7 +4345,7 @@
                 "ext-json": "*",
                 "ext-tokenizer": "*",
                 "php": "^7.4 || ^8.0",
-                "sebastian/diff": "^4.0 || ^5.0",
+                "sebastian/diff": "^4.0 || ^5.0 || ^6.0",
                 "symfony/console": "^5.4 || ^6.0 || ^7.0",
                 "symfony/event-dispatcher": "^5.4 || ^6.0 || ^7.0",
                 "symfony/filesystem": "^5.4 || ^6.0 || ^7.0",
@@ -4336,7 +4366,8 @@
                 "php-cs-fixer/accessible-object": "^1.1",
                 "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.4",
                 "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.4",
-                "phpunit/phpunit": "^9.6 || ^10.5.5",
+                "phpunit/phpunit": "^9.6 || ^10.5.5 || ^11.0.2",
+                "symfony/var-dumper": "^5.4 || ^6.0 || ^7.0",
                 "symfony/yaml": "^5.4 || ^6.0 || ^7.0"
             },
             "suggest": {
@@ -4375,7 +4406,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.49.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.51.0"
             },
             "funding": [
                 {
@@ -4383,7 +4414,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-02T00:41:40+00:00"
+            "time": "2024-02-28T19:50:06+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -5219,16 +5250,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.10",
+            "version": "10.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "50b8e314b6d0dd06521dc31d1abffa73f25f850c"
+                "reference": "0d968f6323deb3dbfeba5bfd4929b9415eb7a9a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/50b8e314b6d0dd06521dc31d1abffa73f25f850c",
-                "reference": "50b8e314b6d0dd06521dc31d1abffa73f25f850c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0d968f6323deb3dbfeba5bfd4929b9415eb7a9a4",
+                "reference": "0d968f6323deb3dbfeba5bfd4929b9415eb7a9a4",
                 "shasum": ""
             },
             "require": {
@@ -5300,7 +5331,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.10"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.11"
             },
             "funding": [
                 {
@@ -5316,7 +5347,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-04T09:07:51+00:00"
+            "time": "2024-02-25T14:05:00+00:00"
         },
         {
             "name": "sebastian/cli-parser",

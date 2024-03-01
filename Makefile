@@ -170,9 +170,6 @@ pre-commit-test: fix-code-style test code-style static-code-analysis test-monore
 .PHONY: static-code-analysis
 static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan (ensures composer)
 
-.PHONY: test
-test: test-integration test-unit test-docs ## Runs all test suites with phpunit
-
 ## LIST: Triggered targets that operate on specific file changes
 
 vendor: composer.json composer.lock
