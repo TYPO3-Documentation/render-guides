@@ -16,6 +16,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
+use T3Docs\VersionHandling\DefaultInventories;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -53,6 +54,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getPrevNextLinks', $this->getPrevNextLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getSettings', $this->getSettings(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('copyDownload', $this->copyDownload(...), ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFunction('getStandardInventories', $this->getStandardInventories(...), ['is_safe' => ['html'], 'needs_context' => true]),
         ];
     }
 
@@ -84,6 +86,17 @@ final class TwigExtension extends AbstractExtension
             return '';
         }
         return sprintf("https://github.com/%s/edit/%s/Documentation/%s.rst", $githubButton, $githubBranch, $currentFileName);
+    }
+    /**
+     * @param array{env: RenderContext} $context
+     * @return list<string>
+     */
+    public function getStandardInventories(array $context): array
+    {
+        $outputArray = array_map(fn($value) => $value->value, DefaultInventories::cases());
+        sort($outputArray, SORT_STRING);
+
+        return $outputArray;
     }
     /**
      * @param array{env: RenderContext} $context
