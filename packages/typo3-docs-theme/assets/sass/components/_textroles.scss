@@ -1,9 +1,17 @@
 
+@mixin text-role-box {
+    @include inline-box;
+    box-shadow: none;
+    background-color: $gray-100;
+    color: $secondary;
+    border: 1px solid $gray-400;
+}
+
 /**
  * Keyboard Shortcuts, text role :kbd:
  */
 kbd {
-    @include inline-box;
+    @include text-role-box;
 }
 
 /**
@@ -11,5 +19,5 @@ kbd {
  */
 .guilabel {
     font-size: 75%;
-    @include inline-box($info);
+    @include text-role-box;
 }

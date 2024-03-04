@@ -67,6 +67,8 @@ $theme-colors: (
     darker: $darker
 );
 
+$text-color: #666666;
+
 $link-color:                   $tertiary;
 $link-hover-color:             lighten($link-color, 15%);
 $link-alternate-color:         #ffffff;
@@ -87,7 +89,7 @@ $confval-dt-border: #666666;
 //
 // Code Colors
 // --------------------------------------------------
-$code-color:        hsl(350, 100%, 40%);
+$code-color:        #333;
 //
 $code-color-bash:   hsl(0, 100%, 0%);
 $code-color-css:    hsl(275, 100%, 40%);

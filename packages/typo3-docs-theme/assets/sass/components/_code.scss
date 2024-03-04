@@ -2,14 +2,17 @@
 
 :root {
     --code-block-background-color: #f7f7f7;
-    --code-block-background-border-color: #e6e6e6;
+    --code-block-background-border-color: #f7f7f7;
     --code-block-copy-check-color: #1a7f37;
     --code-block-emphasize-background-color: #ffc;
     --code-block-linenos-text-color: #656e77;
     --code-block-tooltip-background-color: #333;
     --code-block-tooltip-text-color: #fff;
 }
-
+code {
+    color: $code-color;
+    font-size: 0.85rem;
+}
 /*
  * The class "code-block" is used for ".. code-block::" directives
  */
@@ -90,63 +93,8 @@
  */
 .code-inline {
     font-family: $font-family-monospace;
-    font-size: 90%;
     border-radius: $border-radius;
     border: 1px solid #fff;
-
-    &.bash {
-        color: $code-color-bash;
-    }
-
-    &.css {
-        color: $code-color-css;
-    }
-
-    &.file {
-        color: $code-color-file;
-    }
-
-    &.html {
-        color: $code-color-html;
-    }
-
-    &.js {
-        color: $code-color-js;
-    }
-
-    &.method {
-        color: $code-color-method;
-    }
-
-    &.php {
-        color: $code-color-php;
-    }
-
-    &.rst {
-        color: $code-color-rst;
-    }
-
-    &.py {
-        color: $code-color-py;
-    }
-
-    &.shell {
-        color: $code-color-shell;
-    }
-
-    &.sql {
-        color: $code-color-sql;
-    }
-
-    &.typoscript {
-        color: $code-color-typoscript;
-    }
-
-    &.xml {
-        color: $code-color-xml;
-    }
-
-    &.yaml {
-        color: $code-color-yaml;
-    }
+    background: var(--code-block-background-color);
+    padding: 0.25em 0.5em;
 }

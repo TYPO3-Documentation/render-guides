@@ -1,6 +1,21 @@
+.tabs {
+    background: $gray-200;
+    padding: 1rem;
+}
 .tab-content {
-    border: 1px solid $nav-tabs-border-color;
-    border-top: none;
-    padding: $spacer;
-    margin-bottom: 1em;
+    border: none;
+    padding: 0.5rem;
+}
+.nav-tabs {
+    border-bottom: none;
+    .nav-link {
+        color: inherit;
+	border-bottom-width: 3px;
+	&.active {
+	    background: none;
+	    border-color: transparent;
+	    border-bottom-color: $text-color;
+	    color: $text-color;
+	}
+    }
 }

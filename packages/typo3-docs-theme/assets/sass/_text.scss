@@ -1,7 +1,25 @@
-
+a {
+    color:inherit;
+    text-underline-offset: 25%;
+    &:hover {
+        text-decoration: none;
+    }
+}
 article {
     a:not([class*="btn"]) {
         text-decoration: underline;
+	    color: $secondary;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    p, li {
+        color: $text-color;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    li::marker {
+        color: $primary;
     }
 
     /**
