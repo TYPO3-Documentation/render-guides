@@ -1,5 +1,9 @@
 {% if name == 'important' %}
     {% set titleOfSeverity='Important' %}
+{% elseif name == 'danger' %}
+    {% set titleOfSeverity='Danger' %}
+{% elseif name == 'error' %}
+    {% set titleOfSeverity='Error' %}
 {% elseif name == 'attention' %}
     {% set titleOfSeverity='Attention' %}
 {% elseif name == 'note' %}

@@ -141,3 +141,24 @@ $table-bg:          $white;
 // Grid
 // --------------------------------------------------
 $grid-gutter-width: 40px;
+
+
+//
+// Admonitions
+// --------------------------------------------------
+
+$admonition-border-color-default: #666;
+$admonition-border-color-highlighted: $primary;
+
+$admonition-icons:
+    attention $admonition-border-color-highlighted #{$fa-var-bell},
+    caution $admonition-border-color-highlighted #{$fa-var-exclamation-triangle},
+    danger $admonition-border-color-highlighted #{$fa-var-exclamation-triangle},
+    error $admonition-border-color-highlighted #{$fa-var-times-circle},
+    important "" #{$fa-var-bell},
+    hint "" #{$fa-var-lightbulb},
+    note "" #{$fa-var-info-circle},
+    seealso "" #{$fa-var-share},
+    tip "" #{$fa-var-lightbulb},
+    warning $admonition-border-color-highlighted #{$fa-var-exclamation-triangle},
+;
