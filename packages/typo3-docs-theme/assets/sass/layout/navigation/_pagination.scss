@@ -1,0 +1,5 @@
+// Customizing Bootstrap's pagination focus box shadow
+.pagination {
+    // for some reason variables and standard shadow do not work here
+    --bs-pagination-focus-box-shadow: 0 0 0 2px #333;
+}

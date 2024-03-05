@@ -8,9 +8,6 @@
 .with-shadow {
     @extend .shadow-sm;
 }
-.no-focus {
-    outline: none !important;
-}
 .cc {
     clear: both;
 }

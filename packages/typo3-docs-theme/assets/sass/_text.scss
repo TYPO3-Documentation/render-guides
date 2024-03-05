@@ -1,4 +1,8 @@
 
+*:focus-visible {
+    @include focus();
+}
+
 article {
     a:not([class*="btn"]) {
         text-decoration: underline;

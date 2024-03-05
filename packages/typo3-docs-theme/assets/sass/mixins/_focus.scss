@@ -1,0 +1,4 @@
+@mixin focus() {
+    box-shadow: $focus-box-shadow;
+    outline: auto;
+}

@@ -2,6 +2,12 @@
     display: inline-flex;
     align-items: center;
     text-align: left;
+    &:focus-visible {
+        // Override the default btn styles from bootstrap as they are poorly visible
+        @include focus();
+        outline: auto;
+        outline-color: $secondary-dark;
+    }
 }
 .btn-icon {
     &:first-child {
