@@ -37,6 +37,10 @@
         padding: calc(#{$spacer} / 4) 0;
         padding-right: 1.5em;
         text-decoration: none;
+        &:focus-visible {
+            color: $white;
+            background:$secondary-dark;
+        }
     }
     ul {
         padding-left: $spacer;
@@ -85,6 +89,11 @@
             &:before {
                 display: none;
             }
+        }
+
+        &:focus-visible {
+            color: $white;
+            background:$tertiary;
         }
     }
     .current > a {

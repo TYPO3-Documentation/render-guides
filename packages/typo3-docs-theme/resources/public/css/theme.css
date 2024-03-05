@@ -10781,11 +10781,11 @@ sup {
   top: -0.5em;
 }
 
-a {
+a, article a:not([class*=btn]) {
   color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
   text-decoration: underline;
 }
-a:hover {
+a:hover, article a:hover:not([class*=btn]) {
   --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
 }
 
@@ -10820,7 +10820,7 @@ code {
   color: var(--bs-code-color);
   word-wrap: break-word;
 }
-a > code {
+a > code, article a:not([class*=btn]) > code {
   color: inherit;
 }
 
@@ -14597,7 +14597,7 @@ textarea.form-control-lg {
   padding-bottom: 0.5rem;
   color: var(--bs-navbar-color);
 }
-.navbar-text a,
+.navbar-text a, .navbar-text article a:not([class*=btn]), article .navbar-text a:not([class*=btn]),
 .navbar-text a:hover,
 .navbar-text a:focus {
   color: var(--bs-navbar-active-color);
@@ -22849,29 +22849,29 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-a {
+a, article a:not([class*=btn]) {
   color: inherit;
   text-underline-offset: 25%;
 }
-a:hover {
-  text-decoration: none;
+a:hover, article a:hover:not([class*=btn]), a:focus, article a:focus:not([class*=btn]) {
+  text-decoration-thickness: 2px;
+}
+
+*:focus-visible {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 2px #ffffff;
 }
 
 article {
+  color: #666666;
+  font-size: 1.2rem;
   /**
    * Headlines todo: why only h3 has an underline?
    */
 }
 article a:not([class*=btn]) {
-  text-decoration: underline;
   color: #333333;
 }
-article a:not([class*=btn]):hover {
-  text-decoration: none;
-}
 article p, article li {
-  color: #666666;
-  font-size: 1.2rem;
   margin-bottom: 1rem;
 }
 article li::marker {
@@ -22886,6 +22886,9 @@ article h3, article .h3 {
   display: inline-flex;
   align-items: center;
   text-align: left;
+}
+.btn:focus-visible, .toc-toggle:focus-visible {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 2px #ffffff;
 }
 
 .btn-icon:first-child {
@@ -24698,7 +24701,7 @@ dl.field-list ul {
   padding: 0;
   margin-bottom: 0;
 }
-.footer-meta-navigation a {
+.footer-meta-navigation a, .footer-meta-navigation article a:not([class*=btn]), article .footer-meta-navigation a:not([class*=btn]) {
   color: inherit;
   display: block;
 }
@@ -24772,7 +24775,7 @@ dl.field-list ul {
   font-weight: bold;
   margin: 0;
 }
-.main_menu a {
+.main_menu a, .main_menu article a:not([class*=btn]), article .main_menu a:not([class*=btn]) {
   position: relative;
   display: block;
   color: inherit;
@@ -24780,6 +24783,10 @@ dl.field-list ul {
   padding: calc(1rem / 4) 0;
   padding-right: 1.5em;
   text-decoration: none;
+}
+.main_menu a:focus-visible {
+  color: #ffffff;
+  background: #292929;
 }
 .main_menu ul {
   padding-left: 1rem;
@@ -24829,6 +24836,10 @@ dl.field-list ul {
 .main_menu .active > a > .toctree-expand:before {
   display: none;
 }
+.main_menu .active > a:focus-visible {
+  color: #ffffff;
+  background: #005E85;
+}
 .main_menu .current > a {
   font-weight: bold;
 }
@@ -24846,7 +24857,7 @@ dl.field-list ul {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-a.toc-title-project {
+a.toc-title-project, article a.toc-title-project:not([class*=btn]) {
   display: block;
   font-size: 1.5em;
   line-height: 1.25;
@@ -24911,7 +24922,7 @@ a.toc-title-project:hover {
   color: #000000;
   background-color: #f2f2f2;
 }
-.toc-version-options a {
+.toc-version-options a, .toc-version-options article a:not([class*=btn]), article .toc-version-options a:not([class*=btn]) {
   padding: 0.375rem 0.75rem;
   display: block;
   color: inherit;
@@ -25034,10 +25045,6 @@ section::after {
   display: block;
   clear: both;
   content: "";
-}
-
-.no-focus {
-  outline: none !important;
 }
 
 .cc {

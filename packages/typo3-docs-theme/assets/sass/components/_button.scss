@@ -2,6 +2,9 @@
     display: inline-flex;
     align-items: center;
     text-align: left;
+    &:focus-visible {
+        @include focus();
+    }
 }
 .btn-icon {
     &:first-child {

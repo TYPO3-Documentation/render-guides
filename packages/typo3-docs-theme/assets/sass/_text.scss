@@ -1,21 +1,21 @@
 a {
     color:inherit;
     text-underline-offset: 25%;
-    &:hover {
-        text-decoration: none;
+    &:hover, &:focus {
+        text-decoration-thickness: 2px;
     }
 }
+*:focus-visible {
+    @include focus();
+}
 article {
+    color: $text-color;
+    font-size: 1.2rem;
     a:not([class*="btn"]) {
-        text-decoration: underline;
+        @extend a;
 	    color: $secondary;
-        &:hover {
-            text-decoration: none;
-        }
     }
     p, li {
-        color: $text-color;
-        font-size: 1.2rem;
         margin-bottom: 1rem;
     }
     li::marker {
