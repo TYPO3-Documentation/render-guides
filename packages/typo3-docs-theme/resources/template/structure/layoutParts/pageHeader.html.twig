@@ -18,12 +18,10 @@
                 <div class="col-sm-6 col-lg-5">
                     <search role="search">
                         <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+			                <div class="sr-only"><label for="globalsearchinput">Search all TYPO3 Documentation</label></div>
                             <div class="input-group mb-3 mt-sm-3">
-                                <div class="sr-only"><label for="globalsearchinput">Search all TYPO3 Documentation</label></div>
                                 <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="Search all TYPO3 documentation" type="text" value="">
-                                <div class="input-group-append">
-                                    <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
-                                </div>
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
                             </div>
                         </form>
                     </search>
