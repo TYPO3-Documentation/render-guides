@@ -6,10 +6,12 @@ use phpDocumentor\Guides\Cli\Command\Run;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Process;
 
 final class RunDecorator extends Command
 {
@@ -37,10 +39,25 @@ final class RunDecorator extends Command
     {
         parent::__construct($innerCommand->getName());
         $this->innerCommand = $innerCommand;
+
+        $this->innerCommand->addOption(
+            'localization',
+            null,
+            InputArgument::OPTIONAL,
+            'Render a specific localization (for example "de_DE", "ru_RU", ...)',
+        );
+
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $useLocalization = false;
+        if ($input->getParameterOption('--localization')) {
+            // @todo: Refactor this, see note in IgnoreLocalizationFolders::__invoke()
+            $GLOBALS['_IGNORE_LOCALIZATION_EXCLUDE'] = $input->getOption('localization');
+            $useLocalization = true;
+        }
+
         $options = [];
         foreach ($input->getOptions() as $option => $value) {
             if ($value === null) {
@@ -85,7 +102,7 @@ final class RunDecorator extends Command
 
         $baseExecution = $this->innerCommand->execute($input, $output);
 
-        if ($baseExecution !== Command::SUCCESS) {
+        if ($baseExecution !== Command::SUCCESS || $useLocalization) {
             return $baseExecution;
         }
 
@@ -100,13 +117,7 @@ final class RunDecorator extends Command
      * `Documentation/Localization.ru_RU/Index.rst` to
      * `Documentation-GENERATED-temp/Localization.ru_RU/Index.html`.
      *
-     * PROBLEMS TODO:
-     * - When we use the root directory of the project ("/Documentation") then links
-     * within Localization/... properly are able to reference "/Localization.ru_RU/Includes.rst".
-     * But then both the menu/document index is empty later on, plus files like "objects.inv" would
-     * always overwrite the local variant.
-     * - If we do NOT use the root, but render each localization as a root, then the link resolving
-     * will no longer work.
+     * This is performed via symfony process calls to the render guides
      */
     public function renderLocalizations(InputInterface $input, OutputInterface $output): int
     {
@@ -117,7 +128,7 @@ final class RunDecorator extends Command
             'config' => $input->getOption('config'),
         ];
 
-        // Check the main input directory
+        // Check if the main input directory is set, else no localization is needed
         $path = $baseInputDirectives['input-file'];
         if (!is_string($path)) {
             return Command::SUCCESS;
@@ -175,6 +186,7 @@ final class RunDecorator extends Command
         $input->setOption('input-format', $guessInput['--input-format']);
         $input->setOption('output', $localInputDirectives['output']);
         $input->setOption('config', $localInputDirectives['config']);
+        $input->setOption('localization', $availableLocalization);
 
         if ($output->isDebug()) {
             $readableOutput = "<info>baseInputDirectives:</info>\n";
@@ -190,7 +202,47 @@ final class RunDecorator extends Command
             $output->writeln(sprintf("<info>DEBUG</info> Using parameters:\n%s", $readableOutput));
         }
 
-        return $this->innerCommand->execute($input, $output);
+        $processArguments = array_merge(['env', 'php', $_SERVER['PHP_SELF']], $this->retrieveLocalizationArgumentsFromCurrentArguments($input));
+
+        $process = new Process($processArguments);
+        $output->writeln(sprintf('<info>SUB-PROCESS:</info> %s', $process->getCommandLine()));
+        $result = $process->run();
+
+        $output->writeln($process->getOutput());
+        if (!$process->isSuccessful()) {
+            $output->writeln($process->getErrorOutput());
+        }
+
+        // Maps to Command::SUCCESS or Command::FAILURE
+        return $result;
+    }
+
+    /** @return mixed[] */
+    public function retrieveLocalizationArgumentsFromCurrentArguments(InputInterface $input): array
+    {
+        $arguments = $input->getArguments();
+        $options = $input->getOptions();
+
+        $shellCommands = [];
+        foreach ($options as $option => $value) {
+            if (is_bool($value) && $value) {
+                $shellCommands[] = "--$option";
+            } elseif (is_string($value)) {
+                $shellCommands[] = "--$option=" . $value;
+            }
+        }
+
+        // Localizations are rendered as a sub-process. There the progress bar
+        // disturbs the output that is returned. We only want normal and error output then.
+        $shellCommands[] = '--no-progress';
+
+        foreach ($arguments as $argument) {
+            if (is_string($argument)) {
+                $shellCommands[] = $argument;
+            }
+        }
+
+        return $shellCommands;
     }
 
     public function getDescription(): string
