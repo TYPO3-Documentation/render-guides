@@ -10410,6 +10410,22 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
   src: url("../fonts/source-sans-3/source-sans-3-v15-latin_latin-ext-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+/* source-sans-3-600 - latin_latin-ext */
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/source-sans-3/source-sans-3-v15-latin_latin-ext-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* source-sans-3-600italic - latin_latin-ext */
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: italic;
+  font-weight: 600;
+  src: url("../fonts/source-sans-3/source-sans-3-v15-latin_latin-ext-600italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
 /* source-sans-3-700 - latin_latin-ext */
 @font-face {
   font-display: swap;
@@ -10537,7 +10553,7 @@ readers do not read off random characters that represent icons */
   --bs-link-decoration: underline;
   --bs-link-hover-color: #0094d2;
   --bs-link-hover-color-rgb: 0, 148, 210;
-  --bs-code-color: hsl(350, 100%, 40%);
+  --bs-code-color: #333;
   --bs-highlight-color: #333333;
   --bs-highlight-bg: #fff7cc;
   --bs-border-width: 1px;
@@ -10609,7 +10625,7 @@ readers do not read off random characters that represent icons */
   --bs-link-hover-color: #ffc585;
   --bs-link-color-rgb: 255, 183, 102;
   --bs-link-hover-color-rgb: 255, 197, 133;
-  --bs-code-color: #e0667a;
+  --bs-code-color: #858585;
   --bs-highlight-color: #e6e6e6;
   --bs-highlight-bg: #665500;
   --bs-border-color: gray;
@@ -10765,11 +10781,11 @@ sup {
   top: -0.5em;
 }
 
-a {
+a, article a:not([class*=btn]) {
   color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
   text-decoration: underline;
 }
-a:hover {
+a:hover, article a:hover:not([class*=btn]) {
   --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
 }
 
@@ -10804,7 +10820,7 @@ code {
   color: var(--bs-code-color);
   word-wrap: break-word;
 }
-a > code {
+a > code, article a:not([class*=btn]) > code {
   color: inherit;
 }
 
@@ -14581,7 +14597,7 @@ textarea.form-control-lg {
   padding-bottom: 0.5rem;
   color: var(--bs-navbar-color);
 }
-.navbar-text a,
+.navbar-text a, .navbar-text article a:not([class*=btn]), article .navbar-text a:not([class*=btn]),
 .navbar-text a:hover,
 .navbar-text a:focus {
   color: var(--bs-navbar-active-color);
@@ -22833,13 +22849,29 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+a, article a:not([class*=btn]) {
+  color: inherit;
+  text-underline-offset: 25%;
+}
+a:hover, article a:hover:not([class*=btn]), a:focus, article a:focus:not([class*=btn]) {
+  text-decoration-thickness: 2px;
+}
+
 article {
+  color: #666666;
+  font-size: 1.2rem;
   /**
    * Headlines todo: why only h3 has an underline?
    */
 }
 article a:not([class*=btn]) {
-  text-decoration: underline;
+  color: #333333;
+}
+article p, article li {
+  margin-bottom: 1rem;
+}
+article li::marker {
+  color: #ff8700;
 }
 article h3, article .h3 {
   padding-bottom: 0.5rem;
@@ -23766,6 +23798,17 @@ span[id*=MathJax-Span] {
   background-color: rgba(var(--bs-body-color-rgb), 0.03);
 }
 
+.page-link {
+  color: inherit;
+  background: #f2f2f2;
+}
+.page-link:hover {
+  color: inherit;
+}
+.page-link:focus {
+  color: inherit;
+}
+
 article a.headerlink, article a.permalink {
   position: relative;
   font-size: 0.65em;
@@ -24037,6 +24080,10 @@ kbd {
   color: #000000;
   border-radius: 0.375rem;
   border: 1px solid #f2f2f2;
+  box-shadow: none;
+  background-color: #fafafa;
+  color: #333333;
+  border: 1px solid #cccccc;
 }
 
 /**
@@ -24047,10 +24094,14 @@ kbd {
   display: inline-block;
   padding: 0.25em 0.5em;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 2px #ffffff;
-  background-color: #f4fafc;
+  background-color: white;
   color: #000000;
   border-radius: 0.375rem;
-  border: 1px solid #319fc0;
+  border: 1px solid #f2f2f2;
+  box-shadow: none;
+  background-color: #fafafa;
+  color: #333333;
+  border: 1px solid #cccccc;
 }
 
 /**
@@ -24445,7 +24496,7 @@ dl.field-list ul {
 .rst-content dl.php .descname {
   background-color: transparent;
   border: none;
-  color: hsl(350, 100%, 40%);
+  color: #333;
   font-size: 100%;
   padding: 0;
 }
@@ -24704,7 +24755,7 @@ dl.field-list ul {
   padding: 0;
   margin-bottom: 0;
 }
-.footer-meta-navigation a {
+.footer-meta-navigation a, .footer-meta-navigation article a:not([class*=btn]), article .footer-meta-navigation a:not([class*=btn]) {
   color: inherit;
   display: block;
 }
@@ -24778,7 +24829,7 @@ dl.field-list ul {
   font-weight: bold;
   margin: 0;
 }
-.main_menu a {
+.main_menu a, .main_menu article a:not([class*=btn]), article .main_menu a:not([class*=btn]) {
   position: relative;
   display: block;
   color: inherit;
@@ -24852,7 +24903,7 @@ dl.field-list ul {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-a.toc-title-project {
+a.toc-title-project, article a.toc-title-project:not([class*=btn]) {
   display: block;
   font-size: 1.5em;
   line-height: 1.25;
@@ -24917,7 +24968,7 @@ a.toc-title-project:hover {
   color: #000000;
   background-color: #f2f2f2;
 }
-.toc-version-options a {
+.toc-version-options a, .toc-version-options article a:not([class*=btn]), article .toc-version-options a:not([class*=btn]) {
   padding: 0.375rem 0.75rem;
   display: block;
   color: inherit;
