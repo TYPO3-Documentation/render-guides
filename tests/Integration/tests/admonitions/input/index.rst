@@ -49,6 +49,9 @@ Warning
 ..  danger::
     Some dangerous text pointing out something that people should be warned about.
 
+..  error::
+    Some text pointing out an error.
+
 ..  index:: reST directives; attention
 
 Attention

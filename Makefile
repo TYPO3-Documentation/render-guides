@@ -126,6 +126,11 @@ test-docs: ## Runs project generation tests
 	@echo "$(ENV_INFO)"
 	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation --output="/tmp/test" --config=Documentation --fail-on-log
 
+.PHONY: rendertest
+rendertest: ## Runs rendering with Documentation-rendertest
+	@echo "$(ENV_INFO)"
+	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation-rendertest --output="Documentation-GENERATED-rendertest" --config=Documentation-rendertest
+
 .PHONY: test-integration
 test-integration: ## Runs integration tests with phpunit
 	@echo "$(ENV_INFO)"
@@ -169,9 +174,6 @@ pre-commit-test: fix-code-style test code-style static-code-analysis test-monore
 
 .PHONY: static-code-analysis
 static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan (ensures composer)
-
-.PHONY: test
-test: test-integration test-unit test-docs ## Runs all test suites with phpunit
 
 ## LIST: Triggered targets that operate on specific file changes
 

@@ -93,7 +93,11 @@ final class Typo3InventoryRepository implements InventoryRepository
     {
         $version = trim($versionName, 'v');
         if (preg_match(self::VERSION_MINOR_REGEX, $version, $matches)) {
-            $version = $matches[1];
+            return $matches[1];
+        }
+        $mappedVersion = Typo3VersionMapping::tryFrom($version);
+        if ($mappedVersion !== null) {
+            return $mappedVersion->getVersion();
         }
         return $version;
     }
