@@ -21,6 +21,7 @@ enum HtmlThemeOptions: string
     case github_revision_msg = 'github-revision-msg';
     case github_branch = 'edit-on-github-branch';
     case github_repository = 'edit-on-github';
+    case path_to_documentation_dir = 'edit-on-github-directory';
     case github_sphinx_locale = 'github-sphinx-locale';
     case github_commit_hash = 'github-commit-hash';
 }
