@@ -49,6 +49,10 @@ final class ConfigureCommand extends Command
                 --extension-value="https://github.com/vendor/extension" \
                 \
                 --extension-class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" \
+                --extension-attribute="edit-on-github-directory" \
+                --extension-value="path/to/Documentation" \
+                \
+                --extension-class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" \
                 --extension-attribute="project-contact" \
                 --extension-value="mailto:mail@example.com" \
                 \

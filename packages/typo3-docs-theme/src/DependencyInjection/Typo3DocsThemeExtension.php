@@ -51,6 +51,7 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                         'typo3_version' => $this->getConfigValue($configs, 'typo3_version', 'main'),
                         'edit_on_github' => $this->getConfigValue($configs, 'edit_on_github', ''),
                         'edit_on_github_branch' => $this->getConfigValue($configs, 'edit_on_github_branch', 'main'),
+                        'edit_on_github_directory' => $this->getConfigValue($configs, 'edit_on_github_directory', 'Documentation'),
                         'how_to_edit' => $this->getConfigValue($configs, 'how_to_edit', 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html'),
                         'interlink_shortcode' => $this->getConfigValue($configs, 'interlink_shortcode', ''),
                         'copy_sources' => $this->getConfigValue($configs, 'copy_sources', 'true'),

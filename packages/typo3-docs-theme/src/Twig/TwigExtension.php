@@ -85,7 +85,8 @@ final class TwigExtension extends AbstractExtension
         if ($currentFileName === '') {
             return '';
         }
-        return sprintf("https://github.com/%s/edit/%s/Documentation/%s.rst", $githubButton, $githubBranch, $currentFileName);
+        $githubDirectory = trim($this->themeSettings->getSettings('edit_on_github_directory', 'Documentation'), '/');
+        return sprintf("https://github.com/%s/edit/%s/%s/%s.rst", $githubButton, $githubBranch, $githubDirectory, $currentFileName);
     }
     /**
      * @param array{env: RenderContext} $context
