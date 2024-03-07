@@ -26,6 +26,13 @@ You can choose whatever is easiest for you:
     with your local PHP installation or project. The container can be
     used in any project (and in any GitHub action) without further dependencies.
 
+..  tip::
+
+    Did you know: Instead of the :bash:`docker` client you can also use
+    the lightweight drop-in replacement `Podman <https://podman.io/>`__ to run
+    the mentioned containers by replacing all :bash:`docker` commands in the
+    following steps with :bash:`podman`.
+
 ..  _Setup_Docker:
 
 Docker
