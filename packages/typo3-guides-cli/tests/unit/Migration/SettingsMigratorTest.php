@@ -54,6 +54,7 @@ final class SettingsMigratorTest extends TestCase
                     'github_revision_msg' => 'some github message',
                     'github_branch' => 'main',
                     'github_repository' => 'my-example-repository',
+                    'path_to_documentation_dir' => 'typo3/sysext/redirects/Documentation/',
                     'github_sphinx_locale' => 'de',
                     'github_commit_hash' => 'abcdef',
                 ],
@@ -64,6 +65,7 @@ final class SettingsMigratorTest extends TestCase
                         class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
                         edit-on-github="my-example-repository"
                         edit-on-github-branch="main"
+                        edit-on-github-directory="typo3/sysext/redirects/Documentation/"
                         github-commit-hash="abcdef"
                         github-revision-msg="some github message"
                         github-sphinx-locale="de"
