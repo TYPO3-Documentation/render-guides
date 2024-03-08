@@ -11,7 +11,8 @@ enum DefaultInventories: string
     case t3tsref = 't3tsref';
     case t3viewhelper = 't3viewhelper';
     case t3editors = 't3editors';
-    case t3install = 't3install';
+    case t3install = 't3install'; // for legacy reasons
+    case t3upgrade = 't3upgrade';
     case t3sitepackage = 't3sitepackage';
     case t3start = 't3start';
     case t3translate = 't3translate';
@@ -37,6 +38,7 @@ enum DefaultInventories: string
             // Official Core Tutorials and Guides
             DefaultInventories::t3editors => 'https://docs.typo3.org/m/typo3/tutorial-editors/{typo3_version}/en-us/',
             DefaultInventories::t3install => 'https://docs.typo3.org/m/typo3/guide-installation/{typo3_version}/en-us/',
+            DefaultInventories::t3upgrade => 'https://docs.typo3.org/m/typo3/guide-installation/{typo3_version}/en-us/',
             DefaultInventories::t3sitepackage => 'https://docs.typo3.org/m/typo3/tutorial-sitepackage/{typo3_version}/en-us/',
             DefaultInventories::t3start => 'https://docs.typo3.org/m/typo3/tutorial-getting-started/{typo3_version}/en-us/',
             DefaultInventories::t3translate => 'https://docs.typo3.org/m/typo3/guide-frontendlocalization/{typo3_version}/en-us/',
