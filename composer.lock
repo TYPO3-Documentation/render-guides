@@ -1227,16 +1227,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "028eadce15f86294c5899409536c5e365cbe0ad2"
+                "reference": "81287f48b12b9995309c7437cbe13a99c8183c1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/028eadce15f86294c5899409536c5e365cbe0ad2",
-                "reference": "028eadce15f86294c5899409536c5e365cbe0ad2",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/81287f48b12b9995309c7437cbe13a99c8183c1c",
+                "reference": "81287f48b12b9995309c7437cbe13a99c8183c1c",
                 "shasum": ""
             },
             "require": {
@@ -1272,9 +1272,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/1.0.0"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/1.1.0"
             },
-            "time": "2024-03-03T20:57:20+00:00"
+            "time": "2024-03-09T14:08:31+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1407,16 +1407,16 @@
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "c477ac1536d68ff84f9c8bac695ad3211d6aa962"
+                "reference": "992025d11ac4ef0975a4e346ac813657f022bf9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/c477ac1536d68ff84f9c8bac695ad3211d6aa962",
-                "reference": "c477ac1536d68ff84f9c8bac695ad3211d6aa962",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/992025d11ac4ef0975a4e346ac813657f022bf9f",
+                "reference": "992025d11ac4ef0975a4e346ac813657f022bf9f",
                 "shasum": ""
             },
             "require": {
@@ -1439,9 +1439,9 @@
             "description": "Adds reStructuredText Markup support to the phpDocumentor's Guides library.",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.0.1"
+                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.1.0"
             },
-            "time": "2024-03-08T08:42:31+00:00"
+            "time": "2024-03-09T14:08:31+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -5229,16 +5229,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.11",
+            "version": "10.5.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "0d968f6323deb3dbfeba5bfd4929b9415eb7a9a4"
+                "reference": "41a9886b85ac7bf3929853baf96b95361cd69d2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0d968f6323deb3dbfeba5bfd4929b9415eb7a9a4",
-                "reference": "0d968f6323deb3dbfeba5bfd4929b9415eb7a9a4",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/41a9886b85ac7bf3929853baf96b95361cd69d2b",
+                "reference": "41a9886b85ac7bf3929853baf96b95361cd69d2b",
                 "shasum": ""
             },
             "require": {
@@ -5310,7 +5310,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.11"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.12"
             },
             "funding": [
                 {
@@ -5326,7 +5326,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-25T14:05:00+00:00"
+            "time": "2024-03-09T12:04:07+00:00"
         },
         {
             "name": "sebastian/cli-parser",
