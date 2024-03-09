@@ -23789,6 +23789,17 @@ span[id*=MathJax-Span] {
   background-color: rgba(var(--bs-body-color-rgb), 0.03);
 }
 
+.page-link {
+  color: inherit;
+  background: #f2f2f2;
+}
+.page-link:hover {
+  color: inherit;
+}
+.page-link:focus {
+  color: inherit;
+}
+
 article a.headerlink, article a.permalink {
   position: relative;
   font-size: 0.65em;
