@@ -19,6 +19,7 @@ enum DefaultInventories: string
     case t3ts45 = 't3ts45';
     case h2document = 'h2document';
     case t3content = 't3content';
+    case t3writing = 't3writing';
     case t3contribute = 't3contribute';
     case fluid = 'fluid';
 
@@ -48,6 +49,7 @@ enum DefaultInventories: string
             DefaultInventories::h2document => 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/',
             DefaultInventories::t3content => 'https://docs.typo3.org/m/typo3/guide-contentandmarketing/main/en-us/',
             DefaultInventories::t3contribute => 'https://docs.typo3.org/m/typo3/guide-contributionworkflow/main/en-us/',
+            DefaultInventories::t3writing => 'https://docs.typo3.org/m/typo3/writing-guide/main/en-us/',
 
             // Other
             DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/{typo3_version}/en-us/',
