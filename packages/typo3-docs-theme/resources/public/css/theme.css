@@ -22849,6 +22849,13 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+a {
+  color: inherit;
+  text-underline-offset: 25%;
+}
+a:hover {
+  text-decoration-thickness: 2px;
+}
 article {
   /**
    * Headlines todo: why only h3 has an underline?
