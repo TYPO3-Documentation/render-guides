@@ -1,4 +1,10 @@
-
+a {
+    color:inherit;
+    text-underline-offset: 25%;
+    &:hover {
+        text-decoration-thickness: 2px;
+    }
+}
 article {
     a:not([class*="btn"]) {
         text-decoration: underline;
