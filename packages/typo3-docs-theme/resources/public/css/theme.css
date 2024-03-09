@@ -24765,6 +24765,7 @@ dl.field-list ul {
 .toc-header {
   display: flex;
   justify-content: space-between;
+  padding-left: calc(1rem / 2);
 }
 
 .main_menu {
@@ -24784,6 +24785,9 @@ dl.field-list ul {
   padding-right: 1.5em;
   text-decoration: none;
 }
+.main_menu a:hover {
+  text-decoration: underline;
+}
 .main_menu ul {
   padding-left: 1rem;
   list-style-type: none;
@@ -24791,6 +24795,14 @@ dl.field-list ul {
 .main_menu li {
   border-radius: 0.375rem;
   overflow: hidden;
+  padding-left: calc(1rem / 2);
+}
+.main_menu li.active {
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0;
+}
+.main_menu li.current {
+  border-left: none;
 }
 .main_menu .toctree-expand {
   position: absolute;
@@ -24801,7 +24813,7 @@ dl.field-list ul {
   height: 1em;
   width: 1em;
   background-color: #f2f2f2;
-  border-radius: 0.375rem;
+  border-radius: 50%;
 }
 .main_menu .toctree-expand:after, .main_menu .toctree-expand:before {
   position: absolute;
@@ -24822,18 +24834,10 @@ dl.field-list ul {
   transform: translate(-50%, -50%);
 }
 .main_menu .active > a {
-  color: #005E85;
-  text-decoration: underline;
-}
-.main_menu .active > a > .toctree-expand {
-  background-color: #005E85;
-  color: #ffffff;
+  font-weight: bold;
 }
 .main_menu .active > a > .toctree-expand:before {
   display: none;
-}
-.main_menu .current > a {
-  font-weight: bold;
 }
 .main_menu > ul {
   padding-left: 0;
@@ -24852,6 +24856,7 @@ dl.field-list ul {
 a.toc-title-project {
   display: block;
   font-size: 1.5em;
+  font-weight: 600;
   line-height: 1.25;
   color: #ff8700;
   text-decoration: none;
