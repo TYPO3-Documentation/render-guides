@@ -22863,6 +22863,18 @@ article {
 }
 article a:not([class*=btn]) {
   text-decoration: underline;
+  color: #333333;
+}
+article a:not([class*=btn]):hover {
+  text-decoration: none;
+}
+article p, article li {
+  color: #666666;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+article li::marker {
+  color: #ff8700;
 }
 article h3, article .h3 {
   padding-bottom: 0.5rem;
