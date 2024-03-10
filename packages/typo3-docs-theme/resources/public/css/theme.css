@@ -23027,14 +23027,9 @@ article h3, article .h3 {
   /* purposely ignored */
 }
 
-:root {
-  --code-block-background-color: #f7f7f7;
-  --code-block-background-border-color: #e6e6e6;
-  --code-block-copy-check-color: #1a7f37;
-  --code-block-emphasize-background-color: #ffc;
-  --code-block-linenos-text-color: #656e77;
-  --code-block-tooltip-background-color: #333;
-  --code-block-tooltip-text-color: #fff;
+code {
+  color: #333333;
+  font-size: 0.85rem;
 }
 
 /*
@@ -23045,7 +23040,7 @@ article h3, article .h3 {
   padding: 0.75rem;
 }
 .code-block [data-line-number]::before {
-  color: var(--code-block-linenos-text-color);
+  color: #999999;
   content: attr(data-line-number);
   display: inline-block;
   margin-right: 1em;
@@ -23053,12 +23048,12 @@ article h3, article .h3 {
   width: 2ch;
 }
 .code-block [data-emphasize-line] {
-  background: var(--code-block-emphasize-background-color);
+  background: #fff7cc;
 }
 
 .code-block-wrapper {
-  background: var(--code-block-background-color);
-  border: 1px solid var(--code-block-background-border-color);
+  background: #fafafa;
+  border: 1px solid #fafafa;
   border-radius: 0.2rem;
   display: flex;
   font-size: 92%;
@@ -23081,13 +23076,13 @@ article h3, article .h3 {
   opacity: 1;
 }
 .code-block-copy .fa-check::before {
-  color: var(--code-block-copy-check-color);
+  color: #588f3e;
 }
 
 .code-block-check-tooltip {
-  background: var(--code-block-tooltip-background-color);
+  background: #333333;
   border-radius: 0.2rem;
-  color: var(--code-block-tooltip-text-color);
+  color: #ffffff;
   font-size: 80%;
   padding: 2px 5px;
   position: absolute;
@@ -23096,7 +23091,7 @@ article h3, article .h3 {
 }
 .code-block-check-tooltip::after {
   border: 10px solid;
-  border-color: transparent transparent transparent var(--code-block-tooltip-background-color);
+  border-color: transparent transparent transparent #333333;
   content: "";
   position: absolute;
 }
@@ -23111,51 +23106,10 @@ article h3, article .h3 {
  */
 .code-inline {
   font-family: "Source Code Pro", monospace;
-  font-size: 90%;
   border-radius: 0.375rem;
-  border: 1px solid #fff;
-}
-.code-inline.bash {
-  color: hsl(0, 100%, 0%);
-}
-.code-inline.css {
-  color: hsl(275, 100%, 40%);
-}
-.code-inline.file {
-  color: hsl(328, 100%, 50%);
-}
-.code-inline.html {
-  color: hsl(275, 100%, 40%);
-}
-.code-inline.js {
-  color: hsl(128, 100%, 20%);
-}
-.code-inline.method {
-  color: hsl(210, 100%, 35%);
-}
-.code-inline.php {
-  color: hsl(210, 100%, 30%);
-}
-.code-inline.rst {
-  color: hsl(175, 100%, 15%);
-}
-.code-inline.py {
-  color: hsl(210, 100%, 50%);
-}
-.code-inline.shell {
-  color: hsl(0, 100%, 0%);
-}
-.code-inline.sql {
-  color: hsl(175, 100%, 15%);
-}
-.code-inline.typoscript {
-  color: hsl(12, 100%, 20%);
-}
-.code-inline.xml {
-  color: hsl(275, 100%, 40%);
-}
-.code-inline.yaml {
-  color: hsl(170, 80%, 25%);
+  border: 1px solid #ffffff;
+  background: #fafafa;
+  padding: 0.25em 0.5em;
 }
 
 :root {
