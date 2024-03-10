@@ -22869,6 +22869,10 @@ article h3, article .h3 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+*:focus-visible {
+    box-shadow: inset 0px 0px 2px 2px;
+}
+
 .btn, .toc-toggle {
   display: inline-flex;
   align-items: center;
