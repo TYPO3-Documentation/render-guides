@@ -8,8 +8,16 @@ a {
 article {
     a:not([class*="btn"]) {
         text-decoration: underline;
+        color: $gray-900;
     }
-
+    p, li {
+        color: $gray-800;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    li::marker {
+        color: $orange;
+    }
     /**
      * Headlines todo: why only h3 has an underline?
      */
