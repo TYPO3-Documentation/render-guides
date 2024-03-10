@@ -1,15 +1,9 @@
 @import 'highlightjs_github';
 
-:root {
-    --code-block-background-color: #f7f7f7;
-    --code-block-background-border-color: #e6e6e6;
-    --code-block-copy-check-color: #1a7f37;
-    --code-block-emphasize-background-color: #ffc;
-    --code-block-linenos-text-color: #656e77;
-    --code-block-tooltip-background-color: #333;
-    --code-block-tooltip-text-color: #fff;
+code {
+    color: $gray-900;
+    font-size: 0.85rem;
 }
-
 /*
  * The class "code-block" is used for ".. code-block::" directives
  */
@@ -18,7 +12,7 @@
     padding: .75rem;
 
     & [data-line-number]::before {
-        color: var(--code-block-linenos-text-color);
+        color: $gray-600;
         content: attr(data-line-number);
         display: inline-block;
         margin-right: 1em;
@@ -27,13 +21,13 @@
     }
 
     & [data-emphasize-line] {
-        background: var(--code-block-emphasize-background-color);
+        background:$yellow-100;
     }
 }
 
 .code-block-wrapper {
-    background: var(--code-block-background-color);
-    border: 1px solid var(--code-block-background-border-color);
+    background: $gray-100;
+    border: 1px solid $gray-100;
     border-radius: .2rem;
     display: flex;
     font-size: 92%;
@@ -58,14 +52,14 @@
     }
 
     .fa-check::before {
-        color: var(--code-block-copy-check-color);
+        color: $green-600;
     }
 }
 
 .code-block-check-tooltip {
-    background: var(--code-block-tooltip-background-color);
+    background: $gray-900;
     border-radius: .2rem;
-    color: var(--code-block-tooltip-text-color);
+    color: $white;
     font-size: 80%;
     padding: 2px 5px;
     position: absolute;
@@ -74,7 +68,7 @@
 
     &::after {
         border: 10px solid;
-        border-color: transparent transparent transparent var(--code-block-tooltip-background-color);
+        border-color: transparent transparent transparent $gray-900;
         content: "";
         position: absolute;
     }
@@ -90,63 +84,8 @@
  */
 .code-inline {
     font-family: $font-family-monospace;
-    font-size: 90%;
     border-radius: $border-radius;
-    border: 1px solid #fff;
-
-    &.bash {
-        color: $code-color-bash;
-    }
-
-    &.css {
-        color: $code-color-css;
-    }
-
-    &.file {
-        color: $code-color-file;
-    }
-
-    &.html {
-        color: $code-color-html;
-    }
-
-    &.js {
-        color: $code-color-js;
-    }
-
-    &.method {
-        color: $code-color-method;
-    }
-
-    &.php {
-        color: $code-color-php;
-    }
-
-    &.rst {
-        color: $code-color-rst;
-    }
-
-    &.py {
-        color: $code-color-py;
-    }
-
-    &.shell {
-        color: $code-color-shell;
-    }
-
-    &.sql {
-        color: $code-color-sql;
-    }
-
-    &.typoscript {
-        color: $code-color-typoscript;
-    }
-
-    &.xml {
-        color: $code-color-xml;
-    }
-
-    &.yaml {
-        color: $code-color-yaml;
-    }
+    border: 1px solid $white;
+    background: $gray-100;
+    padding: 0.25em 0.5em;
 }
