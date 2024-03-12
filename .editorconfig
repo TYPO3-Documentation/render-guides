@@ -42,3 +42,7 @@ indent_size = 2
 
 [*.{typoscript,tsconfig}]
 indent_size = 2
+
+[Makefile]
+# Use tabs for indentation (Makefiles require tabs)
+indent_style = tab
