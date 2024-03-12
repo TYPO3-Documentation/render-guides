@@ -4,26 +4,6 @@ module.exports = function (grunt) {
   const sass = require('sass');
 
   /**
-   * Grunt task to remove source map comment
-   */
-  grunt.registerMultiTask('removesourcemap', 'Grunt task to remove sourcemp comment from files', function () {
-    var done = this.async(),
-      files = this.filesSrc.filter(function (file) {
-        return grunt.file.isFile(file);
-      }),
-      counter = 0;
-    this.files.forEach(function (file) {
-      file.src.filter(function (filepath) {
-        var content = grunt.file.read(filepath).replace(/\/\/# sourceMappingURL=\S+/, '');
-        grunt.file.write(file.dest, content);
-        grunt.log.success('Source file "' + filepath + '" was processed.');
-        counter++;
-        if (counter >= files.length) done(true);
-      });
-    });
-  });
-
-  /**
    * Project configuration.
    */
   grunt.initConfig({
@@ -101,7 +81,7 @@ module.exports = function (grunt) {
       options: {
         implementation: sass,
         outputStyle: 'expanded',
-        sourceMap: false
+        sourceMap: true
       },
       build: {
         files: {
@@ -137,16 +117,6 @@ module.exports = function (grunt) {
           '<%= paths.output %>js/theme.min.js': [
             '<%= paths.source %>js/*.js',
           ]
-        }
-      }
-    },
-
-    // remove sourcemaps from dist files
-    removesourcemap: {
-      contrib: {
-        files: {
-          '<%= paths.output %>js/bootstrap.min.js': '<%= paths.output %>js/bootstrap.min.js',
-          '<%= paths.output %>js/popper.min.js': '<%= paths.output %>js/popper.min.js'
         }
       }
     },
@@ -190,8 +160,8 @@ module.exports = function (grunt) {
    */
   grunt.registerTask('update', ['copy']);
   grunt.registerTask('js', ['uglify']);
-  grunt.registerTask('default', ['clean', 'update', 'stylelint', 'sass', 'js', 'removesourcemap']);
+  grunt.registerTask('default', ['clean', 'update', 'stylelint', 'sass', 'js']);
   grunt.registerTask('build', ['default']);
   grunt.registerTask('render', ['clean:build']);
-  grunt.registerTask('debug', ['clean', 'update', 'stylelint', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
+  grunt.registerTask('debug', ['clean', 'update', 'stylelint', 'sass:debug', 'js', 'copy:debug']);
 };
