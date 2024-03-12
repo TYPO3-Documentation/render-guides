@@ -18,6 +18,9 @@ article {
     li::marker {
         color: $orange;
     }
+    ol li::marker {
+        color: $gray-800;
+    }
     /**
      * Headlines todo: why only h3 has an underline?
      */
