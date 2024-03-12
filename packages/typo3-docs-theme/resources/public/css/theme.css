@@ -23117,6 +23117,10 @@ code {
   background: #f7f7f7;
   padding: 0.25em 0.5em;
 }
+.code-inline[aria-description] {
+  text-underline-offset: 10%;
+  text-decoration: underline dotted;
+}
 
 :root {
   --frame-color: inherit;
