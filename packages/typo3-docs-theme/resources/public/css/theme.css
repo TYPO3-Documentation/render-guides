@@ -22863,6 +22863,9 @@ article p, article li {
 article li::marker {
   color: #ff8700;
 }
+article ol li::marker {
+  color: #666666;
+}
 article h3, article .h3 {
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
