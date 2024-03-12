@@ -52,7 +52,7 @@ enum DefaultInventories: string
             DefaultInventories::t3writing => 'https://docs.typo3.org/m/typo3/writing-guide/main/en-us/',
 
             // Other
-            DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/{typo3_version}/en-us/',
+            DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/main/en-us/',
         };
     }
 
