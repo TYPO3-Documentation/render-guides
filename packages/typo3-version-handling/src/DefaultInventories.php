@@ -22,6 +22,7 @@ enum DefaultInventories: string
     case t3writing = 't3writing';
     case t3contribute = 't3contribute';
     case fluid = 'fluid';
+    case t3renderguides = 't3renderguides';
 
     public function getUrl(): string
     {
@@ -53,6 +54,7 @@ enum DefaultInventories: string
 
             // Other
             DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/main/en-us/',
+            DefaultInventories::t3renderguides => 'https://docs.typo3.org/other/t3docs/render-guides/main/en-us/',
         };
     }
 
