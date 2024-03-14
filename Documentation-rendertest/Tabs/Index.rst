@@ -4,11 +4,12 @@
 .. index:: pair: Tabs; Bootstrap
 .. index:: pair: Tabs; Sphinx
 
+.. _Tabs:
 .. _Sphinx-Tabs:
 
-===========
-sphinx-tabs
-===========
+====
+Tabs
+====
 
 See https://pypi.org/project/sphinx-tabs/
 
