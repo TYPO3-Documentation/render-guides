@@ -4,4 +4,4 @@
 /.cache/
 /.Build/
 /**/temp/
-/Documentation-GENERATED-temp/
+/Documentation-GENERATED-*
