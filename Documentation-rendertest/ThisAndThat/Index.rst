@@ -62,26 +62,6 @@ On we go.
 .. rubric:: Rubric sub 003
 
 
-Centered
-========
-
-   This directive creates a centered boldfaced line of text. Use it as follows:
-
-   Deprecated since version 1.1: This presentation-only directive is a legacy
-   from older versions. Use a rst-class directive instead and add an
-   appropriate style.
-
-
-   -- `sphinx-doc.org
-      <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=rubric#directive-centered>`__
-
-
-.. centered:: SOMETHING THAT IS - MAYBE - CENTERED
-
-`.. rst-class:: centered` should be used instead of `.. centered::`.
-
-
-
 Hlist
 =====
 
@@ -332,7 +312,7 @@ with the link-parameters (lowercased)!
          extTarget
 
    Data type
-         target /:ref:`stdWrap <stdwrap>`
+         target /:ref:`stdWrap <t3tsref:stdwrap>`
 
    Description
          Target used for external links
