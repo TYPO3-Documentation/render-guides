@@ -283,16 +283,22 @@ Images of Series B
 
 .. |b1| image:: ../images/loremipsum/b1.jpg
    :alt: Image b1
+
 .. |b2| image:: ../images/loremipsum/b2.jpg
    :alt: Image b2
+
 .. |b3| image:: ../images/loremipsum/b3.jpg
    :alt: Image b3
+
 .. |b4| image:: ../images/loremipsum/b4.jpg
    :alt: Image b4
+
 .. |b5| image:: ../images/loremipsum/b5.jpg
    :alt: Image b5
+
 .. |b6| image:: ../images/loremipsum/b6.jpg
    :alt: Image b6
+
 .. |b7| image:: ../images/loremipsum/b7.jpg
    :alt: Image b7
 
