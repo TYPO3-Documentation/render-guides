@@ -88,11 +88,9 @@ Adapted from the TypoScript Reference Manual:
 
    1 means TRUE and 0 means FALSE.
 
-   Everything else is `evaluated to one of these values by PHP`__:
+   Everything else is evaluated to one of these values by PHP:
    Non-empty strings (except `0` [zero]) are treated as TRUE,
    empty strings are evaluated to FALSE.
-
-   __ http://php.net/manual/en/language.types.boolean.php
 
    Examples::
 
