@@ -15,6 +15,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
+use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
@@ -59,6 +60,7 @@ return static function (ContainerConfigurator $container): void {
         ->public()
 
         ->set(GroupTabDirective::class)
+        ->set(RawDirective::class)
         ->set(T3FieldListTableDirective::class)
         ->set(YoutubeDirective::class)
         ->set(CodeHighlight::class)
