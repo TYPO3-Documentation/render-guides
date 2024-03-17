@@ -75,6 +75,9 @@ jobs:
       - name: "'Documentation' renders without warning'"
         run: "make test-docs ENV=${{ env.RUN_ENVIRONMENT }}"
 
+      - name: "'Documentation-rendertest' renders without warning'"
+        run: "make test-rendertest ENV=${{ env.RUN_ENVIRONMENT }}"
+
   monorepo-validate:
     name: "Validate monorepo structure"
     runs-on: "ubuntu-latest"
