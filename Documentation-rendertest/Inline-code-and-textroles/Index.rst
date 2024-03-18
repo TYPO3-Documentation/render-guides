@@ -66,6 +66,8 @@ Examples for direct use
 *  :rst:`rst`
 *  :rest:`rest`
 *  :shell:`shell`
+*  :php:`php`
+*  :sql:`sql`
 *  :sh:`sh`
 *  :bash:`bash`
 *  :tsconfig:`tsconfig`
