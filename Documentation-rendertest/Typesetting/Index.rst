@@ -81,7 +81,7 @@ Code blocks
 
 For displaying larger code snippets, use code blocks:
 
-.. code-block:: php
+..  code-block:: php
 
     <?php
     function greet($name) {
