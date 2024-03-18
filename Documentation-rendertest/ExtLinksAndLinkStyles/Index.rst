@@ -1,6 +1,8 @@
 .. include:: /Includes.rst.txt
 .. highlight:: rst
 
+..  _references-and-links:
+
 ========================
 ExtLinks and Link styles
 ========================
