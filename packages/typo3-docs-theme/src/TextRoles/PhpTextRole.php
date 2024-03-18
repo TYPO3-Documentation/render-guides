@@ -21,6 +21,6 @@ final class PhpTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'PHP');
+        return new CodeInlineNode($rawContent, 'PHP', 'Dynamic server-side scripting language.');
     }
 }

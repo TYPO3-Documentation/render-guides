@@ -21,6 +21,6 @@ final class ShellTextTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'Shell Script');
+        return new CodeInlineNode($rawContent, 'Shell Script', 'Raw command line interface code on operating-system level.');
     }
 }

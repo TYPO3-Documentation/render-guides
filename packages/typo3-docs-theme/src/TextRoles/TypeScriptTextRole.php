@@ -21,6 +21,6 @@ final class TypeScriptTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'TypeScript');
+        return new CodeInlineNode($rawContent, 'TypeScript', 'Makes JavaScript utilize type declarations.');
     }
 }
