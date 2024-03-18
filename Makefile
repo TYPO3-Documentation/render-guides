@@ -124,17 +124,17 @@ test: test-integration test-unit test-xml test-docs test-rendertest ## Runs all 
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
 	@echo "$(ENV_INFO)"
-	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation --output="/tmp/test" --config=Documentation --fail-on-log
+	$(PHP_BIN) vendor/bin/guides -vvv --no-progress Documentation --output="/tmp/test" --config=Documentation --fail-on-log
 
 .PHONY: test-rendertest
 test-rendertest: ## Runs rendering with Documentation-rendertest
 	@echo "$(ENV_INFO)"
-	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation-rendertest --output="Documentation-GENERATED-rendertest" --config=Documentation-rendertest --fail-on-log
+	$(PHP_BIN) vendor/bin/guides -vvv --no-progress Documentation-rendertest --output="Documentation-GENERATED-rendertest" --config=Documentation-rendertest --fail-on-log
 
 .PHONY: rendertest
 rendertest: ## Runs rendering with Documentation-rendertest
 	@echo "$(ENV_INFO)"
-	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation-rendertest --output="Documentation-GENERATED-rendertest" --config=Documentation-rendertest
+	$(PHP_BIN) vendor/bin/guides -vvv --no-progress Documentation-rendertest --output="Documentation-GENERATED-rendertest" --config=Documentation-rendertest
 
 .PHONY: test-integration
 test-integration: ## Runs integration tests with phpunit
