@@ -53,6 +53,27 @@ typoscript       ``:typoscript:`lib.hello.value = Hello World!```  :typoscript:`
 yaml             ``:yaml:`- {name: John Smith, age: 33}```         :yaml:`- {name: John Smith, age: 33}`
 ================ ================================================= ============================================ ===
 
+Examples for direct use
+-----------------------
+
+*  :code:`code`
+*  :fluid:`fluid`
+*  :html:`html`
+*  :input:`input`
+*  :js:`js`
+*  :javascript:`javascript`
+*  :output:`output`
+*  :rst:`rst`
+*  :rest:`rest`
+*  :shell:`shell`
+*  :sh:`sh`
+*  :bash:`bash`
+*  :tsconfig:`tsconfig`
+*  :ts:`ts`
+*  :typescript:`typescript`
+*  :typoscript:`typoscript`
+*  :xml:`xml`
+*  :yaml:`yaml`
 
 
 Standard Sphinx interpreted text roles
