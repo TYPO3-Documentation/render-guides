@@ -1,170 +1,132 @@
 .. include:: /Includes.rst.txt
 
-==============
+..  _typesetting:
+
+===========
 Typesetting
+===========
+
+..  contents:: Table of contents
+
+Introduction
+============
+
+This is a typesetting test in reStructuredText. You will be required to demonstrate various formatting options including:
+
+- **Headers**
+- *Emphasis*
+- `Inline code`
+- Lists
+- Blockquotes
+- Tables
+
+..  _headers:
+
+Headers
+=======
+
+There are multiple levels of headers available:
+
+Level 2 Header
 ==============
 
-.. contents:: This page
-   :backlinks: top
-   :class: compact-list
-   :local:
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
-
-
-==============
-Typesetting H1
-==============
-
-Typesetting H2
-==============
-
-Typesetting H3
+Level 3 Header
 --------------
 
-Typesetting H4
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+Level 4 Header
 ~~~~~~~~~~~~~~
 
-Typesetting H5
-++++++++++++++
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-Typesetting H6
-##############
+..  _emphasis:
 
-==============
-Typesetting H1
-==============
+Emphasis
+========
 
-Just a line.
+Emphasizing text can be done using asterisks or underscores:
 
-Typesetting H2
-==============
+*This text is emphasized.* _This text is also emphasized._
 
-Just a line.
+Code
+====
 
-Typesetting H3
---------------
+Inline code
+-----------
 
-Just a line.
+You can highlight inline code using backticks: `some code`, :php:`$somePHP`.
 
-Typesetting H4
-~~~~~~~~~~~~~~
+Code blocks
+-----------
 
-Just a line.
+For displaying larger code snippets, use code blocks:
 
-Typesetting H5
-++++++++++++++
+.. code-block:: php
 
-Just a line.
+    <?php
+    function greet($name) {
+        echo "Hello, $name!";
+    }
 
-Typesetting H6
-##############
+    greet("world");
 
-Just a line.
+Lists
+=====
 
+Lists can be unordered or ordered:
 
-Typesetting H2
-==============
+Unordered List:
 
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
+*   Item 1
+*   Item 2
 
-- one
-- two Typesetting requires the prior process of designing a
-  font (which is widely but erroneously confused with and substituted for
-  typeface). One significant effect of typesetting was that authorship of
-  works could be spotted more easily; making it difficult for copiers who
-  have not gained permission.
+    *   Subitem 1
+    *   Subitem 2
 
-- three
+*   Item 3
 
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
+Ordered List:
 
-*Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.*
-
-**Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.**
-
-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-
-*ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz*
-
-**ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz**
+1.  First item
+2.  Second item
+3.  Third item
 
 
-Typesetting H3
---------------
+Blockquotes
+===========
 
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
+You can include blockquotes by indenting them:
 
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
+    This is a blockquote.
+    It can span multiple lines.
 
+Tables
+======
 
-Typesetting H4
-~~~~~~~~~~~~~~
+Tables are represented using pipes and dashes:
 
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
++--------------+---------------+
+| Name         | Occupation    |
++==============+===============+
+| John Doe     | Programmer    |
++--------------+---------------+
+| Jane Smith   | Designer      |
++--------------+---------------+
 
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
+References
+----------
 
+Here's a reference to a section:
 
-Typesetting H5
-++++++++++++++
+*   :ref:`Headers section <headers>`
 
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
-
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
-
-
-Typesetting H6
-##############
-
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
-
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
+*   :ref:`Emphasis section <emphasis>`
 
