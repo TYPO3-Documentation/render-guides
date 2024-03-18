@@ -8,10 +8,12 @@ use League\Flysystem\Exception;
 use LogicException;
 use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
+use phpDocumentor\Guides\Nodes\LinkTargetNode;
 use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
+use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
@@ -55,7 +57,24 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getSettings', $this->getSettings(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('copyDownload', $this->copyDownload(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getStandardInventories', $this->getStandardInventories(...), ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFunction('getRstCodeForLink', $this->getRstCodeForLink(...), ['is_safe' => [], 'needs_context' => true]),
         ];
+    }
+
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getRstCodeForLink(array $context, LinkTargetNode $linkTargetNode): string
+    {
+        if ($linkTargetNode->getLinkType() === ConfvalNode::LINK_TYPE) {
+            return sprintf(
+                ':confval:`%s <%s:%s>`',
+                $linkTargetNode->getLinkText(),
+                $this->themeSettings->getSettings('interlink_shortcode') !== '' ? $this->themeSettings->getSettings('interlink_shortcode') : 'somemanual',
+                $linkTargetNode->getId()
+            );
+        }
+        return '';
     }
 
     /**
