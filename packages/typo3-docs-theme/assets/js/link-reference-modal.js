@@ -36,7 +36,10 @@
     }
   }
 
-  function updateInputsAndTextareas(linkReferenceModal, headerText, uri, rstLink) {
+  function updateInputsAndTextareas(linkReferenceModal, header, headerText, uri, rstLink) {
+    if (header) {
+      linkReferenceModal.querySelector('h5').innerHTML = header;
+    }
     if (uri === null) {
       // this can happen when opening a local file
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_URI).value = '';
@@ -90,16 +93,18 @@
     const item = event.relatedTarget;
     const section = item.closest('section');
     const rstAnchor = section ? section.dataset.rstAnchor : null;
-    const headerElement = item.closest('h1, h2, h3, h4, h5, h6');
+    const headerElement = item.closest('h1, h2, h3, h4, h5, h6, dt');
     const headerText = headerElement ? headerElement.innerText : '';
+    const rstLinkData = item.dataset.rstcode;
+    const header = item.title;
 
-    showHideRstAnchorAlert(linkReferenceModal, rstAnchor);
+    showHideRstAnchorAlert(linkReferenceModal, rstAnchor || rstLinkData);
 
     const uri = generateUri(section, rstAnchor);
     const filename = linkReferenceModal.dataset.currentFilename;
-    const rstLink = generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename);
+    const rstLink = rstLinkData?rstLinkData:generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename);
 
-    updateInputsAndTextareas(linkReferenceModal, headerText, uri, rstLink);
+    updateInputsAndTextareas(linkReferenceModal, header, headerText, uri, rstLink);
 
 
     handleCopyButtons(linkReferenceModal);
