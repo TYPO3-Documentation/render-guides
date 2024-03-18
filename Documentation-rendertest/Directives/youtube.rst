@@ -1,13 +1,11 @@
 
 .. include:: /Includes.rst.txt
 
-.. _sphinxcontrib-youtube:
+.. _youtube-directive:
 
-=====================
-sphinxcontrib-youtube
-=====================
-
-See https://github.com/TYPO3-Documentation/sphinx-contrib-youtube/blob/develop/README.rst
+=================
+Youtube directive
+=================
 
 .. contents:: This page
    :backlinks: top
@@ -21,32 +19,32 @@ Youtube
 
 Code:
 
-.. code-block:: rst
+..  code-block:: rst
 
-   .. only:: html or singlehtml
-
-      .. youtube:: UdIYDZgBrQU
+    ..  youtube:: UdIYDZgBrQU
 
 Result:
 
-.. only:: html or singlehtml
-
-   .. youtube:: UdIYDZgBrQU
+..  youtube:: UdIYDZgBrQU
 
 
-sphinxcontrib.youtube README
+youtube directive parameters
 ============================
 
-This module defines a directive, `youtube`.  It takes a single, required
-argument, a YouTube video ID::
+It takes a single, required argument, a YouTube video ID:
 
-.. youtube:: oHg5SJYRHA0
+..  code-block:: rst
+
+    .. youtube:: oHg5SJYRHA0
 
 .. youtube:: oHg5SJYRHA0
 
 The referenced video will be embedded into HTML output.  By default, the
 embedded video will be sized for 720p content.  To control this, the
-parameters "aspect", "width", and "height" may optionally be provided::
+parameters "aspect", "width", and "height" may optionally be provided:
+
+
+..  code-block:: rst
 
    .. youtube:: oHg5SJYRHA0
       :width: 640
@@ -56,7 +54,8 @@ parameters "aspect", "width", and "height" may optionally be provided::
    :width: 640
    :height: 480
 
-::
+
+..  code-block:: rst
 
    .. youtube:: oHg5SJYRHA0
       :aspect: 4:3
@@ -64,7 +63,8 @@ parameters "aspect", "width", and "height" may optionally be provided::
 .. youtube:: oHg5SJYRHA0
    :aspect: 4:3
 
-::
+
+..  code-block:: rst
 
    .. youtube:: oHg5SJYRHA0
       :width: 100%
@@ -72,11 +72,10 @@ parameters "aspect", "width", and "height" may optionally be provided::
 .. youtube:: oHg5SJYRHA0
    :width: 100%
 
-::
+..  code-block:: rst
 
    .. youtube:: oHg5SJYRHA0
       :height: 200px
 
 .. youtube:: oHg5SJYRHA0
    :height: 200px
-

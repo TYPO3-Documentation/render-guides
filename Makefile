@@ -119,12 +119,17 @@ show-env: ## Shows PHP environment options (buildinfo)
 	@echo ""
 
 .PHONY: test
-test: test-integration test-unit test-xml test-docs ## Runs all test suites with phpunit/phpunit
+test: test-integration test-unit test-xml test-docs test-rendertest ## Runs all test suites with phpunit/phpunit
 
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
 	@echo "$(ENV_INFO)"
 	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation --output="/tmp/test" --config=Documentation --fail-on-log
+
+.PHONY: test-rendertest
+test-rendertest: ## Runs rendering with Documentation-rendertest
+	@echo "$(ENV_INFO)"
+	$(PHP_PROJECT_BIN) -vvv --no-progress Documentation-rendertest --output="Documentation-GENERATED-rendertest" --config=Documentation-rendertest --fail-on-log
 
 .PHONY: rendertest
 rendertest: ## Runs rendering with Documentation-rendertest
