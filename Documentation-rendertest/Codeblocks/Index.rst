@@ -64,7 +64,7 @@ as well.
 Image and code-block without caption
 ====================================
 
-.. image:: ../images/loremipsum/a4.jpg
+.. image:: ../images/q150_cccccc.png
 
 .. code-block:: none
 
@@ -86,7 +86,7 @@ Since DRC v3.0.dev2 html post-processing is changing this to
 <https://github.com/TYPO3-Documentation/sphinx_typo3_theme/issues/148>`__.
 
 
-.. image:: ../images/loremipsum/a4.jpg
+.. image:: ../images/q150_cccccc.png
 
 .. code-block:: none
    :caption: Generated extension with boilerplate code
@@ -100,7 +100,7 @@ Since DRC v3.0.dev2 html post-processing is changing this to
 Figure and code-block without caption
 =====================================
 
-.. figure:: ../images/loremipsum/a4.jpg
+.. figure:: ../images/q150_cccccc.png
 
    Caption of image
 
@@ -115,7 +115,7 @@ Figure and code-block without caption
 Figure and code-block with caption
 ==================================
 
-.. figure:: ../images/loremipsum/a4.jpg
+.. figure:: ../images/q150_cccccc.png
 
    Caption of image
 
@@ -131,7 +131,7 @@ Figure and code-block with caption
 Code-block without caption within figure's caption
 ==================================================
 
-.. figure:: ../images/loremipsum/a4.jpg
+.. figure:: ../images/q150_cccccc.png
 
    Caption of image
 
@@ -146,7 +146,7 @@ Code-block without caption within figure's caption
 Code-block with caption within figure's caption
 ===============================================
 
-.. figure:: ../images/loremipsum/a4.jpg
+.. figure:: ../images/q150_cccccc.png
 
    Caption of image
 

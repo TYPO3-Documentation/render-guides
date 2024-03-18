@@ -154,7 +154,7 @@ Sidebar
 
     *Above* CH'IEN THE CREATIVE, HEAVEN
 
-    .. image:: ../static/yi_jing_01_chien.jpg
+    .. image:: /images/q150_cccccc.png
 
     *Below* CH'IEN THE CREATIVE, HEAVEN
 
