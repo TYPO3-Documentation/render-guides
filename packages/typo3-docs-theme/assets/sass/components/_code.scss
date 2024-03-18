@@ -89,7 +89,6 @@ code {
     background: $gray-100;
     padding: 0.25em 0.5em;
     &[aria-description] {
-        text-underline-offset: 10%;
-        text-decoration: underline dotted;
+        border-left: 1px solid $blue;
     }
 }
