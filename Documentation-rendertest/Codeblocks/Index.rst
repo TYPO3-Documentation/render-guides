@@ -2,158 +2,242 @@
 
 .. _Codeblocks:
 
-==================
+==========
 Codeblocks
-==================
+==========
 
-.. contents:: This page
-   :backlinks: top
-   :class: compact-list
-   :depth: 99
-   :local:
+..  contents:: This page
+    :local:
 
 
 Basic examples
 ==============
 
-.. highlight:: shell
+..  code-block:: shell
 
-List files, 'let see'::
-
-   ls
-
-Show more::
-
-   ls -al
-
-Or short::
-
-   ls -1
-
+    ls -al
 
 Code-block with line numbers
 ============================
 
-*Note:* When you select code, the linenumbers should not be selected, also they
-are technically WITHIN the html that is selected. See :theme-issue:`149`.
+..  code-block:: rst
+    :caption: Example of 'contents' directive
+    :linenos:
+    :emphasize-lines: 2,3
+    :force:
 
-Select some of the following code to test whether the line number get selected
-as well.
+    This is an example block. Next two line have 'emphasis' background color.
+    With another line.
+    And a third one.
 
-.. code-block:: rst
-   :caption: Example of 'contents' directive
-   :linenos:
-   :emphasize-lines: 2,3
-   :force:
+    ..  code-block:: rst
+        :caption: Example of 'contents' directive
+        :linenos:
+        :emphasize-lines: 2,3
+        :force:
 
-   This is an example block. Next two line have 'emphasis' background color.
-   With another line.
-   And a third one.
-
-   .. code-block:: rst
-      :caption: Example of 'contents' directive
-      :linenos:
-      :emphasize-lines: 2,3
-      :force:
-
-      This is an example block.
-      With another line.
-      And a third one.
-
-
-Image and code-block without caption
-====================================
-
-.. image:: ../images/q150_cccccc.png
-
-.. code-block:: none
-
-   .
-   ├── composer.json
-   ├── ext_emconf.php
-   .
+        This is an example block.
+        With another line.
+        And a third one.
 
 
 
-Image and code-block with caption
-=================================
+PHP
+===
 
-Code blocks with caption show up in html as
-:html:`div.literal-block-wrapper.docutils.container` due to `docutils`.
-Since DRC v3.0.dev2 html post-processing is changing this to
-`div.literal-block-wrapper.docutils.du-container`. This should prevent
-`sphinx_typo3_theme issue #148
-<https://github.com/TYPO3-Documentation/sphinx_typo3_theme/issues/148>`__.
+..  code-block:: php
+    :caption:  CustomCategoryProcessor.php
+
+    <?php
+
+    declare(strict_types=1);
+
+    /*
+     * This file is part of the TYPO3 CMS project. [...]
+     */
+
+    namespace T3docs\Examples\DataProcessing;
+
+    use T3docs\Examples\Domain\Repository\CategoryRepository;
+    use TYPO3\CMS\Core\Utility\GeneralUtility;
+    use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+    use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
+
+    /**
+     * Class for data processing comma separated categories
+     */
+    final class CustomCategoryProcessor implements DataProcessorInterface
+    {
+        /**
+         * Process data for the content element "My new content element"
+         *
+         * @param ContentObjectRenderer $cObj The data of the content element or page
+         * @param array $contentObjectConfiguration The configuration of Content Object
+         * @param array $processorConfiguration The configuration of this processor
+         * @param array $processedData Key/value store of processed data (e.g. to be passed to a Fluid View)
+         * @return array the processed data as key/value store
+         */
+        public function process(
+            ContentObjectRenderer $cObj,
+            array $contentObjectConfiguration,
+            array $processorConfiguration,
+            array $processedData
+        ) {
+            if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
+                return $processedData;
+            }
+            // categories by comma separated list
+            $categoryIdList = $cObj->stdWrapValue('categoryList', $processorConfiguration ?? []);
+            $categories = [];
+            if ($categoryIdList) {
+                $categoryIdList = GeneralUtility::intExplode(',', (string)$categoryIdList, true);
+                /** @var CategoryRepository $categoryRepository */
+                $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
+                foreach ($categoryIdList as $categoryId) {
+                    $categories[] = $categoryRepository->findByUid($categoryId);
+                }
+                // set the categories into a variable, default "categories"
+                $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration, 'categories');
+                $processedData[$targetVariableName] = $categories;
+            }
+            return $processedData;
+        }
+    }
+
+Javascript
+==========
+
+..  code-block:: javascript
+
+    var makeNoise = function() {
+      console.log("Pling!");
+    };
+
+    makeNoise();
+    // → Pling!
+
+    var power = function(base, exponent) {
+      var result = 1;
+      for (var count = 0; count < exponent; count++)
+        result *= base;
+      return result;
+    };
+
+    console.log(power(2, 10));
+    // → 1024
 
 
-.. image:: ../images/q150_cccccc.png
+JSON
+====
 
-.. code-block:: none
-   :caption: Generated extension with boilerplate code
+..  code-block:: json
 
-   .
-   ├── composer.json
-   ├── ext_emconf.php
-   .
-
-
-Figure and code-block without caption
-=====================================
-
-.. figure:: ../images/q150_cccccc.png
-
-   Caption of image
-
-.. code-block:: none
-
-   .
-   ├── composer.json
-   ├── ext_emconf.php
-   .
+    [
+      {
+        "title": "apples",
+        "count": [12000, 20000],
+        "description": {"text": "...", "sensitive": false}
+      },
+      {
+        "title": "oranges",
+        "count": [17500, null],
+        "description": {"text": "...", "sensitive": false}
+      }
+    ]
 
 
-Figure and code-block with caption
-==================================
+Makefile
+========
 
-.. figure:: ../images/q150_cccccc.png
+..  code-block:: makefile
 
-   Caption of image
+    # Makefile
 
-.. code-block:: none
-   :caption: Generated extension with boilerplate code
+    BUILDDIR      = _build
+    EXTRAS       ?= $(BUILDDIR)/extras
 
-   .
-   ├── composer.json
-   ├── ext_emconf.php
-   .
+    .PHONY: main clean
 
+    main:
+       @echo "Building main facility..."
+       build_main $(BUILDDIR)
 
-Code-block without caption within figure's caption
-==================================================
-
-.. figure:: ../images/q150_cccccc.png
-
-   Caption of image
-
-   .. code-block:: none
-
-      .
-      ├── composer.json
-      ├── ext_emconf.php
-      .
+    clean:
+       rm -rf $(BUILDDIR)/*
 
 
-Code-block with caption within figure's caption
-===============================================
+Markdown
+========
 
-.. figure:: ../images/q150_cccccc.png
+..  code-block:: markdown
 
-   Caption of image
+    # hello world
 
-   .. code-block:: none
-      :caption: Generated extension with boilerplate code
+    you can write text [with links](https://example.org) inline or [link references][1].
 
-      .
-      ├── composer.json
-      ├── ext_emconf.php
-      .
+    * one _thing_ has *em*phasis
+    * two __things__ are **bold**
+
+    [1]: https://example.org
+
+SQL
+===
+
+..  code-block:: sql
+
+    BEGIN;
+    CREATE TABLE "topic" (
+        -- This is the greatest table of all time
+        "id" serial NOT NULL PRIMARY KEY,
+        "forum_id" integer NOT NULL,
+        "subject" varchar(255) NOT NULL -- Because nobody likes an empty subject
+    );
+    ALTER TABLE "topic" ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id") REFERENCES "forum" ("id");
+
+    -- Initials
+    insert into "topic" ("forum_id", "subject") values (2, 'D''artagnian');
+
+    select /* comment */ count(*) from cicero_forum;
+
+    -- this line lacks ; at the end to allow people to be sloppy and omit it in one-liners
+    /*
+    but who cares?
+    */
+    COMMIT
+
+
+
+Html
+====
+
+..  code-block:: html
+
+    <!DOCTYPE html>
+    <title>Title</title>
+
+    <style>body {width: 500px;}</style>
+
+    <script type="application/javascript">
+      function $init() {return true;}
+    </script>
+
+    <body>
+      <p checked class="title" id='title'>Title</p>
+      <!-- here goes the rest of the page -->
+    </body>
+
+
+Xml
+===
+
+..  code-block:: xml
+
+    <?xml version="1.0"?>
+    <response value="ok" xml:lang="en">
+      <text>Ok</text>
+      <comment html_allowed="true"/>
+      <ns1:description><![CDATA[
+      CDATA is <not> magical.
+      ]]></ns1:description>
+      <a></a> <a/>
+    </response>
