@@ -227,7 +227,7 @@ HTML
     </body>
 
 
-Xml
+XML
 ===
 
 ..  code-block:: xml
