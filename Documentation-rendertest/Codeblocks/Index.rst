@@ -104,7 +104,7 @@ PHP
         }
     }
 
-Javascript
+JavaScript
 ==========
 
 ..  code-block:: javascript
