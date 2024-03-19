@@ -207,7 +207,7 @@ SQL
 
 
 
-Html
+HTML
 ====
 
 ..  code-block:: html
