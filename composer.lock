@@ -1227,16 +1227,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "1.2.0",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "642dbef644348bfdf0898e2ca30a090047df4cb7"
+                "reference": "5688947000490218c602ec0862d2becc54560820"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/642dbef644348bfdf0898e2ca30a090047df4cb7",
-                "reference": "642dbef644348bfdf0898e2ca30a090047df4cb7",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/5688947000490218c602ec0862d2becc54560820",
+                "reference": "5688947000490218c602ec0862d2becc54560820",
                 "shasum": ""
             },
             "require": {
@@ -1272,22 +1272,22 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/1.2.0"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/1.2.2"
             },
-            "time": "2024-03-16T17:17:48+00:00"
+            "time": "2024-03-20T19:56:00+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
-            "version": "1.0.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "dbabd6c1e3f32546a2c4ef95ac2aef4473400d36"
+                "reference": "3581514100f147a417ca268545bf3d49d47f42ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/dbabd6c1e3f32546a2c4ef95ac2aef4473400d36",
-                "reference": "dbabd6c1e3f32546a2c4ef95ac2aef4473400d36",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/3581514100f147a417ca268545bf3d49d47f42ba",
+                "reference": "3581514100f147a417ca268545bf3d49d47f42ba",
                 "shasum": ""
             },
             "require": {
@@ -1321,9 +1321,9 @@
             ],
             "description": "Allows you to run phpDocumentor Guides as a stand alone application as console command",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.0.0"
+                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.2.1"
             },
-            "time": "2024-03-03T20:57:20+00:00"
+            "time": "2024-03-19T20:55:26+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -1407,16 +1407,16 @@
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "0cf0de07d682fe1acd693ed8889d7f98abdaf59f"
+                "reference": "a98d39789ab6e4b738402f24014d478da74a0c04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/0cf0de07d682fe1acd693ed8889d7f98abdaf59f",
-                "reference": "0cf0de07d682fe1acd693ed8889d7f98abdaf59f",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/a98d39789ab6e4b738402f24014d478da74a0c04",
+                "reference": "a98d39789ab6e4b738402f24014d478da74a0c04",
                 "shasum": ""
             },
             "require": {
@@ -1439,22 +1439,22 @@
             "description": "Adds reStructuredText Markup support to the phpDocumentor's Guides library.",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.2.0"
+                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.2.1"
             },
-            "time": "2024-03-16T17:22:55+00:00"
+            "time": "2024-03-19T19:23:42+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
-            "version": "1.0.0",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-bootstrap.git",
-                "reference": "9f4cc1de10bca0fbd787617db65bb2730e94315e"
+                "reference": "3a30e7b1e6bb86e2668a5bed2b212a9736698a8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/9f4cc1de10bca0fbd787617db65bb2730e94315e",
-                "reference": "9f4cc1de10bca0fbd787617db65bb2730e94315e",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/3a30e7b1e6bb86e2668a5bed2b212a9736698a8d",
+                "reference": "3a30e7b1e6bb86e2668a5bed2b212a9736698a8d",
                 "shasum": ""
             },
             "require": {
@@ -1475,9 +1475,9 @@
             "description": "A theme for phpdocumentor/guides based on Bootstrap",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/1.0.0"
+                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/1.2.2"
             },
-            "time": "2024-03-03T20:57:20+00:00"
+            "time": "2024-03-20T19:56:00+00:00"
         },
         {
             "name": "psr/clock",
@@ -4797,16 +4797,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.63",
+            "version": "1.10.64",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "ad12836d9ca227301f5fb9960979574ed8628339"
+                "reference": "fb9f270daffedcb5ff46275dcafe92538b1bc4bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ad12836d9ca227301f5fb9960979574ed8628339",
-                "reference": "ad12836d9ca227301f5fb9960979574ed8628339",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/fb9f270daffedcb5ff46275dcafe92538b1bc4bb",
+                "reference": "fb9f270daffedcb5ff46275dcafe92538b1bc4bb",
                 "shasum": ""
             },
             "require": {
@@ -4855,7 +4855,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-18T16:53:53+00:00"
+            "time": "2024-03-21T09:57:47+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
@@ -5229,16 +5229,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.13",
+            "version": "10.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "20a63fc1c6db29b15da3bd02d4b6cf59900088a7"
+                "reference": "4cf8824bab39c2dd57b57b9f6332f7135e2a3a49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/20a63fc1c6db29b15da3bd02d4b6cf59900088a7",
-                "reference": "20a63fc1c6db29b15da3bd02d4b6cf59900088a7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4cf8824bab39c2dd57b57b9f6332f7135e2a3a49",
+                "reference": "4cf8824bab39c2dd57b57b9f6332f7135e2a3a49",
                 "shasum": ""
             },
             "require": {
@@ -5310,7 +5310,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.13"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.14"
             },
             "funding": [
                 {
@@ -5326,7 +5326,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-12T15:37:41+00:00"
+            "time": "2024-03-21T07:31:09+00:00"
         },
         {
             "name": "sebastian/cli-parser",
