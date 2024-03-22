@@ -24685,7 +24685,7 @@ dl.field-list ul {
   }
 }
 .logo {
-  display: flex;
+  display: inline-flex;
   height: 70px;
   align-items: center;
 }
@@ -24907,6 +24907,10 @@ a.toc-title-project:hover {
   border: 0.25em solid transparent;
   border-top: none;
   border-bottom-color: inherit;
+}
+
+.search__scope {
+  flex: 0.4 !important;
 }
 
 .page {
