@@ -19,7 +19,8 @@ final class IgnoreLocalizationsFolders
         $files = $event->getFiles();
         $newFiles = new Files();
         foreach ($files as $filePath) {
-            if (!preg_match(self::LOCALIZATION_FOLDER_REGEX, $filePath)) {
+            // @todo: Refactor to either remove this event from the service when a specific argument is set or use event storage (PR for "guides")
+            if (!preg_match(self::LOCALIZATION_FOLDER_REGEX, $filePath) || isset($GLOBALS['_IGNORE_LOCALIZATION_EXCLUDE'])) {
                 $newFiles->add($filePath);
             }
         }
