@@ -4,18 +4,30 @@
         <a class="headerlink" href="#{{ node.id }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  data-id="{{ node.id }}" data-rstCode="{{ getRstCodeForLink(node) }}"  title="Reference this configuration value">¶</a>
     </dt>
     <dd>
-        <div class="line-block">
-            {% if node.type != null %} <div class="line"><strong>Type:</strong>  {{ renderNode(node.type) }}</div>
+        {% if node.type or node.required or node.default or node.additionalOptions %}
+        <dl class="field-list simple">
+            {% if node.type != null %}
+                <dt class="field-even">Type</dt>
+                <dd class="field-even">{{ renderNode(node.type) }}
+                </dd>
             {% endif -%}
-            {%- if node.required %} <div class="line"><strong>Required:</strong> true</div>
+            {%- if node.required %}
+            <dt class="field-odd">Required</dt>
+            <dd class="field-odd"><p>true</p>
+            </dd>
             {% endif -%}
-            {% if node.default != null %} <div class="line"><strong>Type:</strong>  {{ renderNode(node.default) }}</div>
+            {% if node.default != null %}
+            <dt class="field-odd">Default</dt>
+            <dd class="field-odd">{{ renderNode(node.default) }}
+            </dd>
             {% endif -%}
             {%- for key, option in node.additionalOptions -%}
-                <div class="line"><strong>{{ key }}:</strong> {{  renderNode(option) }}</div>
-
+                <dt class="field-even">{{ key }}</dt>
+                <dd class="field-even">{{  renderNode(option) }}
+                </dd>
             {% endfor -%}
-        </div>
+        </dl>
+        {% endif %}
         <div class="confval-description">
             {{ renderNode(node.value) }}
         </div>
