@@ -753,16 +753,16 @@
         },
         {
             "name": "league/uri",
-            "version": "7.4.0",
+            "version": "7.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/uri.git",
-                "reference": "bf414ba956d902f5d98bf9385fcf63954f09dce5"
+                "reference": "bedb6e55eff0c933668addaa7efa1e1f2c417cc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/uri/zipball/bf414ba956d902f5d98bf9385fcf63954f09dce5",
-                "reference": "bf414ba956d902f5d98bf9385fcf63954f09dce5",
+                "url": "https://api.github.com/repos/thephpleague/uri/zipball/bedb6e55eff0c933668addaa7efa1e1f2c417cc4",
+                "reference": "bedb6e55eff0c933668addaa7efa1e1f2c417cc4",
                 "shasum": ""
             },
             "require": {
@@ -831,7 +831,7 @@
                 "docs": "https://uri.thephpleague.com",
                 "forum": "https://thephpleague.slack.com",
                 "issues": "https://github.com/thephpleague/uri-src/issues",
-                "source": "https://github.com/thephpleague/uri/tree/7.4.0"
+                "source": "https://github.com/thephpleague/uri/tree/7.4.1"
             },
             "funding": [
                 {
@@ -839,20 +839,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-01T06:24:25+00:00"
+            "time": "2024-03-23T07:42:40+00:00"
         },
         {
             "name": "league/uri-interfaces",
-            "version": "7.4.0",
+            "version": "7.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/uri-interfaces.git",
-                "reference": "bd8c487ec236930f7bbc42b8d374fa882fbba0f3"
+                "reference": "8d43ef5c841032c87e2de015972c06f3865ef718"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/uri-interfaces/zipball/bd8c487ec236930f7bbc42b8d374fa882fbba0f3",
-                "reference": "bd8c487ec236930f7bbc42b8d374fa882fbba0f3",
+                "url": "https://api.github.com/repos/thephpleague/uri-interfaces/zipball/8d43ef5c841032c87e2de015972c06f3865ef718",
+                "reference": "8d43ef5c841032c87e2de015972c06f3865ef718",
                 "shasum": ""
             },
             "require": {
@@ -915,7 +915,7 @@
                 "docs": "https://uri.thephpleague.com",
                 "forum": "https://thephpleague.slack.com",
                 "issues": "https://github.com/thephpleague/uri-src/issues",
-                "source": "https://github.com/thephpleague/uri-interfaces/tree/7.4.0"
+                "source": "https://github.com/thephpleague/uri-interfaces/tree/7.4.1"
             },
             "funding": [
                 {
@@ -923,7 +923,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-24T15:40:42+00:00"
+            "time": "2024-03-23T07:42:40+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1227,16 +1227,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "5688947000490218c602ec0862d2becc54560820"
+                "reference": "fee2fd3d771c0d239eccf10432a6dc0ec3fbf321"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/5688947000490218c602ec0862d2becc54560820",
-                "reference": "5688947000490218c602ec0862d2becc54560820",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/fee2fd3d771c0d239eccf10432a6dc0ec3fbf321",
+                "reference": "fee2fd3d771c0d239eccf10432a6dc0ec3fbf321",
                 "shasum": ""
             },
             "require": {
@@ -1272,9 +1272,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/1.2.2"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/1.2.3"
             },
-            "time": "2024-03-20T19:56:00+00:00"
+            "time": "2024-03-23T10:29:59+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1407,16 +1407,16 @@
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
-            "version": "1.2.1",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "a98d39789ab6e4b738402f24014d478da74a0c04"
+                "reference": "2ab5f8a30690a38b2f87a94022e4ea7590c8d717"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/a98d39789ab6e4b738402f24014d478da74a0c04",
-                "reference": "a98d39789ab6e4b738402f24014d478da74a0c04",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/2ab5f8a30690a38b2f87a94022e4ea7590c8d717",
+                "reference": "2ab5f8a30690a38b2f87a94022e4ea7590c8d717",
                 "shasum": ""
             },
             "require": {
@@ -1439,9 +1439,9 @@
             "description": "Adds reStructuredText Markup support to the phpDocumentor's Guides library.",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.2.1"
+                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.2.3"
             },
-            "time": "2024-03-19T19:23:42+00:00"
+            "time": "2024-03-23T10:29:59+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -4797,16 +4797,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.64",
+            "version": "1.10.65",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "fb9f270daffedcb5ff46275dcafe92538b1bc4bb"
+                "reference": "3c657d057a0b7ecae19cb12db446bbc99d8839c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/fb9f270daffedcb5ff46275dcafe92538b1bc4bb",
-                "reference": "fb9f270daffedcb5ff46275dcafe92538b1bc4bb",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/3c657d057a0b7ecae19cb12db446bbc99d8839c6",
+                "reference": "3c657d057a0b7ecae19cb12db446bbc99d8839c6",
                 "shasum": ""
             },
             "require": {
@@ -4855,7 +4855,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-21T09:57:47+00:00"
+            "time": "2024-03-23T10:30:26+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
@@ -5700,16 +5700,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "6.0.1",
+            "version": "6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "43c751b41d74f96cbbd4e07b7aec9675651e2951"
+                "reference": "8074dbcd93529b357029f5cc5058fd3e43666984"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/43c751b41d74f96cbbd4e07b7aec9675651e2951",
-                "reference": "43c751b41d74f96cbbd4e07b7aec9675651e2951",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/8074dbcd93529b357029f5cc5058fd3e43666984",
+                "reference": "8074dbcd93529b357029f5cc5058fd3e43666984",
                 "shasum": ""
             },
             "require": {
@@ -5724,7 +5724,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "6.0-dev"
+                    "dev-main": "6.1-dev"
                 }
             },
             "autoload": {
@@ -5752,7 +5752,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/environment/issues",
                 "security": "https://github.com/sebastianbergmann/environment/security/policy",
-                "source": "https://github.com/sebastianbergmann/environment/tree/6.0.1"
+                "source": "https://github.com/sebastianbergmann/environment/tree/6.1.0"
             },
             "funding": [
                 {
@@ -5760,7 +5760,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-04-11T05:39:26+00:00"
+            "time": "2024-03-23T08:47:14+00:00"
         },
         {
             "name": "sebastian/exporter",
