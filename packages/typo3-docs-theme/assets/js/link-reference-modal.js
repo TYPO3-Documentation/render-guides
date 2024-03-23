@@ -92,7 +92,7 @@
   linkReferenceModal.addEventListener('show.bs.modal', function (event) {
     const item = event.relatedTarget;
     const section = item.closest('section');
-    const rstAnchor = section ? section.dataset.rstAnchor : null;
+    const rstAnchor = item.dataset.id ? item.dataset.id : (section ? section.dataset.rstAnchor : null);
     const headerElement = item.closest('h1, h2, h3, h4, h5, h6, dt');
     const headerText = headerElement ? headerElement.innerText : '';
     const rstLinkData = item.dataset.rstcode;
