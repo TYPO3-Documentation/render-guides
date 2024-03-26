@@ -6,7 +6,7 @@
     return new bootstrap.Popover(popoverTriggerEl, {
       title:ariaDetails?ariaDescription:'',
       content:  ariaDetails?ariaDetails:ariaDescription,
-      trigger: 'click', // Set trigger to 'hover'
+      trigger: 'hover',
       placement: 'bottom'
     });
   });
