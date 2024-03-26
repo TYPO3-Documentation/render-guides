@@ -1,12 +1,12 @@
-.. include:: /Includes.rst.txt
+..  include:: /Includes.rst.txt
 
 ==========================
-TYPO3 Theme Rendering Test
+TYPO3 theme rendering test
 ==========================
 
 This is taken from this repository:
 
-https://typo3-documentation.github.io/sphinx_typo3_theme_rendering_test/Admonitions-and-buttons/Index.html
+https://github.com/TYPO3-Documentation/sphinx_typo3_theme_rendering_test
 
 This documentation is meant to provide a set of directives and their
 rendering output that we may want to address.
@@ -46,12 +46,12 @@ Within ddev
 
 -----
 
-.. rubric:: Pages
+..  rubric:: Pages
 
-.. rst-class::  compact-list
-.. toctree::
-   :titlesonly:
-   :glob:
+..  rst-class::  compact-list
+..  toctree::
+    :titlesonly:
+    :glob:
 
-   */Index
-   *
+    */Index
+    *

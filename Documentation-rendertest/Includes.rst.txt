@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 .. This is '/Includes.rst.txt'. It is included at the very top of each and
    every ReST source file in THIS documentation project (= manual).
 
+=======
+.. Imports for all files go here
+>>>>>>> 00ec2db19d54e1eea953fa65be7bf4a5c6f1ecee

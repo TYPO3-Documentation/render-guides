@@ -30,9 +30,9 @@ This is source:
 
 .. code-block:: rst
 
-   .. php:class:: DateTime
+   .. php:class:: SomeDateClass
 
-      Datetime class
+      SomeDateClass class
 
       .. php:method:: setDate($year, $month, $day)
 
@@ -58,9 +58,9 @@ This is source:
          Y-m-d\TH:i:sP
 
 
-.. php:class:: DateTime
+.. php:class:: SomeDateClass
 
-   Datetime class
+   SomeDateClass class
 
    .. php:method:: setDate($year, $month, $day)
 
@@ -100,7 +100,7 @@ Classes
 
 ..  php:class:: DateTime
 
-    Datetime class
+    DateTime class
 
     ..  php:method:: setDate($year, $month, $day)
 

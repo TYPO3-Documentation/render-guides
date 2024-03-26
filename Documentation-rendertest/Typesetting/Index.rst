@@ -1,170 +1,156 @@
 .. include:: /Includes.rst.txt
 
-==============
+..  _typesetting:
+
+===========
 Typesetting
+===========
+
+..  contents:: Table of contents
+
+Introduction
+============
+
+This is a quick demonstration of some common constructs. This page can be used
+to improve styles. It is not a complete list of features of restructured text.
+
+Refer to the specific pages for more examples.
+
+- **Headers**
+- *Emphasis*
+- `Inline code`
+- Lists
+- Blockquotes
+- Tables
+
+..  _headers:
+
+Headers
+=======
+
+There are multiple levels of headers available:
+
+Level 2 Header
 ==============
 
-.. contents:: This page
-   :backlinks: top
-   :class: compact-list
-   :local:
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
-
-
-==============
-Typesetting H1
-==============
-
-Typesetting H2
-==============
-
-Typesetting H3
+Level 3 Header
 --------------
 
-Typesetting H4
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+Level 4 Header
 ~~~~~~~~~~~~~~
 
-Typesetting H5
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Level 5 Header
 ++++++++++++++
 
-Typesetting H6
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Level 6 Header
 ##############
 
-==============
-Typesetting H1
-==============
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-Just a line.
+..  _emphasis:
 
-Typesetting H2
-==============
+Emphasis
+========
 
-Just a line.
+Emphasizing text can be done using asterisks or underscores:
 
-Typesetting H3
---------------
+*This text is emphasized.* _This text is also emphasized._
 
-Just a line.
+Code
+====
 
-Typesetting H4
-~~~~~~~~~~~~~~
+Inline code
+-----------
 
-Just a line.
+You can highlight inline code using backticks: `some code`, :php:`$somePHP`.
+See also :ref:`Inline-code-and-text-roles`.
 
-Typesetting H5
-++++++++++++++
+Code blocks
+-----------
 
-Just a line.
+For displaying larger code snippets, use code blocks:
 
-Typesetting H6
-##############
+..  code-block:: php
 
-Just a line.
+    <?php
+    function greet($name) {
+        echo "Hello, $name!";
+    }
 
+    greet("world");
 
-Typesetting H2
-==============
+See also :ref:`Codeblocks`.
 
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
+Lists
+=====
 
-- one
-- two Typesetting requires the prior process of designing a
-  font (which is widely but erroneously confused with and substituted for
-  typeface). One significant effect of typesetting was that authorship of
-  works could be spotted more easily; making it difficult for copiers who
-  have not gained permission.
+Lists can be unordered or ordered:
 
-- three
+Unordered List:
 
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
+*   Item 1
+*   Item 2
 
-*Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.*
+    *   Subitem 1
+    *   Subitem 2
 
-**Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.**
+*   Item 3
 
-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+Ordered List:
 
-*ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz*
+1.  First item
+2.  Second item
+3.  Third item
 
-**ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz**
+See also :ref:`lists`.
 
+Blockquotes
+===========
 
-Typesetting H3
---------------
+You can include blockquotes by indenting them:
 
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
+    This is a blockquote.
+    It can span multiple lines.
 
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
+See also :ref:`Block-Quotes`.
 
+Tables
+======
 
-Typesetting H4
-~~~~~~~~~~~~~~
+Tables are represented using pipes and dashes:
 
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
++--------------+---------------+
+| Name         | Occupation    |
++==============+===============+
+| John Doe     | Programmer    |
++--------------+---------------+
+| Jane Smith   | Designer      |
++--------------+---------------+
 
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
+See also :ref:`tables`.
 
+References
+----------
 
-Typesetting H5
-++++++++++++++
+Here's a reference to a section:
 
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
+*   :ref:`Headers section <headers>`
+*   :ref:`Emphasis section <emphasis>`
+*   https://typo3.org/
 
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
-
-
-Typesetting H6
-##############
-
-Typesetting is the composition of text by means of arranging physical
-types[1] or the digital equivalents. Stored letters and other symbols
-(called sorts in mechanical systems and glyphs in digital systems)
-are retrieved and ordered according to a language's orthography for
-visual display.
-
-Typesetting requires the prior process of designing a
-font (which is widely but erroneously confused with and substituted for
-typeface). One significant effect of typesetting was that authorship of
-works could be spotted more easily; making it difficult for copiers who
-have not gained permission.
-
+See also :ref:`references-and-links`.

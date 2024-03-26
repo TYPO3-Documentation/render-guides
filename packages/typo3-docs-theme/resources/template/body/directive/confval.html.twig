@@ -1,0 +1,35 @@
+<dl class="confval">
+    <dt id="{{ node.id }}">
+        <code class="sig-name descname"><span class="pre">{{ node.plainContent }}</span></code>
+        <a class="headerlink" href="#{{ node.id }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  data-id="{{ node.id }}" data-rstCode="{{ getRstCodeForLink(node) }}"  title="Reference this configuration value">¶</a>
+    </dt>
+    <dd>
+        {% if node.type or node.required or node.default or node.additionalOptions %}
+        <dl class="field-list simple">
+            {% if node.type != null %}
+                <dt class="field-even">Type</dt>
+                <dd class="field-even">{{ renderNode(node.type) }}
+                </dd>
+            {% endif -%}
+            {%- if node.required %}
+            <dt class="field-odd">Required</dt>
+            <dd class="field-odd"><p>true</p>
+            </dd>
+            {% endif -%}
+            {% if node.default != null %}
+            <dt class="field-odd">Default</dt>
+            <dd class="field-odd">{{ renderNode(node.default) }}
+            </dd>
+            {% endif -%}
+            {%- for key, option in node.additionalOptions -%}
+                <dt class="field-even">{{ key }}</dt>
+                <dd class="field-even">{{  renderNode(option) }}
+                </dd>
+            {% endfor -%}
+        </dl>
+        {% endif %}
+        <div class="confval-description">
+            {{ renderNode(node.value) }}
+        </div>
+    </dd>
+</dl>
