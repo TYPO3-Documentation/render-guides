@@ -7,11 +7,11 @@ use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
 use phpDocumentor\Guides\RestructuredText\TextRoles\TextRole;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 
-final class PhpTextRole implements TextRole
+final class OutputTextTextRole implements TextRole
 {
     public function getName(): string
     {
-        return 'php';
+        return 'output';
     }
 
     public function getAliases(): array
@@ -21,6 +21,6 @@ final class PhpTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'PHP', 'Dynamic server-side scripting language.');
+        return new CodeInlineNode($rawContent, 'Output value');
     }
 }

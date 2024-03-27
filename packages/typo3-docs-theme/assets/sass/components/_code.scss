@@ -85,7 +85,40 @@ code {
 .code-inline {
     font-family: $font-family-monospace;
     border-radius: $border-radius;
-    border: 1px solid $white;
+    border: 2px solid $white;
     background: $gray-100;
     padding: 0.25em 0.5em;
+    cursor: pointer;
+    line-height: 27px;
+}
+
+/** popover styling **/
+.popover{
+    display: flex;
+    flex-direction: row;
+    max-width: 30vw;
+}
+.popover-header{
+    padding: var(--bs-popover-body-padding-y) var(--bs-popover-body-padding-x);
+    border-right: var(--bs-popover-border-width) solid var(--bs-popover-border-color);
+    border-top-left-radius: var(--bs-popover-inner-border-radius);
+    border-bottom-left-radius: var(--bs-popover-inner-border-radius);
+    border-top-right-radius: 0;
+    border-bottom: 0;
+}
+
+@media only screen and (max-width: 576px) {
+    .popover{
+        max-width: 90vw;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .popover{
+        max-width: 70vw;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .popover{
+        max-width: 60vw;
+    }
 }

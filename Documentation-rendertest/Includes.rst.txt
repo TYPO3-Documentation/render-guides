@@ -1,1 +1,2 @@
-.. Imports for all files go here
+.. This is '/Includes.rst.txt'. It is included at the very top of each and
+   every ReST source file in THIS documentation project (= manual).

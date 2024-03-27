@@ -27,8 +27,20 @@ use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+use T3Docs\Typo3DocsTheme\TextRoles\FluidTextTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\HtmlTextTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\InputTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\IssueReferenceTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\JavaScriptTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\OutputTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\PhpTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\RestructuredTextTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\ShellTextTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\TSconfigTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\TypeScriptTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\TypoScriptTextTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\XmlTextTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\YamlTextTextRole;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
@@ -52,8 +64,37 @@ return static function (ContainerConfigurator $container): void {
         ->set(InventoryRepository::class, Typo3InventoryRepository::class)
         ->arg('$inventoryConfigs', param('phpdoc.guides.inventories'))
         ->set(InterlinkParser::class, ExtendedInterlinkParser::class)
+        ->set(FluidTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(HtmlTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(InputTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(JavaScriptTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(OutputTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(PhpTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(FluidTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(PhpTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(RestructuredTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(ShellTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(TSconfigTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(TypeScriptTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(TypoScriptTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(XmlTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(YamlTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+
 
         ->set(DecoratingPlantumlRenderer::class)
         ->decorate(PlantumlServerRenderer::class)

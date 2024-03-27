@@ -13,10 +13,12 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
+use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 use function dirname;
+use function phpDocumentor\Guides\DependencyInjection\template;
 
 class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface
 {
@@ -87,6 +89,10 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                     'extends' => 'bootstrap',
                     'templates' => [dirname(__DIR__, 2) . '/resources/template'],
                 ],
+            ],
+
+            'templates' => [
+                template(CodeInlineNode::class, 'inline/textroles/code.html.twig'),
             ],
         ]);
     }
