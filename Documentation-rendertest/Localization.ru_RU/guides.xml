@@ -13,7 +13,8 @@
            version="main (development)"
            copyright="since 2012 by the TYPO3 contributors"/>
 
-  <inventory id="t3start11" url="https://docs.typo3.org/m/typo3/tutorial-getting-started/11.5/ru-ru/"/>
+  <inventory id="t3start11" url="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/ru-ru/"/>
+  <inventory id="t3start12" url="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/ru-ru/"/>
   <inventory id="t3coreapi" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"/>
   <inventory id="t3editors" url="https://docs.typo3.org/m/typo3/tutorial-editors/main/ru-ru/"/>
   <inventory id="t3sitepackage" url="https://docs.typo3.org/m/typo3/tutorial-sitepackage/main/en-us/"/>

@@ -162,4 +162,3 @@ TYPO3 - Ознакомительное пособие
    :hidden:
 
    Sitemap
-   genindex
