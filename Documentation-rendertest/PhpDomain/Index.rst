@@ -23,28 +23,6 @@ Phpdomain
    :local:
 
 
-The PHP Index pages
-===================
-
-Two extra index pages are created for the PHP domain.
-
-File :file:`php-modindex.html`
-   This one is the "module index" and lists the namespaces.
-
-File :file:`php-objectsindex.html`
-   This index contains all known PHP objects.
-
-When index files come into play, you can reference them by using the reference
-textrole and the apropriate target name:
-
-============================  ========================
-reST source                   rendering
-============================  ========================
-``:ref:`php-modindex```       :ref:`php-modindex`
-``:ref:`php-objectsindex```   :ref:`php-objectsindex`
-============================  ========================
-
-
 Quick Sample
 ------------
 
@@ -52,9 +30,9 @@ This is source:
 
 .. code-block:: rst
 
-   .. php:class:: DateTime
+   .. php:class:: SomeDateClass
 
-      Datetime class
+      SomeDateClass class
 
       .. php:method:: setDate($year, $month, $day)
 
@@ -80,9 +58,9 @@ This is source:
          Y-m-d\TH:i:sP
 
 
-.. php:class:: DateTime
+.. php:class:: SomeDateClass
 
-   Datetime class
+   SomeDateClass class
 
    .. php:method:: setDate($year, $month, $day)
 
@@ -117,87 +95,64 @@ repository markstory/sphinxcontrib-phpdomain
 <https://github.com/markstory/sphinxcontrib-phpdomain>`__.
 
 
-Globals
-=======
-
-.. php:global:: $global_var
-
-   A global variable
-
-.. php:const:: SOME_CONSTANT
-
-   A global constant
-
-.. php:const:: VALUE
-
-   A global constant
-
-.. php:function:: in_array(needle, haystack)
-
-   Checks for needle in haystack.
-
-   :param needle: The element to search for.
-   :param array haystack: The array to search.
-   :returns: Element exists in array.
-   :returntype: boolean
-
-
 Classes
 =======
 
-.. php:class:: DateTime
+..  php:class:: DateTime
 
-   Datetime class
+    DateTime class
 
-   .. php:method:: setDate($year, $month, $day)
+    ..  php:method:: setDate($year, $month, $day)
 
-      Set the date in the datetime object
+        Set the date in the datetime object
 
-      :param int $year: The year.
-      :param int $month: The month.
-      :param int $day: The day.
+        :param int $year: The year.
+        :param int $month: The month.
+        :param int $day: The day.
 
-   .. php:method:: setTime($hour, $minute[, $second])
+    ..  php:method:: setTime($hour, $minute[, $second])
 
-      Set the time
+        Set the time
 
-      :param int $hour: The hour
-      :param int $minute: The minute
-      :param int $second: The second
+        :param int $hour: The hour
+        :param int $minute: The minute
+        :param int $second: The second
 
-   .. php:method:: public static getLastErrors()
+    ..  php:method:: getLastErrors()
+        :public:
+        :static:
 
-      Returns the warnings and errors
+        Returns the warnings and errors
 
-      :returns: array Returns array containing info about warnings and errors.
+        :returns: array Returns array containing info about warnings and errors.
 
-   .. php:const:: ATOM
+    ..  php:const:: ATOM
 
-      Y-m-d\TH:i:sP
+        `Y-m-d\TH:i:sP`
 
-   .. php:attr:: testattr
+    ..  php:attr:: testattr
 
-      Value of some attribute
+        Value of some attribute
 
-.. php:class:: OtherClass
+..  php:class:: OtherClass
 
-   Another class
+    Another class
 
-.. php:method:: update($arg = '', $arg2 = [], $arg3 = [])
+    ..  php:method:: update($arg = '', $arg2 = [], $arg3 = [])
 
-   Update something.
+        Update something.
 
-.. php:attr:: nonIndentedAttribute
+    ..  php:attr:: nonIndentedAttribute
 
-   This attribute wasn't indented
+        This attribute wasn't indented
 
-.. php:const:: NO_INDENT
+    ..  php:const:: NO_INDENT
 
-   This class constant wasn't indented
+        This class constant wasn't indented
 
-.. php:staticmethod:: OtherClass::staticMethod()
+    ..  php:staticmethod:: staticMethod()
 
-   A static method.
+        A static method.
 
 
 Exceptions
@@ -256,30 +211,8 @@ Traits
       A method description.
 
 
-More globals after classes
-==========================
-
-.. php:global:: $other_global_var
-
-   A global variable
-
-.. php:global:: strpos($needle, $haystack)
-
-   Position of needle in haystack
-
-
 Test Case - Global symbols with no namespaces
 ---------------------------------------------
-
-:php:global:`$global_var`
-
-:php:global:`$other_global_var`
-
-:php:const:`SOME_CONSTANT`
-
-:php:func:`in_array`
-
-:php:func:`strpos`
 
 :php:class:`DateTime`
 
@@ -289,9 +222,9 @@ Test Case - Global symbols with no namespaces
 
 :php:func:`~DateTime::setDate()`
 
-:php:func:`DateTime::ATOM`
+:php:const:`DateTime::ATOM`
 
-:php:func:`DateTime::$testattr`
+:php:attr:`DateTime::$testattr`
 
 :php:func:`OtherClass::update`
 
@@ -309,11 +242,11 @@ Test Case - Global symbols with no namespaces
 
 :php:func:`~DateTimeInterface::setDate()`
 
-:php:func:`DateTimeInterface::ATOM`
+:php:const:`DateTimeInterface::ATOM`
 
-:php:func:`DateTimeInterface::$testattr`
+:php:attr:`DateTimeInterface::$testattr`
 
-:php:func:`OtherInterface`
+:php:interface:`OtherInterface`
 
 :php:trait:`LogTrait`
 
@@ -325,106 +258,102 @@ Test Case - Global symbols with no namespaces
 Namespaced elements
 ===================
 
-.. php:function:: namespaced_function($one[, $two])
-
-   A function in a namespace
-
-   :param string $one: First parameter.
-   :param string $two: Second parameter.
-
-.. php:const:: NS_CONST
-
-      A constant in a namespace
-
-
 .. php:exception:: NamespaceException
 
    This exception is in a namespace.
 
 
-.. php:class:: LibraryClass
+..  php:class:: LibraryClass
 
-   A class in a namespace
+    A class in a namespace
 
-   .. php:method:: LibraryClass::instanceMethod($foo)
+    ..  php:method:: instanceMethod($foo)
 
-      An instance method
+        An instance method
 
-   .. php:const:: TEST_CONST
+    ..  php:const:: TEST_CONST
 
-      Test constant
+        Test constant
 
-   .. php:attr:: property
+    ..  php:attr:: property
 
-      A property!
+        A property!
 
-.. php:staticmethod:: LibraryClass::staticMethod()
+    ..  php:staticmethod:: staticMethod()
 
-   A static method in a namespace
+        A static method in a namespace
 
-.. php:class:: NamespaceClass
+..  php:class:: NamespaceClass
 
-   A class in the namespace, no indenting on children
+    A class in the namespace, no indenting on children
 
-.. php:method:: firstMethod($one, $two)
+    ..  php:method:: firstMethod($one, $two)
 
-   A normal instance method.
+        A normal instance method.
 
-.. php:attr:: property
+    ..  php:attr:: property
 
-   A property
+        A property
 
-.. php:const:: NAMESPACE_CONST
+    ..  php:const:: NAMESPACE_CONST
 
-   Const on class in namespace
+        Const on class in namespace
 
-.. php:staticmethod:: namespaceStatic($foo)
+    ..  php:staticmethod:: namespaceStatic($foo)
 
-   A static method here.
+        A static method here.
 
-.. php:class:: final LibraryClassFinal
+..  php:class:: LibraryClassFinal
+    :final:
 
-   A final class
+    A final class
 
-.. php:method:: public firstMethod($one, $two)
+    ..  php:method:: firstMethod($one, $two)
+        :public:
 
-   A public instance method.
+        A public instance method.
 
-.. php:method:: protected secondMethod($one, $two)
+    ..  php:method:: secondMethod($one, $two)
+        :protected:
 
-   A protected instance method.
+        A protected instance method.
 
-.. php:method:: private thirdMethod($one, $two)
+    ..  php:method:: thirdMethod($one, $two)
+        :private:
 
-   A private instance method.
+        A private instance method.
 
-.. php:method:: static fourthMethod($one, $two)
+    ..  php:method:: fourthMethod($one, $two)
+        :static:
 
-   A static method.
+        A static method.
 
-.. php:method:: protected final fifthMethod($one, $two)
+    ..  php:method:: fifthMethod($one, $two)
+        :protected:
+        :final:
 
-   A protected final method.
+        A protected final method.
 
-.. php:class:: abstract LibraryClassAbstract
+..  php:class:: LibraryClassAbstract
+    :abstract:
 
-   An abstract class
+    An abstract class
 
-.. php:interface:: LibraryInterface
+..  php:interface:: LibraryInterface
 
-   A interface in a namespace
+    A interface in a namespace
 
-   .. php:method:: instanceMethod($foo)
+    ..  php:method:: instanceMethod($foo)
 
-   An instance method
+        An instance method
 
-.. php:trait:: TemplateTrait
+..  php:trait:: TemplateTrait
 
-   A trait in a namespace
+    A trait in a namespace
 
-   .. php:method:: render($template)
+    ..  php:method:: render($template)
 
-   Render a template.
+        Render a template.
 
 
 Test Case - not including namespace
@@ -432,56 +361,43 @@ Test Case - not including namespace
 
 :php:ns:`LibraryName`
 
-:php:func:`namespaced_function()`
+:php:class:`LibraryName\LibraryClass`
 
-:php:const:`NS_CONST`
+:php:class:`\LibraryName\\LibraryClass`
 
-:php:class:`LibraryClass`
+:php:func:`LibraryName\LibraryClass::instanceMethod`
 
+:php:func:`LibraryName\LibraryClass::staticMethod()`
 
-:php:class:`~LibraryName\\LibraryClass`
+:php:attr:`LibraryName\LibraryClass::$property`
 
-:php:func:`LibraryClass::instanceMethod`
+:php:const:`LibraryName\LibraryClass::TEST_CONST`
 
-:php:func:`LibraryClass::staticMethod()`
+:php:class:`\LibraryName\NamespaceClass`
 
-:php:attr:`LibraryClass::$property`
+:php:func:`\LibraryName\NamespaceClass::firstMethod`
 
-:php:const:`LibraryClass::TEST_CONST`
+:php:attr:`\LibraryName\NamespaceClass::$property`
 
-:php:class:`LibraryName\\OtherClass`
+:php:const:`\LibraryName\NamespaceClass::NAMESPACE_CONST`
 
-:php:class:`LibraryName\\ThirdClass`
+:php:class:`\LibraryName\LibraryClassFinal`
 
-:php:class:`NamespaceClass`
+:php:meth:`\LibraryName\LibraryClassFinal::firstMethod`
 
-:php:func:`NamespaceClass::firstMethod`
+:php:meth:`\LibraryName\LibraryClassFinal::secondMethod`
 
-:php:attr:`NamespaceClass::$property`
+:php:meth:`\LibraryName\LibraryClassFinal::thirdMethod`
 
-:php:const:`NamespaceClass::NAMESPACE_CONST`
+:php:meth:`\LibraryName\LibraryClassFinal::fourthMethod`
 
-:php:class:`LibraryClassFinal`
+:php:meth:`\LibraryName\LibraryClassFinal::fifthMethod`
 
-:php:meth:`LibraryClassFinal::firstMethod`
+:php:interface:`\\LibraryName\\LibraryInterface`
 
-:php:meth:`LibraryClassFinal::secondMethod`
+:php:func:`\LibraryName\LibraryInterface::instanceMethod`
 
-:php:meth:`LibraryClassFinal::thirdMethod`
-
-:php:meth:`LibraryClassFinal::fourthMethod`
-
-:php:meth:`LibraryClassFinal::fifthMethod`
-
-:php:interface:`LibraryInterface`
-
-:php:interface:`~LibraryName\\LibraryInterface`
-
-:php:func:`LibraryInterface::instanceMethod`
-
-:php:exc:`NamespaceException`
-
-:php:trait:`TemplateTrait`
+:php:exc:`\LibraryName\NamespaceException`
 
 :php:trait:`LibraryName\\TemplateTrait`
 
@@ -496,13 +412,9 @@ Test Case - global access
 
 :php:global:`$global_var`
 
-:php:const:`SOME_CONSTANT`
-
 :php:attr:`LibraryName\\LibraryClass::$property`
 
 :php:const:`LibraryName\\LibraryClass::TEST_CONST`
-
-:php:const:`LibraryName\\NS_CONST`
 
 :php:interface:`DateTimeInterface`
 
@@ -540,15 +452,11 @@ Test Case - Test subpackage links
 
 :php:ns:`LibraryName\\SubPackage`
 
-:php:class:`SubpackageClass`
+:php:class:`\\LibraryName\\SubPackage\\SubpackageClass`
 
-:php:class:`LibraryName\\SubPackage\\SubpackageClass`
+:php:interface:`\\LibraryName\\SubPackage\\SubpackageInterface`
 
-:php:interface:`SubpackageInterface`
-
-:php:class:`LibraryName\\SubPackage\\SubpackageInterface`
-
-:php:exc:`LibraryName\\SubPackage\\NestedNamespaceException`
+:php:exc:`\\LibraryName\\SubPackage\\NestedNamespaceException`
 
 
 Return Types
@@ -593,7 +501,7 @@ Return Types
    .. php:method:: returnUnionType()
 
       :returns: Any of a whole bunch of things specified with a PHP 8 union type.
-      :returntype: int|string|OtherLibrary\\ReturnedClass|LibraryName\\SubPackage\\SubpackageInterface|null
+      :returntype: `int|string|OtherLibrary\\ReturnedClass|LibraryName\\SubPackage\\SubpackageInterface|null`
 
 .. php:class:: ReturnedClass
 
@@ -615,7 +523,7 @@ namespace ``Imagine\Draw``
 
 .. php:class:: DrawerInterface
 
-Instance of this interface is returned by :php:meth:`Imagine\Image\ImageInterface::draw`.
+Instance of this interface is returned by.
 
 .. php:method:: arc(PointInterface $center, BoxInterface $size, $start, $end, Color $color)
 
@@ -630,23 +538,3 @@ Instance of this interface is returned by :php:meth:`Imagine\Image\ImageInterfac
    :throws: Imagine\Exception\RuntimeException
 
    :returns: Imagine\Draw\DrawerInterface
-
-Re-used namespace
-=================
-
-.. php:currentmodule:: LibraryName
-
-No indexing errors or links should point to this namespace.
-
-.. php:class:: ThirdClass
-
-   Another class in a currentmodule block
-
-.. php:currentnamespace:: LibraryName
-
-No indexing errors or links should point to this namespace.
-
-.. php:class:: OtherClass
-
-   Another class in a reused namespace
-

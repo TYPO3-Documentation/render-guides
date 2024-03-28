@@ -1,29 +1,2 @@
 .. This is '/Includes.rst.txt'. It is included at the very top of each and
    every ReST source file in THIS documentation project (= manual).
-
-.. ---------
-.. textroles
-.. ---------
-
-.. role:: aspect (emphasis)
-.. role:: html(code)
-.. role:: js(code)
-.. role:: php(code)
-.. role:: rst(code)
-.. role:: sep (strong)
-.. role:: typoscript(code)
-
-.. role:: ts(typoscript)
-   :class: typoscript
-
-.. role:: yaml(code)
-
-.. default-role:: code
-
-.. ---------
-.. highlight
-.. ---------
-
-.. By default, code rst is highlighted in the manual
-
-.. highlight:: rst

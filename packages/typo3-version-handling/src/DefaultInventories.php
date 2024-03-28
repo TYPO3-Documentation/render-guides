@@ -11,15 +11,19 @@ enum DefaultInventories: string
     case t3tsref = 't3tsref';
     case t3viewhelper = 't3viewhelper';
     case t3editors = 't3editors';
-    case t3install = 't3install';
+    case t3install = 't3install'; // for legacy reasons
+    case t3upgrade = 't3upgrade';
     case t3sitepackage = 't3sitepackage';
     case t3start = 't3start';
     case t3translate = 't3translate';
     case t3ts45 = 't3ts45';
     case h2document = 'h2document';
     case t3content = 't3content';
+    case t3writing = 't3writing';
     case t3contribute = 't3contribute';
     case fluid = 'fluid';
+    case t3renderguides = 't3renderguides';
+    case t3exceptions = 't3exceptions';
 
     public function getUrl(): string
     {
@@ -37,6 +41,7 @@ enum DefaultInventories: string
             // Official Core Tutorials and Guides
             DefaultInventories::t3editors => 'https://docs.typo3.org/m/typo3/tutorial-editors/{typo3_version}/en-us/',
             DefaultInventories::t3install => 'https://docs.typo3.org/m/typo3/guide-installation/{typo3_version}/en-us/',
+            DefaultInventories::t3upgrade => 'https://docs.typo3.org/m/typo3/guide-installation/{typo3_version}/en-us/',
             DefaultInventories::t3sitepackage => 'https://docs.typo3.org/m/typo3/tutorial-sitepackage/{typo3_version}/en-us/',
             DefaultInventories::t3start => 'https://docs.typo3.org/m/typo3/tutorial-getting-started/{typo3_version}/en-us/',
             DefaultInventories::t3translate => 'https://docs.typo3.org/m/typo3/guide-frontendlocalization/{typo3_version}/en-us/',
@@ -46,9 +51,12 @@ enum DefaultInventories: string
             DefaultInventories::h2document => 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/',
             DefaultInventories::t3content => 'https://docs.typo3.org/m/typo3/guide-contentandmarketing/main/en-us/',
             DefaultInventories::t3contribute => 'https://docs.typo3.org/m/typo3/guide-contributionworkflow/main/en-us/',
+            DefaultInventories::t3writing => 'https://docs.typo3.org/m/typo3/writing-guide/main/en-us/',
 
             // Other
-            DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/{typo3_version}/en-us/',
+            DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/main/en-us/',
+            DefaultInventories::t3renderguides => 'https://docs.typo3.org/other/t3docs/render-guides/main/en-us/',
+            DefaultInventories::t3exceptions => 'https://docs.typo3.org/typo3cms/exceptions/main/en-us/',
         };
     }
 

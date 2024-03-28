@@ -16,6 +16,7 @@
 
 // Mixings
 @import 'mixins/container';
+@import 'mixins/focus';
 @import 'mixins/inline_styles';
 
 // tweak bootstrap styles
@@ -28,6 +29,7 @@
 @import 'components/frame';
 @import 'components/images';
 @import 'components/math';
+@import 'components/pagination';
 @import 'components/panel';
 @import 'components/permalink';
 @import 'components/rst';
@@ -53,6 +55,7 @@
 @import 'layout/logo';
 @import 'layout/navigation/main_navigation';
 @import 'layout/navigation/version_switcher';
+@import 'layout/search';
 @import 'layout/structure';
 
 // misc

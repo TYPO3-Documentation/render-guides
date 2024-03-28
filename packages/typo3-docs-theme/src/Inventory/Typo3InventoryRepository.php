@@ -99,6 +99,9 @@ final class Typo3InventoryRepository implements InventoryRepository
         if ($mappedVersion !== null) {
             return $mappedVersion->getVersion();
         }
+        if ($version === '') {
+            return Typo3VersionMapping::tryFrom('stable')->getVersion();
+        }
         return $version;
     }
 

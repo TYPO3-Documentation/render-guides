@@ -21,6 +21,7 @@
 .toc-header {
     display: flex;
     justify-content: space-between;
+    padding-left: calc(#{$spacer} / 2) ;
 }
 .main_menu {
     margin: $spacer 0;
@@ -37,6 +38,9 @@
         padding: calc(#{$spacer} / 4) 0;
         padding-right: 1.5em;
         text-decoration: none;
+	&:hover {
+	    text-decoration: underline;
+	}
     }
     ul {
         padding-left: $spacer;
@@ -45,6 +49,14 @@
     li {
         border-radius: $border-radius;
         overflow: hidden;
+	padding-left: calc(#{$spacer} / 2) ;
+	&.active {
+	    border-left: 1px solid rgba(0, 0, 0, .15);
+	    border-radius: 0;
+	}
+	&.current {
+	    border-left: none;
+	}
     }
     .toctree-expand {
         position: absolute;
@@ -55,7 +67,7 @@
         height: 1em;
         width: 1em;
         background-color: $light;
-        border-radius: $border-radius;
+        border-radius: 50%;
         &:after,
         &:before {
             position: absolute;
@@ -77,18 +89,12 @@
         }
     }
     .active > a {
-        color: $tertiary;
-        text-decoration: underline;
+        font-weight: bold;
         > .toctree-expand {
-            background-color: $tertiary;
-            color: color-contrast($tertiary);
             &:before {
                 display: none;
             }
         }
-    }
-    .current > a {
-        font-weight: bold;
     }
     > ul {
         padding-left: 0;
@@ -109,6 +115,7 @@
 a.toc-title-project {
     display: block;
     font-size: 1.5em;
+    font-weight:$font-weight-bold;
     line-height: 1.25;
     color: $primary;
     text-decoration: none;
@@ -127,4 +134,3 @@ a.toc-title-project {
         text-decoration: none;
     }
 }
-

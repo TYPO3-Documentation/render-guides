@@ -13,13 +13,11 @@
 <meta content="" name="docsearch:version">
 <meta content="2023-01-01T12:00:00+00:00" name="docsearch:modified">
 <meta content="2023-01-01T12:00:00+00:00" name="dc.modified">
-<meta content="2023-01-01T12:00:00+00:00" property="article:modified_time">
-    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<meta content="2023-01-01T12:00:00+00:00" property="article:modified_time">    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
 <link href="_resources/css/theme.css" rel="stylesheet">
 <link href="https://docs.typo3.org/search/" rel="search" title="Search">
 <script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
 <script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
-
                         <link href="page.html" rel="next" title="Page"/>
             <link href="#" rel="top" title="Document Title"/>
     </head>
@@ -37,18 +35,21 @@
     <div class="page-header">
         <div class="page-header-inner">
             <div class="row">
-                <div class="col-sm-6 col-lg-7">
+                <div class="col-sm-3 col-md-4 col-lg-6">
                     <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
                         <img alt="TYPO3 Logo" class="logo-image" src="_resources/img/typo3-logo.svg" width="484" height="130">
                     </a>
                 </div>
-                <div class="col-sm-6 col-lg-5">
+                <div class="col-sm-9 col-md-8 col-lg-6">
                     <search role="search">
                         <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
-			                <div class="sr-only"><label for="globalsearchinput">Search all TYPO3 Documentation</label></div>
+			                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
                             <div class="input-group mb-3 mt-sm-3">
-                                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="Search all TYPO3 documentation" type="text" value="">
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
+                                <select class="form-select search__scope" id="searchscope" name="scope">
+                                    <option value="">Search all</option>
+                                </select>
+                                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
                             </div>
                         </form>
                     </search>
@@ -56,8 +57,7 @@
             </div>
         </div>
     </div>
-</header>
-    <main class="page-main">
+</header>    <main class="page-main">
         <div class="page-main-inner">
             <div class="page-main-navigation">
                 <nav>
@@ -73,8 +73,7 @@
             Menu
         </label>
     </div>
-</div>
-                    <div class="toc-collapse">
+</div>                    <div class="toc-collapse">
                                                 <div aria-label="main navigation" class="toc" role="navigation">
                                 <div aria-label="Main navigation" class="main_menu" role="navigation">
         
@@ -82,15 +81,22 @@
     <li class="">
     <a href="page.html">
         Page
-    </a></li>
-    <li class="">
+    </a></li>    <li class="">
     <a href="yetAnotherPage.html">
         Another Page
-    </a></li>
-    </ul>
-
-
+    </a></li>    </ul>
     </div>
+    <div aria-label="Meta navigation" class="main_menu  d-block d-lg-none" role="navigation">
+    <hr/>
+    <p class="caption">Contributors Corner</p>
+    <ul class="menu-level-1">            <li><a href="_sources/index.rst.txt" rel="nofollow noopener" target="_blank">
+                    View source of current document
+            </a></li>
+                    <li><a href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" rel="nofollow noopener" target="_blank">
+                    How to edit
+            </a></li>
+        </ul>
+</div>
                         </div>
                     </div>
                 </nav>
@@ -101,7 +107,6 @@
 <ol class="breadcrumb">
                 <li aria-current="page"  class="breadcrumb-item  active">Document Title</li>
         </ol>
-
         <div class="breadcrumb-additions">    <a class="btn btn-sm btn-light" href="_sources/index.rst.txt" rel="nofollow noopener" target="_blank">
         <span class="btn-icon"><span class="fas fa-code"></span></span>
         <span class="btn-text">View source</span>
@@ -110,19 +115,18 @@
         <span class="btn-icon"><span class="fas fa-info-circle"></span></span>
         <span class="btn-text">How to edit</span>
     </a>
-    </div>
-    </nav>
+    </div>    </nav>
                     
 <article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
     <div itemprop="articleBody">
         <!-- content start -->
                 <section class="section" id="document-title">
             <h1>Document Title<a class="headerlink" href="#document-title" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            
+    <p>Lorem Ipsum Dolor.</p>
 
-            <p>Lorem Ipsum Dolor.</p>
             
     </section>
-
         <!-- content end -->
     </div>
 </article>
@@ -182,8 +186,7 @@
             </div>
         </div>
     </div>
-</div>
-</div>
+</div></div>
 
 
 <footer class="page-footer">
@@ -203,7 +206,6 @@
         </div>
     </div>
 </footer>
-
 <script src="_resources/js/popper.min.js"></script>
 <script src="_resources/js/bootstrap.min.js"></script>
 <script src="_resources/js/theme.min.js"></script>
@@ -215,6 +217,5 @@
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MKNXD8Q');</script>
-</body>
+})(window,document,'script','dataLayer','GTM-MKNXD8Q');</script></body>
 </html>
