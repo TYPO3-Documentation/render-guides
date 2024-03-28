@@ -1,0 +1,10 @@
+.. include:: /Includes.rst.txt
+
+
+.. _iis:
+
+* При первоначальной установки TYPO3 в корневую папку установки копируется стандартный файл веб-конфигурации IIS.
+
+* Стандартный файл веб-конфигурации IIS с правилами перезаписи можно найти в :file:`EXT:install/Resources/Private/FolderStructureTemplateFiles/root-web-config`
+
+* Требуется `URL Rewrite дополнение <https://www.iis.net/downloads/microsoft/url-rewrite>`__.
