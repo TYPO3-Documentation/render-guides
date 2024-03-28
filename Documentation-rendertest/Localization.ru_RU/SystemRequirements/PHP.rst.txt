@@ -1,0 +1,76 @@
+.. include:: /Includes.rst.txt
+
+
+.. _systemrequirements_php:
+
+PHP
+===
+
+Настройка
+---------
+
+В настройках необходимо задать следующие параметры :file:`php.ini`
+
+.. code-block:: ini
+   :caption: php.ini
+
+   ; memory_limit >= 256MB
+   memory_limit=256M
+
+   ; max_execution_time >= 240 seconds
+   max_execution_time=240
+
+   ; max_input_vars >= 1500
+   max_input_vars=1500
+
+Следующие настройки определяют максимальный размер загружаемого файла (и при необходимости должны быть изменены):
+
+.. code-block:: ini
+   :caption: php.ini
+
+   ; To allow uploads of a maximum of 10 MB
+   post_max_size = 10M
+   upload_max_filesize = 10M
+
+
+Необходимые расширения
+----------------------
+
+* **pdo**
+* **session**
+* **xml**
+* **filter**
+* **SPL**
+* **standard**
+* **tokenizer**
+* **mbstring**
+* **intl**
+
+В зависимости от варианта использования могут потребоваться следующие расширения:
+
+* **fileinfo** (используется для определения расширений загружаемых файлов);
+* **gd** (GDlib/Freetype необходим для создания изображений с текстом (GIFBUILDER), а также используется для масштабирования изображений);
+* **zip** (TYPO3 использует zip для извлечения языковых архивов, а также для извлечения и архивирования расширений);
+* **zlib** (TYPO3 использует zlib для сжатия на выводе);
+* **openssl** (OpenSSL необходим для отправки SMTP-сообщений через зашифрованный канал конечной точки).
+
+Необходимые расширения для баз данных
+-------------------------------------
+
+.. tabs::
+
+   .. tab:: MySQL / MariaDB
+
+      * pdo_mysql (рекомендуется)
+      * ИЛИ mysqli
+
+      Для работы экземпляров MySQL и MariaDB требуется движок InnoDB.
+
+   .. tab:: Postgres
+
+      * pdo_pgsql
+      * postgresql
+
+   .. tab:: SQLite
+
+     * sqlite

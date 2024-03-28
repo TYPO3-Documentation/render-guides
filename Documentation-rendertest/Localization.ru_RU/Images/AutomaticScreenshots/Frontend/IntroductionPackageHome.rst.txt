@@ -1,0 +1,6 @@
+.. Automatic screenshot: Remove this line if you want to manually change this file
+
+.. figure:: /Images/AutomaticScreenshots/Frontend/IntroductionPackageHome.png
+   :class: with-shadow
+
+   TYPO3 Introduction Package Home Page

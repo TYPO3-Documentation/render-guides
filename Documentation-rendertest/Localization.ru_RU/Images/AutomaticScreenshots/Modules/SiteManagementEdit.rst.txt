@@ -1,0 +1,6 @@
+.. Automatic screenshot: Remove this line if you want to manually change this file
+
+.. figure:: /Images/AutomaticScreenshots/Modules/SiteManagementEdit.png
+   :class: with-shadow
+
+   Site Management: Edit Site

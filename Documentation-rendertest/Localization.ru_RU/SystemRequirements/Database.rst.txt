@@ -1,0 +1,19 @@
+.. include:: /Includes.rst.txt
+
+
+.. _database:
+
+Необходимые права доступа к базе данных
+---------------------------------------
+
+Пользователю базы данных требуются следующие привилегии доступа к базе данных TYPO3:
+
+* SELECT, INSERT, UPDATE, DELETE
+
+* CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES
+
+Рекомендуется также гарантировать следующие привелегии:
+
+* CREATE VIEW, SHOW VIEW
+
+* EXECUTE, CREATE ROUTINE, ALTER ROUTINE

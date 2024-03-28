@@ -1,0 +1,37 @@
+.. include:: /Includes.rst.txt
+
+.. _apache:
+
+При первоначальной установке в корневой каталог TYPO3 копируется файл :file:`.htaccess` с настройками по умолчанию.
+
+**Запись Virtual Host**
+
+*  `AllowOverride <https://httpd.apache.org/docs/current/mod/core.html#allowoverride>`__ необходимо включить "Indexes" и "FileInfo" в запись виртуального хоста Virtual Host.
+
+**Модули Apache**
+
+Необходимы следующие модули Apache. Список составлен на основе того, что используется в стандартном TYPO3 `.htaccess <https://github.com/TYPO3/typo3/blob/main/typo3/sysext/install/Resources/Private/FolderStructureTemplateFiles/root-htaccess>`__. В некоторых случаях это не является "жестким" требованием, но настоятельно рекомендуется по соображениям безопасности или производительности, однако желаемый результат можно получить и другим способом, используя другой модуль.
+
+mod_alias:
+   Блокировка доступа к каталогам vcs.
+
+mod_authz_core:
+   Блокировка доступа к определенным файлам и каталогам.
+
+mod_deflate:
+   Используется для сжатия и повышения производительности.
+
+mod_expires:
+   Добавляет HTTP-заголовки для кэширования в браузере и повышения производительности.
+
+mod_filter:
+   Используется с mod_deflate.
+
+mod_headers:
+   Используется в комбинации с `mod_deflate`.
+
+mod_rewrite:
+   Включение человекочитаемые урлы.
+
+mod_setenvif:
+   Используется в комбинации с `mod_deflate`.

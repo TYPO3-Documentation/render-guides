@@ -1,0 +1,2 @@
+﻿..  this file can be used to include information on the top of each page
+..  for example to add a hint for outdated versions
