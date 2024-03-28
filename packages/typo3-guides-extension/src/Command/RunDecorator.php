@@ -123,9 +123,9 @@ final class RunDecorator extends Command
     {
         // Retrieve the original input values of the command
         $baseInputDirectives = [
-            'input-file' => $input->getArgument('input'),
-            'output' => $input->getOption('output'),
-            'config' => $input->getOption('config'),
+            'input-file' => ($input->hasArgument('input') ? $input->getArgument('input') : false),
+            'output' => ($input->hasOption('output') ? $input->getOption('output') : false),
+            'config' => ($input->hasOption('config') ? $input->getOption('config') : false),
         ];
 
         // Check if the main input directory is set, else no localization is needed
