@@ -182,7 +182,7 @@ final class RunDecorator extends Command
         }
 
         // Re-wire the command arguments to what we need for localization ...
-        $input->setOption('input-file', $guessInput['--input-file']);
+        $input->setArgument('input', $guessInput['input']);
         $input->setOption('input-format', $guessInput['--input-format']);
         $input->setOption('output', $localInputDirectives['output']);
         $input->setOption('config', $localInputDirectives['config']);
