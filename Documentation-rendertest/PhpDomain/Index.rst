@@ -410,8 +410,6 @@ Test Case - global access
 
 :php:func:`DateTime::setTime()`
 
-:php:global:`$global_var`
-
 :php:attr:`LibraryName\\LibraryClass::$property`
 
 :php:const:`LibraryName\\LibraryClass::TEST_CONST`
