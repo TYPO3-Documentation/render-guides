@@ -10462,7 +10462,7 @@ readers do not read off random characters that represent icons */
   --bs-black: #000000;
   --bs-white: #ffffff;
   --bs-gray: #999999;
-  --bs-gray-dark: #666666;
+  --bs-gray-dark: #595959;
   --bs-gray-100: #f7f7f7;
   --bs-gray-200: #f2f2f2;
   --bs-gray-300: #e6e6e6;
@@ -10470,7 +10470,7 @@ readers do not read off random characters that represent icons */
   --bs-gray-500: #b3b3b3;
   --bs-gray-600: #999999;
   --bs-gray-700: gray;
-  --bs-gray-800: #666666;
+  --bs-gray-800: #595959;
   --bs-gray-900: #333333;
   --bs-primary: #ff8700;
   --bs-secondary: #333333;
@@ -10484,7 +10484,7 @@ readers do not read off random characters that represent icons */
   --bs-default: #ffffff;
   --bs-light: #f2f2f2;
   --bs-lighter: #f7f7f7;
-  --bs-dark: #666666;
+  --bs-dark: #595959;
   --bs-darker: #333333;
   --bs-primary-rgb: 255, 135, 0;
   --bs-secondary-rgb: 51, 51, 51;
@@ -10498,7 +10498,7 @@ readers do not read off random characters that represent icons */
   --bs-default-rgb: 255, 255, 255;
   --bs-light-rgb: 242, 242, 242;
   --bs-lighter-rgb: 247, 247, 247;
-  --bs-dark-rgb: 102, 102, 102;
+  --bs-dark-rgb: 89, 89, 89;
   --bs-darker-rgb: 51, 51, 51;
   --bs-primary-text-emphasis: #663600;
   --bs-secondary-text-emphasis: #141414;
@@ -10590,12 +10590,12 @@ readers do not read off random characters that represent icons */
   --bs-emphasis-color-rgb: 255, 255, 255;
   --bs-secondary-color: rgba(230, 230, 230, 0.75);
   --bs-secondary-color-rgb: 230, 230, 230;
-  --bs-secondary-bg: #666666;
-  --bs-secondary-bg-rgb: 102, 102, 102;
+  --bs-secondary-bg: #595959;
+  --bs-secondary-bg-rgb: 89, 89, 89;
   --bs-tertiary-color: rgba(230, 230, 230, 0.5);
   --bs-tertiary-color-rgb: 230, 230, 230;
-  --bs-tertiary-bg: #4d4d4d;
-  --bs-tertiary-bg-rgb: 77, 77, 77;
+  --bs-tertiary-bg: #464646;
+  --bs-tertiary-bg-rgb: 70, 70, 70;
   --bs-primary-text-emphasis: #ffb766;
   --bs-secondary-text-emphasis: #858585;
   --bs-success-text-emphasis: #9dd49d;
@@ -10610,8 +10610,8 @@ readers do not read off random characters that represent icons */
   --bs-info-bg-subtle: #0a2026;
   --bs-warning-bg-subtle: #302310;
   --bs-danger-bg-subtle: #2b1110;
-  --bs-light-bg-subtle: #666666;
-  --bs-dark-bg-subtle: #333333;
+  --bs-light-bg-subtle: #595959;
+  --bs-dark-bg-subtle: #2d2d2d;
   --bs-primary-border-subtle: #995100;
   --bs-secondary-border-subtle: #1f1f1f;
   --bs-success-border-subtle: #376e37;
@@ -10619,7 +10619,7 @@ readers do not read off random characters that represent icons */
   --bs-warning-border-subtle: #90682f;
   --bs-danger-border-subtle: #82322f;
   --bs-light-border-subtle: gray;
-  --bs-dark-border-subtle: #666666;
+  --bs-dark-border-subtle: #595959;
   --bs-heading-color: inherit;
   --bs-link-color: #ffb766;
   --bs-link-hover-color: #ffc585;
@@ -12463,13 +12463,13 @@ progress {
 
 .table-dark {
   --bs-table-color: #ffffff;
-  --bs-table-bg: #666666;
-  --bs-table-border-color: #858585;
-  --bs-table-striped-bg: #6e6e6e;
+  --bs-table-bg: #595959;
+  --bs-table-border-color: #7a7a7a;
+  --bs-table-striped-bg: #616161;
   --bs-table-striped-color: #ffffff;
-  --bs-table-active-bg: #757575;
+  --bs-table-active-bg: #6a6a6a;
   --bs-table-active-color: #ffffff;
-  --bs-table-hover-bg: #717171;
+  --bs-table-hover-bg: #656565;
   --bs-table-hover-color: #ffffff;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -12690,7 +12690,7 @@ textarea.form-control-lg {
 }
 
 .form-select {
-  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23666666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23595959' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
   display: block;
   width: 100%;
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
@@ -13609,19 +13609,19 @@ textarea.form-control-lg {
 
 .btn-dark {
   --bs-btn-color: #ffffff;
-  --bs-btn-bg: #666666;
-  --bs-btn-border-color: #666666;
-  --bs-btn-hover-color: #000000;
-  --bs-btn-hover-bg: #7d7d7d;
-  --bs-btn-hover-border-color: #757575;
-  --bs-btn-focus-shadow-rgb: 125, 125, 125;
+  --bs-btn-bg: #595959;
+  --bs-btn-border-color: #595959;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #727272;
+  --bs-btn-hover-border-color: #6a6a6a;
+  --bs-btn-focus-shadow-rgb: 114, 114, 114;
   --bs-btn-active-color: #000000;
-  --bs-btn-active-bg: #858585;
-  --bs-btn-active-border-color: #757575;
+  --bs-btn-active-bg: #7a7a7a;
+  --bs-btn-active-border-color: #6a6a6a;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #ffffff;
-  --bs-btn-disabled-bg: #666666;
-  --bs-btn-disabled-border-color: #666666;
+  --bs-btn-disabled-bg: #595959;
+  --bs-btn-disabled-border-color: #595959;
 }
 
 .btn-darker {
@@ -13846,19 +13846,19 @@ textarea.form-control-lg {
 }
 
 .btn-outline-dark {
-  --bs-btn-color: #666666;
-  --bs-btn-border-color: #666666;
+  --bs-btn-color: #595959;
+  --bs-btn-border-color: #595959;
   --bs-btn-hover-color: #ffffff;
-  --bs-btn-hover-bg: #666666;
-  --bs-btn-hover-border-color: #666666;
-  --bs-btn-focus-shadow-rgb: 102, 102, 102;
+  --bs-btn-hover-bg: #595959;
+  --bs-btn-hover-border-color: #595959;
+  --bs-btn-focus-shadow-rgb: 89, 89, 89;
   --bs-btn-active-color: #ffffff;
-  --bs-btn-active-bg: #666666;
-  --bs-btn-active-border-color: #666666;
+  --bs-btn-active-bg: #595959;
+  --bs-btn-active-border-color: #595959;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #666666;
+  --bs-btn-disabled-color: #595959;
   --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: #666666;
+  --bs-btn-disabled-border-color: #595959;
   --bs-gradient: none;
 }
 
@@ -14256,7 +14256,7 @@ textarea.form-control-lg {
 
 .dropdown-menu-dark {
   --bs-dropdown-color: #e6e6e6;
-  --bs-dropdown-bg: #666666;
+  --bs-dropdown-bg: #595959;
   --bs-dropdown-border-color: var(--bs-border-color-translucent);
   --bs-dropdown-box-shadow: ;
   --bs-dropdown-link-color: #e6e6e6;
@@ -17708,8 +17708,8 @@ textarea.form-control-lg {
   text-decoration-color: RGBA(var(--bs-dark-rgb), var(--bs-link-underline-opacity, 1)) !important;
 }
 .link-dark:hover, .link-dark:focus {
-  color: RGBA(82, 82, 82, var(--bs-link-opacity, 1)) !important;
-  text-decoration-color: RGBA(82, 82, 82, var(--bs-link-underline-opacity, 1)) !important;
+  color: RGBA(71, 71, 71, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(71, 71, 71, var(--bs-link-underline-opacity, 1)) !important;
 }
 
 .link-darker {
@@ -22856,7 +22856,7 @@ article a:not([class*=btn]) {
   color: #333333;
 }
 article p, article li {
-  color: #666666;
+  color: #595959;
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
@@ -22864,7 +22864,7 @@ article li::marker {
   color: #ff8700;
 }
 article ol li::marker {
-  color: #666666;
+  color: #595959;
 }
 article h3, article .h3 {
   padding-bottom: 0.5rem;
@@ -23613,7 +23613,7 @@ code {
 
 .frame-background-dark {
   --frame-color: #ffffff;
-  --frame-background: #666666;
+  --frame-background: #595959;
   --frame-link-color: #ffffff;
   --frame-link-hover-color: #d9d9d9;
 }
@@ -24107,7 +24107,7 @@ kbd {
   padding: 1rem;
   padding-left: 3.875rem;
   padding-top: 1.2875rem;
-  border: 1px solid #666666;
+  border: 1px solid #595959;
   border-radius: 0.375rem;
   min-height: 4.3rem;
 }
@@ -24152,7 +24152,7 @@ kbd {
   width: 2em;
   line-height: 2em;
   text-align: center;
-  background-color: #666666;
+  background-color: #595959;
   color: #ffffff;
   border-radius: 50%;
   content: counter(li-counter, decimal);
@@ -24480,7 +24480,7 @@ dl.field-list ul {
   overflow: hidden;
   background: #ffffff;
   font-size: 0.875rem;
-  border: 1px solid #666666;
+  border: 1px solid #595959;
 }
 @media (min-width: 576px) {
   .sidebar {
@@ -24492,7 +24492,7 @@ dl.field-list ul {
 .sidebar > .sidebar-title {
   font-weight: 600;
   color: #ffffff;
-  background-color: #666666;
+  background-color: #595959;
   padding: calc(1rem / 2) 1rem;
   margin: -1rem;
   margin-bottom: 1rem;
