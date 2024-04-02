@@ -57,6 +57,7 @@ Examples for direct use
 -----------------------
 
 *  :code:`code`
+*  :samp:`samp`
 *  :fluid:`fluid`
 *  :html:`html`
 *  :input:`input`
