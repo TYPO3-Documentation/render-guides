@@ -206,15 +206,21 @@ final class RunDecorator extends Command
 
         $process = new Process($processArguments);
         $output->writeln(sprintf('<info>SUB-PROCESS:</info> %s', $process->getCommandLine()));
-        $result = $process->run();
+        $hasErrors = false;
+        $result = $process->run(function ($type, $buffer) use ($output, &$hasErrors): void {
+            if ($type === Process::ERR) {
+                $output->write('<error>' . $buffer . '</error>');
+                $hasErrors = true;
+            } else {
+                $output->write($buffer);
+            }
+        });
 
-        $output->writeln($process->getOutput());
-        if (!$process->isSuccessful()) {
-            $output->writeln($process->getErrorOutput());
+        if ($hasErrors) {
+            return Command::FAILURE;
         }
 
-        // Maps to Command::SUCCESS or Command::FAILURE
-        return $result;
+        return Command::SUCCESS;
     }
 
     /** @return mixed[] */
