@@ -4,6 +4,7 @@ namespace T3Docs\Typo3DocsTheme\EventListeners;
 
 use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
 use phpDocumentor\Guides\Files;
+use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 
 final class IgnoreLocalizationsFolders
 {
@@ -14,13 +15,21 @@ final class IgnoreLocalizationsFolders
      * @see https://regex101.com/r/zUNAFQ/1
      */
     private const LOCALIZATION_FOLDER_REGEX = '/^Localization\\.[a-z]{2}_[A-Z]{2}/s';
+
+    public function __construct(private readonly Typo3DocsInputSettings $input) {}
+
     public function __invoke(PostCollectFilesForParsingEvent $event): void
     {
         $files = $event->getFiles();
         $newFiles = new Files();
+        // In case render-guides uses the '--localization' parameter, no exclusion of localizations is wanted.
+        // Only when the base language is checked, no localizations shall be evaluated.
+        if ($this->input->getInput()?->hasParameterOption('--localization')) {
+            return;
+        }
+
         foreach ($files as $filePath) {
-            // @todo: Refactor to either remove this event from the service when a specific argument is set or use event storage (PR for "guides")
-            if (!preg_match(self::LOCALIZATION_FOLDER_REGEX, $filePath) || isset($GLOBALS['_IGNORE_LOCALIZATION_EXCLUDE'])) {
+            if (!preg_match(self::LOCALIZATION_FOLDER_REGEX, $filePath)) {
                 $newFiles->add($filePath);
             }
         }
