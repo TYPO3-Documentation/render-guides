@@ -340,6 +340,7 @@ final class RunDecorator extends Command
 
                 return [
                     'input' => $currentDirectory,
+                    '--input-file' => $currentDirectory . DIRECTORY_SEPARATOR . $filename,
                     '--input-format' => $extension,
                 ];
             }
