@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
+use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 use function dirname;
@@ -66,6 +67,11 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 ],
             );
             $container->setDefinition(Typo3DocsThemeSettings::class, $definition);
+
+            $definition = new Definition(
+                Typo3DocsInputSettings::class,
+            );
+            $container->setDefinition(Typo3DocsInputSettings::class, $definition);
         }
     }
 

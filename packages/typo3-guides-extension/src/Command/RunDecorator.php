@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
+use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 
 final class RunDecorator extends Command
 {
@@ -35,7 +36,7 @@ final class RunDecorator extends Command
     ];
 
     private Run $innerCommand;
-    public function __construct(Run $innerCommand)
+    public function __construct(Run $innerCommand, private readonly Typo3DocsInputSettings $inputSettings)
     {
         parent::__construct($innerCommand->getName());
         $this->innerCommand = $innerCommand;
@@ -51,13 +52,6 @@ final class RunDecorator extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $useLocalization = false;
-        if ($input->getParameterOption('--localization')) {
-            // @todo: Refactor this, see note in IgnoreLocalizationFolders::__invoke()
-            $GLOBALS['_IGNORE_LOCALIZATION_EXCLUDE'] = $input->getOption('localization');
-            $useLocalization = true;
-        }
-
         $options = [];
         foreach ($input->getOptions() as $option => $value) {
             if ($value === null) {
@@ -87,6 +81,10 @@ final class RunDecorator extends Command
             $this->getDefinition()
         );
 
+        // Propagate all input settings to be used within events
+        // through the Typo3DocsInputSettings singleton.
+        $this->inputSettings->setInput($input);
+
         if ($output->isDebug()) {
             $readableOutput = "<info>Options:</info>\n";
             $readableOutput .= print_r($input->getOptions(), true);
@@ -102,7 +100,9 @@ final class RunDecorator extends Command
 
         $baseExecution = $this->innerCommand->execute($input, $output);
 
-        if ($baseExecution !== Command::SUCCESS || $useLocalization) {
+        // When a localization is being rendered, no other sub-localizations
+        // are allowed, the execution will end here.
+        if ($baseExecution !== Command::SUCCESS || $input->getParameterOption('--localization')) {
             return $baseExecution;
         }
 
@@ -320,7 +320,6 @@ final class RunDecorator extends Command
 
                     return [
                         'input' => $inputDirectory,
-                        '--input-file' => $inputDirectory . DIRECTORY_SEPARATOR . $filename,
                         '--input-format' => $extension,
                     ];
                 }
@@ -341,7 +340,6 @@ final class RunDecorator extends Command
 
                 return [
                     'input' => $currentDirectory,
-                    '--input-file' => $currentDirectory . DIRECTORY_SEPARATOR . $filename,
                     '--input-format' => $extension,
                 ];
             }
