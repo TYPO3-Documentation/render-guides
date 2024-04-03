@@ -16,6 +16,8 @@ use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
+use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
 use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use T3Docs\VersionHandling\DefaultInventories;
@@ -66,12 +68,29 @@ final class TwigExtension extends AbstractExtension
      */
     public function getRstCodeForLink(array $context, LinkTargetNode $linkTargetNode): string
     {
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode') !== '' ? $this->themeSettings->getSettings('interlink_shortcode') : 'somemanual';
         if ($linkTargetNode->getLinkType() === ConfvalNode::LINK_TYPE) {
             return sprintf(
                 ':confval:`%s <%s:%s>`',
                 $linkTargetNode->getLinkText(),
-                $this->themeSettings->getSettings('interlink_shortcode') !== '' ? $this->themeSettings->getSettings('interlink_shortcode') : 'somemanual',
+                $interlink,
                 $linkTargetNode->getId()
+            );
+        }
+        if ($linkTargetNode instanceof PhpComponentNode) {
+            return sprintf(
+                ':%s:`%s:%s`',
+                $linkTargetNode->getLinkType(),
+                $interlink,
+                $linkTargetNode->getName()->toString()
+            );
+        }
+        if ($linkTargetNode instanceof PhpMemberNode) {
+            return sprintf(
+                ':%s:`%s:%s`',
+                $linkTargetNode->getLinkType(),
+                $interlink,
+                $linkTargetNode->getFullyQualifiedName()
             );
         }
         return '';

@@ -88,8 +88,12 @@ code {
     border: 2px solid $white;
     background: $gray-100;
     padding: 0.25em 0.5em;
-    cursor: pointer;
     line-height: 27px;
+}
+
+/** uses "popover" for all code roles that have tooltips **/
+.code-inline[aria-description] {
+    cursor: pointer;
 }
 
 /** popover styling **/

@@ -1,5 +1,5 @@
 (() => {
-  var popoverTriggerList = [].slice.call(document.querySelectorAll('.code-inline'));
+  var popoverTriggerList = [].slice.call(document.querySelectorAll('.code-inline[aria-description]'));
   var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
     var ariaDescription = popoverTriggerEl.getAttribute('aria-description');
     var ariaDetails = popoverTriggerEl.getAttribute('aria-details');
