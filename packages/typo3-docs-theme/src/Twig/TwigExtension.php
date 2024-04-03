@@ -60,6 +60,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('copyDownload', $this->copyDownload(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getStandardInventories', $this->getStandardInventories(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getRstCodeForLink', $this->getRstCodeForLink(...), ['is_safe' => [], 'needs_context' => true]),
+            new TwigFunction('isRenderedForDeployment', $this->isRenderedForDeployment(...)),
         ];
     }
 
@@ -326,5 +327,14 @@ final class TwigExtension extends AbstractExtension
             }
         }
         return $pagerList;
+    }
+
+    public function isRenderedForDeployment(): bool
+    {
+        if ($this->typo3AzureEdgeURI !== '') {
+            return true;
+        }
+
+        return false;
     }
 }
