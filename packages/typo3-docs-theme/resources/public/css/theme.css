@@ -23817,7 +23817,14 @@ article a.headerlink:after, article a.permalink:after {
   font-weight: 900;
   margin-left: -0.35em;
 }
-article *:hover > a.headerlink:after, article *:hover > a.permalink:after {
+article .headerNoindex {
+  position: relative;
+  font-size: 0.65em;
+  visibility: hidden;
+  top: -0.15em;
+  text-decoration: none;
+}
+article *:hover > a.headerlink:after, article *:hover > a.permalink:after, article *:hover .headerNoindex {
   visibility: visible;
 }
 

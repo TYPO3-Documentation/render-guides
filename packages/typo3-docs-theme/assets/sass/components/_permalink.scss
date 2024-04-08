@@ -13,8 +13,15 @@ article {
             margin-left: -.35em;
         }
     }
+    .headerNoindex {
+        position: relative;
+        font-size: .65em;
+        visibility: hidden;
+        top: -.15em;
+        text-decoration: none;
+    }
     *:hover {
-        & > a.headerlink:after, & > a.permalink:after {
+        & > a.headerlink:after, & > a.permalink:after, .headerNoindex {
             visibility: visible;
         }
     }
