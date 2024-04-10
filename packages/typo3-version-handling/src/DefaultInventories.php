@@ -4,6 +4,8 @@ namespace T3Docs\VersionHandling;
 
 enum DefaultInventories: string
 {
+    // IMPORTANT: If new default inventories are added, please
+    //            also add them to `Documentation/Developer/InterlinkInventories.rst`.
     case changelog = 'changelog';
     case t3coreapi = 't3coreapi';
     case t3tca = 't3tca';
