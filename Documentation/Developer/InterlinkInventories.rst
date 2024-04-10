@@ -38,7 +38,7 @@ This would output:
 Available default inventories
 -----------------------------
 
-These inventories can be used in any rendered documentation:
+These inventories can be used by default in any rendered documentation:
 
 
 *   Title: :doc:`changelog:Index`
