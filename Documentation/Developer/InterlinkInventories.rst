@@ -36,7 +36,7 @@ This would output:
 ..  _available-default-inventories:
 
 Available default inventories
----------------------------------------
+-----------------------------
 
 These inventories can be used in any rendered documentation:
 
