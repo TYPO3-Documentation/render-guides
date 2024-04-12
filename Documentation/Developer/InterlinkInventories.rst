@@ -33,6 +33,135 @@ This would output:
 *   :ref:`TYPO3 Explained 12 LTS <t3coreapi/v12:start>`
 *   :ref:`TYPO3 Explained 12.4 <t3coreapi/12.4:start>`
 
+..  _available-default-inventories:
+
+Available default inventories
+-----------------------------
+
+These inventories can be used by default in any rendered documentation:
+
+
+*   Title: :doc:`changelog:Index`
+
+    Inventory key: :doc:`changelog <changelog:Index>`
+
+    URL: https://docs.typo3.org/c/typo3/cms-core/main/en-us/
+
+*   Title: :doc:`t3coreapi:Index`
+
+    Inventory key: :doc:`t3coreapi <t3coreapi:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/
+
+*   Title: :doc:`t3tca:Index`
+
+    Inventory key: :doc:`t3tca <t3tca:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/reference-tca/main/en-us/
+
+*   Title: :doc:`t3tsconfig:Index`
+
+    Inventory key: :doc:`t3tsconfig <t3tsconfig:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/reference-tsconfig/main/en-us/
+
+*   Title: :doc:`t3tsref:Index`
+
+    Inventory key: :doc:`t3tsref <t3tsref:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/
+
+*   Title: :doc:`t3viewhelper:Index`
+
+    Inventory key: :doc:`t3viewhelper <t3viewhelper:Index>`
+
+    URL: https://docs.typo3.org/other/typo3/view-helper-reference/main/en-us/
+
+*   Title: :doc:`t3editors:Index`
+
+    Inventory key: :doc:`t3editors <t3editors:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/tutorial-editors/main/en-us/
+
+*   Title: :doc:`t3install:Index`
+
+    Inventory key: :doc:`t3install <t3install:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/guide-installation/main/en-us/
+
+*   Title: :doc:`t3upgrade:Index`
+
+    Inventory key: :doc:`t3upgrade <t3upgrade:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/guide-installation/main/en-us/
+
+*   Title: :doc:`t3sitepackage:Index`
+
+    Inventory key: :doc:`t3sitepackage <t3sitepackage:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/tutorial-sitepackage/main/en-us/
+
+*   Title: :doc:`t3start:Index`
+
+    Inventory key: :doc:`t3start <t3start:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/tutorial-getting-started/main/en-us/
+
+*   Title: :doc:`t3translate:Index`
+
+    Inventory key: :doc:`t3translate <t3translate:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/guide-frontendlocalization/main/en-us/
+
+*   Title: :doc:`t3ts45:Index`
+
+    Inventory key: :doc:`t3ts45 <t3ts45:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/tutorial-typoscript-in-45-minutes/main/en-us/
+
+*   Title: :doc:`h2document:Index`
+
+    Inventory key: :doc:`h2document <h2document:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/
+
+*   Title: :doc:`t3content:Index`
+
+    Inventory key: :doc:`t3content <t3content:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/guide-contentandmarketing/main/en-us/
+
+*   Title: :doc:`t3contribute:Index`
+
+    Inventory key: :doc:`t3contribute <t3contribute:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/guide-contributionworkflow/main/en-us/
+
+*   Title: :doc:`t3writing:Index`
+
+    Inventory key: :doc:`t3writing <t3writing:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/writing-guide/main/en-us/
+
+*   Title: :doc:`fluid:Index`
+
+    Inventory key: :doc:`fluid <fluid:Index>`
+
+    URL: https://docs.typo3.org/other/typo3fluid/fluid/main/en-us/
+
+*   Title: :doc:`t3renderguides:Index`
+
+    Inventory key: :doc:`t3renderguides <t3renderguides:Index>`
+
+    URL: https://docs.typo3.org/other/t3docs/render-guides/main/en-us/
+
+*   Title: :doc:`t3exceptions:Index`
+
+    Inventory key: :doc:`t3exceptions <t3exceptions:Index>`
+
+    URL: https://docs.typo3.org/typo3cms/exceptions/main/en-us/
+
+
 ..  _typo3-version:
 
 Setting the preferred TYPO3 version
