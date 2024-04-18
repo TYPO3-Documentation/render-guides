@@ -63,7 +63,7 @@ final class RunDecorator extends Command
 
         $arguments = $input->getArguments();
         if ($arguments['input'] === null) {
-            $guessedInput = $this->guessInput(self::DEFAULT_INPUT_DIRECTORY, $output);
+            $guessedInput = $this->guessInput(self::DEFAULT_INPUT_DIRECTORY, $output, false);
         } else {
             $guessedInput = [];
         }
@@ -175,7 +175,7 @@ final class RunDecorator extends Command
         }
         $output->writeln(sprintf('<info>Trying to render %s ...</info>', $availableLocalization));
 
-        $guessInput = $this->guessInput($localInputDirectives['input-file'], $output);
+        $guessInput = $this->guessInput($localInputDirectives['input-file'], $output, true);
         if ($guessInput === []) {
             $output->writeln('<info>Skipping, no entrypoint for localization found.</info>');
             return Command::SUCCESS;
@@ -294,7 +294,7 @@ final class RunDecorator extends Command
     }
 
     /** @return array<string, string> */
-    private function guessInput(string $inputBaseDirectory, OutputInterface $output): array
+    private function guessInput(string $inputBaseDirectory, OutputInterface $output, bool $isAbsoluteDirectory = false): array
     {
         $currentDirectory = getcwd();
         if ($currentDirectory === false) {
@@ -305,7 +305,13 @@ final class RunDecorator extends Command
             return [];
         }
 
-        $inputDirectory = $currentDirectory . DIRECTORY_SEPARATOR . $inputBaseDirectory;
+        if ($isAbsoluteDirectory) {
+            // Directory is already fully passed, and not a sub-directory (i.e. for localizations)
+            $inputDirectory = $inputBaseDirectory;
+        } else {
+            // Directory needs to be checked within our working space (i.e. /project in container)
+            $inputDirectory = $currentDirectory . DIRECTORY_SEPARATOR . $inputBaseDirectory;
+        }
 
         if (is_dir($inputDirectory)) {
             if ($output->isDebug()) {
