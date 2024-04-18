@@ -24064,6 +24064,10 @@ article *:hover > a.headerlink:after, article *:hover > a.permalink:after, artic
   margin-bottom: 1em;
 }
 
+.nav-tabs li.nav-item {
+  margin: 0;
+}
+
 /**
  * Keyboard Shortcuts, text role :kbd:
  */
