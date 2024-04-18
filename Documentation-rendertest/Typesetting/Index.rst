@@ -2,9 +2,9 @@
 
 ..  _typesetting:
 
-===========
-Typesetting
-===========
+=================
+Typesetting `code`
+==================
 
 ..  contents:: Table of contents
 
@@ -30,24 +30,24 @@ Headers
 
 There are multiple levels of headers available:
 
-Level 2 Header
-==============
+Level 2 Header `code`
+=====================
 
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
-Level 3 Header
---------------
+Level 3 Header `code`
+---------------------
 
 At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
 gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
-Level 4 Header
-~~~~~~~~~~~~~~
+Level 4 Header `code`
+~~~~~~~~~~~~~~~~~~~~~
 
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+At vero eos et `accusam` et justo duo dolores et ea rebum. Stet clita kasd
 gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 Level 5 Header
