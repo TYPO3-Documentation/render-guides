@@ -1274,16 +1274,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "e5d047e687f3b541f02d704ac54fe88dd82b9198"
+                "reference": "53b72b9ba98be0c26fcc9e4062f6eb55c0c53531"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/e5d047e687f3b541f02d704ac54fe88dd82b9198",
-                "reference": "e5d047e687f3b541f02d704ac54fe88dd82b9198",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/53b72b9ba98be0c26fcc9e4062f6eb55c0c53531",
+                "reference": "53b72b9ba98be0c26fcc9e4062f6eb55c0c53531",
                 "shasum": ""
             },
             "require": {
@@ -1320,9 +1320,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/1.3.1"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/1.3.2"
             },
-            "time": "2024-04-20T18:22:50+00:00"
+            "time": "2024-04-21T07:53:51+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1493,16 +1493,16 @@
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-bootstrap.git",
-                "reference": "618adcf4244706ec81949543c492acb6a9881920"
+                "reference": "dddc26a35c6c26e2fa4a9dcb78f32882b0a3ad02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/618adcf4244706ec81949543c492acb6a9881920",
-                "reference": "618adcf4244706ec81949543c492acb6a9881920",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/dddc26a35c6c26e2fa4a9dcb78f32882b0a3ad02",
+                "reference": "dddc26a35c6c26e2fa4a9dcb78f32882b0a3ad02",
                 "shasum": ""
             },
             "require": {
@@ -1523,9 +1523,9 @@
             "description": "A theme for phpdocumentor/guides based on Bootstrap",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/1.3.1"
+                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/1.3.2"
             },
-            "time": "2024-04-20T18:21:53+00:00"
+            "time": "2024-04-21T07:53:51+00:00"
         },
         {
             "name": "psr/clock",
