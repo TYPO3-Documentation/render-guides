@@ -33,7 +33,7 @@ final class SettingsMigratorTest extends TestCase
     public static function providerForMigrateReturnsXmlDocumentCorrectly(): \Generator
     {
         yield 'with empty legacy settings' => [
-            'legacy settings' => [],
+            'legacySettings' => [],
             'expected' => <<<EXPECTED
                 <?xml version="1.0" encoding="UTF-8"?>
                 <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd" links-are-relative="true">
@@ -43,7 +43,7 @@ final class SettingsMigratorTest extends TestCase
         ];
 
         yield 'with all html_theme_options given' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'html_theme_options' => [
                     'project_home' => 'https://example.org/',
                     'project_contact' => 'https://example.org/contact',
@@ -82,7 +82,7 @@ final class SettingsMigratorTest extends TestCase
         ];
 
         yield 'with only one of the html_theme_options given' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'html_theme_options' => [
                     'project_home' => 'https://example.org/',
                 ],
@@ -95,7 +95,7 @@ final class SettingsMigratorTest extends TestCase
         ];
 
         yield 'with all general options given' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'general' => [
                     'project' => 'Some project',
                     'version' => '1.0',
@@ -117,7 +117,7 @@ final class SettingsMigratorTest extends TestCase
         ];
 
         yield 'with only one of the general options given' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'general' => [
                     'project' => 'Some project',
                 ],
@@ -133,7 +133,7 @@ final class SettingsMigratorTest extends TestCase
         ];
 
         yield 'with intersphinx_mapping given' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'intersphinx_mapping' => [
                     'manual_1' => 'https://example.com/manual-1/',
                     'manual_2' => 'https://example.com/manual-2/',
@@ -151,7 +151,7 @@ final class SettingsMigratorTest extends TestCase
         ];
 
         yield 'with intersphinx_default_mapping given' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'intersphinx_mapping' => [
                     't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/',
                     't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/12.4/en-us/',
@@ -167,7 +167,7 @@ final class SettingsMigratorTest extends TestCase
         ];
 
         yield 'with intersphinx with default id but unknown url' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'intersphinx_mapping' => [
                     't3coreapi' => 'https://example.com/manual-3/',
                 ],
@@ -182,7 +182,7 @@ final class SettingsMigratorTest extends TestCase
 
 
         yield 'with intersphinx default id, conflicting versions given' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'intersphinx_mapping' => [
                     't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/',
                     't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/11.5/en-us/',
@@ -196,7 +196,7 @@ final class SettingsMigratorTest extends TestCase
                 EXPECTED,
         ];
         yield 'with intersphinx default id, non-stable preferred TYPO3 version' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'intersphinx_mapping' => [
                     't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/11.5/en-us/',
                     't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/',
@@ -211,7 +211,7 @@ final class SettingsMigratorTest extends TestCase
         ];
 
         yield 'with all sections given' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'html_theme_options' => [
                     'project_home' => 'https://example.org/',
                 ],
@@ -272,12 +272,12 @@ final class SettingsMigratorTest extends TestCase
     public static function providerForMigrateReturnsMessagesCorrectly(): \Generator
     {
         yield 'no messages given with empty legacy settings' => [
-            'legacy settings' => [],
+            'legacySettings' => [],
             'expected' => [],
         ];
 
         yield 'messages given with unknown legacy settings' => [
-            'legacy settings' => [
+            'legacySettings' => [
                 'html_theme_options' => [
                     'unknown_html_theme_option' => 'some value',
                 ],
