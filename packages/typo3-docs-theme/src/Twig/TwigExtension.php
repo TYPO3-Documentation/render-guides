@@ -9,6 +9,7 @@ use LogicException;
 use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\LinkTargetNode;
+use phpDocumentor\Guides\Nodes\Metadata\NoSearchNode;
 use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RenderContext;
@@ -18,6 +19,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
+use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
 use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use T3Docs\VersionHandling\DefaultInventories;
@@ -57,11 +59,40 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getPrevNextLinks', $this->getPrevNextLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getSettings', $this->getSettings(...), ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFunction('isNoSearch', $this->isNoSearch(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('copyDownload', $this->copyDownload(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getStandardInventories', $this->getStandardInventories(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getRstCodeForLink', $this->getRstCodeForLink(...), ['is_safe' => [], 'needs_context' => true]),
             new TwigFunction('isRenderedForDeployment', $this->isRenderedForDeployment(...)),
         ];
+    }
+
+
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function isNoSearch(array $context): bool
+    {
+        $renderContext = $this->getRenderContext($context);
+        try {
+            if ($renderContext->getCurrentDocumentEntry() === null) {
+                return false;
+            }
+            $document = $renderContext->getDocumentNodeForEntry($renderContext->getCurrentDocumentEntry());
+        } catch(\Exception) {
+            return false;
+        }
+        $headerNodes = $document->getHeaderNodes();
+        foreach ($headerNodes as $headerNode) {
+            if ($headerNode instanceof NoSearchNode) {
+                return true;
+            }
+            // Disable searching on sitemaps
+            if ($headerNode instanceof TemplateNode && $headerNode->getValue() === 'sitemap.html') {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

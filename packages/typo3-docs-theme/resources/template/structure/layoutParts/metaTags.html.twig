@@ -9,3 +9,7 @@
 <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" name="docsearch:modified">
 <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" name="dc.modified">
 <meta content="{{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP") }}" property="article:modified_time">
+{% if isNoSearch() -%}
+    <meta name="x-typo3-indexer" content="noindex">
+    <meta name="robots" content="noindex, follow">
+{%- endif %}
