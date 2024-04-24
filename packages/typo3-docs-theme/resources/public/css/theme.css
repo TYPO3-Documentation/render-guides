@@ -22905,7 +22905,22 @@ article h3, article .h3 {
   --bs-btn-disabled-border-color: #ff8700;
 }
 
-.card-body *:last-child {
+.card-group {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 1.5rem;
+}
+.card-group .card {
+  box-shadow: 2px 1px 6px rgba(32, 33, 36, 0.28);
+}
+.card-group .card .card-img, .card-group .card .card-img-top {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.card-group .card .card-img:first-child, .card-group .card .card-img-top:first-child {
+  border-top-left-radius: var(--bs-card-inner-border-radius);
+  border-top-right-radius: var(--bs-card-inner-border-radius);
+}
+.card-group .card .card-body *:last-child {
   margin-bottom: 0;
 }
 
