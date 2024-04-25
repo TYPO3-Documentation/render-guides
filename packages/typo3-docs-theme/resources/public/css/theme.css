@@ -22875,6 +22875,19 @@ article h3, article .h3 {
   box-shadow: inset 0px 0px 2px 2px;
 }
 
+.accordion {
+  border-radius: var(--bs-accordion-border-radius);
+  box-shadow: 2px 1px 6px rgba(32, 33, 36, 0.28);
+}
+.accordion .accordion-header {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.accordion .accordion-button:not(.collapsed) {
+  color: inherit;
+  background-color: inherit;
+}
+
 .btn, .toc-toggle {
   display: inline-flex;
   align-items: center;
