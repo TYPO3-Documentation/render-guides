@@ -1,0 +1,15 @@
+//
+// _accordion.scss
+//
+.accordion {
+    border-radius: var(--bs-accordion-border-radius);
+    box-shadow: 2px 1px 6px rgba(32,33,36,.28);
+    .accordion-header {
+	padding-bottom: 0;
+        border-bottom: none;
+    }
+    .accordion-button:not(.collapsed) {
+        color:inherit;
+        background-color: inherit;
+    }
+}
