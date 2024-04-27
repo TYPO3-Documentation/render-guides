@@ -1274,16 +1274,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "1.3.2",
+            "version": "1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "53b72b9ba98be0c26fcc9e4062f6eb55c0c53531"
+                "reference": "d57a527208f8321be99c988897bfe43b9374a912"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/53b72b9ba98be0c26fcc9e4062f6eb55c0c53531",
-                "reference": "53b72b9ba98be0c26fcc9e4062f6eb55c0c53531",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/d57a527208f8321be99c988897bfe43b9374a912",
+                "reference": "d57a527208f8321be99c988897bfe43b9374a912",
                 "shasum": ""
             },
             "require": {
@@ -1320,9 +1320,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/1.3.2"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/1.3.3"
             },
-            "time": "2024-04-21T07:53:51+00:00"
+            "time": "2024-04-27T08:39:28+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
