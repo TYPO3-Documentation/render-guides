@@ -1,0 +1,58 @@
+{% macro renderListItem(item, namePrefix, level, maxLevel, showFileIcons) %}
+    {% set expanded = level < maxLevel %}
+    <li id="{{ item.name }}">
+        <div class="content">
+            {% if item.subLists %}
+                <div class="toggle">
+                    <a data-bs-toggle="collapse"
+                       href="#{{ item.name }}-list"
+                       aria-expanded="{% if expanded %}true{% else %}false{% endif %}"
+                       aria-controls="{{ item.name }}-list"
+                       class="{% if not expanded %}collapsed{% endif %}"
+                    >
+                        <span class="icon"></span>
+                    </a>
+                </div>
+                {% if showFileIcons %}
+                    <div class="fileItem">
+                        <i class="far fa-folder"></i>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="no-toggle">
+                </div>
+                {% if showFileIcons %}
+                    <div class="fileItem">
+                        <i class="far fa-file"></i>
+                    </div>
+                {% endif %}
+            {% endif %}
+            <div class="label">
+                {% for part in item.children %}
+                    {% if not part.isList %}
+                        {{ renderNode(part) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% for part in item.subLists %}
+            <ul class="collapse {%- if expanded %} show{% endif %}" id="{{ item.name }}-list">
+                {% for item2 in part.value %}
+                    {{  _self.renderListItem(item2, item2.name, level+1, maxLevel, showFileIcons) }}
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </li>
+{% endmacro %}
+
+{% import _self as macros %}
+
+<div class="directory-tree">
+    {% for list in node.children %}
+        <ul id="{{ list.name }}">
+            {% for item in list.children %}
+                {{ macros.renderListItem(item, list.name, 1, node.level, node.showFileIcons) }}
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>

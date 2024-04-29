@@ -1,0 +1,57 @@
+.directory-tree {
+    ul {
+        margin-bottom: 0;
+        list-style: none;
+        li {
+            margin-bottom: 0;
+            .content {
+                @extend .d-flex,.flex-row;
+                .toggle {
+                    width: 1.5em;
+                    a[data-bs-toggle="collapse"] {
+                        text-decoration: none;
+                        .icon::before {
+                            font-family: 'Font Awesome 6 Free';
+                            content: "\f0fe";
+                        }
+
+                        &.collapsed {
+                            .icon::before {
+                                content: "\f146";
+                            }
+                        }
+                    }
+                }
+                .no-toggle {
+                    width: 1.5em;
+                }
+                .fileItem {
+                    width: 2em;
+                }
+                .label {
+                    code.file, code.path {
+                        background-color: $white;
+                        font-family: var(--bs-body-font-family);
+                        line-height: var(--bs-body-line-height);
+                        font-size: 1.1rem;
+                        &::before {
+                            width: 1.5em;
+                            font-family: 'Font Awesome 6 Free';
+                            display: inline-block;
+                            content:"\f15b";
+                        }
+                    }
+                    code.path {
+                        &::before {
+                            content:"\f07b";
+                        }
+                    }
+                    p:last-child {
+                        /* Prevent margin cause by last p */
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
