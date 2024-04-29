@@ -18092,7 +18092,7 @@ textarea.form-control-lg {
   display: table-cell !important;
 }
 
-.d-flex {
+.d-flex, .directory-tree ul li .content {
   display: flex !important;
 }
 
@@ -18516,7 +18516,7 @@ textarea.form-control-lg {
   flex: 1 1 auto !important;
 }
 
-.flex-row {
+.flex-row, .directory-tree ul li .content {
   flex-direction: row !important;
 }
 
@@ -23183,6 +23183,52 @@ code {
     max-width: 60vw;
   }
 }
+.directory-tree ul {
+  margin-bottom: 0;
+  list-style: none;
+}
+.directory-tree ul li {
+  margin-bottom: 0;
+}
+.directory-tree ul li .content .toggle {
+  width: 1.5em;
+}
+.directory-tree ul li .content .toggle a[data-bs-toggle=collapse] {
+  text-decoration: none;
+}
+.directory-tree ul li .content .toggle a[data-bs-toggle=collapse] .icon::before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f0fe";
+}
+.directory-tree ul li .content .toggle a[data-bs-toggle=collapse].collapsed .icon::before {
+  content: "\f146";
+}
+.directory-tree ul li .content .no-toggle {
+  width: 1.5em;
+}
+.directory-tree ul li .content .fileItem {
+  width: 2em;
+}
+.directory-tree ul li .content .label code.file, .directory-tree ul li .content .label code.path {
+  background-color: #ffffff;
+  font-family: var(--bs-body-font-family);
+  line-height: var(--bs-body-line-height);
+  font-size: 1.1rem;
+}
+.directory-tree ul li .content .label code.file::before, .directory-tree ul li .content .label code.path::before {
+  width: 1.5em;
+  font-family: "Font Awesome 6 Free";
+  display: inline-block;
+  content: "\f15b";
+}
+.directory-tree ul li .content .label code.path::before {
+  content: "\f07b";
+}
+.directory-tree ul li .content .label p:last-child {
+  /* Prevent margin cause by last p */
+  margin-bottom: 0;
+}
+
 :root {
   --frame-color: inherit;
   --frame-link-color: #005E85;
