@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<guides xmlns="https://www.phpdoc.org/guides"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdoc.org/guides packages/guides-cli/resources/schema/guides.xsd"
+>
+    <project
+    title="Example Project"
+    version="12.4"
+    release="12.4.0-dev"
+    copyright="Since 2023 TYPO3 Documentation Team and Contributors"
+/>
+    <extension
+        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+        edit-on-github="TYPO3-Documentation/render-guides"
+        edit-on-github-branch="main"
+        interlink-shortcode="t3docsRenderGuides"
+        typo3-core-preferred="stable"
+    />
+</guides>
