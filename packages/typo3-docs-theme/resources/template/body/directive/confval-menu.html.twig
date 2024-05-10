@@ -1,0 +1,154 @@
+{% macro renderConfvalListItem(entry, node) %}
+    <li id="{{ entry.id }}-tree">
+
+        {% set relevant_children = [] %}
+        {% for child in entry.value %}
+            {% if child.linkType == 'std:confval' %}
+                {% set relevant_children = relevant_children|merge([child]) %}
+            {% endif %}
+        {% endfor %}
+        <div class="label">
+            <a href="#{{ entry.id }}">{{ entry.plainContent }}</a>
+            {% for field in node.fields %}
+                {% if field=='type' %}
+                    , Type: {{ renderNode(entry.type) }}
+                {% elseif field=='default' %}
+                    , Default: {{ renderNode(entry.default) }}
+                {% else %}
+                    {%- for key, option in entry.additionalOptions -%}
+                        {%- if field==key %}
+                            , {{ key }}: {{  renderNode(option) }}
+                        {% endif -%}
+                    {% endfor -%}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if relevant_children %}
+            <ul>
+                {% for child in relevant_children %}
+                    {{ _self.renderConfvalItem(child, node) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% macro renderConfvalItem(entry, node) %}
+    <li id="{{ entry.id }}-tree">
+        <div class="content">
+            {% set expanded = true %}
+            {% set relevant_children = [] %}
+            {% for child in entry.value %}
+                {% if child.linkType == 'std:confval' %}
+                    {% set relevant_children = relevant_children|merge([child]) %}
+                {% endif %}
+            {% endfor %}
+            {% if relevant_children %}
+                <div class="toggle">
+                    <a data-bs-toggle="collapse"
+                       href="#{{ entry.id }}-list"
+                       aria-expanded="{% if expanded %}true{% else %}false{% endif %}"
+                       aria-controls="{{ entry.id }}-list"
+                       class="{% if not expanded %}collapsed{% endif %}"
+                    >
+                        <span class="icon"></span>
+                    </a>
+                </div>
+            {% else %}
+                <div class="no-toggle">
+                </div>
+            {% endif %}
+            <div class="label">
+                <a href="#{{ entry.id }}">{{ entry.plainContent }}</a>
+                {% for field in node.fields %}
+                    {% if field=='type' %}
+                        , Type: {{ renderNode(entry.type) }}
+                    {% elseif field=='default' %}
+                        , Default: {{ renderNode(entry.default) }}
+                    {% else %}
+                        {%- for key, option in entry.additionalOptions -%}
+                            {%- if field==key %}
+                                , {{ key }}: {{  renderNode(option) }}
+                            {% endif -%}
+                        {% endfor -%}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        {% if relevant_children %}
+            <ul class="collapse {%- if expanded %} show{% endif %}" id="{{ entry.id }}-list">
+                {% for child in relevant_children %}
+                    {{ _self.renderConfvalItem(child, node) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% macro renderConfvalRow(entry, node, level) %}
+    <tr>
+        <td><div class="confval-label ps-{{ level * 2 }}"><a href="#{{ entry.id }}">{{ entry.plainContent }}</a></div></td>
+        {% for field in node.fields %}
+            {% if field=='type' %}
+                <td>{{ renderNode(entry.type) }}</td>
+            {% elseif field=='default' %}
+                <td>{{ renderNode(entry.default) }}</td>
+            {% else %}
+                <td>
+                    {%- for key, option in entry.additionalOptions -%}
+                        {%- if field==key %}
+                            {{  renderNode(option) }}
+                        {% endif -%}
+                    {% endfor -%}
+                </td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    {% for child in entry.value %}
+        {% if child.linkType == 'std:confval' %}
+            {{ _self.renderConfvalRow(child, node, level+1) }}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% import _self as macros %}
+{% if node.display=='list' %}
+<div class="mb-4">
+    <ul>
+        {% for entry in node.confvals %}
+            {{ macros.renderConfvalListItem(entry, node) }}
+        {% endfor %}
+    </ul>
+</div>
+{% elseif node.display=='tree' %}
+    <div class="directory-tree mb-4">
+        <ul>
+        {% for entry in node.confvals %}
+            {{ macros.renderConfvalItem(entry, node) }}
+        {% endfor %}
+        </ul>
+    </div>
+{% else %}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        {% for field in node.fields %}
+
+            {% if field=='type' %}
+                <th scope="col">Type</th>
+            {% elseif field=='default' %}
+                <th scope="col">Default</th>
+            {% else %}
+                <th scope="col">{{ field }}</th>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    </thead>
+    {% for entry in node.confvals %}
+        {{ macros.renderConfvalRow(entry, node, 0) }}
+    {% endfor %}
+</table>
+{% endif %}

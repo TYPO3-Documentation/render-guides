@@ -1,5 +1,4 @@
 .table {
-    @extend .table-striped;
     th :last-child,
     td :last-child {
         margin-bottom: 0;

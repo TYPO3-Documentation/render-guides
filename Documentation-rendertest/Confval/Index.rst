@@ -6,9 +6,13 @@
 confval
 =======
 
-..  contents:: This page
-    :local:
-
+..  confval-menu::
+    :display: table
+    :exclude-noindex: true
+    :exclude: addRecord
+    :type:
+    :Default:
+    :Possible:
 
 Summary
 =======
@@ -29,7 +33,7 @@ Source:
 ..  code-block:: rst
 
     ..  confval:: mr_pommeroy
-        :default: Happy new year, Sophie!
+        :Default: Happy new year, Sophie!
         :type:     shy
 
         Participant of Miss Sophie's birthday party.
@@ -37,8 +41,8 @@ Source:
 Result:
 
 ..  confval:: mr_pommeroy
-    :default: Happy new year, Sophie!
-    :type:     shy
+    :type: shy
+    :Default: Happy new year, Sophie!
 
     Participant of Miss Sophie's birthday party.
 
@@ -56,7 +60,7 @@ Adapted from the TypoScript Reference Manual:
 
 ..  confval:: align
     :type:     align
-    :default: left
+    :Default: left
     :Possible: \left | \center \| right
 
     Decides about alignment.
@@ -67,51 +71,67 @@ Adapted from the TypoScript Reference Manual:
 
 
 
-..  confval:: boolean
-    :type: boolean
-    :Possible: 1 | 0
+    ..  confval:: boolean
+        :type: boolean
+        :Possible: 1 | 0
 
-    1 means TRUE and 0 means FALSE.
+        1 means TRUE and 0 means FALSE.
 
-    Everything else is evaluated to one of these values by PHP:
-    Non-empty strings (except `0` [zero]) are treated as TRUE,
-    empty strings are evaluated to FALSE.
+        Everything else is evaluated to one of these values by PHP:
+        Non-empty strings (except `0` [zero]) are treated as TRUE,
+        empty strings are evaluated to FALSE.
 
-    Examples::
+        Examples::
 
-        dummy.enable = 0    # false, preferred notation
-        dummy.enable = 1    # true,  preferred notation
-        dummy.enable =      # false, because the value is empty
+            dummy.enable = 0    # false, preferred notation
+            dummy.enable = 1    # true,  preferred notation
+            dummy.enable =      # false, because the value is empty
+
+        ..  confval:: boolean2
+            :type: boolean
+            :Possible: 1 | 0
+
+            1 means TRUE and 0 means FALSE.
+
+            Everything else is evaluated to one of these values by PHP:
+            Non-empty strings (except `0` [zero]) are treated as TRUE,
+            empty strings are evaluated to FALSE.
+
+            Examples::
+
+                dummy.enable = 0    # false, preferred notation
+                dummy.enable = 1    # true,  preferred notation
+                dummy.enable =      #
 
 
 
-..  confval:: case
+    ..  confval:: case
+        :type: case
 
-    :type: case
-    :Possible:
-        ===================== ==========================================================
-        Value                 Effect
-        ===================== ==========================================================
-        :ts:`upper`           Convert all letters of the string to upper case
-        :ts:`lower`           Convert all letters of the string to lower case
-        :ts:`capitalize`      Uppercase the first character of each word in the string
-        :ts:`ucfirst`         Convert the first letter of the string to upper case
-        :ts:`lcfirst`         Convert the first letter of the string to lower case
-        :ts:`uppercamelcase`  Convert underscored `upper_camel_case` to `UpperCamelCase`
-        :ts:`lowercamelcase`  Convert underscored `lower_camel_case` to `lowerCamelCase`
-        ===================== ==========================================================
+        :Possible:
+            ===================== ==========================================================
+            Value                 Effect
+            ===================== ==========================================================
+            :ts:`upper`           Convert all letters of the string to upper case
+            :ts:`lower`           Convert all letters of the string to lower case
+            :ts:`capitalize`      Uppercase the first character of each word in the string
+            :ts:`ucfirst`         Convert the first letter of the string to upper case
+            :ts:`lcfirst`         Convert the first letter of the string to lower case
+            :ts:`uppercamelcase`  Convert underscored `upper_camel_case` to `UpperCamelCase`
+            :ts:`lowercamelcase`  Convert underscored `lower_camel_case` to `lowerCamelCase`
+            ===================== ==========================================================
 
-    Do a case conversion.
+        Do a case conversion.
 
-    Example code::
+        Example code::
 
-        10 = TEXT
-        10.value = Hello world!
-        10.case = upper
+            10 = TEXT
+            10.value = Hello world!
+            10.case = upper
 
-    Result::
+        Result::
 
-        HELLO WORLD!
+            HELLO WORLD!
 
 
 ..  _Demo 3 - addRecord:

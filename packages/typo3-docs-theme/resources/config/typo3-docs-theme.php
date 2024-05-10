@@ -15,6 +15,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
@@ -58,6 +59,9 @@ return static function (ContainerConfigurator $container): void {
         ->bind('$startingRule', service(DirectiveContentRule::class))
         ->instanceof(BaseDirective::class)
         ->tag('phpdoc.guides.directive')
+        ->set(ConfvalMenuNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(TwigExtension::class)
         ->set(TwigExtension::class)
         ->tag('twig.extension')
         ->autowire()
@@ -104,6 +108,7 @@ return static function (ContainerConfigurator $container): void {
         ->decorate(PlantumlServerRenderer::class)
         ->public()
 
+        ->set(\T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective::class)
         ->set(DirectoryTreeDirective::class)
         ->set(GroupTabDirective::class)
         ->set(RawDirective::class)
