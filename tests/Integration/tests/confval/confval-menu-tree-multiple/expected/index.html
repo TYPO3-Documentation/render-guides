@@ -1,0 +1,201 @@
+<!-- content start -->
+                <section class="section" id="confval">
+            <h1>Confval<a class="headerlink" href="#confval" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+    </section>
+<section class="section" id="confvals-with-subtrees">
+            <h1>Confvals with subtrees<a class="headerlink" href="#confvals-with-subtrees" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <section class="section" id="properties-of-case">
+            <h2>Properties of CASE<a class="headerlink" href="#properties-of-case" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+
+
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+
+                            <th scope="col">Type</th>
+                        </tr>
+    </thead>
+                <tr>
+        <td><div class="confval-label ps-0"><a href="#case-array">array of cObjects</a></div></td>
+                                    <td>cObject</td>
+                        </tr>
+
+                <tr>
+        <td><div class="confval-label ps-0"><a href="#case-cache">cache</a></div></td>
+                                    <td>cache</td>
+                        </tr>
+
+                <tr>
+        <td><div class="confval-label ps-0"><a href="#case-default">default</a></div></td>
+                                    <td>cObject</td>
+                        </tr>
+
+                <tr>
+        <td><div class="confval-label ps-0"><a href="#case-if">if</a></div></td>
+                                    <td>-&gt;if</td>
+                        </tr>
+
+    </table>
+<dl class="confval">
+    <dt id="case-array">
+        <code class="sig-name descname"><span class="pre">array of cObjects</span></code>
+                <a class="headerlink" href="#confval-case-array" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="confval-case-array" data-rstCode=":confval:`array of cObjects &lt;somemanual:case-array&gt;`"  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+                <dl class="field-list simple">
+                            <dt class="field-even">Type</dt>
+                <dd class="field-even">cObject
+                </dd>
+            </dl>
+                <div class="confval-description">
+
+    <p>Array of cObjects. Use this to define cObjects for the different
+values of . If  has a certain value,
+the according cObject will be rendered. The cObjects can have any name, but not
+the names of the other properties of the cObject CASE.</p>
+
+        </div>
+    </dd>
+</dl><dl class="confval">
+    <dt id="case-cache">
+        <code class="sig-name descname"><span class="pre">cache</span></code>
+                <a class="headerlink" href="#confval-case-cache" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="confval-case-cache" data-rstCode=":confval:`cache &lt;somemanual:case-cache&gt;`"  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+                <dl class="field-list simple">
+                            <dt class="field-even">Type</dt>
+                <dd class="field-even">cache
+                </dd>
+            </dl>
+                <div class="confval-description">
+
+    <p>See  for details.</p>
+
+        </div>
+    </dd>
+</dl><dl class="confval">
+    <dt id="case-default">
+        <code class="sig-name descname"><span class="pre">default</span></code>
+                <a class="headerlink" href="#confval-case-default" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="confval-case-default" data-rstCode=":confval:`default &lt;somemanual:case-default&gt;`"  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+                <dl class="field-list simple">
+                            <dt class="field-even">Type</dt>
+                <dd class="field-even">cObject
+                </dd>
+            </dl>
+                <div class="confval-description">
+
+    <p>Use this to define the rendering for <em>those</em> values of cobj-case-key that
+do <em>not</em> match any of the values of the cobj-case-array-of-cObjects. If no
+default cObject is defined, an empty string will be returned for
+the default case.</p>
+
+        </div>
+    </dd>
+</dl><dl class="confval">
+    <dt id="case-if">
+        <code class="sig-name descname"><span class="pre">if</span></code>
+                <a class="headerlink" href="#confval-case-if" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="confval-case-if" data-rstCode=":confval:`if &lt;somemanual:case-if&gt;`"  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+                <dl class="field-list simple">
+                            <dt class="field-even">Type</dt>
+                <dd class="field-even">-&gt;if
+                </dd>
+            </dl>
+                <div class="confval-description">
+
+    <p>If if returns false, nothing is returned.</p>
+
+        </div>
+    </dd>
+</dl>
+    </section>
+            <section class="section" id="properties-of-coa">
+            <h2>Properties of COA<a class="headerlink" href="#properties-of-coa" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+
+
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+
+                            <th scope="col">Type</th>
+                        </tr>
+    </thead>
+                <tr>
+        <td><div class="confval-label ps-0"><a href="#coa-array">1,2,3,4...</a></div></td>
+                                    <td>cObject</td>
+                        </tr>
+
+                <tr>
+        <td><div class="confval-label ps-0"><a href="#coa-cache">cache</a></div></td>
+                                    <td>cache</td>
+                        </tr>
+
+                <tr>
+        <td><div class="confval-label ps-0"><a href="#coa-if">if</a></div></td>
+                                    <td>-&gt;if &lt;if&gt;</td>
+                        </tr>
+
+    </table>
+<dl class="confval">
+    <dt id="coa-array">
+        <code class="sig-name descname"><span class="pre">1,2,3,4...</span></code>
+                <a class="headerlink" href="#confval-coa-array" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="confval-coa-array" data-rstCode=":confval:`1,2,3,4... &lt;somemanual:coa-array&gt;`"  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+                <dl class="field-list simple">
+                            <dt class="field-even">Type</dt>
+                <dd class="field-even">cObject
+                </dd>
+            </dl>
+                <div class="confval-description">
+
+    <p>Numbered properties to define the different cObjects, which should be
+rendered.</p>
+
+        </div>
+    </dd>
+</dl><dl class="confval">
+    <dt id="coa-cache">
+        <code class="sig-name descname"><span class="pre">cache</span></code>
+                <a class="headerlink" href="#confval-coa-cache" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="confval-coa-cache" data-rstCode=":confval:`cache &lt;somemanual:coa-cache&gt;`"  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+                <dl class="field-list simple">
+                            <dt class="field-even">Type</dt>
+                <dd class="field-even">cache
+                </dd>
+            </dl>
+                <div class="confval-description">
+
+    <p>See cache function description for details.</p>
+
+        </div>
+    </dd>
+</dl><dl class="confval">
+    <dt id="coa-if">
+        <code class="sig-name descname"><span class="pre">if</span></code>
+                <a class="headerlink" href="#confval-coa-if" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="confval-coa-if" data-rstCode=":confval:`if &lt;somemanual:coa-if&gt;`"  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+                <dl class="field-list simple">
+                            <dt class="field-even">Type</dt>
+                <dd class="field-even">-&gt;if &lt;if&gt;
+                </dd>
+            </dl>
+                <div class="confval-description">
+
+    <p>If <code>if</code> returns false, the COA is <strong>not</strong> rendered.</p>
+
+        </div>
+    </dd>
+</dl>
+    </section>
+    </section>
+        <!-- content end -->

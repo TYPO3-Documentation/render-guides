@@ -6,6 +6,11 @@
 confval
 =======
 
+..  toctree::
+    :glob:
+
+    *
+
 ..  confval-menu::
     :display: table
     :exclude-noindex: true

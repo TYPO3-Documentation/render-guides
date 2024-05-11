@@ -18,15 +18,18 @@ use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
+use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
+use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 
 class ConfvalMenuDirective extends SubDirective
 {
     public function __construct(
         Rule $startingRule,
+        private readonly LoggerInterface $logger,
         private readonly AnchorNormalizer $anchorReducer,
     ) {
         parent::__construct($startingRule);
@@ -36,7 +39,15 @@ class ConfvalMenuDirective extends SubDirective
         CollectionNode $collectionNode,
         Directive      $directive,
     ): Node|null {
-        $children = $collectionNode->getChildren();
+        $originalChildren = $collectionNode->getChildren();
+        $chilConfvals = [];
+        foreach ($originalChildren as $child) {
+            if ($child instanceof ConfvalNode) {
+                $chilConfvals[] = $child;
+            } else {
+                $this->logger->warning('A confval-menu may only contain confvals. ', $blockContext->getLoggerInformation());
+            }
+        }
         $fields = [];
         $display = 'list';
         $excludeNoindex = false;
@@ -67,8 +78,8 @@ class ConfvalMenuDirective extends SubDirective
         return new ConfvalMenuNode(
             $directive->getData(),
             $directive->getDataNode() ?? new InlineCompoundNode(),
-            $children,
-            [],
+            $chilConfvals,
+            $chilConfvals,
             $fields,
             $display,
             $excludeNoindex,
