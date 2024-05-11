@@ -131,25 +131,27 @@
         </ul>
     </div>
 {% else %}
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">Name</th>
-        {% for field in node.fields %}
+<div class="table-responsive confval-table">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            {% for field in node.fields %}
 
-            {% if field=='type' %}
-                <th scope="col">Type</th>
-            {% elseif field=='default' %}
-                <th scope="col">Default</th>
-            {% else %}
-                <th scope="col">{{ field }}</th>
-            {% endif %}
+                {% if field=='type' %}
+                    <th scope="col">Type</th>
+                {% elseif field=='default' %}
+                    <th scope="col">Default</th>
+                {% else %}
+                    <th scope="col">{{ field }}</th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        </thead>
+        {% for entry in node.confvals %}
+            {{ macros.renderConfvalRow(entry, node, 0) }}
         {% endfor %}
-    </tr>
-    </thead>
-    {% for entry in node.confvals %}
-        {{ macros.renderConfvalRow(entry, node, 0) }}
-    {% endfor %}
-</table>
+    </table>
+</div>
 {% endif %}
 {{ renderNode(node.children) }}
