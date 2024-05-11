@@ -67,7 +67,6 @@ final class TwigExtension extends AbstractExtension
         ];
     }
 
-
     /**
      * @param array{env: RenderContext} $context
      */

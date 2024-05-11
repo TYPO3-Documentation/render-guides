@@ -136,6 +136,9 @@ rendertest: ## Runs rendering with Documentation-rendertest
 	@echo "$(ENV_INFO)"
 	$(PHP_BIN) vendor/bin/guides -vvv --no-progress Documentation-rendertest --output="Documentation-GENERATED-rendertest" --config=Documentation-rendertest
 
+.PHONY: rendertestassets
+rendertestassets: assets rendertest ## Rebuild assets and make rendertest
+
 .PHONY: test-integration
 test-integration: ## Runs integration tests with phpunit
 	@echo "$(ENV_INFO)"

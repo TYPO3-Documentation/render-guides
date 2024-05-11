@@ -25,6 +25,11 @@ code {
     }
 }
 
+.code-block-caption {
+    @extend .text-break;
+    hyphens: auto;
+}
+
 .code-block-wrapper {
     background: $gray-100;
     border: 1px solid $gray-100;
@@ -83,6 +88,7 @@ code {
  * ":literal:" or ":php:"
  */
 .code-inline {
+    @extend .text-break;
     font-family: $font-family-monospace;
     border-radius: $border-radius;
     border: 2px solid $white;
