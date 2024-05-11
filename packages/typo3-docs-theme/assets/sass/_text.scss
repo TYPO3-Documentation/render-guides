@@ -7,6 +7,7 @@ a {
 }
 article {
     a:not([class*="btn"]) {
+        @extend .text-break;
         text-decoration: underline;
         color: $gray-900;
     }

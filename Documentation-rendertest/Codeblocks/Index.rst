@@ -46,7 +46,7 @@ PHP
 ===
 
 ..  code-block:: php
-    :caption:  CustomCategoryProcessor.php
+    :caption:  vendor/myvendor/myextension/Classes/NameSpace/SubNamespace/CustomCategoryProcessor.php
 
     <?php
 

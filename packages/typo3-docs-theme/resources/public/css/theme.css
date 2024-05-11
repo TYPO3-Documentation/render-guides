@@ -19272,7 +19272,7 @@ textarea.form-control-lg {
 }
 
 /* rtl:begin:remove */
-.text-break {
+.text-break, .code-inline, .code-block-caption, article a:not([class*=btn]) {
   word-wrap: break-word !important;
   word-break: break-word !important;
 }
@@ -23085,6 +23085,10 @@ code {
   background: #fff7cc;
 }
 
+.code-block-caption {
+  hyphens: auto;
+}
+
 .code-block-wrapper {
   background: #f7f7f7;
   border: 1px solid #f7f7f7;
@@ -24488,34 +24492,36 @@ dl.confval > dd {
   margin-right: 1rem;
 }
 
-dl.field-list {
-  display: grid;
-  grid-template-columns: fit-content(30%) auto;
-}
 dl.field-list dt {
   font-weight: bold;
-  word-break: break-word;
-  padding-left: 0;
-  padding-right: 0.5em;
-  margin-bottom: 0.25rem;
 }
 dl.field-list > dt:after {
   content: ":";
 }
-dl.field-list dd {
-  padding-left: 0.5em;
-  margin-top: 0;
-  margin-left: 0;
-  margin-bottom: 0.25rem;
-}
-dl.field-list p {
-  margin: 0;
-}
-dl.field-list ul {
-  margin: 0;
-  padding-left: 1em;
-}
 
+@media (min-width: 768px) {
+  dl.field-list {
+    display: grid;
+    grid-template-columns: fit-content(30%) auto;
+  }
+  dl.field-list dt {
+    padding-left: 0;
+    padding-right: 0.5em;
+    margin-bottom: 0.25rem;
+  }
+  dl.field-list dd {
+    padding-left: 0.5em;
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0.25rem;
+  }
+  dl.field-list p:last-child {
+    margin: 0;
+  }
+  dl.field-list ul:last-child {
+    margin: 0;
+  }
+}
 .rst-content dl.php {
   border-radius: 0.375rem;
   margin-bottom: 1rem;

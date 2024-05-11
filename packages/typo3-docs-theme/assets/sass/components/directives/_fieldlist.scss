@@ -1,27 +1,37 @@
 dl.field-list {
-    display: grid;
-    grid-template-columns: fit-content(30%) auto;
     dt {
         font-weight: bold;
-        word-break: break-word;
-        padding-left: 0;
-        padding-right: .5em;
-        margin-bottom: $spacer * .25;
     }
+
     & > dt:after {
         content: ":";
     }
-    dd {
-        padding-left: .5em;
-        margin-top: 0;
-        margin-left: 0;
-        margin-bottom: $spacer * .25;
-    }
-    p {
-          margin: 0;
-    }
-    ul {
-        margin: 0;
-        padding-left: 1em;
+}
+
+@include media-breakpoint-up(md) {
+    dl.field-list {
+        display: grid;
+        grid-template-columns: fit-content(30%) auto;
+
+        dt {
+            padding-left: 0;
+            padding-right: .5em;
+            margin-bottom: $spacer * .25;
+        }
+
+        dd {
+            padding-left: .5em;
+            margin-top: 0;
+            margin-left: 0;
+            margin-bottom: $spacer * .25;
+        }
+
+        p:last-child {
+            margin: 0;
+        }
+
+        ul:last-child {
+            margin: 0;
+        }
     }
 }
