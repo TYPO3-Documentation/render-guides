@@ -1,3 +1,10 @@
+body {
+    --bs-body-font-size: 1.1rem;
+    --bs-body-color: #{$gray-900};
+    --bs-table-color:  #{$gray-900};
+    --bs-emphasis-color:  #{$gray-900};
+}
+
 a {
     color:inherit;
     text-underline-offset: 25%;
@@ -5,29 +12,28 @@ a {
         text-decoration-thickness: 2px;
     }
 }
+
+li {
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
 article {
     a:not([class*="btn"]) {
         @extend .text-break;
         text-decoration: underline;
-        color: $gray-900;
-    }
-    p, li {
         color: $gray-800;
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
+        &:hover {
+            color: $black;
+            text-decoration-thickness: 2px;
+        }
     }
     li::marker {
         color: $orange;
     }
     ol li::marker {
         color: $gray-800;
-    }
-    /**
-     * Headlines todo: why only h3 has an underline?
-     */
-    h3 {
-        padding-bottom: .5rem;
-        border-bottom: 1px solid rgba(0, 0, 0, .1);
     }
 }
 *:focus-visible {
