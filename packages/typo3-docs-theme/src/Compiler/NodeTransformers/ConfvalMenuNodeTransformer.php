@@ -39,6 +39,9 @@ final class ConfvalMenuNodeTransformer implements NodeTransformer
     public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
     {
         assert($node instanceof ConfvalMenuNode);
+        if (count($node->getConfvals()) > 0) {
+            return $node;
+        }
         $confvals = $this->findConfvals($compilerContext->getDocumentNode(), $node);
         if (count($confvals) < 1) {
             $this->logger->warning('No confvals found for the confval-menu', $compilerContext->getLoggerInformation());
