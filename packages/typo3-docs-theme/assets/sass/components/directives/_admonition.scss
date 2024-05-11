@@ -16,7 +16,7 @@
     padding: calc(#{$spacer} / 2) $spacer;
     margin: -$spacer;
     margin-bottom: calc(#{$spacer} / 4);
-    color: $body-color;
+    color: var(--bs-emphasis-color);
     font-weight: bold;
     font-size: 1.25em;
 

@@ -12,6 +12,67 @@ Lists
    :depth: 99
    :local:
 
+Nested list
+===========
+
+*   Introduction
+
+    *   Overview
+    *   Goals
+
+*   Installation
+
+    *   Prerequisites
+
+        *   Operating System
+        *   Software Dependencies
+
+    *   Installation Steps
+
+        *   Downloading the Package
+        *   Installation Procedure
+
+*   Configuration
+
+    *   Basic Configuration
+
+        *   Configuration File
+        *   Settings
+
+    *   Advanced Configuration
+
+        *   Customization
+        *   Environment Variables
+
+*   Usage
+
+    *   Getting Started
+
+        *   Quick Start Guide
+        *   Command Line Interface
+
+    *   Advanced Usage
+
+        *   Tips and Tricks
+        *   Integrations
+
+*   Troubleshooting
+
+    *   Common Issues
+
+        *   Error Messages
+        *   Debugging Techniques
+
+    *   Reporting Bugs
+
+        *   Bug Submission Guidelines
+        *   Providing Feedback
+
+*   References
+
+    *   Documentation
+    *   External Resources
+
 
 Lists within admonitions
 ========================
