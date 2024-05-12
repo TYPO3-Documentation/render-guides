@@ -1,1 +1,4 @@
-<a class="headerlink" href="#{{ node.id }}" data-id="{{ node.id }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode="{{ getRstCodeForLink(node) }}"  title="Reference this definition">¶</a>
+{%- if not node.noindex %}<a class="headerlink" href="#{{ node.id }}" data-id="{{ node.id }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode="{{ getRstCodeForLink(node) }}"  title="Reference this definition">¶</a>
+{% else -%}
+    <span class="headerNoindex" title="This PHP item cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+{% endif -%}

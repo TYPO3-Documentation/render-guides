@@ -16,3 +16,20 @@ PHP Interface with implicit namespace
 
 See also :php:interface:`TYPO3\CMS\Core\TestInterface`,
 for short :php:interface:`TestInterface <TYPO3\CMS\Core\TestInterface>`!
+
+
+..  php:interface:: TYPO3\CMS\Core\TestInterface
+    :noindex:
+
+    Lorem Ipsum Dolor!
+
+    ..  php:method:: setDate(int $year, int $month, int $day)
+        :noindex:
+
+            Set the date.
+
+    ..  php:method:: getDate(): int
+        :noindex:
+
+            Get the date.
+
