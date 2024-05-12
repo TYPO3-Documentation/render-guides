@@ -3542,16 +3542,16 @@
         },
         {
             "name": "t3docs/guides-php-domain",
-            "version": "1.1.1",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3-Documentation/guides-php-domain.git",
-                "reference": "1f09ec276d59c1e0742843e194b006bdfc82e4e2"
+                "reference": "91219d42972091e5ed87b849bfe1f66f5776f8c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/1f09ec276d59c1e0742843e194b006bdfc82e4e2",
-                "reference": "1f09ec276d59c1e0742843e194b006bdfc82e4e2",
+                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/91219d42972091e5ed87b849bfe1f66f5776f8c5",
+                "reference": "91219d42972091e5ed87b849bfe1f66f5776f8c5",
                 "shasum": ""
             },
             "require": {
@@ -3583,22 +3583,22 @@
             "homepage": "https://docs.typo3.org",
             "support": {
                 "issues": "https://github.com/TYPO3-Documentation/guides-php-domain/issues",
-                "source": "https://github.com/TYPO3-Documentation/guides-php-domain/tree/1.1.1"
+                "source": "https://github.com/TYPO3-Documentation/guides-php-domain/tree/1.2.1"
             },
-            "time": "2024-03-30T04:52:19+00:00"
+            "time": "2024-05-12T15:33:17+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v3.9.3",
+            "version": "v3.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "a842d75fed59cdbcbd3a3ad7fb9eb768fc350d58"
+                "reference": "3af5ab2e52279e5e23dc192b1a26db3b8cffa4e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a842d75fed59cdbcbd3a3ad7fb9eb768fc350d58",
-                "reference": "a842d75fed59cdbcbd3a3ad7fb9eb768fc350d58",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3af5ab2e52279e5e23dc192b1a26db3b8cffa4e7",
+                "reference": "3af5ab2e52279e5e23dc192b1a26db3b8cffa4e7",
                 "shasum": ""
             },
             "require": {
@@ -3652,7 +3652,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.9.3"
+                "source": "https://github.com/twigphp/Twig/tree/v3.10.1"
             },
             "funding": [
                 {
@@ -3664,7 +3664,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T11:59:33+00:00"
+            "time": "2024-05-12T06:16:18+00:00"
         },
         {
             "name": "webmozart/assert",
