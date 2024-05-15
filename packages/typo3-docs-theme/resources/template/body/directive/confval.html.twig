@@ -1,5 +1,5 @@
 <dl class="confval">
-    <dt{% if not node.noindex %} id="{{ node.id }}"{% endif -%}>
+    <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif -%}>
         <code class="sig-name descname"><span class="pre">{{ node.plainContent }}</span></code>
         {% if not node.noindex %}
         <a class="headerlink" href="#{{ node.anchor }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="{{ node.anchor }}" data-rstCode="{{ getRstCodeForLink(node) }}"  title="Reference this configuration value">¶</a>
