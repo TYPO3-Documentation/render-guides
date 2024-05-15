@@ -30,7 +30,7 @@ This is source:
 
 ..  code-block:: rst
 
-    ..  php:class:: SomeDateClass
+    ..  php:class:: \Vendor\Extension\Namespace\SomeDateClass
 
         SomeDateClass class
 
@@ -58,7 +58,7 @@ This is source:
             Y-m-d\TH:i:sP
 
 
-..  php:class:: SomeDateClass
+..  php:class:: \Vendor\Extension\Namespace\SomeDateClass
 
     SomeDateClass class
 
