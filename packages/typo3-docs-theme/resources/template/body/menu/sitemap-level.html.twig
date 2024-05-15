@@ -1,7 +1,7 @@
 <li class="toctree-l{{ menuEntry.level - 1 }} {%- if menu.currentPath == entry.url %} current {%- endif -%}{% if entry.url in menu.rootlinePaths %} active {%- endif -%}">
     <a href="{{ renderLink(menuEntry.url) }}"
        class="reference internal {%- if entry.url in menu.rootlinePaths %} active {%- endif -%}">
-        {{ renderNode(menuEntry.value.value) }}
+        {{ renderPlainText(menuEntry.value) }}
     </a>
 
     {%- if menuEntry.children|length %}

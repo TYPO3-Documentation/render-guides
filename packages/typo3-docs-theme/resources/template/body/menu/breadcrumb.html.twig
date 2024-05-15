@@ -2,9 +2,9 @@
 <ol class="breadcrumb">
     {% for entry in rootline -%}
         {%- if entry.current %}
-            <li aria-current="page"  class="breadcrumb-item  active">{{ entry.value.toString }}</li>
+            <li aria-current="page"  class="breadcrumb-item  active">{{ renderPlainText(entry.value) }}</li>
         {% else -%}
-            <li class="breadcrumb-item"><a href="{{ renderLink(entry.url) }}">{{ entry.value.toString }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ renderLink(entry.url) }}">{{ renderPlainText(entry.value) }}</a></li>
         {% endif -%}
     {% endfor %}
 </ol>
