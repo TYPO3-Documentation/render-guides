@@ -1,26 +1,26 @@
-.. include:: /Includes.rst.txt
+..  include:: /Includes.rst.txt
 
-.. _sphinxcontrib-PHP-Domain:
+..  _sphinxcontrib-PHP-Domain:
 
 ========================
 Phpdomain
 ========================
 
-.. seealso::
+..  seealso::
 
-   *  Find the original Sphinx extension at PyPi, the Python Package Index:
-      `sphinxcontrib-phpdomain
-      <https://pypi.org/project/sphinxcontrib-phpdomain/>`__.
+    *  Find the original Sphinx extension at PyPi, the Python Package Index:
+        `sphinxcontrib-phpdomain
+        <https://pypi.org/project/sphinxcontrib-phpdomain/>`__.
 
-   *  We are using a fork and the branch `develop-for-typo3
-      <https://github.com/TYPO3-Documentation/sphinxcontrib-phpdomain/tree/develop-for-typo3>`__
+    *  We are using a fork and the branch `develop-for-typo3
+        <https://github.com/TYPO3-Documentation/sphinxcontrib-phpdomain/tree/develop-for-typo3>`__
 
 
-.. contents:: This page
-   :backlinks: top
-   :class: compact-list
-   :depth: 99
-   :local:
+..  contents:: This page
+    :backlinks: top
+    :class: compact-list
+    :depth: 99
+    :local:
 
 
 Quick Sample
@@ -28,62 +28,62 @@ Quick Sample
 
 This is source:
 
-.. code-block:: rst
+..  code-block:: rst
 
-   .. php:class:: SomeDateClass
+    ..  php:class:: SomeDateClass
 
-      SomeDateClass class
+        SomeDateClass class
 
-      .. php:method:: setDate($year, $month, $day)
+        ..  php:method:: setDate($year, $month, $day)
 
-         Set the date.
+            Set the date.
 
-         :param int $year: The year.
-         :param int $month: The month.
-         :param int $day: The day.
-         :returns: Either false on failure, or the datetime object for method chaining.
-
-
-      .. php:method:: setTime($hour, $minute[, $second])
-
-         Set the time.
-
-         :param int $hour: The hour
-         :param int $minute: The minute
-         :param int $second: The second
-         :returns: Either false on failure, or the datetime object for method chaining.
-
-      .. php:const:: ATOM
-
-         Y-m-d\TH:i:sP
+            :param int $year: The year.
+            :param int $month: The month.
+            :param int $day: The day.
+            :returns: Either false on failure, or the datetime object for method chaining.
 
 
-.. php:class:: SomeDateClass
+        ..  php:method:: setTime($hour, $minute[, $second])
 
-   SomeDateClass class
+            Set the time.
 
-   .. php:method:: setDate($year, $month, $day)
+            :param int $hour: The hour
+            :param int $minute: The minute
+            :param int $second: The second
+            :returns: Either false on failure, or the datetime object for method chaining.
 
-      Set the date.
+        ..  php:const:: ATOM
 
-      :param int $year: The year.
-      :param int $month: The month.
-      :param int $day: The day.
-      :returns: Either false on failure, or the datetime object for method chaining.
+            Y-m-d\TH:i:sP
 
 
-   .. php:method:: setTime($hour, $minute[, $second])
+..  php:class:: SomeDateClass
 
-      Set the time.
+    SomeDateClass class
 
-      :param int $hour: The hour
-      :param int $minute: The minute
-      :param int $second: The second
-      :returns: Either false on failure, or the datetime object for method chaining.
+    ..  php:method:: setDate($year, $month, $day)
 
-   .. php:const:: ATOM
+        Set the date.
 
-      Y-m-d\TH:i:sP
+        :param int $year: The year.
+        :param int $month: The month.
+        :param int $day: The day.
+        :returns: Either false on failure, or the datetime object for method chaining.
+
+
+    ..  php:method:: setTime($hour, $minute[, $second])
+
+        Set the time.
+
+        :param int $hour: The hour
+        :param int $minute: The minute
+        :param int $second: The second
+        :returns: Either false on failure, or the datetime object for method chaining.
+
+    ..  php:const:: ATOM
+
+        Y-m-d\TH:i:sP
 
 
 
@@ -158,7 +158,7 @@ Classes
 Exceptions
 ==========
 
-.. php:exception:: InvalidArgumentException
+..  php:exception:: InvalidArgumentException
 
    Throw when you get an argument that is bad.
 
@@ -166,49 +166,49 @@ Exceptions
 Interfaces
 ==========
 
-.. php:interface:: DateTimeInterface
+..  php:interface:: DateTimeInterface
 
-   Datetime interface
+    Datetime interface
 
-   .. php:method:: setDate($year, $month, $day)
+    ..  php:method:: setDate($year, $month, $day)
 
-      Set the date in the datetime object
+        Set the date in the datetime object
 
-      :param int $year: The year.
-      :param int $month: The month.
-      :param int $day: The day.
+        :param int $year: The year.
+        :param int $month: The month.
+        :param int $day: The day.
 
-   .. php:method:: setTime($hour, $minute[, $second])
+    ..  php:method:: setTime($hour, $minute[, $second])
 
-      Set the time
+        Set the time
 
-      :param int $hour: The hour
-      :param int $minute: The minute
-      :param int $second: The second
+        :param int $hour: The hour
+        :param int $minute: The minute
+        :param int $second: The second
 
-   .. php:const:: ATOM
+    ..  php:const:: ATOM
 
-      Y-m-d\TH:i:sP
+        Y-m-d\TH:i:sP
 
-   .. php:attr:: testattr
+    ..  php:attr:: testattr
 
-      Value of some attribute
+        Value of some attribute
 
-.. php:interface:: OtherInterface
+..  php:interface:: OtherInterface
 
-   Another interface
+    Another interface
 
 
 Traits
 ======
 
-.. php:trait:: LogTrait
+..  php:trait:: LogTrait
 
-   A logging trait
+    A logging trait
 
-   .. php:method:: log($level, $string)
+    ..  php:method:: log($level, $string)
 
-      A method description.
+        A method description.
 
 
 Test Case - Global symbols with no namespaces
@@ -252,15 +252,15 @@ Test Case - Global symbols with no namespaces
 
 :php:func:`LogTrait::log()`
 
-.. php:namespace:: LibraryName
+..  php:namespace:: LibraryName
 
 
 Namespaced elements
 ===================
 
-.. php:exception:: NamespaceException
+..  php:exception:: NamespaceException
 
-   This exception is in a namespace.
+    This exception is in a namespace.
 
 
 ..  php:class:: LibraryClass
@@ -431,19 +431,19 @@ Any Cross Ref
 Nested namespaces
 =================
 
-.. php:namespace:: LibraryName\SubPackage
+..  php:namespace:: LibraryName\SubPackage
 
-.. php:exception:: NestedNamespaceException
+..  php:exception:: NestedNamespaceException
 
-   In a package
+    In a package
 
-.. php:class:: SubpackageClass
+..  php:class:: SubpackageClass
 
-   A class in a subpackage
+    A class in a subpackage
 
-.. php:interface:: SubpackageInterface
+..  php:interface:: SubpackageInterface
 
-   A class in a subpackage
+    A class in a subpackage
 
 Test Case - Test subpackage links
 ---------------------------------
@@ -460,50 +460,50 @@ Test Case - Test subpackage links
 Return Types
 ============
 
-.. php:namespace:: OtherLibrary
+..  php:namespace:: OtherLibrary
 
-.. php:class:: ReturningClass
+..  php:class:: ReturningClass
 
-   A class to do some returning.
+    A class to do some returning.
 
-   .. php:method:: returnClassFromSameNamespace()
+    ..  php:method:: returnClassFromSameNamespace()
 
-      :returns: An object instance of a class from the same namespace.
-      :returntype: OtherLibrary\\ReturnedClass
+        :returns: An object instance of a class from the same namespace.
+        :returntype: OtherLibrary\\ReturnedClass
 
-   .. php:method:: returnClassFromOtherNamespace()
+    ..  php:method:: returnClassFromOtherNamespace()
 
-      :returns: An object instance of a class from another namespace.
-      :returntype: LibraryName\\SubPackage\\SubpackageInterface
+        :returns: An object instance of a class from another namespace.
+        :returntype: LibraryName\\SubPackage\\SubpackageInterface
 
-   .. php:method:: returnClassConstant()
+    ..  php:method:: returnClassConstant()
 
-      :returns: The value of a specific class constant.
-      :returntype: LibraryName\\NamespaceClass::NAMESPACE_CONST
+        :returns: The value of a specific class constant.
+        :returntype: LibraryName\\NamespaceClass::NAMESPACE_CONST
 
-   .. php:method:: returnGlobalConstant()
+    ..  php:method:: returnGlobalConstant()
 
-      :returns: The value of a specific global constant.
-      :returntype: SOME_CONSTANT
+        :returns: The value of a specific global constant.
+        :returntype: SOME_CONSTANT
 
-   .. php:method:: returnExceptionInstance()
+    ..  php:method:: returnExceptionInstance()
 
-      :returns: An instance of an exception.
-      :returntype: InvalidArgumentException
+        :returns: An instance of an exception.
+        :returntype: InvalidArgumentException
 
-   .. php:method:: returnScalarType()
+    ..  php:method:: returnScalarType()
 
-      :returns: A scalar string type.
-      :returntype: string
+        :returns: A scalar string type.
+        :returntype: string
 
-   .. php:method:: returnUnionType()
+    ..  php:method:: returnUnionType()
 
-      :returns: Any of a whole bunch of things specified with a PHP 8 union type.
-      :returntype: `int|string|OtherLibrary\\ReturnedClass|LibraryName\\SubPackage\\SubpackageInterface|null`
+        :returns: Any of a whole bunch of things specified with a PHP 8 union type.
+        :returntype: `int|string|OtherLibrary\\ReturnedClass|LibraryName\\SubPackage\\SubpackageInterface|null`
 
-.. php:class:: ReturnedClass
+..  php:class:: ReturnedClass
 
-   A class to return.
+    A class to return.
 
 
 
@@ -517,22 +517,22 @@ repository markstory/sphinxcontrib-phpdomain
 
 namespace ``Imagine\Draw``
 
-.. php:namespace:: Imagine\Draw
+..  php:namespace:: Imagine\Draw
 
-.. php:class:: DrawerInterface
+..  php:class:: DrawerInterface
 
 Instance of this interface is returned by.
 
-.. php:method:: arc(PointInterface $center, BoxInterface $size, $start, $end, Color $color)
+..  php:method:: arc(PointInterface $center, BoxInterface $size, $start, $end, Color $color)
 
-   Draws an arc on a starting at a given x, y coordinates under a given start and end angles
+    Draws an arc on a starting at a given x, y coordinates under a given start and end angles
 
-   :param Imagine\Image\PointInterface $center: Center of the arc.
-   :param Imagine\Image\BoxInterface $size: Size of the bounding box.
-   :param integer $start: Start angle.
-   :param integer $end: End angle.
-   :param Imagine\Image\Color $color: Line color.
+    :param Imagine\Image\PointInterface $center: Center of the arc.
+    :param Imagine\Image\BoxInterface $size: Size of the bounding box.
+    :param integer $start: Start angle.
+    :param integer $end: End angle.
+    :param Imagine\Image\Color $color: Line color.
 
-   :throws: Imagine\Exception\RuntimeException
+    :throws: Imagine\Exception\RuntimeException
 
-   :returns: Imagine\Draw\DrawerInterface
+    :returns: Imagine\Draw\DrawerInterface
