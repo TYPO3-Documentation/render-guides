@@ -7,7 +7,6 @@ namespace T3Docs\Typo3DocsTheme\Twig;
 use League\Flysystem\Exception;
 use LogicException;
 use phpDocumentor\Guides\Nodes\AnchorNode;
-use phpDocumentor\Guides\Nodes\CompoundNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\LinkTargetNode;
 use phpDocumentor\Guides\Nodes\Metadata\NoSearchNode;
@@ -37,8 +36,7 @@ final class TwigExtension extends AbstractExtension
         private readonly UrlGeneratorInterface         $urlGenerator,
         private readonly Typo3DocsThemeSettings        $themeSettings,
         private readonly DocumentNameResolverInterface $documentNameResolver,
-    )
-    {
+    ) {
         if (strlen((string)getenv('GITHUB_ACTIONS')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
             // The environment variable 'TYPO3AZUREEDGEURIVERSION' is set during
@@ -86,10 +84,17 @@ final class TwigExtension extends AbstractExtension
             }
             return $string;
         }
+        if ($value instanceof LinkTargetNode) {
+            return $this->renderPlainText($value->getLinkText());
+        }
         if ($value instanceof Node) {
             return $this->renderPlainText($value->getValue());
         }
-        throw new \Exception('Cannot render type ' . $value::class . ' as plaintext. ');
+        if (is_object($value)) {
+            throw new \Exception('Cannot render object ' . get_class($value) . ' as plaintext.');
+        } else {
+            throw new \Exception('Cannot render type ' . gettype($value) . ' as plaintext.');
+        }
     }
 
     /**
@@ -233,8 +238,7 @@ final class TwigExtension extends AbstractExtension
         array  $context,
         string $sourcePath,
         string $targetPath
-    ): string
-    {
+    ): string {
         $outputPath = $this->copyAsset($context['env'] ?? null, $sourcePath, $targetPath);
         $relativePath = $this->urlGenerator->generateInternalUrl($context['env'] ?? null, trim($outputPath, '/'));
         // make it relative so it plays nice with the base tag in the HEAD
@@ -245,8 +249,7 @@ final class TwigExtension extends AbstractExtension
         RenderContext|null $renderContext,
         string             $sourcePath,
         string             $targetPath
-    ): string
-    {
+    ): string {
         if (!$renderContext instanceof RenderContext) {
             return $sourcePath;
         }

@@ -1,7 +1,7 @@
 <li class="{%- if menu.currentPath == entry.url %} current {%- endif -%}{% if entry.url in menu.rootlinePaths %} active {%- endif -%}">
     <a href="{{ renderLink(menuEntry.url) }}"
        {%- if menu.currentPath == entry.url %} aria-current="page" {%- endif -%}>
-        {{ renderPlainText(menuEntry.value.value) }}
+        {{ renderPlainText(menuEntry.value) }}
     </a>
 
     {%- if menuEntry.children|length %}
