@@ -2,9 +2,9 @@
 
 ..  _typesetting:
 
-=================
-Typesetting `code`
-==================
+=================================================
+Typesetting :php:`code` **Header** :ref:`headers`
+=================================================
 
 ..  contents:: Table of contents
 

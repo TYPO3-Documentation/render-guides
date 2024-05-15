@@ -7,9 +7,11 @@ namespace T3Docs\Typo3DocsTheme\Twig;
 use League\Flysystem\Exception;
 use LogicException;
 use phpDocumentor\Guides\Nodes\AnchorNode;
+use phpDocumentor\Guides\Nodes\CompoundNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\LinkTargetNode;
 use phpDocumentor\Guides\Nodes\Metadata\NoSearchNode;
+use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RenderContext;
@@ -31,11 +33,12 @@ final class TwigExtension extends AbstractExtension
     private string $typo3AzureEdgeURI = '';
 
     public function __construct(
-        private readonly LoggerInterface $logger,
-        private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly Typo3DocsThemeSettings $themeSettings,
+        private readonly LoggerInterface               $logger,
+        private readonly UrlGeneratorInterface         $urlGenerator,
+        private readonly Typo3DocsThemeSettings        $themeSettings,
         private readonly DocumentNameResolverInterface $documentNameResolver,
-    ) {
+    )
+    {
         if (strlen((string)getenv('GITHUB_ACTIONS')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
             // The environment variable 'TYPO3AZUREEDGEURIVERSION' is set during
@@ -52,6 +55,7 @@ final class TwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('renderPlainText', $this->renderPlainText(...), ['needs_context' => false]),
             new TwigFunction('getAnchorIdOfSection', $this->getAnchorIdOfSection(...), ['needs_context' => true]),
             new TwigFunction('getEditOnGitHubLink', $this->getEditOnGitHubLink(...), ['needs_context' => true]),
             new TwigFunction('getCurrentFilename', $this->getCurrentFilename(...), ['needs_context' => true]),
@@ -67,6 +71,27 @@ final class TwigExtension extends AbstractExtension
         ];
     }
 
+    public function renderPlainText(mixed $value): string
+    {
+        if ($value === null) {
+            return '';
+        }
+        if (is_scalar($value)) {
+            return (string)$value;
+        }
+        if (is_array($value)) {
+            $string = '';
+            foreach ($value as $child) {
+                $string .= $this->renderPlainText($child);
+            }
+            return $string;
+        }
+        if ($value instanceof Node) {
+            return $this->renderPlainText($value->getValue());
+        }
+        throw new \Exception('Cannot render type ' . $value::class . ' as plaintext. ');
+    }
+
     /**
      * @param array{env: RenderContext} $context
      */
@@ -78,7 +103,7 @@ final class TwigExtension extends AbstractExtension
                 return false;
             }
             $document = $renderContext->getDocumentNodeForEntry($renderContext->getCurrentDocumentEntry());
-        } catch(\Exception) {
+        } catch (\Exception) {
             return false;
         }
         $headerNodes = $document->getHeaderNodes();
@@ -139,6 +164,7 @@ final class TwigExtension extends AbstractExtension
         }
         return '';
     }
+
     /**
      * @param array{env: RenderContext} $context
      */
@@ -157,6 +183,7 @@ final class TwigExtension extends AbstractExtension
         $githubDirectory = trim($this->themeSettings->getSettings('edit_on_github_directory', 'Documentation'), '/');
         return sprintf("https://github.com/%s/edit/%s/%s/%s.rst", $githubButton, $githubBranch, $githubDirectory, $currentFileName);
     }
+
     /**
      * @param array{env: RenderContext} $context
      * @return list<string>
@@ -168,6 +195,7 @@ final class TwigExtension extends AbstractExtension
 
         return $outputArray;
     }
+
     /**
      * @param array{env: RenderContext} $context
      */
@@ -175,7 +203,7 @@ final class TwigExtension extends AbstractExtension
     {
         $renderContext = $this->getRenderContext($context);
         try {
-            return  $renderContext->getCurrentFileName();
+            return $renderContext->getCurrentFileName();
         } catch (\Exception) {
             return '';
         }
@@ -202,10 +230,11 @@ final class TwigExtension extends AbstractExtension
      * @return string
      */
     public function copyDownload(
-        array $context,
+        array  $context,
         string $sourcePath,
         string $targetPath
-    ): string {
+    ): string
+    {
         $outputPath = $this->copyAsset($context['env'] ?? null, $sourcePath, $targetPath);
         $relativePath = $this->urlGenerator->generateInternalUrl($context['env'] ?? null, trim($outputPath, '/'));
         // make it relative so it plays nice with the base tag in the HEAD
@@ -214,9 +243,10 @@ final class TwigExtension extends AbstractExtension
 
     private function copyAsset(
         RenderContext|null $renderContext,
-        string $sourcePath,
-        string $targetPath
-    ): string {
+        string             $sourcePath,
+        string             $targetPath
+    ): string
+    {
         if (!$renderContext instanceof RenderContext) {
             return $sourcePath;
         }
@@ -254,7 +284,7 @@ final class TwigExtension extends AbstractExtension
                     $renderContext->getLoggerInformation(),
                 );
             }
-        } catch (LogicException | Exception $e) {
+        } catch (LogicException|Exception $e) {
             $this->logger->error(
                 sprintf('Unable to write file "%s", %s', $outputPath, $e->getMessage()),
                 $renderContext->getLoggerInformation(),
