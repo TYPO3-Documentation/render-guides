@@ -14,7 +14,7 @@
         "symfony/clock": "^6.4",
         "symfony/finder": "^6.4",
         "symfony/http-client": "^6.4",
-        "t3docs/console-command": "@dev",
+        "t3docs/console-command": "^0.1.3",
         "t3docs/guides-php-domain": "^1.0"
     },
     "require-dev": {

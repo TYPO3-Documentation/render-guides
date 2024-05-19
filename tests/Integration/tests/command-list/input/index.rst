@@ -2,6 +2,8 @@
 Document Title
 ==============
 
+..  contents::
+
 Cache commands
 ==============
 
