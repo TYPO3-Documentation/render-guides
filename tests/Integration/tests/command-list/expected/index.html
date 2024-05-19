@@ -1,6 +1,25 @@
 <!-- content start -->
                 <section class="section" id="document-title">
             <h1>Document Title<a class="headerlink" href="#document-title" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <div class="contents">
+        <ul class="menu-level">
+    <li class="toc-item">
+    <a href="#cache-commands">Cache commands</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#global-commands">Global commands</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#all-commands">All commands</a>
+
+
+</li>
+    </ul>
+</div>
             <section class="section" id="cache-commands">
             <h2>Cache commands<a class="headerlink" href="#cache-commands" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
             <dl class="command">
@@ -29,9 +48,9 @@
                                     <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-flush-group">
         <code class="sig-name descname"><span class="pre">--group / -g</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-flush-group" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-flush-group" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -81,9 +100,9 @@
                                     <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-warmup-group">
         <code class="sig-name descname"><span class="pre">--group / -g</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-warmup-group" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-warmup-group" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -113,119 +132,6 @@
             <h2>Global commands<a class="headerlink" href="#global-commands" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
             <dl class="command">
     <dt>
-        <code class="sig-name descname"><span class="pre">bin/typo3 completion</span></code>
-                    <span class="headerNoindex" title="This command cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
-        </dt>
-    <dd>
-        <div class="command-description">
-            Dump the shell completion script
-        </div>
-                    <div class="command-usage">
-                <div class="h4">Usage</div>
-                                    <div class="code-block-wrapper" translate="no">
-
-        <pre class="code-block"><code class="hljs bash">bin/typo3 completion [--debug] [--] [&lt;shell&gt;]</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
-    </div>
-                            </div>
-                            <div class="command-arguments">
-                <div class="h4">Arguments</div>
-                                    <dl class="argument">
-    <dt id="">
-        <code class="sig-name descname"><span class="pre">shell</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
-        </dt>
-    <dd>
-        <dl class="field-list simple">
-            </dl>
-        <div class="argument-description">
-            The shell type (e.g. &quot;bash&quot;), the value of the &quot;$SHELL&quot; env var will be used if this is not given
-        </div>
-            </dd>
-</dl>
-                            </div>
-                            <div class="command-options">
-                <div class="h4">Options</div>
-                                    <dl class="option">
-    <dt id="">
-        <code class="sig-name descname"><span class="pre">--debug</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
-        </dt>
-    <dd>
-        <div class="argument-description">
-            Tail the completion debug log
-        </div>
-        <dl class="field-list simple">
-            <dt class="field-even">Value</dt>
-            <dd class="field-even">None allowed            </dd>
-                            <dt class="field-even">Default value</dt>
-                <dd class="field-even">
-                    false
-                </dd>
-            </dl>
-            </dd>
-</dl>
-                            </div>
-                            <div class="command-description-help">
-                <div class="h4">Help</div>
-
-    <p>The <code>completion</code> command dumps the shell completion script required
-to use shell autocompletion (currently, bash, fish, zsh completion are supported).</p>
-<div class="rubric">Static installation</div>
-    <p>Dump the script to a global completion file and restart your shell:</p>
-<div class="code-block-wrapper" translate="no">
-
-        <pre class="code-block"><code>bin/typo3 completion  | sudo tee /etc/bash_completion.d/typo3
-</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
-    </div>
-    <p>Or dump the script to a local file and source it:</p>
-<div class="code-block-wrapper" translate="no">
-
-        <pre class="code-block"><code>bin/typo3 completion  &gt; completion.sh
-
-# source the file whenever you use the project
-source completion.sh
-
-# or add this line at the end of your &quot;~/.bashrc&quot; file:
-source /path/to/completion.sh
-</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
-    </div><div class="rubric">Dynamic installation</div>
-    <p>Add this to the end of your shell configuration file (e.g. <code>&quot;~/.bashrc&quot;</code>):</p>
-<div class="code-block-wrapper" translate="no">
-
-        <pre class="code-block"><code>eval &quot;$(/var/www/html/bin/typo3 completion )&quot;</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
-    </div>
-            </div>
-                    </dd>
-</dl><dl class="command">
-    <dt>
         <code class="sig-name descname"><span class="pre">bin/typo3 list</span></code>
                     <span class="headerNoindex" title="This command cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
         </dt>
@@ -250,9 +156,9 @@ source /path/to/completion.sh
                             <div class="command-arguments">
                 <div class="h4">Arguments</div>
                                     <dl class="argument">
-    <dt id="">
+    <dt id="console-argument-list-namespace">
         <code class="sig-name descname"><span class="pre">namespace</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-argument-list-namespace" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-argument-list-namespace" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <dl class="field-list simple">
@@ -266,9 +172,9 @@ source /path/to/completion.sh
                             <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-raw">
         <code class="sig-name descname"><span class="pre">--raw</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-raw" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-raw" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -285,9 +191,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-format">
         <code class="sig-name descname"><span class="pre">--format</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-format" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-format" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -304,9 +210,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-short">
         <code class="sig-name descname"><span class="pre">--short</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-short" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-short" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -405,9 +311,9 @@ source /path/to/completion.sh
                                     <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-driver">
         <code class="sig-name descname"><span class="pre">--driver</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-driver" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-driver" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -420,9 +326,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-host">
         <code class="sig-name descname"><span class="pre">--host</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-host" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-host" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -439,9 +345,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-port">
         <code class="sig-name descname"><span class="pre">--port</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-port" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-port" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -458,9 +364,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-dbname">
         <code class="sig-name descname"><span class="pre">--dbname</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-dbname" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-dbname" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -477,9 +383,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-username">
         <code class="sig-name descname"><span class="pre">--username</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-username" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-username" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -496,9 +402,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-password">
         <code class="sig-name descname"><span class="pre">--password</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-password" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-password" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -511,9 +417,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-admin-username">
         <code class="sig-name descname"><span class="pre">--admin-username</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-admin-username" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-admin-username" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -530,9 +436,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-admin-user-password">
         <code class="sig-name descname"><span class="pre">--admin-user-password</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-admin-user-password" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-admin-user-password" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -545,9 +451,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-admin-email">
         <code class="sig-name descname"><span class="pre">--admin-email</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-admin-email" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-admin-email" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -564,9 +470,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-project-name">
         <code class="sig-name descname"><span class="pre">--project-name</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-project-name" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-project-name" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -583,9 +489,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-create-site">
         <code class="sig-name descname"><span class="pre">--create-site</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-create-site" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-create-site" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -602,9 +508,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-server-type">
         <code class="sig-name descname"><span class="pre">--server-type</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-server-type" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-server-type" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -621,9 +527,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-force">
         <code class="sig-name descname"><span class="pre">--force</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-force" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-force" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -700,9 +606,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             <section class="section" id="all-commands">
             <h2>All commands<a class="headerlink" href="#all-commands" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
             <dl class="command">
-    <dt id="">
+    <dt id="console-command-complete">
         <code class="sig-name descname"><span class="pre">_complete</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-complete" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-complete" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -725,9 +631,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                                     <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-shell">
         <code class="sig-name descname"><span class="pre">--shell / -s</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-shell" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-shell" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -740,9 +646,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-input">
         <code class="sig-name descname"><span class="pre">--input / -i</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-input" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-input" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -759,9 +665,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-current">
         <code class="sig-name descname"><span class="pre">--current / -c</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-current" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-current" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -774,9 +680,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-api-version">
         <code class="sig-name descname"><span class="pre">--api-version / -a</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-api-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-api-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -789,9 +695,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-symfony">
         <code class="sig-name descname"><span class="pre">--symfony / -S</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-symfony" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-symfony" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -804,9 +710,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -823,9 +729,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -842,9 +748,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -861,9 +767,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -880,9 +786,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -895,9 +801,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -914,9 +820,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-complete-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-complete-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-complete-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -941,9 +847,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-completion">
         <code class="sig-name descname"><span class="pre">completion</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-completion" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-completion" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -966,9 +872,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                             <div class="command-arguments">
                 <div class="h4">Arguments</div>
                                     <dl class="argument">
-    <dt id="">
+    <dt id="console-argument-completion-shell">
         <code class="sig-name descname"><span class="pre">shell</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-argument-completion-shell" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-argument-completion-shell" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <dl class="field-list simple">
@@ -982,9 +888,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                             <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-completion-debug">
         <code class="sig-name descname"><span class="pre">--debug</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-completion-debug" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-completion-debug" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1001,9 +907,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-completion-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-completion-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-completion-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1020,9 +926,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-completion-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-completion-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-completion-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1039,9 +945,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-completion-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-completion-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-completion-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1058,9 +964,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-completion-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-completion-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-completion-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1077,9 +983,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-completion-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-completion-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-completion-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1092,9 +998,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-completion-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-completion-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-completion-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1111,9 +1017,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-completion-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-completion-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-completion-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1183,9 +1089,9 @@ source /path/to/completion.sh
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-help">
         <code class="sig-name descname"><span class="pre">help</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -1208,9 +1114,9 @@ source /path/to/completion.sh
                             <div class="command-arguments">
                 <div class="h4">Arguments</div>
                                     <dl class="argument">
-    <dt id="">
+    <dt id="console-argument-help-command-name">
         <code class="sig-name descname"><span class="pre">command_name</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-argument-help-command-name" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-argument-help-command-name" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <dl class="field-list simple">
@@ -1224,9 +1130,9 @@ source /path/to/completion.sh
                             <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-help-format">
         <code class="sig-name descname"><span class="pre">--format</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-help-format" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-help-format" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1243,9 +1149,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-help-raw">
         <code class="sig-name descname"><span class="pre">--raw</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-help-raw" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-help-raw" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1262,9 +1168,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-help-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-help-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-help-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1281,9 +1187,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-help-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-help-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-help-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1300,9 +1206,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-help-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-help-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-help-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1319,9 +1225,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-help-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-help-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-help-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1338,9 +1244,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-help-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-help-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-help-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1353,9 +1259,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-help-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-help-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-help-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1372,9 +1278,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-help-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-help-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-help-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1425,9 +1331,9 @@ source /path/to/completion.sh
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-list">
         <code class="sig-name descname"><span class="pre">list</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-list" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-list" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -1450,9 +1356,9 @@ source /path/to/completion.sh
                             <div class="command-arguments">
                 <div class="h4">Arguments</div>
                                     <dl class="argument">
-    <dt id="">
+    <dt id="console-argument-list-namespace">
         <code class="sig-name descname"><span class="pre">namespace</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-argument-list-namespace" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-argument-list-namespace" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <dl class="field-list simple">
@@ -1466,9 +1372,9 @@ source /path/to/completion.sh
                             <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-raw">
         <code class="sig-name descname"><span class="pre">--raw</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-raw" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-raw" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1485,9 +1391,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-format">
         <code class="sig-name descname"><span class="pre">--format</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-format" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-format" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1504,9 +1410,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-short">
         <code class="sig-name descname"><span class="pre">--short</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-short" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-short" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1523,9 +1429,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1542,9 +1448,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1561,9 +1467,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1580,9 +1486,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1599,9 +1505,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1614,9 +1520,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1633,9 +1539,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-list-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-list-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1709,9 +1615,9 @@ source /path/to/completion.sh
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-setup">
         <code class="sig-name descname"><span class="pre">setup</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-setup" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-setup" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -1734,9 +1640,9 @@ source /path/to/completion.sh
                                     <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-driver">
         <code class="sig-name descname"><span class="pre">--driver</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-driver" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-driver" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1749,9 +1655,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-host">
         <code class="sig-name descname"><span class="pre">--host</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-host" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-host" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1768,9 +1674,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-port">
         <code class="sig-name descname"><span class="pre">--port</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-port" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-port" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1787,9 +1693,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-dbname">
         <code class="sig-name descname"><span class="pre">--dbname</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-dbname" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-dbname" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1806,9 +1712,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-username">
         <code class="sig-name descname"><span class="pre">--username</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-username" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-username" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1825,9 +1731,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-password">
         <code class="sig-name descname"><span class="pre">--password</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-password" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-password" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1840,9 +1746,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-admin-username">
         <code class="sig-name descname"><span class="pre">--admin-username</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-admin-username" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-admin-username" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1859,9 +1765,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-admin-user-password">
         <code class="sig-name descname"><span class="pre">--admin-user-password</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-admin-user-password" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-admin-user-password" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1874,9 +1780,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-admin-email">
         <code class="sig-name descname"><span class="pre">--admin-email</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-admin-email" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-admin-email" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1893,9 +1799,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-project-name">
         <code class="sig-name descname"><span class="pre">--project-name</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-project-name" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-project-name" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1912,9 +1818,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-create-site">
         <code class="sig-name descname"><span class="pre">--create-site</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-create-site" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-create-site" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1931,9 +1837,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-server-type">
         <code class="sig-name descname"><span class="pre">--server-type</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-server-type" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-server-type" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1950,9 +1856,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-force">
         <code class="sig-name descname"><span class="pre">--force</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-force" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-force" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1969,9 +1875,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -1988,9 +1894,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2007,9 +1913,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2026,9 +1932,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2045,9 +1951,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2064,9 +1970,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2079,9 +1985,9 @@ source /path/to/completion.sh
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2154,9 +2060,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-cache-flush">
         <code class="sig-name descname"><span class="pre">cache:flush</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-cache-flush" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-cache-flush" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -2179,9 +2085,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                                     <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-flush-group">
         <code class="sig-name descname"><span class="pre">--group / -g</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-flush-group" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-flush-group" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2198,9 +2104,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-flush-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-flush-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-flush-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2217,9 +2123,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-flush-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-flush-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-flush-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2236,9 +2142,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-flush-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-flush-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-flush-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2255,9 +2161,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-flush-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-flush-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-flush-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2274,9 +2180,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-flush-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-flush-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-flush-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2289,9 +2195,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-flush-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-flush-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-flush-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2308,9 +2214,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-flush-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-flush-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-flush-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2335,9 +2241,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-cache-warmup">
         <code class="sig-name descname"><span class="pre">cache:warmup</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-cache-warmup" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-cache-warmup" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -2360,9 +2266,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                                     <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-warmup-group">
         <code class="sig-name descname"><span class="pre">--group / -g</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-warmup-group" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-warmup-group" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2379,9 +2285,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-warmup-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-warmup-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-warmup-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2398,9 +2304,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-warmup-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-warmup-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-warmup-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2417,9 +2323,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-warmup-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-warmup-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-warmup-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2436,9 +2342,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-warmup-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-warmup-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-warmup-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2455,9 +2361,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-warmup-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-warmup-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-warmup-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2470,9 +2376,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-warmup-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-warmup-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-warmup-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2489,9 +2395,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-cache-warmup-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-cache-warmup-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-cache-warmup-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2516,9 +2422,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-language-update">
         <code class="sig-name descname"><span class="pre">language:update</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-language-update" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-language-update" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -2541,9 +2447,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                             <div class="command-arguments">
                 <div class="h4">Arguments</div>
                                     <dl class="argument">
-    <dt id="">
+    <dt id="console-argument-language-update-locales">
         <code class="sig-name descname"><span class="pre">locales</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-argument-language-update-locales" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-argument-language-update-locales" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <dl class="field-list simple">
@@ -2557,9 +2463,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                             <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-no-progress">
         <code class="sig-name descname"><span class="pre">--no-progress</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-no-progress" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-no-progress" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2576,9 +2482,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-fail-on-warnings">
         <code class="sig-name descname"><span class="pre">--fail-on-warnings</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-fail-on-warnings" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-fail-on-warnings" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2595,9 +2501,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-skip-extension">
         <code class="sig-name descname"><span class="pre">--skip-extension</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-skip-extension" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-skip-extension" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2614,9 +2520,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2633,9 +2539,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2652,9 +2558,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2671,9 +2577,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2690,9 +2596,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2705,9 +2611,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2724,9 +2630,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-language-update-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-language-update-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-language-update-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2751,9 +2657,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-setup-begroups-default">
         <code class="sig-name descname"><span class="pre">setup:begroups:default</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-setup-begroups-default" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-setup-begroups-default" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -2776,9 +2682,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                                     <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-begroups-default-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-begroups-default-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-begroups-default-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2795,9 +2701,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-begroups-default-groups">
         <code class="sig-name descname"><span class="pre">--groups / -g</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-begroups-default-groups" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-begroups-default-groups" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2814,9 +2720,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-begroups-default-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-begroups-default-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-begroups-default-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2833,9 +2739,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-begroups-default-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-begroups-default-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-begroups-default-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2852,9 +2758,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-begroups-default-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-begroups-default-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-begroups-default-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2871,9 +2777,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-begroups-default-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-begroups-default-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-begroups-default-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2890,9 +2796,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-begroups-default-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-begroups-default-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-begroups-default-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2905,9 +2811,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-setup-begroups-default-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-setup-begroups-default-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-begroups-default-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2940,9 +2846,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-upgrade-list">
         <code class="sig-name descname"><span class="pre">upgrade:list</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-upgrade-list" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-upgrade-list" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -2965,9 +2871,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                                     <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-list-all">
         <code class="sig-name descname"><span class="pre">--all / -a</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-list-all" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-list-all" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -2984,9 +2890,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-list-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-list-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-list-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3003,9 +2909,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-list-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-list-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-list-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3022,9 +2928,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-list-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-list-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-list-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3041,9 +2947,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-list-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-list-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-list-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3060,9 +2966,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-list-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-list-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-list-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3075,9 +2981,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-list-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-list-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-list-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3094,9 +3000,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-list-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-list-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-list-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3121,9 +3027,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </div>
                     </dd>
 </dl><dl class="command">
-    <dt id="">
+    <dt id="console-command-upgrade-run">
         <code class="sig-name descname"><span class="pre">upgrade:run</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-command-upgrade-run" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-command-upgrade-run" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="command-description">
@@ -3146,9 +3052,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                             <div class="command-arguments">
                 <div class="h4">Arguments</div>
                                     <dl class="argument">
-    <dt id="">
+    <dt id="console-argument-upgrade-run-wizardname">
         <code class="sig-name descname"><span class="pre">wizardName</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-argument-upgrade-run-wizardname" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-argument-upgrade-run-wizardname" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <dl class="field-list simple">
@@ -3162,9 +3068,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
                             <div class="command-options">
                 <div class="h4">Options</div>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-run-help">
         <code class="sig-name descname"><span class="pre">--help / -h</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-run-help" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-run-help" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3181,9 +3087,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-run-quiet">
         <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-run-quiet" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-run-quiet" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3200,9 +3106,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-run-verbose">
         <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-run-verbose" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-run-verbose" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3219,9 +3125,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-run-version">
         <code class="sig-name descname"><span class="pre">--version / -V</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-run-version" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-run-version" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3238,9 +3144,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-run-ansi">
         <code class="sig-name descname"><span class="pre">--ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-run-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-run-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3253,9 +3159,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-run-no-ansi">
         <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-run-no-ansi" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-run-no-ansi" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
@@ -3272,9 +3178,9 @@ when using <code>bash</code> or <code>zsh</code>.</p>
             </dd>
 </dl>
                                     <dl class="option">
-    <dt id="">
+    <dt id="console-option-upgrade-run-no-interaction">
         <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
-                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+                    <a class="headerlink" href="#console-option-upgrade-run-no-interaction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-upgrade-run-no-interaction" data-rstCode=""  title="Reference this configuration value">¶</a>
         </dt>
     <dd>
         <div class="argument-description">
