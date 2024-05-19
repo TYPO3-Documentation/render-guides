@@ -2,6 +2,7 @@
     "name": "t3docs/render-guides",
     "description": "phpDocumentor-based Documentation rendering for docs.typo3.org or custom extensions.",
     "license": "OPL-1.0",
+
     "require": {
         "php": "^8.1",
         "ext-dom": "*",
@@ -14,6 +15,7 @@
         "symfony/clock": "^6.4",
         "symfony/finder": "^6.4",
         "symfony/http-client": "^6.4",
+        "t3docs/console-command": "@dev",
         "t3docs/guides-php-domain": "^1.0"
     },
     "require-dev": {

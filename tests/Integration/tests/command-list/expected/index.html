@@ -1,0 +1,3304 @@
+<!-- content start -->
+                <section class="section" id="document-title">
+            <h1>Document Title<a class="headerlink" href="#document-title" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <section class="section" id="cache-commands">
+            <h2>Cache commands<a class="headerlink" href="#cache-commands" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <dl class="command">
+    <dt>
+        <code class="sig-name descname"><span class="pre">vendor/bin/typo3 cache:flush</span></code>
+                    <span class="headerNoindex" title="This command cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Flush TYPO3 caches.
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">vendor/bin/typo3 cache:flush [-g|--group [GROUP]]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--group / -g</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The cache group to flush (system, pages, di or all)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;all&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>This command is useful for deployments to clear caches during release postparation.</p>
+
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt>
+        <code class="sig-name descname"><span class="pre">vendor/bin/typo3 cache:warmup</span></code>
+                    <span class="headerNoindex" title="This command cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Warmup TYPO3 caches.
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">vendor/bin/typo3 cache:warmup [-g|--group [GROUP]]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--group / -g</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The cache group to warmup (system, pages, di or all)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;all&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>This command is useful for deployments to warmup caches during release preparation.</p>
+
+            </div>
+                    </dd>
+</dl>
+    </section>
+            <section class="section" id="global-commands">
+            <h2>Global commands<a class="headerlink" href="#global-commands" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <dl class="command">
+    <dt>
+        <code class="sig-name descname"><span class="pre">bin/typo3 completion</span></code>
+                    <span class="headerNoindex" title="This command cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Dump the shell completion script
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">bin/typo3 completion [--debug] [--] [&lt;shell&gt;]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                            <div class="command-arguments">
+                <div class="h4">Arguments</div>
+                                    <dl class="argument">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">shell</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <dl class="field-list simple">
+            </dl>
+        <div class="argument-description">
+            The shell type (e.g. &quot;bash&quot;), the value of the &quot;$SHELL&quot; env var will be used if this is not given
+        </div>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--debug</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Tail the completion debug log
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>The <code>completion</code> command dumps the shell completion script required
+to use shell autocompletion (currently, bash, fish, zsh completion are supported).</p>
+<div class="rubric">Static installation</div>
+    <p>Dump the script to a global completion file and restart your shell:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>bin/typo3 completion  | sudo tee /etc/bash_completion.d/typo3
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>Or dump the script to a local file and source it:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>bin/typo3 completion  &gt; completion.sh
+
+# source the file whenever you use the project
+source completion.sh
+
+# or add this line at the end of your &quot;~/.bashrc&quot; file:
+source /path/to/completion.sh
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div><div class="rubric">Dynamic installation</div>
+    <p>Add this to the end of your shell configuration file (e.g. <code>&quot;~/.bashrc&quot;</code>):</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>eval &quot;$(/var/www/html/bin/typo3 completion )&quot;</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt>
+        <code class="sig-name descname"><span class="pre">bin/typo3 list</span></code>
+                    <span class="headerNoindex" title="This command cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+        </dt>
+    <dd>
+        <div class="command-description">
+            List commands
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">bin/typo3 list [--raw] [--format FORMAT] [--short] [--] [&lt;namespace&gt;]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                            <div class="command-arguments">
+                <div class="h4">Arguments</div>
+                                    <dl class="argument">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">namespace</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <dl class="field-list simple">
+            </dl>
+        <div class="argument-description">
+            The namespace name
+        </div>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--raw</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            To output raw command list
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--format</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The output format (txt, xml, json, or md)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;txt&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--short</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            To skip describing commands&#039; arguments
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>The <code>list</code> command lists all commands:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>bin/typo3 list
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>You can also display the commands for a specific namespace:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>bin/typo3 list test
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>You can also output the information in other formats by using the <em>--format</em> option:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>bin/typo3 list --format=xml
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>It&#039;s also possible to get raw list of commands (useful for embedding command runner):</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>bin/typo3 list --raw</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt>
+        <code class="sig-name descname"><span class="pre">bin/typo3 setup</span></code>
+                    <span class="headerNoindex" title="This command cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Setup TYPO3 via CLI using environment variables, CLI options or interactive
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">bin/typo3 setup [--driver [DRIVER]] [--host HOST] [--port [PORT]] [--dbname DBNAME] [--username USERNAME] [--password PASSWORD] [--admin-username [ADMIN-USERNAME]] [--admin-user-password ADMIN-USER-PASSWORD] [--admin-email ADMIN-EMAIL] [--project-name PROJECT-NAME] [--create-site [CREATE-SITE]] [--server-type [SERVER-TYPE]] [--force] [-n|--no-interaction]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--driver</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Select which database driver to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--host</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database host to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;db&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--port</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database port to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;3306&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--dbname</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database name to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;db&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--username</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database username to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;db&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--password</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database password to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--admin-username</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set a username
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;admin&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--admin-user-password</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set users password
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--admin-email</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set users email
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--project-name</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the TYPO3 project name
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;New TYPO3 Project&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--create-site</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Create a basic site setup (root page and site configuration) with the given domain
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--server-type</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Define the web server the TYPO3 installation will be running on
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;other&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--force</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force settings overwrite - use this if TYPO3 has been installed already
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+                <dl>
+                        <dt>The command offers 3 ways to setup TYPO3:</dt>
+
+        <dd>
+
+<ol start="1" type="1">
+    <li value="1">environment variables</li>
+    <li value="2">commandline options</li>
+    <li value="3">interactive guided walk-through</li>
+</ol>
+</dd>
+            </dl>
+    <p>All values are validated no matter where it was set.
+If a value is missing, the user will be asked for it.</p>
+
+    <p><em>Setup using environment variables</em></p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>TYPO3_DB_DRIVER=mysqli \
+TYPO3_DB_USERNAME=db \
+TYPO3_DB_PORT=3306 \
+TYPO3_DB_HOST=db \
+TYPO3_DB_DBNAME=db \
+TYPO3_SETUP_ADMIN_EMAIL=admin@example.com \
+TYPO3_SETUP_ADMIN_USERNAME=admin \
+TYPO3_SETUP_CREATE_SITE=&quot;https://your-typo3-site.com/&quot; \
+TYPO3_PROJECT_NAME=&quot;Automated Setup&quot; \
+TYPO3_SERVER_TYPE=&quot;apache&quot; \
+./bin/typo3 setup --force
+
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+<div class="admonition warning" role="alert">
+    <p class="admonition-title">Warning</p>
+
+    <p>Variable <code>TYPO3_DB_PASSWORD</code> (option <code>--password</code>) can be used to provide a
+password for the database and <code>TYPO3_SETUP_ADMIN_PASSWORD</code>
+(option <code>--admin-user-password</code>) for the admin user password.
+Using this can be a security risk since the password may end up in shell
+history files. Prefer the interactive mode. Additionally, writing a command
+to shell history can be suppressed by prefixing the command with a space
+when using <code>bash</code> or <code>zsh</code>.</p>
+
+</div>
+            </div>
+                    </dd>
+</dl>
+    </section>
+            <section class="section" id="all-commands">
+            <h2>All commands<a class="headerlink" href="#all-commands" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">_complete</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Internal command to provide shell completion suggestions
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">_complete [-s|--shell SHELL] [-i|--input INPUT] [-c|--current CURRENT] [-a|--api-version API-VERSION] [-S|--symfony SYMFONY]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--shell / -s</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The shell type (&quot;bash&quot;, &quot;fish&quot;, &quot;zsh&quot;)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--input / -i</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            An array of input tokens (e.g. COMP_WORDS or argv)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required (multiple)            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    []
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--current / -c</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The index of the &quot;input&quot; array that the cursor is in (e.g. COMP_CWORD)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--api-version / -a</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The API version of the completion script
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--symfony / -S</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            deprecated
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>Internal command to provide shell completion suggestions</p>
+
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">completion</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Dump the shell completion script
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">completion [--debug] [--] [&lt;shell&gt;]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                            <div class="command-arguments">
+                <div class="h4">Arguments</div>
+                                    <dl class="argument">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">shell</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <dl class="field-list simple">
+            </dl>
+        <div class="argument-description">
+            The shell type (e.g. &quot;bash&quot;), the value of the &quot;$SHELL&quot; env var will be used if this is not given
+        </div>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--debug</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Tail the completion debug log
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>The <code>completion</code> command dumps the shell completion script required
+to use shell autocompletion (currently, bash, fish, zsh completion are supported).</p>
+<div class="rubric">Static installation</div>
+    <p>Dump the script to a global completion file and restart your shell:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>completion  | sudo tee /etc/bash_completion.d/typo3
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>Or dump the script to a local file and source it:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>completion  &gt; completion.sh
+
+# source the file whenever you use the project
+source completion.sh
+
+# or add this line at the end of your &quot;~/.bashrc&quot; file:
+source /path/to/completion.sh
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div><div class="rubric">Dynamic installation</div>
+    <p>Add this to the end of your shell configuration file (e.g. <code>&quot;~/.bashrc&quot;</code>):</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>eval &quot;$(/var/www/html/completion )&quot;</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">help</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Display help for a command
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash"><span class="hljs-built_in">help</span> [--format FORMAT] [--raw] [--] [&lt;command_name&gt;]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                            <div class="command-arguments">
+                <div class="h4">Arguments</div>
+                                    <dl class="argument">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">command_name</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <dl class="field-list simple">
+            </dl>
+        <div class="argument-description">
+            The command name
+        </div>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--format</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The output format (txt, xml, json, or md)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;txt&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--raw</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            To output raw command help
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>The <code>help</code> command displays help for a given command:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>help list
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>You can also output the help in other formats by using the <em>--format</em> option:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>help --format=xml list
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>To display the list of available commands, please use the <code>list</code> command.</p>
+
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">list</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            List commands
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">list [--raw] [--format FORMAT] [--short] [--] [&lt;namespace&gt;]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                            <div class="command-arguments">
+                <div class="h4">Arguments</div>
+                                    <dl class="argument">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">namespace</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <dl class="field-list simple">
+            </dl>
+        <div class="argument-description">
+            The namespace name
+        </div>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--raw</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            To output raw command list
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--format</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The output format (txt, xml, json, or md)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;txt&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--short</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            To skip describing commands&#039; arguments
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>The <code>list</code> command lists all commands:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>list
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>You can also display the commands for a specific namespace:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>list test
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>You can also output the information in other formats by using the <em>--format</em> option:</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>list --format=xml
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    <p>It&#039;s also possible to get raw list of commands (useful for embedding command runner):</p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>list --raw</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">setup</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Setup TYPO3 via CLI using environment variables, CLI options or interactive
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">setup [--driver [DRIVER]] [--host HOST] [--port [PORT]] [--dbname DBNAME] [--username USERNAME] [--password PASSWORD] [--admin-username [ADMIN-USERNAME]] [--admin-user-password ADMIN-USER-PASSWORD] [--admin-email ADMIN-EMAIL] [--project-name PROJECT-NAME] [--create-site [CREATE-SITE]] [--server-type [SERVER-TYPE]] [--force] [-n|--no-interaction]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--driver</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Select which database driver to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--host</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database host to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;db&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--port</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database port to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;3306&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--dbname</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database name to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;db&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--username</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database username to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;db&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--password</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the database password to use
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--admin-username</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set a username
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;admin&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--admin-user-password</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set users password
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--admin-email</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set users email
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--project-name</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Set the TYPO3 project name
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;New TYPO3 Project&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--create-site</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Create a basic site setup (root page and site configuration) with the given domain
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--server-type</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Define the web server the TYPO3 installation will be running on
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;other&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--force</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force settings overwrite - use this if TYPO3 has been installed already
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+                <dl>
+                        <dt>The command offers 3 ways to setup TYPO3:</dt>
+
+        <dd>
+
+<ol start="1" type="1">
+    <li value="1">environment variables</li>
+    <li value="2">commandline options</li>
+    <li value="3">interactive guided walk-through</li>
+</ol>
+</dd>
+            </dl>
+    <p>All values are validated no matter where it was set.
+If a value is missing, the user will be asked for it.</p>
+
+    <p><em>Setup using environment variables</em></p>
+<div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code>TYPO3_DB_DRIVER=mysqli \
+TYPO3_DB_USERNAME=db \
+TYPO3_DB_PORT=3306 \
+TYPO3_DB_HOST=db \
+TYPO3_DB_DBNAME=db \
+TYPO3_SETUP_ADMIN_EMAIL=admin@example.com \
+TYPO3_SETUP_ADMIN_USERNAME=admin \
+TYPO3_SETUP_CREATE_SITE=&quot;https://your-typo3-site.com/&quot; \
+TYPO3_PROJECT_NAME=&quot;Automated Setup&quot; \
+TYPO3_SERVER_TYPE=&quot;apache&quot; \
+./setup --force
+
+</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+<div class="admonition warning" role="alert">
+    <p class="admonition-title">Warning</p>
+
+    <p>Variable <code>TYPO3_DB_PASSWORD</code> (option <code>--password</code>) can be used to provide a
+password for the database and <code>TYPO3_SETUP_ADMIN_PASSWORD</code>
+(option <code>--admin-user-password</code>) for the admin user password.
+Using this can be a security risk since the password may end up in shell
+history files. Prefer the interactive mode. Additionally, writing a command
+to shell history can be suppressed by prefixing the command with a space
+when using <code>bash</code> or <code>zsh</code>.</p>
+
+</div>
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">cache:flush</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Flush TYPO3 caches.
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">cache:flush [-g|--group [GROUP]]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--group / -g</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The cache group to flush (system, pages, di or all)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;all&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>This command is useful for deployments to clear caches during release postparation.</p>
+
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">cache:warmup</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Warmup TYPO3 caches.
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">cache:warmup [-g|--group [GROUP]]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--group / -g</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            The cache group to warmup (system, pages, di or all)
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;all&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>This command is useful for deployments to warmup caches during release preparation.</p>
+
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">language:update</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Update the language files of all activated extensions
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">language:update [--no-progress] [--fail-on-warnings] [--skip-extension SKIP-EXTENSION] [--] [&lt;locales&gt;...]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                            <div class="command-arguments">
+                <div class="h4">Arguments</div>
+                                    <dl class="argument">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">locales</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <dl class="field-list simple">
+            </dl>
+        <div class="argument-description">
+            Provide iso codes separated by space to update only selected language packs. Example `bin/typo3 language:update de ja`.
+        </div>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-progress</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Disable progress bar.
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--fail-on-warnings</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Fail command when translation was not found on the server.
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--skip-extension</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Skip extension. Useful for e.g. for not public extensions, which don&#039;t have language packs.
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Required (multiple)            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    []
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>Update the language files of all activated extensions</p>
+
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">setup:begroups:default</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Setup default backend user groups
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">setup:begroups:default [-n|--no-interaction] [-g|--groups [GROUPS]]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--groups / -g</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Which backend user groups do you want to create? [ Editor, Advanced Editor, Both, None]
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">Optional            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    &quot;Both&quot;
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>The command will allow you to create base backend user groups for your TYPO3 installation.</p>
+
+    <p>You can create either both or one of the following groups:</p>
+
+
+<ul>
+    <li class="dash">Editor</li>
+    <li class="dash">Advanced Editor</li>
+</ul>
+
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">upgrade:list</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            List available upgrade wizards.
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">upgrade:list [-a|--all]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--all / -a</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Include wizards already done.
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>List available upgrade wizards.</p>
+
+            </div>
+                    </dd>
+</dl><dl class="command">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">upgrade:run</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="command-description">
+            Run upgrade wizard. Without arguments all available wizards will be run.
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+
+        <pre class="code-block"><code class="hljs bash">upgrade:run [&lt;wizardName&gt;]</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+                            </div>
+                            <div class="command-arguments">
+                <div class="h4">Arguments</div>
+                                    <dl class="argument">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">wizardName</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <dl class="field-list simple">
+            </dl>
+        <div class="argument-description">
+
+        </div>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-options">
+                <div class="h4">Options</div>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--help / -h</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display help for the given command. When no command is given display help for the &lt;info&gt;list&lt;/info&gt; command
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--quiet / -q</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not output any message
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--verbose / -v|-vv|-vvv</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--version / -V</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Display this application version
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Force (or disable --no-ansi) ANSI output
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-ansi</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Negate the &quot;--ansi&quot; option
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                                    <dl class="option">
+    <dt id="">
+        <code class="sig-name descname"><span class="pre">--no-interaction / -n</span></code>
+                    <a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="" data-rstCode=""  title="Reference this configuration value">¶</a>
+        </dt>
+    <dd>
+        <div class="argument-description">
+            Do not ask any interactive question
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-even">Value</dt>
+            <dd class="field-even">None allowed            </dd>
+                            <dt class="field-even">Default value</dt>
+                <dd class="field-even">
+                    false
+                </dd>
+            </dl>
+            </dd>
+</dl>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+
+    <p>This command allows running upgrade wizards on CLI. To run a single wizard add the identifier of the wizard as argument. The identifier of the wizard is the name it is registered with in ext_localconf.</p>
+
+            </div>
+                    </dd>
+</dl>
+    </section>
+    </section>
+        <!-- content end -->
