@@ -14,16 +14,15 @@ use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
+use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
-use T3Docs\Typo3DocsTheme\Directives\RawDirective;
-use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
-use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
-
+use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
+use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
+use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
@@ -38,8 +37,8 @@ use T3Docs\Typo3DocsTheme\TextRoles\JavaScriptTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\OutputTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\PhpTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\RestructuredTextTextRole;
-use T3Docs\Typo3DocsTheme\TextRoles\SqlTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ShellTextTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\SqlTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\TSconfigTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\TypeScriptTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\TypoScriptTextTextRole;
@@ -108,7 +107,7 @@ return static function (ContainerConfigurator $container): void {
         ->decorate(PlantumlServerRenderer::class)
         ->public()
 
-        ->set(\T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective::class)
+        ->set(ConfvalMenuDirective::class)
         ->set(DirectoryTreeDirective::class)
         ->set(GroupTabDirective::class)
         ->set(RawDirective::class)
