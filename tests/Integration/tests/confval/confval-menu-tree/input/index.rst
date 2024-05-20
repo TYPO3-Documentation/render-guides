@@ -6,11 +6,14 @@ Confval menu as list
 ====================
 
 ..  confval-menu::
+    :name: confval-list
 
 Confval menu as list with more info
 ===================================
 
 ..  confval-menu::
+    :caption: Confval menu as list with more info
+    :name: confval-list-info
     :type:
     :default:
 
@@ -19,11 +22,14 @@ Confval menu as tree
 
 ..  confval-menu::
     :display: tree
+    :name: confval-tree
 
 Confval menu as tree with more info
 ===================================
 
 ..  confval-menu::
+    :caption: Confval menu as tree with more info
+    :name: confval-tree-info
     :display: tree
     :type:
     :default:
@@ -32,6 +38,7 @@ Confval menu as table
 =====================
 
 ..  confval-menu::
+    :name: confval-table
     :display: table
     :type:
     :default:

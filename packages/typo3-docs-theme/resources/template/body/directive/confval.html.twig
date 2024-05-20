@@ -1,11 +1,20 @@
 <dl class="confval">
-    <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif -%}>
+    <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif %} class="d-flex justify-content-between">
+        <div class="confval-header">
         <code class="sig-name descname"><span class="pre">{{ node.plainContent }}</span></code>
         {% if not node.noindex %}
         <a class="headerlink" href="#{{ node.anchor }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="{{ node.anchor }}" data-rstCode="{{ getRstCodeForLink(node) }}"  title="Reference this configuration value">¶</a>
         {% else %}
             <span class="headerNoindex" title="This configuration value cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
         {% endif -%}
+        </div>
+        <div class="confval-back-to-top">
+        {%- if backAnchor %}
+            <a href="#{{ backAnchor }}" class="backToList" title="Back to list"><i class="fa-solid fa-angles-up fa-xs"></i></a>
+        {% else %}
+            <a href="#" class="backToTop" title="Back to top"><i class="fa-solid fa-arrow-up fa-xs"></i></a>
+        {%- endif %}
+        </div>
     </dt>
     <dd>
         {% if node.type or node.required or node.default or node.additionalOptions %}

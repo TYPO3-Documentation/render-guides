@@ -113,9 +113,16 @@
     {% endfor %}
 {% endmacro %}
 
+{% macro renderCaption(node) %}
+    {% if node.caption -%}
+        <div class="caption">{{ node.caption }}</div>
+    {%- endif %}
+{% endmacro %}
+
 {% import _self as macros %}
 {% if node.display=='list' %}
-<div class="mb-4">
+<div class="mb-4" id="{{ node.anchor }}">
+    {{ macros.renderCaption(node) }}
     <ul>
         {% for entry in node.confvals %}
             {{ macros.renderConfvalListItem(entry, node) }}
@@ -123,7 +130,8 @@
     </ul>
 </div>
 {% elseif node.display=='tree' %}
-    <div class="directory-tree mb-4">
+    <div class="directory-tree mb-4" id="{{ node.anchor }}">
+        {{ macros.renderCaption(node) }}
         <ul>
         {% for entry in node.confvals %}
             {{ macros.renderConfvalItem(entry, node) }}
@@ -131,8 +139,9 @@
         </ul>
     </div>
 {% else %}
-<div class="table-responsive confval-table">
-    <table class="table table-hover">
+<div class="table-responsive confval-table" id="{{ node.anchor }}">
+    <table class="table table-hover caption-top">
+        {%- if node.caption %}<caption>{{ node.caption }}</caption>{% endif %}
         <thead>
         <tr>
             <th scope="col">Name</th>
@@ -154,4 +163,6 @@
     </table>
 </div>
 {% endif %}
-{{ renderNode(node.children) }}
+{% for child in node.children %}
+    {% include "body/directive/confval.html.twig" with  {'node': child, 'backAnchor': node.anchor } %}
+{% endfor %}
