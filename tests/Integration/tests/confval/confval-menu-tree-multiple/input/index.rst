@@ -10,6 +10,8 @@ Properties of CASE
 ==================
 
 ..  confval-menu::
+    :name: case-properties
+    :caption: Properties of CASE
     :display: table
     :type:
 
@@ -49,6 +51,7 @@ Properties of COA
 
 
 ..  confval-menu::
+    :name: coa-properties
     :display: table
     :type:
 

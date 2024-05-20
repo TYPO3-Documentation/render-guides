@@ -22,17 +22,21 @@ use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
+use phpDocumentor\Guides\RestructuredText\TextRoles\GenericLinkProvider;
 use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 
 class ConfvalMenuDirective extends SubDirective
 {
+    public const NAME = 'confval-menu';
     public function __construct(
         Rule $startingRule,
+        GenericLinkProvider $genericLinkProvider,
         private readonly LoggerInterface $logger,
         private readonly AnchorNormalizer $anchorReducer,
     ) {
         parent::__construct($startingRule);
+        $genericLinkProvider->addGenericLink(self::NAME, ConfvalMenuNode::LINK_TYPE, ConfvalMenuNode::LINK_PREFIX);
     }
     protected function processSub(
         BlockContext   $blockContext,
@@ -40,54 +44,57 @@ class ConfvalMenuDirective extends SubDirective
         Directive      $directive,
     ): Node|null {
         $originalChildren = $collectionNode->getChildren();
-        $chilConfvals = [];
+        $childConfvals = [];
         foreach ($originalChildren as $child) {
             if ($child instanceof ConfvalNode) {
-                $chilConfvals[] = $child;
+                $childConfvals[] = $child;
             } else {
                 $this->logger->warning('A confval-menu may only contain confvals. ', $blockContext->getLoggerInformation());
             }
         }
         $fields = [];
-        $display = 'list';
-        $excludeNoindex = false;
-        $excludeString = '';
+        $reservedParameterNames = [
+            'name',
+            'class',
+            'caption',
+            'exclude-noindex',
+            'exclude',
+        ];
         foreach ($directive->getOptions() as $option) {
-            if ($option->getName() == 'name' || $option->getName() == 'class') {
-                continue;
-            }
-            if ($option->getName() == 'display') {
-                $display = (string) $option->getValue();
-                continue;
-            }
-            if ($option->getName() == 'exclude-noindex') {
-                $excludeNoindex = (bool) $option->getValue();
-                continue;
-            }
-            if ($option->getName() == 'exclude') {
-                $excludeString = (string) $option->getValue();
+            if (in_array($option->getName(), $reservedParameterNames, true)) {
                 continue;
             }
             $fields[] = $option->getName();
         }
-        $exclude = explode(',', $excludeString);
+        $exclude = explode(',', $directive->getOptionString('exclude'));
         $anchorReducer = $this->anchorReducer;
         $exclude = array_map(function ($element) use ($anchorReducer) {
             return $anchorReducer->reduceAnchor($element);
         }, $exclude);
+        $id = $directive->getOptionString(
+            'name',
+            $directive->getOptionString(
+                'caption',
+                $blockContext->getDocumentParserContext()->getDocument()->getFilePath()
+            )
+        );
+        $id = $this->anchorReducer->reduceAnchor($id);
         return new ConfvalMenuNode(
+            $id,
             $directive->getData(),
             $directive->getDataNode() ?? new InlineCompoundNode(),
-            $chilConfvals,
-            $chilConfvals,
+            $childConfvals,
+            $directive->getOptionString('caption'),
+            $childConfvals,
             $fields,
-            $display,
-            $excludeNoindex,
+            $directive->getOptionString('display', 'list'),
+            $directive->getOptionBool('exclude-noindex'),
             $exclude,
+            $directive->getOptionBool('noindex'),
         );
     }
     public function getName(): string
     {
-        return 'confval-menu';
+        return self::NAME;
     }
 }

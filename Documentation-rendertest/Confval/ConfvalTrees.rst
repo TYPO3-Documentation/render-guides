@@ -8,6 +8,8 @@ Properties of CASE
 ==================
 
 ..  confval-menu::
+    :name: typoscript-case-properties
+    :caption: TypoScript Case Properties
     :display: table
     :type:
 
