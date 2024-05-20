@@ -39,7 +39,8 @@ Source:
 
     ..  confval:: mr_pommeroy
         :Default: Happy new year, Sophie!
-        :type:     shy
+        :required: false
+        :type: shy
 
         Participant of Miss Sophie's birthday party.
 
@@ -47,6 +48,7 @@ Result:
 
 ..  confval:: mr_pommeroy
     :type: shy
+    :required: false
     :Default: Happy new year, Sophie!
 
     Participant of Miss Sophie's birthday party.
@@ -65,6 +67,7 @@ Adapted from the TypoScript Reference Manual:
 
 ..  confval:: align
     :type:     align
+    :required:
     :Default: left
     :Possible: \left | \center \| right
 
