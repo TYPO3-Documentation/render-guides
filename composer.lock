@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7dc365a819e89e191cff2022bc3fbc7e",
+    "content-hash": "b11496b85b775bbadb9e281a27dbd56a",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -7239,16 +7239,16 @@
         },
         {
             "name": "symplify/phpstan-rules",
-            "version": "12.6.2",
+            "version": "12.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/phpstan-rules.git",
-                "reference": "599cc3deb2e405a589eea520025754f3304a4d85"
+                "reference": "8485673fb551c27fdb443d0d34e95ba4d0b3afbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/phpstan-rules/zipball/599cc3deb2e405a589eea520025754f3304a4d85",
-                "reference": "599cc3deb2e405a589eea520025754f3304a4d85",
+                "url": "https://api.github.com/repos/symplify/phpstan-rules/zipball/8485673fb551c27fdb443d0d34e95ba4d0b3afbe",
+                "reference": "8485673fb551c27fdb443d0d34e95ba4d0b3afbe",
                 "shasum": ""
             },
             "require": {
@@ -7277,7 +7277,7 @@
             "description": "Set of Symplify rules for PHPStan",
             "support": {
                 "issues": "https://github.com/symplify/phpstan-rules/issues",
-                "source": "https://github.com/symplify/phpstan-rules/tree/12.6.2"
+                "source": "https://github.com/symplify/phpstan-rules/tree/12.6.4"
             },
             "funding": [
                 {
@@ -7289,7 +7289,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-19T17:07:58+00:00"
+            "time": "2024-05-21T09:44:11+00:00"
         },
         {
             "name": "theseer/tokenizer",
