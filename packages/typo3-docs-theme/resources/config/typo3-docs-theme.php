@@ -18,6 +18,8 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
+use T3Docs\Typo3DocsTheme\Directives\IncludeDirective;
+use T3Docs\Typo3DocsTheme\Directives\LiteralincludeDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
@@ -113,6 +115,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(ConfvalMenuDirective::class)
         ->set(DirectoryTreeDirective::class)
         ->set(GroupTabDirective::class)
+        ->set(IncludeDirective::class)
+        ->set(LiteralincludeDirective::class)
         ->set(RawDirective::class)
         ->set(T3FieldListTableDirective::class)
         ->set(YoutubeDirective::class)

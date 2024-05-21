@@ -6,8 +6,7 @@
 >
 
     <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
-               edit-on-github="typo3/typo3"
-               edit-on-github-branch="main"
-               edit-on-github-directory="typo3/sysext/adminpanel/Documentation/"
+               edit-on-github="TYPO3-Documentation/TYPO3CMS-Reference-CoreApi"
+               edit-on-github-branch="documentation-draft"
     />
 </guides>

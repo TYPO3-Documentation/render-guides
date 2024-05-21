@@ -1,0 +1,8 @@
+{%- set gitHubLink = getEditOnGitHubLinkFromPath(node.path) -%}
+{%- if (gitHubLink)  %}
+    <div class="float-end">
+        <a href="{{ gitHubLink }}" class="btn btn-light" title="Edit following section on GitHub">
+            <i class="icon fa-brands fa-github"></i>
+        </a>
+    </div>
+{%- endif %}
