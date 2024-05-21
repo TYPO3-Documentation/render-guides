@@ -27,6 +27,7 @@ use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
+use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\FluidTextTextRole;
@@ -100,6 +101,8 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.parser.rst.text_role')
 
         ->set(TemplateFieldListItemRule::class)
+        ->tag('phpdoc.guides.parser.rst.fieldlist')
+        ->set(EditOnGitHubFieldListItemRule::class)
         ->tag('phpdoc.guides.parser.rst.fieldlist')
 
 
