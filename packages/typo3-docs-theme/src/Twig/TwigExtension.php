@@ -20,6 +20,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
+use T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
 use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
@@ -185,8 +186,29 @@ final class TwigExtension extends AbstractExtension
         if ($currentFileName === '') {
             return '';
         }
+        $gitHubPerPageLink = $this->getEditOnGitHubLinkPerPage($renderContext);
+
         $githubDirectory = trim($this->themeSettings->getSettings('edit_on_github_directory', 'Documentation'), '/');
-        return sprintf("https://github.com/%s/edit/%s/%s/%s.rst", $githubButton, $githubBranch, $githubDirectory, $currentFileName);
+        return $gitHubPerPageLink ?? sprintf("https://github.com/%s/edit/%s/%s/%s.rst", $githubButton, $githubBranch, $githubDirectory, $currentFileName);
+    }
+
+    private function getEditOnGitHubLinkPerPage(RenderContext $renderContext): string|null
+    {
+        try {
+            if ($renderContext->getCurrentDocumentEntry() === null) {
+                return null;
+            }
+            $document = $renderContext->getDocumentNodeForEntry($renderContext->getCurrentDocumentEntry());
+        } catch (\Exception) {
+            return null;
+        }
+        $headerNodes = $document->getHeaderNodes();
+        foreach ($headerNodes as $headerNode) {
+            if ($headerNode instanceof EditOnGitHubNode) {
+                return $headerNode->toString();
+            }
+        }
+        return null;
     }
 
     /**
