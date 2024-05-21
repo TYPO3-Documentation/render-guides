@@ -57,6 +57,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('renderPlainText', $this->renderPlainText(...), ['needs_context' => false]),
             new TwigFunction('getAnchorIdOfSection', $this->getAnchorIdOfSection(...), ['needs_context' => true]),
             new TwigFunction('getEditOnGitHubLink', $this->getEditOnGitHubLink(...), ['needs_context' => true]),
+            new TwigFunction('getEditOnGitHubLinkFromPath', $this->getEditOnGitHubLinkFromPath(...), ['needs_context' => true]),
             new TwigFunction('getCurrentFilename', $this->getCurrentFilename(...), ['needs_context' => true]),
             new TwigFunction('getRelativePath', $this->getRelativePath(...), ['needs_context' => true]),
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
@@ -169,6 +170,26 @@ final class TwigExtension extends AbstractExtension
             }
         }
         return '';
+    }
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getEditOnGitHubLinkFromPath(array $context, ?string $path): string
+    {
+        if (($path ?? '') === '') {
+            return '';
+        }
+        $githubButton = $this->themeSettings->getSettings('edit_on_github');
+        if ($githubButton === '') {
+            return '';
+        }
+        $githubBranch = $this->themeSettings->getSettings('edit_on_github_branch', 'main');
+        $currentFileName = $this->getCurrentFilename($context);
+        if ($currentFileName === '') {
+            return '';
+        }
+        $githubDirectory = trim($this->themeSettings->getSettings('edit_on_github_directory', 'Documentation'), '/');
+        return sprintf("https://github.com/%s/edit/%s/%s%s", $githubButton, $githubBranch, $githubDirectory, $path);
     }
 
     /**

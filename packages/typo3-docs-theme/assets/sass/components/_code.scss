@@ -42,12 +42,13 @@ code {
     position: relative;
 }
 
-.code-block-copy {
+.code-block-copy, a.code-block-edit {
     background: none;
     border: none;
     padding: .75rem;
+    text-decoration: none!important;
 
-    .fa-copy {
+    .icon  {
         opacity: .5;
         transition: opacity .3s;
 
