@@ -64,7 +64,9 @@ project. This means that the files created by the Docker image will have the
 same owner as the files in your project. No more permission issues should occur,
 when files are getting generated inside the image.
 
-If this fail, you can resort to specifying the user:
+..  include:: ../_Includes/NoteProjectDirectoryName.rst.txt
+
+If this fails, you can resort to specifying the user:
 
 ..  code-block:: shell
 

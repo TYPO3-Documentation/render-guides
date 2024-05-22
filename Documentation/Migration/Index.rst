@@ -36,6 +36,8 @@ The last option is the folder (here: :file:`Documentation`). When running the
 command from another folder than the project's root folder, adapt the given
 path accordingly.
 
+..  include:: ../_Includes/NoteProjectDirectoryName.rst.txt
+
 With make
 =========
 
