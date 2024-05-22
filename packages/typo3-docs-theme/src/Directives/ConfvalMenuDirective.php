@@ -57,6 +57,7 @@ class ConfvalMenuDirective extends SubDirective
             'name',
             'class',
             'caption',
+            'display',
             'exclude-noindex',
             'exclude',
         ];
