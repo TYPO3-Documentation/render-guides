@@ -24,12 +24,12 @@ Usage with Docker (via supplied container)
     # Execute the Docker container that is provided remotely.
     # Renders all files in the `Documentation` and store in `Documentation-GENERATED-temp`.
     # On macOS you need to specify the parameter "--user=$(id -u):$(id -g)"
+    # "/project" is a fixed directory name, not a placeholder.
     docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:latest --config=Documentation
 
 (see :ref:`_Setup_Docker:Docker containers` for complete documentation. You
 can also use a specific version of the `render-guides` Docker container, i.e. `:1` for the latest `1.x` version.)
 
-.. include: Documentation/_Includes/NoteProjectDirectoryName.rst.txt
 
 Usage with Docker (via custom container)
 ========================================
@@ -41,9 +41,8 @@ Usage with Docker (via custom container)
 
     # Execute the Docker container that is provided locally, build Documentation
     # On macOS you need to specify the parameter "--user=$(id -u):$(id -g)"
+    # "/project" is a fixed directory name, not a placeholder.
     docker run --rm -v ${PWD}:/project -it typo3-docs:local --progress
-
-.. include:: Documentation/_Includes/NoteProjectDirectoryName.rst.txt
 
 (see :ref:`_Setup_Docker:Docker containers` for complete documentation)
 
