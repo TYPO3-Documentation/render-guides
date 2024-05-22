@@ -1,0 +1,6 @@
+..  note::
+
+    Note that the parameter :bash:`-v $(pwd):/project` always uses `project` as
+    the directory name. You do not need to replace that directory name with
+    anything else, because the container rendering depends on this.
+

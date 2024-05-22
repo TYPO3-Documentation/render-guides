@@ -32,6 +32,8 @@ For macOS you may need to specify the argument ``user``:
 
     docker run --rm -v $(pwd):/project --user=$(id -u):$(id -g) typo3-docs:local --progress
 
+..  include:: ../_Includes/NoteProjectDirectoryName.rst.txt
+
 Using PHP
 ---------
 

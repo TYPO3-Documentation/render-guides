@@ -4,7 +4,7 @@ render-guides
 =============
 
 This is the documentation rendering tool for TYPO3 projects. It is based on
-`phpDocumentor/guides <https://github.com/phpDocumentor/guides>`__ 
+`phpDocumentor/guides <https://github.com/phpDocumentor/guides>`__
 and can be used as a drop-in replacement for Sphinx.
 The tool is used by the automated documentation rendering system of the
 TYPO3 project. And can be used by documentation authors to validate their
@@ -29,6 +29,7 @@ Usage with Docker (via supplied container)
 (see :ref:`_Setup_Docker:Docker containers` for complete documentation. You
 can also use a specific version of the `render-guides` Docker container, i.e. `:1` for the latest `1.x` version.)
 
+.. include: Documentation/_Includes/NoteProjectDirectoryName.rst.txt
 
 Usage with Docker (via custom container)
 ========================================
@@ -41,6 +42,8 @@ Usage with Docker (via custom container)
     # Execute the Docker container that is provided locally, build Documentation
     # On macOS you need to specify the parameter "--user=$(id -u):$(id -g)"
     docker run --rm -v ${PWD}:/project -it typo3-docs:local --progress
+
+.. include:: Documentation/_Includes/NoteProjectDirectoryName.rst.txt
 
 (see :ref:`_Setup_Docker:Docker containers` for complete documentation)
 
