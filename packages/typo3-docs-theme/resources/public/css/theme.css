@@ -24805,6 +24805,7 @@ ul[class*=horizbuttons-] > li {
 ul[class*=horizbuttons-] > li a {
   color: inherit;
   font-weight: bold;
+  text-decoration: none;
 }
 ul[class*=horizbuttons-] > li p {
   display: inline;
@@ -24815,25 +24816,29 @@ ul[class*=horizbuttons-][class*=-xxxl] {
 ul[class*=horizbuttons-][class*=-xxl] {
   font-size: 1.25em;
 }
-ul[class*=horizbuttons-][class*=-warning-] > li, ul[class*=horizbuttons-][class*=-attention-] > li {
-  color: #000;
-  background-color: #f0ad4e;
-}
-ul[class*=horizbuttons-][class*=-tip-] > li, ul[class*=horizbuttons-][class*=-important-] > li {
-  color: #000;
-  background-color: #5cb85c;
-}
-ul[class*=horizbuttons-][class*=-note-] > li {
-  color: #000;
-  background-color: #319fc0;
-}
-ul[class*=horizbuttons-][class*=-typo3-] > li, ul[class*=horizbuttons-][class*=-primary-] > li {
-  color: #000;
-  background-color: #ff8700;
-}
-ul[class*=horizbuttons-][class*=-striking-] > li {
+ul[class*=horizbuttons-][class*=-attention-] > li,
+ul[class*=horizbuttons-][class*=-important-] > li,
+ul[class*=horizbuttons-][class*=-primary-] > li,
+ul[class*=horizbuttons-][class*=-typo3-] > li,
+ul[class*=horizbuttons-][class*=-striking-] > li,
+ul[class*=horizbuttons-][class*=-warning-] > li {
   color: #fff;
-  background-color: #333333;
+  background-color: #333;
+}
+ul[class*=horizbuttons-][class*=-attention-] > li:hover,
+ul[class*=horizbuttons-][class*=-important-] > li:hover,
+ul[class*=horizbuttons-][class*=-primary-] > li:hover,
+ul[class*=horizbuttons-][class*=-typo3-] > li:hover,
+ul[class*=horizbuttons-][class*=-striking-] > li:hover,
+ul[class*=horizbuttons-][class*=-warning-] > li:hover {
+  background-color: #f2f2f2;
+  color: #333;
+  outline: 2px solid #333;
+}
+ul[class*=horizbuttons-][class*=-note-] > li,
+ul[class*=horizbuttons-][class*=-tip-] > li {
+  color: #000;
+  background-color: #f2f2f2;
 }
 
 .admonition {
@@ -25129,6 +25134,15 @@ dl.field-list > dt:after {
 .breadcrumb-bar .breadcrumb-additions {
   margin-bottom: 1rem;
   display: none;
+}
+.breadcrumb-bar .breadcrumb-additions > a.btn-light:hover {
+  background: #f2f2f2;
+  outline: 2px solid #333;
+}
+.breadcrumb-bar .breadcrumb-additions > a.btn-secondary:hover {
+  background: #f2f2f2;
+  color: #333;
+  outline: 2px solid #333;
 }
 @media (min-width: 768px) {
   .breadcrumb-bar .breadcrumb-additions {
@@ -25494,6 +25508,11 @@ a.toc-title-project:hover {
 
 .search__scope {
   flex: 0.4 !important;
+}
+
+.search__submit:hover {
+  background: #f2f2f2;
+  outline: 2px solid #333;
 }
 
 .page {
