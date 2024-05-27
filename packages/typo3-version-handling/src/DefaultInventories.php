@@ -58,7 +58,7 @@ enum DefaultInventories: string
             // Other
             DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/main/en-us/',
             DefaultInventories::t3renderguides => 'https://docs.typo3.org/other/t3docs/render-guides/main/en-us/',
-            DefaultInventories::t3exceptions => 'https://docs.typo3.org/typo3cms/exceptions/main/en-us/',
+            DefaultInventories::t3exceptions => 'https://docs.typo3.org/m/typo3/reference-exceptions/main/en-us/',
         };
     }
 
