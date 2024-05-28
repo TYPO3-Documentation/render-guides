@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*!
- * Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2024 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 .fa {
   font-family: var(--fa-style-family, "Font Awesome 6 Free");
@@ -363,7 +363,7 @@
 }
 
 .fa-rotate-by {
-  transform: rotate(var(--fa-rotate-angle, 0));
+  transform: rotate(var(--fa-rotate-angle, none));
 }
 
 .fa-stack {
@@ -3430,10 +3430,6 @@ readers do not read off random characters that represent icons */
   content: "\f033";
 }
 
-.fa-table-cells-column-lock::before {
-  content: "\e678";
-}
-
 .fa-church::before {
   content: "\f51d";
 }
@@ -6330,10 +6326,6 @@ readers do not read off random characters that represent icons */
   content: "\f031";
 }
 
-.fa-table-cells-row-lock::before {
-  content: "\e67a";
-}
-
 .fa-rupiah-sign::before {
   content: "\e23d";
 }
@@ -8233,9 +8225,9 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2024 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 :root, :host {
   --fa-style-family-classic: "Font Awesome 6 Free";
@@ -8255,9 +8247,9 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2024 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 :root, :host {
   --fa-style-family-classic: "Font Awesome 6 Free";
@@ -8277,9 +8269,9 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2024 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 :root, :host {
   --fa-style-family-brands: "Font Awesome 6 Brands";
@@ -8428,10 +8420,6 @@ readers do not read off random characters that represent icons */
 
 .fa-drupal:before {
   content: "\f1a9";
-}
-
-.fa-jxl:before {
-  content: "\e67b";
 }
 
 .fa-hire-a-helper:before {
@@ -8835,10 +8823,6 @@ readers do not read off random characters that represent icons */
 }
 
 .fa-kickstarter:before {
-  content: "\f3bb";
-}
-
-.fa-square-kickstarter:before {
   content: "\f3bb";
 }
 
@@ -9418,10 +9402,6 @@ readers do not read off random characters that represent icons */
   content: "\f0d4";
 }
 
-.fa-web-awesome:before {
-  content: "\e682";
-}
-
 .fa-mandalorian:before {
   content: "\f50f";
 }
@@ -9638,10 +9618,6 @@ readers do not read off random characters that represent icons */
   content: "\f412";
 }
 
-.fa-square-web-awesome-stroke:before {
-  content: "\e684";
-}
-
 .fa-searchengin:before {
   content: "\f3eb";
 }
@@ -9786,10 +9762,6 @@ readers do not read off random characters that represent icons */
   content: "\f232";
 }
 
-.fa-square-upwork:before {
-  content: "\e67c";
-}
-
 .fa-slideshare:before {
   content: "\f1e7";
 }
@@ -9894,10 +9866,6 @@ readers do not read off random characters that represent icons */
   content: "\f213";
 }
 
-.fa-square-web-awesome:before {
-  content: "\e683";
-}
-
 .fa-sass:before {
   content: "\f41e";
 }
@@ -9944,10 +9912,6 @@ readers do not read off random characters that represent icons */
 
 .fa-waze:before {
   content: "\f83f";
-}
-
-.fa-bluesky:before {
-  content: "\e671";
 }
 
 .fa-cc-jcb:before {
