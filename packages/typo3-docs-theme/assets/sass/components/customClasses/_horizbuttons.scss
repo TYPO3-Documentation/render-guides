@@ -8,6 +8,7 @@ ul[class*="horizbuttons-"] {
         a {
             color: inherit;
             font-weight: bold;
+            text-decoration: none;
         }
         p {
             display: inline;
@@ -19,37 +20,27 @@ ul[class*="horizbuttons-"] {
     &[class*="-xxl"] {
         font-size: $h4-font-size;
     }
-    &[class*="-warning-"],
-    &[class*="-attention-"] {
-        > li {
-            color: color-contrast($warning);
-            background-color: $warning;
-        }
-    }
-    &[class*="-tip-"],
-    &[class*="-important-"] {
-        > li {
-            color: color-contrast($success);
-            background-color: $success;
-        }
-    }
-    &[class*="-note-"] {
-        > li {
-            color: color-contrast($info);
-            background-color: $info;
-        }
-    }
+    &[class*="-attention-"],
+    &[class*="-important-"],
+    &[class*="-primary-"],
     &[class*="-typo3-"],
-    &[class*="-primary-"] {
+    &[class*="-striking-"],
+    &[class*="-warning-"] {
         > li {
-            color: color-contrast($primary);
-            background-color: $primary;
+            color: $white;
+            background-color: $secondary;
+            &:hover {
+                color: $secondary;
+                background-color: $gray-200;
+                outline: 2px solid $secondary;
+            }
         }
     }
-    &[class*="-striking-"] {
+    &[class*="-note-"],
+    &[class*="-tip-"] {
         > li {
-            color: color-contrast($secondary);
-            background-color: $secondary;
+            color: $black;
+            background-color: $gray-200;
         }
     }
 }
