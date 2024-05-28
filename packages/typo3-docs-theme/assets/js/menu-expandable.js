@@ -7,15 +7,15 @@
 
     const link = event.currentTarget.parentElement;
     const element = link.parentElement;
-    const siblings = element.parentElement.parentElement.querySelectorAll('li.active');
+    const siblings = element.parentElement.parentElement.querySelectorAll('li.expanded');
 
     Array.from(siblings).forEach(sibling => {
       if (sibling !== element) {
-        sibling.classList.remove('active');
+        sibling.classList.remove('expanded');
       }
     });
 
-    element.classList.toggle('active');
+    element.classList.toggle('expanded');
   }
 
   // Add toggle icon to a-tags of menu items in .toc navigations

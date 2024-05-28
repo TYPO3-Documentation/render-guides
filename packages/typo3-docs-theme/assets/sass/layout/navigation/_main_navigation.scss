@@ -58,12 +58,20 @@
         border-radius: $border-radius;
         overflow: hidden;
         padding-left: calc(#{$spacer} / 2) ;
+        &.expanded {
+            border-left: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 0;
+        }
         &.current {
             border-left: none;
         }
         @include media-breakpoint-up(lg) {
             font-size: 1rem;
         }
+    }
+    li:has(~ li.expanded),
+    li.expanded ~ li:not(.expanded) {
+        display: none;
     }
     .toctree-expand {
         position: absolute;
@@ -97,6 +105,8 @@
     }
     .active > a {
         font-weight: bold;
+    }
+    .expanded > a {
         > .toctree-expand {
             &:before {
                 display: none;
@@ -105,7 +115,7 @@
     }
     > ul {
         padding-left: 0;
-        .active {
+        .expanded {
             > ul {
                 display: block !important;
             }

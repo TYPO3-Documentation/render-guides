@@ -25383,6 +25383,10 @@ dl.field-list > dt:after {
   overflow: hidden;
   padding-left: calc(1rem / 2);
 }
+.main_menu li.expanded {
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0;
+}
 .main_menu li.current {
   border-left: none;
 }
@@ -25390,6 +25394,10 @@ dl.field-list > dt:after {
   .main_menu li {
     font-size: 1rem;
   }
+}
+.main_menu li:has(~ li.expanded),
+.main_menu li.expanded ~ li:not(.expanded) {
+  display: none;
 }
 .main_menu .toctree-expand {
   position: absolute;
@@ -25423,13 +25431,13 @@ dl.field-list > dt:after {
 .main_menu .active > a {
   font-weight: bold;
 }
-.main_menu .active > a > .toctree-expand:before {
+.main_menu .expanded > a > .toctree-expand:before {
   display: none;
 }
 .main_menu > ul {
   padding-left: 0;
 }
-.main_menu > ul .active > ul {
+.main_menu > ul .expanded > ul {
   display: block !important;
 }
 .main_menu > ul > li ul {
