@@ -16,6 +16,15 @@
     .breadcrumb-additions {
         margin-bottom: $spacer;
         display: none;
+        > a.btn-light:hover {
+            background: $gray-200;
+            outline: 2px solid $secondary;
+        }
+        > a.btn-secondary:hover {
+            background: $gray-200;
+            color: $secondary;
+            outline: 2px solid $secondary;
+        }
         @include media-breakpoint-up('md') {
             display: block;
         }

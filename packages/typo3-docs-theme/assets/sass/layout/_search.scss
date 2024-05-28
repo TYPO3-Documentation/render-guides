@@ -1,3 +1,9 @@
 .search__scope {
     flex: .4 !important;
 }
+.search__submit {
+    &:hover {
+        background: $gray-200;
+        outline: 2px solid $secondary;
+    }
+}

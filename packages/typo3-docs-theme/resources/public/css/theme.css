@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*!
- * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2023 Fonticons, Inc.
+ * Copyright 2024 Fonticons, Inc.
  */
 .fa {
   font-family: var(--fa-style-family, "Font Awesome 6 Free");
@@ -363,7 +363,7 @@
 }
 
 .fa-rotate-by {
-  transform: rotate(var(--fa-rotate-angle, none));
+  transform: rotate(var(--fa-rotate-angle, 0));
 }
 
 .fa-stack {
@@ -3430,6 +3430,10 @@ readers do not read off random characters that represent icons */
   content: "\f033";
 }
 
+.fa-table-cells-column-lock::before {
+  content: "\e678";
+}
+
 .fa-church::before {
   content: "\f51d";
 }
@@ -6326,6 +6330,10 @@ readers do not read off random characters that represent icons */
   content: "\f031";
 }
 
+.fa-table-cells-row-lock::before {
+  content: "\e67a";
+}
+
 .fa-rupiah-sign::before {
   content: "\e23d";
 }
@@ -8225,9 +8233,9 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2023 Fonticons, Inc.
+ * Copyright 2024 Fonticons, Inc.
  */
 :root, :host {
   --fa-style-family-classic: "Font Awesome 6 Free";
@@ -8247,9 +8255,9 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2023 Fonticons, Inc.
+ * Copyright 2024 Fonticons, Inc.
  */
 :root, :host {
   --fa-style-family-classic: "Font Awesome 6 Free";
@@ -8269,9 +8277,9 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2023 Fonticons, Inc.
+ * Copyright 2024 Fonticons, Inc.
  */
 :root, :host {
   --fa-style-family-brands: "Font Awesome 6 Brands";
@@ -8420,6 +8428,10 @@ readers do not read off random characters that represent icons */
 
 .fa-drupal:before {
   content: "\f1a9";
+}
+
+.fa-jxl:before {
+  content: "\e67b";
 }
 
 .fa-hire-a-helper:before {
@@ -8823,6 +8835,10 @@ readers do not read off random characters that represent icons */
 }
 
 .fa-kickstarter:before {
+  content: "\f3bb";
+}
+
+.fa-square-kickstarter:before {
   content: "\f3bb";
 }
 
@@ -9402,6 +9418,10 @@ readers do not read off random characters that represent icons */
   content: "\f0d4";
 }
 
+.fa-web-awesome:before {
+  content: "\e682";
+}
+
 .fa-mandalorian:before {
   content: "\f50f";
 }
@@ -9618,6 +9638,10 @@ readers do not read off random characters that represent icons */
   content: "\f412";
 }
 
+.fa-square-web-awesome-stroke:before {
+  content: "\e684";
+}
+
 .fa-searchengin:before {
   content: "\f3eb";
 }
@@ -9762,6 +9786,10 @@ readers do not read off random characters that represent icons */
   content: "\f232";
 }
 
+.fa-square-upwork:before {
+  content: "\e67c";
+}
+
 .fa-slideshare:before {
   content: "\f1e7";
 }
@@ -9866,6 +9894,10 @@ readers do not read off random characters that represent icons */
   content: "\f213";
 }
 
+.fa-square-web-awesome:before {
+  content: "\e683";
+}
+
 .fa-sass:before {
   content: "\f41e";
 }
@@ -9912,6 +9944,10 @@ readers do not read off random characters that represent icons */
 
 .fa-waze:before {
   content: "\f83f";
+}
+
+.fa-bluesky:before {
+  content: "\e671";
 }
 
 .fa-cc-jcb:before {
@@ -24816,28 +24852,17 @@ ul[class*=horizbuttons-][class*=-xxxl] {
 ul[class*=horizbuttons-][class*=-xxl] {
   font-size: 1.25em;
 }
-ul[class*=horizbuttons-][class*=-attention-] > li,
-ul[class*=horizbuttons-][class*=-important-] > li,
-ul[class*=horizbuttons-][class*=-primary-] > li,
-ul[class*=horizbuttons-][class*=-typo3-] > li,
-ul[class*=horizbuttons-][class*=-striking-] > li,
-ul[class*=horizbuttons-][class*=-warning-] > li {
-  color: #fff;
-  background-color: #333;
+ul[class*=horizbuttons-][class*=-attention-] > li, ul[class*=horizbuttons-][class*=-important-] > li, ul[class*=horizbuttons-][class*=-primary-] > li, ul[class*=horizbuttons-][class*=-typo3-] > li, ul[class*=horizbuttons-][class*=-striking-] > li, ul[class*=horizbuttons-][class*=-warning-] > li {
+  color: #ffffff;
+  background-color: #333333;
 }
-ul[class*=horizbuttons-][class*=-attention-] > li:hover,
-ul[class*=horizbuttons-][class*=-important-] > li:hover,
-ul[class*=horizbuttons-][class*=-primary-] > li:hover,
-ul[class*=horizbuttons-][class*=-typo3-] > li:hover,
-ul[class*=horizbuttons-][class*=-striking-] > li:hover,
-ul[class*=horizbuttons-][class*=-warning-] > li:hover {
+ul[class*=horizbuttons-][class*=-attention-] > li:hover, ul[class*=horizbuttons-][class*=-important-] > li:hover, ul[class*=horizbuttons-][class*=-primary-] > li:hover, ul[class*=horizbuttons-][class*=-typo3-] > li:hover, ul[class*=horizbuttons-][class*=-striking-] > li:hover, ul[class*=horizbuttons-][class*=-warning-] > li:hover {
+  color: #333333;
   background-color: #f2f2f2;
-  color: #333;
-  outline: 2px solid #333;
+  outline: 2px solid #333333;
 }
-ul[class*=horizbuttons-][class*=-note-] > li,
-ul[class*=horizbuttons-][class*=-tip-] > li {
-  color: #000;
+ul[class*=horizbuttons-][class*=-note-] > li, ul[class*=horizbuttons-][class*=-tip-] > li {
+  color: #000000;
   background-color: #f2f2f2;
 }
 
@@ -25135,14 +25160,14 @@ dl.field-list > dt:after {
   margin-bottom: 1rem;
   display: none;
 }
-.breadcrumb-bar .breadcrumb-additions > a.btn-light:hover {
+.breadcrumb-bar .breadcrumb-additions > a.btn-light:hover, .breadcrumb-bar .breadcrumb-additions > a.toc-toggle:hover {
   background: #f2f2f2;
-  outline: 2px solid #333;
+  outline: 2px solid #333333;
 }
 .breadcrumb-bar .breadcrumb-additions > a.btn-secondary:hover {
   background: #f2f2f2;
-  color: #333;
-  outline: 2px solid #333;
+  color: #333333;
+  outline: 2px solid #333333;
 }
 @media (min-width: 768px) {
   .breadcrumb-bar .breadcrumb-additions {
@@ -25512,7 +25537,7 @@ a.toc-title-project:hover {
 
 .search__submit:hover {
   background: #f2f2f2;
-  outline: 2px solid #333;
+  outline: 2px solid #333333;
 }
 
 .page {
