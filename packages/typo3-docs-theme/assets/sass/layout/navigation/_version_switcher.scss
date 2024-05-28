@@ -55,6 +55,17 @@
     p {
         padding: $btn-padding-y $btn-padding-x;
     }
+    details {
+        padding: $btn-padding-x $btn-padding-y;
+
+        summary {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        summary:hover {
+            text-decoration: none;
+        }
+    }
 }
 .toc-version-wrapper-active {
     .toc-version-options {

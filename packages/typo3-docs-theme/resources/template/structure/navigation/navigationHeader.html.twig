@@ -7,9 +7,25 @@
                 <a class="toc-title-project" href="{{ link.url }}">{{ env.projectNode.title }}</a>
             {% endif -%}
         {%- endfor -%}
+
         {% if env.projectNode.version -%}
             <div class="toc-version-wrapper" id="toc-version-wrapper">
+                {% if isRenderedForDeployment() -%}
                 <div id="toc-version" class="toc-version">
+                {%- else -%}
+                {#-
+                    This intentionally is a HTML comment, so that when viewing local source
+                    of any documentation repository (not just this one), the information is revealed.
+                -#}
+
+                <!--
+                    LOCAL RENDERING NOTICE:
+                    https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Developer/AjaxVersions.html
+                -->
+
+                <div id="toc-version" class="toc-version" data-override-url-proxy="https://render-guides.ddev.site/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html">
+                {% endif %}
+
                     <span class="toc-version-prefix">Release:</span>
                     <span class="toc-version-number">{{ env.projectNode.version }}</span>
                 </div>
