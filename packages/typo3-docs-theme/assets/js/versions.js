@@ -27,17 +27,16 @@
 
     try {
       const response = await fetch(url);
+      if (!response.ok) {
+        console.log('AJAX version selector API: Request failure or empty response.');
+        return '';
+      }
+
+      return response.json();
     } catch (e) {
       console.log('AJAX version selector API: Request failed, likely CORS issue. Read the documentation to configure a proxy.');
       return '';
     }
-
-    if (!response.ok) {
-      console.log('AJAX version selector API: Request failure or empty response.');
-      return '';
-    }
-
-    return response.json();
   }
 
   function setVersionContent(parentElement, jsonData) {
