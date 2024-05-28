@@ -25371,20 +25371,25 @@ dl.field-list > dt:after {
   text-decoration: underline;
 }
 .main_menu ul {
-  padding-left: 1rem;
+  padding-left: calc(1rem / 2);
   list-style-type: none;
+}
+.main_menu > ul > li.active {
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0;
 }
 .main_menu li {
   border-radius: 0.375rem;
   overflow: hidden;
   padding-left: calc(1rem / 2);
 }
-.main_menu li.active {
-  border-left: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0;
-}
 .main_menu li.current {
   border-left: none;
+}
+@media (min-width: 992px) {
+  .main_menu li {
+    font-size: 1rem;
+  }
 }
 .main_menu .toctree-expand {
   position: absolute;
