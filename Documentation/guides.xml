@@ -6,6 +6,8 @@
 >
     <project
         title="Render guides"
+        version="main"
+        release="main"
         copyright="Since 2023 TYPO3 Documentation Team and Contributors"
     />
     <extension

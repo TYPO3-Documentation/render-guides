@@ -200,6 +200,7 @@ above, and then executes two composite steps:
 Note that we only have one central Docker container image entrypoint that can
 take arguments like `migrate` or `render` to trigger different actions.
 
+..  _deploy-azure-assets:
 
 GitHub workflow: deploy-azure-assets
 ------------------------------------

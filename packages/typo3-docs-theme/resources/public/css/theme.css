@@ -25526,6 +25526,16 @@ a.toc-title-project:hover {
 .toc-version-options p {
   padding: 0.375rem 0.75rem;
 }
+.toc-version-options details {
+  padding: 0.75rem 0.375rem;
+}
+.toc-version-options details summary {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.toc-version-options details summary:hover {
+  text-decoration: none;
+}
 
 .toc-version-wrapper-active .toc-version-options {
   display: block;
