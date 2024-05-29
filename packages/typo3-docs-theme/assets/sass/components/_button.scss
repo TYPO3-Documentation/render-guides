@@ -12,6 +12,21 @@
     }
 }
 
-.btn-primary {
-    @include button-variant($primary, $primary, $white, shade-color($primary, $btn-hover-bg-shade-amount), shade-color($primary, $btn-hover-bg-shade-amount), $white);
+.btn-primary,
+.btn-secondary {
+    @include button-variant($secondary, $secondary, $white, $gray-200, $secondary, $secondary);
+}
+.btn-default,
+.btn-light {
+    @include button-variant($gray-200, $gray-200, $secondary, $gray-200, $secondary, $secondary);
+}
+.card-footer {
+    .btn-primary,
+    .btn-secondary {
+        @include button-variant($secondary, $secondary, $white, $white, $secondary, $secondary);
+    }
+    .btn-default,
+    .btn-light {
+        @include button-variant($white, $white, $secondary, $white, $secondary, $secondary);
+    }
 }
