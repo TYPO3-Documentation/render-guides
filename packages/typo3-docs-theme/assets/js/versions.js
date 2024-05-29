@@ -54,7 +54,7 @@
     let staticLanguages = {
       'de-de': 'German',
       'de-at': 'German (Austria)',
-      'de-ch': 'German (Swiss)',
+      'de-ch': 'German (Switzerland)',
       'en-gb': 'English',
       'fr-fr': 'French',
       'ru-ru': 'Russian',
