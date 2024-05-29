@@ -23396,21 +23396,77 @@ article ol li::marker {
   margin-left: calc(1rem / 2);
 }
 
-.btn-primary {
+.btn-primary,
+.btn-secondary {
   --bs-btn-color: #ffffff;
-  --bs-btn-bg: #ff8700;
-  --bs-btn-border-color: #ff8700;
-  --bs-btn-hover-color: #ffffff;
-  --bs-btn-hover-bg: #d97300;
-  --bs-btn-hover-border-color: #d97300;
-  --bs-btn-focus-shadow-rgb: 255, 153, 38;
+  --bs-btn-bg: #333333;
+  --bs-btn-border-color: #333333;
+  --bs-btn-hover-color: #333333;
+  --bs-btn-hover-bg: #f2f2f2;
+  --bs-btn-hover-border-color: #333333;
+  --bs-btn-focus-shadow-rgb: 82, 82, 82;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #292929;
+  --bs-btn-active-border-color: #262626;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #333333;
+  --bs-btn-disabled-border-color: #333333;
+}
+
+.btn-default,
+.btn-light,
+.toc-toggle {
+  --bs-btn-color: #333333;
+  --bs-btn-bg: #f2f2f2;
+  --bs-btn-border-color: #f2f2f2;
+  --bs-btn-hover-color: #333333;
+  --bs-btn-hover-bg: #f2f2f2;
+  --bs-btn-hover-border-color: #333333;
+  --bs-btn-focus-shadow-rgb: 213, 213, 213;
   --bs-btn-active-color: #000;
-  --bs-btn-active-bg: #cc6c00;
-  --bs-btn-active-border-color: #bf6500;
+  --bs-btn-active-bg: whitesmoke;
+  --bs-btn-active-border-color: #f3f3f3;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #000;
-  --bs-btn-disabled-bg: #ff8700;
-  --bs-btn-disabled-border-color: #ff8700;
+  --bs-btn-disabled-bg: #f2f2f2;
+  --bs-btn-disabled-border-color: #f2f2f2;
+}
+
+.card-footer .btn-primary,
+.card-footer .btn-secondary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #333333;
+  --bs-btn-border-color: #333333;
+  --bs-btn-hover-color: #333333;
+  --bs-btn-hover-bg: #ffffff;
+  --bs-btn-hover-border-color: #333333;
+  --bs-btn-focus-shadow-rgb: 82, 82, 82;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #292929;
+  --bs-btn-active-border-color: #262626;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #333333;
+  --bs-btn-disabled-border-color: #333333;
+}
+.card-footer .btn-default,
+.card-footer .btn-light,
+.card-footer .toc-toggle {
+  --bs-btn-color: #333333;
+  --bs-btn-bg: #ffffff;
+  --bs-btn-border-color: #ffffff;
+  --bs-btn-hover-color: #333333;
+  --bs-btn-hover-bg: #ffffff;
+  --bs-btn-hover-border-color: #333333;
+  --bs-btn-focus-shadow-rgb: 224, 224, 224;
+  --bs-btn-active-color: #000;
+  --bs-btn-active-bg: white;
+  --bs-btn-active-border-color: white;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #000;
+  --bs-btn-disabled-bg: #ffffff;
+  --bs-btn-disabled-border-color: #ffffff;
 }
 
 .card-group {
@@ -24866,9 +24922,14 @@ ul[class*=horizbuttons-][class*=-attention-] > li:hover, ul[class*=horizbuttons-
   background-color: #f2f2f2;
   outline: 2px solid #333333;
 }
-ul[class*=horizbuttons-][class*=-note-] > li, ul[class*=horizbuttons-][class*=-tip-] > li {
+ul[class*=horizbuttons-][class*=-note-] > li, ul[class*=horizbuttons-][class*=-tip-] > li, ul[class*=horizbuttons-][class*=-default-] > li {
   color: #000000;
   background-color: #f2f2f2;
+}
+ul[class*=horizbuttons-][class*=-note-] > li:hover, ul[class*=horizbuttons-][class*=-tip-] > li:hover, ul[class*=horizbuttons-][class*=-default-] > li:hover {
+  color: #333333;
+  background-color: #f2f2f2;
+  outline: 2px solid #333333;
 }
 
 .admonition {

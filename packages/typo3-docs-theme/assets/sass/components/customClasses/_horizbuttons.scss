@@ -37,10 +37,17 @@ ul[class*="horizbuttons-"] {
         }
     }
     &[class*="-note-"],
-    &[class*="-tip-"] {
+    &[class*="-tip-"],
+    &[class*="-default-"],
+    &[class*="-light-"]  {
         > li {
             color: $black;
             background-color: $gray-200;
+            &:hover {
+                color: $secondary;
+                background-color: $gray-200;
+                outline: 2px solid $secondary;
+            }
         }
     }
 }
