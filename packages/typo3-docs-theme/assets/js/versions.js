@@ -137,7 +137,10 @@
         let versionTrimmed = version.trim();
         let versionAsFloat = parseFloat(versionTrimmed);
         if (!isNaN(versionAsFloat) && Number(versionTrimmed) === versionAsFloat) {
-          version = versionAsFloat;
+          version = versionAsFloat.toString();
+          if (!version.includes('.')) {
+            version += '.0';
+          }
           versionType = '2_numeric';
         }
       }
