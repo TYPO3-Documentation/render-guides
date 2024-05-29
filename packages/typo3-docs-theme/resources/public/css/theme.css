@@ -23342,6 +23342,11 @@ a:hover {
   text-decoration-thickness: 2px;
 }
 
+span.invalid-link {
+  background: #f2f2f2;
+  text-decoration: dotted;
+}
+
 li p:last-of-type {
   margin-bottom: 0;
 }

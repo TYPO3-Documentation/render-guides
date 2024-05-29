@@ -1,0 +1,16 @@
+{%- if node.url -%}
+    <a href="{{- node.url -}}"
+        {%- for key, value in attributes %} {{- key -}}="{{- value -}}"{% endfor -%}
+        {%- if node.classes %} class="{{ node.classesString }}"{% endif -%}
+    >
+    {{- node.value -}}
+    </a>
+{%- else -%}
+    <span class="invalid-link" title="This link cannot be resolved anymore">
+        {%- if node.url -%}
+            {{- node.value -}}
+        {%- else -%}
+        {%- if node.interlinkDomain -%}{{ node.interlinkDomain }}:{%- endif -%}{{- node.targetReference -}}
+        {%- endif -%}
+    </span>
+{%- endif -%}

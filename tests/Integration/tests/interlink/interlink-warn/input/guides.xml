@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<guides
+        xmlns="https://www.phpdoc.org/guides"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+>
+    <inventory id="h2document" url="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/" />
+    <inventory id="t3start" url="https://docs.typo3.org/m/typo3/tutorial-getting-started/main/en-us/" />
+</guides>
