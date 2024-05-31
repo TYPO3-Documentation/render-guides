@@ -7,6 +7,10 @@
   const SELECTOR_VERSION_WRAPPER_ACTIVE_CLASS = 'toc-version-wrapper-active';
   const LANGUAGE_DEFAULT = 'A_Default';
 
+  // it should have at least one more digit than the largest number part in
+  // version strings
+  const VERSION_SORT_BASE = 100000;
+
   const versionElement = document.getElementById(SELECTOR_VERSION_ID);
   if (!versionElement) {
     return;
@@ -137,7 +141,9 @@
         let versionTrimmed = version.trim();
         let versionAsFloat = parseFloat(versionTrimmed);
         if (!isNaN(versionAsFloat) && Number(versionTrimmed) === versionAsFloat) {
-          version = versionAsFloat;
+          // make each number part have the same digit count, allowing to
+          // properly sort as a string
+          version = version.split('.').map(n => +n+VERSION_SORT_BASE).join('.')
           versionType = '2_numeric';
         }
       }
@@ -185,7 +191,14 @@
       for (let versionType in sortedOutput[baseIndexKey][language]) {
         // versionType: 1_main, 2_numeric, 3_named
         for (let version in sortedOutput[baseIndexKey][language][versionType]) {
-          html += '<dd><a href="' + sortedOutput[baseIndexKey][language][versionType][version] + '">' + version + '</a></dd>';
+          let parsedVersion = version
+
+          if (versionType === '2_numeric') {
+            // restore version string from before sorting
+            parsedVersion = version.split('.').map(n => +n-VERSION_SORT_BASE).join('.')
+          }
+
+          html += '<dd><a href="' + sortedOutput[baseIndexKey][language][versionType][version] + '">' + parsedVersion + '</a></dd>';
         }
       }
     }
