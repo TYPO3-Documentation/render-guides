@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d53c65cf0e2a8b623e56621cea15dce",
+    "content-hash": "9436aab2d8a5229371d1efbb6f288452",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -3542,16 +3542,16 @@
         },
         {
             "name": "t3docs/console-command",
-            "version": "0.1.3",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3-Documentation/t3docs-console-command.git",
-                "reference": "08ed7c4eb7a283331824bc01983cc73b71ef387f"
+                "reference": "59dd9e11948ee6f60cd4b6a9d09b331b32d2509f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3-Documentation/t3docs-console-command/zipball/08ed7c4eb7a283331824bc01983cc73b71ef387f",
-                "reference": "08ed7c4eb7a283331824bc01983cc73b71ef387f",
+                "url": "https://api.github.com/repos/TYPO3-Documentation/t3docs-console-command/zipball/59dd9e11948ee6f60cd4b6a9d09b331b32d2509f",
+                "reference": "59dd9e11948ee6f60cd4b6a9d09b331b32d2509f",
                 "shasum": ""
             },
             "require": {
@@ -3583,9 +3583,9 @@
             "homepage": "https://docs.typo3.org",
             "support": {
                 "issues": "https://github.com/TYPO3-Documentation/t3docs-console-command/issues",
-                "source": "https://github.com/TYPO3-Documentation/t3docs-console-command/tree/0.1.3"
+                "source": "https://github.com/TYPO3-Documentation/t3docs-console-command/tree/0.1.4"
             },
-            "time": "2024-05-19T13:40:33+00:00"
+            "time": "2024-05-27T15:35:21+00:00"
         },
         {
             "name": "t3docs/guides-php-domain",
