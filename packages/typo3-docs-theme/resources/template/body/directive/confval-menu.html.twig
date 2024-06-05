@@ -164,5 +164,9 @@
 </div>
 {% endif %}
 {% for child in node.children %}
-    {% include "body/directive/confval.html.twig" with  {'node': child, 'backAnchor': node.anchor } %}
+    {% if child.isConfval %}
+        {% include "body/directive/confval.html.twig" with  {'node': child, 'backAnchor': node.anchor } %}
+    {% else %}
+        {{ renderNode(child) }}
+    {% endif %}
 {% endfor %}

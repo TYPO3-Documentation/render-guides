@@ -23,7 +23,6 @@ use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use phpDocumentor\Guides\RestructuredText\TextRoles\GenericLinkProvider;
-use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 
 class ConfvalMenuDirective extends SubDirective
@@ -32,7 +31,6 @@ class ConfvalMenuDirective extends SubDirective
     public function __construct(
         Rule $startingRule,
         GenericLinkProvider $genericLinkProvider,
-        private readonly LoggerInterface $logger,
         private readonly AnchorNormalizer $anchorReducer,
     ) {
         parent::__construct($startingRule);
@@ -47,9 +45,8 @@ class ConfvalMenuDirective extends SubDirective
         $childConfvals = [];
         foreach ($originalChildren as $child) {
             if ($child instanceof ConfvalNode) {
+                $child = $child->withOptions(array_merge($child->getOptions(), ['isConfval' => true]));
                 $childConfvals[] = $child;
-            } else {
-                $this->logger->warning('A confval-menu may only contain confvals. ', $blockContext->getLoggerInformation());
             }
         }
         $fields = [];
@@ -84,7 +81,7 @@ class ConfvalMenuDirective extends SubDirective
             $id,
             $directive->getData(),
             $directive->getDataNode() ?? new InlineCompoundNode(),
-            $childConfvals,
+            $originalChildren,
             $directive->getOptionString('caption'),
             $childConfvals,
             $fields,
