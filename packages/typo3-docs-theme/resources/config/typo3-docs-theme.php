@@ -28,6 +28,7 @@ use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
+use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
@@ -132,6 +133,8 @@ return static function (ContainerConfigurator $container): void {
         ->arg('$classes', 'code-block')
         ->tag('twig.extension')
         ->autowire()
+
+        ->set(Typo3VersionService::class)
 
         // Register Event Listeners
         ->set(AddThemeSettingsToProjectNode::class)
