@@ -19,6 +19,7 @@ use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\OptionMapper\CodeNodeOptionMapper;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
+use Psr\Log\LoggerInterface;
 use RuntimeException;
 
 use function explode;
@@ -26,17 +27,48 @@ use function sprintf;
 
 final class LiteralincludeDirective extends BaseDirective
 {
-    public function __construct(private readonly CodeNodeOptionMapper $codeNodeOptionMapper) {}
+    public function __construct(
+        private readonly CodeNodeOptionMapper $codeNodeOptionMapper,
+        private readonly LoggerInterface      $logger,
+    ) {}
 
     public function getName(): string
     {
         return 'literalinclude';
     }
 
+    private function detectLanguageFromExtension(string $path): ?string
+    {
+        $extensionMap = [
+            'html' => 'html',
+            'php' => 'php',
+            'typoscript' => 'typoscript',
+            'tsconfig' => 'typoscript',
+            'xml' => 'xml',
+            'json' => 'json',
+            'yaml' => 'yaml',
+            'yml' => 'yaml',
+            'js' => 'javascript',
+            'css' => 'css',
+            'scss' => 'scss',
+            'ts' => 'typescript',
+            'txt' => 'plaintext',
+            'htaccess' => 'plaintext',
+            'rst' => 'rest',
+            'diff' => 'diff',
+        ];
+
+        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        if (isset($extensionMap[$extension])) {
+            return $extensionMap[$extension];
+        }
+        return null;
+    }
+
     /** {@inheritDoc} */
     public function processNode(
         BlockContext $blockContext,
-        Directive $directive,
+        Directive    $directive,
     ): Node {
         $parser = $blockContext->getDocumentParserContext()->getParser();
         $parserContext = $parser->getParserContext();
@@ -54,8 +86,24 @@ final class LiteralincludeDirective extends BaseDirective
         if ($contents === false) {
             throw new RuntimeException(sprintf('Could not load file from path %s', $path));
         }
+        $language = $this->detectLanguageFromExtension($path);
+        if ($directive->hasOption('language')) {
+            $language = $directive->getOptionString('language');
+        }
+        if ($language === null) {
+            $this->logger->warning(
+                sprintf(
+                    'Language of `..  literalinclude:: %s` could not be autodetected. '
+                    . 'Use property `:language: [langugage]` to explicitly set the language. '
+                    . 'Defaulting to `plaintext`. ',
+                    $directive->getData()
+                ),
+                $blockContext->getLoggerInformation()
+            );
+            $language = 'plaintext';
+        }
 
-        $codeNode = new CodeNode(explode("\n", $contents));
+        $codeNode = new CodeNode(explode("\n", $contents), $language);
         $this->codeNodeOptionMapper->apply($codeNode, $directive->getOptions(), $blockContext);
 
         $path = '/' . trim($path, '/');
