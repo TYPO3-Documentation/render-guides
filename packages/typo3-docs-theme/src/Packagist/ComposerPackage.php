@@ -14,6 +14,7 @@ class ComposerPackage
         private readonly string $documentation = '',
         private readonly string $issues = '',
         private readonly string $source = '',
+        private readonly bool $development = false,
     ) {}
 
     public function getComposerName(): string
@@ -59,5 +60,10 @@ class ComposerPackage
     public function getPackagistStatus(): string
     {
         return $this->packagistStatus;
+    }
+
+    public function isDevelopment(): bool
+    {
+        return $this->development;
     }
 }

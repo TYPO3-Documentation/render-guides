@@ -26,16 +26,23 @@ class PackagistService
             $this->cache[$composerName] = new ComposerPackage($composerName, 'composer req ' . $composerName, 'not found');
             return $this->cache[$composerName];
         }
+        $packageVersionData = $packageData['packages'][$composerName][0];
+        $isDev = false;
+        $keywords = $packageVersionData['keywords'] ?? [];
+        if (in_array('testing', $keywords, true) || in_array('development', $keywords, true)) {
+            $isDev = true;
+        }
         $this->cache[$composerName] = new ComposerPackage(
             $composerName,
-            'composer req ' . $composerName,
+            'composer req ' . ($isDev ? '--dev ' : '') . $composerName,
             'found',
             'https://packagist.org/packages/' . $composerName,
-            $packageData['packages'][$composerName][0]['description'] ?? '',
-            $packageData['packages'][$composerName][0]['homepage'] ?? '',
-            $packageData['packages'][$composerName][0]['support']['docs'] ?? '',
-            $packageData['packages'][$composerName][0]['support']['issues'] ?? '',
-            $packageData['packages'][$composerName][0]['support']['source'] ?? '',
+            $packageVersionData['description'] ?? '',
+            $packageVersionData['homepage'] ?? '',
+            $packageVersionData['support']['docs'] ?? '',
+            $packageVersionData['support']['issues'] ?? '',
+            $packageVersionData['support']['source'] ?? '',
+            $isDev
         );
         return $this->cache[$composerName];
     }
