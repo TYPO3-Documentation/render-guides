@@ -14,6 +14,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
+use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
@@ -99,6 +100,7 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
 
             'templates' => [
                 template(CodeInlineNode::class, 'inline/textroles/code.html.twig'),
+                template(ComposerInlineNode::class, 'inline/textroles/composer.html.twig'),
             ],
         ]);
     }
