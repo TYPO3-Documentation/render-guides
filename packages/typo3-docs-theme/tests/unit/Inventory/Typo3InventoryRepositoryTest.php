@@ -13,6 +13,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
+use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 final class Typo3InventoryRepositoryTest extends TestCase
@@ -226,7 +227,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
             $this->anchorNormalizer,
             new DefaultInventoryLoader(new NullLogger(), $this->jsonLoaderMock, $this->anchorNormalizer),
             $this->jsonLoaderMock,
-            $settings,
+            new Typo3VersionService($settings),
             $inventoryConfigs,
         );
     }

@@ -20,6 +20,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
+use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
 use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
@@ -37,6 +38,7 @@ final class TwigExtension extends AbstractExtension
         private readonly UrlGeneratorInterface         $urlGenerator,
         private readonly Typo3DocsThemeSettings        $themeSettings,
         private readonly DocumentNameResolverInterface $documentNameResolver,
+        private readonly Typo3VersionService           $typo3VersionService,
     ) {
         if (strlen((string)getenv('GITHUB_ACTIONS')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
@@ -63,6 +65,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getPrevNextLinks', $this->getPrevNextLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getSettings', $this->getSettings(...), ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFunction('getTYPO3Version', $this->getTYPO3Version(...), ['is_safe' => ['html'], 'needs_context' => false]),
             new TwigFunction('isNoSearch', $this->isNoSearch(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('copyDownload', $this->copyDownload(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getStandardInventories', $this->getStandardInventories(...), ['is_safe' => ['html'], 'needs_context' => true]),
@@ -347,6 +350,11 @@ final class TwigExtension extends AbstractExtension
     public function getSettings(array $context, string $key, string $default = ''): string
     {
         return $this->themeSettings->getSettings($key, $default);
+    }
+
+    public function getTYPO3Version(): string
+    {
+        return $this->typo3VersionService->getPreferredVersion();
     }
 
     /**
