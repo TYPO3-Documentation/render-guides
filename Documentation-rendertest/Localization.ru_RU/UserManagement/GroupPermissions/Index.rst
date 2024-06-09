@@ -102,10 +102,6 @@
 .. figure:: ../../Images/ManualScreenshots/UserManagement/BackendBackendGroupEditAllowDeny.png
    :alt: Настройка разрешений для значений типов содержимого на страницах
 
-.. note::
-
-   Изменить поведение можно в инструменте установки, установив :ref:`[BE][explicitADmode]<t3coreapi:typo3ConfVars_be_explicitADmode>` на :php:`explicitDeny`.
-
 Ограничить до языков / Limit to Languages
 ------------------
 
