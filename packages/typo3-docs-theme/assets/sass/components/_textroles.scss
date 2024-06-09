@@ -1,15 +1,21 @@
 
-/**
- * Keyboard Shortcuts, text role :kbd:
- */
-kbd {
-    @include inline-box;
-}
+article {
+    /**
+     * Keyboard Shortcuts, text role :kbd:
+     */
+    kbd {
+        @include inline-box;
+    }
 
-/**
- * GUI-Label
- */
-.guilabel {
-    font-size: 75%;
-    @include inline-box($info);
+    /**
+     * GUI-Label
+     */
+    .guilabel {
+        font-size: 75%;
+        @include inline-box($info);
+    }
+
+    a.composer-link {
+        text-decoration: underline dotted;
+    }
 }

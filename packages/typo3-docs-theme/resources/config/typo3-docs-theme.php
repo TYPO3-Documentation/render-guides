@@ -28,11 +28,13 @@ use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
+use T3Docs\Typo3DocsTheme\Packagist\PackagistService;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\FluidTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\HtmlTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\InputTextTextRole;
@@ -74,6 +76,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(InventoryRepository::class, Typo3InventoryRepository::class)
         ->arg('$inventoryConfigs', param('phpdoc.guides.inventories'))
         ->set(InterlinkParser::class, ExtendedInterlinkParser::class)
+        ->set(ComposerTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(FluidTextTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(HtmlTextTextRole::class)
@@ -134,6 +138,7 @@ return static function (ContainerConfigurator $container): void {
         ->tag('twig.extension')
         ->autowire()
 
+        ->set(PackagistService::class)
         ->set(Typo3VersionService::class)
 
         // Register Event Listeners

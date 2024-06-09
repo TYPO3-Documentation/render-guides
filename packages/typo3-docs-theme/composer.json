@@ -10,6 +10,7 @@
         }
     },
     "require": {
+        "ext-curl": "*",
         "brotkrueml/twig-codehighlight": "^0.1.1",
         "phpdocumentor/guides-graphs": "^1.0",
         "phpdocumentor/guides-theme-bootstrap": "^1.0",
