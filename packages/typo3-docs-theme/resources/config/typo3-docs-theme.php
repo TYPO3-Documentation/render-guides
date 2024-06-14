@@ -45,6 +45,8 @@ use T3Docs\Typo3DocsTheme\TextRoles\PhpTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\RestructuredTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ShellTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\SqlTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\T3extTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\T3srcTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\TSconfigTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\TypeScriptTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\TypoScriptTextTextRole;
@@ -92,9 +94,13 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(RestructuredTextTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(ShellTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(SqlTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
-        ->set(ShellTextTextRole::class)
+        ->set(T3extTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(T3srcTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(TSconfigTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
