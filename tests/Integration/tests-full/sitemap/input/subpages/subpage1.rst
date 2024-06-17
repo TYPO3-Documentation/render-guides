@@ -1,5 +1,7 @@
-=========
-Subpage 1
-=========
+:nosearch:
+
+========================
+Subpage 1 - Not searched
+========================
 
 Lorem Ipsum Dolor.

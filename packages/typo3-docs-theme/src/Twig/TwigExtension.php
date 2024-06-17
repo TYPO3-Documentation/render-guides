@@ -10,6 +10,7 @@ use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\LinkTargetNode;
 use phpDocumentor\Guides\Nodes\Metadata\NoSearchNode;
+use phpDocumentor\Guides\Nodes\Metadata\OrphanNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
@@ -121,8 +122,16 @@ final class TwigExtension extends AbstractExtension
             if ($headerNode instanceof NoSearchNode) {
                 return true;
             }
+            // Disable searching on orphans
+            if ($headerNode instanceof OrphanNode) {
+                return true;
+            }
             // Disable searching on sitemaps
             if ($headerNode instanceof TemplateNode && $headerNode->getValue() === 'sitemap.html') {
+                return true;
+            }
+            // Disable searching on changelog indexes
+            if ($headerNode instanceof TemplateNode && $headerNode->getValue() === 'changelogOverview.html') {
                 return true;
             }
         }
