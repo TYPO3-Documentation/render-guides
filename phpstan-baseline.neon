@@ -1,6 +1,16 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Parameter \\#6 \\$documentation of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\>, mixed given\\.$#"
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: "#^Parameter \\#9 \\$docTags of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<string, string\\>, mixed given\\.$#"
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
 			message: "#^Cannot access offset 'packages' on mixed\\.$#"
 			count: 1
 			path: packages/typo3-docs-theme/src/Packagist/PackagistService.php

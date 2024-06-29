@@ -1,0 +1,29 @@
+{% if node.docTags %}
+    {% for key, docTag in node.docTags  %}
+        {% if key == '@deprecated' %}
+            <div class="versionchange deprecated">
+                <p class="versionmodified">
+                    <span class="versionicon"><i class="fa-solid fa-ban"></i></span> Deprecated </p>
+                <article>
+                    {{ docTag }}
+                </article>
+            </div>
+        {% else %}
+            <p>{{ key }}: {{ docTag }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{{  renderNode(node.documentation) }}
+
+{% if node.gitHubLink %}
+    {% include "body/directive/viewhelper/viewhelper-source.html.twig" %}
+{% endif %}
+
+{% if node.arguments %}
+    <h2>Arguments</h2>
+    <p>The following arguments are available for the {{ node.tagName }} ViewHelper: </p>
+    {% for argument in node.arguments  %}
+        {% include "body/directive/viewhelper/viewhelper-argument.html.twig" %}
+    {% endfor %}
+{% endif %}
