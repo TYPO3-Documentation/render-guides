@@ -13,6 +13,7 @@ use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
+use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
@@ -22,6 +23,7 @@ use T3Docs\Typo3DocsTheme\Directives\IncludeDirective;
 use T3Docs\Typo3DocsTheme\Directives\LiteralincludeDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
+use T3Docs\Typo3DocsTheme\Directives\ViewHelperDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
@@ -130,6 +132,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(LiteralincludeDirective::class)
         ->set(RawDirective::class)
         ->set(T3FieldListTableDirective::class)
+        ->set(ViewHelperDirective::class)
+        ->arg('$startingRule', service(DocumentRule::class))
         ->set(YoutubeDirective::class)
         ->set(CodeHighlight::class)
         ->arg('$languageAliases', [

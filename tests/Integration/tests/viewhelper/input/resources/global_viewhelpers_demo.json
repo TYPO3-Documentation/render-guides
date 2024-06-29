@@ -1,0 +1,72 @@
+{
+    "namespace": "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers",
+    "viewHelpers": {
+        "split": {
+            "className": "TYPO3Fluid\\Fluid\\ViewHelpers\\SplitViewHelper",
+            "namespace": "TYPO3Fluid\\Fluid\\ViewHelpers",
+            "name": "SplitViewHelper",
+            "tagName": "split",
+            "documentation": "The SplitViewHelper splits a string by the specified separator, which\nresults in an array. The number of values in the resulting array can\nbe limited with the limit parameter, which results in an array where\nthe last item contains the remaining unsplit string.\nThis ViewHelper mimicks PHP's :php:`explode()` function.\n\nExamples\n========\n\nSplit with a separator\n-----------------------\n\n::\n\n    <f:split value=\"1,5,8\" separator=\",\" />\n.. code-block:: text\n    {0: '1', 1: '5', 2: '8'}\n\nSplit using tag content as value\n--------------------------------\n\n::\n\n    <f:split separator=\"-\">1-5-8</f:split>\n.. code-block:: text\n    {0: '1', 1: '5', 2: '8'}\n\nSplit with a limit\n-------------------\n\n::\n\n    <f:split value=\"1,5,8\" separator=\",\" limit=\"2\" />\n.. code-block:: text\n    {0: '1', 1: '5,8'}",
+            "xmlNamespace": "http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers",
+            "docTags": {},
+            "argumentDefinitions": {
+                "value": {
+                    "name": "value",
+                    "type": "string",
+                    "description": "The string to explode",
+                    "required": false,
+                    "defaultValue": "",
+                    "escape": null
+                },
+                "separator": {
+                    "name": "separator",
+                    "type": "string",
+                    "description": "Separator string to explode with",
+                    "required": true,
+                    "escape": null
+                },
+                "limit": {
+                    "name": "limit",
+                    "type": "int",
+                    "description": "If limit is positive, a maximum of $limit items will be returned. If limit is negative, all items except for the last $limit items will be returned. 0 will be treated as 1.",
+                    "required": false,
+                    "defaultValue": 0,
+                    "escape": null
+                }
+            },
+            "allowsArbitraryArguments": false
+        },
+        "link.external":{
+            "className": "TYPO3\\CMS\\Fluid\\ViewHelpers\\Link\\ExternalViewHelper",
+            "namespace": "TYPO3\\CMS\\Fluid\\ViewHelpers",
+            "name": "Link\\ExternalViewHelper",
+            "tagName": "link.external",
+            "documentation": "A ViewHelper for creating links to external targets.\n\nExamples\n========\n\nDefault\n-------\n::\n\n    <f:link.external uri=\"https://www.typo3.org\" target=\"_blank\">external link</f:link.external>\n\nOutput::\n\n    <a href=\"https://www.typo3.org\" target=\"_blank\">external link</a>\n\nCustom default scheme\n---------------------\n\n::\n\n    <f:link.external uri=\"typo3.org\" defaultScheme=\"ftp\">external ftp link</f:link.external>\n\nOutput::\n\n    <a href=\"ftp://typo3.org\">external ftp link</a>",
+            "xmlNamespace": "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers",
+            "docTags": {},
+            "argumentDefinitions": {
+                "uri": {
+                    "name": "uri",
+                    "type": "string",
+                    "description": "The URI that will be put in the href attribute of the rendered link tag",
+                    "required": true,
+                    "defaultValue": null,
+                    "escape": null
+                }
+            },
+            "allowsArbitraryArguments": true
+        },
+        "deprecated":{
+            "className": "TYPO3\\CMS\\Fluid\\ViewHelpers\\DeprecatedViewHelper",
+            "namespace": "TYPO3\\CMS\\Fluid\\ViewHelpers",
+            "name": "DeprecatedViewHelper",
+            "tagName": "deprecated",
+            "documentation": "Example for deprecated ViewHelper and complex types",
+            "xmlNamespace": "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers",
+            "docTags": {
+                "@deprecated": "since v11, will be removed in v12"
+            },
+            "allowsArbitraryArguments": false
+        }
+    }
+}
