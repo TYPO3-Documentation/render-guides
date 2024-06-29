@@ -12,6 +12,11 @@ Tables
    :depth: 99
    :local:
 
+..  toctree::
+    :glob:
+
+    *
+
 
 
 Giant tables
