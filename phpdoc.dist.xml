@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+        configVersion="3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://www.phpdoc.org"
+        xsi:noNamespaceSchemaLocation="https://www.phpdoc.org/xsd/phpdoc.xsd"
+>
+    <title>Typo3</title>
+    <version number="3.0.0">
+        <folder>latest</folder>
+        <api>
+            <source dsn="./.Build/TYPO3">
+                <path>./typo3/sysext</path>
+            </source>
+            <ignore hidden="false" symlinks="true">
+                <path>./**/Tests/</path>
+                <path>./**/Documentation/</path>
+                <path>./**/Resources/</path>
+            </ignore>
+            <include-source>true</include-source>
+            <visibilities>public</visibilities>
+            <visibilities>protected</visibilities>
+            <extensions>
+                <extension>php</extension>
+            </extensions>
+            <ignore-tags>
+            </ignore-tags>
+        </api>
+    </version>
+    <setting name="graphs.enabled" value="true"/>
+    <setting name="template.color" value="orange"/>
+</phpdocumentor>
