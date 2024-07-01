@@ -29,4 +29,10 @@
     </version>
     <setting name="graphs.enabled" value="true"/>
     <setting name="template.color" value="orange"/>
+    <setting name="template.typo3_theme_url" value="https://typo3.azureedge.net/typo3documentation/theme/typo3-docs-theme" />
+    <setting name="template.typo3_theme_version" value="0.5.0" />
+    <setting name="template.typo3_cdn" value="https://typo3.azureedge.net" />
+    <setting name="template.typo3_github_url" value="https://github.com/TYPO3/typo3/blob" />
+    <setting name="template.typo3_version" value="main" />
+
 </phpdocumentor>
