@@ -1,10 +1,70 @@
+{%  set hasLooped = false %}
 {
-{% for element in documentationSet.indexes.elements %}
+    "api:class": {
+        {% for element in documentationSet.indexes.classes -%}
+            {% if loop.first and hasLooped %},{% endif %}
+            {% set hasLooped = false %}
+            {{  _self.link(project, element) }}
+            {% if not loop.last -%},
+            {% else %}
+            {% set hasLooped = true %}
+            {% endif %}
+        {% endfor %}
 
-   "{{ element.fullyQualifiedStructuralElementName|replace({'\\': '_'}) }}":  {
-       "name": "{{ element.name }}",
-       "url": "{{ element | route('url') }}"
-   }{% if not loop.last %},{% endif %}
+        {% for element in documentationSet.indexes.interfaces -%}
+            {% if loop.first and hasLooped %},{% endif %}
+            {% set hasLooped = false %}
+            {{  _self.link(project, element) }}
+            {% if not loop.last -%},
+            {% else %}
+            {% set hasLooped = true %}
+            {% endif %}
+        {% endfor %}
 
-{% endfor %}
+        {% for element in documentationSet.indexes.traits -%}
+            {% if loop.first and hasLooped %},{% endif %}
+            {% set hasLooped = false %}
+            {{  _self.link(project, element) }}
+            {% if not loop.last -%},
+            {% else %}
+            {% set hasLooped = true %}
+            {% endif %}
+        {% endfor %}
+
+        {% for element in documentationSet.indexes.enums -%}
+            {% if loop.first and hasLooped %},{% endif %}
+            {% set hasLooped = false %}
+            {{  _self.link(project, element) }}
+            {% if not loop.last -%},
+            {% else %}
+            {% set hasLooped = true %}
+            {% endif %}
+        {% endfor %}
+
+        {% for element in documentationSet.indexes.functions -%}
+            {% if loop.first and hasLooped %},{% endif %}
+            {% set hasLooped = false %}
+            {{  _self.link(project, element) }}
+            {% if not loop.last -%},
+            {% else %}
+            {% set hasLooped = true %}
+            {% endif %}
+        {% endfor %}
+    },
+    "api:namespace": {
+        {% for element in documentationSet.indexes.namespaces -%}
+            {{  _self.link(project, element) }}
+            {% if not loop.last -%},
+            {% endif %}
+        {% endfor %}
+    }
 }
+
+{% macro link(project, element) %}
+"{{ element.fullyQualifiedStructuralElementName|replace({'\\': '\\\\'}) }}":  [
+"{{ project.name }}",
+"main",
+"{{ element.name|replace({'\\': '\\\\'}) }}",
+"{{ element | route('url') }}"
+]
+{% endmacro %}

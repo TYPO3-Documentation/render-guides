@@ -4,7 +4,7 @@
     <author>Jaap van Otterdijk</author>
     <email>jaap@phpdoc.org</email>
     <version>1.0.0</version>
-<!--    <extends>default</extends>-->
+    <extends>default</extends>
     <transformations>
         <transformation writer="twig" source="index.json.twig" artifact="index.json"/>
     </transformations>
