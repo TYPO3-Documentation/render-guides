@@ -54,8 +54,8 @@
     "config": {
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
-            "phpstan/extension-installer": true,
-            "phpdocumentor/shim": true
+            "phpdocumentor/shim": true,
+            "phpstan/extension-installer": true
         },
         "sort-packages": true
     },
