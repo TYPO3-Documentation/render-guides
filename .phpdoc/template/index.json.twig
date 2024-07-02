@@ -1,0 +1,10 @@
+{
+{% for element in documentationSet.indexes.elements %}
+
+   "{{ element.fullyQualifiedStructuralElementName|replace({'\\': '_'}) }}":  {
+       "name": "{{ element.name }}",
+       "url": "{{ element | route('url') }}"
+   }{% if not loop.last %},{% endif %}
+
+{% endfor %}
+}

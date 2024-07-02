@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <name>TYPO3</name>
+    <author>Jaap van Otterdijk</author>
+    <email>jaap@phpdoc.org</email>
+    <version>1.0.0</version>
+<!--    <extends>default</extends>-->
+    <transformations>
+        <transformation writer="twig" source="index.json.twig" artifact="index.json"/>
+    </transformations>
+</template>
