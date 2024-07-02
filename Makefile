@@ -172,6 +172,12 @@ migrate-settings: ## Migrate Settings.cfg to guides.xml
     fi
 	$(PHP_BIN) packages/typo3-guides-cli/bin/typo3-guides migrate $(path)
 
+api-docs: ## Generate API documentation
+	$(PHP_BIN) vendor/bin/phpdoc
+
+clone-typo3:
+	git clone git@github.com:TYPO3/typo3.git .Build/TYPO3
+
 ## LIST: Compound targets that are triggers for others.
 
 .PHONY: cleanup

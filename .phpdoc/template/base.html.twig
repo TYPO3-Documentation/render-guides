@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="css/template.css">
+<link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="{{ parameter.typo3_theme_url }}/{{ parameter.typo3_theme_version }}/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ parameter.typo3_cdn }}/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+    <script src="{{ parameter.typo3_cdn }}/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+{% endblock %}
