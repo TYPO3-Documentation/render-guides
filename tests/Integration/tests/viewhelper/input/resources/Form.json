@@ -1,0 +1,1182 @@
+{
+  "viewHelpers": {
+    "form": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\FormViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "FormViewHelper",
+      "tagName": "form",
+      "documentation": "Custom form ViewHelper that renders the form state instead of referrer fields\n\nScope: frontend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "additionalAttributes": {
+          "name": "additionalAttributes",
+          "type": "array",
+          "description": "Additional tag attributes. They will be added directly to the resulting HTML tag.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "data": {
+          "name": "data",
+          "type": "array",
+          "description": "Additional data-* attributes. They will each be added with a \"data-\" prefix.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "aria": {
+          "name": "aria",
+          "type": "array",
+          "description": "Additional aria-* attributes. They will each be added with a \"aria-\" prefix.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "action": {
+          "name": "action",
+          "type": "string",
+          "description": "Target action",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "arguments": {
+          "name": "arguments",
+          "type": "array",
+          "description": "Arguments (do not use reserved keywords \"action\", \"controller\" or \"format\" if not referring to these internal variables specifically)",
+          "required": false,
+          "defaultValue": [],
+          "escape": null
+        },
+        "controller": {
+          "name": "controller",
+          "type": "string",
+          "description": "Target controller",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "extensionName": {
+          "name": "extensionName",
+          "type": "string",
+          "description": "Target Extension Name (without `tx_` prefix and no underscores). If NULL the current extension name is used",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "pluginName": {
+          "name": "pluginName",
+          "type": "string",
+          "description": "Target plugin. If empty, the current plugin name is used",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "pageUid": {
+          "name": "pageUid",
+          "type": "int",
+          "description": "Target page uid",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "object": {
+          "name": "object",
+          "type": "mixed",
+          "description": "Object to use for the form. Use in conjunction with the \"property\" attribute on the sub tags",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "pageType": {
+          "name": "pageType",
+          "type": "int",
+          "description": "Target page type",
+          "required": false,
+          "defaultValue": 0,
+          "escape": null
+        },
+        "noCache": {
+          "name": "noCache",
+          "type": "bool",
+          "description": "set this to disable caching for the target page. You should not need this.",
+          "required": false,
+          "defaultValue": false,
+          "escape": null
+        },
+        "section": {
+          "name": "section",
+          "type": "string",
+          "description": "The anchor to be added to the action URI (only active if $actionUri is not set)",
+          "required": false,
+          "defaultValue": "",
+          "escape": null
+        },
+        "format": {
+          "name": "format",
+          "type": "string",
+          "description": "The requested format (e.g. \".html\") of the target page (only active if $actionUri is not set)",
+          "required": false,
+          "defaultValue": "",
+          "escape": null
+        },
+        "additionalParams": {
+          "name": "additionalParams",
+          "type": "array",
+          "description": "additional action URI query parameters that won't be prefixed like $arguments (overrule $arguments) (only active if $actionUri is not set)",
+          "required": false,
+          "defaultValue": [],
+          "escape": null
+        },
+        "absolute": {
+          "name": "absolute",
+          "type": "bool",
+          "description": "If set, an absolute action URI is rendered (only active if $actionUri is not set)",
+          "required": false,
+          "defaultValue": false,
+          "escape": null
+        },
+        "addQueryString": {
+          "name": "addQueryString",
+          "type": "string",
+          "description": "If set, the current query parameters will be kept in the URL. If set to \"untrusted\", then ALL query parameters will be added. Be aware, that this might lead to problems when the generated link is cached.",
+          "required": false,
+          "defaultValue": false,
+          "escape": null
+        },
+        "argumentsToBeExcludedFromQueryString": {
+          "name": "argumentsToBeExcludedFromQueryString",
+          "type": "array",
+          "description": "arguments to be removed from the action URI. Only active if $addQueryString = TRUE and $actionUri is not set",
+          "required": false,
+          "defaultValue": [],
+          "escape": null
+        },
+        "fieldNamePrefix": {
+          "name": "fieldNamePrefix",
+          "type": "string",
+          "description": "Prefix that will be added to all field names within this form. If not set the prefix will be tx_yourExtension_plugin",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "actionUri": {
+          "name": "actionUri",
+          "type": "string",
+          "description": "can be used to overwrite the \"action\" attribute of the form tag",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "objectName": {
+          "name": "objectName",
+          "type": "string",
+          "description": "name of the object that is bound to this form. If this argument is not specified, the name attribute of this form is used to determine the FormObjectName",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "hiddenFieldClassName": {
+          "name": "hiddenFieldClassName",
+          "type": "string",
+          "description": "hiddenFieldClassName",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "requestToken": {
+          "name": "requestToken",
+          "type": "mixed",
+          "description": "whether to add that request token to the form",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "signingType": {
+          "name": "signingType",
+          "type": "string",
+          "description": "which signing type to be used on the request token (falls back to \"nonce\")",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "enctype": {
+          "name": "enctype",
+          "type": "string",
+          "description": "MIME type with which the form is submitted",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "method": {
+          "name": "method",
+          "type": "string",
+          "description": "Transfer type (get or post)",
+          "required": false,
+          "defaultValue": "post",
+          "escape": null
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "description": "Name of form",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "onreset": {
+          "name": "onreset",
+          "type": "string",
+          "description": "JavaScript: On reset of the form",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "onsubmit": {
+          "name": "onsubmit",
+          "type": "string",
+          "description": "JavaScript: On submit of the form",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "target": {
+          "name": "target",
+          "type": "string",
+          "description": "Target attribute of the form",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "novalidate": {
+          "name": "novalidate",
+          "type": "bool",
+          "description": "Indicate that the form is not to be validated on submit.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "class": {
+          "name": "class",
+          "type": "string",
+          "description": "CSS class(es) for this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "dir": {
+          "name": "dir",
+          "type": "string",
+          "description": "Text direction for this HTML element. Allowed strings: \"ltr\" (left to right), \"rtl\" (right to left)",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "description": "Unique (in this file) identifier for this HTML element.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "lang": {
+          "name": "lang",
+          "type": "string",
+          "description": "Language for this element. Use short names specified in RFC 1766",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "style": {
+          "name": "style",
+          "type": "string",
+          "description": "Individual CSS styles for this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "title": {
+          "name": "title",
+          "type": "string",
+          "description": "Tooltip text of element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "accesskey": {
+          "name": "accesskey",
+          "type": "string",
+          "description": "Keyboard shortcut to access this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "tabindex": {
+          "name": "tabindex",
+          "type": "integer",
+          "description": "Specifies the tab order of this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "onclick": {
+          "name": "onclick",
+          "type": "string",
+          "description": "JavaScript evaluated for the onclick event",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": true,
+      "nameWithoutSuffix": "Form",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/Form"
+    },
+    "gridColumnClassAutoConfiguration": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\GridColumnClassAutoConfigurationViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "GridColumnClassAutoConfigurationViewHelper",
+      "tagName": "gridColumnClassAutoConfiguration",
+      "documentation": "Scope: frontend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "element": {
+          "name": "element",
+          "type": "TYPO3\\CMS\\Form\\Domain\\Model\\Renderable\\RootRenderableInterface",
+          "description": "A RootRenderableInterface instance",
+          "required": true,
+          "defaultValue": null,
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": false,
+      "nameWithoutSuffix": "GridColumnClassAutoConfiguration",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/GridColumnClassAutoConfiguration"
+    },
+    "form.uploadedResource": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\Form\\UploadedResourceViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "Form\\UploadedResourceViewHelper",
+      "tagName": "form.uploadedResource",
+      "documentation": "This ViewHelper makes the specified Image object available for its\nchildNodes.\nIn case the form is redisplayed because of validation errors, a previously\nuploaded image will be correctly used.\n\nScope: frontend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "additionalAttributes": {
+          "name": "additionalAttributes",
+          "type": "array",
+          "description": "Additional tag attributes. They will be added directly to the resulting HTML tag.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "data": {
+          "name": "data",
+          "type": "array",
+          "description": "Additional data-* attributes. They will each be added with a \"data-\" prefix.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "aria": {
+          "name": "aria",
+          "type": "array",
+          "description": "Additional aria-* attributes. They will each be added with a \"aria-\" prefix.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "description": "Name of input tag",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "value": {
+          "name": "value",
+          "type": "mixed",
+          "description": "Value of input tag",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "property": {
+          "name": "property",
+          "type": "string",
+          "description": "Name of Object Property. If used in conjunction with <f:form object=\"...\">, the \"name\" property will be ignored, while \"value\" can be used to specify a default field value instead of the object property value.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "as": {
+          "name": "as",
+          "type": "string",
+          "description": "",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "accept": {
+          "name": "accept",
+          "type": "array",
+          "description": "Values for the accept attribute",
+          "required": false,
+          "defaultValue": [],
+          "escape": null
+        },
+        "errorClass": {
+          "name": "errorClass",
+          "type": "string",
+          "description": "CSS class to set if there are errors for this ViewHelper",
+          "required": false,
+          "defaultValue": "f3-form-error",
+          "escape": null
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "string",
+          "description": "Specifies that the input element should be disabled when the page loads",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "multiple": {
+          "name": "multiple",
+          "type": "string",
+          "description": "Specifies that the file input element should allow multiple selection of files",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "class": {
+          "name": "class",
+          "type": "string",
+          "description": "CSS class(es) for this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "dir": {
+          "name": "dir",
+          "type": "string",
+          "description": "Text direction for this HTML element. Allowed strings: \"ltr\" (left to right), \"rtl\" (right to left)",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "description": "Unique (in this file) identifier for this HTML element.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "lang": {
+          "name": "lang",
+          "type": "string",
+          "description": "Language for this element. Use short names specified in RFC 1766",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "style": {
+          "name": "style",
+          "type": "string",
+          "description": "Individual CSS styles for this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "title": {
+          "name": "title",
+          "type": "string",
+          "description": "Tooltip text of element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "accesskey": {
+          "name": "accesskey",
+          "type": "string",
+          "description": "Keyboard shortcut to access this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "tabindex": {
+          "name": "tabindex",
+          "type": "integer",
+          "description": "Specifies the tab order of this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "onclick": {
+          "name": "onclick",
+          "type": "string",
+          "description": "JavaScript evaluated for the onclick event",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": true,
+      "nameWithoutSuffix": "Form\\UploadedResource",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/Form\/UploadedResource"
+    },
+    "form.timePicker": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\Form\\TimePickerViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "Form\\TimePickerViewHelper",
+      "tagName": "form.timePicker",
+      "documentation": "Displays two select-boxes for hour and minute selection.\n\nScope: frontend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "additionalAttributes": {
+          "name": "additionalAttributes",
+          "type": "array",
+          "description": "Additional tag attributes. They will be added directly to the resulting HTML tag.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "data": {
+          "name": "data",
+          "type": "array",
+          "description": "Additional data-* attributes. They will each be added with a \"data-\" prefix.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "aria": {
+          "name": "aria",
+          "type": "array",
+          "description": "Additional aria-* attributes. They will each be added with a \"aria-\" prefix.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "description": "Name of input tag",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "value": {
+          "name": "value",
+          "type": "mixed",
+          "description": "Value of input tag",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "property": {
+          "name": "property",
+          "type": "string",
+          "description": "Name of Object Property. If used in conjunction with <f:form object=\"...\">, the \"name\" property will be ignored, while \"value\" can be used to specify a default field value instead of the object property value.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "size": {
+          "name": "size",
+          "type": "int",
+          "description": "The size of the select field",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "type": "string",
+          "description": "Specifies a short hint that describes the expected value of an input element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "string",
+          "description": "Specifies that the select element should be disabled when the page loads",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "errorClass": {
+          "name": "errorClass",
+          "type": "string",
+          "description": "CSS class to set if there are errors for this ViewHelper",
+          "required": false,
+          "defaultValue": "f3-form-error",
+          "escape": null
+        },
+        "initialDate": {
+          "name": "initialDate",
+          "type": "string",
+          "description": "Initial time (@see http:\/\/www.php.net\/manual\/en\/datetime.formats.php for supported formats)",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "timeType": {
+          "name": "timeType",
+          "type": "string",
+          "description": "\"hour\" or \"minute\"",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "class": {
+          "name": "class",
+          "type": "string",
+          "description": "CSS class(es) for this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "dir": {
+          "name": "dir",
+          "type": "string",
+          "description": "Text direction for this HTML element. Allowed strings: \"ltr\" (left to right), \"rtl\" (right to left)",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "description": "Unique (in this file) identifier for this HTML element.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "lang": {
+          "name": "lang",
+          "type": "string",
+          "description": "Language for this element. Use short names specified in RFC 1766",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "style": {
+          "name": "style",
+          "type": "string",
+          "description": "Individual CSS styles for this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "title": {
+          "name": "title",
+          "type": "string",
+          "description": "Tooltip text of element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "accesskey": {
+          "name": "accesskey",
+          "type": "string",
+          "description": "Keyboard shortcut to access this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "tabindex": {
+          "name": "tabindex",
+          "type": "integer",
+          "description": "Specifies the tab order of this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "onclick": {
+          "name": "onclick",
+          "type": "string",
+          "description": "JavaScript evaluated for the onclick event",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": true,
+      "nameWithoutSuffix": "Form\\TimePicker",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/Form\/TimePicker"
+    },
+    "form.datePicker": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\Form\\DatePickerViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "Form\\DatePickerViewHelper",
+      "tagName": "form.datePicker",
+      "documentation": "Display a jQuery date picker.\n\nNote: Requires jQuery UI to be included on the page.\n\nScope: frontend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "additionalAttributes": {
+          "name": "additionalAttributes",
+          "type": "array",
+          "description": "Additional tag attributes. They will be added directly to the resulting HTML tag.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "data": {
+          "name": "data",
+          "type": "array",
+          "description": "Additional data-* attributes. They will each be added with a \"data-\" prefix.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "aria": {
+          "name": "aria",
+          "type": "array",
+          "description": "Additional aria-* attributes. They will each be added with a \"aria-\" prefix.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "description": "Name of input tag",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "value": {
+          "name": "value",
+          "type": "mixed",
+          "description": "Value of input tag",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "property": {
+          "name": "property",
+          "type": "string",
+          "description": "Name of Object Property. If used in conjunction with <f:form object=\"...\">, the \"name\" property will be ignored, while \"value\" can be used to specify a default field value instead of the object property value.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "size": {
+          "name": "size",
+          "type": "int",
+          "description": "The size of the input field",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "type": "string",
+          "description": "Specifies a short hint that describes the expected value of an input element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "errorClass": {
+          "name": "errorClass",
+          "type": "string",
+          "description": "CSS class to set if there are errors for this ViewHelper",
+          "required": false,
+          "defaultValue": "f3-form-error",
+          "escape": null
+        },
+        "initialDate": {
+          "name": "initialDate",
+          "type": "string",
+          "description": "Initial date (@see http:\/\/www.php.net\/manual\/en\/datetime.formats.php for supported formats)",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "enableDatePicker": {
+          "name": "enableDatePicker",
+          "type": "bool",
+          "description": "Enable the Datepicker",
+          "required": false,
+          "defaultValue": true,
+          "escape": null
+        },
+        "previewMode": {
+          "name": "previewMode",
+          "type": "bool",
+          "description": "Preview mde flag",
+          "required": true,
+          "defaultValue": false,
+          "escape": null
+        },
+        "dateFormat": {
+          "name": "dateFormat",
+          "type": "string",
+          "description": "The date format",
+          "required": false,
+          "defaultValue": "Y-m-d",
+          "escape": null
+        },
+        "datePickerInitializationJavaScriptFile": {
+          "name": "datePickerInitializationJavaScriptFile",
+          "type": "string",
+          "description": "The JavaScript file to initialize the date picker",
+          "required": false,
+          "defaultValue": "EXT:form\/Resources\/Public\/JavaScript\/frontend\/date-picker.js",
+          "escape": null
+        },
+        "class": {
+          "name": "class",
+          "type": "string",
+          "description": "CSS class(es) for this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "dir": {
+          "name": "dir",
+          "type": "string",
+          "description": "Text direction for this HTML element. Allowed strings: \"ltr\" (left to right), \"rtl\" (right to left)",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "description": "Unique (in this file) identifier for this HTML element.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "lang": {
+          "name": "lang",
+          "type": "string",
+          "description": "Language for this element. Use short names specified in RFC 1766",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "style": {
+          "name": "style",
+          "type": "string",
+          "description": "Individual CSS styles for this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "title": {
+          "name": "title",
+          "type": "string",
+          "description": "Tooltip text of element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "accesskey": {
+          "name": "accesskey",
+          "type": "string",
+          "description": "Keyboard shortcut to access this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "tabindex": {
+          "name": "tabindex",
+          "type": "integer",
+          "description": "Specifies the tab order of this element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "onclick": {
+          "name": "onclick",
+          "type": "string",
+          "description": "JavaScript evaluated for the onclick event",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": true,
+      "nameWithoutSuffix": "Form\\DatePicker",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/Form\/DatePicker"
+    },
+    "translateElementError": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\TranslateElementErrorViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "TranslateElementErrorViewHelper",
+      "tagName": "translateElementError",
+      "documentation": "Translate form element properties.\n\nScope: frontend \/ backend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "element": {
+          "name": "element",
+          "type": "TYPO3\\CMS\\Form\\Domain\\Model\\Renderable\\RootRenderableInterface",
+          "description": "Form Element to translate",
+          "required": true,
+          "defaultValue": null,
+          "escape": null
+        },
+        "error": {
+          "name": "error",
+          "type": "TYPO3\\CMS\\Extbase\\Error\\Error",
+          "description": "Error",
+          "required": true,
+          "defaultValue": null,
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": false,
+      "nameWithoutSuffix": "TranslateElementError",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/TranslateElementError"
+    },
+    "renderAllFormValues": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\RenderAllFormValuesViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "RenderAllFormValuesViewHelper",
+      "tagName": "renderAllFormValues",
+      "documentation": "Renders the values of a form\n\nScope: frontend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "renderable": {
+          "name": "renderable",
+          "type": "TYPO3\\CMS\\Form\\Domain\\Model\\Renderable\\RootRenderableInterface",
+          "description": "A RootRenderableInterface instance",
+          "required": true,
+          "defaultValue": null,
+          "escape": null
+        },
+        "as": {
+          "name": "as",
+          "type": "string",
+          "description": "The name within the template",
+          "required": false,
+          "defaultValue": "formValue",
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": false,
+      "nameWithoutSuffix": "RenderAllFormValues",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/RenderAllFormValues"
+    },
+    "renderRenderable": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\RenderRenderableViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "RenderRenderableViewHelper",
+      "tagName": "renderRenderable",
+      "documentation": "Render a renderable.\n\nSet the renderable into the \\TYPO3\\CMS\\Form\\Mvc\\View\\FormView\nand return the rendered content.\n\nScope: frontend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "renderable": {
+          "name": "renderable",
+          "type": "TYPO3\\CMS\\Form\\Domain\\Model\\Renderable\\RootRenderableInterface",
+          "description": "A RenderableInterface instance",
+          "required": true,
+          "defaultValue": null,
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": false,
+      "nameWithoutSuffix": "RenderRenderable",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/RenderRenderable"
+    },
+    "translateElementProperty": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\TranslateElementPropertyViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "TranslateElementPropertyViewHelper",
+      "tagName": "translateElementProperty",
+      "documentation": "Translate form element properties.\n\nScope: frontend \/ backend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "element": {
+          "name": "element",
+          "type": "TYPO3\\CMS\\Form\\Domain\\Model\\Renderable\\RootRenderableInterface",
+          "description": "Form Element to translate",
+          "required": true,
+          "defaultValue": null,
+          "escape": null
+        },
+        "property": {
+          "name": "property",
+          "type": "mixed",
+          "description": "Property to translate",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "renderingOptionProperty": {
+          "name": "renderingOptionProperty",
+          "type": "mixed",
+          "description": "Property to translate",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": false,
+      "nameWithoutSuffix": "TranslateElementProperty",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/TranslateElementProperty"
+    },
+    "render": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\RenderViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "RenderViewHelper",
+      "tagName": "render",
+      "documentation": "Main Entry Point to render a Form into a Fluid Template\n\nUsage\n=====\n\nDefault::\n\n   {namespace formvh=TYPO3\\CMS\\Form\\ViewHelpers}\n   <formvh:render factoryClass=\"NameOfYourCustomFactoryClass\" \/>\n\nThe factory class must implement :php:`TYPO3\\CMS\\Form\\Domain\\Factory\\FormFactoryInterface`.\n\nScope: frontend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "persistenceIdentifier": {
+          "name": "persistenceIdentifier",
+          "type": "string",
+          "description": "The persistence identifier for the form.",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "factoryClass": {
+          "name": "factoryClass",
+          "type": "string",
+          "description": "The fully qualified class name of the factory",
+          "required": false,
+          "defaultValue": "TYPO3\\CMS\\Form\\Domain\\Factory\\ArrayFormFactory",
+          "escape": null
+        },
+        "prototypeName": {
+          "name": "prototypeName",
+          "type": "string",
+          "description": "Name of the prototype to use",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        },
+        "overrideConfiguration": {
+          "name": "overrideConfiguration",
+          "type": "array",
+          "description": "factory specific configuration",
+          "required": false,
+          "defaultValue": [],
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": false,
+      "nameWithoutSuffix": "Render",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/Render"
+    },
+    "renderFormValue": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\RenderFormValueViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "RenderFormValueViewHelper",
+      "tagName": "renderFormValue",
+      "documentation": "Renders a single value of a form\n\nScope: frontend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": [],
+      "argumentDefinitions": {
+        "renderable": {
+          "name": "renderable",
+          "type": "TYPO3\\CMS\\Form\\Domain\\Model\\Renderable\\RenderableInterface",
+          "description": "A renderable element",
+          "required": true,
+          "defaultValue": null,
+          "escape": null
+        },
+        "as": {
+          "name": "as",
+          "type": "string",
+          "description": "The name within the template",
+          "required": false,
+          "defaultValue": "formValue",
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": false,
+      "nameWithoutSuffix": "RenderFormValue",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/RenderFormValue"
+    },
+    "be.maximumFileSize": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\Be\\MaximumFileSizeViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "Be\\MaximumFileSizeViewHelper",
+      "tagName": "be.maximumFileSize",
+      "documentation": "Return the max file size for use in the form editor\n\nScope: backend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": {
+        "@internal": ""
+      },
+      "argumentDefinitions": [],
+      "allowsArbitraryArguments": false,
+      "nameWithoutSuffix": "Be\\MaximumFileSize",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/Be\/MaximumFileSize"
+    },
+    "be.renderContentElementPreview": {
+      "className": "TYPO3\\CMS\\Form\\ViewHelpers\\Be\\RenderContentElementPreviewViewHelper",
+      "namespace": "TYPO3\\CMS\\Form\\ViewHelpers",
+      "name": "Be\\RenderContentElementPreviewViewHelper",
+      "tagName": "be.renderContentElementPreview",
+      "documentation": "Used by the form editor.\nRender a content element preview like the page module\n\nScope: backend",
+      "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+      "docTags": {
+        "@internal": ""
+      },
+      "argumentDefinitions": {
+        "contentElementUid": {
+          "name": "contentElementUid",
+          "type": "int",
+          "description": "The uid of a content element",
+          "required": false,
+          "defaultValue": null,
+          "escape": null
+        }
+      },
+      "allowsArbitraryArguments": false,
+      "nameWithoutSuffix": "Be\\RenderContentElementPreview",
+      "namespaceWithoutSuffix": "TYPO3\\CMS\\Form",
+      "uri": "Form\/Be\/RenderContentElementPreview"
+    }
+  },
+  "uri": "Form\/Index",
+  "name": "Form",
+  "label": "Form (formvh:*)",
+  "namespaceAlias": "formvh",
+  "targetNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers",
+  "includesNamespaces": [
+    "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers"
+  ],
+  "templates": {
+    "root": "\/home\/runner\/work\/t3docs-ci-deploy\/t3docs-ci-deploy\/core\/vendor\/t3docs\/fluid-documentation-generator\/src\/..\/templates\/typo3\/Root.rst",
+    "namespace": "\/home\/runner\/work\/t3docs-ci-deploy\/t3docs-ci-deploy\/core\/vendor\/t3docs\/fluid-documentation-generator\/src\/..\/templates\/typo3\/Namespace.rst",
+    "group": "\/home\/runner\/work\/t3docs-ci-deploy\/t3docs-ci-deploy\/core\/vendor\/t3docs\/fluid-documentation-generator\/src\/..\/templates\/typo3\/Group.rst",
+    "viewHelper": "\/home\/runner\/work\/t3docs-ci-deploy\/t3docs-ci-deploy\/core\/vendor\/t3docs\/fluid-documentation-generator\/src\/..\/templates\/typo3\/ViewHelper.rst"
+  },
+  "sourceEdit": {
+    "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Form\/ViewHelpers": {
+      "sourcePrefix": "https:\/\/github.com\/TYPO3\/typo3\/blob\/main\/typo3\/sysext\/form\/Classes\/ViewHelpers\/",
+      "editPrefix": "https:\/\/github.com\/TYPO3\/typo3\/edit\/main\/typo3\/sysext\/form\/Classes\/ViewHelpers\/"
+    }
+  }
+}
