@@ -8,6 +8,13 @@
                     {{ docTag }}
                 </article>
             </div>
+        {% elseif key == '@internal' %}
+            <div class="admonition warning" role="alert">
+                <p class="admonition-title">Internal</p>
+                <p>This ViewHelper is marked as internal. It is subject to be
+                    changed without notice. Use at your own risk.</p>
+            </div>
+        {% elseif key == '@api' %}
         {% else %}
             <p>{{ key }}: {{ docTag }}</p>
         {% endif %}

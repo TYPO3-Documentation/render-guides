@@ -19,3 +19,10 @@ f:deprecated
 
 ..  typo3:viewhelper:: deprecated
     :source: resources/global_viewhelpers_demo.json
+
+
+formvh:be.maximumFileSize
+=========================
+
+..  typo3:viewhelper:: be.maximumFileSize
+    :source: resources/Form.json
