@@ -6,6 +6,6 @@
     <version>1.0.0</version>
     <extends>default</extends>
     <transformations>
-        <transformation writer="twig" source="index.json.twig" artifact="index.json"/>
+        <transformation writer="twig" source="index.json.twig" artifact="objects.inv.json"/>
     </transformations>
 </template>
