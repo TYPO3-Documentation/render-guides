@@ -11,7 +11,6 @@
         "phpdocumentor/guides-graphs": "^1.0",
         "phpdocumentor/guides-markdown": "^1.0",
         "phpdocumentor/guides-theme-bootstrap": "^1.0",
-        "phpdocumentor/shim": "^3.5",
         "symfony/clock": "^6.4",
         "symfony/finder": "^6.4",
         "symfony/http-client": "^6.4",
@@ -54,8 +53,8 @@
     "config": {
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
-            "phpdocumentor/shim": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "phpdocumentor/shim": false
         },
         "sort-packages": true
     },
