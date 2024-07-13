@@ -1,0 +1,9 @@
+{
+    "name": "t3docs/typo3-api",
+    "description": "Generates api.typo3.org",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.1"
+    }
+}
