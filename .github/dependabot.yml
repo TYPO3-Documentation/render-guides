@@ -16,7 +16,10 @@ updates:
     labels:
       - "dependencies"
       - "composer"
-
+    ignored-updates:
+      - match:
+          dependency-name: "phpunit/phpunit"
+          versions: ["11.*"] # Ignore PHPUnit 11.x versions
   - package-ecosystem: "npm"
     directory: "/packages/typo3-docs-theme/"
     schedule:
