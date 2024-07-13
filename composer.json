@@ -55,6 +55,9 @@
             "ergebnis/composer-normalize": true,
             "phpstan/extension-installer": true
         },
+        "platform": {
+            "php": "8.1.27"
+        },
         "sort-packages": true
     },
     "scripts": {
