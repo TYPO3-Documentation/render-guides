@@ -52,6 +52,8 @@ use T3Docs\Typo3DocsTheme\TextRoles\T3srcTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\TSconfigTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\TypeScriptTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\TypoScriptTextTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\ViewhelperArgumentTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\ViewhelperTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\XmlTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\YamlTextTextRole;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
@@ -110,6 +112,10 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(TypoScriptTextTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(ViewhelperTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role', ['domain' => 'typo3'])
+        ->set(ViewhelperArgumentTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role', ['domain' => 'typo3'])
         ->set(XmlTextTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(YamlTextTextRole::class)

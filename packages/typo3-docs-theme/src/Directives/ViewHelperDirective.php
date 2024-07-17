@@ -98,6 +98,7 @@ final class ViewHelperDirective extends BaseDirective
             }
         }
         $viewHelperNode->setArguments($arguments);
+        $viewHelperNode->setValue($arguments);
 
         return $viewHelperNode;
     }

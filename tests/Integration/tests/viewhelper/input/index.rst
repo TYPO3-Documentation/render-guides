@@ -2,6 +2,9 @@
 Fluid ViewHelpers
 =================
 
+See :typo3:viewhelper:`typo3fluid-fluid-viewhelpers-splitviewhelper` or
+:typo3:viewhelper-argument:`typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri`.
+
 f:split
 =======
 
