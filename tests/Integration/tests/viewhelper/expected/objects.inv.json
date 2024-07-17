@@ -1,0 +1,95 @@
+{
+    "std:doc": {
+        "index": [
+            "-",
+            "-",
+            "index.html",
+            "Fluid ViewHelpers"
+        ]
+    },
+    "std:label": [],
+    "std:title": {
+        "fluid-viewhelpers": [
+            "-",
+            "-",
+            "index.html#fluid-viewhelpers",
+            "Fluid ViewHelpers"
+        ],
+        "f-split": [
+            "-",
+            "-",
+            "index.html#f-split",
+            "f:split"
+        ],
+        "f-link-external": [
+            "-",
+            "-",
+            "index.html#f-link-external",
+            "f:link.external"
+        ],
+        "f-deprecated": [
+            "-",
+            "-",
+            "index.html#f-deprecated",
+            "f:deprecated"
+        ],
+        "formvh-be-maximumfilesize": [
+            "-",
+            "-",
+            "index.html#formvh-be-maximumfilesize",
+            "formvh:be.maximumFileSize"
+        ]
+    },
+    "typo3:viewhelper": {
+        "typo3fluid-fluid-viewhelpers-splitviewhelper": [
+            "-",
+            "-",
+            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper",
+            "split"
+        ],
+        "typo3-cms-fluid-viewhelpers-link-externalviewhelper": [
+            "-",
+            "-",
+            "index.html#typo3-cms-fluid-viewhelpers-link-externalviewhelper",
+            "link.external"
+        ],
+        "typo3-cms-fluid-viewhelpers-deprecatedviewhelper": [
+            "-",
+            "-",
+            "index.html#typo3-cms-fluid-viewhelpers-deprecatedviewhelper",
+            "deprecated"
+        ],
+        "typo3-cms-form-viewhelpers-be-maximumfilesizeviewhelper": [
+            "-",
+            "-",
+            "index.html#typo3-cms-form-viewhelpers-be-maximumfilesizeviewhelper",
+            "be.maximumFileSize"
+        ]
+    },
+    "typo3:viewhelper-argument": {
+        "typo3fluid-fluid-viewhelpers-splitviewhelper-value": [
+            "-",
+            "-",
+            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-value",
+            "value"
+        ],
+        "typo3fluid-fluid-viewhelpers-splitviewhelper-separator": [
+            "-",
+            "-",
+            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-separator",
+            "separator"
+        ],
+        "typo3fluid-fluid-viewhelpers-splitviewhelper-limit": [
+            "-",
+            "-",
+            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-limit",
+            "limit"
+        ],
+        "typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri": [
+            "-",
+            "-",
+            "index.html#typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri",
+            "uri"
+        ]
+    }
+}

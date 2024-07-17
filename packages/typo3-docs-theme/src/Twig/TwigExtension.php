@@ -25,6 +25,8 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
 use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
+use T3Docs\Typo3DocsTheme\Nodes\ViewHelperArgumentNode;
+use T3Docs\Typo3DocsTheme\Nodes\ViewHelperNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use T3Docs\VersionHandling\DefaultInventories;
 use Twig\Extension\AbstractExtension;
@@ -147,6 +149,22 @@ final class TwigExtension extends AbstractExtension
         if ($linkTargetNode->getLinkType() === ConfvalNode::LINK_TYPE) {
             return sprintf(
                 ':confval:`%s <%s:%s>`',
+                $linkTargetNode->getLinkText(),
+                $interlink,
+                $linkTargetNode->getId()
+            );
+        }
+        if ($linkTargetNode->getLinkType() === ViewHelperNode::LINK_TYPE) {
+            return sprintf(
+                ':typo3:viewhelper:`%s <%s:%s>`',
+                $linkTargetNode->getLinkText(),
+                $interlink,
+                $linkTargetNode->getId()
+            );
+        }
+        if ($linkTargetNode->getLinkType() === ViewHelperArgumentNode::LINK_TYPE) {
+            return sprintf(
+                ':typo3:viewhelper-argument:`%s <%s:%s>`',
                 $linkTargetNode->getLinkText(),
                 $interlink,
                 $linkTargetNode->getId()
