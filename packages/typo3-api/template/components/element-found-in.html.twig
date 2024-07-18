@@ -1,7 +1,7 @@
 <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="{{ node.file.path }}">{{ node.file|route('file:short') }}</abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">{{ node.line }}</span>
 
-    <a href="{{ parameter.typo3_github_url }}/{{ parameter.typo3_version }}/{{ node.file.path }}#L{{ node.line }}" class="phpdocumentor-element-found-in__source"></a>
+    <a href="{{ parameter.typo3_github_url }}/{{ parameter.typo3_version }}/{{ node.file.path }}#L{{ node.line }}"
+       class="btn btn-primary phpdocumentor-element-found-in__source">
+        View {{ node.file.name }}:{{ node.line }} on GitHub
+    </a>
 </aside>
