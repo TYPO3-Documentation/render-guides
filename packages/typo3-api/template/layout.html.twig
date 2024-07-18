@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8">
     {% block head %}
-        <title>{% block title %}{{ project.name }}{% endblock %}</title>
+        <title>{% block title %}{{ project.name }} API: {{ node.name }}{% endblock %}</title>
     {% endblock %}
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ renderBaseUrlHeader() }}
     <link rel="icon" href="images/favicon.ico"/>
