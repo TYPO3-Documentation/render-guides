@@ -7,5 +7,6 @@
     <extends>default</extends>
     <transformations>
         <transformation writer="twig" source="index.json.twig" artifact="objects.inv.json"/>
+        <transformation writer="twig" source="404.html.twig" artifact="404.html"/>
     </transformations>
 </template>
