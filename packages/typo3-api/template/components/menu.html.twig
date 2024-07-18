@@ -3,11 +3,6 @@
         {{ toc(child, 'components/menu.html.twig', maxDepth, depth-1) }}
     {% endfor %}
 {% else %}
-    {% if depth == 1 %}
-    <h4 class="phpdocumentor-sidebar__root-namespace">
-        <a href="{{ entry.url }}" class="{{ destinationPath|trim('/', 'left') == entry.url ? '-active' }}">{{ entry.title | shortFQSEN }}</a>
-    </h4>
-    {% endif %}
     {% if entry.children.count > 0 %}
     <ul class="phpdocumentor-list">
         {% for child in entry.children %}

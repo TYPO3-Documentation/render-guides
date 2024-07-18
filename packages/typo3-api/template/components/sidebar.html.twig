@@ -3,11 +3,19 @@
     Menu
 </label>
 <aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+    <section class="phpdocumentor-sidebar__category -docs}">
+        <h2 class="phpdocumentor-sidebar__category-header">Documentation</h2>
+        <ul class="phpdocumentor-list">
+            <li><a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/main/en-us/" target="_blank">Getting Started</a></li>
+            <li><a href="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/" target="_blank">TYPO3 Explained</a></li>
+            <li><a href="https://docs.typo3.org/c/typo3/cms-core/main/en-us/" target="_blank">TYPO3 Core Changelog</a></li>
+        </ul>
+    </section>
     {% for version in project.versions %}
         {% for toc in version.tableOfContents %}
             {% if toc.name != "Packages" %}
-        <section class="phpdocumentor-sidebar__category -{{ toc.name|lower }}">
-            <h2 class="phpdocumentor-sidebar__category-header">{{ toc.name|title }}</h2>
+        <section class="phpdocumentor-sidebar__category -extensions">
+            <h2 class="phpdocumentor-sidebar__category-header">Extensions</h2>
                 {% for root in toc.roots %}
                     {{ toc(root, 'components/menu.html.twig', 1) }}
                 {% endfor %}
@@ -15,5 +23,12 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
+    <section class="phpdocumentor-sidebar__category -legal}">
+        <h2 class="phpdocumentor-sidebar__category-header">Legal</h2>
+        <ul class="phpdocumentor-list">
+            <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+            <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+        </ul>
+    </section>
 
 </aside>
