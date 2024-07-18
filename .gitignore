@@ -5,3 +5,5 @@
 /.Build/
 /**/temp/
 /Documentation-GENERATED-*
+/.phpdoc/
+/phpdoc.dist.xml
