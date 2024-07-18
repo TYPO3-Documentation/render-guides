@@ -1,24 +1,29 @@
 {
-  "sub-splits": [
-    {
-      "name": "t3docs-typo3-guides-cli",
-      "directory": "packages/typo3-guides-cli",
-      "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-guides-cli.git"
-    },
-    {
-      "name": "t3docs-typo3-guides-extension",
-      "directory": "packages/typo3-guides-extension",
-      "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-guides-extension.git"
-    },
-    {
-      "name": "t3docs-typo3-docs-theme",
-      "directory": "packages/typo3-docs-theme",
-      "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-docs-theme.git"
-    },
-    {
-      "name": "t3docs-typo3-version-handling",
-      "directory": "packages/typo3-version-handling",
-      "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-version-handling.git"
-    }
-  ]
+    "sub-splits": [
+        {
+            "name": "t3docs-typo3-guides-cli",
+            "directory": "packages/typo3-guides-cli",
+            "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-guides-cli.git"
+        },
+        {
+            "name": "t3docs-typo3-guides-extension",
+            "directory": "packages/typo3-guides-extension",
+            "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-guides-extension.git"
+        },
+        {
+            "name": "t3docs-typo3-docs-theme",
+            "directory": "packages/typo3-docs-theme",
+            "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-docs-theme.git"
+        },
+        {
+            "name": "t3docs-typo3-version-handling",
+            "directory": "packages/typo3-version-handling",
+            "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-version-handling.git"
+        },
+        {
+            "name": "t3docs-typo3-api",
+            "directory": "packages/typo3-api",
+            "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-api.git"
+        }
+    ]
 }

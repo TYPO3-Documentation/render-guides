@@ -1,0 +1,32 @@
+:root {
+    --primary-color-hue: 32;
+    --primary-color-saturation: 100%;
+    --primary-color: hsl(var(--primary-color-hue), var(--primary-color-saturation), 50%);
+    --primary-color-darker: hsl(var(--primary-color-hue), var(--primary-color-saturation), 50%);
+
+    --text-color: hsl(0, 0%, 0%);
+    --link-color-primary: var(--text-color);
+}
+
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-private:after {
+    mask: url('data:image/svg+xml;utf8,{{ include('icons/private.svg.twig')|trim|raw }}') no-repeat;
+}
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-protected:after {
+    left: 13px;
+    mask: url('data:image/svg+xml;utf8,{{ include('icons/protected.svg.twig')|trim|raw }}') no-repeat;
+}
+
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry:before {
+    mask: transparent url('data:image/svg+xml;utf8,{{ include('icons/method.svg.twig', {'hue': colours.hue(parameter.color|default('phpdocumentor-green'))})|trim|raw }}') no-repeat center center;
+    background: var(--primary-color);
+}
+
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-method:before {
+    mask-image: url('data:image/svg+xml;utf8,{{ include('icons/method.svg.twig', {'hue': colours.hue(parameter.color|default('phpdocumentor-green'))})|trim|raw }}');
+    background: var(--primary-color);
+}
+
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-function:before {
+    mask-image: url('data:image/svg+xml;utf8,{{ include('icons/method.svg.twig', {'hue': colours.hue(parameter.color|default('phpdocumentor-green'))})|trim|raw }}');
+    background: var(--primary-color);
+}
