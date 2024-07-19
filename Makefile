@@ -173,7 +173,7 @@ migrate-settings: ## Migrate Settings.cfg to guides.xml
 	$(PHP_BIN) packages/typo3-guides-cli/bin/typo3-guides migrate $(path)
 
 api-docs: .phpdoc/template phpdoc.dist.xml ## Generate API documentation
-	docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/data phpdoc/phpdoc:3 
+	docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/data phpdoc/phpdoc:3  --setting template.typo3_version=12.4
 
 .HIDDEN: .phpdoc/template phpdoc.dist.xml
 .phpdoc/template:

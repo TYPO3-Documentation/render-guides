@@ -3,7 +3,15 @@
 <head>
     <meta charset="utf-8">
     {% block head %}
-        <title>{% block title %}{{ project.name }} API: {{ node.name }}{% endblock %}</title>
+        {% set title=project.name ~ " " ~ parameter.typo3_version ~ " API" %}
+        {% set title2="" %}
+        {% if node is class or node is interface or node is enum %}
+        {% set title2=": " ~ node.name %}
+        {% endif %}
+        {% if node is namespace %}
+            {% set title2=": " ~ node %}
+        {% endif %}
+        <title>{% block title %}{{ title -}} {{- title2 }}{% endblock %}</title>
     {% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ renderBaseUrlHeader() }}

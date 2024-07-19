@@ -3,12 +3,20 @@
     Menu
 </label>
 <aside class="phpdocumentor-column -three phpdocumentor-sidebar">
-    <section class="phpdocumentor-sidebar__category -docs}">
+    <section class="phpdocumentor-sidebar__category -versions">
+        <h1 class="phpdocumentor-sidebar__category-title">TYPO3 {{ parameter.typo3_version }}</h1>
+        <ul class="phpdocumentor-list">
+            {% if parameter.typo3_version != 'main' %}<li><a href="https://api.typo3.org/main/{{ link(node) }}">TYPO3 main API</a></li>{% endif %}
+            {% if parameter.typo3_version != '12.4' %}<li><a href="https://api.typo3.org/12.4/{{ link(node) }}">TYPO3 12.4 API</a></li>{% endif %}
+            {% if parameter.typo3_version != '11.5' %}<li><a href="https://docs.typo3.org/11.5/{{ link(node) }}">TYPO3 11.5 API</a></li>{% endif %}
+        </ul>
+    </section>
+    <section class="phpdocumentor-sidebar__category -docs">
         <h2 class="phpdocumentor-sidebar__category-header">Documentation</h2>
         <ul class="phpdocumentor-list">
-            <li><a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/main/en-us/" target="_blank">Getting Started</a></li>
-            <li><a href="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/" target="_blank">TYPO3 Explained</a></li>
-            <li><a href="https://docs.typo3.org/c/typo3/cms-core/main/en-us/" target="_blank">TYPO3 Core Changelog</a></li>
+            <li><a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/{{ parameter.typo3_version }}/en-us/" target="_blank">Getting Started</a></li>
+            <li><a href="https://docs.typo3.org/m/typo3/reference-coreapi/{{ parameter.typo3_version }}/en-us/" target="_blank">TYPO3 Explained</a></li>
+            <li><a href="https://docs.typo3.org/c/typo3/cms-core/{{ parameter.typo3_version }}/en-us/" target="_blank">TYPO3 Core Changelog</a></li>
         </ul>
     </section>
     {% for version in project.versions %}
