@@ -1,0 +1,7 @@
+{% set breadcrumbs = usesNamespaces ? breadcrumbs(node) : packages(node) %}
+<ul class="phpdocumentor-breadcrumbs">
+    <li class="phpdocumentor-breadcrumb"><a href="{{ path('/') }}" title="{{ project.name }}"><i class="fas fa-home"></i></a></li>
+    {% for breadcrumb in breadcrumbs %}
+        <li class="phpdocumentor-breadcrumb"><a href="{{ link(breadcrumb) }}">{{ breadcrumb.name }}</a></li>
+    {% endfor %}
+</ul>

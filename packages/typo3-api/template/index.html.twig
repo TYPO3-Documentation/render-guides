@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <section>
+        <h2>TYPO3 API</h2>
+
+        {% set node = project.namespace %}
+
+        <h4 id="namespaces">
+            System Extensions
+            {{ include('components/headerlink.html.twig', {'on': node, 'at': 'namespaces'}, with_context = false) }}
+        </h4>
+        <dl class="phpdocumentor-table-of-contents">
+            {% for namespace in project.namespace.children %}
+                {% for cms in namespace.children %}
+                    {% for extension in cms.children %}
+                        <dt class="phpdocumentor-table-of-contents__entry -namespace">{{ extension|route('class:short') }}</dt>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </dl>
+        {{ include('components/constants.html.twig', {'node': project.namespace}) }}
+        {{ include('components/functions.html.twig', {'node': project.namespace}) }}
+    </section>
+{% endblock %}
