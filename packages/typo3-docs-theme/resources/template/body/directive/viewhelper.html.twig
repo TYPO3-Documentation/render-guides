@@ -27,8 +27,16 @@
     {% include "body/directive/viewhelper/viewhelper-source.html.twig" %}
 {% endif %}
 
-{% if node.arguments %}
+{% if node.arguments or node.allowsArbitraryArguments %}
     <h2>Arguments</h2>
+
+    {% if node.allowsArbitraryArguments %}
+        <div class="admonition info" role="alert">
+            <p class="admonition-title">Allows arbitrary arguments</p>
+            <p>This ViewHelper allows you to pass arbitrary arguments not defined below directly
+                to the HTML tag created. This includes custom `data-` arguments.</p>
+        </div>
+    {% endif %}
     <p>The following arguments are available for the {{ node.tagName }} ViewHelper: </p>
     {% for argument in node.arguments  %}
         {% include "body/directive/viewhelper/viewhelper-argument.html.twig" %}
