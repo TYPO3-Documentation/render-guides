@@ -1,0 +1,26 @@
+{%  set hasLooped = false %}
+[
+    {% for element in documentationSet.indexes.classes -%}
+        {% if loop.first and hasLooped %},{% endif %}
+            {% set hasLooped = false %}
+            {{  _self.link(project, element) }}
+            {% if not loop.last -%},
+            {% else %}
+            {% set hasLooped = true %}
+        {% endif %}
+    {% endfor %}
+
+        {% for element in documentationSet.indexes.interfaces -%}
+            {% if loop.first and hasLooped %},{% endif %}
+            {% set hasLooped = false %}
+            {{  _self.link(project, element) }}
+            {% if not loop.last -%},
+            {% else %}
+            {% set hasLooped = true %}
+            {% endif %}
+        {% endfor %}
+]
+
+{% macro link(project, element) %}
+"{{ element | route('url') }}"
+{% endmacro %}
