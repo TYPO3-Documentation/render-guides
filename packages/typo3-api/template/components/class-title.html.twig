@@ -1,0 +1,86 @@
+<h2 class="phpdocumentor-content__title">
+    {{ node.name }}
+
+    {% if node.parent %}
+        <span class="phpdocumentor-element__extends">
+            extends {{ node.parent|route('class:short') }}
+        </span>
+    {% endif %}
+
+    {% if usesPackages %}
+        <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                {% for breadcrumb in packages(node) %}
+                    <li class="phpdocumentor-breadcrumb"><a href="{{ link(breadcrumb) }}">{{ breadcrumb.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if node.interfaces is not empty %}
+        <span class="phpdocumentor-element__implements">
+            implements
+            {% for interface in node.interfaces %}
+                {{ interface|route('class:short') }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </span>
+    {% endif %}
+
+    {% if node.usedTraits is not empty %}
+        <span class="phpdocumentor-element__extends">
+            uses
+            {% for trait in node.usedTraits %}
+                {{ trait|route('class:short') }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </span>
+    {% endif %}
+</h2>
+
+{% set isViewHelper = false %}
+
+{% if node.parent %}
+    {% if node.parent.name == 'AbstractViewHelper' or node.parent.name == 'AbstractTagBasedViewHelper' or node.parent.name == 'FormViewHelper' %}
+
+        {% set isViewHelper = true %}
+        {% set viewHelper = node|replace({'\\': '/'}) %}
+        {% set viewHelper = viewHelper|replace({'/TYPO3/CMS/Fluid/ViewHelpers': '/Global'}) %}
+        {% set viewHelper = viewHelper|replace({'/TYPO3/CMS/Core/ViewHelpers': '/Core'}) %}
+        {% set viewHelper = viewHelper|replace({'/TYPO3/CMS/Backend/ViewHelpers': '/Backend'}) %}
+        {% set viewHelper = viewHelper|replace({'/TYPO3/CMS/Form/ViewHelpers': '/Form'}) %}
+        {% set viewHelper = viewHelper|replace({'ViewHelper': ''}) %}
+        {% set viewHelperName = viewHelper|replace({'/Global/': 'f:'}) %}
+        {% set viewHelperName = viewHelperName|replace({'/Core/': 'core:'}) %}
+        {% set viewHelperName = viewHelperName|replace({'/Backend/': 'backend:'}) %}
+        {% set viewHelperName = viewHelperName|replace({'/Form/': 'formvh:'}) %}
+        {% set viewHelperName = viewHelperName|replace({'/': '.'})|lower %}
+        <div class="phpdocumentor-admonition">
+            <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <article>
+                <strong>Viewhelper</strong>
+                <p>This class is the implementation of a Fluid ViewHelper.</p>
+                <p>View this class in the TYPO3 ViewHelper reference:
+                    <a href="https://docs.typo3.org/other/typo3/view-helper-reference/{{ parameter.typo3_version }}/en-us{{ viewHelper }}.html"
+                       target="_blank"
+                    >
+                        &lt;{{ viewHelperName }}&gt;
+                    </a>
+                </p>
+            </article>
+        </div>
+    {% endif %}
+{% endif %}
+
+<div class="phpdocumentor-label-line">
+{% if node.isReadOnly %}
+    {{ include('components/label.html.twig', {name: 'Read only', value: 'Yes'}, with_context = false) }}
+{% endif %}
+
+{% if node.isFinal %}
+    {{ include('components/label.html.twig', {name: 'Final', value: 'Yes'}, with_context = false) }}
+{% endif %}
+
+{% if node.isAbstract %}
+    {{ include('components/label.html.twig', {name: 'Abstract', value: 'Yes'}, with_context = false) }}
+{% endif %}
+</div>
