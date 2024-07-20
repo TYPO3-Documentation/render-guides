@@ -1,7 +1,6 @@
 <?php
 
-function reverseTransformUrl($newUrl)
-{
+function reverseTransformUrl($newUrl) {
     // Parse the URL to get the path
     $parsedUrl = parse_url($newUrl);
     $path = $parsedUrl['path'];
@@ -23,7 +22,7 @@ function reverseTransformUrl($newUrl)
         // Iterate over the parts to construct the old path
         foreach ($parts as $part) {
             // Convert the part to capitalized format with underscores
-            $transformedPart = preg_replace_callback('/[A-Z]/', function ($matches) {
+            $transformedPart = preg_replace_callback('/[A-Z]/', function($matches) {
                 return '_' . strtolower($matches[0]);
             }, $part);
 
