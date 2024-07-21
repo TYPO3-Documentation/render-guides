@@ -87,6 +87,8 @@ final class ViewHelperDirective extends BaseDirective
             return $this->getErrorNode();
         }
 
+        $sortBy = $directive->getOptionString('sortBy', 'name');
+
         $noindex = $directive->getOptionBool('noindex');
 
         $data = $json['viewHelpers'][$directive->getData()];
@@ -94,8 +96,11 @@ final class ViewHelperDirective extends BaseDirective
         $arguments = [];
         foreach ($json['viewHelpers'][$directive->getData()]['argumentDefinitions'] ?? [] as $argumentDefinition) {
             if (is_array($argumentDefinition)) {
-                $arguments[] = $this->getArgument($argumentDefinition, $viewHelperNode, $noindex);
+                $arguments[$this->getString($argumentDefinition, 'name')] = $this->getArgument($argumentDefinition, $viewHelperNode, $noindex);
             }
+        }
+        if ($sortBy === 'name') {
+            ksort($arguments);
         }
         $viewHelperNode->setArguments($arguments);
         $viewHelperNode->setValue($arguments);
