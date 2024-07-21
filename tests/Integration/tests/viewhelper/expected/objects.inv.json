@@ -67,11 +67,11 @@
         ]
     },
     "typo3:viewhelper-argument": {
-        "typo3fluid-fluid-viewhelpers-splitviewhelper-value": [
+        "typo3fluid-fluid-viewhelpers-splitviewhelper-limit": [
             "-",
             "-",
-            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-value",
-            "value"
+            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-limit",
+            "limit"
         ],
         "typo3fluid-fluid-viewhelpers-splitviewhelper-separator": [
             "-",
@@ -79,11 +79,11 @@
             "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-separator",
             "separator"
         ],
-        "typo3fluid-fluid-viewhelpers-splitviewhelper-limit": [
+        "typo3fluid-fluid-viewhelpers-splitviewhelper-value": [
             "-",
             "-",
-            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-limit",
-            "limit"
+            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-value",
+            "value"
         ],
         "typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri": [
             "-",

@@ -11,6 +11,11 @@ f:split
 ..  typo3:viewhelper:: split
     :source: resources/global_viewhelpers_demo.json
 
+..  typo3:viewhelper:: split
+    :source: resources/global_viewhelpers_demo.json
+    :sortBy: json
+    :noindex:
+
 f:link.external
 ===============
 
