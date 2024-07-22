@@ -3,6 +3,11 @@
     td :last-child {
         margin-bottom: 0;
     }
+    > caption {
+        @extend .figure-caption;
+        @extend .pb-2;
+        padding-top: 0;
+    }
 }
 
 .table-responsive {
