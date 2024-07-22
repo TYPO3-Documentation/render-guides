@@ -186,7 +186,9 @@
 
     for (let language in sortedOutput[baseIndexKey]) {
       if (language != LANGUAGE_DEFAULT) {
-        html += '<dd><p><strong>' + language + '</strong></p></dd>';
+        let firstVersionTypeKey = Object.keys(sortedOutput[baseIndexKey][language])[0];
+        let firstVersionKey = Object.keys(sortedOutput[baseIndexKey][language][firstVersionTypeKey])[0];
+        html += '<dd><strong><a href="' + sortedOutput[baseIndexKey][language][firstVersionTypeKey][firstVersionKey] + '">' + language + '</a></strong></dd>';
       }
       for (let versionType in sortedOutput[baseIndexKey][language]) {
         // versionType: 1_main, 2_numeric, 3_named
