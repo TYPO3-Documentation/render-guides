@@ -21,6 +21,6 @@ final class RestructuredTextTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'reStructuredText', 'Easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system.');
+        return new CodeInlineNode($rawContent, 'Code written in reStructuredText', 'Easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system.');
     }
 }

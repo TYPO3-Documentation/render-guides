@@ -21,6 +21,6 @@ final class SqlTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'SQL', 'Structured Query Language for database queries.');
+        return new CodeInlineNode($rawContent, 'Code written in SQL', 'Structured Query Language for database queries.');
     }
 }

@@ -21,6 +21,6 @@ final class FluidTextTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'Fluid', 'Templating engine used by TYPO3.');
+        return new CodeInlineNode($rawContent, 'Code written in Fluid', 'Templating engine used by TYPO3.');
     }
 }

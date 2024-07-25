@@ -21,6 +21,6 @@ final class TypoScriptTextTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'TypoScript', 'Directive-based configuration language used by TYPO3.');
+        return new CodeInlineNode($rawContent, 'Code written in TypoScript', 'Directive-based configuration language used by TYPO3.');
     }
 }

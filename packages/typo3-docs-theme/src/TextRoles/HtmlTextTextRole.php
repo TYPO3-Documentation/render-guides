@@ -21,6 +21,6 @@ final class HtmlTextTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'HTML', 'HyperText Markup Language.');
+        return new CodeInlineNode($rawContent, 'Code written in HTML', 'HyperText Markup Language.');
     }
 }

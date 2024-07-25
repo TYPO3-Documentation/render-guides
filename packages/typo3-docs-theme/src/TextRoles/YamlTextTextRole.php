@@ -21,6 +21,6 @@ final class YamlTextTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'YAML', 'Yet Another Markup Language, used for key-value configuration.');
+        return new CodeInlineNode($rawContent, 'Code written in YAML', 'Yet Another Markup Language, used for key-value configuration.');
     }
 }
