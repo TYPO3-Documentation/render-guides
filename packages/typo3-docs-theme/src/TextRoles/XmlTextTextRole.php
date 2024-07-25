@@ -21,6 +21,6 @@ final class XmlTextTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'XML', 'Extensible Markup Language.');
+        return new CodeInlineNode($rawContent, 'Code written in XML', 'Extensible Markup Language.');
     }
 }

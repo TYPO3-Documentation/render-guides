@@ -21,6 +21,6 @@ final class JavaScriptTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
-        return new CodeInlineNode($rawContent, 'JavaScript', 'Dynamic client-side scripting language for dynamic applications.');
+        return new CodeInlineNode($rawContent, 'Code written in JavaScript', 'Dynamic client-side scripting language for dynamic applications.');
     }
 }
