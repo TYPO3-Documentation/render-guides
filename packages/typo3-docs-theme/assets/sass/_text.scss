@@ -5,6 +5,11 @@ body {
     --bs-emphasis-color:  #{$gray-900};
 }
 
+root {
+    --frame-link-color: #{$gray-800};
+    --frame-link-hover-color: #{$black};
+}
+
 a {
     color:inherit;
     text-underline-offset: 25%;
@@ -28,9 +33,9 @@ article {
     a:not([class*="btn"]) {
         @extend .text-break;
         text-decoration: underline;
-        color: $gray-800;
+        color: var(--frame-link-color);
         &:hover {
-            color: $black;
+            color: var(--frame-link-hover-color);
             text-decoration-thickness: 2px;
         }
     }
