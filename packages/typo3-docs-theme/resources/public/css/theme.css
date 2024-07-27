@@ -11776,7 +11776,7 @@ progress {
   line-height: 1;
 }
 
-.figure-caption, figure figcaption {
+.figure-caption, .table > caption, figure figcaption, .code-block-caption {
   font-size: 0.875em;
   color: var(--bs-secondary-color);
 }
@@ -19599,7 +19599,7 @@ textarea.form-control-lg {
   padding-bottom: 0.25rem !important;
 }
 
-.pb-2 {
+.pb-2, .table > caption {
   padding-bottom: 0.5rem !important;
 }
 
@@ -23638,11 +23638,21 @@ code {
 
 .code-block-caption {
   hyphens: auto;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #e6e6e6;
+  border-bottom: none;
+  border-radius: 0.2rem 0.2rem 0 0;
+}
+
+.code-block-caption ~ .code-block-wrapper {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .code-block-wrapper {
   background: #f7f7f7;
-  border: 1px solid #f7f7f7;
+  border: 1px solid #e6e6e6;
   border-radius: 0.2rem;
   display: flex;
   font-size: 92%;
@@ -24678,6 +24688,9 @@ article *:hover > a.headerlink:after, article *:hover > a.permalink:after, artic
 .table th :last-child,
 .table td :last-child {
   margin-bottom: 0;
+}
+.table > caption {
+  padding-top: 0;
 }
 
 .table-responsive {

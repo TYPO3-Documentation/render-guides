@@ -27,12 +27,23 @@ code {
 
 .code-block-caption {
     @extend .text-break;
+    @extend .figure-caption;
     hyphens: auto;
+    padding: .4rem .6rem;
+    border: 1px solid $gray-300;
+    border-bottom: none;
+    border-radius: .2rem .2rem 0 0;
+}
+
+.code-block-caption ~ .code-block-wrapper {
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .code-block-wrapper {
     background: $gray-100;
-    border: 1px solid $gray-100;
+    border: 1px solid $gray-300;
     border-radius: .2rem;
     display: flex;
     font-size: 92%;
