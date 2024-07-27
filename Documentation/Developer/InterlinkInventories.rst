@@ -41,6 +41,12 @@ Available default inventories
 These inventories can be used by default in any rendered documentation:
 
 
+*   Title: :doc:`t3docs:Index`
+
+    Inventory key: :doc:`t3docs <t3docs:Index>`
+
+    URL: https://docs.typo3.org/
+
 *   Title: :doc:`changelog:Index`
 
     Inventory key: :doc:`changelog <changelog:Index>`

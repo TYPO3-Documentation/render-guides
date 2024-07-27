@@ -6,6 +6,7 @@ enum DefaultInventories: string
 {
     // IMPORTANT: If new default inventories are added, please
     //            also add them to `Documentation/Developer/InterlinkInventories.rst`.
+    case t3docs = 't3docs';
     case changelog = 'changelog';
     case t3coreapi = 't3coreapi';
     case t3tca = 't3tca';
@@ -30,6 +31,9 @@ enum DefaultInventories: string
     public function getUrl(): string
     {
         return match ($this) {
+            // Main doc page, it is only deployed to main
+            DefaultInventories::t3docs => 'https://docs.typo3.org/',
+
             // Changelog, it is only deployed to main
             DefaultInventories::changelog => 'https://docs.typo3.org/c/typo3/cms-core/main/en-us/',
 
