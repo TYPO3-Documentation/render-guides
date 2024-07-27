@@ -157,6 +157,55 @@ Cards with complex content, very responsive
 
         ..  card-footer:: :ref:`Read more <cards>`
 
+Cards with complex footer
+=========================
+
+..  card-grid::
+    :columns: 1
+    :columns-md: 3
+    :gap: 4
+    :card-height: 100
+
+    ..  card:: `Minor upgrades <https://docs.typo3.org/m/typo3/guide-installation/12.4/en-us/Minor/Index.html>`__
+
+
+        Minor updates (for example 12.4.1 to 12.4.2)
+        contain bugfixes and/or security updates.
+        This chapter details how updates are installed and highlights what tasks need to
+        be carried out before and after the core is updated.
+
+        ..  card-footer:: `13-dev <https://docs.typo3.org/m/typo3/guide-installation/main/en-us/Minor/Index.html>`__ `12.4 <https://docs.typo3.org/m/typo3/guide-installation/12.4/en-us/Minor/Index.html>`__ `11.5 <https://docs.typo3.org/m/typo3/guide-installation/11.5/en-us/Minor/Index.html>`__
+            :button-style: btn btn-secondary
+
+    ..  card:: `Minor upgrades <https://docs.typo3.org/m/typo3/guide-installation/12.4/en-us/Minor/Index.html>`__
+
+        Minor updates (for example 12.4.1 to 12.4.2)
+        contain bugfixes and/or security updates.
+        This chapter details how updates are installed and highlights what tasks need to
+        be carried out before and after the core is updated.
+
+        ..  card-footer::
+            :button-styles: default
+
+            :ref:`13-dev <t3upgrade/dev:minor>`
+            :ref:`12.4 <t3upgrade/stable:minor>`
+            :ref:`11.5 <t3upgrade/oldstable:minor>`
+
+    ..  card:: `Minor upgrades <https://docs.typo3.org/m/typo3/guide-installation/12.4/en-us/Minor/Index.html>`__
+
+        Minor updates (for example 12.4.1 to 12.4.2)
+        contain bugfixes and/or security updates.
+        This chapter details how updates are installed and highlights what tasks need to
+        be carried out before and after the core is updated.
+
+        ..  card-footer::
+            :button-styles: secondary
+
+            `13-dev <https://docs.typo3.org/m/typo3/guide-installation/main/en-us/Minor/Index.html>`__
+            `12.4 <https://docs.typo3.org/m/typo3/guide-installation/12.4/en-us/Minor/Index.html>`__
+            `11.5 <https://docs.typo3.org/m/typo3/guide-installation/11.5/en-us/Minor/Index.html>`__
+
+
 Card group
 ==========
 
