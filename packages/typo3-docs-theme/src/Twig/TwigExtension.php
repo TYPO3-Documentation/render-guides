@@ -63,6 +63,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getAnchorIdOfSection', $this->getAnchorIdOfSection(...), ['needs_context' => true]),
             new TwigFunction('getEditOnGitHubLink', $this->getEditOnGitHubLink(...), ['needs_context' => true]),
             new TwigFunction('getEditOnGitHubLinkFromPath', $this->getEditOnGitHubLinkFromPath(...), ['needs_context' => true]),
+            new TwigFunction('getReportIssueLink', $this->getReportIssueLink(...), ['needs_context' => true]),
             new TwigFunction('getCurrentFilename', $this->getCurrentFilename(...), ['needs_context' => true]),
             new TwigFunction('getRelativePath', $this->getRelativePath(...), ['needs_context' => true]),
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
@@ -260,6 +261,107 @@ final class TwigExtension extends AbstractExtension
             }
         }
         return null;
+    }
+
+
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getReportIssueLink(array $context): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        $reportButton = $this->themeSettings->getSettings('report_issue');
+        if ($reportButton === 'none') {
+            return '';
+        }
+        if (str_starts_with($reportButton, '/')) {
+            return $this->urlGenerator->generateCanonicalOutputUrl($renderContext, $reportButton);
+        }
+        if (str_starts_with($reportButton, 'https://forge.typo3.org/')) {
+            $reportButton = $this->enrichForgeLink($reportButton, $renderContext);
+            return $reportButton;
+        }
+        if (str_starts_with($reportButton, 'https://github.com/')) {
+            $reportButton = $this->enrichGithubReport($reportButton, $renderContext);
+            return $reportButton;
+        }
+        if (str_starts_with($reportButton, 'https://gitlab.com/')) {
+            return $reportButton;
+        }
+        if ($reportButton !== '') {
+            $this->logger->warning('For security reasons only only "report-issue" links in the guides.xml to a local page (starting with "/") or to one of these 3 plattforms are allowed: https://forge.typo3.org/ https://github.com/ https://gitlab.com/');
+            return '';
+        }
+
+        $reportButton = $this->themeSettings->getSettings('project_issues');
+        $reportButton = rtrim($reportButton, '/');
+
+        if (str_starts_with($reportButton, '')) {
+            return '';
+        }
+        if (str_starts_with($reportButton, 'https://forge.typo3.org/')) {
+            $reportButton = $this->enrichForgeLink($reportButton, $renderContext);
+            return $reportButton;
+        }
+        if (str_starts_with($reportButton, 'https://github.com/')) {
+            $reportButton = $this->enrichGithubReport($reportButton, $renderContext);
+            return $reportButton;
+        }
+        if (str_starts_with($reportButton, 'https://gitlab.com/')) {
+            if (str_ends_with($reportButton, '/issues')) {
+                $reportButton .= '/new';
+            }
+            return $reportButton;
+        }
+
+        $this->logger->warning('For security reasons only only "project_issues" links in the guides.xml to one of these 3 plattforms are allowed: https://forge.typo3.org/ https://github.com/ https://gitlab.com/');
+        return '';
+    }
+
+    /**
+     * @param string $reportButton
+     * @return string
+     */
+    public function enrichGithubReport(string $reportButton, RenderContext $renderContext): string
+    {
+        if (str_ends_with($reportButton, '/issues')) {
+            $reportButton .= '/new/choose';
+        }
+        if (str_ends_with($reportButton, '/new/choose') or str_ends_with($reportButton, '/new')) {
+            $reportButton .= '?title=';
+            $description = $this->getIssueTitle($renderContext);
+            $reportButton .= urlencode($description);
+        }
+        return $reportButton;
+    }
+
+    /**
+     * @param string $reportButton
+     * @param RenderContext $renderContext
+     * @return string
+     */
+    public function enrichForgeLink(string $reportButton, RenderContext $renderContext): string
+    {
+        if (str_ends_with($reportButton, '/issues')) {
+            $reportButton .= '/new';
+        }
+        if (str_ends_with($reportButton, '/new')) {
+            $reportButton .= '?issue[category_id]=1004&issue[subject]=';
+            $description = $this->getIssueTitle($renderContext);
+            $reportButton .= urlencode($description);
+            $version = $this->typo3VersionService->getPreferredVersion();
+            $reportButton .= '&issue[custom_field_values][4]=' . $version;
+        }
+        return $reportButton;
+    }
+
+    /**
+     * @param RenderContext $renderContext
+     * @return string
+     */
+    public function getIssueTitle(RenderContext $renderContext): string
+    {
+        return 'Problem on ' . $this->themeSettings->getSettings('project_home') . '/' . $renderContext->getCurrentFileName() . '.html';
     }
 
     /**
@@ -478,4 +580,5 @@ final class TwigExtension extends AbstractExtension
 
         return false;
     }
+
 }

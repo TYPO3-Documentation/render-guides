@@ -1,4 +1,11 @@
 <div class="breadcrumb-additions">
+    {%- set reportIssueLink = getReportIssueLink() -%}
+    {%- if (reportIssueLink)  %}
+        <a class="btn btn-sm btn-light" href="{{ reportIssueLink }}" id="btnReportIssue" rel="nofollow noopener" target="_blank">
+            <span class="btn-icon"><i class="fas fa-bug"></i></span>
+            <span class="btn-text">Report issue</span>
+        </a>
+    {% endif -%}
     {%- set copySources = getSettings('copy_sources') -%}
     {%- if (copySources)  %}
     <a class="btn btn-sm btn-light" href="{{ copyDownload(env.currentFileName ~ '.rst', '_sources/' ~ env.currentFileName ~ '.rst.txt') }}" rel="nofollow noopener" target="_blank">
