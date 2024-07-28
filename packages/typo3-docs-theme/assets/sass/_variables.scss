@@ -67,8 +67,8 @@ $theme-colors: (
     darker: $darker
 );
 
-$link-color:                   $tertiary;
-$link-hover-color:             lighten($link-color, 15%);
+$link-color:                   $gray-900;
+$link-hover-color:             $black;
 $link-alternate-color:         #ffffff;
 $link-alternate-hover-color:   darken($link-alternate-color, 15%);
 
