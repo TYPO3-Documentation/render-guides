@@ -296,7 +296,7 @@ final class TwigExtension extends AbstractExtension
         $reportButton = $this->themeSettings->getSettings('project_issues');
         $reportButton = rtrim($reportButton, '/');
 
-        if (str_starts_with($reportButton, '')) {
+        if ($reportButton === '') {
             return '';
         }
         if (str_starts_with($reportButton, 'https://forge.typo3.org/')) {

@@ -7,6 +7,6 @@
 
     <project title="Lorem Ipsum"/>
     <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
-               project-issues="https://github.com/TYPO3-Documentation/render-guides/issues/new"
+               project-issues="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/issues"
     />
 </guides>
