@@ -121,13 +121,14 @@
 }
 a.toc-title-project {
     display: block;
-    font-size: 1.5em;
-    font-weight:$font-weight-bold;
+    font-size: 1.2em;
+    font-weight: 700;
     line-height: 1.25;
-    color: $primary;
+    color: $secondary;
     text-decoration: none;
+
     &:hover {
-        color: darken($primary, 15%);
+        text-decoration: .1em underline;
     }
 }
 .toc-search {

@@ -25569,14 +25569,14 @@ dl.field-list > dt:after {
 
 a.toc-title-project {
   display: block;
-  font-size: 1.5em;
-  font-weight: 600;
+  font-size: 1.2em;
+  font-weight: 700;
   line-height: 1.25;
-  color: #ff8700;
+  color: #333333;
   text-decoration: none;
 }
 a.toc-title-project:hover {
-  color: #b35f00;
+  text-decoration: 0.1em underline;
 }
 
 .toc-search {
