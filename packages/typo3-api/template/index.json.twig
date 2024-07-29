@@ -63,8 +63,8 @@
 {% macro link(project, element) %}
 "{{ element.fullyQualifiedStructuralElementName|replace({'\\': '\\\\'}) }}":  [
 "{{ project.name }}",
-"main",
-"{{ element.name|replace({'\\': '\\\\'}) }}",
-"{{ element | route('url') }}"
+"{{ parameter.typo3_version }}",
+"{{ element | route('url') }}",
+"{{ element.name|replace({'\\': '\\\\'}) }}"
 ]
 {% endmacro %}
