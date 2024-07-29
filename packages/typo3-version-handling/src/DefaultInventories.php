@@ -27,6 +27,7 @@ enum DefaultInventories: string
     case fluid = 'fluid';
     case t3renderguides = 't3renderguides';
     case t3exceptions = 't3exceptions';
+    case api = 'api';
 
     public function getUrl(): string
     {
@@ -63,6 +64,8 @@ enum DefaultInventories: string
             DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/main/en-us/',
             DefaultInventories::t3renderguides => 'https://docs.typo3.org/other/t3docs/render-guides/main/en-us/',
             DefaultInventories::t3exceptions => 'https://docs.typo3.org/m/typo3/reference-exceptions/main/en-us/',
+
+            DefaultInventories::api => 'https://api.typo3.org/{typo3_version}/',
         };
     }
 
