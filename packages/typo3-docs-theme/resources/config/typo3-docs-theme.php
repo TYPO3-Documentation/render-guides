@@ -36,6 +36,7 @@ use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\FluidTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\HtmlTextTextRole;
@@ -82,6 +83,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(InventoryRepository::class, Typo3InventoryRepository::class)
         ->arg('$inventoryConfigs', param('phpdoc.guides.inventories'))
         ->set(InterlinkParser::class, ExtendedInterlinkParser::class)
+        ->set(\phpDocumentor\Guides\RestructuredText\TextRoles\ApiClassTextRole::class, ApiClassTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(ComposerTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(FluidTextTextRole::class)
