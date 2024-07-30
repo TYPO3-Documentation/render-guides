@@ -18,7 +18,7 @@
         "grunt-sass": "^3.1.0",
         "grunt-stylelint": "^0.20.1",
         "sass": "^1.77.8",
-        "stylelint": "^16.8.0"
+        "stylelint": "^16.8.1"
     },
     "scripts": {
         "build": "grunt build",
