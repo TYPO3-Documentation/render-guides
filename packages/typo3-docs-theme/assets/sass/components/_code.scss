@@ -111,7 +111,10 @@ code {
 
 /** uses "popover" for all code roles that have tooltips **/
 .code-inline[aria-description] {
-    cursor: pointer;
+    a {
+        text-decoration: none;
+    }
+
 }
 
 /** popover styling **/
@@ -119,6 +122,8 @@ code {
     display: flex;
     flex-direction: row;
     max-width: 30vw;
+    overflow-wrap: break-word;
+    word-wrap: anywhere;
 }
 .popover-header{
     padding: var(--bs-popover-body-padding-y) var(--bs-popover-body-padding-x);
@@ -127,6 +132,7 @@ code {
     border-bottom-left-radius: var(--bs-popover-inner-border-radius);
     border-top-right-radius: 0;
     border-bottom: 0;
+    word-wrap: break-word;
 }
 
 @media only screen and (max-width: 576px) {

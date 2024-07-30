@@ -1,3 +1,11 @@
 {% apply spaceless %}
-    <code class="code-inline" translate="no" aria-description="{{ node.language }}" aria-details="{{ node.helpText }}">{{ node.value }}</code>
+    <code class="code-inline" translate="no" aria-description="{{ node.language|raw }}" aria-details="{{ node.helpText|raw }}" data-bs-html="true">
+        {%- if node.info.url %}
+            <a href="{{ node.info['url'] }}" target="_blank">
+                {{- node.value }} <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a>
+        {%- else -%}
+             {{ node.value }}
+        {%- endif -%}
+    </code>
+
 {% endapply %}

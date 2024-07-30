@@ -15,6 +15,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
@@ -159,6 +160,7 @@ return static function (ContainerConfigurator $container): void {
 
         ->set(PackagistService::class)
         ->set(Typo3VersionService::class)
+        ->set(Typo3ApiService::class)
 
         // Register Event Listeners
         ->set(AddThemeSettingsToProjectNode::class)
