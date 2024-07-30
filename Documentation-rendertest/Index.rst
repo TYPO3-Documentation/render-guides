@@ -46,12 +46,16 @@ Within ddev
 
 -----
 
-..  rubric:: Pages
-
-..  rst-class::  compact-list
 ..  toctree::
+    :caption: INTRODUCTION
+    :titlesonly:
+    :glob:
+
+    *
+
+..  toctree::
+    :caption: HOWTOS
     :titlesonly:
     :glob:
 
     */Index
-    *

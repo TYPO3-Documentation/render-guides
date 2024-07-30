@@ -21,7 +21,7 @@
 .toc-header {
     display: flex;
     justify-content: space-between;
-    padding-left: calc(#{$spacer} / 2) ;
+    padding-left: calc(#{$spacer} / 1.5) ;
 }
 .main_menu {
     margin: $spacer 0;
@@ -121,13 +121,25 @@
 }
 a.toc-title-project {
     display: block;
-    font-size: 1.5em;
-    font-weight:$font-weight-bold;
+    position: relative;
+    font-size: 1.2em;
+    font-weight: 700;
     line-height: 1.25;
-    color: $primary;
+    color: $secondary;
     text-decoration: none;
+
+    &:before {
+        content: '';
+        width: 0.2em;
+        height: 100%;
+        background: $primary;
+        position: absolute;
+        top: 0;
+        left: -0.6em;
+    }
+
     &:hover {
-        color: darken($primary, 15%);
+        text-decoration: .1em underline;
     }
 }
 .toc-search {
