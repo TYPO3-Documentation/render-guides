@@ -1,0 +1,8 @@
+
+.toctree-wrapper, .contents-wrapper {
+    .topic-title {
+        @extend .figure-caption;
+        @extend .pb-2;
+        padding-bottom: 0;
+    }
+}
