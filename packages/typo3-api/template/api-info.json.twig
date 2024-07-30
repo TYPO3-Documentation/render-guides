@@ -1,0 +1,76 @@
+{%  set hasLooped = false %}
+{
+    {% for element in documentationSet.indexes.classes -%}
+        {% if loop.first and hasLooped %},{% endif %}
+        {% set hasLooped = false %}
+        {{  _self.link(project, element) }}
+        {% if not loop.last -%},
+        {% else %}
+        {% set hasLooped = true %}
+        {% endif %}
+    {% endfor %}
+
+    {% for element in documentationSet.indexes.interfaces -%}
+        {% if loop.first and hasLooped %},{% endif %}
+        {% set hasLooped = false %}
+        {{  _self.link(project, element) }}
+        {% if not loop.last -%},
+        {% else %}
+        {% set hasLooped = true %}
+        {% endif %}
+    {% endfor %}
+
+    {% for element in documentationSet.indexes.traits -%}
+        {% if loop.first and hasLooped %},{% endif %}
+        {% set hasLooped = false %}
+        {{  _self.link(project, element) }}
+        {% if not loop.last -%},
+        {% else %}
+        {% set hasLooped = true %}
+        {% endif %}
+    {% endfor %}
+
+    {% for element in documentationSet.indexes.enums -%}
+        {% if loop.first and hasLooped %},{% endif %}
+        {% set hasLooped = false %}
+        {{  _self.link(project, element) }}
+        {% if not loop.last -%},
+        {% else %}
+        {% set hasLooped = true %}
+        {% endif %}
+    {% endfor %}
+
+    {% for element in documentationSet.indexes.functions -%}
+        {% if loop.first and hasLooped %},{% endif %}
+        {% set hasLooped = false %}
+        {{  _self.link(project, element) }}
+        {% if not loop.last -%},
+        {% else %}
+        {% set hasLooped = true %}
+        {% endif %}
+    {% endfor %}
+}
+
+{% macro link(project, element) %}
+"{{ element.fullyQualifiedStructuralElementName|replace({'\\': '\\\\'}) }}":  {
+{% set internalTags = element.tags|filter((v,k) => k in ['internal']) %}
+    "url": "https://api.typo3.org/{{ parameter.typo3_version }}/{{ element | route('url') }}",
+    "short": "{{ element.name|replace({'\\': '\\\\'}) }}",
+    "fqn": "{{ element.fullyQualifiedStructuralElementName|replace({'\\': '\\\\'}) }}",
+    "github": "{{ parameter.typo3_github_url }}/{{ parameter.typo3_version }}/{{ element.file.path }}",
+    "file": "{{ element.file.path }}",
+    "type": "{% if element is class %}class{% endif %}{% if element is interface %}interface{% endif %}{% if element is trait %}trait{% endif %}{% if element is enum %}enum{% endif %}",
+    "final": "{{ element.isFinal }}",
+    "abstract": "{{ element.isAbstract }}",
+    "readonly": "{{ element.isReadonly }}",
+    "internal": "{% if internalTags|length > 0 and internalTags|first|length > 0 %}1{% endif %}",
+    "internal-message": "{% for tag in internalTags %}{{ tag.description|replace({'\\': '\\\\'})|replace({'\n': ' '})|replace({'	': ' '}) }}{% endfor %}",
+    "deprecated": "{% if element.deprecated %}1{% endif %}",
+    "deprecation": "{% for deprecation in element.deprecations %}{{ deprecation.description|replace({'\\': '\\\\'})|replace({'\n': ' '})|replace({'	': ' '})}} {% endfor %}",
+    "extends": "{% if element.parent %}{{ element.parent.fullyQualifiedStructuralElementName|replace({'\\': '\\\\'})|replace({'\n': ' '})|replace({'	': ' '}) }}{% endif %}",
+    "implements": "{% if element.interfaces is not empty -%}
+{%- for interface in element.interfaces %}{{ interface.fullyQualifiedStructuralElementName|replace({'\\': '\\\\'})|replace({'\n': ' '})|replace({'	': ' '}) }}{% if not loop.last %}, {% endif %}{% endfor -%}
+{% endif %}",
+    "summary": "{{ element.summary|replace({'\\': '\\\\'})|replace({'\n': ' '})|replace({'	': ' '}) }}"
+}
+{% endmacro %}
