@@ -11776,7 +11776,7 @@ progress {
   line-height: 1;
 }
 
-.figure-caption, .table > caption, figure figcaption, .code-block-caption {
+.figure-caption, .table > caption, .toctree-wrapper .topic-title, .contents-wrapper .topic-title, figure figcaption, .code-block-caption {
   font-size: 0.875em;
   color: var(--bs-secondary-color);
 }
@@ -19619,7 +19619,7 @@ textarea.form-control-lg {
   padding-bottom: 0.25rem !important;
 }
 
-.pb-2, .table > caption {
+.pb-2, .table > caption, .toctree-wrapper .topic-title, .contents-wrapper .topic-title {
   padding-bottom: 0.5rem !important;
 }
 
@@ -24442,6 +24442,10 @@ figure figcaption p:last-child {
 
 span[id*=MathJax-Span] {
   color: #212529;
+}
+
+.toctree-wrapper .topic-title, .contents-wrapper .topic-title {
+  padding-bottom: 0;
 }
 
 .page-link {

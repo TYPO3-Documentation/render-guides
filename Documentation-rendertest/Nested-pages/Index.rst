@@ -7,18 +7,16 @@ Nested pages
 Page subtitle
 -------------
 
-.. contents:: This page and subpages
-   :backlinks: top
-   :class: compact-list
-   :depth: 99
+..  contents::
+    :caption: This page
+    :backlinks: top
 
 
-.. rst-class:: compact-list
-.. toctree::
-   :glob:
-   :hidden:
+..  toctree::
+    :caption: This page and subpages
+    :glob:
 
-   1/*
+    1/*
 
 .. attention::
 
