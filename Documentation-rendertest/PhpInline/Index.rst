@@ -40,3 +40,13 @@ In short:
 *   :php-short:`\TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper`
 *   :php-short:`\MyVendor\MyExtension\FooBar`
 *   :php-short:`\Foo\Bar\Something`
+
+A new PSR-14 event :php:`TYPO3\CMS\Backend\RecordList\Event\BeforeRecordDownloadIsExecutedEvent`
+has been introduced to modify the result of a download / export initiated via
+the :guilabel:`Web > List` module.
+
+This replaces the
+:php:`$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList']['customizeCsvHeader']`
+and
+:php:`$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList']['customizeCsvRow']`,
+hooks, which have been :ref:`deprecated <changelog:deprecation-102337-1715591179>`.
