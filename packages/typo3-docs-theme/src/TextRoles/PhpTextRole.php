@@ -5,15 +5,19 @@ namespace T3Docs\Typo3DocsTheme\TextRoles;
 use phpDocumentor\Guides\Nodes\Inline\InlineNode;
 use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
 use phpDocumentor\Guides\RestructuredText\TextRoles\TextRole;
-use T3Docs\GuidesPhpDomain\PhpDomain\FullyQualifiedNameService;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 
 final class PhpTextRole implements TextRole
 {
+    /**
+     * @see https://regex101.com/r/LN5Ick/1
+     */
+    final public const CLASS_NAME_PATTERN_REGEX = '/^(\\\\)?[A-Za-z_][A-Za-z0-9_]*(\\\\[A-Za-z_][A-Za-z0-9_]*)*$/';
+
+
     public function __construct(
-        private readonly FullyQualifiedNameService $fullyQualifiedNameService,
         private readonly Typo3ApiService $typo3ApiService,
         private readonly Typo3VersionService $typo3VersionService,
     ) {}
@@ -34,7 +38,7 @@ final class PhpTextRole implements TextRole
     {
         $fqn = [];
         $rawContent = trim($rawContent);
-        if (str_contains($rawContent, '\\') && $this->fullyQualifiedNameService->isFullyQualifiedName($rawContent, $fqn)) {
+        if (str_contains($rawContent, '\\') && $this->isClassName($rawContent, $fqn)) {
             if (!str_starts_with($rawContent, '\\')) {
                 $rawContent = '\\' . $rawContent;
             }
@@ -134,7 +138,11 @@ final class PhpTextRole implements TextRole
             }
             $modifiers[] = $apiInfo['type'];
             $infoArray = [];
-            $infoArray[] = '<code>' . implode(' ', $modifiers) . ' ' . $apiInfo['short'] . '</code>: <code>' . $apiInfo['fqn'] . '</code>';
+            $infoArray[] = '<code>' . implode(' ', $modifiers) . ' ' . $apiInfo['short'] . '</code>';
+
+            if ($role === 'php-short') {
+                $infoArray[] =  '<code>' . $apiInfo['fqn'] . '</code>';
+            }
             if ($apiInfo['internal']) {
                 $infoArray[] = 'internal!';
             }
@@ -145,6 +153,7 @@ final class PhpTextRole implements TextRole
                 $infoArray[] = '<em>' . $apiInfo['summary'] . '</em>';
             }
             $info = implode('<br>', $infoArray);
+            $info = str_replace('\\', '&#8203;\\', $info);
             return new CodeInlineNode($name, 'PHP ' . $type, $info, $apiInfo);
         } elseif(str_starts_with($fqn, '\\TYPO3Fluid')) {
             $info = 'This PHP class or interface belongs to Fluid. ';
@@ -176,5 +185,12 @@ final class PhpTextRole implements TextRole
             try searching for ' . $fqn . ' in the internet.',
             []
         );
+    }
+    /**
+     * @param list<string> $matches
+     */
+    private function isClassName(string $name, array &$matches): bool
+    {
+        return (bool)preg_match(self::CLASS_NAME_PATTERN_REGEX, $name, $matches);
     }
 }
