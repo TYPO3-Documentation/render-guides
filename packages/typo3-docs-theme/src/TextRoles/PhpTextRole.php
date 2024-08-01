@@ -172,7 +172,8 @@ final class PhpTextRole implements TextRole
         return new CodeInlineNode(
             $name,
             'PHP ' . $type,
-            'Unknown PHP class or interface, try searching for ' . $fqn . ' in the internet.',
+            'This is a fully-qualified class or interface name,
+            try searching for ' . $fqn . ' in the internet.',
             []
         );
     }
