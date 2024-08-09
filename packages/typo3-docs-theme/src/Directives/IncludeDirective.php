@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Directives;
 
+use League\Flysystem\Adapter\AbstractAdapter;
+use League\Flysystem\Filesystem;
+use League\Flysystem\FilesystemInterface;
 use phpDocumentor\Guides\Nodes\CodeNode;
 use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\Nodes\LiteralBlockNode;
@@ -42,10 +45,76 @@ final class IncludeDirective extends BaseDirective
     /** {@inheritDoc} */
     public function processNode(
         BlockContext $blockContext,
-        Directive $directive,
+        Directive    $directive,
     ): Node {
+        $inputPath = $directive->getData();
+        if (str_contains($inputPath, '*')) {
+            return $this->resolveGlobInclude($blockContext, $inputPath, $directive);
+        }
+        return $this->resolveBasicInclude($blockContext, $inputPath, $directive);
+    }
+
+
+    /**
+     * @throws \League\Flysystem\FileNotFoundException
+     */
+    public function resolveGlobInclude(BlockContext $blockContext, string $inputPath, Directive $directive): LiteralBlockNode|CollectionNode|CodeNode
+    {
         $parserContext = $blockContext->getDocumentParserContext()->getParser()->getParserContext();
-        $path = $parserContext->absoluteRelativePath($directive->getData());
+        $path = $parserContext->absoluteRelativePath($inputPath);
+
+        $origin = $parserContext->getOrigin();
+
+        assert($origin instanceof Filesystem);
+        $adapter = $origin->getAdapter();
+        assert($adapter instanceof AbstractAdapter);
+        $absoluteRootPath = $adapter->getPathPrefix();
+
+        // Create the absolute glob pattern
+        $absolutePattern = $absoluteRootPath . ltrim($path, '/');
+
+        $files = glob($absolutePattern);
+
+        if (!is_array($files) || empty($files)) {
+            throw new RuntimeException(
+                sprintf('No files matched the glob pattern "%s".', $path),
+            );
+        }
+
+        sort($files);
+        $nodes = [];
+
+        // Loop through each matched file
+        foreach ($files as $file) {
+            // Convert the absolute file path to a path relative to the origin's root
+            $relativePath = str_replace($absoluteRootPath ?? '', '', $file);
+
+            if (!$origin->has($relativePath)) {
+                throw new RuntimeException(
+                    sprintf('Include "%s" (%s) does not exist or is not readable.', $directive->getData(), $relativePath),
+                );
+            }
+
+            // Get the collection of nodes from each path
+            $nodes[] = $this->getCollectionFromPath($origin, $relativePath, $directive, $blockContext);
+        }
+
+        // If only one node is found, return it directly
+        if (count($nodes) === 1) {
+            return $nodes[0];
+        }
+
+        // Otherwise, return a CollectionNode of all nodes
+        return new CollectionNode($nodes);
+    }
+
+    /**
+     * @throws \League\Flysystem\FileNotFoundException
+     */
+    public function resolveBasicInclude(BlockContext $blockContext, string $inputPath, Directive $directive): LiteralBlockNode|CollectionNode|CodeNode
+    {
+        $parserContext = $blockContext->getDocumentParserContext()->getParser()->getParserContext();
+        $path = $parserContext->absoluteRelativePath($inputPath);
 
         $origin = $parserContext->getOrigin();
         if (!$origin->has($path)) {
@@ -54,6 +123,14 @@ final class IncludeDirective extends BaseDirective
             );
         }
 
+        return $this->getCollectionFromPath($origin, $path, $directive, $blockContext);
+    }
+
+    /**
+     * @throws \League\Flysystem\FileNotFoundException
+     */
+    public function getCollectionFromPath(FilesystemInterface $origin, string $path, Directive $directive, BlockContext $blockContext): LiteralBlockNode|CollectionNode|CodeNode
+    {
         $contents = $origin->read($path);
 
         if ($contents === false) {
@@ -71,7 +148,7 @@ final class IncludeDirective extends BaseDirective
             $codeNode = new CodeNode(
                 explode('\n', $contents),
             );
-            $codeNode->setLanguage((string) $directive->getOption('code')->getValue());
+            $codeNode->setLanguage((string)$directive->getOption('code')->getValue());
 
             return $codeNode;
         }
