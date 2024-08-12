@@ -100,13 +100,16 @@ code {
  * ":literal:" or ":php:"
  */
 .code-inline {
-    @extend .text-break;
     font-family: $font-family-monospace;
     border-radius: $border-radius;
     border: 2px solid $white;
     background: $gray-100;
     padding: 0.25em 0.5em;
     line-height: 27px;
+}
+
+.code-inline-long {
+    @extend .text-break;
 }
 
 /** uses "popover" for all code roles that have tooltips **/
