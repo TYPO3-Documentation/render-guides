@@ -19857,7 +19857,7 @@ textarea.form-control-lg {
 }
 
 /* rtl:begin:remove */
-.text-break, .code-inline, .code-block-caption, article a:not([class*=btn]) {
+.text-break, .code-inline-long, .code-block-caption, article a:not([class*=btn]) {
   word-wrap: break-word !important;
   word-break: break-word !important;
 }

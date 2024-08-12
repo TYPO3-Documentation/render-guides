@@ -1,11 +1,14 @@
 {% apply spaceless %}
-    <code class="code-inline" translate="no" aria-description="{{ node.language|raw }}" aria-details="{{ node.helpText|raw }}" data-bs-html="true">
+    <code class="code-inline{% if node.value|length > 10 %} code-inline-long{% endif %}"
+          translate="no"
+          aria-description="{{ node.language|raw }}"
+          aria-details="{{ node.helpText|raw }}"
+          data-bs-html="true">
         {%- if node.info.url %}
             <a href="{{ node.info['url'] }}" target="_blank">
                 {{- node.value }} <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a>
         {%- else -%}
-             {{ node.value }}
+            {{ node.value }}
         {%- endif -%}
     </code>
-
 {% endapply %}
