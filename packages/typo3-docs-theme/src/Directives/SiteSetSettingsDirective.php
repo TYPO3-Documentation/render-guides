@@ -93,11 +93,11 @@ final class SiteSetSettingsDirective extends BaseDirective
         // a special string "PROJECT:" is evaluated here.
         // If a path starts with that notation, it will be referenced from the "/project/..." directory level.
         // It will not break out of the "/project/" mapping!
-        if (str_starts_with($setConfigurationFile, 'EXT:self') || str_starts_with($setConfigurationFile, 'PROJECT:')) {
+        if (str_starts_with($setConfigurationFile, 'PROJECT:')) {
             // This will replace "PROJECT:/Configuration/Sets/File.yaml" with "/Configuration/Sets/File.yaml"
             // and is then passed to absoluteRelativePath() which will set $path = "/Configuration/Sets/File.yaml",
             // but ensure no "../../../" or other path traversal is allowed.
-            $path = $parserContext->absoluteRelativePath(str_replace(['EXT:self', 'PROJECT:'], ['', ''], $setConfigurationFile));
+            $path = $parserContext->absoluteRelativePath(str_replace('PROJECT:', '', $setConfigurationFile));
 
             // Get the current origin Path, usually "/project/Documentation/", and go one level up.
             $newOriginPath = dirname($pathPrefix) . '/';
