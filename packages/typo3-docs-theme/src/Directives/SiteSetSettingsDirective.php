@@ -82,7 +82,7 @@ final class SiteSetSettingsDirective extends BaseDirective
         $pathPrefix = (string)$adapter->getPathPrefix();
 
         // The path delivered via the directive like:
-        // ..  typo3:site-set-settings:: EXT:self/Configuration/Sets/FluidStyledContent/settings.definitions.yaml
+        // ..  typo3:site-set-settings:: PROJECT:/Configuration/Sets/FluidStyledContent/settings.definitions.yaml
         $setConfigurationFile = $directive->getData();
 
         // By default, the RST files are placed inside a "Documentation" subdirectory.
@@ -90,14 +90,14 @@ final class SiteSetSettingsDirective extends BaseDirective
         // No files on the "/project/" directory level can usually be accessed, even though they may belong
         // to TYPO3 core/third-party extensions that the Documentation belongs to directory-wise.
         // To allow files to be retrieved on the EXTENSION-level, instead of DOCUMENTATION-level,
-        // a special string "EXT:self" is evaluated here.
+        // a special string "PROJECT:" is evaluated here.
         // If a path starts with that notation, it will be referenced from the "/project/..." directory level.
         // It will not break out of the "/project/" mapping!
-        if (str_starts_with($setConfigurationFile, 'EXT:self')) {
-            // This will replace "EXT:self/Configuration/Sets/File.yaml" with "/Configuration/Sets/File.yaml"
+        if (str_starts_with($setConfigurationFile, 'PROJECT:')) {
+            // This will replace "PROJECT:/Configuration/Sets/File.yaml" with "/Configuration/Sets/File.yaml"
             // and is then passed to absoluteRelativePath() which will set $path = "/Configuration/Sets/File.yaml",
             // but ensure no "../../../" or other path traversal is allowed.
-            $path = $parserContext->absoluteRelativePath(str_replace('EXT:self', '', $setConfigurationFile));
+            $path = $parserContext->absoluteRelativePath(str_replace('PROJECT:', '', $setConfigurationFile));
 
             // Get the current origin Path, usually "/project/Documentation/", and go one level up.
             $newOriginPath = dirname($pathPrefix) . '/';
