@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Directives;
 
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use Symfony\Component\Yaml\Yaml;
 use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
@@ -73,15 +75,51 @@ final class SiteSetSettingsDirective extends BaseDirective
     {
         $parser = $blockContext->getDocumentParserContext()->getParser();
         $parserContext = $parser->getParserContext();
-
-        $path = $parserContext->absoluteRelativePath($directive->getData());
-
+        /** @var Filesystem $origin */
         $origin = $parserContext->getOrigin();
+        /** @var Local $adapter */
+        $adapter = $origin->getAdapter();
+        $pathPrefix = (string)$adapter->getPathPrefix();
+
+        // The path delivered via the directive like:
+        // ..  typo3:site-set-settings:: EXT:self/Configuration/Sets/FluidStyledContent/settings.definitions.yaml
+        $setConfigurationFile = $directive->getData();
+
+        // By default, the RST files are placed inside a "Documentation" subdirectory.
+        // When using the docker container, this origin root path is then set to "/project/Documentation".
+        // No files on the "/project/" directory level can usually be accessed, even though they may belong
+        // to TYPO3 core/third-party extensions that the Documentation belongs to directory-wise.
+        // To allow files to be retrieved on the EXTENSION-level, instead of DOCUMENTATION-level,
+        // a special string "EXT:self" is evaluated here.
+        // If a path starts with that notation, it will be referenced from the "/project/..." directory level.
+        // It will not break out of the "/project/" mapping!
+        if (str_starts_with($setConfigurationFile, 'EXT:self')) {
+            // This will replace "EXT:self/Configuration/Sets/File.yaml" with "/Configuration/Sets/File.yaml"
+            // and is then passed to absoluteRelativePath() which will set $path = "/Configuration/Sets/File.yaml",
+            // but ensure no "../../../" or other path traversal is allowed.
+            $path = $parserContext->absoluteRelativePath(str_replace('EXT:self', '', $setConfigurationFile));
+
+            // Get the current origin Path, usually "/project/Documentation/", and go one level up.
+            $newOriginPath = dirname($pathPrefix) . '/';
+
+            // Temporarily change the path prefix now to "/project/"
+            $adapter->setPathPrefix($newOriginPath);
+        } else {
+            $path = $parserContext->absoluteRelativePath($setConfigurationFile);
+        }
+
         if (!$origin->has($path)) {
-            throw new FileLoadingException(sprintf('The directive .. typo3:site-set-settings:: cannot find the source at %s. ', $path));
+            // Revert temporary change to origin (because it being a singleton)
+            $adapter->setPathPrefix($pathPrefix);
+            throw new FileLoadingException(
+                sprintf('The directive .. typo3:site-set-settings:: cannot find the source at %s. ', $path)
+            );
         }
 
         $contents = $origin->read($path);
+
+        // Revert temporary change to origin (because it being a singleton).
+        $adapter->setPathPrefix($pathPrefix);
 
         if ($contents === false) {
             throw new FileLoadingException(sprintf('The .. typo3:site-set-settings:: cannot load file from path %s. ', $path));
