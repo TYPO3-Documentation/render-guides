@@ -14,4 +14,7 @@ figure {
             margin-bottom: 0;
         }
     }
+    &:not(:first-child) {
+        @extend .mt-3;
+    }
 }
