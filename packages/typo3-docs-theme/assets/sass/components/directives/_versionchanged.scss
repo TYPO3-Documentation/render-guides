@@ -1,6 +1,7 @@
 @mixin version-changed($border-color: $info, $icon-color: darken($border-color, 15%), $background-color: lighten($border-color, 40%), $text-color: color-contrast($background-color)) {
     border-left: 5px solid $border-color;
     padding-left: 1em;
+    margin: 1em 0;
     .versionmodified {
         .versionicon {
             color: $icon-color;

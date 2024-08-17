@@ -182,3 +182,48 @@ types[1] or the digital equivalents. Stored letters and other symbols
 (called sorts in mechanical systems and glyphs in digital systems)
 are retrieved and ordered according to a language's orthography for
 visual display.
+
+Images and Admonitions
+======================
+
+..  versionadded:: 13.3
+    EXT:form offers a site set that can be included as described here.
+    quickstartIntegrators are still possible
+    for compatibility reasons but not recommended anymore.
+
+Include the site set "Form Framework" via the :site set in the site
+configuration or the custom
+site package's site set.
+
+..  figure:: /images/q150_cccccc.png
+
+    Add the site set "Form Framework"
+
+..  note:: Include the site set "Form Framework" via the :site set in the site
+    configuration or the custom
+    site package's site set.
+
+..  image:: /images/q150_cccccc.png
+
+..  warning:: Include the site set "Form Framework" via the :site set in the site
+    configuration or the custom
+    site package's site set.
+
+#.  Include the site set
+
+    ..  versionadded:: 13.3
+        EXT:form offers a site set that can be included as described here.
+        quickstartIntegrators are still possible
+        for compatibility reasons but not recommended anymore.
+
+    Include the site set "Form Framework" via the :site set in the site
+    configuration or the custom
+    site package's site set.
+
+    ..  figure:: /images/q150_cccccc.png
+
+        Add the site set "Form Framework"
+
+    ..  note:: Include the site set "Form Framework" via the :site set in the site
+        configuration or the custom
+        site package's site set.
