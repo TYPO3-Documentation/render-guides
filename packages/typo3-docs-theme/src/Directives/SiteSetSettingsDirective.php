@@ -146,15 +146,23 @@ final class SiteSetSettingsDirective extends BaseDirective
         foreach ($settings as $key => $setting) {
             $confvals[] = $this->buildConfval($setting, $idPrefix, $key, $directive);
         }
+        $reservedParameterNames = [
+            'name',
+            'class',
+            'caption',
+            'display',
+            'noindex',
+        ];
         $fields = [];
-        if ($directive->getOptionBool('type')) {
-            $fields[] = 'type';
-        }
-        if ($directive->getOptionBool('Label')) {
-            $fields[] = 'Label';
-        }
-        if ($directive->getOptionBool('default')) {
-            $fields[] = 'default';
+        foreach ($directive->getOptions() as $option) {
+            if (in_array($option->getName(), $reservedParameterNames, true)) {
+                continue;
+            }
+            $value = [];
+            if (is_string($option->getValue()) && str_starts_with($option->getValue(), 'max=')) {
+                $value['max'] = intval(str_replace('max=', '', $option->getValue()));
+            }
+            $fields[$option->getName()] = $value;
         }
         $confvalMenu = new ConfvalMenuNode(
             $this->anchorNormalizer->reduceAnchor($directive->getOptionString('name')),

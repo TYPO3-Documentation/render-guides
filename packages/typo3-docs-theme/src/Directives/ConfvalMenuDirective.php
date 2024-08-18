@@ -62,7 +62,11 @@ class ConfvalMenuDirective extends SubDirective
             if (in_array($option->getName(), $reservedParameterNames, true)) {
                 continue;
             }
-            $fields[] = $option->getName();
+            $value = [];
+            if (is_string($option->getValue()) && str_starts_with($option->getValue(), 'max=')) {
+                $value['max'] = intval(str_replace('max=', '', $option->getValue()));
+            }
+            $fields[$option->getName()] = $value;
         }
         $exclude = explode(',', $directive->getOptionString('exclude'));
         $anchorReducer = $this->anchorReducer;

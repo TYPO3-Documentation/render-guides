@@ -70,3 +70,53 @@ Properties of COA
         :type: ->if <if>
 
         If `if` returns false, the COA is **not** rendered.
+
+Long default values
+===================
+
+..  confval-menu::
+    :name: typoscript
+    :display: table
+    :type:
+    :default: max=20
+    :test:
+
+    ..  confval:: pages
+        :name: typoscript-pages
+        :type: string
+        :default: {$styles.content.loginform.pid}
+        :test: `1`
+
+        Define the User Storage Page with the Website User Records, using a
+        comma separated list or single value
+
+    ..  confval:: redirectPageLoginError
+        :name: typoscript-redirectPageLoginError
+        :type: integer
+        :default: {$styles.content.loginform.redirectPageLoginError}
+
+        Page id to redirect to after Login Error
+
+    ..  confval:: dateFormat
+        :name: typoscript-dateFormat
+        :type: date-conf
+        :default: Y-m-d H:i
+
+    ..  confval:: email
+        :name: typoscript-email
+
+        ..  confval:: email.templateRootPaths
+            :name: typoscript-email.templateRootPaths
+            :type: array
+            :default: {$styles.content.loginform.email.templateRootPaths}
+
+            Path to template directory used for emails
+
+    ..  confval:: exposeNonexistentUserInForgotPasswordDialog
+        :name: typoscript-exposeNonexistentUserInForgotPasswordDialog
+        :type: bool
+        :default: {$styles.content.loginform.exposeNonexistentUserInForgotPasswordDialog}
+
+        If set and the user account cannot be found in the forgot password
+        dialogue, an error message will be shown that the account could not be
+        found.
