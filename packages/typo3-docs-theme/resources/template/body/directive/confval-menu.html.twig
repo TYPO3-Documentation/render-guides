@@ -9,14 +9,14 @@
         {% endfor %}
         <div class="label">
             <a href="#{{ entry.anchor }}">{{ entry.plainContent }}</a>
-            {% for field in node.fields %}
-                {% if field=='type' %}
+            {% for fieldName, field in node.fields %}
+                {% if fieldName=='type' %}
                     , Type: {{ renderNode(entry.type) }}
-                {% elseif field=='default' %}
+                {% elseif fieldName=='default' %}
                     , Default: {{ renderNode(entry.default) }}
                 {% else %}
                     {%- for key, option in entry.additionalOptions -%}
-                        {%- if field==key %}
+                        {%- if fieldName==key %}
                             , {{ key }}: {{  renderNode(option) }}
                         {% endif -%}
                     {% endfor -%}
@@ -61,14 +61,14 @@
             {% endif %}
             <div class="label">
                 <a href="#{{ entry.anchor }}">{{ entry.plainContent }}</a>
-                {% for field in node.fields %}
-                    {% if field=='type' %}
+                {% for fieldName, field in node.fields %}
+                    {% if fieldName=='type' %}
                         , Type: {{ renderNode(entry.type) }}
-                    {% elseif field=='default' %}
+                    {% elseif fieldName=='default' %}
                         , Default: {{ renderNode(entry.default) }}
                     {% else %}
                         {%- for key, option in entry.additionalOptions -%}
-                            {%- if field==key %}
+                            {%- if fieldName==key %}
                                 , {{ key }}: {{  renderNode(option) }}
                             {% endif -%}
                         {% endfor -%}
@@ -90,20 +90,20 @@
 {% macro renderConfvalRow(entry, node, level) %}
     <tr>
         <td><div class="confval-label ps-{{ level * 2 }}"><a href="#{{ entry.anchor }}">{{ entry.plainContent }}</a></div></td>
-        {% for field in node.fields %}
-            {% if field=='type' %}
-                <td>{{ renderNode(entry.type) }}</td>
-            {% elseif field=='default' %}
-                <td>{{ renderNode(entry.default) }}</td>
+        {% for fieldName, field in node.fields %}
+            <td>
+            {% if fieldName=='type' %}
+                {{ _self.renderFieldContent(entry.type, field['max']) }}
+            {% elseif fieldName=='default' %}
+                {{ _self.renderFieldContent(entry.default, field['max']) }}
             {% else %}
-                <td>
-                    {%- for key, option in entry.additionalOptions -%}
-                        {%- if field==key %}
-                            {{  renderNode(option) }}
-                        {% endif -%}
-                    {% endfor -%}
-                </td>
+                {%- for key, option in entry.additionalOptions -%}
+                    {%- if fieldName==key %}
+                        {{ _self.renderFieldContent(option, field['max']) }}
+                    {% endif -%}
+                {% endfor -%}
             {% endif %}
+            </td>
         {% endfor %}
     </tr>
     {% for child in entry.value %}
@@ -112,6 +112,26 @@
         {% endif %}
     {% endfor %}
 {% endmacro %}
+
+{% macro renderFieldContent(content, max) -%}
+    {%- set rendered_content = renderNode(content) -%}
+
+    {%- set stripped_content = rendered_content|striptags -%}
+    {%- set content_length = stripped_content|length -%}
+
+    {# If max is defined and greater than 0, apply truncation #}
+    {%- if max is defined and max > 0 -%}
+        {% if content_length > max %}
+            <span title="{{ stripped_content|raw }}">
+                {{ stripped_content|slice(0, max)|raw ~ '...' }}
+            </span>
+        {% else %}
+            <span>{{ stripped_content|raw }}</span>
+        {% endif %}
+    {%- else -%}
+        {{ rendered_content|raw }}
+    {%- endif -%}
+{%- endmacro %}
 
 {% macro renderCaption(node) %}
     {% if node.caption -%}
@@ -145,14 +165,14 @@
         <thead>
         <tr>
             <th scope="col">Name</th>
-            {% for field in node.fields %}
+            {% for fieldName, field in node.fields %}
 
-                {% if field=='type' %}
+                {% if fieldName=='type' %}
                     <th scope="col">Type</th>
-                {% elseif field=='default' %}
+                {% elseif fieldName=='default' %}
                     <th scope="col">Default</th>
                 {% else %}
-                    <th scope="col">{{ field }}</th>
+                    <th scope="col">{{ fieldName }}</th>
                 {% endif %}
             {% endfor %}
         </tr>

@@ -18,7 +18,7 @@ final class ConfvalMenuNode extends GeneralDirectiveNode implements LinkTargetNo
      * @param list<Node> $value
      * @param Node[] $value
      * @param ConfvalNode[] $confvals
-     * @param string[] $fields
+     * @param array<string, array<string, int>> $fields
      * @param string[] $exclude
      */
     public function __construct(
@@ -64,7 +64,7 @@ final class ConfvalMenuNode extends GeneralDirectiveNode implements LinkTargetNo
     }
 
     /**
-     * @return string[]
+     * @return array<string, array<string, int>>
      */
     public function getFields(): array
     {
