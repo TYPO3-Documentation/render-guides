@@ -182,31 +182,65 @@ final class SiteSetSettingsDirective extends BaseDirective
 
 
     /**
-     * @param array<string, string> $setting
+     * @param array<string, scalar|array<string, scalar>> $setting
      */
     public function buildConfval(array $setting, string $idPrefix, string $key, Directive $directive): ConfvalNode
     {
         $content = [];
-        if (($setting['description'] ?? '') !== '') {
+        if (is_string($setting['description'] ?? false)) {
             $content[] = new ParagraphNode([
                 new InlineCompoundNode([new PlainTextInlineNode((string)$setting['description'])]),
             ]);
         }
         $default = null;
         if (($setting['default'] ?? '') !== '') {
-            $default = new InlineCompoundNode([new CodeInlineNode((string)($setting['default'] ?? ''), '')]);
+            $default = new InlineCompoundNode([new CodeInlineNode($this->customPrint(($setting['default'])), '')]);
         }
+        $additionalFields = [];
+        if (is_string($setting['label'] ?? false)) {
+            $additionalFields['Label'] = new InlineCompoundNode([new PlainTextInlineNode($setting['label'] ?? '')]);
+        }
+        if (is_array($setting['enum'] ?? false)) {
+            $additionalFields['Enum'] = new InlineCompoundNode([new PlainTextInlineNode((string) json_encode($setting['enum'], JSON_PRETTY_PRINT))]);
+        }
+        assert(is_scalar($setting['type']));
+
         $confval = new ConfvalNode(
             $this->anchorNormalizer->reduceAnchor($idPrefix . $key),
             $key,
             new InlineCompoundNode([new CodeInlineNode((string)($setting['type'] ?? ''), '')]),
             false,
             $default,
-            ['Label' => new InlineCompoundNode([new PlainTextInlineNode($setting['label'] ?? '')])],
+            $additionalFields,
             $content,
             $directive->getOptionBool('noindex'),
         );
         return $confval;
+    }
+
+    private function customPrint(mixed $value): string
+    {
+        if (is_null($value)) {
+            return 'null';
+        }
+        if (is_bool($value)) {
+            return $value ? 'true' : 'false';
+        }
+        if (is_string($value)) {
+            return sprintf('"%s"', $value);
+        }
+        if (is_float($value)) {
+            return sprintf('%.2f', $value); // Adjust precision if needed
+        }
+
+        if (is_int($value)) {
+            return (string)$value;
+        }
+        if (is_array($value) || is_object($value)) {
+            return (string)(json_encode($value, JSON_PRETTY_PRINT));
+        }
+
+        return 'unkown'; // For other types or unexpected cases
     }
 
 }
