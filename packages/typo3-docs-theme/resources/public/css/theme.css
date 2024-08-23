@@ -24792,6 +24792,11 @@ article a.composer-link {
   text-decoration: underline dotted;
 }
 
+figure.uml-diagram {
+  max-width: 100%;
+  overflow: scroll;
+}
+
 /**
  * Bignums
  */
