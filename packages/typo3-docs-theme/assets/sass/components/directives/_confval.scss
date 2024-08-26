@@ -15,6 +15,8 @@ dl.confval {
         margin-bottom: .75em;
         code {
             color: color-contrast($light);
+            word-wrap: anywhere;
+            white-space: normal;
         }
     }
     & > dd {

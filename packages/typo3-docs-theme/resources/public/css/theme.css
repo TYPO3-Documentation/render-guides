@@ -25110,6 +25110,8 @@ dl.confval > dt {
 }
 dl.confval > dt code {
   color: #000;
+  word-wrap: anywhere;
+  white-space: normal;
 }
 dl.confval > dd {
   margin-right: 1rem;
