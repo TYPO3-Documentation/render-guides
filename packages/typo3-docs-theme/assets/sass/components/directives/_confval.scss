@@ -6,6 +6,8 @@ dl.confval {
     padding-bottom: $spacer * .3;
     border: solid 3px $light;
     border-top-color: $gray-500;
+    word-wrap: anywhere;
+    white-space: normal;
     & > dt {
         display: block;
         background-color: $light;
@@ -15,6 +17,8 @@ dl.confval {
         margin-bottom: .75em;
         code {
             color: color-contrast($light);
+            word-wrap: anywhere;
+            white-space: normal;
         }
     }
     & > dd {

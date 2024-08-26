@@ -25099,6 +25099,8 @@ dl.confval {
   padding-bottom: 0.3rem;
   border: solid 3px #f2f2f2;
   border-top-color: #b3b3b3;
+  word-wrap: anywhere;
+  white-space: normal;
 }
 dl.confval > dt {
   display: block;
@@ -25110,6 +25112,8 @@ dl.confval > dt {
 }
 dl.confval > dt code {
   color: #000;
+  word-wrap: anywhere;
+  white-space: normal;
 }
 dl.confval > dd {
   margin-right: 1rem;
