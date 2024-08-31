@@ -20,6 +20,11 @@ Admonitions (boxes)
    Equations within a note
    :math:`G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})`.
 
+.. admonition:: Note
+
+    Unfortunately, PhpStorm only recognizes a file as a PHP archive when it has the ``.phar`` suffix.
+    This is remedied by creating a symbolic link: ``ln -s phpunit tools/phpunit.phar``.
+
 .. attention::
    Equations within a note
    :math:`G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})`.
