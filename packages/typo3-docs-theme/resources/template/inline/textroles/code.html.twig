@@ -6,9 +6,9 @@
           data-bs-html="true">
         {%- if node.info.url %}
             <a href="{{ node.info['url'] }}" target="_blank">
-                {{- node.value }} <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a>
+                {{- replaceLineBreakOpportunityTags(node.value) }} <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a>
         {%- else -%}
-            {{ node.value }}
+            {{ replaceLineBreakOpportunityTags(node.value) }}
         {%- endif -%}
     </code>
 {% endapply %}

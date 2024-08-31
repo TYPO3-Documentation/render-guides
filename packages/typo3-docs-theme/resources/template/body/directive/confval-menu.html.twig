@@ -8,7 +8,7 @@
             {% endif %}
         {% endfor %}
         <div class="label">
-            <a href="#{{ entry.anchor }}">{{ entry.plainContent }}</a>
+            <a href="#{{ entry.anchor }}">{{ replaceLineBreakOpportunityTags(entry.plainContent) }}</a>
             {% for fieldName, field in node.fields %}
                 {% if fieldName=='type' %}
                     , Type: {{ renderNode(entry.type) }}
@@ -60,7 +60,7 @@
                 </div>
             {% endif %}
             <div class="label">
-                <a href="#{{ entry.anchor }}">{{ entry.plainContent }}</a>
+                <a href="#{{ entry.anchor }}">{{ replaceLineBreakOpportunityTags(entry.plainContent) }}</a>
                 {% for fieldName, field in node.fields %}
                     {% if fieldName=='type' %}
                         , Type: {{ renderNode(entry.type) }}
@@ -89,7 +89,7 @@
 
 {% macro renderConfvalRow(entry, node, level) %}
     <tr>
-        <td><div class="confval-label ps-{{ level * 2 }}"><a href="#{{ entry.anchor }}">{{ entry.plainContent }}</a></div></td>
+        <td><div class="confval-label ps-{{ level * 2 }}"><a href="#{{ entry.anchor }}">{{ replaceLineBreakOpportunityTags(entry.plainContent) }}</a></div></td>
         {% for fieldName, field in node.fields %}
             <td>
             {% if fieldName=='type' %}

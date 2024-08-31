@@ -172,12 +172,12 @@
                 settings stored in a global array called $GLOBALS['TYPO3_CONF_VARS'].
                 They are commonly set in config/system/settings.php, config/system/additional.php,
                 or the ext_localconf.php file of an extension. "
-          data-bs-html="true"><a href="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/Configuration/Typo3ConfVars/Index.html" target="_blank">$GLOBALS[&#039;TYPO3_CONF_VARS&#039;][&#039;SC_OPTIONS&#039;][&#039;typolinkProcessing&#039;][&#039;typolinkModifyParameterForPageLinks&#039;] <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a></code>
+          data-bs-html="true"><a href="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/Configuration/Typo3ConfVars/Index.html" target="_blank">$GLOBALS<wbr>[&#039;TYPO3_<wbr>CONF_<wbr>VARS&#039;]<wbr>[&#039;SC_<wbr>OPTIONS&#039;]<wbr>[&#039;typolink<wbr>Processing&#039;]<wbr>[&#039;typolink<wbr>Modify<wbr>Parameter<wbr>For<wbr>Page<wbr>Links&#039;] <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a></code>
 has been removed in favor of a new PSR-14 event <code class="code-inline code-inline-long"
           translate="no"
           aria-description="PHP class"
           aria-details="<code>final class ModifyPageLinkConfigurationEvent</code><br><em>A generic PSR 14 Event to allow modifying the incoming (and resolved) page when building a &quot;page link&quot;.</em>"
-          data-bs-html="true"><a href="https://api.typo3.org/main/classes/TYPO3-CMS-Frontend-Event-ModifyPageLinkConfigurationEvent.html" target="_blank">\TYPO3\CMS\Frontend\Event\ModifyPageLinkConfigurationEvent <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a></code>.</p>
+          data-bs-html="true"><a href="https://api.typo3.org/main/classes/TYPO3-CMS-Frontend-Event-ModifyPageLinkConfigurationEvent.html" target="_blank">\TYPO3\<wbr>CMS\<wbr>Frontend\<wbr>Event\<wbr>Modify<wbr>Page<wbr>Link<wbr>Configuration<wbr>Event <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a></code>.</p>
 
             
     <p>The event is called after TYPO3 has already prepared some functionality
@@ -185,7 +185,7 @@ within the <code class="code-inline code-inline-long"
           translate="no"
           aria-description="Code written in PHP"
           aria-details="Dynamic server-side scripting language."
-          data-bs-html="true">PageLinkBuilder</code>. This therefore allows to modify more
+          data-bs-html="true">Page<wbr>Link<wbr>Builder</code>. This therefore allows to modify more
 properties, if needed.</p>
 
     </section>
