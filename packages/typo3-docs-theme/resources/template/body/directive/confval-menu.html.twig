@@ -116,21 +116,25 @@
 {% macro renderFieldContent(content, max) -%}
     {%- set rendered_content = renderNode(content) -%}
 
+    {# Strip tags but leave entities encoded #}
     {%- set stripped_content = rendered_content|striptags -%}
-    {%- set content_length = stripped_content|length -%}
+
+    {# Decode entities to get accurate length #}
+    {%- set decoded_content = stripped_content|replace({'&quot;': '"', '&amp;': '&', '&lt;': '<', '&gt;': '>'}) -%}
+    {%- set content_length = decoded_content|length -%}
 
     {# If max is defined and greater than 0, apply truncation #}
     {%- if max is defined and max > 0 -%}
         {% if content_length > max %}
-            <span title="{{ stripped_content|raw }}">
-                {{ stripped_content|slice(0, max)|raw ~ '...' }}
+            <span title="{{ decoded_content }}">
+                {{ decoded_content|slice(0, max) ~ '...' }}
             </span>
         {% else %}
-            <span>{{ stripped_content|raw }}</span>
+            <span>{{ decoded_content }}</span>
         {% endif %}
     {%- else -%}
         {{ rendered_content|raw }}
-    {%- endif -%}
+    {%- endif %}
 {%- endmacro %}
 
 {% macro renderCaption(node) %}

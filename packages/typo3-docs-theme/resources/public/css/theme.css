@@ -24735,6 +24735,9 @@ article *:hover > a.headerlink:after, article *:hover > a.permalink:after, artic
   padding: 0 !important;
 }
 
+.table td {
+  word-break: break-word;
+}
 .table th :last-child,
 .table td :last-child {
   margin-bottom: 0;

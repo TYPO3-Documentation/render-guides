@@ -1,0 +1,22 @@
+settings:
+  website.background.color:
+    label: 'Background color'
+    description: 'This will validate the given color string'
+    type: color
+    default: '#129845'
+
+  website.image.lazyLoading:
+    default: lazy
+    label: 'Browser-native image lazy loading'
+    type: string
+    enum:
+      lazy: 'Lazy'
+      eager: 'Eager'
+      auto: 'Auto'
+    description: 'Can be "lazy" (browsers could choose to load images later), "eager" (load images right away) or "auto" (browser will determine whether the image should be lazy loaded or not)'
+
+  website.rte.allowTags:
+    default: 'a, abbr, acronym, address, article, aside, b, bdo, big, blockquote, br, caption, center, cite, code, col, colgroup, dd, del, dfn, dl, div, dt, em, figure, font, footer, header, h1, h2, h3, h4, h5, h6, hr, i, img, ins, kbd, label, li, link, meta, nav, ol, p, pre, q, s, samp, sdfield, section, small, span, strike, strong, style, sub, sup, table, thead, tbody, tfoot, td, th, tr, title, tt, u, ul, var'
+    label: 'List of allowed HTML tags when rendering RTE content'
+    type: string
+    description: ''

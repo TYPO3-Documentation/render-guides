@@ -1,4 +1,7 @@
 .table {
+    td {
+        word-break: break-word;
+    }
     th :last-child,
     td :last-child {
         margin-bottom: 0;

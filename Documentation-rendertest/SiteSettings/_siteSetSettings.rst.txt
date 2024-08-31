@@ -1,0 +1,5 @@
+..  typo3:site-set-settings:: settings.definitions.yaml
+    :name: my-set
+    :type:
+    :Label: max=20
+    :default: max=10
