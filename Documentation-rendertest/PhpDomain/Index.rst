@@ -469,32 +469,32 @@ Return Types
     ..  php:method:: returnClassFromSameNamespace()
 
         :returns: An object instance of a class from the same namespace.
-        :returntype: OtherLibrary\\ReturnedClass
+        :returntype: `OtherLibrary\\ReturnedClass`
 
     ..  php:method:: returnClassFromOtherNamespace()
 
         :returns: An object instance of a class from another namespace.
-        :returntype: LibraryName\\SubPackage\\SubpackageInterface
+        :returntype: `LibraryName\\SubPackage\\SubpackageInterface`
 
     ..  php:method:: returnClassConstant()
 
         :returns: The value of a specific class constant.
-        :returntype: LibraryName\\NamespaceClass::NAMESPACE_CONST
+        :returntype: `LibraryName\\NamespaceClass::NAMESPACE_CONST`
 
     ..  php:method:: returnGlobalConstant()
 
         :returns: The value of a specific global constant.
-        :returntype: SOME_CONSTANT
+        :returntype: `SOME_CONSTANT`
 
     ..  php:method:: returnExceptionInstance()
 
         :returns: An instance of an exception.
-        :returntype: InvalidArgumentException
+        :returntype: `InvalidArgumentException`
 
     ..  php:method:: returnScalarType()
 
         :returns: A scalar string type.
-        :returntype: string
+        :returntype: `string`
 
     ..  php:method:: returnUnionType()
 
@@ -533,6 +533,6 @@ Instance of this interface is returned by.
     :param integer $end: End angle.
     :param Imagine\Image\Color $color: Line color.
 
-    :throws: Imagine\Exception\RuntimeException
+    :throws: `Imagine\Exception\RuntimeException`
 
-    :returns: Imagine\Draw\DrawerInterface
+    :returns: `Imagine\Draw\DrawerInterface`

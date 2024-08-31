@@ -1,7 +1,7 @@
 <dl class="confval">
     <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif %} class="d-flex justify-content-between">
         <div class="confval-header">
-        <code class="sig-name descname"><span class="pre">{{ node.plainContent }}</span></code>
+        <code class="sig-name descname"><span class="pre">{{ replaceLineBreakOpportunityTags(node.plainContent) }}</span></code>
         {% if not node.noindex %}
         <a class="headerlink" href="#{{ node.anchor }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="{{ node.anchor }}" data-rstCode="{{ getRstCodeForLink(node) }}"  title="Reference this configuration value">¶</a>
         {% else %}

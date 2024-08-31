@@ -64,17 +64,20 @@ abstract class CustomLinkTextRole implements TextRole
     private function extractEmbeddedUri(string $text): array
     {
         preg_match(self::TEXTROLE_LINK_REGEX, $text, $matches);
+        $description = null;
+        $uri = $text;
+        if (isset($matches[1]) && is_string($matches[1])) {
+            $description = $matches[1] === '' ? null : $matches[1];
+            $uri = $matches[1];
+        }
 
-        $text = $matches[1] === '' ? null : $matches[1];
-        $uri = $matches[1];
-
-        if (isset($matches[2])) {
+        if (isset($matches[2]) && is_string($matches[2])) {
             // there is an embedded URI, text and URI are different
             $uri = $matches[2];
         } else {
-            $text = null;
+            $description = null;
         }
 
-        return ['text' => $text, 'uri' => $uri];
+        return ['text' => $description, 'uri' => $uri];
     }
 }

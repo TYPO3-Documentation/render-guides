@@ -84,7 +84,7 @@ Long default values
     ..  confval:: pages
         :name: typoscript-pages
         :type: string
-        :default: {$styles.content.loginform.pid}
+        :default: `{$styles.content.loginform.pid}`
         :test: `1`
 
         Define the User Storage Page with the Website User Records, using a
@@ -93,7 +93,7 @@ Long default values
     ..  confval:: redirectPageLoginError
         :name: typoscript-redirectPageLoginError
         :type: integer
-        :default: {$styles.content.loginform.redirectPageLoginError}
+        :default: `{$styles.content.loginform.redirectPageLoginError}`
 
         Page id to redirect to after Login Error
 
@@ -108,7 +108,7 @@ Long default values
         ..  confval:: email.templateRootPaths
             :name: typoscript-email.templateRootPaths
             :type: array
-            :default: {$styles.content.loginform.email.templateRootPaths}
+            :default: `{$styles.content.loginform.email.templateRootPaths}`
 
             Path to template directory used for emails
 

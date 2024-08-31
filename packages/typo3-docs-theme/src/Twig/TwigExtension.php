@@ -34,6 +34,21 @@ use Twig\TwigFunction;
 
 final class TwigExtension extends AbstractExtension
 {
+    /**
+     * @see https://regex101.com/r/qWKenb/1
+     */
+    public const CAMEL_CASE_BREAK_REGEX = '/([a-z])([A-Z])/';
+
+    /**
+     * @see https://regex101.com/r/nxExYM/2
+     */
+    public const NON_LETTER_BREAK_REGEX = '/(?<!^)([.\_\-\\\\\/:])([a-zA-Z0-9])/';
+
+    /**
+     * @see https://regex101.com/r/uIul8d/1
+     */
+    public const BRACKETS_BREAK_REGEX = '/(?<!^)([\[\(\{\<\|])/';
+
     private string $typo3AzureEdgeURI = '';
 
     public function __construct(
@@ -75,7 +90,18 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getStandardInventories', $this->getStandardInventories(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getRstCodeForLink', $this->getRstCodeForLink(...), ['is_safe' => [], 'needs_context' => true]),
             new TwigFunction('isRenderedForDeployment', $this->isRenderedForDeployment(...)),
+            new TwigFunction('replaceLineBreakOpportunityTags', $this->replaceLineBreakOpportunityTags(...), ['is_safe' => ['html'], 'needs_context' => false]),
         ];
+    }
+    public function replaceLineBreakOpportunityTags(string $value): string
+    {
+        // as the result is html safe
+        $brokenValue = htmlspecialchars($value);
+        $brokenValue  = preg_replace(self::BRACKETS_BREAK_REGEX, '<wbr>$1', $brokenValue);
+        $brokenValue  = preg_replace(self::CAMEL_CASE_BREAK_REGEX, '$1<wbr>$2', $brokenValue ?? $value);
+        $brokenValue  = preg_replace(self::NON_LETTER_BREAK_REGEX, '$1<wbr>$2', $brokenValue ?? $value);
+        $brokenValue  = preg_replace(self::NON_LETTER_BREAK_REGEX, '$1<wbr>$2', $brokenValue ?? $value);
+        return $brokenValue ?? $value;
     }
 
     public function renderPlainText(mixed $value): string
