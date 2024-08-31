@@ -120,3 +120,11 @@ Long default values
         If set and the user account cannot be found in the forgot password
         dialogue, an error message will be shown that the account could not be
         found.
+
+    ..  confval:: title
+        :type: string (language reference)
+        :name: widget-tag-title
+        :required:
+        :Example: `LLL:EXT:dashboard/Resources/Private/Language/locallang.xlf:widgets.t3news.title`
+
+        Defines the title of the widget. Language references are resolved.
