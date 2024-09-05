@@ -106,7 +106,7 @@ final class Typo3InventoryRepository implements InventoryRepository
                     $version = 'main';
                 }
                 $inventoryUrl = sprintf("https://docs.typo3.org/c/%s/%s/%s/en-us/", $match1, $match2, $version);
-            } elseif($defaultInventory = DefaultInventories::tryFrom($match1)) {
+            } elseif ($defaultInventory = DefaultInventories::tryFrom($match1)) {
                 // we do not have a composer name here but a default inventory with a version, for example "t3coreapi/12.4"
                 $version = $this->typo3VersionService->resolveCoreVersion($match2);
                 $inventoryUrl = str_replace('{typo3_version}', $version, $defaultInventory->getUrl());

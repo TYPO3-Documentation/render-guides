@@ -26,7 +26,6 @@ use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use Psr\Log\LoggerInterface;
-
 use T3Docs\Typo3DocsTheme\Exception\FileLoadingException;
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;

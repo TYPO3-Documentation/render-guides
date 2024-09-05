@@ -170,7 +170,7 @@ final class RunDecorator extends Command
     public function renderSingleLocalization(string $availableLocalization, array $baseInputDirectives, InputInterface $input, OutputInterface $output): int
     {
         $localInputDirectives = [];
-        foreach($baseInputDirectives as $baseInputDirectiveKey => $baseInputDirectiveValue) {
+        foreach ($baseInputDirectives as $baseInputDirectiveKey => $baseInputDirectiveValue) {
             $localInputDirectives[$baseInputDirectiveKey] = $baseInputDirectiveValue . DIRECTORY_SEPARATOR . $availableLocalization;
         }
         $output->writeln(sprintf('<info>Trying to render %s ...</info>', $availableLocalization));
