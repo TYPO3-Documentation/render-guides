@@ -52,7 +52,10 @@ final class SiteSetSettingsDirective extends BaseDirective
         Directive    $directive,
     ): Node {
         try {
-            $contents = $this->loadFileFromDocumentation($blockContext, $directive);
+            // The path delivered via the directive like:
+            // ..  typo3:site-set-settings:: PROJECT:/Configuration/Sets/FluidStyledContent/settings.definitions.yaml
+            $setConfigurationFile = $directive->getData();
+            $contents = $this->loadFileFromDocumentation($blockContext, $setConfigurationFile);
             // Parse the YAML content
             $yamlData = Yaml::parse($contents);
 
@@ -63,14 +66,60 @@ final class SiteSetSettingsDirective extends BaseDirective
             $this->logger->warning($exception->getMessage(), $blockContext->getLoggerInformation());
             return $this->getErrorNode();
         }
-        return $this->buildConfvalMenu($directive, $yamlData['settings']);
+
+
+        $labelsFile = null;
+        try {
+            $configYamlFile = dirname($setConfigurationFile) . '/config.yaml';
+            $contents = $this->loadFileFromDocumentation($blockContext, $configYamlFile);
+            // Parse the YAML content
+            $configYamlData = Yaml::parse($contents);
+
+            if (is_array($configYamlData)) {
+                $labelsFile = $configYamlData['labels'] ?? null;
+            }
+        } catch (FileLoadingException $exception) {
+            // ignore, config.yaml isn't required
+        }
+
+        $labelContents = '';
+        if ($labelsFile) {
+            // Asume all EXT: references are relative to the rendered PROJECT
+            $labelsFile = preg_replace('/^EXT:[^\/]*\//', 'PROJECT:/', $labelsFile);
+            try {
+                $labelContents = $this->loadFileFromDocumentation($blockContext, $labelsFile);
+            } catch (FileLoadingException $exception) {
+                // ignore, config.yaml isn't required
+            }
+        }
+        $labels = [];
+        $descriptions = [];
+        if ($labelContents) {
+            $xml = new \DOMDocument();
+            if ($xml->loadXML($labelContents)) {
+                foreach ($xml->getElementsByTagName('trans-unit') as $label) {
+                    $id = $label->getAttribute('id');
+                    $value = ($label->getElementsByTagName('source')[0] ?? null)?->textContent ?? '';
+                    if (!$value) {
+                        continue;
+                    }
+                    if (str_starts_with($id, 'settings.description.')) {
+                        $descriptions[substr($id, 21)] = $value;
+                    } elseif (str_starts_with($id, 'settings.')) {
+                        $labels[substr($id, 9)] = $value;
+                    }
+                }
+            }
+        }
+
+        return $this->buildConfvalMenu($directive, $yamlData['settings'], $labels, $descriptions);
     }
 
     /**
      * @throws \League\Flysystem\FileNotFoundException
      * @throws FileLoadingException
      */
-    public function loadFileFromDocumentation(BlockContext $blockContext, Directive $directive): string
+    public function loadFileFromDocumentation(BlockContext $blockContext, string $filename): string
     {
         $parser = $blockContext->getDocumentParserContext()->getParser();
         $parserContext = $parser->getParserContext();
@@ -80,10 +129,6 @@ final class SiteSetSettingsDirective extends BaseDirective
         $adapter = $origin->getAdapter();
         $pathPrefix = (string)$adapter->getPathPrefix();
 
-        // The path delivered via the directive like:
-        // ..  typo3:site-set-settings:: PROJECT:/Configuration/Sets/FluidStyledContent/settings.definitions.yaml
-        $setConfigurationFile = $directive->getData();
-
         // By default, the RST files are placed inside a "Documentation" subdirectory.
         // When using the docker container, this origin root path is then set to "/project/Documentation".
         // No files on the "/project/" directory level can usually be accessed, even though they may belong
@@ -92,11 +137,11 @@ final class SiteSetSettingsDirective extends BaseDirective
         // a special string "PROJECT:" is evaluated here.
         // If a path starts with that notation, it will be referenced from the "/project/..." directory level.
         // It will not break out of the "/project/" mapping!
-        if (str_starts_with($setConfigurationFile, 'PROJECT:')) {
+        if (str_starts_with($filename, 'PROJECT:')) {
             // This will replace "PROJECT:/Configuration/Sets/File.yaml" with "/Configuration/Sets/File.yaml"
             // and is then passed to absoluteRelativePath() which will set $path = "/Configuration/Sets/File.yaml",
             // but ensure no "../../../" or other path traversal is allowed.
-            $path = $parserContext->absoluteRelativePath(str_replace('PROJECT:', '', $setConfigurationFile));
+            $path = $parserContext->absoluteRelativePath(str_replace('PROJECT:', '', $filename));
 
             // Get the current origin Path, usually "/project/Documentation/", and go one level up.
             $newOriginPath = dirname($pathPrefix) . '/';
@@ -104,7 +149,7 @@ final class SiteSetSettingsDirective extends BaseDirective
             // Temporarily change the path prefix now to "/project/"
             $adapter->setPathPrefix($newOriginPath);
         } else {
-            $path = $parserContext->absoluteRelativePath($setConfigurationFile);
+            $path = $parserContext->absoluteRelativePath($filename);
         }
 
         if (!$origin->has($path)) {
@@ -133,8 +178,10 @@ final class SiteSetSettingsDirective extends BaseDirective
 
     /**
      * @param array<string, array<string, string>> $settings
+     * @param array<string, string> $labels
+     * @param array<string, string> $descriptions
      */
-    public function buildConfvalMenu(Directive $directive, array $settings): ConfvalMenuNode
+    public function buildConfvalMenu(Directive $directive, array $settings, array $labels, array $descriptions): ConfvalMenuNode
     {
         $idPrefix = '';
         if ($directive->getOptionString('name') !== '') {
@@ -143,7 +190,7 @@ final class SiteSetSettingsDirective extends BaseDirective
 
         $confvals = [];
         foreach ($settings as $key => $setting) {
-            $confvals[] = $this->buildConfval($setting, $idPrefix, $key, $directive);
+            $confvals[] = $this->buildConfval($setting, $idPrefix, $key, $directive, $labels, $descriptions);
         }
         $reservedParameterNames = [
             'name',
@@ -182,13 +229,16 @@ final class SiteSetSettingsDirective extends BaseDirective
 
     /**
      * @param array<string, scalar|array<string, scalar>> $setting
+     * @param array<string, string> $labels
+     * @param array<string, string> $descriptions
      */
-    public function buildConfval(array $setting, string $idPrefix, string $key, Directive $directive): ConfvalNode
+    public function buildConfval(array $setting, string $idPrefix, string $key, Directive $directive, array $labels, array $descriptions): ConfvalNode
     {
         $content = [];
-        if (is_string($setting['description'] ?? false)) {
+        $description = $setting['description'] ?? $descriptions[$key] ?? false;
+        if (is_string($description)) {
             $content[] = new ParagraphNode([
-                new InlineCompoundNode([new PlainTextInlineNode((string)$setting['description'])]),
+                new InlineCompoundNode([new PlainTextInlineNode($description)]),
             ]);
         }
         $default = null;
@@ -196,8 +246,9 @@ final class SiteSetSettingsDirective extends BaseDirective
             $default = new InlineCompoundNode([new CodeInlineNode($this->customPrint(($setting['default'])), '')]);
         }
         $additionalFields = [];
-        if (is_string($setting['label'] ?? false)) {
-            $additionalFields['Label'] = new InlineCompoundNode([new PlainTextInlineNode($setting['label'] ?? '')]);
+        $label = $setting['label'] ?? $labels[$key] ?? false;
+        if (is_string($label)) {
+            $additionalFields['Label'] = new InlineCompoundNode([new PlainTextInlineNode($label)]);
         }
         if (is_array($setting['enum'] ?? false)) {
             $additionalFields['Enum'] = new InlineCompoundNode([new PlainTextInlineNode((string) json_encode($setting['enum'], JSON_PRETTY_PRINT))]);
