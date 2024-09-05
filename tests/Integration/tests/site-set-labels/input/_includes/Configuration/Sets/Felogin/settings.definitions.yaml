@@ -1,0 +1,83 @@
+settings:
+  felogin.pid:
+    default: '0'
+    type: string
+  felogin.recursive:
+    default: '0'
+    type: string
+    enum:
+      '0': '0'
+      '1': '1'
+      '2': '2'
+      '3': '3'
+      '4': '4'
+      '255': '255'
+  felogin.showForgotPassword:
+    default: false
+    type: bool
+  felogin.showPermaLogin:
+    default: false
+    type: bool
+  felogin.showLogoutFormAfterLogin:
+    default: false
+    type: bool
+  felogin.emailFrom:
+    default: ''
+    type: string
+  felogin.emailFromName:
+    default: ''
+    type: string
+  felogin.replyToEmail:
+    default: ''
+    type: string
+  felogin.dateFormat:
+    default: 'Y-m-d H:i'
+    type: string
+  felogin.email.layoutRootPath:
+    default: ''
+    type: string
+  felogin.email.templateRootPath:
+    default: 'EXT:felogin/Resources/Private/Email/Templates/'
+    type: string
+  felogin.email.partialRootPath:
+    default: ''
+    type: string
+  felogin.email.templateName:
+    default: PasswordRecovery
+    type: string
+  felogin.redirectMode:
+    default: ''
+    type: string
+  felogin.redirectFirstMethod:
+    default: false
+    type: bool
+  felogin.redirectPageLogin:
+    default: 0
+    type: int
+  felogin.redirectPageLoginError:
+    default: 0
+    type: int
+  felogin.redirectPageLogout:
+    default: 0
+    type: int
+  felogin.redirectDisable:
+    default: false
+    type: bool
+  felogin.forgotLinkHashValidTime:
+    default: 12
+    type: int
+  felogin.domains:
+    default: ''
+    type: string
+  felogin.exposeNonexistentUserInForgotPasswordDialog:
+    default: false
+    type: bool
+  felogin.view.templateRootPath:
+    default: ''
+    type: string
+  felogin.view.partialRootPath:
+    default: ''
+    type: string
+  felogin.view.layoutRootPath:
+    default: ''
+    type: string
