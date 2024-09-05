@@ -24,7 +24,6 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use phpDocumentor\Guides\RestructuredText\TextRoles\GenericLinkProvider;
 use Psr\Log\LoggerInterface;
-
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperArgumentNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperNode;
 

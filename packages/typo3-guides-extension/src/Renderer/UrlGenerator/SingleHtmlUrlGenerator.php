@@ -15,7 +15,6 @@ namespace T3Docs\GuidesExtension\Renderer\UrlGenerator;
 
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RenderContext;
-
 use phpDocumentor\Guides\Renderer\UrlGenerator\AbstractUrlGenerator;
 use phpDocumentor\Guides\Renderer\UrlGenerator\RelativeUrlGenerator;
 

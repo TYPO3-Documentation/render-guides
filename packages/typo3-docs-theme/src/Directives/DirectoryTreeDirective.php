@@ -47,13 +47,13 @@ class DirectoryTreeDirective extends SubDirective
         CollectionNode $collectionNode,
         Directive      $directive,
     ): Node|null {
-        if($directive->hasOption('name')) {
+        if ($directive->hasOption('name')) {
             $id = $directive->getOption('name')->toString();
         } else {
             self::$counter++;
             $id = 'directory-tree-' . self::$counter;
         }
-        if($directive->hasOption('level')) {
+        if ($directive->hasOption('level')) {
             $level = (int) $directive->getOption('level')->getValue();
         } else {
             $level = PHP_INT_MAX;

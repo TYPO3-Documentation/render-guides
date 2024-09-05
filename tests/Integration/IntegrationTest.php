@@ -13,7 +13,6 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 use T3Docs\GuidesExtension\Command\RunDecorator;
 use T3Docs\Typo3DocsTheme\ApplicationTestCase;
-
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 
 use function array_filter;

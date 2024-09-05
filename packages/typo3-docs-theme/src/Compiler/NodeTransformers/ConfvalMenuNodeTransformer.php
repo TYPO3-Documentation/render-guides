@@ -19,7 +19,6 @@ use phpDocumentor\Guides\Nodes\CompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use Psr\Log\LoggerInterface;
-
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 
 use function assert;

@@ -155,7 +155,7 @@ final class PhpTextRole implements TextRole
             $info = implode('<br>', $infoArray);
             $info = str_replace('\\', '&#8203;\\', $info);
             return new CodeInlineNode($name, 'PHP ' . $type, $info, $apiInfo);
-        } elseif(str_starts_with($fqn, '\\TYPO3Fluid')) {
+        } elseif (str_starts_with($fqn, '\\TYPO3Fluid')) {
             $info = 'This PHP class or interface belongs to Fluid. ';
             return new CodeInlineNode(
                 $name,
@@ -163,14 +163,14 @@ final class PhpTextRole implements TextRole
                 $info,
                 ['url' => 'https://docs.typo3.org/m/typo3/reference-coreapi/' . $this->typo3VersionService->getPreferredVersion() . '/en-us/ApiOverview/Fluid/Index.html']
             );
-        } elseif(str_starts_with($fqn, '\\Psr')) {
+        } elseif (str_starts_with($fqn, '\\Psr')) {
             return new CodeInlineNode(
                 $name,
                 'PHP ' . $type,
                 'This PHP class or interface belongs to the PHP Standards Recommendations (PSR). ',
                 ['url' => 'https://www.php-fig.org/psr/']
             );
-        } elseif(str_starts_with($fqn, '\\MyVendor') or str_starts_with($fqn, '\\Vendor')) {
+        } elseif (str_starts_with($fqn, '\\MyVendor') or str_starts_with($fqn, '\\Vendor')) {
             return new CodeInlineNode(
                 $name,
                 'PHP ' . $type,

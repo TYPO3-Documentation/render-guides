@@ -32,7 +32,7 @@ curl_close($ch);
 http_response_code($http_code);
 $headers_array = explode("\r\n", $headers);
 
-foreach($headers_array as $header) {
+foreach ($headers_array as $header) {
     if (!empty($header) && !preg_match('/^Transfer-Encoding:/i', $header) && !preg_match('/^Content-Length:/i', $header)) {
         header($header);
     }

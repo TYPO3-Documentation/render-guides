@@ -25,7 +25,6 @@ use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use RuntimeException;
-
 use T3Docs\Typo3DocsTheme\Nodes\EditOnGithubIncludeNode;
 
 use function array_key_exists;
