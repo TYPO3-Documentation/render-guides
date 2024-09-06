@@ -83,15 +83,16 @@ final class SiteSetSettingsDirective extends BaseDirective
         }
 
         $labelContents = '';
-        if ($labelsFile) {
-            // Asume all EXT: references are relative to the rendered PROJECT
-            $labelsFile = preg_replace('/^EXT:[^\/]*\//', 'PROJECT:/', $labelsFile);
-            try {
-                $labelContents = $this->loadFileFromDocumentation($blockContext, $labelsFile);
-            } catch (FileLoadingException $exception) {
-                // ignore, config.yaml isn't required
-            }
+        // Asume all EXT: references are relative to the rendered PROJECT
+        $labelsFile = $labelsFile ?
+            preg_replace('/^EXT:[^\/]*\//', 'PROJECT:/', $labelsFile) :
+            dirname($setConfigurationFile) . '/labels.xlf';
+        try {
+            $labelContents = $this->loadFileFromDocumentation($blockContext, $labelsFile);
+        } catch (FileLoadingException $exception) {
+            // ignore, labels.xlf isn't required
         }
+
         $labels = [];
         $descriptions = [];
         if ($labelContents) {
