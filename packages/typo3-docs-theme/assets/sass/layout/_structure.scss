@@ -26,6 +26,20 @@
     margin: 0 auto;
     padding: 0 calc(#{$grid-gutter-width} / 2);
 }
+.menu-search-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+
+    search {
+        flex-grow: 1;
+    }
+
+    @media screen and (max-width: 576px) {
+        flex-direction: column;
+        align-items: start;
+    }
+}
 
 /**
  * Main

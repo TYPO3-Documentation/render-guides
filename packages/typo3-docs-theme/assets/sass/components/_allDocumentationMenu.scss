@@ -1,0 +1,125 @@
+.all-documentations-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+
+    &-button {
+        display: flex;
+        align-items: center;
+        gap: 0.4em;
+    }
+
+    &-tooltip {
+        display: none;
+        border-radius: 0.6em;
+        background: white;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+        padding: 1.5em 2.5em;
+        border: 1px solid #eaeaea;
+        z-index: 50;
+
+        &[data-show] {
+            display: block;
+        }
+
+        &-arrow {
+            width: 1.2em;
+            height: 1.2em;
+            top: -0.2em;
+
+            &:before {
+                display: block;
+                content: '';
+                width: 100%;
+                height: 100%;
+                transform: rotateZ(45deg);
+                background-color: white;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            padding: 1.5em;
+        }
+    }
+
+    &-categories {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1em 2em;
+
+        @media screen and (max-width: 1200px) {
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &-category {
+        &-header {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #333;
+            position: relative;
+            text-decoration: none;
+
+            &:before {
+                display: block;
+                content: '';
+                width: 0.2em;
+                height: 100%;
+                background: $primary;
+                position: absolute;
+                top: 0;
+                left: -0.6em;
+            }
+        }
+    }
+
+    a.all-documentations-menu-category-header {
+        &:hover, &:focus {
+            text-decoration: .1em underline;
+        }
+    }
+
+    &-documentations {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2em;
+        list-style-type: none;
+        padding: 0.4em 0 0 0;
+
+        li {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.4em;
+
+            a:not(:hover):not(:focus) {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &-versions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3em;
+
+        a {
+            background-color: $light;
+            padding: 0 5px;
+            font-size: 0.8em;
+            border-radius: 0.4em;
+            display: flex;
+            align-items: center;
+
+            &:first-child {
+                background-color: lighten($primary, 40%);
+            }
+        }
+    }
+}
