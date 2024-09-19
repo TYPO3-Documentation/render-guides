@@ -16,6 +16,7 @@ Properties of CASE
     ..  confval:: array of cObjects
         :name: case-array
         :type: cObject
+        :searchFacet: TypoScript
 
         Array of cObjects. Use this to define cObjects for the different
         values of `cobj-case-key`. If `cobj-case-key` has a certain value,
@@ -25,12 +26,14 @@ Properties of CASE
     ..  confval:: cache
         :name: case-cache
         :type: cache
+        :searchFacet: TypoScript
 
         See  for details.
 
     ..  confval:: default
         :name: case-default
         :type: cObject
+        :searchFacet: TypoScript
 
         Use this to define the rendering for *those* values of cobj-case-key that
         do *not* match any of the values of the cobj-case-array-of-cObjects. If no
@@ -40,6 +43,7 @@ Properties of CASE
     ..  confval:: if
         :name: case-if
         :type: ->if
+        :searchFacet: TypoScript
 
         If if returns false, nothing is returned.
 
@@ -55,6 +59,7 @@ Properties of COA
     ..  confval:: 1,2,3,4...
         :name: coa-array
         :type: cObject
+        :searchFacet: TCA
 
         Numbered properties to define the different cObjects, which should be
         rendered.
@@ -62,12 +67,14 @@ Properties of COA
     ..  confval:: cache
         :name: coa-cache
         :type: cache
+        :searchFacet: TCA
 
         See cache function description for details.
 
     ..  confval:: if
         :name: coa-if
         :type: ->if <if>
+        :searchFacet: TCA
 
         If `if` returns false, the COA is **not** rendered.
 

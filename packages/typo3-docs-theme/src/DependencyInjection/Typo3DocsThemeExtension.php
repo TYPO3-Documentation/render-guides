@@ -65,6 +65,7 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                         'project_issues' => $this->getConfigValue($configs, 'project_issues', ''),
                         'report_issue' => $this->getConfigValue($configs, 'report_issue', ''),
                         'typo3_core_preferred' => $this->getConfigValue($configs, 'typo3_core_preferred', ''),
+                        'confval_default' => $this->getConfigValue($configs, 'confval_default', 'Option'),
                     ],
                 ],
             );
