@@ -91,7 +91,22 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getRstCodeForLink', $this->getRstCodeForLink(...), ['is_safe' => [], 'needs_context' => true]),
             new TwigFunction('isRenderedForDeployment', $this->isRenderedForDeployment(...)),
             new TwigFunction('replaceLineBreakOpportunityTags', $this->replaceLineBreakOpportunityTags(...), ['is_safe' => ['html'], 'needs_context' => false]),
+            new TwigFunction('filterAllowedSearchFacets', $this->filterAllowedSearchFacets(...), ['is_safe' => ['html'], 'needs_context' => false]),
         ];
+    }
+    public function filterAllowedSearchFacets(string $value): string
+    {
+        $allowed = [
+            'TypoScript',
+            'TSconfig',
+            'ViewHelper',
+            'TCA',
+            'TYPO3_CONF_VAR',
+        ];
+        if (!in_array(trim($value), $allowed, true)) {
+            return 'Option';
+        }
+        return $value;
     }
     public function replaceLineBreakOpportunityTags(string $value): string
     {

@@ -1,4 +1,4 @@
-<section data-search-title="{{ node.plainContent }}" data-search-id="{{ node.anchor }}" data-search-facet="{{ renderNode(node.additionalOptions.searchFacet)|default(getSettings('confval_default')) }}">
+<section data-search-title="{{ node.plainContent }}" data-search-id="{{ node.anchor }}" data-search-facet="{{ filterAllowedSearchFacets(renderNode(node.additionalOptions.searchFacet)|default(getSettings('confval_default'))) }}">
 <dl class="confval">
     <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif %} class="d-flex justify-content-between">
         <div class="confval-header">
