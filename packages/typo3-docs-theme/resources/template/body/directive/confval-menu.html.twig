@@ -14,6 +14,10 @@
                     , Type: {{ renderNode(entry.type) }}
                 {% elseif fieldName=='default' %}
                     , Default: {{ renderNode(entry.default) }}
+                {% elseif fieldName=='required' %}
+                    {%- if entry.required -%}
+                        , Required
+                    {%- endif  %}
                 {% else %}
                     {%- for key, option in entry.additionalOptions -%}
                         {%- if fieldName==key %}
@@ -66,6 +70,10 @@
                         , Type: {{ renderNode(entry.type) }}
                     {% elseif fieldName=='default' %}
                         , Default: {{ renderNode(entry.default) }}
+                    {% elseif fieldName=='required' %}
+                        {%- if entry.required -%}
+                            , Required
+                        {%- endif  %}
                     {% else %}
                         {%- for key, option in entry.additionalOptions -%}
                             {%- if fieldName==key %}
@@ -96,6 +104,10 @@
                 {{ _self.renderFieldContent(entry.type, field['max']) }}
             {% elseif fieldName=='default' %}
                 {{ _self.renderFieldContent(entry.default, field['max']) }}
+            {% elseif fieldName=='required' %}
+                {%- if entry.required -%}
+                    true
+                {%- endif  %}
             {% else %}
                 {%- for key, option in entry.additionalOptions -%}
                     {%- if fieldName==key %}
@@ -175,6 +187,8 @@
                     <th scope="col">Type</th>
                 {% elseif fieldName=='default' %}
                     <th scope="col">Default</th>
+                {% elseif fieldName=='required' %}
+                    <th scope="col">Required</th>
                 {% else %}
                     <th scope="col">{{ fieldName }}</th>
                 {% endif %}
