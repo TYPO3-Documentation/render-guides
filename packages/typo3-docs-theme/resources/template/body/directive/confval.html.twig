@@ -1,3 +1,4 @@
+<section data-search-title="{{ node.plainContent }}" data-search-id="{{ node.anchor }}" data-search-facet="{{ filterAllowedSearchFacets(renderNode(node.additionalOptions.searchFacet)|default(getSettings('confval_default'))) }}">
 <dl class="confval">
     <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif %} class="d-flex justify-content-between">
         <div class="confval-header">
@@ -35,9 +36,11 @@
             </dd>
             {% endif -%}
             {%- for key, option in node.additionalOptions -%}
+                {%- if not key in ['searchFacet', 'searchKeywords']  %}
                 <dt class="field-even">{{ key }}</dt>
                 <dd class="field-even">{{  renderNode(option) }}
                 </dd>
+                {% endif -%}
             {% endfor -%}
         </dl>
         {% endif %}
@@ -46,3 +49,4 @@
         </div>
     </dd>
 </dl>
+</section>

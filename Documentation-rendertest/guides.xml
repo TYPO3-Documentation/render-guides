@@ -5,6 +5,7 @@
         links-are-relative="true">
     <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
                typo3-core-preferred="stable"
+               confval-default="TCA"
     />
     <project title="TYPO3 Theme Rendering Test"
              release="main"

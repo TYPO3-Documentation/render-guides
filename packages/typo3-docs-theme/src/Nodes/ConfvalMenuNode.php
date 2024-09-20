@@ -33,6 +33,7 @@ final class ConfvalMenuNode extends GeneralDirectiveNode implements LinkTargetNo
         private readonly bool $excludeNoindex = false,
         private readonly array $exclude = [],
         private readonly bool $noindex = false,
+        private readonly string $facet = 'Option',
     ) {
         parent::__construct('confval-menu', $plainContent, $content, $value);
     }
@@ -111,5 +112,10 @@ final class ConfvalMenuNode extends GeneralDirectiveNode implements LinkTargetNo
     public function isNoindex(): bool
     {
         return $this->noindex;
+    }
+
+    public function getFacet(): string
+    {
+        return $this->facet;
     }
 }
