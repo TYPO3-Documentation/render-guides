@@ -34,15 +34,16 @@ can also use a specific version of the `render-guides` Docker container, i.e. `:
 Usage with Docker (via custom container)
 ========================================
 
-::
+Build the custom local Docker container::
 
-    # Build the custom local Docker container
     docker build --file Dockerfile --tag typo3-docs:local .
 
-    # Execute the Docker container that is provided locally, build Documentation
-    # On macOS you need to specify the parameter "--user=$(id -u):$(id -g)"
-    # "/project" is a fixed directory name, not a placeholder.
-    docker run --rm -v ${PWD}:/project -it typo3-docs:local --progress
+
+Execute the Docker container that is provided locally, build Documentation
+On macOS you need to specify the parameter "--user=$(id -u):$(id -g)"
+"/project" is a fixed directory name, not a placeholder::
+
+    docker run --rm -v ${PWD}:/project -it typo3-docs:local --progress --config=Documentation
 
 (see :ref:`_Setup_Docker:Docker containers` for complete documentation)
 
