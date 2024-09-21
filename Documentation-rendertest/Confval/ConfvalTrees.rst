@@ -135,3 +135,59 @@ Long default values
         :Example: `LLL:EXT:dashboard/Resources/Private/Language/locallang.xlf:widgets.t3news.title`
 
         Defines the title of the widget. Language references are resolved.
+
+..  confval-menu::
+    :display: table
+    :name: site-setting-definition
+    :type:
+    :required:
+
+    ..  confval:: categories
+        :type: array
+        :name: site-settings-definition-categories
+
+        ..  confval:: label
+            :type: string
+            :name: site-settings-definition-categories-label
+
+        ..  confval:: parent
+            :type: :confval:`site-settings-definition-categories` key
+            :name: site-settings-definition-categories-parent
+
+    ..  confval:: settings
+        :type: array
+        :name: site-settings-definition-settings
+
+        ..  confval:: label
+            :type: string
+            :name: site-settings-definition-settings-label
+
+        ..  confval:: description
+            :type: string
+            :name: site-settings-definition-settings-description
+
+        ..  confval:: category
+            :type: :confval:`site-settings-definition-categories` key
+            :name: site-settings-definition-settings-category
+
+        ..  confval:: type
+            :type: definition type
+            :name: site-settings-definition-settings-type
+            :required:
+
+        ..  confval:: default
+            :type: mixed
+            :name: site-settings-definition-settings-default
+            :required:
+
+            The default value must have the same type like defined in
+            site-settings-definition-settings-type.
+
+        ..  confval:: readonly
+            :type: bool
+            :name: site-settings-definition-settings-readonly
+
+            If a site setting is marked as readonly, it can be overridden only
+            by editing  the :file:`config/sites/my-site/settings.yaml` directly,
+            but not from within the editor.
+
