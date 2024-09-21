@@ -36,7 +36,7 @@
             </dd>
             {% endif -%}
             {%- for key, option in node.additionalOptions -%}
-                {%- if not key in ['searchFacet', 'searchKeywords']  %}
+                {%- if not (key in ['searchFacet', 'searchKeywords'])  %}
                 <dt class="field-even">{{ key }}</dt>
                 <dd class="field-even">{{  renderNode(option) }}
                 </dd>

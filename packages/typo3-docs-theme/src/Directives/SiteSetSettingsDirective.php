@@ -35,6 +35,7 @@ use function sprintf;
 final class SiteSetSettingsDirective extends BaseDirective
 {
     public const NAME = 'typo3:site-set-settings';
+    public const FACET = 'Site Setting';
 
     public function __construct(
         private readonly LoggerInterface $logger,
@@ -254,6 +255,7 @@ final class SiteSetSettingsDirective extends BaseDirective
         if (is_array($setting['enum'] ?? false)) {
             $additionalFields['Enum'] = new InlineCompoundNode([new PlainTextInlineNode((string) json_encode($setting['enum'], JSON_PRETTY_PRINT))]);
         }
+        $additionalFields['searchFacet'] = new InlineCompoundNode([new PlainTextInlineNode(self::FACET)]);
         assert(is_scalar($setting['type']));
 
         $confval = new ConfvalNode(

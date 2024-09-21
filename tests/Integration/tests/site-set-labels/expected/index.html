@@ -368,7 +368,7 @@
 
             </table>
 </div>
-            <section data-search-title="felogin.pid" data-search-id="confval-felogin-felogin-pid" data-search-facet="Option">
+            <section data-search-title="felogin.pid" data-search-id="confval-felogin-felogin-pid" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-pid" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -393,7 +393,10 @@
           aria-details=""
           data-bs-html="true">&quot;0&quot;</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">User Storage Page
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Define the Storage Folder with the Website User Records, using a comma separated list or single value</p>
@@ -402,7 +405,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.recursive" data-search-id="confval-felogin-felogin-recursive" data-search-facet="Option">
+                <section data-search-title="felogin.recursive" data-search-id="confval-felogin-felogin-recursive" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-recursive" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -427,7 +430,20 @@
           aria-details=""
           data-bs-html="true">&quot;0&quot;</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Recursive
+                </dd>
+                                <dt class="field-even">Enum</dt>
+                <dd class="field-even">{
+    &quot;0&quot;: &quot;0&quot;,
+    &quot;1&quot;: &quot;1&quot;,
+    &quot;2&quot;: &quot;2&quot;,
+    &quot;3&quot;: &quot;3&quot;,
+    &quot;4&quot;: &quot;4&quot;,
+    &quot;255&quot;: &quot;255&quot;
+}
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>If set, also subfolder at configured recursive levels of the User Storage Page will be used</p>
@@ -436,7 +452,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.showForgotPassword" data-search-id="confval-felogin-felogin-showforgotpassword" data-search-facet="Option">
+                <section data-search-title="felogin.showForgotPassword" data-search-id="confval-felogin-felogin-showforgotpassword" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-showforgotpassword" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -461,7 +477,10 @@
           aria-details=""
           data-bs-html="true">false</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Display Password Recovery Link
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>If set, the section in the template to display the link to the forgot password dialogue is visible.</p>
@@ -470,7 +489,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.showPermaLogin" data-search-id="confval-felogin-felogin-showpermalogin" data-search-facet="Option">
+                <section data-search-title="felogin.showPermaLogin" data-search-id="confval-felogin-felogin-showpermalogin" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-showpermalogin" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -495,7 +514,10 @@
           aria-details=""
           data-bs-html="true">false</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Display Remember Login Option
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>If set, the section in the template to display the option to remember the login (with a cookie) is visible.</p>
@@ -504,7 +526,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.showLogoutFormAfterLogin" data-search-id="confval-felogin-felogin-showlogoutformafterlogin" data-search-facet="Option">
+                <section data-search-title="felogin.showLogoutFormAfterLogin" data-search-id="confval-felogin-felogin-showlogoutformafterlogin" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-showlogoutformafterlogin" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -529,7 +551,10 @@
           aria-details=""
           data-bs-html="true">false</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Disable redirect after successful login, but display logout-form
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>If set, the logout form will be displayed immediately after successful login.</p>
@@ -538,7 +563,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.emailFrom" data-search-id="confval-felogin-felogin-emailfrom" data-search-facet="Option">
+                <section data-search-title="felogin.emailFrom" data-search-id="confval-felogin-felogin-emailfrom" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-emailfrom" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -556,7 +581,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Email Sender Address
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>email address used as sender of the change password emails</p>
@@ -565,7 +593,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.emailFromName" data-search-id="confval-felogin-felogin-emailfromname" data-search-facet="Option">
+                <section data-search-title="felogin.emailFromName" data-search-id="confval-felogin-felogin-emailfromname" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-emailfromname" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -583,7 +611,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Email Sender Name
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Name used as sender of the change password emails</p>
@@ -592,7 +623,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.replyToEmail" data-search-id="confval-felogin-felogin-replytoemail" data-search-facet="Option">
+                <section data-search-title="felogin.replyToEmail" data-search-id="confval-felogin-felogin-replytoemail" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-replytoemail" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -610,7 +641,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Reply-to email Address
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Reply-to address used in the change password emails</p>
@@ -619,7 +653,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.dateFormat" data-search-id="confval-felogin-felogin-dateformat" data-search-facet="Option">
+                <section data-search-title="felogin.dateFormat" data-search-id="confval-felogin-felogin-dateformat" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-dateformat" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -644,7 +678,10 @@
           aria-details=""
           data-bs-html="true">&quot;Y-<wbr>m-<wbr>d H:<wbr>i&quot;</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Date format
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Format for the link is valid until message (forgot password email)</p>
@@ -653,7 +690,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.email.layoutRootPath" data-search-id="confval-felogin-felogin-email-layoutrootpath" data-search-facet="Option">
+                <section data-search-title="felogin.email.layoutRootPath" data-search-id="confval-felogin-felogin-email-layoutrootpath" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-email-layoutrootpath" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -671,7 +708,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Layout root path
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Path to layout directory used for emails</p>
@@ -680,7 +720,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.email.templateRootPath" data-search-id="confval-felogin-felogin-email-templaterootpath" data-search-facet="Option">
+                <section data-search-title="felogin.email.templateRootPath" data-search-id="confval-felogin-felogin-email-templaterootpath" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-email-templaterootpath" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -705,7 +745,10 @@
           aria-details=""
           data-bs-html="true">&quot;EXT:<wbr>felogin/<wbr>Resources/<wbr>Private/<wbr>Email/<wbr>Templates/&quot;</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Template root path
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Path to template directory used for emails</p>
@@ -714,7 +757,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.email.partialRootPath" data-search-id="confval-felogin-felogin-email-partialrootpath" data-search-facet="Option">
+                <section data-search-title="felogin.email.partialRootPath" data-search-id="confval-felogin-felogin-email-partialrootpath" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-email-partialrootpath" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -732,7 +775,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Partial root path
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Path to partial directory used for emails</p>
@@ -741,7 +787,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.email.templateName" data-search-id="confval-felogin-felogin-email-templatename" data-search-facet="Option">
+                <section data-search-title="felogin.email.templateName" data-search-id="confval-felogin-felogin-email-templatename" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-email-templatename" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -766,7 +812,10 @@
           aria-details=""
           data-bs-html="true">&quot;Password<wbr>Recovery&quot;</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Template name for emails.
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>HTML emails get the .html file extension, plaintext emails get the .txt file extension.</p>
@@ -775,7 +824,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.redirectMode" data-search-id="confval-felogin-felogin-redirectmode" data-search-facet="Option">
+                <section data-search-title="felogin.redirectMode" data-search-id="confval-felogin-felogin-redirectmode" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-redirectmode" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -793,7 +842,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Redirect Mode
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Comma separated list of redirect modes. Possible values: groupLogin, userLogin, login, getpost, referer, refererDomains, loginError, logout. Warning: redirects only work if neither the plugin nor the page it is displayed on are set to `hide at login`.</p>
@@ -802,7 +854,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.redirectFirstMethod" data-search-id="confval-felogin-felogin-redirectfirstmethod" data-search-facet="Option">
+                <section data-search-title="felogin.redirectFirstMethod" data-search-id="confval-felogin-felogin-redirectfirstmethod" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-redirectfirstmethod" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -827,7 +879,10 @@
           aria-details=""
           data-bs-html="true">false</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Use First Supported Mode from Selection
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>If set the first method from redirectMode which is possible will be used</p>
@@ -836,7 +891,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.redirectPageLogin" data-search-id="confval-felogin-felogin-redirectpagelogin" data-search-facet="Option">
+                <section data-search-title="felogin.redirectPageLogin" data-search-id="confval-felogin-felogin-redirectpagelogin" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-redirectpagelogin" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -861,7 +916,10 @@
           aria-details=""
           data-bs-html="true">0</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">After Successful Login Redirect to Page
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Page id to redirect to after Login</p>
@@ -870,7 +928,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.redirectPageLoginError" data-search-id="confval-felogin-felogin-redirectpageloginerror" data-search-facet="Option">
+                <section data-search-title="felogin.redirectPageLoginError" data-search-id="confval-felogin-felogin-redirectpageloginerror" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-redirectpageloginerror" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -895,7 +953,10 @@
           aria-details=""
           data-bs-html="true">0</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">After Failed Login Redirect to Page
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Page id to redirect to after Login Error</p>
@@ -904,7 +965,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.redirectPageLogout" data-search-id="confval-felogin-felogin-redirectpagelogout" data-search-facet="Option">
+                <section data-search-title="felogin.redirectPageLogout" data-search-id="confval-felogin-felogin-redirectpagelogout" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-redirectpagelogout" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -929,7 +990,10 @@
           aria-details=""
           data-bs-html="true">0</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">After Logout Redirect to Page
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Page id to redirect to after Logout</p>
@@ -938,7 +1002,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.redirectDisable" data-search-id="confval-felogin-felogin-redirectdisable" data-search-facet="Option">
+                <section data-search-title="felogin.redirectDisable" data-search-id="confval-felogin-felogin-redirectdisable" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-redirectdisable" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -963,7 +1027,10 @@
           aria-details=""
           data-bs-html="true">false</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Disable Redirect
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>If set redirecting is disabled</p>
@@ -972,7 +1039,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.forgotLinkHashValidTime" data-search-id="confval-felogin-felogin-forgotlinkhashvalidtime" data-search-facet="Option">
+                <section data-search-title="felogin.forgotLinkHashValidTime" data-search-id="confval-felogin-felogin-forgotlinkhashvalidtime" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-forgotlinkhashvalidtime" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -997,7 +1064,10 @@
           aria-details=""
           data-bs-html="true">12</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Time in hours how long the link for forgot password is valid
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>How many hours the link for forgot password is valid</p>
@@ -1006,7 +1076,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.domains" data-search-id="confval-felogin-felogin-domains" data-search-facet="Option">
+                <section data-search-title="felogin.domains" data-search-id="confval-felogin-felogin-domains" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-domains" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -1024,7 +1094,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Allowed Referrer-Redirect-Domains
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Comma separated list of domains which are allowed for the referrer redirect mode</p>
@@ -1033,7 +1106,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.exposeNonexistentUserInForgotPasswordDialog" data-search-id="confval-felogin-felogin-exposenonexistentuserinforgotpassworddialog" data-search-facet="Option">
+                <section data-search-title="felogin.exposeNonexistentUserInForgotPasswordDialog" data-search-id="confval-felogin-felogin-exposenonexistentuserinforgotpassworddialog" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-exposenonexistentuserinforgotpassworddialog" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -1058,7 +1131,10 @@
           aria-details=""
           data-bs-html="true">false</code>
             </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Expose existing users
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Expose the information on whether or not the account for which a new password was requested exists. By default, that information is not disclosed for privacy reasons.</p>
@@ -1067,7 +1143,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.view.templateRootPath" data-search-id="confval-felogin-felogin-view-templaterootpath" data-search-facet="Option">
+                <section data-search-title="felogin.view.templateRootPath" data-search-id="confval-felogin-felogin-view-templaterootpath" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-view-templaterootpath" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -1085,7 +1161,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Path to template root (frontend)
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Path to template directory used for the plugin in the frontend. Extends the default template location.</p>
@@ -1094,7 +1173,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.view.partialRootPath" data-search-id="confval-felogin-felogin-view-partialrootpath" data-search-facet="Option">
+                <section data-search-title="felogin.view.partialRootPath" data-search-id="confval-felogin-felogin-view-partialrootpath" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-view-partialrootpath" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -1112,7 +1191,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Path to template partials (frontend)
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Path to partial directory for the plugin in the frontend. Extends the default partial location.</p>
@@ -1121,7 +1203,7 @@
     </dd>
 </dl>
 </section>
-                <section data-search-title="felogin.view.layoutRootPath" data-search-id="confval-felogin-felogin-view-layoutrootpath" data-search-facet="Option">
+                <section data-search-title="felogin.view.layoutRootPath" data-search-id="confval-felogin-felogin-view-layoutrootpath" data-search-facet="Site Setting">
 <dl class="confval">
     <dt id="confval-felogin-felogin-view-layoutrootpath" class="d-flex justify-content-between">
         <div class="confval-header">
@@ -1139,7 +1221,10 @@
           aria-details=""
           data-bs-html="true">string</code>
                 </dd>
-            </dl>
+                            <dt class="field-even">Label</dt>
+                <dd class="field-even">Path to template layouts (frontend)
+                </dd>
+                </dl>
                 <div class="confval-description">
 
     <p>Path to layout directory used for the plugin in the frontend. Can be used to introduce a custom layout.</p>
