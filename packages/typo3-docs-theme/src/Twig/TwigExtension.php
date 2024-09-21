@@ -21,6 +21,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
+use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
@@ -102,6 +103,14 @@ final class TwigExtension extends AbstractExtension
             'ViewHelper',
             'TCA',
             'TYPO3_CONF_VAR',
+            'YAML Form Setting',
+            'YAML RTE Setting',
+            'Site Language Configuration',
+            'Site Configuration',
+            'Console Command',
+            'File',
+            'Directory',
+            SiteSetSettingsDirective::FACET,
         ];
         if (!in_array(trim($value), $allowed, true)) {
             return 'Option';
