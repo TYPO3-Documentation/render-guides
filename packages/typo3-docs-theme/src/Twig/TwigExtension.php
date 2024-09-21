@@ -398,9 +398,20 @@ final class TwigExtension extends AbstractExtension
         }
         if (str_ends_with($reportButton, '/new')) {
             $reportButton .= '?issue[category_id]=1004&issue[subject]=';
-            $description = $this->getIssueTitle($renderContext);
-            $reportButton .= urlencode($description);
             $version = $this->typo3VersionService->getPreferredVersion();
+            $extension = $this->themeSettings->getSettings('interlink_shortcode');
+            if ($extension === 'changelog') {
+                $extension = 'typo3/cms-core';
+            }
+            $description = $this->getIssueTitle(
+                $renderContext,
+                sprintf(
+                    'https://docs.typo3.org/c/%s/%s/en-us',
+                    $extension,
+                    $version,
+                )
+            );
+            $reportButton .= urlencode($description);
             switch ($version) {
                 case 'main':
                     $reportButton .= '&issue[custom_field_values][4]=' . Typo3VersionMapping::getMajorVersionOfMain()->value;
@@ -423,9 +434,13 @@ final class TwigExtension extends AbstractExtension
      * @param RenderContext $renderContext
      * @return string
      */
-    public function getIssueTitle(RenderContext $renderContext): string
+    public function getIssueTitle(RenderContext $renderContext, ?string $docsPath = null): string
     {
-        return 'Problem on ' . $this->themeSettings->getSettings('project_home') . '/' . $renderContext->getCurrentFileName() . '.html';
+        return sprintf(
+            'Problem on %s/%s.html',
+            $docsPath ?? $this->themeSettings->getSettings('project_home'),
+            $renderContext->getCurrentFileName()
+        );
     }
 
     /**
