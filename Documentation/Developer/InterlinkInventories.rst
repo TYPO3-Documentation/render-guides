@@ -149,6 +149,12 @@ These inventories can be used by default in any rendered documentation:
 
     URL: https://docs.typo3.org/m/typo3/writing-guide/main/en-us/
 
+*   Title: :doc:`t3org:Index`
+
+    Inventory key: :doc:`t3org <t3org:Index>`
+
+    URL: https://docs.typo3.org/m/typo3/writing-guide/main/en-us/
+
 *   Title: :doc:`fluid:Index`
 
     Inventory key: :doc:`fluid <fluid:Index>`
