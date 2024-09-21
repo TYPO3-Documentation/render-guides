@@ -45,4 +45,9 @@ enum Typo3VersionMapping: string
     {
         return array_map(static fn(Typo3VersionMapping $enumValue) => $enumValue->getVersion(), self::cases());
     }
+
+    public static function getMajorVersionOfMain(): Typo3VersionMapping
+    {
+        return Typo3VersionMapping::V13;
+    }
 }

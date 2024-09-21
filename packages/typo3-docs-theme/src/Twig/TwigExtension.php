@@ -30,6 +30,7 @@ use T3Docs\Typo3DocsTheme\Nodes\ViewHelperArgumentNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use T3Docs\VersionHandling\DefaultInventories;
+use T3Docs\VersionHandling\Typo3VersionMapping;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -400,7 +401,20 @@ final class TwigExtension extends AbstractExtension
             $description = $this->getIssueTitle($renderContext);
             $reportButton .= urlencode($description);
             $version = $this->typo3VersionService->getPreferredVersion();
-            $reportButton .= '&issue[custom_field_values][4]=' . $version;
+            switch ($version) {
+                case 'main':
+                    $reportButton .= '&issue[custom_field_values][4]=' . Typo3VersionMapping::getMajorVersionOfMain()->value;
+                    break;
+                case '13.4':
+                    $reportButton .= '&issue[custom_field_values][4]=13';
+                    break;
+                case '12.4':
+                    $reportButton .= '&issue[custom_field_values][4]=12';
+                    break;
+                case '11.5':
+                    $reportButton .= '&issue[custom_field_values][4]=11';
+                    break;
+            }
         }
         return $reportButton;
     }
