@@ -8,7 +8,7 @@
             {% endif -%}
         {%- endfor -%}
 
-        {% if env.projectNode.version -%}
+        {% if env.projectNode.version and not getSettings('disable_version_switch') -%}
             <div class="toc-version-wrapper" id="toc-version-wrapper">
                 {% if isRenderedForDeployment() -%}
                 <div id="toc-version" class="toc-version">
