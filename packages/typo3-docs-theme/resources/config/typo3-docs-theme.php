@@ -18,6 +18,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer;
 use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
@@ -79,6 +80,8 @@ return static function (ContainerConfigurator $container): void {
         ->instanceof(BaseDirective::class)
         ->tag('phpdoc.guides.directive')
         ->set(ConfvalMenuNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(TwigExtension::class)
         ->set(TwigExtension::class)
