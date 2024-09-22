@@ -1,0 +1,46 @@
+[
+    {
+        "name": "References",
+        "href": "https:\/\/docs.typo3.org\/index.mainmenujson#references",
+        "children": [
+            {
+                "name": "Changelog TYPO3 Core",
+                "href": "https:\/\/docs.typo3.org\/c\/typo3\/cms-core\/main\/en-us\/Index.html"
+            },
+            {
+                "name": "TYPO3 Explained",
+                "href": "https:\/\/docs.typo3.org\/m\/typo3\/reference-coreapi\/12.4\/en-us\/Index.html#start",
+                "children": [
+                    {
+                        "name": "main",
+                        "href": "https:\/\/docs.typo3.org\/m\/typo3\/reference-coreapi\/main\/en-us\/Index.html#start"
+                    },
+                    {
+                        "name": "12.4",
+                        "href": "https:\/\/docs.typo3.org\/m\/typo3\/reference-coreapi\/12.4\/en-us\/Index.html#start"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "System Extensions",
+        "href": "https:\/\/docs.typo3.org\/Home\/SystemExtensions.html#System-Extensions",
+        "children": [
+            {
+                "name": "adminpanel",
+                "href": "https:\/\/docs.typo3.org\/c\/typo3\/cms-adminpanel\/12.4\/en-us\/Index.html",
+                "children": [
+                    {
+                        "name": "main",
+                        "href": "https:\/\/docs.typo3.org\/c\/typo3\/cms-adminpanel\/main\/en-us\/Index.html"
+                    },
+                    {
+                        "name": "12.4",
+                        "href": "https:\/\/docs.typo3.org\/c\/typo3\/cms-adminpanel\/12.4\/en-us\/Index.html"
+                    }
+                ]
+            }
+        ]
+    }
+]

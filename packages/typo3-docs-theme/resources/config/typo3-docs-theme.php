@@ -8,6 +8,7 @@ use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use phpDocumentor\Guides\Event\PreParseProcess;
 use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
+use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
@@ -22,6 +23,7 @@ use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 use T3Docs\Typo3DocsTheme\Directives\IncludeDirective;
 use T3Docs\Typo3DocsTheme\Directives\LiteralincludeDirective;
+use T3Docs\Typo3DocsTheme\Directives\MainMenuJsonDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
@@ -38,6 +40,8 @@ use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\FluidTextTextRole;
@@ -63,6 +67,7 @@ use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
@@ -79,6 +84,17 @@ return static function (ContainerConfigurator $container): void {
         ->set(TwigExtension::class)
         ->tag('twig.extension')
         ->autowire()
+
+        ->set(MainMenuJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.mainmenujson',
+                'format' => 'mainmenujson',
+            ],
+        )
+        ->set(MainMenuJsonDocumentRenderer::class)
+        ->tag('phpdoc.guides.noderenderer.mainmenu')
         ->set(IssueReferenceTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(phpDocumentor\Guides\ReferenceResolvers\Interlink\DefaultInventoryLoader::class)
@@ -131,6 +147,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(EditOnGitHubFieldListItemRule::class)
         ->tag('phpdoc.guides.parser.rst.fieldlist')
 
+        ->set(DelegatingReferenceResolver::class)
+        ->arg('$resolvers', tagged_iterator('phpdoc.guides.reference_resolver', defaultPriorityMethod: 'getPriority'))
 
         ->set(DecoratingPlantumlRenderer::class)
         ->decorate(PlantumlServerRenderer::class)
@@ -141,6 +159,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(GroupTabDirective::class)
         ->set(IncludeDirective::class)
         ->set(LiteralincludeDirective::class)
+        ->set(MainMenuJsonDirective::class)
         ->set(RawDirective::class)
         ->set(SiteSetSettingsDirective::class)
         ->set(T3FieldListTableDirective::class)
