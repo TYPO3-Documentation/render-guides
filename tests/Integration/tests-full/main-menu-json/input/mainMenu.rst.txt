@@ -1,0 +1,15 @@
+*   :ref:`References <references>`
+
+    *   :doc:`Changelog TYPO3 Core <typo3/cms-core:Index>`
+
+    *   :ref:`TYPO3 Explained <t3coreapi:start>`
+
+        *   :ref:`main <t3coreapi/main:start>`
+        *   :ref:`12.4 <t3coreapi/12:start>`
+
+*   :ref:`System Extensions <t3docs:System-Extensions>`
+
+    *   :doc:`adminpanel <typo3/cms-adminpanel:Index>`
+
+        *   :doc:`main <typo3/cms-adminpanel/main:Index>`
+        *   :doc:`12.4 <typo3/cms-adminpanel/12:Index>`

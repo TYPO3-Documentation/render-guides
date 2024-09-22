@@ -7,9 +7,9 @@ use phpDocumentor\Guides\Interlink\InventoryRepository;
 use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use T3Docs\GuidesExtension\Command\RunDecorator;
-use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\GuidesExtension\Renderer\UrlGenerator\RenderOutputUrlGenerator;
 use T3Docs\GuidesExtension\Renderer\UrlGenerator\SingleHtmlUrlGenerator;
+use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
