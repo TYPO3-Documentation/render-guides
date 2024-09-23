@@ -109,6 +109,8 @@ final class TwigExtension extends AbstractExtension
             'Site Language Configuration',
             'Site Configuration',
             'Console Command',
+            'Console Command Argument',
+            'Console Command Option',
             'File',
             'Directory',
             SiteSetSettingsDirective::FACET,

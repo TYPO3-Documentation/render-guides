@@ -1,0 +1,8 @@
+<code class="sig-name descname"><span class="pre">{{ node.plainContent }}
+        {%- if node.shortcut %} / {{ node.shortcut }}{% endif -%}
+            </span></code>
+{% if not node.noindex %}
+    <a class="headerlink" href="#{{ node.anchor }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="{{ node.anchor }}" data-rstCode="{{ getRstCodeForLink(node) }}"  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+{% else %}
+    <span class="headerNoindex" title="This argument cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+{% endif -%}
