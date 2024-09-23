@@ -1,0 +1,35 @@
+<section data-search-title="{{ node.plainContent }}"
+         data-search-id="{{ node.anchor }}" data-search-facet="Console Command">
+    <h3 class="sr-only">{{ node.plainContent }}</h3>
+    <dl class="option">
+        <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif -%}>
+            {% include "body/directive/console/parts/optionHeader.html.twig" %}
+        </dt>
+        <dd>
+            <div class="argument-description">
+                {{ node.description }}
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">
+                    {%- if node.isValueRequired %}Required
+                    {%- elseif node.acceptValue %}Optional
+                    {%- else %}None allowed{% endif %}
+                    {%- if node.isMultipe %} (multiple){% endif %}
+                </dd>
+                {% if node.default != null %}
+                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        {{ node.default }}
+                    </dd>
+                {% endif -%}
+            </dl>
+            {% if node.value %}
+                <div class="command-description-extended">
+                    {{ renderNode(node.value) }}
+                </div>
+            {% endif %}
+        </dd>
+    </dl>
+
+</section>

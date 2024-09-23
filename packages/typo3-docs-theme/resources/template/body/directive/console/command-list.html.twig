@@ -1,0 +1,47 @@
+<div class="command-list">
+
+    <div class="table-responsive command-table" id="{{ node.anchor }}">
+        <table class="table table-hover caption-top">
+            {%- if node.caption %}
+                <caption>{{ node.caption }}</caption>{% endif %}
+            <thead>
+            <tr>
+                <th scope="col">Command</th>
+                <th scope="col">Description</th>
+                {%- if node.showHidden %}
+                    <th scope="col">Hidden</th>
+                {% endif %}
+            </tr>
+            </thead>
+            {% set namespaceCount = node.commandsByNamespace|length %}
+            {% for namespaceName, namespace in node.commandsByNamespace %}
+                {% if namespaceCount > 1 %}
+                    {# Only display namespace name if there are multiple namespaces #}
+                    <tr>
+                        <td>
+                            <pre class="command-namespace-label">{{ namespaceName is empty ? 'global' : namespaceName }}</pre>
+                        </td>
+                        <td>&nbsp;</td>
+                        {%- if node.showHidden %}
+                            <td>&nbsp;</td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+                {% for command in namespace %}
+                    <tr>
+                        <td>
+                            <pre class="command-label {{ command.hidden ? 'command-hidden' : '' }} {% if namespaceCount > 1 %}ps-2{% endif %}"><a href="#{{ command.anchor }}">{{ command.plainContent }}</a></pre>
+                        </td>
+                        <td>{{ command.description }}</td>
+                        {%- if node.showHidden %}
+                            <td>{{ command.hidden ? 'True' : '&nbsp;' }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+    {% for child in node.children %}
+        {% include "body/directive/console/command.html.twig" with  {'node': child, 'backAnchor': node.anchor } %}
+    {% endfor %}
+</div>
