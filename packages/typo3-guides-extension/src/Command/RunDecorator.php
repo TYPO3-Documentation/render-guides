@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
@@ -48,6 +49,13 @@ final class RunDecorator extends Command
             'Render a specific localization (for example "de_DE", "ru_RU", ...)',
         );
 
+        $this->innerCommand->addOption(
+            'minimal-test',
+            null,
+            InputOption::VALUE_NONE,
+            'Apply preset for minimal testing (format=singlepage)',
+        );
+
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -70,6 +78,15 @@ final class RunDecorator extends Command
 
         if (!isset($options['--output'])) {
             $options['--output'] = getcwd() . '/' . self::DEFAULT_OUTPUT_DIRECTORY;
+        }
+
+        if ($input->getParameterOption('--minimal-test')) {
+            // Set up input arguments for our minimal test. Will override
+            // other input arguments. Can be extended later, so we have
+            // control also in the further command flow.
+            $options['--output-format'] = ['singlepage'];
+            $options['--fail-on-log'] = true;
+            $options['--fail-on-error'] = true;
         }
 
         $input = new ArrayInput(
