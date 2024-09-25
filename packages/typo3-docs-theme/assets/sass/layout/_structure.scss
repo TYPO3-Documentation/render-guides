@@ -78,4 +78,8 @@ section {
     @include clearfix;
     margin-top: ($spacer * 2.5);
     margin-bottom: ($spacer * 2.5);
+    &.confval-section {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 }

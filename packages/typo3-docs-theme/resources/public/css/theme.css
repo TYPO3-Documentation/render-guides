@@ -25807,6 +25807,10 @@ section::after {
   clear: both;
   content: "";
 }
+section.confval-section {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 .no-focus {
   outline: none !important;
