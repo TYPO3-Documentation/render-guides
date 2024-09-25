@@ -16,6 +16,7 @@ parameters:
     - packages/typo3-docs-theme/src
     - packages/typo3-guides-cli/src
     - packages/typo3-guides-extension/src
+    - packages/typo3-version-handling/src
     - tools
   scanFiles:
     - vendor/phpdocumentor/guides/src/DependencyInjection/GuidesExtension.php

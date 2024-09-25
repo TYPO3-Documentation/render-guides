@@ -1,7 +1,8 @@
 <?php
 
 $finder = (new PhpCsFixer\Finder())
-    ->in(__DIR__)
+    ->in(__DIR__.'/packages')
+    ->in(__DIR__.'/tests')
     ->exclude([
         'docs',
         'fixtures-local',
