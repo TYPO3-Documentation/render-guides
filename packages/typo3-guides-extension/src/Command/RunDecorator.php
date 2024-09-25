@@ -49,6 +49,7 @@ final class RunDecorator extends Command
             'Render a specific localization (for example "de_DE", "ru_RU", ...)',
         );
 
+        // This option is evaluated in the PostProjectNodeCreated event in packages/typo3-docs-theme/src/EventListeners/AddThemeSettingsToProjectNode.php
         $this->innerCommand->addOption(
             'minimal-test',
             null,
@@ -78,15 +79,6 @@ final class RunDecorator extends Command
 
         if (!isset($options['--output'])) {
             $options['--output'] = getcwd() . '/' . self::DEFAULT_OUTPUT_DIRECTORY;
-        }
-
-        if ($input->getParameterOption('--minimal-test')) {
-            // Set up input arguments for our minimal test. Will override
-            // other input arguments. Can be extended later, so we have
-            // control also in the further command flow.
-            $options['--output-format'] = ['singlepage'];
-            $options['--fail-on-log'] = true;
-            $options['--fail-on-error'] = true;
         }
 
         $input = new ArrayInput(
