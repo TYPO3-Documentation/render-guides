@@ -1,6 +1,9 @@
 <section data-search-title="{{ node.plainContent }}"
-         data-search-id="{{ node.anchor }}" data-search-facet="Console Command">
-    <h3 class="sr-only">{{ node.plainContent }}</h3>
+         data-search-id="{{ node.anchor }}"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">{{ node.plainContent }}</h4>
     <dl class="option">
         <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif -%}>
             {% include "body/directive/console/parts/optionHeader.html.twig" %}

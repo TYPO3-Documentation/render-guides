@@ -1,52 +1,70 @@
-<section data-search-title="{{ node.plainContent }}" data-search-id="{{ node.anchor }}" data-search-facet="{{ filterAllowedSearchFacets(renderNode(node.additionalOptions.searchFacet)|default(getSettings('confval_default'))) }}">
-<dl class="confval">
-    <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif %} class="d-flex justify-content-between">
-        <div class="confval-header">
-        <code class="sig-name descname"><span class="pre">{{ replaceLineBreakOpportunityTags(node.plainContent) }}</span></code>
-        {% if not node.noindex %}
-        <a class="headerlink" href="#{{ node.anchor }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="{{ node.anchor }}" data-rstCode="{{ getRstCodeForLink(node) }}"  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
-        {% else %}
-            <span class="headerNoindex" title="This configuration value cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
-        {% endif -%}
-        </div>
-        <div class="confval-back-to-top">
-        {%- if backAnchor %}
-            <a href="#{{ backAnchor }}" class="backToList" title="Back to list"><i class="fa-solid fa-angles-up fa-xs"></i></a>
-        {% else %}
-            <a href="#" class="backToTop" title="Back to top"><i class="fa-solid fa-arrow-up fa-xs"></i></a>
-        {%- endif %}
-        </div>
-    </dt>
-    <dd>
-        {% if node.type or node.required or node.default or node.additionalOptions %}
-        <dl class="field-list simple">
-            {% if node.type != null %}
-                <dt class="field-even">Type</dt>
-                <dd class="field-even">{{ renderNode(node.type) }}
-                </dd>
-            {% endif -%}
-            {%- if node.required %}
-            <dt class="field-odd">Required</dt>
-            <dd class="field-odd"><p>true</p>
-            </dd>
-            {% endif -%}
-            {% if node.default != null %}
-            <dt class="field-odd">Default</dt>
-            <dd class="field-odd">{{ renderNode(node.default) }}
-            </dd>
-            {% endif -%}
-            {%- for key, option in node.additionalOptions -%}
-                {%- if not (key in ['searchFacet', 'searchKeywords'])  %}
-                <dt class="field-even">{{ key }}</dt>
-                <dd class="field-even">{{  renderNode(option) }}
-                </dd>
+<section data-search-title="{{ node.plainContent }}"
+         data-search-id="{{ node.anchor }}"
+         data-search-facet="{{ filterAllowedSearchFacets(renderNode(node.additionalOptions.searchFacet)|default(getSettings('confval_default'))) }}"
+         class="confval-section"
+>
+    <h3 class="sr-only">{{ node.plainContent }}</h3>
+    <dl class="confval">
+        <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif %}
+            class="d-flex justify-content-between">
+            <div class="confval-header">
+                <code class="sig-name descname"><span
+                        class="pre">{{ replaceLineBreakOpportunityTags(node.plainContent) }}</span></code>
+                {% if not node.noindex %}
+                    <a class="headerlink" href="#{{ node.anchor }}"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="{{ node.anchor }}"
+                       data-rstCode="{{ getRstCodeForLink(node) }}"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                {% else %}
+                    <span class="headerNoindex"
+                          title="This configuration value cannot be linked directly. Consider to link to the section above."><i
+                            class="fa-solid fa-link-slash"></i></span>
                 {% endif -%}
-            {% endfor -%}
-        </dl>
-        {% endif %}
-        <div class="confval-description">
-            {{ renderNode(node.value) }}
-        </div>
-    </dd>
-</dl>
+            </div>
+            <div class="confval-back-to-top">
+                {%- if backAnchor %}
+                    <a href="#{{ backAnchor }}" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                {% else %}
+                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>
+                {%- endif %}
+            </div>
+        </dt>
+        <dd>
+            {% if node.type or node.required or node.default or node.additionalOptions %}
+                <dl class="field-list simple">
+                    {% if node.type != null %}
+                        <dt class="field-even">Type</dt>
+                        <dd class="field-even">{{ renderNode(node.type) }}
+                        </dd>
+                    {% endif -%}
+                    {%- if node.required %}
+                        <dt class="field-odd">Required</dt>
+                        <dd class="field-odd"><p>true</p>
+                        </dd>
+                    {% endif -%}
+                    {% if node.default != null %}
+                        <dt class="field-odd">Default</dt>
+                        <dd class="field-odd">{{ renderNode(node.default) }}
+                        </dd>
+                    {% endif -%}
+                    {%- for key, option in node.additionalOptions -%}
+                        {%- if not (key in ['searchFacet', 'searchKeywords']) %}
+                            <dt class="field-even">{{ key }}</dt>
+                            <dd class="field-even">{{ renderNode(option) }}
+                            </dd>
+                        {% endif -%}
+                    {% endfor -%}
+                </dl>
+            {% endif %}
+            <div class="confval-description">
+                {{ renderNode(node.value) }}
+            </div>
+        </dd>
+    </dl>
 </section>
