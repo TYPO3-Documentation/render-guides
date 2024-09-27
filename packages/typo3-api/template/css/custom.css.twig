@@ -30,3 +30,7 @@
     mask-image: url('data:image/svg+xml;utf8,{{ include('icons/method.svg.twig', {'hue': colours.hue(parameter.color|default('phpdocumentor-green'))})|trim|raw }}');
     background: var(--primary-color);
 }
+
+section.phpdocumentor-description {
+  margin-top: 0;
+}
