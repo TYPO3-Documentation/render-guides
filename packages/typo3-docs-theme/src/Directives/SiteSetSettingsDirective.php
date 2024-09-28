@@ -96,6 +96,7 @@ final class SiteSetSettingsDirective extends BaseDirective
 
         $labels = [];
         $descriptions = [];
+        $categoryLabels = [];
         if ($labelContents) {
             $xml = new \DOMDocument();
             if ($xml->loadXML($labelContents)) {
@@ -109,12 +110,14 @@ final class SiteSetSettingsDirective extends BaseDirective
                         $descriptions[substr($id, 21)] = $value;
                     } elseif (str_starts_with($id, 'settings.')) {
                         $labels[substr($id, 9)] = $value;
+                    } elseif (str_starts_with($id, 'categories.')) {
+                        $categoryLabels[substr($id, 11)] = $value;
                     }
                 }
             }
         }
 
-        return $this->buildConfvalMenu($directive, $yamlData['settings'], $yamlData['categories'] ?? [], $labels, $descriptions);
+        return $this->buildConfvalMenu($directive, $yamlData['settings'], $yamlData['categories'] ?? [], $labels, $descriptions, $categoryLabels);
     }
 
     /**
@@ -183,8 +186,9 @@ final class SiteSetSettingsDirective extends BaseDirective
      * @param array<string, array<string, string>> $categories
      * @param array<string, string> $labels
      * @param array<string, string> $descriptions
+     * @param array<string, string> $categoryLabels
      */
-    public function buildConfvalMenu(Directive $directive, array $settings, array $categories, array $labels, array $descriptions): ConfvalMenuNode
+    public function buildConfvalMenu(Directive $directive, array $settings, array $categories, array $labels, array $descriptions, array $categoryLabels): ConfvalMenuNode
     {
         $idPrefix = '';
         if ($directive->getOptionString('name') !== '') {
@@ -193,7 +197,7 @@ final class SiteSetSettingsDirective extends BaseDirective
         $categoryArray = [];
         foreach ($categories as $key => $category) {
             $categoryArray[$key] = [
-                'label' => $category['label'] ?? '',
+                'label' => $category['label'] ?? $categoryLabels[$key] ?? '',
                 'parent' => $category['parent'] ?? '',
             ];
         }

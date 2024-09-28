@@ -1,14 +1,9 @@
 ..  include:: /Includes.rst.txt
-..  _site_settings:
+..  _site_settings_label:
 
-=============
-Site settings
-=============
-
-..  toctree::
-    :glob:
-
-    */Index
+=========================
+Site settings with labels
+=========================
 
 ..  literalinclude:: _siteSetSettings.rst.txt
     :language: rst
