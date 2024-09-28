@@ -84,7 +84,7 @@ final class SiteSetSettingsDirective extends BaseDirective
         }
 
         $labelContents = '';
-        // Asume all EXT: references are relative to the rendered PROJECT
+        // Assume all EXT: references are relative to the rendered PROJECT
         $labelsFile = $labelsFile ?
             preg_replace('/^EXT:[^\/]*\//', 'PROJECT:/', $labelsFile) :
             dirname($setConfigurationFile) . '/labels.xlf';
@@ -114,7 +114,7 @@ final class SiteSetSettingsDirective extends BaseDirective
             }
         }
 
-        return $this->buildConfvalMenu($directive, $yamlData['settings'], $labels, $descriptions);
+        return $this->buildConfvalMenu($directive, $yamlData['settings'], $yamlData['categories'] ?? [], $labels, $descriptions);
     }
 
     /**
@@ -180,19 +180,27 @@ final class SiteSetSettingsDirective extends BaseDirective
 
     /**
      * @param array<string, array<string, string>> $settings
+     * @param array<string, array<string, string>> $categories
      * @param array<string, string> $labels
      * @param array<string, string> $descriptions
      */
-    public function buildConfvalMenu(Directive $directive, array $settings, array $labels, array $descriptions): ConfvalMenuNode
+    public function buildConfvalMenu(Directive $directive, array $settings, array $categories, array $labels, array $descriptions): ConfvalMenuNode
     {
         $idPrefix = '';
         if ($directive->getOptionString('name') !== '') {
             $idPrefix = $directive->getOptionString('name') . '-';
         }
+        $categoryArray = [];
+        foreach ($categories as $key => $category) {
+            $categoryArray[$key] = [
+                'label' => $category['label'] ?? '',
+                'parent' => $category['parent'] ?? '',
+            ];
+        }
 
         $confvals = [];
         foreach ($settings as $key => $setting) {
-            $confvals[] = $this->buildConfval($setting, $idPrefix, $key, $directive, $labels, $descriptions);
+            $confvals[] = $this->buildConfval($setting, $idPrefix, $key, $directive, $labels, $descriptions, $categoryArray);
         }
         $reservedParameterNames = [
             'name',
@@ -233,8 +241,9 @@ final class SiteSetSettingsDirective extends BaseDirective
      * @param array<string, scalar|array<string, scalar>> $setting
      * @param array<string, string> $labels
      * @param array<string, string> $descriptions
+     * @param array<string, array<string, string>> $categoryArray
      */
-    public function buildConfval(array $setting, string $idPrefix, string $key, Directive $directive, array $labels, array $descriptions): ConfvalNode
+    public function buildConfval(array $setting, string $idPrefix, string $key, Directive $directive, array $labels, array $descriptions, array $categoryArray): ConfvalNode
     {
         $content = [];
         $description = $setting['description'] ?? $descriptions[$key] ?? false;
@@ -255,6 +264,15 @@ final class SiteSetSettingsDirective extends BaseDirective
         if (is_array($setting['enum'] ?? false)) {
             $additionalFields['Enum'] = new InlineCompoundNode([new PlainTextInlineNode((string) json_encode($setting['enum'], JSON_PRETTY_PRINT))]);
         }
+        $categoryKey = '';
+        if (($setting['category'] ?? '') !== '' && is_string($setting['category'])) {
+            $categoryKey = $setting['category'];
+        }
+        $category = $this->getCategoryRootline($categoryArray, $categoryKey);
+        if ($category !== '') {
+            $additionalFields['Category'] = new InlineCompoundNode([new PlainTextInlineNode($category)]);
+        }
+
         $additionalFields['searchFacet'] = new InlineCompoundNode([new PlainTextInlineNode(self::FACET)]);
         assert(is_scalar($setting['type']));
 
@@ -294,6 +312,23 @@ final class SiteSetSettingsDirective extends BaseDirective
         }
 
         return 'unkown'; // For other types or unexpected cases
+    }
+
+
+    /**
+     * @param array<string, array<string, string>> $categoryArray
+     */
+    private function getCategoryRootline(array $categoryArray, string $key): string
+    {
+        $label = $categoryArray[$key]['label'] ?? $key;
+        $parent = $categoryArray[$key]['parent'] ?? '';
+        if ($parent === '') {
+            return $label;
+        }
+        if ($label === '') {
+            return $label;
+        }
+        return $this->getCategoryRootline($categoryArray, $parent) . ' > ' . $label;
     }
 
 }
