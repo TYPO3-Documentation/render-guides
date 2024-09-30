@@ -365,7 +365,7 @@ final class SiteSetSettingsDirective extends BaseDirective
      */
     public function assignConfvalsToCategories(string $category, array &$categoryArray, ConfvalNode $confval, array &$rootCategories): void
     {
-        if (is_array($categoryArray[$category]['confvals']??false)) {
+        if (is_array($categoryArray[$category]['confvals'] ?? false)) {
             $categoryArray[$category]['confvals'][] = $confval;
         } else {
             $categoryArray[$category] = [
@@ -409,7 +409,7 @@ final class SiteSetSettingsDirective extends BaseDirective
             }
             assert(is_array($category['confvals']));
             $confvals[] = new ConfvalNode(
-                $this->anchorNormalizer->reduceAnchor($idPrefix .'category-'. $key),
+                $this->anchorNormalizer->reduceAnchor($idPrefix . 'category-' . $key),
                 $key,
                 null,
                 false,
