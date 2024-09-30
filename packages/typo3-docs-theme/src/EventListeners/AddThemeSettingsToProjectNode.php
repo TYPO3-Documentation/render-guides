@@ -28,8 +28,7 @@ final class AddThemeSettingsToProjectNode
             // other input arguments. Can be extended later, so we have
             // control also in the further command flow.
             $settings->setOutputFormats(['singlepage']);
-            $settings->setFailOnError('1');
-            // Unsure: what is "fail-on-log". It's not available here.
+            $settings->setFailOnError('warning'); // 'error' for "no warnings"
         }
 
         foreach ($this->themeSettings->getAllSettings() as $key => $setting) {
