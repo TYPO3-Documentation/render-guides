@@ -36,7 +36,7 @@ final class SiteSetSettingsDirective extends BaseDirective
 {
     public const NAME = 'typo3:site-set-settings';
     public const FACET = 'Site Setting';
-    const CATEGORY_FACET = 'Site Setting Category';
+    public const CATEGORY_FACET = 'Site Setting Category';
 
     public function __construct(
         private readonly LoggerInterface $logger,
@@ -195,10 +195,11 @@ final class SiteSetSettingsDirective extends BaseDirective
         if ($directive->getOptionString('name') !== '') {
             $idPrefix = $directive->getOptionString('name') . '-';
         }
-        $categoryArray= $this->buildCategoryArray($categories, $categoryLabels);
+        $categoryArray = $this->buildCategoryArray($categories, $categoryLabels);
         $rootCategories = [];
         foreach ($categoryArray as $key => $category) {
             if (isset($categoryArray[$category['parent']])) {
+                assert(is_array($categoryArray[$category['parent']]['children']));
                 $categoryArray[$category['parent']]['children'][] = &$categoryArray[$key];
             } else {
                 $rootCategories[] = &$categoryArray[$key];
@@ -206,7 +207,7 @@ final class SiteSetSettingsDirective extends BaseDirective
         }
         foreach ($settings as $key => $setting) {
             $confval = $this->buildConfval($setting, $idPrefix, $key, $directive, $labels, $descriptions, $categoryArray);
-            $this->assignConfvalsToCategories($setting['category']?? '', $categoryArray, $confval, $rootCategories);
+            $this->assignConfvalsToCategories($setting['category'] ?? '', $categoryArray, $confval, $rootCategories);
         }
         $confvals = $this->buildCategoryConfvals($rootCategories, $idPrefix, $directive);
         $reservedParameterNames = [
@@ -339,6 +340,8 @@ final class SiteSetSettingsDirective extends BaseDirective
     }
 
     /**
+     * @param array<string, array<string, mixed>> $categories
+     * @param array<string, string> $categoryLabels
      * @return array<string, array<string, mixed>>
      */
     public function buildCategoryArray(array $categories, array $categoryLabels): array
@@ -357,12 +360,12 @@ final class SiteSetSettingsDirective extends BaseDirective
     }
 
     /**
-     * @param array $categoryArray
-     * @param array $rootCategories
+     * @param array<string, array<string, mixed>> $categoryArray
+     * @param array<array<string, mixed>> $rootCategories
      */
     public function assignConfvalsToCategories(string $category, array &$categoryArray, ConfvalNode $confval, array &$rootCategories): void
     {
-        if (isset($categoryArray[$category])) {
+        if (is_array($categoryArray[$category]['confvals']??false)) {
             $categoryArray[$category]['confvals'][] = $confval;
         } else {
             $categoryArray[$category] = [
@@ -388,22 +391,25 @@ final class SiteSetSettingsDirective extends BaseDirective
         $confvals = [];
         foreach ($categories as $category) {
             $children = [];
-            if (is_array($category['children']??false)) {
+            if (is_array($category['children'] ?? false)) {
                 $children = $this->buildCategoryConfvals($category['children'], $idPrefix, $directive);
             }
             $key =  $category['key'];
             if ($key === '') {
                 $key = '_global';
             }
+            assert(is_string($key));
             $additionalFields = [];
             $additionalFields['searchFacet'] = new InlineCompoundNode([new PlainTextInlineNode(self::CATEGORY_FACET)]);
 
             $label = $category['label'];
             if ($label !== '') {
+                assert(is_string($label));
                 $additionalFields['Label'] = new InlineCompoundNode([new PlainTextInlineNode($label)]);
             }
+            assert(is_array($category['confvals']));
             $confvals[] = new ConfvalNode(
-                $this->anchorNormalizer->reduceAnchor($idPrefix . $key),
+                $this->anchorNormalizer->reduceAnchor($idPrefix .'category-'. $key),
                 $key,
                 null,
                 false,
