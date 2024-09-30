@@ -36,6 +36,7 @@ final class SiteSetSettingsDirective extends BaseDirective
 {
     public const NAME = 'typo3:site-set-settings';
     public const FACET = 'Site Setting';
+    public const CATEGORY_FACET = 'Site Setting Category';
 
     public function __construct(
         private readonly LoggerInterface $logger,
@@ -194,18 +195,21 @@ final class SiteSetSettingsDirective extends BaseDirective
         if ($directive->getOptionString('name') !== '') {
             $idPrefix = $directive->getOptionString('name') . '-';
         }
-        $categoryArray = [];
-        foreach ($categories as $key => $category) {
-            $categoryArray[$key] = [
-                'label' => $category['label'] ?? $categoryLabels[$key] ?? '',
-                'parent' => $category['parent'] ?? '',
-            ];
+        $categoryArray = $this->buildCategoryArray($categories, $categoryLabels);
+        $rootCategories = [];
+        foreach ($categoryArray as $key => $category) {
+            if (isset($categoryArray[$category['parent']])) {
+                assert(is_array($categoryArray[$category['parent']]['children']));
+                $categoryArray[$category['parent']]['children'][] = &$categoryArray[$key];
+            } else {
+                $rootCategories[] = &$categoryArray[$key];
+            }
         }
-
-        $confvals = [];
         foreach ($settings as $key => $setting) {
-            $confvals[] = $this->buildConfval($setting, $idPrefix, $key, $directive, $labels, $descriptions, $categoryArray);
+            $confval = $this->buildConfval($setting, $idPrefix, $key, $directive, $labels, $descriptions, $categoryArray);
+            $this->assignConfvalsToCategories($setting['category'] ?? '', $categoryArray, $confval, $rootCategories);
         }
+        $confvals = $this->buildCategoryConfvals($rootCategories, $idPrefix, $directive);
         $reservedParameterNames = [
             'name',
             'class',
@@ -333,6 +337,89 @@ final class SiteSetSettingsDirective extends BaseDirective
             return $label;
         }
         return $this->getCategoryRootline($categoryArray, $parent) . ' > ' . $label;
+    }
+
+    /**
+     * @param array<string, array<string, mixed>> $categories
+     * @param array<string, string> $categoryLabels
+     * @return array<string, array<string, mixed>>
+     */
+    public function buildCategoryArray(array $categories, array $categoryLabels): array
+    {
+        $categoryArray = [];
+        foreach ($categories as $key => $category) {
+            $categoryArray[$key] = [
+                'label' => $category['label'] ?? $categoryLabels[$key] ?? '',
+                'parent' => $category['parent'] ?? '',
+                'key' => $key,
+                'confvals' => [],
+                'children' => [],
+            ];
+        }
+        return $categoryArray;
+    }
+
+    /**
+     * @param array<string, array<string, mixed>> $categoryArray
+     * @param array<array<string, mixed>> $rootCategories
+     */
+    public function assignConfvalsToCategories(string $category, array &$categoryArray, ConfvalNode $confval, array &$rootCategories): void
+    {
+        if (is_array($categoryArray[$category]['confvals'] ?? false)) {
+            $categoryArray[$category]['confvals'][] = $confval;
+        } else {
+            $categoryArray[$category] = [
+                'label' => '',
+                'parent' => '',
+                'key' => $category,
+                'children' => [],
+                'confvals' => [$confval],
+            ];
+            $rootCategories[] = &$categoryArray[$category];
+        }
+    }
+
+    /**
+     * @param array<array<string, mixed>> $categories
+     * @return ConfvalNode[]
+     */
+    private function buildCategoryConfvals(array $categories, string $idPrefix, Directive $directive): array
+    {
+        if ($categories === []) {
+            return [];
+        }
+        $confvals = [];
+        foreach ($categories as $category) {
+            $children = [];
+            if (is_array($category['children'] ?? false)) {
+                $children = $this->buildCategoryConfvals($category['children'], $idPrefix, $directive);
+            }
+            $key =  $category['key'];
+            if ($key === '') {
+                $key = '_global';
+            }
+            assert(is_string($key));
+            $additionalFields = [];
+            $additionalFields['searchFacet'] = new InlineCompoundNode([new PlainTextInlineNode(self::CATEGORY_FACET)]);
+
+            $label = $category['label'];
+            if ($label !== '') {
+                assert(is_string($label));
+                $additionalFields['Label'] = new InlineCompoundNode([new PlainTextInlineNode($label)]);
+            }
+            assert(is_array($category['confvals']));
+            $confvals[] = new ConfvalNode(
+                $this->anchorNormalizer->reduceAnchor($idPrefix . 'category-' . $key),
+                $key,
+                null,
+                false,
+                null,
+                $additionalFields,
+                array_merge($children, $category['confvals']),
+                $directive->getOptionBool('noindex'),
+            );
+        }
+        return $confvals;
     }
 
 }
