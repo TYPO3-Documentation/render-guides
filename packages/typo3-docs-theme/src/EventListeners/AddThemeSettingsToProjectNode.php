@@ -17,6 +17,20 @@ final class AddThemeSettingsToProjectNode
     public function __invoke(PostProjectNodeCreated $event): void
     {
         $projectNode = $event->getProjectNode();
+
+        // Native parsing of argv because we do not have the original ArgvInput
+        // available, and neither the InputDefinition. That's ok for the
+        // very basic parsing of a global option.
+        if (in_array('--minimal-test', $_SERVER['argv'] ?? [], true)) {
+            $settings = $event->getSettings();
+
+            // Set up input arguments for our minimal test. Will override
+            // other input arguments. Can be extended later, so we have
+            // control also in the further command flow.
+            $settings->setOutputFormats(['singlepage']);
+            $settings->setFailOnError('warning'); // 'error' for "no warnings"
+        }
+
         foreach ($this->themeSettings->getAllSettings() as $key => $setting) {
             if (trim($setting) !== '') {
                 $projectNode->addVariable($key, new PlainTextInlineNode($setting));

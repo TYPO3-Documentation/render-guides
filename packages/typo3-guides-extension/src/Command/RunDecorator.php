@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
@@ -46,6 +47,14 @@ final class RunDecorator extends Command
             null,
             InputArgument::OPTIONAL,
             'Render a specific localization (for example "de_DE", "ru_RU", ...)',
+        );
+
+        // This option is evaluated in the PostProjectNodeCreated event in packages/typo3-docs-theme/src/EventListeners/AddThemeSettingsToProjectNode.php
+        $this->innerCommand->addOption(
+            'minimal-test',
+            null,
+            InputOption::VALUE_NONE,
+            'Apply preset for minimal testing (format=singlepage)',
         );
 
     }
