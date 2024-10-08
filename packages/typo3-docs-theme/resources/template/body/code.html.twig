@@ -12,7 +12,7 @@
     {% endif %}
 
     {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber, emphasizeLines=node.emphasizeLines, classes=node.classesString)}}
-    <div>
+    <div class="code-block-actions">
 
         {%- set gitHubLink = getEditOnGitHubLinkFromPath(node.options.path) -%}
         {%- if (gitHubLink)  %}
