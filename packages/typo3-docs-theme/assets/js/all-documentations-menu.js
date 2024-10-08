@@ -1,70 +1,34 @@
-// mock up for presentation purposes - should be replaced with real data
-const exampleDocumentationsJson = JSON.stringify([
-  {
-    name: 'References',
-    href: '#',
-    children: [
-      { name: 'Changelog', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'TYPO3 Explained', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'TCA Reference', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'TypoScript Reference', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'TSConfig Reference', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'ViewHelper Reference', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-    ]
-  },
-  {
-    name: 'Guides',
-    href: '#',
-    children: [
-      { name: 'Getting started', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'Localization', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'Upgrade Guide', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'Editors Guide', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'Exceptions', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-    ]
-  },
-  {
-    name: 'Tutorials',
-    href: '#',
-    children: [
-      { name: 'Sitepackage Tutorial', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'TypoScript Tutorial', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-    ]
-  },
-  {
-    name: 'System Extensions',
-    href: '#',
-    children: [
-      { name: 'Adminpanel', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-      { name: 'SEO', href: '#', versions: [ { name: 'main', href: '#' }, { name: '12.4', href: '#' }, { name: '11.5', href: '#' } ] },
-    ]
-  },
-  {
-    name: 'Third Party Extensions',
-    href: '#',
-  },
-  {
-    name: 'Contribution',
-    href: '#',
-    children: [
-      { name: 'Core', href: '#' },
-      { name: 'Documentation', href: '#' },
-      { name: 'typo3.org', href: '#' },
-    ]
-  },
-])
 
 class AllDocumentationMenu extends HTMLElement {
+  MAINMENU_JSON_URL = 'https://docs.typo3.org/h/typo3/docs-homepage/main/en-us/mainmenu.json';
+
   constructor() {
     super();
-    this.data = this.initializeDocumentationsData();
+    this.mainButton = this.createMainButton('All documentations');
+    this.appendChild(this.mainButton);
 
+    this.initializeDocumentationsData()
+      .then(() => {
+        this.setupComponent()
+      });
+  }
+
+  async initializeDocumentationsData() {
+    const url = this.getAttribute('data-override-url') || this.MAINMENU_JSON_URL;
+    const response = await fetch(url)
+    if (!response.ok) {
+      this.data = [];
+      return
+    }
+
+    const json = await response.json();
+    this.data = json || [];
+  }
+
+  setupComponent() {
     this.classList.add('all-documentations-menu')
 
-    this.mainButton = this.createMainButton('All documentations');
     this.tooltip = this.createTooltip();
-
-    this.appendChild(this.mainButton);
     this.appendChild(this.tooltip);
 
     this.popperInstance = null;
@@ -86,11 +50,6 @@ class AllDocumentationMenu extends HTMLElement {
 
       this.hideTooltip();
     })
-  }
-
-  initializeDocumentationsData() {
-    // replace with real data
-    return JSON.parse(exampleDocumentationsJson)
   }
 
   createClassName(name) {
