@@ -24828,6 +24828,116 @@ figure.uml-diagram {
   overflow: scroll;
 }
 
+.all-documentations-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+.all-documentations-menu-button {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.all-documentations-menu-tooltip {
+  display: none;
+  border-radius: 0.6em;
+  background: white;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  padding: 1.5em 2.5em;
+  border: 1px solid #eaeaea;
+  z-index: 50;
+}
+.all-documentations-menu-tooltip[data-show] {
+  display: block;
+}
+.all-documentations-menu-tooltip-arrow {
+  width: 1.2em;
+  height: 1.2em;
+  top: -0.2em;
+}
+.all-documentations-menu-tooltip-arrow:before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  transform: rotateZ(45deg);
+  background-color: white;
+}
+@media screen and (max-width: 768px) {
+  .all-documentations-menu-tooltip {
+    padding: 1.5em;
+  }
+}
+.all-documentations-menu-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em 2em;
+}
+@media screen and (max-width: 1200px) {
+  .all-documentations-menu-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 768px) {
+  .all-documentations-menu-categories {
+    grid-template-columns: 1fr;
+  }
+}
+.all-documentations-menu-category-header {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #333;
+  position: relative;
+  text-decoration: none;
+}
+.all-documentations-menu-category-header:before {
+  display: block;
+  content: "";
+  width: 0.2em;
+  height: 100%;
+  background: #ff8700;
+  position: absolute;
+  top: 0;
+  left: -0.6em;
+}
+.all-documentations-menu a.all-documentations-menu-category-header:hover, .all-documentations-menu a.all-documentations-menu-category-header:focus {
+  text-decoration: 0.1em underline;
+}
+.all-documentations-menu-documentations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  list-style-type: none;
+  padding: 0.4em 0 0 0;
+}
+.all-documentations-menu-documentations li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+.all-documentations-menu-documentations li a:not(:hover):not(:focus) {
+  text-decoration: none;
+}
+.all-documentations-menu-versions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3em;
+}
+.all-documentations-menu-versions a {
+  background-color: #f2f2f2;
+  padding: 0 5px;
+  font-size: 0.8em;
+  border-radius: 0.4em;
+  display: flex;
+  align-items: center;
+}
+.all-documentations-menu-versions a:first-child {
+  background-color: #ffe7cc;
+}
+
 /**
  * Bignums
  */
@@ -25770,6 +25880,21 @@ a.toc-title-project:hover {
   width: 1140px;
   margin: 0 auto;
   padding: 0 calc(40px / 2);
+}
+
+.menu-search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.menu-search-wrapper search {
+  flex-grow: 1;
+}
+@media screen and (max-width: 576px) {
+  .menu-search-wrapper {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 /**
