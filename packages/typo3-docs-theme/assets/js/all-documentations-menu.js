@@ -105,14 +105,14 @@ class AllDocumentationMenu extends HTMLElement {
 
     listItemElement.appendChild(anchorElement);
 
-    if (!documentation.versions || !documentation.versions.length) {
+    if (!documentation.children || !documentation.children.length) {
       return listItemElement;
     }
 
     const versionsElement = document.createElement('div');
     versionsElement.classList.add(this.createClassName('versions'));
 
-    for (const version of documentation.versions) {
+    for (const version of documentation.children) {
       versionsElement.appendChild(this.createDocumentationVersionBadge(version))
     }
 
