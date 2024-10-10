@@ -4,7 +4,7 @@ class AllDocumentationMenu extends HTMLElement {
 
   constructor() {
     super();
-    this.mainButton = this.createMainButton('All documentations');
+    this.mainButton = this.createMainButton('All documentation');
     this.appendChild(this.mainButton);
 
     this.initializeDocumentationsData()
