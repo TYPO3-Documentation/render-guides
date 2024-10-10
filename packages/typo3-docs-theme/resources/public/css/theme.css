@@ -24871,6 +24871,8 @@ figure.uml-diagram {
 @media screen and (max-width: 768px) {
   .all-documentations-menu-tooltip {
     padding: 1.5em;
+    max-height: 70vh;
+    overflow-y: auto;
   }
 }
 .all-documentations-menu-categories {
