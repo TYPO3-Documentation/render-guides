@@ -1,0 +1,5 @@
+.stretched-link {
+    &::after {
+        z-index: unset !important;
+    }
+}

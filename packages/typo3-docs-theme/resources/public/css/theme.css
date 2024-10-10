@@ -23415,6 +23415,10 @@ article ol li::marker {
   box-shadow: inset 0px 0px 2px 2px;
 }
 
+.stretched-link::after {
+  z-index: unset !important;
+}
+
 .accordion {
   border-radius: var(--bs-accordion-border-radius);
   box-shadow: 2px 1px 6px rgba(32, 33, 36, 0.28);
@@ -24867,6 +24871,8 @@ figure.uml-diagram {
 @media screen and (max-width: 768px) {
   .all-documentations-menu-tooltip {
     padding: 1.5em;
+    max-height: 70vh;
+    overflow-y: auto;
   }
 }
 .all-documentations-menu-categories {
@@ -24927,7 +24933,7 @@ figure.uml-diagram {
   gap: 0.3em;
 }
 .all-documentations-menu-versions a {
-  background-color: #f2f2f2;
+  background-color: rgb(242.25, 242.25, 242.25);
   padding: 0 5px;
   font-size: 0.8em;
   border-radius: 0.4em;

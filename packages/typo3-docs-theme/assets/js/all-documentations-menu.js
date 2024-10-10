@@ -4,7 +4,7 @@ class AllDocumentationMenu extends HTMLElement {
 
   constructor() {
     super();
-    this.mainButton = this.createMainButton('All documentations');
+    this.mainButton = this.createMainButton('All documentation');
     this.appendChild(this.mainButton);
 
     this.initializeDocumentationsData()
@@ -105,14 +105,14 @@ class AllDocumentationMenu extends HTMLElement {
 
     listItemElement.appendChild(anchorElement);
 
-    if (!documentation.versions || !documentation.versions.length) {
+    if (!documentation.children || !documentation.children.length) {
       return listItemElement;
     }
 
     const versionsElement = document.createElement('div');
     versionsElement.classList.add(this.createClassName('versions'));
 
-    for (const version of documentation.versions) {
+    for (const version of documentation.children) {
       versionsElement.appendChild(this.createDocumentationVersionBadge(version))
     }
 
