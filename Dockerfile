@@ -1,4 +1,4 @@
-FROM composer:2 as Builder
+FROM composer:2 AS builder
 
 WORKDIR /opt/guides
 COPY . /opt/guides
@@ -10,7 +10,7 @@ FROM php:8.1-cli-alpine
 COPY . /opt/guides
 WORKDIR /opt/guides
 
-COPY --from=Builder /opt/guides/vendor /opt/guides/vendor
+COPY --from=builder /opt/guides/vendor /opt/guides/vendor
 RUN echo "memory_limit=4G" >> /usr/local/etc/php/conf.d/typo3.ini
 
 ARG TYPO3AZUREEDGEURIVERSION
