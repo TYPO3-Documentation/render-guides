@@ -3,7 +3,7 @@
 <head>
     <title>Breaking: #87616 - Removed hook for altering page links — Core main (development) documentation</title>
 
-
+    
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="phpdocumentor/guides" name="generator">
@@ -25,7 +25,7 @@
     </head>
 <body>
 <div class="page">
-
+    
 <header>
     <div class="page-topbar">
         <div class="page-topbar-inner">
@@ -45,7 +45,7 @@
                 <div class="col-md-10 col-lg-8">
                     <div class="menu-search-wrapper">
                         <all-documentations-menu data-override-url="https://render-guides.ddev.site/menu-proxy.php"></all-documentations-menu>
-                        <search role="search">
+                                                <search role="search">
                             <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
                                 <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
                                 <div class="input-group mb-3 mt-sm-3">
@@ -68,7 +68,7 @@
                 <nav>
                     <input class="toc-checkbox" id="toggleToc" type="checkbox">
 
-
+                    
 <div class="toc-header">
     <div class="toc-title">
         <a class="toc-title-project" href="../../Index.html">Core</a>
@@ -79,7 +79,7 @@
                 -->
 
                 <div id="toc-version" class="toc-version" data-override-url-proxy="https://render-guides.ddev.site/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html">
-
+                
                     <span class="toc-version-prefix">Release:</span>
                     <span class="toc-version-number">main (development)</span>
                 </div>
@@ -95,7 +95,7 @@
 </div>                    <div class="toc-collapse">
                                                 <div aria-label="main navigation" class="toc" role="navigation">
                                 <div aria-label="Main navigation" class="main_menu" role="navigation">
-
+        
     <ul class="menu-level-1">
     <li class=" active">
     <a href="../../Changelog-12.html">
@@ -130,7 +130,7 @@
             </div>
             <div class="page-main-content">
                 <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
-
+        
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="../../Index.html">TYPO3 Core</a></li>
         <li class="breadcrumb-item"><a href="../../Changelog-12.html">ChangeLog v12</a></li>
@@ -154,11 +154,11 @@
         <span class="btn-text">Edit on GitHub</span>
     </a>
     </div>    </nav>
-
+                    
 <article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
     <div itemprop="articleBody">
         <!-- content start -->
-
+                
 <section class="section" id="breaking-87616-removed-hook-for-altering-page-links" data-rst-anchor="breaking-87616">
             <a id="breaking-87616"></a>
             <h1>Breaking: #87616 - Removed hook for altering page links<a class="headerlink" href="#breaking-87616-removed-hook-for-altering-page-links" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h1>
@@ -182,7 +182,7 @@ has been removed in favor of a new PSR-14 event <code class="code-inline code-in
           aria-details="<code>final class ModifyPageLinkConfigurationEvent</code><br><em>A generic PSR 14 Event to allow modifying the incoming (and resolved) page when building a &quot;page link&quot;.</em>"
           data-bs-html="true"><a href="https://api.typo3.org/main/classes/TYPO3-CMS-Frontend-Event-ModifyPageLinkConfigurationEvent.html" target="_blank">\TYPO3\<wbr>CMS\<wbr>Frontend\<wbr>Event\<wbr>Modify<wbr>Page<wbr>Link<wbr>Configuration<wbr>Event <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a></code>.</p>
 
-
+            
     <p>The event is called after TYPO3 has already prepared some functionality
 within the <code class="code-inline code-inline-long"
           translate="no"
@@ -211,7 +211,7 @@ in TYPO3 v12.0+.</p>
     <p>The hook is removed without deprecation in order to allow extensions
 to work with TYPO3 v11 (using the hook) and v12+ (using the new event).</p>
 
-
+            
     <p>Use the <a href="Feature-87616-PSR-14EventForModifyingPageLinkGeneration.html">PSR-14 event</a>
 to allow greater influence in the functionality.</p>
 
@@ -220,7 +220,7 @@ to allow greater influence in the functionality.</p>
         <!-- content end -->
     </div>
 </article>
-
+                        
             <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center"><li class="page-item">
                             <a class="page-link" href="Index.html"
