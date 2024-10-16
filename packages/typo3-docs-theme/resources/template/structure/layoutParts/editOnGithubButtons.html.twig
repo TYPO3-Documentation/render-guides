@@ -8,7 +8,7 @@
     {% endif -%}
     {%- set copySources = getSettings('copy_sources') -%}
     {%- if (copySources)  %}
-    <a class="btn btn-sm btn-light" href="{{ copyDownload(env.currentFileName ~ '.rst', '_sources/' ~ env.currentFileName ~ '.rst.txt') }}" rel="nofollow noopener" target="_blank">
+    <a class="btn btn-sm btn-light" href="{{ copyDownload(sourceFilename(), '_sources/' ~ sourceFilename() ~ '.txt') }}" rel="nofollow noopener" target="_blank">
         <span class="btn-icon"><span class="fas fa-code"></span></span>
         <span class="btn-text">View source</span>
     </a>
