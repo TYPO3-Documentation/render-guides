@@ -25,7 +25,7 @@
     },
     {
         "name": "System Extensions",
-        "href": "https:\/\/docs.typo3.org\/Home\/SystemExtensions.html#System-Extensions",
+        "href": "https:\/\/docs.typo3.org\/Index.html#System-Extensions",
         "children": [
             {
                 "name": "adminpanel",

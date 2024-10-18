@@ -82,6 +82,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getEditOnGitHubLinkFromPath', $this->getEditOnGitHubLinkFromPath(...), ['needs_context' => true]),
             new TwigFunction('getReportIssueLink', $this->getReportIssueLink(...), ['needs_context' => true]),
             new TwigFunction('getCurrentFilename', $this->getCurrentFilename(...), ['needs_context' => true]),
+            new TwigFunction('sourceFilename', $this->getSourceFilename(...), ['needs_context' => true]),
             new TwigFunction('getRelativePath', $this->getRelativePath(...), ['needs_context' => true]),
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getPrevNextLinks', $this->getPrevNextLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
@@ -468,6 +469,15 @@ final class TwigExtension extends AbstractExtension
         } catch (\Exception) {
             return '';
         }
+    }
+
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getSourceFilename(array $context): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        return $renderContext->hasCurrentFileName() ? $renderContext->getDocument()->getOption('originalFileName', $renderContext->getCurrentFileName()) ?? '' : '';
     }
 
     /**

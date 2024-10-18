@@ -9,7 +9,7 @@
     <p class="caption">Contributors Corner</p>
     <ul class="menu-level-1">
         {%- if (copySources)  %}
-            <li><a href="{{ copyDownload(env.currentFileName ~ '.rst', '_sources/' ~ env.currentFileName ~ '.rst.txt') }}" rel="nofollow noopener" target="_blank">
+            <li><a href="{{ copyDownload(sourceFilename(), '_sources/' ~ sourceFilename() ~ '.txt') }}" rel="nofollow noopener" target="_blank">
                     View source of current document
             </a></li>
         {% endif -%}
