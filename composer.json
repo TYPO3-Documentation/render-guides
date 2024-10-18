@@ -56,8 +56,8 @@
     "config": {
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
-            "phpstan/extension-installer": true,
-            "phpdocumentor/shim": true
+            "phpdocumentor/shim": true,
+            "phpstan/extension-installer": true
         },
         "platform": {
             "php": "8.1.27"
