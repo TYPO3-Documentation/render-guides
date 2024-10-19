@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
+use phpDocumentor\Guides\Event\PostParseDocument;
 use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use phpDocumentor\Guides\Event\PreParseProcess;
@@ -33,6 +34,7 @@ use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
+use T3Docs\Typo3DocsTheme\EventListeners\OriginalFileNameSetter;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Packagist\PackagistService;
@@ -197,5 +199,8 @@ return static function (ContainerConfigurator $container): void {
         ->tag('event_listener', ['event' => PostCollectFilesForParsingEvent::class])
 
         ->set(TestingModeActivator::class)
-        ->tag('event_listener', ['event' => PreParseProcess::class]);
+        ->tag('event_listener', ['event' => PreParseProcess::class])
+
+        ->set(OriginalFileNameSetter::class)
+        ->tag('event_listener', ['event' => PostParseDocument::class]);
 };
