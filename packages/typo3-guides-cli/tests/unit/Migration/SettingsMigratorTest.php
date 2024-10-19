@@ -153,8 +153,8 @@ final class SettingsMigratorTest extends TestCase
         yield 'with intersphinx_default_mapping given' => [
             'legacySettings' => [
                 'intersphinx_mapping' => [
-                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/',
-                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/12.4/en-us/',
+                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/',
+                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/13.4/en-us/',
                     'manual_3' => 'https://example.com/manual-3/',
                 ],
             ],
@@ -184,28 +184,28 @@ final class SettingsMigratorTest extends TestCase
         yield 'with intersphinx default id, conflicting versions given' => [
             'legacySettings' => [
                 'intersphinx_mapping' => [
-                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/',
-                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/11.5/en-us/',
+                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/',
+                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/12.4/en-us/',
                 ],
             ],
             'expected' => <<<EXPECTED
                 <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
                     <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="stable"/>
-                    <inventory id="t3viewhelper" url="https://docs.typo3.org/other/typo3/view-helper-reference/11.5/en-us/"/>
+                    <inventory id="t3viewhelper" url="https://docs.typo3.org/other/typo3/view-helper-reference/12.4/en-us/"/>
                 </guides>
                 EXPECTED,
         ];
         yield 'with intersphinx default id, non-stable preferred TYPO3 version' => [
             'legacySettings' => [
                 'intersphinx_mapping' => [
-                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/11.5/en-us/',
-                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/',
+                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/12.4/en-us/',
+                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/',
                 ],
             ],
             'expected' => <<<EXPECTED
                 <guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" links-are-relative="true" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
-                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="11.5"/>
-                    <inventory id="t3coreapi" url="https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/"/>
+                    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" typo3-core-preferred="12.4"/>
+                    <inventory id="t3coreapi" url="https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/"/>
                 </guides>
                 EXPECTED,
         ];

@@ -9,7 +9,7 @@
             },
             {
                 "name": "TYPO3 Explained",
-                "href": "https:\/\/docs.typo3.org\/m\/typo3\/reference-coreapi\/12.4\/en-us\/Index.html#start",
+                "href": "https:\/\/docs.typo3.org\/m\/typo3\/reference-coreapi\/13.4\/en-us\/Index.html#start",
                 "children": [
                     {
                         "name": "main",
@@ -29,7 +29,7 @@
         "children": [
             {
                 "name": "adminpanel",
-                "href": "https:\/\/docs.typo3.org\/c\/typo3\/cms-adminpanel\/12.4\/en-us\/Index.html",
+                "href": "https:\/\/docs.typo3.org\/c\/typo3\/cms-adminpanel\/13.4\/en-us\/Index.html",
                 "children": [
                     {
                         "name": "main",
