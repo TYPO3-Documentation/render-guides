@@ -7,6 +7,7 @@ enum Typo3VersionMapping: string
     case Dev = 'dev';
     case Stable = 'stable';
     case OldStable = 'oldstable';
+    case V14 = '14';
     case V13 = '13';
     case V12 = '12';
     case V11 = '11';
@@ -20,9 +21,10 @@ enum Typo3VersionMapping: string
     {
         return match ($this) {
             Typo3VersionMapping::Dev => 'main',
-            Typo3VersionMapping::Stable => '12.4',
-            Typo3VersionMapping::OldStable => '11.5',
-            Typo3VersionMapping::V13 => 'main',
+            Typo3VersionMapping::Stable => '13.4',
+            Typo3VersionMapping::OldStable => '12.4',
+            Typo3VersionMapping::V14 => 'main',
+            Typo3VersionMapping::V13 => '13.4',
             Typo3VersionMapping::V12 => '12.4',
             Typo3VersionMapping::V11 => '11.5',
             Typo3VersionMapping::V10 => '10.4',
@@ -48,6 +50,6 @@ enum Typo3VersionMapping: string
 
     public static function getMajorVersionOfMain(): Typo3VersionMapping
     {
-        return Typo3VersionMapping::V13;
+        return Typo3VersionMapping::V14;
     }
 }
