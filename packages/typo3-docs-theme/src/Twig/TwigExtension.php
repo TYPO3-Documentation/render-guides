@@ -342,8 +342,17 @@ final class TwigExtension extends AbstractExtension
         if (str_starts_with($reportButton, 'https://gitlab.com/')) {
             return $reportButton;
         }
+        if (str_starts_with($reportButton, 'https://bitbucket.org/')) {
+            $reportButton = $this->enrichBitbuckedReport($reportButton, $renderContext);
+            return $reportButton;
+        }
         if ($reportButton !== '') {
-            $this->logger->warning('For security reasons only only "report-issue" links in the guides.xml to a local page (starting with "/") or to one of these 3 plattforms are allowed: https://forge.typo3.org/ https://github.com/ https://gitlab.com/');
+            $this->logger->warning(
+                'For security reasons only "report-issue" links in the guides.xml
+                to a local page (starting with "/") or to one of these 4 platforms
+                are allowed: https://forge.typo3.org/ https://github.com/ https://gitlab.com/
+                https://bitbucket.org/'
+            );
             return '';
         }
 
@@ -372,16 +381,27 @@ final class TwigExtension extends AbstractExtension
         return '';
     }
 
-    /**
-     * @param string $reportButton
-     * @return string
-     */
     public function enrichGithubReport(string $reportButton, RenderContext $renderContext): string
     {
         if (str_ends_with($reportButton, '/issues')) {
             $reportButton .= '/new/choose';
         }
         if (str_ends_with($reportButton, '/new/choose') or str_ends_with($reportButton, '/new')) {
+            $reportButton .= '?title=';
+            $description = $this->getIssueTitle($renderContext);
+            $reportButton .= urlencode($description);
+        }
+        return $reportButton;
+    }
+
+
+
+    private function enrichBitbuckedReport(string $reportButton, RenderContext $renderContext): string
+    {
+        if (str_ends_with($reportButton, '/issues')) {
+            $reportButton .= '/new';
+        }
+        if (str_ends_with($reportButton, '/new')) {
             $reportButton .= '?title=';
             $description = $this->getIssueTitle($renderContext);
             $reportButton .= urlencode($description);
