@@ -1,12 +1,16 @@
-
 {% if node.options.menu == 'mainmenu' %}
     {% include "structure/navigation/menu.html.twig" %}
 {% elseif node.options.menu == 'sitemap' %}
     {% include "body/menu/sitemap.html.twig" %}
 {% else %}
     <div class="toctree-wrapper compound">
+        {% if node.caption -%}
+            <p class="topic-title">{{ renderNode(node.caption) }}</p>
+        {% elseif node.options['caption'] -%}
+            <p class="topic-title">{{ node.options['caption'] }}</p>
+        {% endif -%}
         <ul>
-            {% for entry in node.entries -%}
+            {% for entry in node.menuEntries -%}
                 {{ renderNode(entry) }}
             {% endfor %}
         </ul>
