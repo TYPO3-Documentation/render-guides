@@ -105,7 +105,22 @@ if [ "${MY_UID}" -eq "0" ]; then
         fi
 
         addgroup typo3 --gid=$GID;
+
+        if [ $? -ne 0 ]; then
+            echo "Error: Failed to add group 'typo3' inside docker container."
+            echo "This can happen if docker does not run as root. Please add the"
+            echo "argument '--user=\$(id -u):\$(id -g)' to your 'docker run...' call."
+            exit 1
+        fi
+
         adduser -h $(pwd) -D -G typo3 --uid=$UID typo3;
+
+        if [ $? -ne 0 ]; then
+            echo "Error: Failed to add user 'typo3' inside docker container."
+            echo "This can happen if docker does not run as root. Please add the"
+            echo "argument '--user=\$(id -u):\$(id -g)' to your 'docker run...' call."
+            exit 1
+        fi
 
         # su behaves inconsistently with -c followed by flags
         # Workaround: run the entrypoint and commands as a standalone script
