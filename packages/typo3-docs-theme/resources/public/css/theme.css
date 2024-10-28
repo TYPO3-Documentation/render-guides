@@ -23404,6 +23404,9 @@ article a:not([class*=btn]):hover {
   color: var(--frame-link-hover-color);
   text-decoration-thickness: 2px;
 }
+article li {
+  margin-top: 0.5rem;
+}
 article li::marker {
   color: #ff8700;
 }
@@ -24552,9 +24555,6 @@ article *:hover > a.headerlink:after, article *:hover > a.permalink:after, artic
 
 .rst-content {
   /**
-   * Lists
-   */
-  /**
    * Images and objects
    */
   /**
@@ -24566,12 +24566,6 @@ article *:hover > a.headerlink:after, article *:hover > a.permalink:after, artic
   /**
    * Index page "genindex.html"
    */
-}
-.rst-content .toctree-wrapper ul li,
-.rst-content .toctree-wrapper ol li,
-.rst-content ul.simple li,
-.rst-content ol.simple li {
-  margin-top: 0.5rem;
 }
 @media (min-width: 992px) {
   .rst-content .compact-list > ul.simple li,

@@ -1,8 +1,8 @@
 body {
     --bs-body-font-size: 1.1rem;
     --bs-body-color: #{$gray-900};
-    --bs-table-color:  #{$gray-900};
-    --bs-emphasis-color:  #{$gray-900};
+    --bs-table-color: #{$gray-900};
+    --bs-emphasis-color: #{$gray-900};
 }
 
 root {
@@ -11,8 +11,9 @@ root {
 }
 
 a {
-    color:inherit;
+    color: inherit;
     text-underline-offset: 25%;
+
     &:hover {
         text-decoration-thickness: 2px;
     }
@@ -34,18 +35,26 @@ article {
         @extend .text-break;
         text-decoration: underline;
         color: var(--frame-link-color);
+
         &:hover {
             color: var(--frame-link-hover-color);
             text-decoration-thickness: 2px;
         }
     }
-    li::marker {
-        color: $orange;
+
+    li {
+        margin-top: ($spacer * .5);
+
+        &::marker {
+            color: $orange;
+        }
     }
+
     ol li::marker {
         color: $gray-800;
     }
 }
+
 *:focus-visible {
     @include focus();
 }
