@@ -50,7 +50,7 @@ article {
         }
     }
 
-    ol li::marker {
+    ol > li::marker {
         color: $gray-800;
     }
 }
