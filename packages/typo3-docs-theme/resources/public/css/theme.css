@@ -23410,7 +23410,7 @@ article li {
 article li::marker {
   color: #ff8700;
 }
-article ol li::marker {
+article ol > li::marker {
   color: rgb(89.25, 89.25, 89.25);
 }
 
