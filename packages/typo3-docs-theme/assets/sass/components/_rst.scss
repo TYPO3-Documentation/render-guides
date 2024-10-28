@@ -1,16 +1,5 @@
 .rst-content {
 
-    /**
-     * Lists
-     */
-    .toctree-wrapper ul,
-    .toctree-wrapper ol,
-    ul.simple,
-    ol.simple {
-        li {
-            margin-top: ($spacer * .5);
-        }
-    }
     // https://github.com/TYPO3-Documentation/sphinx_typo3_theme/issues/91
     @media (min-width: 992px) {
         .compact-list > ul.simple,
