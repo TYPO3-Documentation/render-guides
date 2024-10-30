@@ -167,7 +167,7 @@ module.exports = function (grunt) {
       /* Compile sass changes into theme directory */
       sass: {
         files: [
-          '<%= paths.source %>sass/*.scss'
+          '<%= paths.source %>sass/**/*.scss'
         ],
         tasks: ['sass']
       }

@@ -53,6 +53,10 @@ assets-install: ## Installs the node-modules needed to build the assets.
 assets-debug: ## Builds assets, keeping the sourcemap. It copies the output files directly into Documentation-GENERATED-temp so they can be tested without reloading.
 	ddev npm-debug
 
+.PHONE: assets-watch
+assets-watch: ## Watches changes of sass files and build automatically on change
+	ddev npm-watch
+
 .PHONE: build-phar
 build-phar: ## Creates a guides.phar file (github workflow)
 	./tools/build-phar.sh
