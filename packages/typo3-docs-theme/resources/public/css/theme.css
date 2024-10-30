@@ -23831,6 +23831,17 @@ code {
     max-width: 60vw;
   }
 }
+dl.command > dt a:not([class*=headerlink]) {
+  float: right;
+}
+dl.command .command-description {
+  margin-block: 1rem;
+}
+dl.command .command-options section,
+dl.command .command-arguments section {
+  margin-left: 2rem;
+}
+
 .directory-tree ul {
   margin-bottom: 0;
   list-style: none;
