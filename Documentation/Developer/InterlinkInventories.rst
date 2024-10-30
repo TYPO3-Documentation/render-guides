@@ -89,18 +89,6 @@ These inventories can be used by default in any rendered documentation:
 
     URL: https://docs.typo3.org/m/typo3/tutorial-editors/main/en-us/
 
-*   Title: :doc:`t3install:Index`
-
-    Inventory key: :doc:`t3install <t3install:Index>`
-
-    URL: https://docs.typo3.org/m/typo3/guide-installation/main/en-us/
-
-*   Title: :doc:`t3upgrade:Index`
-
-    Inventory key: :doc:`t3upgrade <t3upgrade:Index>`
-
-    URL: https://docs.typo3.org/m/typo3/guide-installation/main/en-us/
-
 *   Title: :doc:`t3sitepackage:Index`
 
     Inventory key: :doc:`t3sitepackage <t3sitepackage:Index>`
@@ -118,12 +106,6 @@ These inventories can be used by default in any rendered documentation:
     Inventory key: :doc:`t3translate <t3translate:Index>`
 
     URL: https://docs.typo3.org/m/typo3/guide-frontendlocalization/main/en-us/
-
-*   Title: :doc:`t3ts45:Index`
-
-    Inventory key: :doc:`t3ts45 <t3ts45:Index>`
-
-    URL: https://docs.typo3.org/m/typo3/tutorial-typoscript-in-45-minutes/main/en-us/
 
 *   Title: :doc:`h2document:Index`
 
