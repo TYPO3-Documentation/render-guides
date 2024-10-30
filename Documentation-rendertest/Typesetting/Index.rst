@@ -62,6 +62,12 @@ Level 6 Header
 At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
 gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
+Long Header with code and linebreak At vero eos ea rebum `subtypes_addlist`
+===========================================================
+
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
 ..  _emphasis:
 
 Emphasis
