@@ -3,47 +3,6 @@
 //
 .rst-content {
     dl.php {
-        border-radius: $border-radius;
-        margin-bottom: $spacer;
-        padding-bottom: $spacer * .3;
-        .descname {
-            background-color: transparent;
-            border: none;
-            color: $code-color;
-            font-size: 100%;
-            padding: 0;
-        }
-        .optional {
-            padding: 0 .25em;
-        }
-        code {
-            padding: 0 .25em;
-        }
-        .pre {
-            font-family: $font-family-monospace;
-        }
-        .headerlink,
-        .optional {
-            color: $body-color;
-        }
-        .viewcode-link {
-            padding-left: 1em;
-        }
-        & > dt {
-            background-color: lighten($info, 50%);
-            border-radius: $border-radius;
-            border-top: solid 3px $info;
-            color: darken($info, 50%);
-            display: inline-block;
-            font-size: $font-size-base;
-            margin-bottom: calc(#{$spacer} / 2);
-            padding: .25em .5em;
-            position: relative;
-        }
-        dl.php > dt {
-            background-color: $lighter;
-            border-top: 2px solid darken($lighter, 30%);
-            color: color-contrast($lighter);
-        }
+        @extend .property-card;
     }
 }
