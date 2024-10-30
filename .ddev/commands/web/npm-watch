@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd packages/typo3-docs-theme
+npm run watch

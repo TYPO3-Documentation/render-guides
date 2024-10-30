@@ -22,7 +22,8 @@
     },
     "scripts": {
         "build": "grunt build",
-        "debug": "grunt debug"
+        "debug": "grunt debug",
+        "watch": "grunt watch"
     },
     "engines": {
         "node": ">=18.15.0 <21.0.0"
