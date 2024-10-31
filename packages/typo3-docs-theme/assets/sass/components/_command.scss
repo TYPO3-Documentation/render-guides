@@ -1,5 +1,5 @@
 dl.command {
-    @extend .confval;
+    @extend .property-card;
 
     & > dt {
         a:not([class*=headerlink]) {
