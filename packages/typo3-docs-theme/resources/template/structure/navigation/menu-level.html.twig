@@ -1,4 +1,4 @@
-<li class="{%- if menu.currentPath == entry.url %} current {%- endif -%}{% if entry.url in menu.rootlinePaths %} active {%- endif -%}">
+<li class="{%- if menu.currentPath == entry.url %} current {%- endif -%}{% if entry.url in menu.rootlinePaths %} active {%- endif -%}" role="menuitem">
     <a href="{{ renderLink(menuEntry.url) }}"
        {%- if menu.currentPath == entry.url %} aria-current="page" {%- endif -%}>
         {{ renderPlainText(menuEntry.value) }}
