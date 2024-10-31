@@ -29,7 +29,13 @@
         if (link.nextSibling) {
           var expand = document.createElement('span');
           expand.classList.add('toctree-expand');
+          expand.setAttribute('tabindex', '0');
           expand.addEventListener('click', toggleCurrent, true);
+          expand.addEventListener('keypress', (e) => {
+            if (e.key === "Enter") {
+              toggleCurrent(e)
+            }
+          }, true);
           link.prepend(expand);
         }
       });
