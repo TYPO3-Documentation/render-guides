@@ -1,0 +1,20 @@
+dl.command {
+    @extend .property-card;
+
+    & > dt {
+        a:not([class*=headerlink]) {
+            float: right;
+        }
+    }
+
+    .command-description {
+        margin-block: $spacer;
+    }
+
+    .command-options,
+    .command-arguments {
+        section {
+            margin-left: calc($spacer * 2);
+        }
+    }
+}
