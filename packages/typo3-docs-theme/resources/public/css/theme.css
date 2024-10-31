@@ -13509,7 +13509,7 @@ textarea.form-control-lg {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
-.btn-check[disabled] + .btn, .btn-check[disabled] + .toc-toggle, .button-style .btn-check[disabled] + a, .btn-check:disabled + .btn, .btn-check:disabled + .toc-toggle, .button-style .btn-check:disabled + a {
+.btn-check[disabled] + .btn, .page-main-navigation .btn-check[disabled] + .toc-toggle, .button-style .btn-check[disabled] + a, .btn-check:disabled + .btn, .page-main-navigation .btn-check:disabled + .toc-toggle, .button-style .btn-check:disabled + a {
   pointer-events: none;
   filter: none;
   opacity: 0.65;
@@ -13710,11 +13710,11 @@ textarea.form-control-lg {
 .input-group > .form-floating:focus-within {
   z-index: 5;
 }
-.input-group .btn, .input-group .toc-toggle, .input-group .button-style a, .button-style .input-group a {
+.input-group .btn, .input-group .page-main-navigation .toc-toggle, .page-main-navigation .input-group .toc-toggle, .input-group .button-style a, .button-style .input-group a {
   position: relative;
   z-index: 2;
 }
-.input-group .btn:focus, .input-group .toc-toggle:focus, .input-group .button-style a:focus, .button-style .input-group a:focus {
+.input-group .btn:focus, .input-group .page-main-navigation .toc-toggle:focus, .page-main-navigation .input-group .toc-toggle:focus, .input-group .button-style a:focus, .button-style .input-group a:focus {
   z-index: 5;
 }
 
@@ -13737,7 +13737,7 @@ textarea.form-control-lg {
 .input-group-lg > .form-select,
 .input-group-lg > .input-group-text,
 .input-group-lg > .btn,
-.input-group-lg > .toc-toggle,
+.page-main-navigation .input-group-lg > .toc-toggle,
 .button-style .input-group-lg > a {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
@@ -13748,7 +13748,7 @@ textarea.form-control-lg {
 .input-group-sm > .form-select,
 .input-group-sm > .input-group-text,
 .input-group-sm > .btn,
-.input-group-sm > .toc-toggle,
+.page-main-navigation .input-group-sm > .toc-toggle,
 .button-style .input-group-sm > a {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -13965,7 +13965,7 @@ textarea.form-control-lg {
   z-index: 4;
 }
 
-.btn, .toc-toggle, .button-style a {
+.btn, .page-main-navigation .toc-toggle, .button-style a {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
   --bs-btn-font-family: ;
@@ -13999,44 +13999,44 @@ textarea.form-control-lg {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .btn, .toc-toggle, .button-style a {
+  .btn, .page-main-navigation .toc-toggle, .button-style a {
     transition: none;
   }
 }
-.btn:hover, .toc-toggle:hover, .button-style a:hover {
+.btn:hover, .page-main-navigation .toc-toggle:hover, .button-style a:hover {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
 }
-.btn-check + .btn:hover, .btn-check + .toc-toggle:hover, .button-style .btn-check + a:hover {
+.btn-check + .btn:hover, .page-main-navigation .btn-check + .toc-toggle:hover, .button-style .btn-check + a:hover {
   color: var(--bs-btn-color);
   background-color: var(--bs-btn-bg);
   border-color: var(--bs-btn-border-color);
 }
-.btn:focus-visible, .toc-toggle:focus-visible, .button-style a:focus-visible {
+.btn:focus-visible, .page-main-navigation .toc-toggle:focus-visible, .button-style a:focus-visible {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:focus-visible + .btn, .btn-check:focus-visible + .toc-toggle, .button-style .btn-check:focus-visible + a {
+.btn-check:focus-visible + .btn, .page-main-navigation .btn-check:focus-visible + .toc-toggle, .button-style .btn-check:focus-visible + a {
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked + .btn, .btn-check:checked + .toc-toggle, .button-style .btn-check:checked + a, :not(.btn-check) + .btn:active, :not(.btn-check) + .toc-toggle:active, .button-style :not(.btn-check) + a:active, .btn:first-child:active, .toc-toggle:first-child:active, .button-style a:first-child:active, .btn.active, .active.toc-toggle, .button-style a.active, .btn.show, .show.toc-toggle, .button-style a.show {
+.btn-check:checked + .btn, .page-main-navigation .btn-check:checked + .toc-toggle, .button-style .btn-check:checked + a, :not(.btn-check) + .btn:active, .page-main-navigation :not(.btn-check) + .toc-toggle:active, .button-style :not(.btn-check) + a:active, .btn:first-child:active, .page-main-navigation .toc-toggle:first-child:active, .button-style a:first-child:active, .btn.active, .page-main-navigation .active.toc-toggle, .button-style a.active, .btn.show, .page-main-navigation .show.toc-toggle, .button-style a.show {
   color: var(--bs-btn-active-color);
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
-.btn-check:checked + .btn:focus-visible, .btn-check:checked + .toc-toggle:focus-visible, .button-style .btn-check:checked + a:focus-visible, :not(.btn-check) + .btn:active:focus-visible, :not(.btn-check) + .toc-toggle:active:focus-visible, .button-style :not(.btn-check) + a:active:focus-visible, .btn:first-child:active:focus-visible, .toc-toggle:first-child:active:focus-visible, .button-style a:first-child:active:focus-visible, .btn.active:focus-visible, .active.toc-toggle:focus-visible, .button-style a.active:focus-visible, .btn.show:focus-visible, .show.toc-toggle:focus-visible, .button-style a.show:focus-visible {
+.btn-check:checked + .btn:focus-visible, .page-main-navigation .btn-check:checked + .toc-toggle:focus-visible, .button-style .btn-check:checked + a:focus-visible, :not(.btn-check) + .btn:active:focus-visible, .page-main-navigation :not(.btn-check) + .toc-toggle:active:focus-visible, .button-style :not(.btn-check) + a:active:focus-visible, .btn:first-child:active:focus-visible, .page-main-navigation .toc-toggle:first-child:active:focus-visible, .button-style a:first-child:active:focus-visible, .btn.active:focus-visible, .page-main-navigation .active.toc-toggle:focus-visible, .button-style a.active:focus-visible, .btn.show:focus-visible, .page-main-navigation .show.toc-toggle:focus-visible, .button-style a.show:focus-visible {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked:focus-visible + .btn, .btn-check:checked:focus-visible + .toc-toggle, .button-style .btn-check:checked:focus-visible + a {
+.btn-check:checked:focus-visible + .btn, .page-main-navigation .btn-check:checked:focus-visible + .toc-toggle, .button-style .btn-check:checked:focus-visible + a {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn:disabled, .toc-toggle:disabled, .button-style a:disabled, .btn.disabled, .disabled.toc-toggle, .button-style a.disabled, fieldset:disabled .btn, fieldset:disabled .toc-toggle, fieldset:disabled .button-style a, .button-style fieldset:disabled a {
+.btn:disabled, .page-main-navigation .toc-toggle:disabled, .button-style a:disabled, .btn.disabled, .page-main-navigation .disabled.toc-toggle, .button-style a.disabled, fieldset:disabled .btn, fieldset:disabled .page-main-navigation .toc-toggle, .page-main-navigation fieldset:disabled .toc-toggle, fieldset:disabled .button-style a, .button-style fieldset:disabled a {
   color: var(--bs-btn-disabled-color);
   pointer-events: none;
   background-color: var(--bs-btn-disabled-bg);
@@ -14214,7 +14214,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #ffffff;
 }
 
-.btn-light, .toc-toggle {
+.btn-light, .page-main-navigation .toc-toggle {
   --bs-btn-color: #000;
   --bs-btn-bg: rgb(242.25, 242.25, 242.25);
   --bs-btn-border-color: rgb(242.25, 242.25, 242.25);
@@ -14542,14 +14542,14 @@ textarea.form-control-lg {
   color: var(--bs-btn-hover-color);
 }
 
-.btn-lg, .btn-group-lg > .btn, .btn-group-lg > .toc-toggle, .button-style .btn-group-lg > a {
+.btn-lg, .btn-group-lg > .btn, .page-main-navigation .btn-group-lg > .toc-toggle, .button-style .btn-group-lg > a {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 1rem;
   --bs-btn-font-size: 1.25rem;
   --bs-btn-border-radius: var(--bs-border-radius-lg);
 }
 
-.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .toc-toggle, .button-style .btn-group-sm > a {
+.btn-sm, .btn-group-sm > .btn, .page-main-navigation .btn-group-sm > .toc-toggle, .button-style .btn-group-sm > a {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.875rem;
@@ -14916,46 +14916,46 @@ textarea.form-control-lg {
   display: inline-flex;
   vertical-align: middle;
 }
-.btn-group > .btn, .btn-group > .toc-toggle, .button-style .btn-group > a,
+.btn-group > .btn, .page-main-navigation .btn-group > .toc-toggle, .button-style .btn-group > a,
 .btn-group-vertical > .btn,
-.btn-group-vertical > .toc-toggle,
+.page-main-navigation .btn-group-vertical > .toc-toggle,
 .button-style .btn-group-vertical > a {
   position: relative;
   flex: 1 1 auto;
 }
-.btn-group > .btn-check:checked + .btn, .btn-group > .btn-check:checked + .toc-toggle, .button-style .btn-group > .btn-check:checked + a,
+.btn-group > .btn-check:checked + .btn, .page-main-navigation .btn-group > .btn-check:checked + .toc-toggle, .button-style .btn-group > .btn-check:checked + a,
 .btn-group > .btn-check:focus + .btn,
-.btn-group > .btn-check:focus + .toc-toggle,
+.page-main-navigation .btn-group > .btn-check:focus + .toc-toggle,
 .button-style .btn-group > .btn-check:focus + a,
 .btn-group > .btn:hover,
-.btn-group > .toc-toggle:hover,
+.page-main-navigation .btn-group > .toc-toggle:hover,
 .button-style .btn-group > a:hover,
 .btn-group > .btn:focus,
-.btn-group > .toc-toggle:focus,
+.page-main-navigation .btn-group > .toc-toggle:focus,
 .button-style .btn-group > a:focus,
 .btn-group > .btn:active,
-.btn-group > .toc-toggle:active,
+.page-main-navigation .btn-group > .toc-toggle:active,
 .button-style .btn-group > a:active,
 .btn-group > .btn.active,
-.btn-group > .active.toc-toggle,
+.page-main-navigation .btn-group > .active.toc-toggle,
 .button-style .btn-group > a.active,
 .btn-group-vertical > .btn-check:checked + .btn,
-.btn-group-vertical > .btn-check:checked + .toc-toggle,
+.page-main-navigation .btn-group-vertical > .btn-check:checked + .toc-toggle,
 .button-style .btn-group-vertical > .btn-check:checked + a,
 .btn-group-vertical > .btn-check:focus + .btn,
-.btn-group-vertical > .btn-check:focus + .toc-toggle,
+.page-main-navigation .btn-group-vertical > .btn-check:focus + .toc-toggle,
 .button-style .btn-group-vertical > .btn-check:focus + a,
 .btn-group-vertical > .btn:hover,
-.btn-group-vertical > .toc-toggle:hover,
+.page-main-navigation .btn-group-vertical > .toc-toggle:hover,
 .button-style .btn-group-vertical > a:hover,
 .btn-group-vertical > .btn:focus,
-.btn-group-vertical > .toc-toggle:focus,
+.page-main-navigation .btn-group-vertical > .toc-toggle:focus,
 .button-style .btn-group-vertical > a:focus,
 .btn-group-vertical > .btn:active,
-.btn-group-vertical > .toc-toggle:active,
+.page-main-navigation .btn-group-vertical > .toc-toggle:active,
 .button-style .btn-group-vertical > a:active,
 .btn-group-vertical > .btn.active,
-.btn-group-vertical > .active.toc-toggle,
+.page-main-navigation .btn-group-vertical > .active.toc-toggle,
 .button-style .btn-group-vertical > a.active {
   z-index: 1;
 }
@@ -14972,26 +14972,26 @@ textarea.form-control-lg {
 .btn-group {
   border-radius: var(--bs-border-radius);
 }
-.btn-group > :not(.btn-check:first-child) + .btn, .btn-group > :not(.btn-check:first-child) + .toc-toggle, .button-style .btn-group > :not(.btn-check:first-child) + a,
+.btn-group > :not(.btn-check:first-child) + .btn, .page-main-navigation .btn-group > :not(.btn-check:first-child) + .toc-toggle, .button-style .btn-group > :not(.btn-check:first-child) + a,
 .btn-group > .btn-group:not(:first-child) {
   margin-left: calc(var(--bs-border-width) * -1);
 }
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .toc-toggle:not(:last-child):not(.dropdown-toggle), .button-style .btn-group > a:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .page-main-navigation .btn-group > .toc-toggle:not(:last-child):not(.dropdown-toggle), .button-style .btn-group > a:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn.dropdown-toggle-split:first-child,
-.btn-group > .dropdown-toggle-split.toc-toggle:first-child,
+.page-main-navigation .btn-group > .dropdown-toggle-split.toc-toggle:first-child,
 .button-style .btn-group > a.dropdown-toggle-split:first-child,
 .btn-group > .btn-group:not(:last-child) > .btn,
-.btn-group > .btn-group:not(:last-child) > .toc-toggle,
+.page-main-navigation .btn-group > .btn-group:not(:last-child) > .toc-toggle,
 .button-style .btn-group > .btn-group:not(:last-child) > a {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.btn-group > .btn:nth-child(n+3), .btn-group > .toc-toggle:nth-child(n+3), .button-style .btn-group > a:nth-child(n+3),
+.btn-group > .btn:nth-child(n+3), .page-main-navigation .btn-group > .toc-toggle:nth-child(n+3), .button-style .btn-group > a:nth-child(n+3),
 .btn-group > :not(.btn-check) + .btn,
-.btn-group > :not(.btn-check) + .toc-toggle,
+.page-main-navigation .btn-group > :not(.btn-check) + .toc-toggle,
 .button-style .btn-group > :not(.btn-check) + a,
 .btn-group > .btn-group:not(:first-child) > .btn,
-.btn-group > .btn-group:not(:first-child) > .toc-toggle,
+.page-main-navigation .btn-group > .btn-group:not(:first-child) > .toc-toggle,
 .button-style .btn-group > .btn-group:not(:first-child) > a {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -15008,12 +15008,12 @@ textarea.form-control-lg {
   margin-right: 0;
 }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .toc-toggle + .dropdown-toggle-split, .button-style .btn-group-sm > a + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .page-main-navigation .btn-group-sm > .toc-toggle + .dropdown-toggle-split, .button-style .btn-group-sm > a + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > .toc-toggle + .dropdown-toggle-split, .button-style .btn-group-lg > a + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .page-main-navigation .btn-group-lg > .toc-toggle + .dropdown-toggle-split, .button-style .btn-group-lg > a + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
@@ -15023,24 +15023,24 @@ textarea.form-control-lg {
   align-items: flex-start;
   justify-content: center;
 }
-.btn-group-vertical > .btn, .btn-group-vertical > .toc-toggle, .button-style .btn-group-vertical > a,
+.btn-group-vertical > .btn, .page-main-navigation .btn-group-vertical > .toc-toggle, .button-style .btn-group-vertical > a,
 .btn-group-vertical > .btn-group {
   width: 100%;
 }
-.btn-group-vertical > .btn:not(:first-child), .btn-group-vertical > .toc-toggle:not(:first-child), .button-style .btn-group-vertical > a:not(:first-child),
+.btn-group-vertical > .btn:not(:first-child), .page-main-navigation .btn-group-vertical > .toc-toggle:not(:first-child), .button-style .btn-group-vertical > a:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) {
   margin-top: calc(var(--bs-border-width) * -1);
 }
-.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .toc-toggle:not(:last-child):not(.dropdown-toggle), .button-style .btn-group-vertical > a:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .page-main-navigation .btn-group-vertical > .toc-toggle:not(:last-child):not(.dropdown-toggle), .button-style .btn-group-vertical > a:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical > .btn-group:not(:last-child) > .btn,
-.btn-group-vertical > .btn-group:not(:last-child) > .toc-toggle,
+.page-main-navigation .btn-group-vertical > .btn-group:not(:last-child) > .toc-toggle,
 .button-style .btn-group-vertical > .btn-group:not(:last-child) > a {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.btn-group-vertical > .btn ~ .btn, .btn-group-vertical > .toc-toggle ~ .btn, .btn-group-vertical > .btn ~ .toc-toggle, .btn-group-vertical > .toc-toggle ~ .toc-toggle, .button-style .btn-group-vertical > a ~ .btn, .button-style .btn-group-vertical > a ~ .toc-toggle, .button-style .btn-group-vertical > .btn ~ a, .button-style .btn-group-vertical > .toc-toggle ~ a, .button-style .btn-group-vertical > a ~ a,
+.btn-group-vertical > .btn ~ .btn, .page-main-navigation .btn-group-vertical > .toc-toggle ~ .btn, .page-main-navigation .btn-group-vertical > .btn ~ .toc-toggle, .page-main-navigation .btn-group-vertical > .toc-toggle ~ .toc-toggle, .button-style .btn-group-vertical > a ~ .btn, .button-style .page-main-navigation .btn-group-vertical > a ~ .toc-toggle, .page-main-navigation .button-style .btn-group-vertical > a ~ .toc-toggle, .button-style .btn-group-vertical > .btn ~ a, .button-style .page-main-navigation .btn-group-vertical > .toc-toggle ~ a, .page-main-navigation .button-style .btn-group-vertical > .toc-toggle ~ a, .button-style .btn-group-vertical > a ~ a,
 .btn-group-vertical > .btn-group:not(:first-child) > .btn,
-.btn-group-vertical > .btn-group:not(:first-child) > .toc-toggle,
+.page-main-navigation .btn-group-vertical > .btn-group:not(:first-child) > .toc-toggle,
 .button-style .btn-group-vertical > .btn-group:not(:first-child) > a {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -16081,7 +16081,7 @@ textarea.form-control-lg {
   display: none;
 }
 
-.btn .badge, .toc-toggle .badge, .button-style a .badge {
+.btn .badge, .page-main-navigation .toc-toggle .badge, .button-style a .badge {
   position: relative;
   top: -1px;
 }
@@ -18141,7 +18141,7 @@ textarea.form-control-lg {
   background-color: currentcolor;
   opacity: 0.5;
 }
-.placeholder.btn::before, .placeholder.toc-toggle::before, .button-style a.placeholder::before {
+.placeholder.btn::before, .page-main-navigation .placeholder.toc-toggle::before, .button-style a.placeholder::before {
   display: inline-block;
   content: "";
 }
@@ -23435,7 +23435,7 @@ article ol > li::marker {
   background-color: inherit;
 }
 
-.btn, .toc-toggle, .button-style a {
+.btn, .page-main-navigation .toc-toggle, .button-style a {
   display: inline-flex;
   align-items: center;
   text-align: left;
@@ -23470,7 +23470,7 @@ article ol > li::marker {
 
 .btn-default, .button-style-default a, .button-style-light a,
 .btn-light,
-.toc-toggle {
+.page-main-navigation .toc-toggle {
   --bs-btn-color: #333333;
   --bs-btn-bg: rgb(242.25, 242.25, 242.25);
   --bs-btn-border-color: rgb(242.25, 242.25, 242.25);
@@ -23510,7 +23510,8 @@ article ol > li::marker {
 }
 .card-footer .btn-default, .card-footer .button-style-default a, .button-style-default .card-footer a, .card-footer .button-style-light a, .button-style-light .card-footer a,
 .card-footer .btn-light,
-.card-footer .toc-toggle {
+.card-footer .page-main-navigation .toc-toggle,
+.page-main-navigation .card-footer .toc-toggle {
   --bs-btn-color: #333333;
   --bs-btn-bg: #ffffff;
   --bs-btn-border-color: #ffffff;
@@ -25412,7 +25413,7 @@ dl.field-list > dt:after {
   margin-bottom: 1rem;
   display: none;
 }
-.breadcrumb-bar .breadcrumb-additions > a.btn-light:hover, .breadcrumb-bar .breadcrumb-additions > a.toc-toggle:hover {
+.breadcrumb-bar .breadcrumb-additions > a.btn-light:hover, .breadcrumb-bar .page-main-navigation .breadcrumb-additions > a.toc-toggle:hover, .page-main-navigation .breadcrumb-bar .breadcrumb-additions > a.toc-toggle:hover {
   background: rgb(242.25, 242.25, 242.25);
   outline: 2px solid #333333;
 }
@@ -25570,47 +25571,67 @@ dl.field-list > dt:after {
   height: auto;
 }
 
-.toc-checkbox {
+.page-main-navigation .toc-checkbox {
   display: none;
 }
-
-.toc-collapse {
+.page-main-navigation .toc-checkbox:checked ~ .toc-collapse {
+  display: block;
+}
+.page-main-navigation .toc-collapse {
   display: none;
 }
 @media (min-width: 992px) {
-  .toc-collapse {
+  .page-main-navigation .toc-collapse {
     display: block;
   }
 }
-
-.toc-checkbox:checked ~ .toc-collapse {
-  display: block;
-}
-
-.toc-toggle {
+.page-main-navigation .toc-toggle {
   margin: 0;
 }
 @media (min-width: 992px) {
-  .toc-toggle {
+  .page-main-navigation .toc-toggle {
     display: none;
   }
 }
-
-.toc-header {
+.page-main-navigation .toc-header {
   display: flex;
   justify-content: space-between;
   padding-left: calc(1rem / 1.5);
 }
-
-.main_menu {
+.page-main-navigation .toc-header a.toc-title-project {
+  display: block;
+  position: relative;
+  font-size: 1.2em;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #333333;
+  text-decoration: none;
+}
+.page-main-navigation .toc-header a.toc-title-project:before {
+  content: "";
+  width: 0.2em;
+  height: 100%;
+  background: #ff8700;
+  position: absolute;
+  top: 0;
+  left: -0.6em;
+}
+.page-main-navigation .toc-header a.toc-title-project:hover {
+  text-decoration: 0.1em underline;
+}
+.page-main-navigation .toc-search {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.page-main-navigation .main_menu {
   margin: 1rem 0;
   display: block;
 }
-.main_menu .caption {
+.page-main-navigation .main_menu .caption {
   font-weight: bold;
   margin: 0;
 }
-.main_menu a {
+.page-main-navigation .main_menu a {
   position: relative;
   display: block;
   color: inherit;
@@ -25619,31 +25640,44 @@ dl.field-list > dt:after {
   padding-right: 1.5em;
   text-decoration: none;
 }
-.main_menu a:hover {
+.page-main-navigation .main_menu a:hover {
   text-decoration: underline;
 }
-.main_menu ul {
+.page-main-navigation .main_menu ul {
   padding-left: calc(1rem / 2);
   list-style-type: none;
 }
-.main_menu > ul > li.active {
+.page-main-navigation .main_menu > ul {
+  padding-left: 0;
+}
+.page-main-navigation .main_menu > ul .active > ul {
+  display: block !important;
+}
+.page-main-navigation .main_menu > ul:not(:last-child) {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+.page-main-navigation .main_menu > ul > li.active {
   border-left: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0;
 }
-.main_menu li {
+.page-main-navigation .main_menu > ul > li ul {
+  display: none;
+}
+.page-main-navigation .main_menu li {
   border-radius: 0.375rem;
   overflow: hidden;
   padding-left: calc(1rem / 2);
 }
-.main_menu li.current {
+.page-main-navigation .main_menu li.current {
   border-left: none;
 }
 @media (min-width: 992px) {
-  .main_menu li {
+  .page-main-navigation .main_menu li {
     font-size: 1rem;
   }
 }
-.main_menu .toctree-expand {
+.page-main-navigation .main_menu .toctree-expand {
   position: absolute;
   display: block;
   top: calc(1rem / 4 + 1rem * 1.25 / 2);
@@ -25654,77 +25688,28 @@ dl.field-list > dt:after {
   background-color: rgb(242.25, 242.25, 242.25);
   border-radius: 50%;
 }
-.main_menu .toctree-expand:after, .main_menu .toctree-expand:before {
+.page-main-navigation .main_menu .toctree-expand:after, .page-main-navigation .main_menu .toctree-expand:before {
   position: absolute;
   content: "";
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
 }
-.main_menu .toctree-expand:after {
+.page-main-navigation .main_menu .toctree-expand:after {
   width: 10px;
   height: 0;
   border-top: 2px solid;
-  transform: translate(-50%, -50%);
 }
-.main_menu .toctree-expand:before {
+.page-main-navigation .main_menu .toctree-expand:before {
   width: 0;
   height: 10px;
   border-left: 2px solid;
-  transform: translate(-50%, -50%);
 }
-.main_menu .active > a {
+.page-main-navigation .main_menu .active > a {
   font-weight: bold;
 }
-.main_menu .active > a > .toctree-expand:before {
+.page-main-navigation .main_menu .active > a > .toctree-expand:before {
   display: none;
-}
-.main_menu > ul {
-  padding-left: 0;
-}
-.main_menu > ul .active > ul {
-  display: block !important;
-}
-.main_menu > ul > li ul {
-  display: none;
-}
-.main_menu > ul:not(:last-child) {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-a.toc-title-project {
-  display: block;
-  position: relative;
-  font-size: 1.2em;
-  font-weight: 700;
-  line-height: 1.25;
-  color: #333333;
-  text-decoration: none;
-}
-a.toc-title-project:before {
-  content: "";
-  width: 0.2em;
-  height: 100%;
-  background: #ff8700;
-  position: absolute;
-  top: 0;
-  left: -0.6em;
-}
-a.toc-title-project:hover {
-  text-decoration: 0.1em underline;
-}
-
-.toc-search {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-}
-
-.toc-backref {
-  color: inherit;
-}
-.toc-backref:hover {
-  color: inherit;
-  text-decoration: none;
 }
 
 /**
