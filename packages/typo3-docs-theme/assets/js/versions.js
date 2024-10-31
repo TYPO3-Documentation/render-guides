@@ -143,7 +143,7 @@
         if (!isNaN(versionAsFloat) && Number(versionTrimmed) === versionAsFloat) {
           // make each number part have the same digit count, allowing to
           // properly sort as a string
-          version = version.split('.').map(n => +n+VERSION_SORT_BASE).join('.')
+          version = version.split('.').map(n => +n + VERSION_SORT_BASE).join('.')
           versionType = '2_numeric';
         }
       }
@@ -197,7 +197,7 @@
 
           if (versionType === '2_numeric') {
             // restore version string from before sorting
-            parsedVersion = version.split('.').map(n => +n-VERSION_SORT_BASE).join('.')
+            parsedVersion = version.split('.').map(n => +n - VERSION_SORT_BASE).join('.')
           }
 
           html += '<dd><a href="' + sortedOutput[baseIndexKey][language][versionType][version] + '">' + parsedVersion + '</a></dd>';
@@ -251,4 +251,9 @@
   }
 
   versionElement.addEventListener('click', addListOfVersions);
+  versionElement.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      addListOfVersions()
+    }
+  });
 })();
