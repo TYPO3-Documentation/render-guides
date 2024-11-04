@@ -20,10 +20,8 @@
         <div class="page-main-inner">
             <div class="page-main-navigation">
                 <nav>
-                    <input class="toc-checkbox" id="toggleToc" type="checkbox">
-
                     {% include "structure/navigation/navigationHeader.html.twig" %}
-                    <div class="toc-collapse">
+                    <div id="toc-collapse">
                         {% if env.projectNode.searchLink -%}
                         <div class="toc-search" id="searchbox" role="search">
                             <form action="{{ env.projectNode.genindexLink }}" autocomplete="off" id="search-form" method="get">
