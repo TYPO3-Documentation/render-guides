@@ -1,27 +1,18 @@
 .page-main-navigation {
 
-    .toc-checkbox {
-        display: none;
-
-        &:checked ~ .toc-collapse {
-            display: block;
-        }
-    }
-
-    .toc-collapse {
+    #toc-collapse {
         display: none;
         @include media-breakpoint-up(lg) {
             display: block;
         }
+
+        &.show {
+            display: block;
+        }
     }
 
-    .toc-toggle {
+    #toc-toggle {
         margin: 0;
-        @extend .btn;
-        @extend .btn-light;
-        @include media-breakpoint-up(lg) {
-            display: none;
-        }
     }
 
     .toc-header {

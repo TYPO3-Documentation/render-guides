@@ -31,7 +31,7 @@
           expand.classList.add('toctree-expand');
           expand.setAttribute('tabindex', '0');
           expand.addEventListener('click', toggleCurrent, true);
-          expand.addEventListener('keypress', (e) => {
+          expand.addEventListener('keydown', (e) => {
             if (e.key === "Enter") {
               toggleCurrent(e)
             }
@@ -42,5 +42,18 @@
     });
   }
 
+  // Adds the EventListener for the toggle Button of the complete menu (mobile)
+  function makeTocMenuExpandable() {
+    const tocToggle = document.getElementById('toc-toggle');
+    tocToggle.addEventListener('click', () => toggleNavigation(tocToggle), true);
+  }
+
+  function toggleNavigation(tocToggle) {
+    const tocCollapse = document.getElementById('toc-collapse');
+    tocCollapse.classList.toggle('show');
+    tocToggle.setAttribute('aria-expanded', tocCollapse.classList.contains('show'));
+  }
+
+  makeTocMenuExpandable();
   makeMenuExpandable();
 })();
