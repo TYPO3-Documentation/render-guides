@@ -3,7 +3,7 @@
   const SELECTOR_MODAL = '#linkReferenceModal';
   const SELECTOR_ALERT_RST_NO_ANCHOR = '.alert-permalink-rst';
   const SELECTOR_PERMALINK_URI = '#permalink-uri';
-  const SELECTOR_SHORTLINK_URI = '#shortlink-uri';
+  const SELECTOR_PERMALINK_SHORT = '#permalink-short';
   const SELECTOR_PERMALINK_RST = '#permalink-rst';
   const SELECTOR_PERMALINK_HTML = '#permalink-html';
   const SELECTOR_ALERT_SUCCESS = '#permalink-alert-success';
@@ -26,8 +26,11 @@
     if (filename === '') {
       return '';
     }
-    // @todo - check how anchor hashes + filenames work with redirects?
-    return urlPrefix + `${interlinkTarget}:${filename}#${section?.id || ''}`;
+
+    // Replaces a link like "typo3/cms-sys-note" to "typo3-cms-sys-note" (https://docs.typo3.org/permalink/typo3-cms-sys-note:for-editors)
+    const adjustedInterlinkTarget = interlinkTarget.replaceAll('/', '-', interlinkTarget);
+    // @todo - check how anchor hashes + filenames work with redirects? Other edge cases?
+    return urlPrefix + `${adjustedInterlinkTarget}:${filename}#${section?.id || ''}`;
   }
 
   function generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename) {
@@ -58,10 +61,10 @@
       // this can happen when opening a local file
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_URI).value = '';
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_HTML).value = '';
-      linkReferenceModal.querySelector(SELECTOR_SHORTLINK_URI).value = '';
+      linkReferenceModal.querySelector(SELECTOR_PERMALINK_SHORT).value = '';
     } else {
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_URI).value = uri;
-      linkReferenceModal.querySelector(SELECTOR_SHORTLINK_URI).value = shortUri;
+      linkReferenceModal.querySelector(SELECTOR_PERMALINK_SHORT).value = shortUri;
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_HTML).value = `<a href="${uri}">${headerText}</a>`;
     }
     const rstInput = linkReferenceModal.querySelector(SELECTOR_PERMALINK_RST);

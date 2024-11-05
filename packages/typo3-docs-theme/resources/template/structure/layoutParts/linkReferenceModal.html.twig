@@ -12,14 +12,14 @@
             <div class="modal-body">
                 <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
                 <div class="mb-3">
-                    <label for="permalink-uri" class="col-form-label">Permalink</label>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
                     <div class="input-group">
                         <input class="form-control code" id="permalink-uri" readonly>
                         <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
                     </div>
-                    <label for="shortlink-uri" class="col-form-label">Shortlink</label>
+                    <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
                     <div class="input-group">
-                        <input class="form-control code" id="shortlink-uri" readonly>
+                        <input class="form-control code" id="permalink-short" readonly>
                         <button type="button" class="btn btn-outline-secondary copy-button" data-target="shortlink-uri"><i class="far fa-clone"></i></button>
                     </div>
                     <p><em>Copy and freely share the link</em></p>
@@ -32,7 +32,7 @@
                         {% endif -%}
                         The link below can be used, but is prone to change if the page gets moved.
                     </div>
-                    <label for="permalink-rst" class="col-form-label">reStructuredText (reST):</label>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
                     <div class="input-group">
                         <textarea class="form-control code" id="permalink-rst" readonly></textarea>
                         <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
@@ -40,7 +40,8 @@
                     <p>Copy this link into your TYPO3 manual. </p>
                 </div>
                 <div class="mb-3">
-                    <label for="permalink-html" class="col-form-label">HTML:</label>
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                    {# @TODO When stable, use the permalink-short in this textarea instead of the "long" URL #}
                     <div class="input-group">
                         <textarea class="form-control code" id="permalink-html" readonly></textarea>
                         <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
