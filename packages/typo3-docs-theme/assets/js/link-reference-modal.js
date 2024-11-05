@@ -20,15 +20,16 @@
   function generateShortUri(linkReferenceModal, section, headerText, rstAnchor, filename) {
     const urlPrefix = 'https://docs.typo3.org/permalink/';
     const interlinkTarget = linkReferenceModal.dataset.interlinkShortcode || 'somemanual';
+    // Replaces a link like "typo3/cms-sys-note" to "typo3-cms-sys-note" (https://docs.typo3.org/permalink/typo3-cms-sys-note:for-editors)
+    const adjustedInterlinkTarget = interlinkTarget.replaceAll('/', '-', interlinkTarget);
+
     if (rstAnchor) {
-      return urlPrefix + `${interlinkTarget}:${rstAnchor}`;
+      return urlPrefix + `${adjustedInterlinkTarget}:${rstAnchor}`;
     }
     if (filename === '') {
       return '';
     }
 
-    // Replaces a link like "typo3/cms-sys-note" to "typo3-cms-sys-note" (https://docs.typo3.org/permalink/typo3-cms-sys-note:for-editors)
-    const adjustedInterlinkTarget = interlinkTarget.replaceAll('/', '-', interlinkTarget);
     // @todo - check how anchor hashes + filenames work with redirects? Other edge cases?
     return urlPrefix + `${adjustedInterlinkTarget}:${filename}#${section?.id || ''}`;
   }
