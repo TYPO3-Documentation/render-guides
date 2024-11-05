@@ -55,5 +55,7 @@
   }
 
   makeTocMenuExpandable();
-  makeMenuExpandable();
+  window.addEventListener('all-documentation-menu-loaded', () => {
+    makeMenuExpandable();
+  })
 })();

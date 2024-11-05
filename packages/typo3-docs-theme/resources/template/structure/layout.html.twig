@@ -3,7 +3,8 @@
 <head>
     <title>{{ title }}
         {%- if title!=null and env.projectNode.title!=null %} — {% endif -%}
-        {%- if env.projectNode.title -%}{{ env.projectNode.title }} {% endif -%} {{ env.projectNode.version }} documentation</title>
+        {%- if env.projectNode.title -%}{{ env.projectNode.title }} {% endif -%} {{ env.projectNode.version }}
+        documentation</title>
 
     {% include "structure/layoutParts/metaTags.html.twig" %}
     {% include "structure/layoutParts/generalHeaderLinks.html.twig" %}
@@ -23,15 +24,26 @@
                     {% include "structure/navigation/navigationHeader.html.twig" %}
                     <div id="toc-collapse">
                         {% if env.projectNode.searchLink -%}
-                        <div class="toc-search" id="searchbox" role="search">
-                            <form action="{{ env.projectNode.genindexLink }}" autocomplete="off" id="search-form" method="get">
-                                <input aria-label="Search this project" class="form-control" id="searchinput" name="q" placeholder="Search this project" type="text">
-                                <input name="check_keywords" type="hidden" value="yes">
-                                <input name="area" type="hidden" value="default">
-                            </form>
-                        </div>
+                            <div class="toc-search" id="searchbox"
+                                 role="search">
+                                <form
+                                    action="{{ env.projectNode.genindexLink }}"
+                                    autocomplete="off" id="search-form"
+                                    method="get">
+                                    <input aria-label="Search this project"
+                                           class="form-control" id="searchinput"
+                                           name="q"
+                                           placeholder="Search this project"
+                                           type="text">
+                                    <input name="check_keywords" type="hidden"
+                                           value="yes">
+                                    <input name="area" type="hidden"
+                                           value="default">
+                                </form>
+                            </div>
                         {% endif %}
-                        <div aria-label="main navigation" class="toc" role="navigation">
+                        <div aria-label="main navigation" class="toc"
+                             role="navigation">
                             {% block menu_doc %}
                             {% endblock %}
                         </div>

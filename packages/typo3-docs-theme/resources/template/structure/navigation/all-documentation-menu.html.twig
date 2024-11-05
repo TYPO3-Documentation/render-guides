@@ -1,0 +1,6 @@
+{% if isRenderedForDeployment() -%}
+    <all-documentations-menu></all-documentations-menu>
+{%- else -%}
+    <all-documentations-menu
+        data-override-url="https://render-guides.ddev.site/_resources/js/menu-proxy.php"></all-documentations-menu>
+{% endif %}
