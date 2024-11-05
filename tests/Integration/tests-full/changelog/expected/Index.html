@@ -65,8 +65,6 @@
         <div class="page-main-inner">
             <div class="page-main-navigation">
                 <nav>
-                    <input class="toc-checkbox" id="toggleToc" type="checkbox">
-
                     
 <div class="toc-header">
     <div class="toc-title">
@@ -80,29 +78,29 @@
                 <div id="toc-version" class="toc-version" data-override-url-proxy="https://render-guides.ddev.site/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html">
                 
                     <span class="toc-version-prefix">Release:</span>
-                    <span class="toc-version-number">main (development)</span>
+                    <span class="toc-version-number" tabindex="0">main (development)</span>
                 </div>
                 <div id="toc-version-options" class="toc-version-options">
                     <p><span class="fa fa-spinner fa-spin"></span> Loading data.</p>
                 </div>
             </div></div>
     <div class="toc-actions">
-        <label class="toc-toggle" for="toggleToc">
+        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
             Menu
-        </label>
+        </button>
     </div>
-</div>                    <div class="toc-collapse">
+</div>                    <div id="toc-collapse">
                                                 <div aria-label="main navigation" class="toc" role="navigation">
                                 <div aria-label="Main navigation" class="main_menu" role="navigation">
-            <ul class="menu-level-1">
-    <li class="">
+            <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
     <a href="Changelog-12.html">
         ChangeLog v12
-    </a>        <ul class="menu-level-1"><li class="">
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
     <a href="Changelog/12.0/Index.html">
         12.0 Changes
-    </a></li></ul></li>    </ul>    <ul class="menu-level-1">
-    <li class="">
+    </a></li></ul></li>    </ul>    <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
     <a href="Sitemap.html">
         Sitemap
     </a></li>    </ul>

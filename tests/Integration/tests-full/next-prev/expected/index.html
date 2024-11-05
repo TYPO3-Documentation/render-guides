@@ -65,26 +65,24 @@
         <div class="page-main-inner">
             <div class="page-main-navigation">
                 <nav>
-                    <input class="toc-checkbox" id="toggleToc" type="checkbox">
-
                     
 <div class="toc-header">
     <div class="toc-title">
         <a class="toc-title-project" href="#"></a>
             </div>
     <div class="toc-actions">
-        <label class="toc-toggle" for="toggleToc">
+        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
             Menu
-        </label>
+        </button>
     </div>
-</div>                    <div class="toc-collapse">
+</div>                    <div id="toc-collapse">
                                                 <div aria-label="main navigation" class="toc" role="navigation">
                                 <div aria-label="Main navigation" class="main_menu" role="navigation">
-            <ul class="menu-level-1">
-    <li class="">
+            <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
     <a href="page.html">
         Page
-    </a></li>    <li class="">
+    </a></li>    <li class="" role="menuitem">
     <a href="yetAnotherPage.html">
         Another Page
     </a></li>    </ul>
