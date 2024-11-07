@@ -93,7 +93,7 @@
       copyButtons.forEach(button => button.disabled = true);
     } else {
       copyButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
           const targetId = this.getAttribute('data-target');
           const targetElement = linkReferenceModal.querySelector(`#${targetId}`);
           if (!targetElement) {
@@ -109,25 +109,27 @@
   }
 
   const linkReferenceModal = document.querySelector(SELECTOR_MODAL);
-  linkReferenceModal.addEventListener('show.bs.modal', function (event) {
-    const item = event.relatedTarget;
-    const section = item.closest('section');
-    const rstAnchor = item.dataset.id ? item.dataset.id : (section ? section.dataset.rstAnchor : null);
-    const headerElement = item.closest('h1, h2, h3, h4, h5, h6, dt');
-    const headerText = headerElement ? headerElement.innerText : '';
-    const rstLinkData = item.dataset.rstcode;
-    const header = item.title;
+  if (linkReferenceModal) {
+    linkReferenceModal.addEventListener('show.bs.modal', function (event) {
+      const item = event.relatedTarget;
+      const section = item.closest('section');
+      const rstAnchor = item.dataset.id ? item.dataset.id : (section ? section.dataset.rstAnchor : null);
+      const headerElement = item.closest('h1, h2, h3, h4, h5, h6, dt');
+      const headerText = headerElement ? headerElement.innerText : '';
+      const rstLinkData = item.dataset.rstcode;
+      const header = item.title;
 
-    showHideRstAnchorAlert(linkReferenceModal, rstAnchor || rstLinkData);
+      showHideRstAnchorAlert(linkReferenceModal, rstAnchor || rstLinkData);
 
-    const uri = generateUri(section, rstAnchor);
-    const filename = linkReferenceModal.dataset.currentFilename;
-    const rstLink = rstLinkData?rstLinkData:generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename);
-    const shortUri = generateShortUri(linkReferenceModal, section, headerText, rstAnchor, filename);
+      const uri = generateUri(section, rstAnchor);
+      const filename = linkReferenceModal.dataset.currentFilename;
+      const rstLink = rstLinkData ? rstLinkData : generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename);
+      const shortUri = generateShortUri(linkReferenceModal, section, headerText, rstAnchor, filename);
 
-    updateInputsAndTextareas(linkReferenceModal, header, headerText, uri, rstLink, shortUri);
+      updateInputsAndTextareas(linkReferenceModal, header, headerText, uri, rstLink, shortUri);
 
 
-    handleCopyButtons(linkReferenceModal);
-  });
+      handleCopyButtons(linkReferenceModal);
+    });
+  }
 })();
