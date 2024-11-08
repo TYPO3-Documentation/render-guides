@@ -1,0 +1,21 @@
+.collapsed-section-content {
+    display: none !important;
+}
+
+article {
+    a.toggle-section {
+        position: relative;
+        font-size: .65em;
+        top: -.15em;
+        text-decoration: none;
+        color: $gray-700;
+        visibility: hidden;
+    }
+    *:hover {
+        & > a.toggle-section {
+            visibility: visible;
+        }
+    }
+
+}
+
