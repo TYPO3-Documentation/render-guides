@@ -11,7 +11,7 @@ class ToggleSection {
 
 
   constructor() {
-    this.sectionHeadings = document.querySelectorAll('section > h2,h3,h4,h5,h6');
+    this.sectionHeadings = document.querySelectorAll('section > :is(h2,h3,h4,h5,h6)');
     this.sectionHeadings.forEach(heading => {
       const toggleSectionButton = this.createToggleSectionButton()
       const headerLink = heading.querySelector('a.headerlink');
