@@ -4,10 +4,11 @@
 
 // Functions
 @import '../../node_modules/bootstrap/scss/functions';
-@import '../../node_modules/bootstrap/scss/bootstrap-reboot';
 
 // Variables
 @import 'variables';
+
+@import '../../node_modules/bootstrap/scss/bootstrap-reboot';
 
 // Dependencies
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/functions';
