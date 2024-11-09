@@ -1,0 +1,27 @@
+<div class="container my-4">
+    <!-- A-Z Index -->
+    <nav id="indexNav" class="navbar navbar-light sticky-top">
+        <ul class="nav justify-content-center">
+            {% for letter, terms in node.entries %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#{{ letter }}">{{ letter }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <!-- Glossary Entries -->
+    <div class="mt-4">
+        {% for letter, terms in node.entries %}
+            <div id="{{ letter }}" class="pt-5">
+                <div class="h2">{{ letter }}</div>
+                {% for term, item in terms %}
+                    <section class="section">
+                        <h3>{{ term }}</h3>
+                        <div>{{ renderNode(item.value) }}</div>
+                    </section>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
