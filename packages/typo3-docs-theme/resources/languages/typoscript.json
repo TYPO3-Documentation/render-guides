@@ -36,6 +36,12 @@
             "begin": "#([0-9a-f]{3}|[0-9a-f]{6})$"
         },
         {
+            "__comment": "Assignment e.g. `10 = data.foo // data.bar`",
+            "className": "assignment",
+            "begin": ".*=.*\/\/.*",
+            "end": "$"
+        },
+        {
             "__comment": "One-line comment: `# Some comment` or `10 = TEXT # Some comment`",
             "className": "comment",
             "begin": "#",
