@@ -288,14 +288,14 @@ final class TwigExtension extends AbstractExtension
             return '';
         }
         $githubBranch = $this->themeSettings->getSettings('edit_on_github_branch', 'main');
-        $currentFileName = $this->getCurrentFilename($context);
-        if ($currentFileName === '') {
+        $sourceFile = $this->getSourceFilename($context);
+        if ($sourceFile === '') {
             return '';
         }
         $gitHubPerPageLink = $this->getEditOnGitHubLinkPerPage($renderContext);
 
         $githubDirectory = trim($this->themeSettings->getSettings('edit_on_github_directory', 'Documentation'), '/');
-        return $gitHubPerPageLink ?? sprintf("https://github.com/%s/edit/%s/%s/%s.rst", $githubButton, $githubBranch, $githubDirectory, $currentFileName);
+        return $gitHubPerPageLink ?? sprintf("https://github.com/%s/edit/%s/%s/%s", $githubButton, $githubBranch, $githubDirectory, $sourceFile);
     }
 
     private function getEditOnGitHubLinkPerPage(RenderContext $renderContext): string|null
