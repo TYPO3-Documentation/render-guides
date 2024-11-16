@@ -88,12 +88,6 @@ class MainMenuJsonDocumentRenderer implements NodeRenderer
      */
     private function renderMenuEntry(array &$menuEntry, Node $node, RenderContext $renderContext): void
     {
-        if ($node instanceof CompoundNode) {
-            foreach ($node->getChildren() as $childNode) {
-                $this->renderMenuEntry($menuEntry, $childNode, $renderContext);
-            }
-            return;
-        }
         if ($node instanceof LinkInlineNode) {
             $this->delegatingReferenceResolver->resolve($node, $renderContext, new Messages());
             $url = $node->getUrl();
@@ -103,6 +97,14 @@ class MainMenuJsonDocumentRenderer implements NodeRenderer
             }
             $menuEntry['name'] = $node->getValue();
             $menuEntry['href'] = $url;
+            return;
+        }
+
+        if ($node instanceof CompoundNode) {
+            foreach ($node->getChildren() as $childNode) {
+                $this->renderMenuEntry($menuEntry, $childNode, $renderContext);
+            }
+            return;
         }
     }
     /**
