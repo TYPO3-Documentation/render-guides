@@ -20,6 +20,9 @@ enum Typo3VersionMapping: string
     public function getVersion(): string
     {
         return match ($this) {
+            // @TODO - When changing these versions, please
+            //         also do a PR on https://github.com/TYPO3GmbH/site-intercept/blob/develop/legacy_hook/composer.json
+            //         to raise the required composer package version!
             Typo3VersionMapping::Dev => 'main',
             Typo3VersionMapping::Stable => '13.4',
             Typo3VersionMapping::OldStable => '12.4',
