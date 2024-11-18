@@ -18,6 +18,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRul
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer;
 use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
@@ -82,6 +83,8 @@ return static function (ContainerConfigurator $container): void {
         ->bind('$startingRule', service(DirectiveContentRule::class))
         ->instanceof(BaseDirective::class)
         ->tag('phpdoc.guides.directive')
+        ->set(CollectPrefixLinkTargetsTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(ConfvalMenuNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer::class)
