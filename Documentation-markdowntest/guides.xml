@@ -23,4 +23,5 @@
         project-repository="https://github.com/linawolf/form_double_opt_in"
         typo3-core-preferred="stable"
     />
+    <output-format>rst</output-format>
 </guides>
