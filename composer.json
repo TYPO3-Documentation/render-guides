@@ -13,6 +13,7 @@
         "phpdocumentor/guides-markdown": "^1.6",
         "phpdocumentor/guides-restructured-text": "^1.6",
         "phpdocumentor/guides-theme-bootstrap": "^1.0",
+        "phpdocumentor/guides-theme-rst": "^1.0",
         "symfony/clock": "^6.4",
         "symfony/finder": "^6.4",
         "symfony/http-client": "^6.4",
