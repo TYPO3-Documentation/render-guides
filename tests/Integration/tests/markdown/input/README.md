@@ -2,7 +2,7 @@
 
 Welcome to the world of fun and laughter with our child's swing! Follow the
 simple steps below to ensure a safe and enjoyable experience for your little
-one.
+one. See this [interlink](https://docs.typo3.org/permalink/h2document:how-to-document-hyperlinks)!
 
 ## Table of Contents
 - [Installation](#installation)
