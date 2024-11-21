@@ -14,7 +14,7 @@
                 <p>This ViewHelper is marked as internal. It is subject to be
                     changed without notice. Use at your own risk.</p>
             </div>
-        {% elseif key == '@api' %}
+        {% elseif key == '@api' or key == '@todo' %}
         {% else %}
             <p>{{ key }}: {{ docTag }}</p>
         {% endif %}
