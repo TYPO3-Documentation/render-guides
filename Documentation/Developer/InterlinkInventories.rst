@@ -65,12 +65,6 @@ These inventories can be used by default in any rendered documentation:
 
     URL: https://docs.typo3.org/m/typo3/reference-tca/main/en-us/
 
-*   Title: :doc:`t3tsconfig:Index`
-
-    Inventory key: :doc:`t3tsconfig <t3tsconfig:Index>`
-
-    URL: https://docs.typo3.org/m/typo3/reference-tsconfig/main/en-us/
-
 *   Title: :doc:`t3tsref:Index`
 
     Inventory key: :doc:`t3tsref <t3tsref:Index>`
