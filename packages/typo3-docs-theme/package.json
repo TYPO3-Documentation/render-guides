@@ -5,9 +5,14 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.7.1",
         "@popperjs/core": "^2.11.8",
-        "bootstrap": "^5.3.3"
+        "bootstrap": "^5.3.3",
+        "lodash": "^4.17.21",
+        "lodash.debounce": "^4.0.8",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     },
     "devDependencies": {
+        "@vitejs/plugin-react": "^4.2.1",
         "grunt": "^1.6.1",
         "grunt-cli": "^1.5.0",
         "grunt-contrib-clean": "^2.0.1",
@@ -18,12 +23,13 @@
         "grunt-sass": "^3.1.0",
         "grunt-stylelint": "^0.20.1",
         "sass": "^1.81.1",
-        "stylelint": "^16.11.0"
+        "stylelint": "^16.11.0",
+        "vite": "^4.5.2"
     },
     "scripts": {
-        "build": "grunt build",
+        "build": "vite build && grunt build",
         "debug": "grunt debug",
-        "watch": "grunt watch"
+        "watch": "vite dev & grunt watch"
     },
     "engines": {
         "node": ">=18.15.0 <21.0.0"
