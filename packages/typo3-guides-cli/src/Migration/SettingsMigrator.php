@@ -133,7 +133,7 @@ class SettingsMigrator
             $this->convertedSettings++;
 
             if ($defaultInventory = DefaultInventories::tryFrom($id)) {
-                $defaultUrl = $defaultInventory->getUrl();
+                $defaultUrl = $defaultInventory->getUrl(Typo3VersionMapping::Stable->getVersion());
                 if ($url === $defaultUrl) {
                     continue;
                 } else {

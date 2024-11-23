@@ -46,17 +46,16 @@ final class Typo3InventoryRepository implements InventoryRepository
         }
         foreach (DefaultInventories::cases() as $defaultInventory) {
             $id = $this->anchorNormalizer->reduceAnchor($defaultInventory->name);
-            $url = $defaultInventory->getUrl();
-            if (!str_contains($url, '{typo3_version}')) {
-                $this->addInventory($id, $url, false);
+            if (!$defaultInventory->isVersioned()) {
+                $this->addInventory($id, $defaultInventory->getUrl(''), false);
                 continue;
             }
             foreach (Typo3VersionMapping::cases() as $versionMapping) {
-                $mappedUrl = str_replace('{typo3_version}', $versionMapping->getVersion(), $url);
+                $mappedUrl = $defaultInventory->getUrl($versionMapping->getVersion());
                 $this->addInventory($id . '-' . $versionMapping->value, $mappedUrl, false);
             }
             $preferred = $this->typo3VersionService->getPreferredVersion();
-            $this->addInventory($id, str_replace('{typo3_version}', $preferred, $url), false);
+            $this->addInventory($id, $defaultInventory->getUrl($preferred), false);
         }
     }
 
@@ -109,7 +108,7 @@ final class Typo3InventoryRepository implements InventoryRepository
             } elseif ($defaultInventory = DefaultInventories::tryFrom($match1)) {
                 // we do not have a composer name here but a default inventory with a version, for example "t3coreapi/12.4"
                 $version = $this->typo3VersionService->resolveCoreVersion($match2);
-                $inventoryUrl = str_replace('{typo3_version}', $version, $defaultInventory->getUrl());
+                $inventoryUrl = $defaultInventory->getUrl($version);
             } else {
                 $version ??= 'main';
                 $version = $this->typo3VersionService->resolveVersion($version);
