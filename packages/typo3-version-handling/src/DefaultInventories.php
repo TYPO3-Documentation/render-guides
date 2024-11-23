@@ -8,6 +8,7 @@ enum DefaultInventories: string
     //            also add them to `Documentation/Developer/InterlinkInventories.rst`.
     case t3docs = 't3docs';
     case changelog = 'changelog';
+    case t3ts45 = 't3ts45';
     case t3coreapi = 't3coreapi';
     case t3tca = 't3tca';
     case t3tsconfig = 't3tsconfig';
@@ -27,9 +28,59 @@ enum DefaultInventories: string
     case t3exceptions = 't3exceptions';
     case api = 'api';
 
-
-    public function getUrl(): string
+    public function isVersioned(): bool
     {
+
+        return match ($this) {
+            // Main doc page, it is only deployed to main
+            DefaultInventories::t3docs => false,
+
+            // Changelog, it is only deployed to main
+            DefaultInventories::changelog => false,
+
+
+            // Team Guides, they are commonly not versioned
+            DefaultInventories::h2document => false,
+            DefaultInventories::t3content => false,
+            DefaultInventories::t3contribute => false,
+            DefaultInventories::t3writing => false,
+            DefaultInventories::t3org => false,
+
+            // Other
+            DefaultInventories::fluid => false,
+            DefaultInventories::t3renderguides => false,
+            DefaultInventories::t3exceptions => false,
+
+            default => true,
+        };
+    }
+
+    public function getUrl(string $version): string
+    {
+        if ($version === 'main') {
+            switch ($this) {
+                case DefaultInventories::t3tsconfig:
+                    return DefaultInventories::t3tsref->getUrl($version);
+                case DefaultInventories::t3ts45:
+                    return DefaultInventories::t3tsref->getUrl($version);
+            }
+        }
+        if ($version === '13.4') {
+            switch ($this) {
+                case DefaultInventories::t3tsconfig:
+                    return DefaultInventories::t3tsref->getUrl($version);
+                case DefaultInventories::t3ts45:
+                    return DefaultInventories::t3tsref->getUrl($version);
+            }
+        }
+        if ($version === '12.4') {
+            switch ($this) {
+                case DefaultInventories::t3tsconfig:
+                    return DefaultInventories::t3tsref->getUrl($version);
+                case DefaultInventories::t3ts45:
+                    return DefaultInventories::t3tsref->getUrl($version);
+            }
+        }
         return match ($this) {
             // Main doc page, it is only deployed to main
             DefaultInventories::t3docs => 'https://docs.typo3.org/',
@@ -38,17 +89,20 @@ enum DefaultInventories: string
             DefaultInventories::changelog => 'https://docs.typo3.org/c/typo3/cms-core/main/en-us/',
 
             // Core Manuals
-            DefaultInventories::t3coreapi => 'https://docs.typo3.org/m/typo3/reference-coreapi/{typo3_version}/en-us/',
-            DefaultInventories::t3tca => 'https://docs.typo3.org/m/typo3/reference-tca/{typo3_version}/en-us/',
-            DefaultInventories::t3tsconfig => 'https://docs.typo3.org/m/typo3/reference-tsconfig/{typo3_version}/en-us/',
-            DefaultInventories::t3tsref => 'https://docs.typo3.org/m/typo3/reference-typoscript/{typo3_version}/en-us/',
-            DefaultInventories::t3viewhelper => 'https://docs.typo3.org/other/typo3/view-helper-reference/{typo3_version}/en-us/',
+            DefaultInventories::t3coreapi => 'https://docs.typo3.org/m/typo3/reference-coreapi/' . $version . '/en-us/',
+            DefaultInventories::t3tca => 'https://docs.typo3.org/m/typo3/reference-tca/' . $version . '/en-us/',
+            DefaultInventories::t3tsref => 'https://docs.typo3.org/m/typo3/reference-typoscript/' . $version . '/en-us/',
+            DefaultInventories::t3viewhelper => 'https://docs.typo3.org/other/typo3/view-helper-reference/' . $version . '/en-us/',
 
             // Official Core Tutorials and Guides
-            DefaultInventories::t3editors => 'https://docs.typo3.org/m/typo3/tutorial-editors/{typo3_version}/en-us/',
-            DefaultInventories::t3sitepackage => 'https://docs.typo3.org/m/typo3/tutorial-sitepackage/{typo3_version}/en-us/',
-            DefaultInventories::t3start => 'https://docs.typo3.org/m/typo3/tutorial-getting-started/{typo3_version}/en-us/',
-            DefaultInventories::t3translate => 'https://docs.typo3.org/m/typo3/guide-frontendlocalization/{typo3_version}/en-us/',
+            DefaultInventories::t3editors => 'https://docs.typo3.org/m/typo3/tutorial-editors/' . $version . '/en-us/',
+            DefaultInventories::t3sitepackage => 'https://docs.typo3.org/m/typo3/tutorial-sitepackage/' . $version . '/en-us/',
+            DefaultInventories::t3start => 'https://docs.typo3.org/m/typo3/tutorial-getting-started/' . $version . '/en-us/',
+            DefaultInventories::t3translate => 'https://docs.typo3.org/m/typo3/guide-frontendlocalization/' . $version . '/en-us/',
+
+            // Former Official manuals, redirected starting 12.4
+            DefaultInventories::t3tsconfig => 'https://docs.typo3.org/m/typo3/reference-tsconfig/' . $version . '/en-us/',
+            DefaultInventories::t3ts45 => 'https://docs.typo3.org/m/typo3/tutorial-typoscript-in-45-minutes/' . $version . '/en-us/',
 
 
             // Team Guides, they are commonly not versioned
@@ -63,7 +117,7 @@ enum DefaultInventories: string
             DefaultInventories::t3renderguides => 'https://docs.typo3.org/other/t3docs/render-guides/main/en-us/',
             DefaultInventories::t3exceptions => 'https://docs.typo3.org/m/typo3/reference-exceptions/main/en-us/',
 
-            DefaultInventories::api => 'https://api.typo3.org/{typo3_version}/',
+            DefaultInventories::api => 'https://api.typo3.org/' . $version . '/',
         };
     }
 
