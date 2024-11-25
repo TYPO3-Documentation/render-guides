@@ -1,0 +1,239 @@
+.search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &__content {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 2rem;
+        background-color: #fff;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &__header {
+        padding: 1rem;
+    }
+
+    &__input-wrapper {
+        position: relative;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        width: 100%;
+        padding: 0.75rem 2.5rem;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.15s ease-in-out;
+        
+        &:focus-within {
+            outline: none;
+            box-shadow: none;
+            border-color: $primary;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        left: 1rem;
+        color: #6c757d;
+    }
+
+    &__scope {
+        color: #6c757d;
+        margin-left: 0.5rem;
+        display: flex;
+
+        p {
+            margin: 0;
+        }
+
+        &-title {
+            text-wrap: nowrap;
+            color: $primary;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        border: none;
+        background: transparent;
+        padding: 0;
+        
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+
+    &__clear {
+        position: absolute;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: #6c757d;
+        cursor: pointer;
+        padding: 0.25rem;
+        
+        &:hover {
+            color: #343a40;
+        }
+    }
+
+    &__body {
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+        padding: 0;
+        margin: 0;
+        height: min-content;
+
+        li {
+            list-style: none;
+        }
+    }
+
+    &__section {
+        margin-bottom: .5rem;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__section-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #6c757d;
+        margin-bottom: 1rem;
+    }
+
+    &__divider {
+        height: 1px;
+        background-color: #e9ecef;
+        margin: .5rem 1rem;
+    }
+
+    &__loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 1rem;
+        color: #6c757d;
+        
+        .search-modal__spinner {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: $primary;
+        }
+        
+        p {
+            margin: 0;
+            font-size: 1rem;
+        }
+    }
+} 
+
+.suggest-row {
+    display: flex;
+    align-items: center;
+    padding: 0rem 1rem;
+    height: 50px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+
+    &--active {
+        background-color: #f2f2f2cc;
+    }
+
+    &:hover {
+        background-color: #f2f2f2;
+    }
+
+    &:focus-visible {
+        outline: none;
+        background-color: #f2f2f2cc;
+        box-shadow: none;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        color: #6c757d;
+        transition: all 0.2s ease;
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        min-width: 0;
+    }
+
+    &__title, &__scope-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #212529;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__scope-name {
+        font-weight: 400;
+        color: $primary;
+    }
+
+
+    &__scope {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+
+
+
+    &__description {
+        font-size: 1rem;
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    &__tooltip {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+        color: #6c757d;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    ul {
+        margin: 0;
+    }
+} 
