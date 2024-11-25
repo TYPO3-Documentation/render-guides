@@ -1,0 +1,66 @@
+.suggest-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+
+    // Focus styles
+    &:focus {
+        outline: none;
+        background-color: rgba($primary, 0.05);
+        
+        .suggest-row__icon {
+            background-color: $primary;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .suggest-row__title {
+            color: $primary;
+        }
+    }
+
+    // Hover styles (same as focus)
+    &:hover {
+        background-color: rgba($primary, 0.05);
+        
+        .suggest-row__icon {
+            background-color: $primary;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .suggest-row__title {
+            color: $primary;
+        }
+    }
+
+    // ... rest of your existing styles ...
+} 
+
+.search-modal {
+    // ... existing styles ...
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        // Enable keyboard navigation
+        &:focus-within {
+            outline: none;
+            border-radius: 0.375rem;
+        }
+
+        // Style for focused items
+        .suggest-row:focus {
+            outline: 2px solid $primary;
+            outline-offset: -2px;
+            background-color: rgba($primary, 0.05);
+            border-radius: 0.375rem;
+        }
+    }
+} 
