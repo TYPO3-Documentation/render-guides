@@ -1,73 +1,148 @@
 import debounce from 'lodash.debounce';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import SuggestRow from './SuggestRow';
-import api from './api.json';
 
 const SearchModal = ({ isOpen, onClose }) => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [scope, setScope] = useState(null);
+    const [scopes, setScopes] = useState([]);
     const [fileSuggestions, setFileSuggestions] = useState([]);
     const [scopeSuggestions, setScopeSuggestions] = useState([]);
-    const [querySuggestions, setQuerySuggestions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
     const suggestionsRef = useRef([]);
+    const inputRef = useRef();
 
-    const decomposedScope = useMemo(() => {
-        if (!scope) return [];
-        const decomposed = [];
-        if (scope.type === 'package') {
-            decomposed.push({ type: scope.type, title: scope.title, tooltip: 'Search in this package' });
-            decomposed.push({ type: 'vendor', title: scope.title.split('/')[0], tooltip: 'Search in this vendor' });
-        } else {
-            decomposed.push({ type: scope.type, title: `${scope.title} ${searchQuery}`, tooltip: 'Search in this scope' });
-        }
-        return decomposed;
-    }, [scope, searchQuery]);
+    useEffect(() => {
+        const url = new URL(window.location.href);
+        const scopes = [];
+        url.searchParams.forEach((value, key) => {
+            if (key === 'q') return;
+            if (key === 'scope') {
+                const slug = decodeURIComponent(value).split('/').slice(2, 4).join('/');
+                scopes.push({ type: 'manual', title: slug });
+            } else if (key.startsWith('filters[')) {
+                const filterExp = new RegExp(/filters\[(.*?)\]\[(.*?)\]/);
+                const [, type, filterValue] = key.match(filterExp);
+                if (type === 'optionsaggs') {
+                    scopes.push({ type: 'option', title: filterValue });
+                } else {
+                    scopes.push({ type, title: filterValue });
+                }
+            }
+        });
 
-    const handleScopeSelect = (title, type) => {
-        setScope({ type, title });
-        setSearchQuery('');
-        setScopeSuggestions([]);
-        setActiveIndex(-1);
-        document.querySelector('.search-modal__input')?.focus();
+        setScopes(scopes);
+    }, []);
+
+    const buildHref = (scopes, query) => {
+        const url = new URL('/search/search', 'https://docs.typo3.org');
+        scopes.forEach(scope => {
+            if (scope.type === 'manual' || scope.type === 'vendor') {
+                url.searchParams.append(`scope`, encodeURIComponent(`/${scope.slug}/`));
+            } else if (scope.type === 'option') {
+                url.searchParams.append(`filters[optionsaggs][${scope.title}]`, true);
+            } else {
+                url.searchParams.append(`filters[${scope.type}][${scope.title}]`, true);
+            }
+        });
+        url.searchParams.append('q', query);
+        return url.href;
     };
 
-    const debouncedFetch = useCallback(
-        debounce(async (query) => {
-            if (!query || query.length < 2) return;
-
-            setIsLoading(true);
-            try {
-                const response = await fetch(`https://docs.typo3.org/search/suggest?q=${query}`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*'
-                    }
-                });
-                const data = await response.json();
-                applyData(data);
-            } catch (e) {
-                applyData(api);
-            } finally {
-                setIsLoading(false);
+    const decomposedScopes = useMemo(() => {
+        const decomposed = [];
+        for (let i = scopes.length;i > 0;i--) {
+            const currentScopes = scopes.slice(-i);
+            if (currentScopes.length === 1 && currentScopes[0].type === 'manual') {
+                decomposed.push({ scopes: currentScopes, title: searchQuery, tooltip: 'Search in this manual', href: buildHref(currentScopes, searchQuery) });
+                const vendorScope = [{ type: 'vendor', title: currentScopes[0].title.split('/')[0] }];
+                decomposed.push({ scopes: vendorScope, title: searchQuery, tooltip: 'Search in this vendor', href: buildHref(vendorScope, searchQuery) });
+            } else {
+                decomposed.push({ scopes: currentScopes, title: searchQuery, tooltip: 'Search in this scope', href: buildHref(currentScopes, searchQuery) });
             }
-        }, 300),
-        []
-    );
+        };
+        if (searchQuery) decomposed.push({ scopes: [], title: searchQuery, tooltip: 'Search all', href: buildHref([], searchQuery) });
+        return decomposed;
+    }, [scopes, searchQuery]);
+
+    const handleScopeSelect = (title, type) => {
+        const newScopes = [...scopes];
+        const existingScopeIndex = newScopes.findIndex(scope => scope.type === type);
+        if (existingScopeIndex !== -1) {
+            newScopes[existingScopeIndex] = { type, title };
+        } else {
+            newScopes.push({ type, title });
+        }
+
+        setScopes(newScopes);
+        setSearchQuery('');
+        setActiveIndex(-1);
+        inputRef.current.focus();
+    };
+
+    useEffect(() => {
+        fetchSuggestions(scopes, searchQuery);
+    }, [scopes]);
+
+    const buildRequestUrl = (scopes, searchQuery) => {
+        const url = new URL('https://docs.typo3.org/search/suggest');
+        scopes.forEach(scope => {
+            if (scope.type === 'manual') {
+                url.searchParams.append(`filters[package]`, scope.title);
+            } else if (scope.type === 'vendor') {
+                url.searchParams.append(`filters[${scope.type}]`, scope.title);
+            } else {
+                url.searchParams.append(`filters[${scope.type}][${scope.title}]`, true);
+            }
+        });
+        url.searchParams.append('q', searchQuery);
+        return url.href;
+    };
+
+    const fetchSuggestions = useCallback(async (scopes, searchQuery) => {
+        if (scopes?.length === 0 && !searchQuery) {
+            setFileSuggestions([]);
+            setScopeSuggestions([]);
+            return;
+        }
+        setIsLoading(true);
+        const requestUrl = buildRequestUrl(scopes, searchQuery);
+        await fetch(requestUrl, {
+            mode: 'no-cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Allow-Control-Allow-Origin': '*',
+            },
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response error');
+            }
+            return response.json();
+        }).then(data => {
+            applyData(data);
+        }).catch(e => {
+            console.error(e);
+        }).finally(() => {
+            setIsLoading(false);
+        });
+    }, []);
+
+    const debounceFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), []);
 
     const applyData = (data) => {
         const fileSuggestions = data?.results?.map(result => ({
             title: result.snippet_title,
             packageName: result.manual_package,
-            href: `${result.manual_slug}/${result.relative_url}`
+            href: `https://docs.typo3.org/${result.manual_slug}/${result.relative_url}#${result.fragment}`,
         }));
         const scopeSuggestions = Object.entries(data?.suggest?.suggestions).flatMap(([scope, suggestions]) => {
-            const type = scope.replace('manual_', '');
+            const type = scope.replace('manual_', '') === 'package' ? 'manual' : scope.replace('manual_', '');
             return suggestions.map(suggestion => ({
                 type,
-                title: suggestion,
-            }));
+                title: type === 'version' ? suggestion.split('.')[0] : suggestion
+            })
+            );
         });
         setScopeSuggestions(scopeSuggestions);
         setFileSuggestions(fileSuggestions);
@@ -77,22 +152,20 @@ const SearchModal = ({ isOpen, onClose }) => {
         const newQuery = e.target.value;
         setSearchQuery(newQuery);
         if (newQuery !== '') {
-            debouncedFetch(newQuery);
-            setQuerySuggestions([{ title: newQuery, tooltip: 'Search all' }]);
-        } else {
-            setFileSuggestions([]);
-            setScopeSuggestions([]);
-            setQuerySuggestions([]);
+            debounceFetchSuggestions(scopes, newQuery);
         }
     };
 
     const handleKeyDown = (e) => {
-        const totalItems = [...decomposedScope, ...querySuggestions, ...scopeSuggestions, ...fileSuggestions].length;
+        const totalItems = [...decomposedScopes, ...scopeSuggestions, ...fileSuggestions].length;
 
         switch (e.key) {
             case 'Backspace':
-                if (searchQuery === '') {
-                    setScope(null);
+                if (inputRef.current.selectionStart === 0) {
+                    setScopes(prevScopes => {
+                        prevScopes.pop();
+                        return [...prevScopes];
+                    });
                 }
                 break;
             case 'ArrowDown':
@@ -110,7 +183,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                 if (activeIndex >= 0) {
                     suggestionsRef.current[activeIndex]?.click();
                 } else {
-                    window.location.href = `/search/search?q=${encodeURIComponent(searchQuery)}`;
+                    window.location.href = buildHref(scopes, searchQuery);
                 }
                 break;
         }
@@ -127,7 +200,6 @@ const SearchModal = ({ isOpen, onClose }) => {
     }, [activeIndex]);
 
     useEffect(() => {
-        console.log("SUGG", fileSuggestions);
     }, [fileSuggestions]);
 
     useEffect(() => {
@@ -160,32 +232,31 @@ const SearchModal = ({ isOpen, onClose }) => {
                             setActiveIndex(-1);
                         }}>
                         <i className="fa fa-search search-modal__icon"></i>
-                        {scope && (
-                            <span className="search-modal__scope">
+                        {scopes.map((scope, index) => (
+                            <span key={`scope-${index}`} className="search-modal__scope">
                                 {scope.type}:<p className="search-modal__scope-title">{scope.title}</p>
                             </span>
-                        )}
+                        ))}
                         <input
+                            ref={inputRef}
                             autoComplete='off'
                             name='q'
                             autoFocus
                             type="text"
                             className="search-modal__input"
-                            placeholder={scope ? 'Search in this scope...' : 'Search documentation...'}
+                            placeholder={scopes?.length > 0 ? 'search in this scope...' : 'Search documentation...'}
                             value={searchQuery}
                             onChange={handleSearchChange}
                             onKeyDown={handleKeyDown}
                         />
-                        {(searchQuery || scope) && (
+                        {(searchQuery || scopes.length > 0) && (
                             <button
                                 className="search-modal__clear"
                                 onClick={() => {
                                     setSearchQuery('');
-                                    setFileSuggestions([]);
-                                    setQuerySuggestions([]);
-                                    setScopeSuggestions([]);
-                                    setScope(null);
+                                    setScopes([]);
                                     setActiveIndex(-1);
+                                    inputRef.current.focus();
                                 }}
                             >
                                 <i className="fa fa-circle-xmark"></i>
@@ -195,31 +266,17 @@ const SearchModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <ul className="search-modal__body">
-                    {decomposedScope?.length > 0 && <li className="search-modal__section">
-                        <div className="search-modal__items" role="group" aria-label="Decomposed scope">
-                            {decomposedScope.map((item, index) => (
+                    {decomposedScopes?.length > 0 && <li className="search-modal__section">
+                        <div className="search-modal__items" role="group" aria-label="Decomposed scopes">
+                            {decomposedScopes.map((item, index) => (
                                 <SuggestRow
                                     key={`decomposed-${index}`}
-                                    scopeName={item.title}
-                                    title={searchQuery}
-                                    type={item.type}
+                                    scopes={item.scopes}
+                                    title={item.title}
                                     tooltip={item.tooltip}
                                     isActive={activeIndex === index}
                                     ref={el => suggestionsRef.current[index] = el}
-                                />
-                            ))}
-                        </div>
-                    </li>}
-                    {querySuggestions?.length > 0 && <li className="search-modal__section">
-                        <div className="search-modal__items" role="group" aria-label="Query suggestions">
-                            {querySuggestions.map((item, index) => (
-                                <SuggestRow
-                                    key={`query-${index}`}
-                                    title={item.title}
-                                    tooltip={item.tooltip}
-                                    href={`search/search?query=${searchQuery}`}
-                                    isActive={activeIndex === index + decomposedScope.length}
-                                    ref={el => suggestionsRef.current[index + decomposedScope.length] = el}
+                                    href={item.href}
                                 />
                             ))}
                         </div>
@@ -232,7 +289,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                             <p>Searching...</p>
                         </div>
                     ) : (<>
-                        {querySuggestions?.length > 0 && scopeSuggestions?.length > 0 && <li className="search-modal__divider"></li>}
+                        {decomposedScopes?.length > 0 && scopeSuggestions?.length > 0 && <li className="search-modal__divider"></li>}
                         {scopeSuggestions?.length > 0 && <li className="search-modal__section">
                             <div className="search-modal__items" role="group" aria-label="Scope suggestions">
                                 {scopeSuggestions.map(({ title, type }, index) => (
@@ -240,15 +297,15 @@ const SearchModal = ({ isOpen, onClose }) => {
                                         key={`scope-${index}`}
                                         title={title}
                                         type={type}
-                                        isActive={activeIndex === (index + querySuggestions.length + decomposedScope.length)}
-                                        ref={el => suggestionsRef.current[index + querySuggestions.length + decomposedScope.length] = el}
+                                        isActive={activeIndex === (index + decomposedScopes.length)}
+                                        ref={el => suggestionsRef.current[index + decomposedScopes.length] = el}
                                         tooltip="Filter for this"
                                         onClick={() => handleScopeSelect(title, type)}
                                     />
                                 ))}
                             </div>
                         </li>}
-                        {querySuggestions?.length > 0 && fileSuggestions?.length > 0 && <li className="search-modal__divider"></li>}
+                        {decomposedScopes?.length > 0 && fileSuggestions?.length > 0 && <li className="search-modal__divider"></li>}
                         {fileSuggestions?.length > 0 && <li className="search-modal__section">
                             <div className="search-modal__items" role="group" aria-label="File suggestions">
                                 {fileSuggestions.map(({ title, packageName, href }, index) => (
@@ -256,9 +313,9 @@ const SearchModal = ({ isOpen, onClose }) => {
                                         key={`file-${index}`}
                                         title={title}
                                         packageName={packageName}
-                                        isActive={activeIndex === (index + decomposedScope.length + querySuggestions.length + scopeSuggestions.length)}
+                                        isActive={activeIndex === (index + decomposedScopes.length + scopeSuggestions.length)}
                                         href={href}
-                                        ref={el => suggestionsRef.current[index + decomposedScope.length + querySuggestions.length + scopeSuggestions.length] = el}
+                                        ref={el => suggestionsRef.current[index + decomposedScopes.length + scopeSuggestions.length] = el}
                                         tooltip="Open this page"
                                         icon="file"
                                     />
