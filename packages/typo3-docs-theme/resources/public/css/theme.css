@@ -27146,7 +27146,7 @@ figure.uml-diagram {
 .search-modal__input-wrapper {
   position: relative;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.3rem;
   align-items: center;
   width: 100%;
   padding: 0.75rem 2.5rem;
@@ -27167,7 +27167,6 @@ figure.uml-diagram {
 }
 .search-modal__scope {
   color: #6c757d;
-  margin-left: 0.5rem;
   display: flex;
 }
 .search-modal__scope p {
@@ -27277,10 +27276,10 @@ figure.uml-diagram {
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.3rem;
   min-width: 0;
 }
-.suggest-row__title, .suggest-row__scope-name {
+.suggest-row__title, .suggest-row__scope-name, .suggest-row__scope-type {
   font-size: 1rem;
   font-weight: 700;
   color: #212529;
@@ -27289,12 +27288,17 @@ figure.uml-diagram {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.suggest-row__scope {
+  display: flex;
+  align-items: center;
+}
 .suggest-row__scope-name {
   font-weight: 400;
   color: #ff8700;
 }
-.suggest-row__scope {
+.suggest-row__scope-type {
   font-size: 1rem;
+  font-weight: 400;
   color: #6c757d;
 }
 .suggest-row__description {
