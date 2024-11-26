@@ -13,17 +13,17 @@ parameters:
 		-
 			message: "#^Cannot access offset 'packages' on mixed\\.$#"
 			count: 1
-			path: packages/typo3-docs-theme/src/Packagist/PackagistService.php
+			path: packages/typo3-guides-cli/src/Packagist/PackagistService.php
 
 		-
 			message: "#^Cannot access offset 0 on mixed\\.$#"
 			count: 1
-			path: packages/typo3-docs-theme/src/Packagist/PackagistService.php
+			path: packages/typo3-guides-cli/src/Packagist/PackagistService.php
 
 		-
 			message: "#^Cannot access offset string on mixed\\.$#"
 			count: 1
-			path: packages/typo3-docs-theme/src/Packagist/PackagistService.php
+			path: packages/typo3-guides-cli/src/Packagist/PackagistService.php
 
 		-
 			message: "#^Result of && is always false\\.$#"

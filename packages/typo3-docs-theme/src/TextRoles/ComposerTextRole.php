@@ -7,8 +7,8 @@ use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
 use phpDocumentor\Guides\RestructuredText\TextRoles\TextRole;
 use Psr\Log\LoggerInterface;
+use T3Docs\GuidesCli\Packagist\PackagistService;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
-use T3Docs\Typo3DocsTheme\Packagist\PackagistService;
 
 final class ComposerTextRole implements TextRole
 {
