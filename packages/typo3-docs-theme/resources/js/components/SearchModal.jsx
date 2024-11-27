@@ -16,8 +16,9 @@ const SearchModal = ({ isOpen, onClose }) => {
         const url = new URL(window.location.href);
         const scopes = [];
         url.searchParams.forEach((value, key) => {
-            if (key === 'q') return;
-            if (key === 'scope') {
+            if (key === 'q') {
+                setSearchQuery(value);
+            } else if (key === 'scope') {
                 const slug = decodeURIComponent(value).split('/').slice(2, 4).join('/');
                 scopes.push({ type: 'manual', title: slug });
             } else if (key.startsWith('filters[')) {
