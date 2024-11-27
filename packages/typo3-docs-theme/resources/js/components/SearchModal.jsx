@@ -13,14 +13,22 @@ const SearchModal = ({ isOpen, onClose }) => {
     const inputRef = useRef();
 
     useEffect(() => {
-        const url = new URL(window.location.href);
         const scopes = [];
-        url.searchParams.forEach((value, key) => {
+        const select = document.getElementById('searchscope');
+        if (select) {
+            const slug = select?.children?.[1]?.value;
+            if (slug) {
+                const packageName = decodeURIComponent(slug).split('/').slice(2, 4).join('/');
+                scopes.push({ type: 'manual', title: packageName });
+            }
+        }
+        const url = new URL(window.location.href);
+        url.searchParams?.forEach((value, key) => {
             if (key === 'q') {
                 setSearchQuery(value);
             } else if (key === 'scope') {
-                const slug = decodeURIComponent(value).split('/').slice(2, 4).join('/');
-                scopes.push({ type: 'manual', title: slug });
+                const packageName = decodeURIComponent(value).split('/').slice(2, 4).join('/');
+                scopes.push({ type: 'manual', title: packageName });
             } else if (key.startsWith('filters[')) {
                 const filterExp = new RegExp(/filters\[(.*?)\]\[(.*?)\]/);
                 const [, type, filterValue] = key.match(filterExp);
@@ -39,9 +47,10 @@ const SearchModal = ({ isOpen, onClose }) => {
         const url = new URL('/search/search', 'https://docs.typo3.org');
         scopes.forEach(scope => {
             if (scope.type === 'manual' || scope.type === 'vendor') {
+                /* TODO: API currently don't return the slug for packages, so we can't build the URL entirely */
                 url.searchParams.append(`scope`, encodeURIComponent(`/${scope.slug}/`));
             } else if (scope.type === 'option') {
-                url.searchParams.append(`filters[optionsaggs][${scope.title}]`, true);
+                url.searchParams.append(`filters[optionaggs][${scope.title}]`, true);
             } else {
                 url.searchParams.append(`filters[${scope.type}][${scope.title}]`, true);
             }
@@ -92,6 +101,8 @@ const SearchModal = ({ isOpen, onClose }) => {
                 url.searchParams.append(`filters[package]`, scope.title);
             } else if (scope.type === 'vendor') {
                 url.searchParams.append(`filters[${scope.type}]`, scope.title);
+            } else if (scope.type === 'option') {
+                url.searchParams.append(`filters[optionsaggs][${scope.title}]`, true);
             } else {
                 url.searchParams.append(`filters[${scope.type}][${scope.title}]`, true);
             }
@@ -109,11 +120,8 @@ const SearchModal = ({ isOpen, onClose }) => {
         setIsLoading(true);
         const requestUrl = buildRequestUrl(scopes, searchQuery);
         await fetch(requestUrl, {
-            mode: 'no-cors',
             headers: {
-                'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Allow-Control-Allow-Origin': '*',
             },
         }).then(response => {
             if (!response.ok) {
@@ -124,6 +132,8 @@ const SearchModal = ({ isOpen, onClose }) => {
             applyData(data);
         }).catch(e => {
             console.error(e);
+            setFileSuggestions([]);
+            setScopeSuggestions([]);
         }).finally(() => {
             setIsLoading(false);
         });
@@ -137,7 +147,7 @@ const SearchModal = ({ isOpen, onClose }) => {
             packageName: result.manual_package,
             href: `https://docs.typo3.org/${result.manual_slug}/${result.relative_url}#${result.fragment}`,
         }));
-        const scopeSuggestions = Object.entries(data?.suggest?.suggestions).flatMap(([scope, suggestions]) => {
+        const scopeSuggestions = Object.entries(data?.suggest?.suggestions ?? {}).flatMap(([scope, suggestions]) => {
             const type = scope.replace('manual_', '') === 'package' ? 'manual' : scope.replace('manual_', '');
             return suggestions.map(suggestion => ({
                 type,

@@ -27305,6 +27305,9 @@ figure.uml-diagram {
   font-size: 1rem;
   color: #6c757d;
   font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .suggest-row__tooltip {
   padding: 0.5rem;
