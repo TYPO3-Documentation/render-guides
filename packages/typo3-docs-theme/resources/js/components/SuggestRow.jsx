@@ -27,9 +27,9 @@ const SuggestRow = forwardRef(({ title, packageName, scopes, tooltip, onClick, t
                                 {scopeName && <p className="suggest-row__scope-name">{scopeName}</p>}
                             </div>
                         ))}<p className="suggest-row__title">{title}</p> </> : (
-                        <div className='suggest-row__scope'>
+                        <div className='suggest-row__scope' title={`${title}${packageName ? ` (${packageName})` : ''}`}>
                             <p className="suggest-row__scope-type">{type && `${type}:`}</p>
-                            <p className="suggest-row__title">{title}</p>
+                            <p className="suggest-row__title" dangerouslySetInnerHTML={{ __html: title }}></p>
                         </div>
                     )}
                 {packageName && <p className="suggest-row__description">({packageName})</p>}
