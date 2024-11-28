@@ -25,7 +25,7 @@ final class InitCommand extends Command
             <<<'HELP'
                 This interactive command will help you to setup your project documentation.
                 To do so, it will ask you a few questions about your project and then
-                create a new documentation project in the current directory.
+                create a new documentation project in the working directory (default: current directory).
 
                 For more information, see:
                 https://docs.typo3.org/permalink/h2document:basic-principles
@@ -53,7 +53,7 @@ final class InitCommand extends Command
         }
 
         if (file_exists('Documentation/guides.xml')) {
-            $output->writeln('<error>A Documentation directory already exists in this directory</error>');
+            $output->writeln('<error>A "Documentation" directory already exists in this directory</error>');
             return Command::INVALID;
         }
 
@@ -101,13 +101,13 @@ final class InitCommand extends Command
         ]);
 
         $issuesUrl = $helper->ask($input, $output, $repositoryQuestion);
-        $typo3CoreVersion = $helper->ask($input, $output, new Question('Which version of typo3 is the prefered version to use?  <comment>[stable]</comment>: ', 'stable'));
+        $typo3CoreVersion = $helper->ask($input, $output, new Question('Which version of TYPO3 is the prefered version to use?  <comment>[stable]</comment>: ', 'stable'));
 
-        $output->writeln('Thank you for your input. We will setup your Documentation folder now.');
+        $output->writeln('Thank you for your input. We will setup your "Documentation" folder now.');
 
         // Create the project structure
         if (!@mkdir('Documentation') && !is_dir('Documentation')) {
-            $output->writeln('<error>Directory Documentation was not created</error>');
+            $output->writeln('<error>Directory "Documentation" was not created</error>');
             return Command::FAILURE;
         }
 
