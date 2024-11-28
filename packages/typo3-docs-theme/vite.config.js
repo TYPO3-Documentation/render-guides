@@ -6,7 +6,6 @@ export default defineConfig({
     build: {
         outDir: 'assets',
         emptyOutDir: false,
-        minify: false,
         rollupOptions: {
             input: 'resources/js/search.jsx',
             output: {
