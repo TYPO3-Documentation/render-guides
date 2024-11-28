@@ -17,12 +17,14 @@
                         <input class="form-control code" id="permalink-uri" readonly>
                         <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
                     </div>
-                    <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
-                    <div class="input-group">
-                        <input class="form-control code" id="permalink-short" readonly>
-                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
                     </div>
-                    <p><em>Copy and freely share the link</em></p>
                 </div>
                 <div class="mb-3">
                     <div class="alert alert-warning alert-permalink-rst" role="alert">
@@ -38,6 +40,13 @@
                         <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
                     </div>
                     <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="permalink-html" class="col-form-label">Link in HTML</label>

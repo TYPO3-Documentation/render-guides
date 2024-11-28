@@ -9,4 +9,4 @@ Confval
 
     Some Text
 
-See also :confval:`demo`.
+See also :confval:`demo` or :ref:`demo <confval-demo>`.

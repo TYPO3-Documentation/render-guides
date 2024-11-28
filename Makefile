@@ -140,6 +140,11 @@ rendertest: ## Runs rendering with Documentation-rendertest
 	@echo "$(ENV_INFO)"
 	$(PHP_BIN) vendor/bin/guides --no-progress Documentation-rendertest --output="Documentation-GENERATED-rendertest" --config=Documentation-rendertest
 
+.PHONY: mdtest
+mdtest: ## Runs rendering with Documentation-markdowntest
+	@echo "$(ENV_INFO)"
+	$(PHP_BIN) vendor/bin/guides --no-progress Documentation-markdowntest --output="Documentation-GENERATED-markdowntest" --config=Documentation-markdowntest
+
 .PHONY: rendertestassets
 rendertestassets: assets rendertest ## Rebuild assets and make rendertest
 

@@ -7,7 +7,56 @@
             "Fluid ViewHelpers"
         ]
     },
-    "std:label": [],
+    "std:label": {
+        "viewhelper-typo3fluid-fluid-viewhelpers-splitviewhelper": [
+            "-",
+            "-",
+            "index.html#viewhelper-typo3fluid-fluid-viewhelpers-splitviewhelper",
+            "split"
+        ],
+        "viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-limit": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-limit",
+            "limit"
+        ],
+        "viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-separator": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-separator",
+            "separator"
+        ],
+        "viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-value": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-value",
+            "value"
+        ],
+        "viewhelper-typo3-cms-fluid-viewhelpers-link-externalviewhelper": [
+            "-",
+            "-",
+            "index.html#viewhelper-typo3-cms-fluid-viewhelpers-link-externalviewhelper",
+            "link.external"
+        ],
+        "viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri",
+            "uri"
+        ],
+        "viewhelper-typo3-cms-fluid-viewhelpers-deprecatedviewhelper": [
+            "-",
+            "-",
+            "index.html#viewhelper-typo3-cms-fluid-viewhelpers-deprecatedviewhelper",
+            "deprecated"
+        ],
+        "viewhelper-typo3-cms-form-viewhelpers-be-maximumfilesizeviewhelper": [
+            "-",
+            "-",
+            "index.html#viewhelper-typo3-cms-form-viewhelpers-be-maximumfilesizeviewhelper",
+            "be.maximumFileSize"
+        ]
+    },
     "std:title": {
         "fluid-viewhelpers": [
             "-",

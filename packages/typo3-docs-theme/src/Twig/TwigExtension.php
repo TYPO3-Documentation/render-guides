@@ -12,6 +12,7 @@ use phpDocumentor\Guides\Nodes\LinkTargetNode;
 use phpDocumentor\Guides\Nodes\Metadata\NoSearchNode;
 use phpDocumentor\Guides\Nodes\Metadata\OrphanNode;
 use phpDocumentor\Guides\Nodes\Node;
+use phpDocumentor\Guides\Nodes\PrefixedLinkTargetNode;
 use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RenderContext;
@@ -201,27 +202,30 @@ final class TwigExtension extends AbstractExtension
     public function getRstCodeForLink(array $context, LinkTargetNode $linkTargetNode): string
     {
         $interlink = $this->themeSettings->getSettings('interlink_shortcode') !== '' ? $this->themeSettings->getSettings('interlink_shortcode') : 'somemanual';
-        if ($linkTargetNode->getLinkType() === ConfvalNode::LINK_TYPE) {
+        if ($linkTargetNode instanceof PrefixedLinkTargetNode && $linkTargetNode->getLinkType() === ConfvalNode::LINK_TYPE) {
             return sprintf(
-                ':confval:`%s <%s:%s>`',
+                ':ref:`%s <%s:%s%s>`',
                 $linkTargetNode->getLinkText(),
                 $interlink,
+                $linkTargetNode->getPrefix(),
                 $linkTargetNode->getId()
             );
         }
-        if ($linkTargetNode->getLinkType() === ViewHelperNode::LINK_TYPE) {
+        if ($linkTargetNode instanceof PrefixedLinkTargetNode && $linkTargetNode->getLinkType() === ViewHelperNode::LINK_TYPE) {
             return sprintf(
-                ':typo3:viewhelper:`%s <%s:%s>`',
+                ':ref:`%s <%s:%s%s>`',
                 $linkTargetNode->getLinkText(),
                 $interlink,
+                $linkTargetNode->getPrefix(),
                 $linkTargetNode->getId()
             );
         }
-        if ($linkTargetNode->getLinkType() === ViewHelperArgumentNode::LINK_TYPE) {
+        if ($linkTargetNode instanceof PrefixedLinkTargetNode && $linkTargetNode->getLinkType() === ViewHelperArgumentNode::LINK_TYPE) {
             return sprintf(
-                ':typo3:viewhelper-argument:`%s <%s:%s>`',
+                ':ref:`%s <%s:%s%s>`',
                 $linkTargetNode->getLinkText(),
                 $interlink,
+                $linkTargetNode->getPrefix(),
                 $linkTargetNode->getId()
             );
         }

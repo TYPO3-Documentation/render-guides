@@ -13,6 +13,7 @@
         "phpdocumentor/guides-markdown": "^1.6",
         "phpdocumentor/guides-restructured-text": "^1.6",
         "phpdocumentor/guides-theme-bootstrap": "^1.0",
+        "phpdocumentor/guides-theme-rst": "^1.0",
         "symfony/clock": "^6.4",
         "symfony/finder": "^6.4",
         "symfony/http-client": "^6.4",
@@ -22,7 +23,7 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.44",
-        "friendsofphp/php-cs-fixer": "^3.64",
+        "friendsofphp/php-cs-fixer": "^3.65",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^1.12",
         "phpstan/phpstan-strict-rules": "^1.6",

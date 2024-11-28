@@ -91,7 +91,7 @@ final class ViewHelperDirective extends BaseDirective
         $noindex = $directive->getOptionBool('noindex');
 
         $data = $json['viewHelpers'][$directive->getData()];
-        $viewHelperNode = $this->getViewHelperNode($data, $blockContext, $noindex);
+        $viewHelperNode = $this->getViewHelperNode($data, $json['sourceEdit'] ?? [], $blockContext, $noindex);
         $arguments = [];
         foreach ($json['viewHelpers'][$directive->getData()]['argumentDefinitions'] ?? [] as $argumentDefinition) {
             if (is_array($argumentDefinition)) {
@@ -145,8 +145,9 @@ final class ViewHelperDirective extends BaseDirective
 
     /**
      * @param array<string, mixed> $data
+     * @param array<string, array{'sourcePrefix': string, 'editPrefix': string}> $sourceEdit
      */
-    private function getViewHelperNode(array $data, BlockContext $blockContext, bool $noindex): ViewHelperNode
+    private function getViewHelperNode(array $data, array $sourceEdit, BlockContext $blockContext, bool $noindex): ViewHelperNode
     {
         $rstContent = $this->getString($data, 'documentation');
         $rstContentBlockContext = new BlockContext($blockContext->getDocumentParserContext(), $rstContent, false);
@@ -154,7 +155,8 @@ final class ViewHelperDirective extends BaseDirective
         $shortClassName = $this->getString($data, 'name');
         $className = $this->getString($data, 'className');
         $nameSpace = $this->getString($data, 'namespace');
-        $gitHubLink = $this->getGitHubBase($nameSpace);
+        $xmlNamespace = $this->getString($data, 'xmlNamespace');
+        $gitHubLink = $sourceEdit[$xmlNamespace]['sourcePrefix'] ?? '';
         if ($gitHubLink !== '') {
             $gitHubLink .= sprintf('%s.php', str_replace('\\', '/', $shortClassName));
         }
@@ -166,7 +168,7 @@ final class ViewHelperDirective extends BaseDirective
             $nameSpace,
             $className,
             $collectionNode?->getValue() ?? [],
-            $this->getString($data, 'xmlNamespace'),
+            $xmlNamespace,
             ($data['allowsArbitraryArguments'] ?? false) === true,
             $data['docTags'] ?? [],
             $gitHubLink,
@@ -174,17 +176,6 @@ final class ViewHelperDirective extends BaseDirective
             [],
         );
         return $viewHelperNode;
-    }
-
-    private function getGitHubBase(string $nameSpace): string
-    {
-        return match ($nameSpace) {
-            'TYPO3\\CMS\\Backend\\ViewHelpers' => 'https://github.com/TYPO3/typo3/blob/main/typo3/sysext/backend/Classes/ViewHelpers/',
-            'TYPO3\\CMS\\Core\\ViewHelpers' => 'https://github.com/TYPO3/typo3/blob/main/typo3/sysext/core/Classes/ViewHelpers/',
-            'TYPO3\\CMS\\Fluid\\ViewHelpers' => 'https://github.com/TYPO3/typo3/blob/main/typo3/sysext/fluid/Classes/ViewHelpers/',
-            'TYPO3Fluid\\Fluid\\ViewHelpers' => 'https://github.com/TYPO3/Fluid/blob/main/src/ViewHelpers/',
-            default => '',
-        };
     }
 
     private function getErrorNode(): ParagraphNode

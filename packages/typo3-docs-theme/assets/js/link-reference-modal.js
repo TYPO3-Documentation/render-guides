@@ -2,9 +2,11 @@
   const SELECTOR_BUTTON = '.headerlink';
   const SELECTOR_MODAL = '#linkReferenceModal';
   const SELECTOR_ALERT_RST_NO_ANCHOR = '.alert-permalink-rst';
+  const SELECTOR_PERMALINK_SHORT_WRAPPER = '.permalink-short-wrapper';
   const SELECTOR_PERMALINK_URI = '#permalink-uri';
   const SELECTOR_PERMALINK_SHORT = '#permalink-short';
   const SELECTOR_PERMALINK_RST = '#permalink-rst';
+  const SELECTOR_PERMALINK_MD = '#permalink-md';
   const SELECTOR_PERMALINK_HTML = '#permalink-html';
   const SELECTOR_ALERT_SUCCESS = '#permalink-alert-success';
   const SELECTOR_COPY_BUTTON = '.copy-button';
@@ -37,7 +39,7 @@
   function generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename) {
     const interlinkTarget = linkReferenceModal.dataset.interlinkShortcode || 'somemanual';
     if (rstAnchor) {
-      return `:ref:\`${headerText} <${interlinkTarget}:${rstAnchor}>\``;
+      return `\`${headerText} <https://docs.typo3.org/permalink/${interlinkTarget}:${rstAnchor}>\`_`;
     }
     if (filename === '') {
       return '';
@@ -47,10 +49,13 @@
 
   function showHideRstAnchorAlert(linkReferenceModal, rstAnchor) {
     const alertPermalinkRstNoAnchor = linkReferenceModal.querySelector(SELECTOR_ALERT_RST_NO_ANCHOR);
+    const permalinkShortWrapper = linkReferenceModal.querySelector(SELECTOR_PERMALINK_SHORT_WRAPPER);
     if (!rstAnchor) {
       alertPermalinkRstNoAnchor.classList.remove('d-none');
+      permalinkShortWrapper.classList.add('d-none');
     } else {
       alertPermalinkRstNoAnchor.classList.add('d-none');
+      permalinkShortWrapper.classList.remove('d-none');
     }
   }
 
@@ -62,10 +67,12 @@
       // this can happen when opening a local file
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_URI).value = '';
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_HTML).value = '';
+      linkReferenceModal.querySelector(SELECTOR_PERMALINK_MD).value = '';
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_SHORT).value = '';
     } else {
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_URI).value = uri;
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_SHORT).value = shortUri;
+      linkReferenceModal.querySelector(SELECTOR_PERMALINK_MD).value = `[${headerText}](${shortUri})`;
       linkReferenceModal.querySelector(SELECTOR_PERMALINK_HTML).value = `<a href="${uri}">${headerText}</a>`;
     }
     const rstInput = linkReferenceModal.querySelector(SELECTOR_PERMALINK_RST);
@@ -126,7 +133,7 @@
       const rstLink = rstLinkData ? rstLinkData : generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename);
       const shortUri = generateShortUri(linkReferenceModal, section, headerText, rstAnchor, filename);
 
-      updateInputsAndTextareas(linkReferenceModal, header, headerText, uri, rstLink, shortUri);
+      updateInputsAndTextareas(linkReferenceModal, header, headerText, uri, rstLink, rstAnchor?shortUri:uri);
 
 
       handleCopyButtons(linkReferenceModal);
