@@ -45,7 +45,7 @@ export const useSearchSuggestions = () => {
             const files = data?.results?.map(result => ({
                 title: result.snippet_title,
                 packageName: result.manual_package,
-                href: `http://localhost:300°/${result.manual_slug}/${result.relative_url}#${result.fragment}`,
+                href: `${PROXY_URL}/${result.manual_slug}/${result.relative_url}#${result.fragment}`,
             })) || [];
 
             // Process scope suggestions

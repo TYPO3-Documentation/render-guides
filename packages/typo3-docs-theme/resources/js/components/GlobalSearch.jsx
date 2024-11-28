@@ -10,7 +10,14 @@ const GlobalSearch = () => {
 
     useEffect(() => {
         const globalSearchInput = document.getElementById('globalsearchinput');
-        globalSearchInput.addEventListener('click', handleInputClick);
+
+        if (globalSearchInput) {
+            globalSearchInput.addEventListener('click', handleInputClick);
+
+            return () => {
+                globalSearchInput.removeEventListener('click', handleInputClick);
+            };
+        }
     }, []);
 
 

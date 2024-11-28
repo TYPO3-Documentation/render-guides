@@ -27146,6 +27146,7 @@ figure.uml-diagram {
 .search-modal__input-wrapper {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.3rem;
   align-items: center;
   width: 100%;
@@ -27168,16 +27169,17 @@ figure.uml-diagram {
 .search-modal__scope {
   color: #6c757d;
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
 }
 .search-modal__scope p {
   margin: 0;
 }
 .search-modal__scope-title {
-  text-wrap: nowrap;
   color: #ff8700;
 }
 .search-modal__input {
-  width: 100%;
   border: none;
   background: transparent;
   padding: 0;
@@ -27246,8 +27248,8 @@ figure.uml-diagram {
 .suggest-row {
   display: flex;
   align-items: center;
-  padding: 0rem 1rem;
-  height: 50px;
+  padding: 0.75rem 1rem;
+  min-height: 50px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   text-decoration: none;
@@ -27275,7 +27277,7 @@ figure.uml-diagram {
 .suggest-row__content {
   flex: 1;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.3rem;
   min-width: 0;
 }
@@ -27284,13 +27286,14 @@ figure.uml-diagram {
   font-weight: 700;
   color: #212529;
   transition: color 0.2s ease;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .suggest-row__scope {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
 }
 .suggest-row__scope-name {
   font-weight: 400;
@@ -27305,7 +27308,6 @@ figure.uml-diagram {
   font-size: 1rem;
   color: #6c757d;
   font-style: italic;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
