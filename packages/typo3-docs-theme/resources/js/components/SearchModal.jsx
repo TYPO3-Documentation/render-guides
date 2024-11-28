@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchScopes } from '../hooks/useSearchScopes';
 import { useSearchSuggestions } from '../hooks/useSearchSuggestions';
-import SuggestRow from './SuggestRow';
 import { PROXY_URL } from '../search';
+import SuggestRow from './SuggestRow';
 
 const SearchModal = ({ isOpen, onClose }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -35,40 +35,40 @@ const SearchModal = ({ isOpen, onClose }) => {
 
     const decomposedScopes = useMemo(() => {
         const decomposed = [];
-        for (let i = scopes.length; i > 0; i--) {
+        for (let i = scopes.length;i > 0;i--) {
             const currentScopes = scopes.slice(-i);
             if (currentScopes.length === 1 && currentScopes[0].type === 'manual') {
-                decomposed.push({ 
-                    scopes: currentScopes, 
-                    title: searchQuery, 
-                    tooltip: 'Search in this manual', 
-                    href: buildHref(currentScopes, searchQuery) 
+                decomposed.push({
+                    scopes: currentScopes,
+                    title: searchQuery,
+                    tooltip: 'Search in this manual',
+                    href: buildHref(currentScopes, searchQuery)
                 });
-                const vendorScope = [{ 
-                    type: 'vendor', 
-                    title: currentScopes[0].title.split('/')[0] 
+                const vendorScope = [{
+                    type: 'vendor',
+                    title: currentScopes[0].title.split('/')[0]
                 }];
-                decomposed.push({ 
-                    scopes: vendorScope, 
-                    title: searchQuery, 
-                    tooltip: 'Search in this vendor', 
-                    href: buildHref(vendorScope, searchQuery) 
+                decomposed.push({
+                    scopes: vendorScope,
+                    title: searchQuery,
+                    tooltip: 'Search in this vendor',
+                    href: buildHref(vendorScope, searchQuery)
                 });
             } else {
-                decomposed.push({ 
-                    scopes: currentScopes, 
-                    title: searchQuery, 
-                    tooltip: 'Search in this scope', 
-                    href: buildHref(currentScopes, searchQuery) 
+                decomposed.push({
+                    scopes: currentScopes,
+                    title: searchQuery,
+                    tooltip: 'Search in this scope',
+                    href: buildHref(currentScopes, searchQuery)
                 });
             }
         }
         if (searchQuery) {
-            decomposed.push({ 
-                scopes: [], 
-                title: searchQuery, 
-                tooltip: 'Search all', 
-                href: buildHref([], searchQuery) 
+            decomposed.push({
+                scopes: [],
+                title: searchQuery,
+                tooltip: 'Search all',
+                href: buildHref([], searchQuery)
             });
         }
         return decomposed;
@@ -103,7 +103,7 @@ const SearchModal = ({ isOpen, onClose }) => {
 
         switch (e.key) {
             case 'Backspace':
-                if (inputRef.current?.selectionStart === 0) {
+                if (inputRef.current?.selectionEnd === 0) {
                     setScopes(prevScopes => prevScopes.slice(0, -1));
                 }
                 break;
@@ -165,9 +165,10 @@ const SearchModal = ({ isOpen, onClose }) => {
                         onClick={() => setActiveIndex(-1)}>
                         <i className="fa fa-search search-modal__icon"></i>
                         {scopes.map((scope, index) => (
-                            <span key={`scope-${index}`} className="search-modal__scope">
-                                {scope.type}:<p className="search-modal__scope-title">{scope.title}</p>
-                            </span>
+                            <div key={`scope-${index}`} className="search-modal__scope">
+                                <p className="suggest-row__scope-type">{scope.type && `${scope.type}:`}</p>
+                                <p className="search-modal__scope-title">{scope.title}</p>
+                            </div>
                         ))}
                         <input
                             ref={inputRef}
