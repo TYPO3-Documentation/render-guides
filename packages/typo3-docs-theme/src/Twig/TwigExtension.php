@@ -14,6 +14,7 @@ use phpDocumentor\Guides\Nodes\Metadata\OrphanNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\PrefixedLinkTargetNode;
 use phpDocumentor\Guides\Nodes\SectionNode;
+use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
@@ -60,6 +61,7 @@ final class TwigExtension extends AbstractExtension
         private readonly Typo3DocsThemeSettings        $themeSettings,
         private readonly DocumentNameResolverInterface $documentNameResolver,
         private readonly Typo3VersionService           $typo3VersionService,
+        private readonly AnchorNormalizer              $anchorNormalizer,
     ) {
         if (strlen((string)getenv('GITHUB_ACTIONS')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
@@ -255,7 +257,7 @@ final class TwigExtension extends AbstractExtension
     {
         foreach ($sectionNode->getChildren() as $childNode) {
             if ($childNode instanceof AnchorNode) {
-                return $childNode->toString();
+                return $this->anchorNormalizer->reduceAnchor($childNode->toString());
             }
         }
         return '';

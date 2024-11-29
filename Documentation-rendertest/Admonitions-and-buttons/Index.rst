@@ -1,5 +1,6 @@
 .. include:: /Includes.rst.txt
 
+..  _Adminitions_And_Buttons:
 
 =======================
 Admonitions and buttons
