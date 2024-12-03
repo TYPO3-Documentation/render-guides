@@ -8,7 +8,7 @@ export const useSearchSuggestions = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const buildRequestUrl = (scopes, searchQuery) => {
-        const url = new URL(`${PROXY_URL}/search/suggest`);
+        const url = new URL(`${PROXY_URL}/suggest`);
         scopes.forEach(scope => {
             if (scope.type === 'manual') {
                 url.searchParams.append(`filters[package]`, scope.title);
@@ -36,11 +36,11 @@ export const useSearchSuggestions = () => {
             const response = await fetch(buildRequestUrl(scopes, searchQuery), {
                 headers: { 'Content-Type': 'application/json' },
             });
-            
+
             if (!response.ok) throw new Error('Network response error');
-            
+
             const data = await response.json();
-            
+
             // Process file suggestions
             const files = data?.results?.map(result => ({
                 title: result.snippet_title,
@@ -51,9 +51,11 @@ export const useSearchSuggestions = () => {
             // Process scope suggestions
             const scopesSugg = Object.entries(data?.suggest?.suggestions ?? {}).flatMap(([scope, suggestions]) => {
                 const type = scope.replace('manual_', '') === 'package' ? 'manual' : scope.replace('manual_', '');
+
                 return suggestions.map(suggestion => ({
                     type,
-                    title: type === 'version' ? suggestion.split('.')[0] : suggestion
+                    title: type === 'version' ? suggestion.title.split('.')[0] : suggestion.title,
+                    slug: suggestion.slug ?? null,
                 }));
             });
 
@@ -73,7 +75,9 @@ export const useSearchSuggestions = () => {
     return {
         fileSuggestions,
         scopeSuggestions,
+        setScopeSuggestions,
+        setFileSuggestions,
         isLoading,
         fetchSuggestions: debouncedFetch
     };
-}; 
+};
