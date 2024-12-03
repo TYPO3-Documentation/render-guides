@@ -21,7 +21,7 @@ const SearchModal = ({ isOpen, onClose }) => {
     } = useSearchSuggestions();
 
     const buildHref = useCallback((scopes, query) => {
-        const url = new URL('/search', PROXY_URL);
+        const url = new URL('/search/search', PROXY_URL);
 
         if (!query && scopes.length === 1 && scopes[0].type === 'manual') {
             return (new URL(`/${scopes[0].slug}/`, PROXY_URL)).href;
