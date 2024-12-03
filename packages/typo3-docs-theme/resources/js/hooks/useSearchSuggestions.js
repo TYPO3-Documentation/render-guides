@@ -8,7 +8,7 @@ export const useSearchSuggestions = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const buildRequestUrl = (scopes, searchQuery) => {
-        const url = new URL(`${PROXY_URL}/suggest`);
+        const url = new URL('/search/suggest', PROXY_URL);
         scopes.forEach(scope => {
             if (scope.type === 'manual') {
                 url.searchParams.append(`filters[package]`, scope.title);
