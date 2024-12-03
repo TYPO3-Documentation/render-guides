@@ -14,15 +14,24 @@ const SearchModal = ({ isOpen, onClose }) => {
     const {
         fileSuggestions,
         scopeSuggestions,
+        setScopeSuggestions,
+        setFileSuggestions,
         isLoading,
         fetchSuggestions
     } = useSearchSuggestions();
 
     const buildHref = useCallback((scopes, query) => {
-        const url = new URL('/search/search', PROXY_URL);
+        const url = new URL('/search', PROXY_URL);
+
+        if (!query && scopes.length === 1 && scopes[0].type === 'manual') {
+            return (new URL(`/${scopes[0].slug}/`, PROXY_URL)).href;
+        }
+
         scopes.forEach(scope => {
-            if (scope.type === 'manual' || scope.type === 'vendor') {
-                url.searchParams.append('scope', encodeURIComponent(`/${scope.slug}/`));
+            if (scope.type === 'manual') {
+                url.searchParams.append('scope', (`/${scope.slug}/`));
+            } else if (scope.type === 'vendor') {
+                url.searchParams.append('vendor', scope.title);
             } else if (scope.type === 'option') {
                 url.searchParams.append(`filters[optionaggs][${scope.title}]`, true);
             } else {
@@ -46,7 +55,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                 });
                 const vendorScope = [{
                     type: 'vendor',
-                    title: currentScopes[0].title.split('/')[0]
+                    title: currentScopes[0].title.split('/')[0],
                 }];
                 decomposed.push({
                     scopes: vendorScope,
@@ -74,19 +83,21 @@ const SearchModal = ({ isOpen, onClose }) => {
         return decomposed;
     }, [scopes, searchQuery, buildHref]);
 
-    const handleScopeSelect = useCallback((title, type) => {
+    const handleScopeSelect = useCallback((title, type, slug) => {
         setScopes(prevScopes => {
             const newScopes = [...prevScopes];
             const existingScopeIndex = newScopes.findIndex(scope => scope.type === type);
             if (existingScopeIndex !== -1) {
-                newScopes[existingScopeIndex] = { type, title };
+                newScopes[existingScopeIndex] = { type, title, slug };
             } else {
-                newScopes.push({ type, title });
+                newScopes.push({ type, title, slug });
             }
             return newScopes;
         });
         setSearchQuery('');
         setActiveIndex(-1);
+        setScopeSuggestions([]);
+        setFileSuggestions([]);
         inputRef.current?.focus();
     }, [setScopes]);
 
@@ -231,7 +242,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                             {scopeSuggestions?.length > 0 && (
                                 <li className="search-modal__section">
                                     <div className="search-modal__items" role="group" aria-label="Scope suggestions">
-                                        {scopeSuggestions.map(({ title, type }, index) => (
+                                        {scopeSuggestions.map(({ title, type, slug }, index) => (
                                             <SuggestRow
                                                 key={`scope-${index}`}
                                                 title={title}
@@ -239,7 +250,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                                                 isActive={activeIndex === (index + decomposedScopes.length)}
                                                 ref={el => suggestionsRef.current[index + decomposedScopes.length] = el}
                                                 tooltip="Filter for this"
-                                                onClick={() => handleScopeSelect(title, type)}
+                                                onClick={() => handleScopeSelect(title, type, slug)}
                                             />
                                         ))}
                                     </div>
