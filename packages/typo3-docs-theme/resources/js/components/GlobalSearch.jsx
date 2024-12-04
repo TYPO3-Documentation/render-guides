@@ -9,7 +9,10 @@ const GlobalSearch = () => {
     };
 
     useEffect(() => {
-        const globalSearchInput = document.getElementById('globalsearchinput');
+        let globalSearchInput = document.getElementById('globalsearchinput');
+        if (!globalSearchInput) {
+            globalSearchInput = document.getElementById('searchinput');
+        }
 
         if (globalSearchInput) {
             globalSearchInput.addEventListener('click', handleInputClick);
