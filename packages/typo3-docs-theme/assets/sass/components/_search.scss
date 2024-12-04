@@ -79,7 +79,8 @@
         border: none;
         background: transparent;
         padding: 0;
-        
+        flex-grow: 1;
+
         &:focus {
             outline: none;
             box-shadow: none;
@@ -94,7 +95,7 @@
         color: #6c757d;
         cursor: pointer;
         padding: 0.25rem;
-        
+
         &:hover {
             color: #343a40;
         }
@@ -114,7 +115,7 @@
 
     &__section {
         margin-bottom: .5rem;
-        
+
         &:last-child {
             margin-bottom: 0;
         }
@@ -140,19 +141,19 @@
         justify-content: center;
         padding: 3rem 1rem;
         color: #6c757d;
-        
+
         .search-modal__spinner {
             font-size: 2rem;
             margin-bottom: 1rem;
             color: $primary;
         }
-        
+
         p {
             margin: 0;
             font-size: 1rem;
         }
     }
-} 
+}
 
 .suggest-row {
     display: flex;
@@ -245,4 +246,4 @@
     ul {
         margin: 0;
     }
-} 
+}

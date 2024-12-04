@@ -27183,6 +27183,7 @@ figure.uml-diagram {
   border: none;
   background: transparent;
   padding: 0;
+  flex-grow: 1;
 }
 .search-modal__input:focus {
   outline: none;
