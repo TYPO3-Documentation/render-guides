@@ -24,7 +24,7 @@ const SearchModal = ({ isOpen, onClose }) => {
         const url = new URL('/search/search', PROXY_URL);
 
         if (!query && scopes.length === 1 && scopes[0].type === 'manual') {
-            return (new URL(`/${scopes[0].slug}/`, PROXY_URL)).href;
+            return '/' + scopes[0].slug;
         }
 
         scopes.forEach(scope => {
