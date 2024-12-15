@@ -65,6 +65,9 @@ ENTRYPOINT_SYMFONY_COMMANDS="/opt/guides/packages/typo3-guides-cli/bin/typo3-gui
 if [ "$1" = "migrate" ]; then
     ENTRYPOINT="${ENTRYPOINT_SYMFONY_COMMANDS} migrate"
     shift
+elif [ "$1" = "init" ]; then
+    ENTRYPOINT="${ENTRYPOINT_SYMFONY_COMMANDS} init"
+    shift
 elif [ "$1" = "lint-guides-xml" ]; then
     ENTRYPOINT="${ENTRYPOINT_SYMFONY_COMMANDS} lint-guides-xml"
     shift
