@@ -10,8 +10,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use T3Docs\GuidesCli\Packagist\ComposerPackage;
-use T3Docs\GuidesCli\Packagist\PackagistService;
+use T3Docs\VersionHandling\Packagist\ComposerPackage;
+use T3Docs\VersionHandling\Packagist\PackagistService;
 
 final class InitCommand extends Command
 {

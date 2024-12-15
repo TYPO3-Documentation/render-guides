@@ -1,6 +1,6 @@
 <?php
 
-namespace T3Docs\GuidesCli\Packagist;
+namespace T3Docs\VersionHandling\Packagist;
 
 class ComposerPackage
 {
