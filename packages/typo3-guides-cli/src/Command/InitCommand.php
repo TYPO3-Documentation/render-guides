@@ -130,9 +130,7 @@ final class InitCommand extends Command
                 >
                     <project
                         title="$projectName"
-                        version="main"
-                        release="main"
-                        copyright="Since 2023 TYPO3 Documentation Team and Contributors"
+                        copyright="The contributors"
                     />
                     <extension
                         class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
