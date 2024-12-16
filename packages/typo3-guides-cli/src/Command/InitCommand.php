@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Command;
 
+use T3Docs\GuidesCli\Generation\DocumentationGenerator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,6 +14,12 @@ use Symfony\Component\Console\Question\Question;
 use T3Docs\VersionHandling\Packagist\ComposerPackage;
 use T3Docs\VersionHandling\Packagist\PackagistService;
 
+/**
+ * You can run this command, for example like
+ *
+ * ddev exec packages/typo3-guides-cli/bin/typo3-guides init --working-dir=packages/typo3-guides-cli
+ *
+ */
 final class InitCommand extends Command
 {
     protected static $defaultName = 'init';
@@ -66,42 +73,80 @@ final class InitCommand extends Command
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
 
-        $projectName = $helper->ask($input, $output, new Question(sprintf('What is the name of your project? <comment>[%s]</comment>: ', $composerInfo?->getComposerName()), $composerInfo?->getComposerName()));
 
-        $homepageQuestion = new Question(sprintf('What is the URL of your project\'s homepage? <comment>[%s]</comment>: ', $composerInfo?->getHomepage()), $composerInfo?->getHomepage());
-        $homepageQuestion->setAutocompleterValues([
-            'https://extensions.typo3.org/extension/' . $composerInfo?->getComposerName(),
-            'https://extensions.typo3.org/package/' . $composerInfo?->getComposerName(),
-            $composerInfo?->getHomepage(),
-        ]);
+        $question = new Question(sprintf('Do you want to use reStructuredText(rst) or MarkDown(md)? <comment>[rst, md]</comment>: '), 'rst');
+        $question->setValidator(function ($answer) {
+            if (is_null($answer) || !in_array($answer, ['rst', 'md'], true)) {
+                throw new \RuntimeException('Choose reStructuredText(rst) or MarkDown(md). ');
+            }
+            return $answer;
+        });
+        $format = $helper->ask($input, $output, $question);
 
-        $homepageQuestion->setValidator(function ($answer) {
-            if (!filter_var($answer, FILTER_VALIDATE_URL)) {
-                throw new \RuntimeException('The URL is not valid');
+        $projectNameQuestion = new Question(sprintf('What is the title of your documentation? <comment>[%s]</comment>: ', $composerInfo?->getComposerName()), $composerInfo?->getComposerName());
+        $projectNameQuestion->setValidator(function ($answer) {
+            if (is_null($answer) || trim($answer) === '') {
+                throw new \RuntimeException('The project title cannot be empty.');
             }
             return $answer;
         });
 
-        $projectHomePage = $helper->ask($input, $output, $homepageQuestion);
+        $projectName = $helper->ask($input, $output, $projectNameQuestion);
 
-        $repositoryQuestion = new Question(sprintf('What is the URL of your project\'s repository? '));
-        $repositoryQuestion->setAutocompleterValues([
-            'https://github.com/' . $composerInfo?->getComposerName(),
-            'https://gitlab.com/' . $composerInfo?->getComposerName(),
+        $question = $this->createValidatedUrlQuestion(
+            sprintf('What is the URL of your project\'s homepage? <comment>[%s]</comment>: ', $composerInfo?->getHomepage()),
             $composerInfo?->getHomepage(),
-        ]);
+            ['https://extensions.typo3.org/package/' . $composerInfo?->getComposerName()]
+        );
+        $projectHomePage = $helper->ask($input, $output, $question);
 
-        $repositoryUrl = $helper->ask($input, $output, $repositoryQuestion);
 
-        $repositoryQuestion = new Question(sprintf('Where can users report issues?  <comment>[%s]</comment>', $composerInfo?->getIssues()), $composerInfo?->getIssues());
-        $repositoryQuestion->setAutocompleterValues([
-            'https://github.com/' . $composerInfo?->getComposerName() . '/issues',
-            'https://gitlab.com/' . $composerInfo?->getComposerName() . '/-/issues',
+        $question = $this->createValidatedUrlQuestion(
+            sprintf(sprintf('What is the URL of your project\'s repository?   <comment>[%s]</comment>', 'https://github.com/' . $composerInfo?->getComposerName()), 'https://github.com/' . $composerInfo?->getComposerName()),
             $composerInfo?->getHomepage(),
-        ]);
+            [
+                'https://github.com/' . $composerInfo?->getComposerName(),
+                'https://gitlab.com/' . $composerInfo?->getComposerName(),
+                $composerInfo?->getHomepage(),
+            ]
+        );
+        $repositoryUrl = $helper->ask($input, $output, $question);
 
-        $issuesUrl = $helper->ask($input, $output, $repositoryQuestion);
-        $typo3CoreVersion = $helper->ask($input, $output, new Question('Which version of TYPO3 is the prefered version to use?  <comment>[stable]</comment>: ', 'stable'));
+        $question = $this->createValidatedUrlQuestion(
+            sprintf('Where can users report issues?  <comment>[%s]</comment>', $composerInfo?->getIssues()),
+            $composerInfo?->getIssues(),
+            [
+                'https://github.com/' . $composerInfo?->getComposerName() . '/issues',
+                'https://gitlab.com/' . $composerInfo?->getComposerName() . '/-/issues',
+                $composerInfo?->getHomepage(),
+            ]
+        );
+
+        $issuesUrl = $helper->ask($input, $output, $question);
+        $typo3CoreVersion = $helper->ask($input, $output, new Question('Which version of TYPO3 is the preferred version to use?  <comment>[stable]</comment>: ', 'stable'));
+
+        $question = new Question('Do you want generate some Documentation? (yes/no) ', 'yes');
+        $question->setValidator(function ($answer) {
+            if (!in_array(strtolower($answer), ['yes', 'y', 'no', 'n'], true)) {
+                throw new \RuntimeException('Please answer with yes, no, y, or n.');
+            }
+            return strtolower($answer);
+        });
+
+        $answer = $helper->ask($input, $output, $question);
+        $enableExampleFileGeneration = in_array($answer, ['yes', 'y'], true);
+
+        $question = new Question('Does your extension offer a site set to be included? If so enter the name: ');
+        $siteSet = $helper->ask($input, $output, $question);
+        $siteSetPath = '';
+        $siteSetDefinition = '';
+        if (is_string($siteSet) && $siteSet !== '') {
+            $question = new Question('Enter the path to your site set: ');
+            $siteSetPath = $helper->ask($input, $output, $question);
+            if (file_exists($siteSetPath . '/settings.definitions.yaml')) {
+                $siteSetDefinition = $siteSetPath . '/settings.definitions.yaml';
+            }
+        }
 
         $output->writeln('Thank you for your input. We will setup your "Documentation" folder now.');
 
@@ -111,44 +156,57 @@ final class InitCommand extends Command
             return Command::FAILURE;
         }
 
-        assert(is_string($projectName));
-        assert(is_string($projectHomePage));
-        assert(is_string($repositoryUrl));
-        assert(is_string($issuesUrl));
-        assert(is_string($typo3CoreVersion));
 
+        $outputDir = 'Documentation';
+        if (!is_dir($outputDir)) {
+            mkdir($outputDir, 0o777, true);
+        }
 
-        file_put_contents(
-            'Documentation/guides.xml',
-            <<<XML
-                <?xml version="1.0" encoding="UTF-8" ?>
-                <guides
-                    xmlns="https://www.phpdoc.org/guides"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
-                    input-format="rst"
-                >
-                    <project
-                        title="$projectName"
-                        copyright="The contributors"
-                    />
-                    <extension
-                        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
-                        edit-on-github="{$composerInfo?->getComposerName()}"
-                        edit-on-github-branch="main"
-                        interlink-shortcode="{$composerInfo?->getComposerName()}"
-                        project-home="$projectHomePage"
-                        project-issues="$issuesUrl"
-                        project-repository="$repositoryUrl"
-                        typo3-core-preferred="$typo3CoreVersion"
-                    />
-                </guides>
-                XML
-        );
+        assert(is_string($repositoryUrl ?? ''));
+        $editOnGitHub = null;
+        if (str_starts_with($repositoryUrl ?? '', 'https://github.com/')) {
+            $editOnGitHub = str_replace('https://github.com/', '', $repositoryUrl);
+        }
+        // Define your data
+        $data = [
+            'format' => $format,
+            'useMd' => ($format === 'md'),
+            'projectName' => $projectName,
+            'description' => $composerInfo?->getDescription(),
+            'composerName' => $composerInfo?->getComposerName(),
+            'projectHomePage' => $projectHomePage,
+            'issuesUrl' => $issuesUrl,
+            'repositoryUrl' => $repositoryUrl,
+            'typo3CoreVersion' => $typo3CoreVersion,
+            'editOnGitHub' => $editOnGitHub,
+            'siteSet' => $siteSet,
+            'siteSetPath' => $siteSetPath,
+            'siteSetDefinition' => $siteSetDefinition,
+        ];
+        (new DocumentationGenerator())->generate($data, __DIR__ . '/../../resources/templates', $outputDir, $enableExampleFileGeneration);
 
         return Command::SUCCESS;
     }
 
+    /**
+     * @param ?scalar $default
+     * @param array<mixed> $autocompleteValues
+     */
+    private function createValidatedUrlQuestion(string $questionText, mixed $default, array $autocompleteValues = []): Question
+    {
+        $question = new Question($questionText, $default);
+        if (!empty($autocompleteValues)) {
+            $question->setAutocompleterValues($autocompleteValues);
+        }
+        $question->setValidator(function ($answer) {
+            if (!is_null($answer) && !filter_var($answer, FILTER_VALIDATE_URL)) {
+                throw new \RuntimeException('The URL is not valid');
+            }
+            return $answer;
+        });
+
+        return $question;
+    }
 
     private function getComposerInfo(OutputInterface $output): ComposerPackage|null
     {
@@ -165,7 +223,7 @@ final class InitCommand extends Command
         }
 
         $composerInfo = (new PackagistService())->getComposerInfo($packageName);
-        $output->writeln('The package <comment>' . $composerInfo->getComposerName() . '</comment> was found on packagist.org');
+        $output->writeln(sprintf("The package <comment>%s</comment> was found on packagist.org", $composerInfo->getComposerName()));
 
         return $composerInfo;
     }
