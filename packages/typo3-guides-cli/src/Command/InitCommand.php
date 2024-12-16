@@ -75,7 +75,6 @@ final class InitCommand extends Command
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
 
-
         $question = new Question(sprintf('Do you want to use reStructuredText(rst) or MarkDown(md)? <comment>[rst, md]</comment>: '), 'rst');
         $question->setValidator(function ($answer) {
             if (is_null($answer) || !in_array($answer, [
