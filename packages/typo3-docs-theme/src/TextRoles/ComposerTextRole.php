@@ -15,9 +15,7 @@ final class ComposerTextRole implements TextRole
     public function __construct(
         private readonly PackagistService $packagistService,
         private readonly LoggerInterface $logger,
-    )
-    {
-    }
+    ) {}
 
     public function getName(): string
     {

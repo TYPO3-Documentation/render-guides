@@ -46,6 +46,7 @@ final class InitCommand extends Command
         if ($input->getOption('working-dir')) {
             $workdir = $input->getOption('working-dir');
             assert(is_string($workdir));
+            $workdir = (string) $workdir;
 
             if (chdir($workdir)) {
                 $output->writeln('<info>Changed working directory to ' . getcwd() . '</info>');
