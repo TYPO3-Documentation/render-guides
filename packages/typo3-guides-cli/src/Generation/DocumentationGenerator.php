@@ -26,26 +26,27 @@ class DocumentationGenerator
             return;
         }
 
-        // Generate the Documantation
+        // Generate the Documentation
         if ($data['format'] === 'md') {
             $xmlContent = $twig->render('Index.md.twig', $data);
             file_put_contents($outputDir . '/Index.md', $xmlContent);
             return;
         }
-        // Directory containing the templates
         $templatesDir = __DIR__ . '/../../resources/templates/rst';
         $files = scandir($templatesDir);
 
         if (!$files) {
             return;
         }
+
         foreach ($files as $file) {
             if (pathinfo($file, PATHINFO_EXTENSION) !== 'twig') {
                 continue;
             }
+
             // Determine the output filename
             $outputFileName = str_replace('.twig', '', $file);
-            $outputFilePath = sprintf("%s/%s", $outputDir, $outputFileName);
+            $outputFilePath = sprintf('%s/%s', $outputDir, $outputFileName);
 
             // Check if the output file already exists
             if (file_exists($outputFilePath)) {
@@ -53,7 +54,7 @@ class DocumentationGenerator
             }
 
             // Render the template
-            $output = $twig->render("rst/$file", $data);
+            $output = $twig->render(sprintf('rst/%s', $file), $data);
 
             // Save the rendered content to the output file
             file_put_contents($outputFilePath, $output);

@@ -155,7 +155,7 @@ final class InitCommand extends Command
         if (is_string($siteSet) && $siteSet !== '') {
             $question = new Question('Enter the path to your site set: ');
             $siteSetPath = $helper->ask($input, $output, $question);
-            if (file_exists($siteSetPath . '/settings.definitions.yaml')) {
+            if (is_file($siteSetPath . '/settings.definitions.yaml')) {
                 $siteSetDefinition = $siteSetPath . '/settings.definitions.yaml';
             }
         }
@@ -235,7 +235,7 @@ final class InitCommand extends Command
         }
 
         $composerInfo = (new PackagistService())->getComposerInfo($packageName);
-        $output->writeln(sprintf("The package <comment>%s</comment> was found on packagist.org", $composerInfo->getComposerName()));
+        $output->writeln(sprintf('The package <comment>%s</comment> was found on packagist.org', $composerInfo->getComposerName()));
 
         return $composerInfo;
     }
