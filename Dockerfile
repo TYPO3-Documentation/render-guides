@@ -12,6 +12,7 @@ WORKDIR /opt/guides
 
 COPY --from=builder /opt/guides/vendor /opt/guides/vendor
 RUN echo "memory_limit=4G" >> /usr/local/etc/php/conf.d/typo3.ini
+RUN echo "error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT" >> /usr/local/etc/php/conf.d/typo3.ini
 
 ARG TYPO3AZUREEDGEURIVERSION
 ENV TYPO3AZUREEDGEURIVERSION=$TYPO3AZUREEDGEURIVERSION

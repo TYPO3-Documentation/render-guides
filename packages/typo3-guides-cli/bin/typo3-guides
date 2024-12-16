@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli;
 
+use T3Docs\GuidesCli\Command\InitCommand;
 use T3Docs\GuidesCli\Command\MigrateSettingsCommand;
 use T3Docs\GuidesCli\Command\ConfigureCommand;
 use T3Docs\GuidesCli\Command\LintGuidesXmlCommand;
@@ -35,6 +36,7 @@ if (file_exists($autoloadDirectory)){
 $application = new Application('typo3-guides');
 
 $application->add(new MigrateSettingsCommand());
+$application->add(new InitCommand());
 $application->add(new ConfigureCommand());
 $application->add(new LintGuidesXmlCommand());
 

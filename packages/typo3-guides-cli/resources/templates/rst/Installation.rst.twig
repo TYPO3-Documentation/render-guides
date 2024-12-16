@@ -1,0 +1,33 @@
+:navigation-title: Installation
+
+..  _installation:
+
+============
+Installation
+============
+
+..  _installation-composer:
+
+Install {{ projectName }} with Composer
+=======================================
+
+Install the extension via Composer:
+
+..  code-block:: bash
+
+    composer req {{ composerName }}
+
+See also `Installing extensions, TYPO3 Getting started <https://docs.typo3.org/permalink/t3start:installing-extensions>`_.
+
+..  _installation-classic:
+
+Install {{ projectName }} in Classic Mode
+=========================================
+
+{% if projectHomePage %}
+Or download the extension from `{{ projectHomePage }} <{{ projectHomePage }}>`_ and install it in
+the Extension Manager.
+{% else %}
+Or download the extension from the `TER <https://extensions.typo3.org/>`_ and install it in
+the Extension Manager.
+{% endif %}

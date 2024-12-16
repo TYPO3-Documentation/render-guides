@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<guides
+    xmlns="https://www.phpdoc.org/guides"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+    input-format="{{ format }}"
+    {% if useMd -%}
+    index-name="Index"
+    automatic-menu="true"
+    {% endif -%}
+>
+    <project
+        title="{{ projectName }}"
+        copyright="The contributors"
+    />
+    <extension
+        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+        {% if editOnGitHub -%}
+        edit-on-github="{{ editOnGitHub }}"
+        edit-on-github-branch="main"
+        {% endif -%}
+        interlink-shortcode="{{ composerName }}"
+        {% if projectHomePage -%}
+        project-home="{{ projectHomePage }}"
+        {% endif -%}
+        {% if issuesUrl -%}
+        project-issues="{{ issuesUrl }}"
+        {% endif -%}
+        {% if repositoryUrl -%}
+        project-repository="{{ repositoryUrl }}"
+        {% endif -%}
+        typo3-core-preferred="{{ typo3CoreVersion }}"
+    />
+</guides>

@@ -1,6 +1,6 @@
 <?php
 
-namespace T3Docs\Typo3DocsTheme\Packagist;
+namespace T3Docs\VersionHandling\Packagist;
 
 class PackagistService
 {
@@ -32,6 +32,7 @@ class PackagistService
         if (in_array('testing', $keywords, true) || in_array('development', $keywords, true)) {
             $isDev = true;
         }
+
         $this->cache[$composerName] = new ComposerPackage(
             $composerName,
             'composer req ' . ($isDev ? '--dev ' : '') . $composerName,

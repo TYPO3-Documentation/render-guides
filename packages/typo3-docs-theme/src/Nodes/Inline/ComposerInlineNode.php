@@ -3,7 +3,7 @@
 namespace T3Docs\Typo3DocsTheme\Nodes\Inline;
 
 use phpDocumentor\Guides\Nodes\Inline\InlineNode;
-use T3Docs\Typo3DocsTheme\Packagist\ComposerPackage;
+use T3Docs\VersionHandling\Packagist\ComposerPackage;
 
 final class ComposerInlineNode extends InlineNode
 {

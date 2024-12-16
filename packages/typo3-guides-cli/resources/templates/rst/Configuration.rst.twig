@@ -1,0 +1,42 @@
+:navigation-title: Configuration
+..  _configuration:
+
+=============
+Configuration
+=============
+
+{% if siteSet %}
+..  _site-set:
+
+Include the site set
+====================
+
+This extension comes with a site set called `{{ siteSet }}`. To use it include
+this set in your site configuration via
+
+..  code-block:: diff
+    :caption: config/sites/my-site/config.yaml (diff)
+
+     base: 'https://example.com/'
+     rootPageId: 1
+    +dependencies:
+    +  - {{ siteSet }}
+
+See also: `TYPO3 Explained, Using a site set as dependency in a site <https://docs.typo3.org/permalink/t3coreapi:site-sets-usage>`_.
+
+{% if siteSetDefinition %}
+..  _site-set-settings:
+
+Use the settings to configure the extension
+-------------------------------------------
+
+..  typo3:site-set-settings:: PROJECT:/
+    :name: main-set
+    :type:
+    :Label: max=30
+    :default: max=10
+{% endif %}
+
+{% else %}
+Describe how to configure the extension.
+{% endif %}
