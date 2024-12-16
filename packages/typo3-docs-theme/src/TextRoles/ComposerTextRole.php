@@ -7,15 +7,17 @@ use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
 use phpDocumentor\Guides\RestructuredText\TextRoles\TextRole;
 use Psr\Log\LoggerInterface;
-use T3Docs\VersionHandling\Packagist\PackagistService;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
+use T3Docs\VersionHandling\Packagist\PackagistService;
 
 final class ComposerTextRole implements TextRole
 {
     public function __construct(
         private readonly PackagistService $packagistService,
         private readonly LoggerInterface $logger,
-    ) {}
+    )
+    {
+    }
 
     public function getName(): string
     {

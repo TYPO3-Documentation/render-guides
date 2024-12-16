@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Command;
 
-use T3Docs\GuidesCli\Generation\DocumentationGenerator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use T3Docs\GuidesCli\Generation\DocumentationGenerator;
 use T3Docs\VersionHandling\Packagist\ComposerPackage;
 use T3Docs\VersionHandling\Packagist\PackagistService;
 
 /**
  * You can run this command, for example like
  *
- * ddev exec packages/typo3-guides-cli/bin/typo3-guides init --working-dir=packages/typo3-guides-cli
+ * ddev exec packages/typo3-guides-cli/bin/typo3-guides init --working-dir=packages/my-extension
  *
  */
 final class InitCommand extends Command
@@ -32,7 +32,8 @@ final class InitCommand extends Command
             <<<'HELP'
                 This interactive command will help you to setup your project documentation.
                 To do so, it will ask you a few questions about your project and then
-                create a new documentation project in the working directory (default: current directory).
+                create a new documentation project in the working directory
+                (default: The directory from which you run this command).
 
                 For more information, see:
                 https://docs.typo3.org/permalink/h2document:basic-principles
@@ -60,12 +61,12 @@ final class InitCommand extends Command
         }
 
         if (file_exists('Documentation/guides.xml')) {
-            $output->writeln('<error>A "Documentation" directory already exists in this directory</error>');
+            $output->writeln('<error>A file "Documentation/guides.xml" already exists in this directory</error>');
             return Command::INVALID;
         }
 
         $output->writeln('Welcome to the <comment>TYPO3 documentation</comment> project setup wizard');
-        $output->writeln('This wizard will help you to create a new documentation project in the current directory.');
+        $output->writeln('This wizard will help you to create a new documentation project in the current directory (or work directory).');
         $output->writeln('');
 
         $composerInfo = $this->getComposerInfo($output);
@@ -76,7 +77,10 @@ final class InitCommand extends Command
 
         $question = new Question(sprintf('Do you want to use reStructuredText(rst) or MarkDown(md)? <comment>[rst, md]</comment>: '), 'rst');
         $question->setValidator(function ($answer) {
-            if (is_null($answer) || !in_array($answer, ['rst', 'md'], true)) {
+            if (is_null($answer) || !in_array($answer, [
+                    'rst',
+                    'md',
+                ], true)) {
                 throw new \RuntimeException('Choose reStructuredText(rst) or MarkDown(md). ');
             }
             return $answer;
@@ -127,14 +131,22 @@ final class InitCommand extends Command
 
         $question = new Question('Do you want generate some Documentation? (yes/no) ', 'yes');
         $question->setValidator(function ($answer) {
-            if (!in_array(strtolower($answer), ['yes', 'y', 'no', 'n'], true)) {
+            if (!in_array(strtolower($answer), [
+                'yes',
+                'y',
+                'no',
+                'n',
+            ], true)) {
                 throw new \RuntimeException('Please answer with yes, no, y, or n.');
             }
             return strtolower($answer);
         });
 
         $answer = $helper->ask($input, $output, $question);
-        $enableExampleFileGeneration = in_array($answer, ['yes', 'y'], true);
+        $enableExampleFileGeneration = in_array($answer, [
+            'yes',
+            'y',
+        ], true);
 
         $question = new Question('Does your extension offer a site set to be included? If so enter the name: ');
         $siteSet = $helper->ask($input, $output, $question);
@@ -210,7 +222,7 @@ final class InitCommand extends Command
 
     private function getComposerInfo(OutputInterface $output): ComposerPackage|null
     {
-        if (!file_exists('composer.json')) {
+        if (!is_file('composer.json')) {
             $output->writeln('No <comment>composer.json</comment> file was found in the current directory.');
             return null;
         }
