@@ -49,7 +49,7 @@ class DocumentationGenerator
             $outputFilePath = sprintf('%s/%s', $outputDir, $outputFileName);
 
             // Check if the output file already exists
-            if (file_exists($outputFilePath)) {
+            if (is_file($outputFilePath)) {
                 continue;
             }
 

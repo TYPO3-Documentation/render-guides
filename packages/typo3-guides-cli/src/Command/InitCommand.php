@@ -60,7 +60,7 @@ final class InitCommand extends Command
             return Command::INVALID;
         }
 
-        if (file_exists('Documentation/guides.xml')) {
+        if (is_file('Documentation/guides.xml')) {
             $output->writeln('<error>A file "Documentation/guides.xml" already exists in this directory</error>');
             return Command::INVALID;
         }
