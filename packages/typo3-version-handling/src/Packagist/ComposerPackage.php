@@ -15,6 +15,8 @@ class ComposerPackage
         private readonly string $issues = '',
         private readonly string $source = '',
         private readonly bool $development = false,
+        private readonly string $type = '',
+        private readonly string $extensionKey = '',
     ) {}
 
     public function getComposerName(): string
@@ -65,5 +67,15 @@ class ComposerPackage
     public function isDevelopment(): bool
     {
         return $this->development;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function getExtensionKey(): string
+    {
+        return $this->extensionKey;
     }
 }

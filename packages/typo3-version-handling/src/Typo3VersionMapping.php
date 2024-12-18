@@ -38,6 +38,17 @@ enum Typo3VersionMapping: string
         };
     }
 
+    /**
+     * @return Typo3VersionMapping[]
+     */
+    public static function getLtsVersions(): array
+    {
+        return [
+            Typo3VersionMapping::V13,
+            Typo3VersionMapping::V12,
+        ];
+    }
+
     public static function getDefault(): Typo3VersionMapping
     {
         return Typo3VersionMapping::Stable;
