@@ -59,7 +59,12 @@ class PackagistService
         $issuesUrl = $this->getString(is_array($support) ? ($support['issues'] ?? '') : '');
         $sourceUrl = $this->getString(is_array($support) ? ($support['source'] ?? '') : '');
         $extensionKey = '';
-        if (is_array($composerJsonArray['extra']) && $composerJsonArray['extra']['typo3/cms']) {
+        if (
+            isset($composerJsonArray['extra'])
+            && is_array($composerJsonArray['extra'])
+            && isset($composerJsonArray['extra']['typo3/cms'])
+            && is_array($composerJsonArray['extra']['typo3/cms'])
+        ) {
             $extensionKey = $this->getString($composerJsonArray['extra']['typo3/cms']['extension-key'] ?? '');
         }
 
