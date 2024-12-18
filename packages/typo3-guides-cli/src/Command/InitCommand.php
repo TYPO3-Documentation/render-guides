@@ -13,6 +13,7 @@ use Symfony\Component\Console\Question\Question;
 use T3Docs\GuidesCli\Generation\DocumentationGenerator;
 use T3Docs\VersionHandling\Packagist\ComposerPackage;
 use T3Docs\VersionHandling\Packagist\PackagistService;
+use T3Docs\VersionHandling\Typo3VersionMapping;
 
 /**
  * You can run this command, for example like
@@ -57,7 +58,7 @@ final class InitCommand extends Command
         }
 
         if ($input->getOption('quiet')) {
-            echo 'This command is interactive and requires user input.' . PHP_EOL;
+            echo '<error>This command is interactive and requires user input. </error>' . PHP_EOL;
             return Command::INVALID;
         }
 
@@ -66,11 +67,16 @@ final class InitCommand extends Command
             return Command::INVALID;
         }
 
-        $output->writeln('Welcome to the <comment>TYPO3 documentation</comment> project setup wizard');
+        $output->writeln('Welcome to the <comment>TYPO3 documentation guide</comment> setup wizard');
         $output->writeln('This wizard will help you to create a new documentation project in the current directory (or work directory).');
         $output->writeln('');
 
         $composerInfo = $this->getComposerInfo($output);
+
+        if ($composerInfo === null) {
+            $output->writeln('<error>No composer.json was found in the current or work directory. Use option --working-dir to set the work directory.</error>');
+            return Command::FAILURE;
+        }
 
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
@@ -87,7 +93,10 @@ final class InitCommand extends Command
         });
         $format = $helper->ask($input, $output, $question);
 
-        $projectNameQuestion = new Question(sprintf('What is the title of your documentation? <comment>[%s]</comment>: ', $composerInfo?->getComposerName()), $composerInfo?->getComposerName());
+        $projectNameQuestion = new Question(
+            sprintf('What is the title of your documentation? <comment>[%s]</comment>: ', $composerInfo->getComposerName()),
+            $composerInfo->getComposerName()
+        );
         $projectNameQuestion->setValidator(function ($answer) {
             if (is_null($answer) || trim($answer) === '') {
                 throw new \RuntimeException('The project title cannot be empty.');
@@ -98,36 +107,45 @@ final class InitCommand extends Command
         $projectName = $helper->ask($input, $output, $projectNameQuestion);
 
         $question = $this->createValidatedUrlQuestion(
-            sprintf('What is the URL of your project\'s homepage? <comment>[%s]</comment>: ', $composerInfo?->getHomepage()),
-            $composerInfo?->getHomepage(),
-            ['https://extensions.typo3.org/package/' . $composerInfo?->getComposerName()]
+            'What is the URL of your project\'s homepage? <comment>[%s]</comment>: ',
+            [
+                $composerInfo->getHomepage(),
+                'https://extensions.typo3.org/package/' . $composerInfo->getExtensionKey(),
+            ]
         );
         $projectHomePage = $helper->ask($input, $output, $question);
 
 
         $question = $this->createValidatedUrlQuestion(
-            sprintf(sprintf('What is the URL of your project\'s repository?   <comment>[%s]</comment>', 'https://github.com/' . $composerInfo?->getComposerName()), 'https://github.com/' . $composerInfo?->getComposerName()),
-            $composerInfo?->getHomepage(),
+            'What is the URL of your project\'s repository?   <comment>[%s]</comment>',
             [
-                'https://github.com/' . $composerInfo?->getComposerName(),
-                'https://gitlab.com/' . $composerInfo?->getComposerName(),
-                $composerInfo?->getHomepage(),
+                $composerInfo->getHomepage(),
+                'https://github.com/' . $composerInfo->getComposerName(),
+                'https://gitlab.com/' . $composerInfo->getComposerName(),
             ]
         );
         $repositoryUrl = $helper->ask($input, $output, $question);
 
         $question = $this->createValidatedUrlQuestion(
-            sprintf('Where can users report issues?  <comment>[%s]</comment>', $composerInfo?->getIssues()),
-            $composerInfo?->getIssues(),
+            'Where can users report issues?  <comment>[%s]</comment>',
             [
-                'https://github.com/' . $composerInfo?->getComposerName() . '/issues',
-                'https://gitlab.com/' . $composerInfo?->getComposerName() . '/-/issues',
-                $composerInfo?->getHomepage(),
+                $composerInfo->getIssues(),
+                $repositoryUrl . '/issues',
+                $repositoryUrl . '/-/issues',
             ]
         );
 
         $issuesUrl = $helper->ask($input, $output, $question);
-        $typo3CoreVersion = $helper->ask($input, $output, new Question('Which version of TYPO3 is the preferred version to use?  <comment>[stable]</comment>: ', 'stable'));
+
+        // Get LTS versions from the Typo3VersionMapping class
+        $ltsEnumCases = Typo3VersionMapping::getLtsVersions();
+
+        // Extract the values of these enum cases
+        $ltsValues = array_map(static fn(Typo3VersionMapping $enumValue) => $enumValue->value, $ltsEnumCases);
+
+        $question = new Question('Which version of TYPO3 is the preferred version to use?  <comment>[stable]</comment>: ', Typo3VersionMapping::getDefault()->value);
+        $question->setAutocompleterValues([Typo3VersionMapping::Stable->value, Typo3VersionMapping::Dev->value, ...$ltsValues]);
+        $typo3CoreVersion = $helper->ask($input, $output, $question);
 
         $question = new Question('Do you want generate some Documentation? (yes/no) ', 'yes');
         $question->setValidator(function ($answer) {
@@ -184,8 +202,8 @@ final class InitCommand extends Command
             'format' => $format,
             'useMd' => ($format === 'md'),
             'projectName' => $projectName,
-            'description' => $composerInfo?->getDescription(),
-            'composerName' => $composerInfo?->getComposerName(),
+            'description' => $composerInfo->getDescription(),
+            'composerName' => $composerInfo->getComposerName(),
             'projectHomePage' => $projectHomePage,
             'issuesUrl' => $issuesUrl,
             'repositoryUrl' => $repositoryUrl,
@@ -201,17 +219,24 @@ final class InitCommand extends Command
     }
 
     /**
-     * @param ?scalar $default
      * @param array<mixed> $autocompleteValues
      */
-    private function createValidatedUrlQuestion(string $questionText, mixed $default, array $autocompleteValues = []): Question
+    private function createValidatedUrlQuestion(string $questionText, array $autocompleteValues = []): Question
     {
-        $question = new Question($questionText, $default);
+        $default = null;
+        $autocompleteValuesFiltered = [];
+        foreach ($autocompleteValues as $value) {
+            if ($value !== null && $value !== '' && is_scalar($value)) {
+                $default ??= (string)$value;
+                $autocompleteValuesFiltered[] = (string)$value;
+            }
+        }
+        $question = new Question(sprintf($questionText, $default), $default);
         if (!empty($autocompleteValues)) {
-            $question->setAutocompleterValues($autocompleteValues);
+            $question->setAutocompleterValues($autocompleteValuesFiltered);
         }
         $question->setValidator(function ($answer) {
-            if (!is_null($answer) && !filter_var($answer, FILTER_VALIDATE_URL)) {
+            if (!is_null($answer) && $answer !== '' && !filter_var($answer, FILTER_VALIDATE_URL)) {
                 throw new \RuntimeException('The URL is not valid');
             }
             return $answer;
@@ -228,19 +253,16 @@ final class InitCommand extends Command
         }
 
         $output->writeln('A <comment>composer.json</comment> file was found in the current directory.');
-        $packageName = $this->fetchComposerPackageName();
-        if (!is_string($packageName)) {
-            $output->writeln('The package name could not be determined from the <comment>composer.json</comment> file.');
-            return null;
-        }
 
-        $composerInfo = (new PackagistService())->getComposerInfo($packageName);
-        $output->writeln(sprintf('The package <comment>%s</comment> was found on packagist.org', $composerInfo->getComposerName()));
+        $composerInfo = (new PackagistService())->getComposerInfoFromJson($this->fetchComposerArray() ?? []);
 
         return $composerInfo;
     }
 
-    private function fetchComposerPackageName(): string|null
+    /**
+     * @return array<string, mixed>|null
+     */
+    private function fetchComposerArray(): array|null
     {
         $fileContent = file_get_contents('composer.json');
         if ($fileContent === false) {
@@ -253,7 +275,7 @@ final class InitCommand extends Command
             return null;
         }
 
-        return $composerJson['name'];
+        return $composerJson;
     }
 
 }
