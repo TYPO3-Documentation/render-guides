@@ -6,7 +6,7 @@
         "php": "^8.1",
         "ext-dom": "*",
         "ext-libxml": "*",
-        "brotkrueml/twig-codehighlight": "^0.1.1",
+        "brotkrueml/twig-codehighlight": "^1.0",
         "phpdocumentor/guides": "^1.6",
         "phpdocumentor/guides-cli": "^1.5",
         "phpdocumentor/guides-graphs": "^1.0",
