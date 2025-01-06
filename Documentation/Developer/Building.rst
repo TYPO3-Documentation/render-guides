@@ -239,7 +239,7 @@ The variable `TYPO3AZUREEDGEURIVERSION` is very important to be baked into
 the Docker image. This will ensure, that the rendering for remote repositories
 is always performed with the matching version number of both the theme and the
 Docker image. All assets can then be referenced as
-`https://typo3.azureedge.net/typo3documentation/theme/typo3-docs-theme/$TYPO3AZUREEDGEURIVERSION/img/typo3-logo.svg`.
+`https://cdn.typo3.com/typo3documentation/theme/typo3-docs-theme/$TYPO3AZUREEDGEURIVERSION/img/typo3-logo.svg`.
 
 Note that the version is used here, not a string like `main` or `stable` as the
 version, because CDNs would always cache these files and probably not deliver a
