@@ -11,7 +11,7 @@
     },
     "require": {
         "ext-curl": "*",
-        "brotkrueml/twig-codehighlight": "^0.1.1",
+        "brotkrueml/twig-codehighlight": "^1.0",
         "phpdocumentor/guides-graphs": "^1.0",
         "phpdocumentor/guides-theme-bootstrap": "^1.0",
         "t3docs/typo3-version-handling": "self.version"
