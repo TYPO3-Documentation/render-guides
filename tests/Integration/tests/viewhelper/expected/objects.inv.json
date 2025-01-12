@@ -93,25 +93,25 @@
         "typo3fluid-fluid-viewhelpers-splitviewhelper": [
             "-",
             "-",
-            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper",
+            "index.html#viewhelper-typo3fluid-fluid-viewhelpers-splitviewhelper",
             "split"
         ],
         "typo3-cms-fluid-viewhelpers-link-externalviewhelper": [
             "-",
             "-",
-            "index.html#typo3-cms-fluid-viewhelpers-link-externalviewhelper",
+            "index.html#viewhelper-typo3-cms-fluid-viewhelpers-link-externalviewhelper",
             "link.external"
         ],
         "typo3-cms-fluid-viewhelpers-deprecatedviewhelper": [
             "-",
             "-",
-            "index.html#typo3-cms-fluid-viewhelpers-deprecatedviewhelper",
+            "index.html#viewhelper-typo3-cms-fluid-viewhelpers-deprecatedviewhelper",
             "deprecated"
         ],
         "typo3-cms-form-viewhelpers-be-maximumfilesizeviewhelper": [
             "-",
             "-",
-            "index.html#typo3-cms-form-viewhelpers-be-maximumfilesizeviewhelper",
+            "index.html#viewhelper-typo3-cms-form-viewhelpers-be-maximumfilesizeviewhelper",
             "be.maximumFileSize"
         ]
     },
@@ -119,25 +119,25 @@
         "typo3fluid-fluid-viewhelpers-splitviewhelper-limit": [
             "-",
             "-",
-            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-limit",
+            "index.html#viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-limit",
             "limit"
         ],
         "typo3fluid-fluid-viewhelpers-splitviewhelper-separator": [
             "-",
             "-",
-            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-separator",
+            "index.html#viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-separator",
             "separator"
         ],
         "typo3fluid-fluid-viewhelpers-splitviewhelper-value": [
             "-",
             "-",
-            "index.html#typo3fluid-fluid-viewhelpers-splitviewhelper-value",
+            "index.html#viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-value",
             "value"
         ],
         "typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri": [
             "-",
             "-",
-            "index.html#typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri",
             "uri"
         ]
     }
