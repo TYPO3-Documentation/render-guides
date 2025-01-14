@@ -17,7 +17,6 @@ use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use T3Docs\VersionHandling\Packagist\PackagistService;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
@@ -34,6 +33,7 @@ use T3Docs\Typo3DocsTheme\Directives\MainMenuJsonDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
+use T3Docs\Typo3DocsTheme\Directives\Typo3FileDirective;
 use T3Docs\Typo3DocsTheme\Directives\ViewHelperDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
@@ -71,7 +71,7 @@ use T3Docs\Typo3DocsTheme\TextRoles\ViewhelperTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\XmlTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\YamlTextTextRole;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
-
+use T3Docs\VersionHandling\Packagist\PackagistService;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
@@ -178,6 +178,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(MainMenuJsonDirective::class)
         ->set(RawDirective::class)
         ->set(SiteSetSettingsDirective::class)
+        ->set(Typo3FileDirective::class)
         ->set(T3FieldListTableDirective::class)
         ->set(ViewHelperDirective::class)
         ->arg('$startingRule', service(DocumentRule::class))
