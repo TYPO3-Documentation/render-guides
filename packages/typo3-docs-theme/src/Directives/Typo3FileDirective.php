@@ -77,7 +77,7 @@ final class Typo3FileDirective extends SubDirective
             $pathPrefix = 'packages/my_extension/Configuration/Sets/MySet';
             $classicPathPrefix = 'typo3conf/ext/my_extension/Configuration/Sets/MySet';
         }
-        $key = $this->anchorNormalizer->reduceAnchor($directive->getOptionString('scope').'-'.$this->getPath($directive->getOptionString('composerPath')).$path . $filename);
+        $key = $this->anchorNormalizer->reduceAnchor($directive->getOptionString('scope') . '-' . $this->getPath($directive->getOptionString('composerPath')) . $path . $filename);
         return new Typo3FileNode(
             id: $key,
             fileName: $filename,
@@ -93,6 +93,7 @@ final class Typo3FileDirective extends SubDirective
             command: $command,
             description: $collectionNode->getChildren(),
             noindex: $directive->getOptionBool('noindex'),
+            shortDescription: $directive->getOptionString('shortDescription')
         );
     }
 

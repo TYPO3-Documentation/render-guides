@@ -18,6 +18,8 @@ use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRul
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RedirectsNodeTransformer;
@@ -46,11 +48,14 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
+use T3Docs\Typo3DocsTheme\ReferenceResolvers\FileReferenceResolver;
+use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\FileTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\FluidTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\HtmlTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\InputTextTextRole;
@@ -85,11 +90,15 @@ return static function (ContainerConfigurator $container): void {
         ->bind('$startingRule', service(DirectiveContentRule::class))
         ->instanceof(BaseDirective::class)
         ->tag('phpdoc.guides.directive')
+        ->set(AttachFileObjectsToFileTextRoleTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(RedirectsNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(ReplacePermalinksNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(CollectPrefixLinkTargetsTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(CollectFileObjectsTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(ConfvalMenuNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
@@ -119,6 +128,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(\phpDocumentor\Guides\RestructuredText\TextRoles\ApiClassTextRole::class, ApiClassTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(ComposerTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(FileTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(FluidTextTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
@@ -199,6 +210,11 @@ return static function (ContainerConfigurator $container): void {
         ->set(PackagistService::class)
         ->set(Typo3VersionService::class)
         ->set(Typo3ApiService::class)
+
+        ->set(ObjectInventory::class)
+
+        ->set(FileReferenceResolver::class)
+        ->tag('phpdoc.guides.reference_resolver')
 
         // Register Event Listeners
         ->set(AddThemeSettingsToProjectNode::class)

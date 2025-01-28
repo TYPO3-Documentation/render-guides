@@ -6,6 +6,7 @@ use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\LinkTargetNode;
+use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\PrefixedLinkTargetNode;
 use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
@@ -14,6 +15,9 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
     public const LINK_TYPE = 'typo3:file';
     public const LINK_PREFIX = 'file-';
 
+    /**
+     * @param Node[] $description
+     */
     public function __construct(
         private readonly string $id,
         private readonly string $fileName,
@@ -29,6 +33,7 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
         private readonly ?CollectionNode $command = null,
         private array $description = [],
         private readonly bool $noindex = false,
+        public readonly string $shortDescription = '',
     ) {
         parent::__construct('typo3-file', $fileName, new InlineCompoundNode([new PlainTextInlineNode($fileName)]));
     }
@@ -73,6 +78,9 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
         return $this->command;
     }
 
+    /**
+     * @return Node[]
+     */
     public function getDescription(): array
     {
         return $this->description;
@@ -100,7 +108,7 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
 
     public function getLinkText(): string
     {
-        return $this->fileName;
+        return $this->getComposerPathPrefix() . $this->getComposerPath() . $this->fileName;
     }
 
     public function getId(): string
@@ -121,6 +129,11 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
     public function getClassicPathPrefix(): string
     {
         return $this->classicPathPrefix;
+    }
+
+    public function getShortDescription(): string
+    {
+        return $this->shortDescription;
     }
 
 }

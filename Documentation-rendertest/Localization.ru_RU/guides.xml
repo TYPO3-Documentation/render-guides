@@ -16,7 +16,7 @@
   <inventory id="t3start11" url="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/ru-ru/"/>
   <inventory id="t3start12" url="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/ru-ru/"/>
   <inventory id="t3coreapi" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"/>
-  <inventory id="t3editors" url="https://docs.typo3.org/m/typo3/tutorial-editors/main/ru-ru/"/>
+  <inventory id="t3editors" url="https://docs.typo3.org/m/typo3/tutorial-editors/13.4/ru-ru/"/>
   <inventory id="t3sitepackage" url="https://docs.typo3.org/m/typo3/tutorial-sitepackage/main/en-us/"/>
   <inventory id="ext_workspaces" url="https://docs.typo3.org/c/typo3/cms-workspaces/main/en-us/"/>
   <inventory id="ext_surf" url="https://docs.typo3.org/other/typo3/surf/main/en-us/"/>

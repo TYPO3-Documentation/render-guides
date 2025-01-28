@@ -28,6 +28,7 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
 use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
+use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperArgumentNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
@@ -204,6 +205,12 @@ final class TwigExtension extends AbstractExtension
     public function getRstCodeForLink(array $context, LinkTargetNode $linkTargetNode): string
     {
         $interlink = $this->themeSettings->getSettings('interlink_shortcode') !== '' ? $this->themeSettings->getSettings('interlink_shortcode') : 'somemanual';
+        if ($linkTargetNode instanceof Typo3FileNode) {
+            return sprintf(
+                ':file:`%s`',
+                $linkTargetNode->getLinkText(),
+            );
+        }
         if ($linkTargetNode instanceof PrefixedLinkTargetNode && $linkTargetNode->getLinkType() === ConfvalNode::LINK_TYPE) {
             return sprintf(
                 ':ref:`%s <%s:%s%s>`',
