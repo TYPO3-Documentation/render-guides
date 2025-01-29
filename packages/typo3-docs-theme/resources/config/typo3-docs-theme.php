@@ -77,6 +77,7 @@ use T3Docs\Typo3DocsTheme\TextRoles\XmlTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\YamlTextTextRole;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
 use T3Docs\VersionHandling\Packagist\PackagistService;
+
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;

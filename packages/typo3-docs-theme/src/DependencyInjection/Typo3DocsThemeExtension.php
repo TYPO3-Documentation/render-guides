@@ -19,6 +19,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
+
 use function dirname;
 use function phpDocumentor\Guides\DependencyInjection\template;
 

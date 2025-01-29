@@ -20,6 +20,7 @@ use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\FileObject;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
+
 use function sprintf;
 
 /** @implements NodeTransformer<Typo3FileNode> */
