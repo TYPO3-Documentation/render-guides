@@ -1,3 +1,22 @@
 {% apply spaceless %}
-    <code class="code-inline file" translate="no" title="File path">{{ replaceLineBreakOpportunityTags(node.value) }}</code>
+    {% if node.fileObject %}
+        <a class="composer-link"
+           href="{{ node.url }}"
+           title="File Information"
+           data-bs-toggle="modal"
+           data-bs-target="#generalModal"
+           data-filename="{{ node.fileObject.fileName }}"
+           data-scope="{{ node.fileObject.scope }}"
+           data-classicpath="{{ node.fileObject.classicPath }}"
+           data-composerpath="{{ node.fileObject.composerPath }}"
+           data-classicpathprefix="{{ node.fileObject.classicPathPrefix }}"
+           data-composerpathprefix="{{ node.fileObject.composerPathPrefix }}"
+           data-shortdescription="{{ node.fileObject.shortDescription }}"
+        >
+            <code class="code-inline file" translate="no">{{ node.fileLabel }}</code><i class="fa-regular fa-circle-question"></i>
+        </a>
+
+    {% else %}
+        <code class="code-inline file" translate="no" title="File path">{{ replaceLineBreakOpportunityTags(node.value) }}</code>
+    {% endif %}
 {% endapply %}

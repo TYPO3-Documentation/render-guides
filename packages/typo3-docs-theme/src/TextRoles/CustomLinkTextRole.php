@@ -46,7 +46,6 @@ abstract class CustomLinkTextRole implements TextRole
         return $this->createNode($documentParserContext, $parsed['uri'], $parsed['text'], $role);
     }
 
-    /** @return ReferenceNode */
     protected function createNode(DocumentParserContext $documentParserContext, string $referenceTarget, string|null $referenceName, string $role): AbstractLinkInlineNode
     {
         if (preg_match(self::INTERLINK_NAME_REGEX, $referenceTarget, $matches)) {
