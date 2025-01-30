@@ -20,9 +20,6 @@ final class FileTextRole extends CustomLinkTextRole
 
     protected function createNode(DocumentParserContext $documentParserContext, string $referenceTarget, string|null $referenceName, string $role): AbstractLinkInlineNode
     {
-        if (preg_match(self::INTERLINK_NAME_REGEX, $referenceTarget, $matches) && $matches[1] !== 'EXT') {
-            return $this->createNodeWithInterlink($documentParserContext, $matches[2], $matches[1], $referenceName);
-        }
         return $this->createNodeWithInterlink($documentParserContext, $referenceTarget, '', $referenceName);
     }
 
