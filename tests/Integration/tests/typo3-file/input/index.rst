@@ -72,6 +72,7 @@ Linking files
 *   :file:`EXT:my_extension/Classes/SomeClass.php`
 *   :file:`Configuration File <Configuration/Sets/MySet/config.yaml>`
 *   :file:`Unknown/File.xyz`
+*   :file:`FILE:EXT:Unknown/File.xyz`
 
 Code Block captions
 ===================
