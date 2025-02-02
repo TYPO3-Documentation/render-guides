@@ -12,8 +12,11 @@
 {%- if tableNode.hasOption('widths') -%}
     {%- set tableClasses = tableClasses ~ 'colwidths-' ~ tableNode.option('widths') ~ ' ' -%}
 {%- endif -%}
-{%- if tableNode.hasOption('grid') == 'grid' -%}
+{%- if tableNode.getOption('grid') == 'grid' -%}
     {%- set tableClasses = tableClasses ~ 'grid-' ~ tableNode.option('grid') ~ ' ' -%}
+{%- endif -%}
+{%- if tableNode.option('break') -%}
+    {%- set tableClasses = tableClasses ~ 'break-' ~ tableNode.option('break') ~ ' ' -%}
 {%- endif -%}
 
 {%- if tableClasses|trim %} class="{{ tableClasses|trim }}"{% endif -%}
