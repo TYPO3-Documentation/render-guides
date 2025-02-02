@@ -1,6 +1,7 @@
 .table {
-    td {
-        word-break: break-word;
+    td, th {
+        word-break: normal;
+        line-break: auto;
     }
     th :last-child,
     td :last-child {
@@ -10,6 +11,22 @@
         @extend .figure-caption;
         @extend .pb-2;
         padding-top: 0;
+    }
+}
+
+.table.break-none{
+    td, th {
+        word-break: keep-all;
+        line-break: strict;
+        white-space: nowrap;
+        overflow: visible;
+    }
+}
+
+.table.break-word{
+    td, th {
+        word-break: break-word;
+        line-break: auto;
     }
 }
 
