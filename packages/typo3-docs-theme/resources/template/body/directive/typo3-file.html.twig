@@ -1,9 +1,9 @@
-<section data-search-title="{{ node.path }}{{ node.plainContent }}"
+<section data-search-title="{{ node.composerPath }}{{ node.plainContent }}"
          data-search-id="{{ node.anchor }}"
          data-search-facet="file"
          class="confval-section"
 >
-    <h3 class="sr-only">{{ node.path }}{{ node.plainContent }}</h3>
+    <h3 class="sr-only">{{ node.composerPath }}{{ node.plainContent }}</h3>
     <dl class="confval">
         <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif %}
             class="d-flex justify-content-between">
@@ -31,17 +31,13 @@
                     <dt class="field-even">Scope</dt>
                     <dd class="field-even">{{ node.scope }}</dd>
                 {% endif -%}
-                {% if node.path %}
-                    <dt class="field-even">Path</dt>
-                    <dd class="field-even">{{ node.path }}{{ node.plainContent }}</dd>
-                {% endif -%}
                 {% if node.composerPathPrefix or node.composerPath %}
                     <dt class="field-even">Path (Composer)</dt>
-                    <dd class="field-even">{{ node.composerPathPrefix }}{{ node.composerPath }}{{ node.path }}{{ node.plainContent }}</dd>
+                    <dd class="field-even">{{ node.composerPathPrefix }}{{ node.composerPath }}{{ node.plainContent }}</dd>
                 {% endif -%}
                 {%- if node.classicPathPrefix or node.classicPath %}
                     <dt class="field-odd">Path (Classic)</dt>
-                    <dd class="field-odd">{{ node.classicPathPrefix }}{{ node.classicPath }}{{ node.path }}{{ node.plainContent }}</dd>
+                    <dd class="field-odd">{{ node.classicPathPrefix }}{{ node.classicPath }}{{ node.plainContent }}</dd>
                 {% endif -%}
                 {% if node.configuration %}
                     <dt class="field-odd">Configuration</dt>

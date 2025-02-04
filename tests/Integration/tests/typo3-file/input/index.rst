@@ -54,10 +54,9 @@ TYPO3 Files
     :regex: /.*Configuration\/Sets\/[^\/]+\/config\.yaml$/
 
 ..  typo3:file:: SomeClass.php
-    :path: /
+    :name: classes-someclass-php
     :scope: extension
-    :composerPath: /Classes/
-    :classicPath: /Classes/
+    :path: /Classes/
     :regex: /^.*Classes\/.*\.php/
     :shortDescription: PHP Classes in this file get auto-loaded
 
@@ -73,6 +72,7 @@ Linking files
 *   :file:`Configuration File <Configuration/Sets/MySet/config.yaml>`
 *   :file:`Unknown/File.xyz`
 *   :file:`FILE:EXT:Unknown/File.xyz`
+*   :file:`SomeClass.php <extension-classes-someclass-php>`
 
 Code Block captions
 ===================

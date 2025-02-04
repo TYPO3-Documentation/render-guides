@@ -39,6 +39,19 @@ final class AttachFileObjectsToFileTextRoleTransformer implements NodeTransforme
             if (!$fileObject instanceof FileObject) {
                 continue;
             }
+            if ($fileObject->id === $node->getFileLink()) {
+                $node->setFileObject($fileObject);
+                return $node;
+            }
+            if (preg_match($fileObject->regex, $node->getFileLink())) {
+                $node->setFileObject($fileObject);
+                break;
+            }
+        }
+        foreach ($fileObjects as $fileObject) {
+            if (!$fileObject instanceof FileObject) {
+                continue;
+            }
             if ($fileObject->regex === '') {
                 continue;
             }
