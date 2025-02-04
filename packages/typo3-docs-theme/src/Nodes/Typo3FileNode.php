@@ -22,7 +22,6 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
         private readonly string $id,
         private readonly string $fileName,
         private readonly string $language,
-        private readonly string $path,
         private readonly string $composerPath = '',
         private readonly string $composerPathPrefix = '',
         private readonly string $classicPath = '',
@@ -51,11 +50,6 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
     public function getLanguage(): string
     {
         return $this->language;
-    }
-
-    public function getPath(): string
-    {
-        return $this->path;
     }
 
     public function getClassicPath(): string

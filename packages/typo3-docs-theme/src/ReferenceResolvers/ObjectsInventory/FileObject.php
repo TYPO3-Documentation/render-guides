@@ -10,7 +10,6 @@ class FileObject implements DataObject
     public function __construct(
         public string $fileName,
         public string $language,
-        public string $path,
         public string $composerPath = '',
         public string $composerPathPrefix = '',
         public string $classicPath = '',
@@ -26,7 +25,6 @@ class FileObject implements DataObject
         return new FileObject(
             $node->getFileName(),
             $node->getLanguage(),
-            $node->getPath(),
             $node->getComposerPath(),
             $node->getComposerPathPrefix(),
             $node->getClassicPath(),
