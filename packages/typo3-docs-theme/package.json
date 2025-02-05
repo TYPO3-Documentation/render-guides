@@ -23,7 +23,7 @@
         "grunt-stylelint": "^0.20.1",
         "sass": "^1.83.4",
         "stylelint": "^16.14.1",
-        "vite": "^6.0.11"
+        "vite": "^6.1.0"
     },
     "scripts": {
         "build": "vite build && grunt build",
