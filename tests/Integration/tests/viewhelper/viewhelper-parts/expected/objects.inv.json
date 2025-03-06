@@ -1,0 +1,37 @@
+{
+    "std:doc": {
+        "index": [
+            "-",
+            "-",
+            "index.html",
+            "Fluid ViewHelpers"
+        ]
+    },
+    "std:label": [],
+    "std:title": {
+        "fluid-viewhelpers": [
+            "-",
+            "-",
+            "index.html#fluid-viewhelpers",
+            "Fluid ViewHelpers"
+        ],
+        "only-description": [
+            "-",
+            "-",
+            "index.html#only-description",
+            "Only description"
+        ],
+        "only-arguments": [
+            "-",
+            "-",
+            "index.html#only-arguments",
+            "Only arguments"
+        ],
+        "only-examples": [
+            "-",
+            "-",
+            "index.html#only-examples",
+            "Only examples"
+        ]
+    }
+}

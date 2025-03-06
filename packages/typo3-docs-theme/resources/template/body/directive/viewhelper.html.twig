@@ -1,45 +1,61 @@
-{% if node.docTags %}
-    {% for key, docTag in node.docTags  %}
-        {% if key == '@deprecated' %}
-            <div class="versionchange deprecated">
-                <p class="versionmodified">
-                    <span class="versionicon"><i class="fa-solid fa-ban"></i></span> Deprecated </p>
-                <article>
-                    {{ docTag }}
-                </article>
-            </div>
-        {% elseif key == '@internal' %}
-            <div class="admonition warning" role="alert">
-                <p class="admonition-title">Internal</p>
-                <p>This ViewHelper is marked as internal. It is subject to be
-                    changed without notice. Use at your own risk.</p>
-            </div>
-        {% elseif key == '@api' or key == '@todo' %}
-        {% else %}
-            <p>{{ key }}: {{ docTag }}</p>
-        {% endif %}
-    {% endfor %}
-{% endif %}
-
-{{  renderNode(node.documentation) }}
-
-{% if node.gitHubLink %}
-    {% include "body/directive/viewhelper/viewhelper-source.html.twig" %}
-{% endif %}
-
-{% if node.arguments or node.allowsArbitraryArguments %}
-    <h2>Arguments</h2>
-
-    {% if node.allowsArbitraryArguments %}
-        <div class="admonition info" role="alert">
-            <p class="admonition-title">Allows arbitrary arguments</p>
-            <p>This ViewHelper allows you to pass arbitrary arguments not defined below directly
-                to the HTML tag created. This includes custom
-                <code class="code-inline" translate="no">data-</code> arguments.</p>
-        </div>
+{% for display in node.display  %}
+    {% if display=='tags' and node.docTags %}
+        {% for key, docTag in node.docTags  %}
+            {% if key == '@deprecated' %}
+                <div class="versionchange deprecated">
+                    <p class="versionmodified">
+                        <span class="versionicon"><i class="fa-solid fa-ban"></i></span> Deprecated </p>
+                    <article>
+                        {{ docTag }}
+                    </article>
+                </div>
+            {% elseif key == '@internal' %}
+                <div class="admonition warning" role="alert">
+                    <p class="admonition-title">Internal</p>
+                    <p>This ViewHelper is marked as internal. It is subject to be
+                        changed without notice. Use at your own risk.</p>
+                </div>
+            {% elseif key == '@api' or key == '@todo' %}
+            {% else %}
+                <p>{{ key }}: {{ docTag }}</p>
+            {% endif %}
+        {% endfor %}
     {% endif %}
-    <p>The following arguments are available for the {{ node.tagName }} ViewHelper: </p>
-    {% for argument in node.arguments  %}
-        {% include "body/directive/viewhelper/viewhelper-argument.html.twig" %}
-    {% endfor %}
-{% endif %}
+
+    {% if display=='description' %}
+        {{  renderNode(node.description) }}
+    {% endif %}
+    {% if display=='sections' %}
+        {{  renderNode(node.sections) }}
+    {% endif %}
+    {% if display=='examples' %}
+        {{  renderNode(node.examples) }}
+    {% endif %}
+
+    {% if display=='documentation' %}
+    {{  renderNode(node.documentation) }}
+    {% endif %}
+
+    {% if display=='gitHubLink' and node.gitHubLink %}
+        {% include "body/directive/viewhelper/viewhelper-source.html.twig" %}
+    {% endif %}
+
+    {% if (display=='arguments' or display=='arguments-only') and (node.arguments or node.allowsArbitraryArguments) %}
+        {% if display=='arguments' %}
+            <h2>Arguments</h2>
+
+            {% if node.allowsArbitraryArguments %}
+                <div class="admonition info" role="alert">
+                    <p class="admonition-title">Allows arbitrary arguments</p>
+                    <p>This ViewHelper allows you to pass arbitrary arguments not defined below directly
+                        to the HTML tag created. This includes custom
+                        <code class="code-inline" translate="no">data-</code> arguments.</p>
+                </div>
+            {% endif %}
+            <p>The following arguments are available for the {{ node.tagName }} ViewHelper: </p>
+        {% endif %}
+        {% for argument in node.arguments  %}
+            {% include "body/directive/viewhelper/viewhelper-argument.html.twig" %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
