@@ -44,21 +44,33 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
         parent::__construct('viewhelper', $tagName, new InlineCompoundNode([new PlainTextInlineNode($tagName)]), $documentation);
     }
 
+    /**
+     * @return Node[]
+     */
     public function getSections(): array
     {
         return $this->sections;
     }
 
+    /**
+     * @return Node[]
+     */
     public function getExamples(): array
     {
         return $this->examples;
     }
 
+    /**
+     * @return string[]
+     */
     public function getDisplay(): array
     {
         return $this->display;
     }
 
+    /**
+     * @return Node[]
+     */
     public function getDescription(): array
     {
         return $this->description;

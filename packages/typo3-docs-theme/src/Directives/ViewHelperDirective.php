@@ -185,22 +185,22 @@ final class ViewHelperDirective extends BaseDirective
         }
         $viewHelperId = $this->anchorNormalizer->reduceAnchor($className);
         $viewHelperNode = new ViewHelperNode(
-            $viewHelperId,
-            $this->getString($data, 'tagName'),
-            $shortClassName,
-            $nameSpace,
-            $className,
-            $collectionNode?->getValue() ?? [],
-            $description,
-            $sections,
-            $examples,
-            $xmlNamespace,
-            ($data['allowsArbitraryArguments'] ?? false) === true,
-            $data['docTags'] ?? [],
-            $gitHubLink,
-            $noindex,
-            $display,
-            [],
+            id: $viewHelperId,
+            tagName: $this->getString($data, 'tagName'),
+            shortClassName: $shortClassName,
+            namespace: $nameSpace,
+            className: $className,
+            documentation: $collectionNode?->getValue() ?? [],
+            description: $description,
+            sections: $sections,
+            examples: $examples,
+            xmlNamespace: $xmlNamespace,
+            allowsArbitraryArguments: ($data['allowsArbitraryArguments'] ?? false) === true,
+            docTags: $data['docTags'] ?? [],
+            gitHubLink: $gitHubLink,
+            noindex: $noindex,
+            display: $display,
+            arguments: [],
         );
         return $viewHelperNode;
     }
