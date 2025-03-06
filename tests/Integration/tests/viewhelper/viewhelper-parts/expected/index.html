@@ -1,0 +1,230 @@
+<!-- content start -->
+                <section class="section" id="fluid-viewhelpers">
+            <h1>Fluid ViewHelpers<a class="headerlink" href="#fluid-viewhelpers" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h1>
+            <div class="contents-wrapper">
+        <ul class="menu-level">
+    <li class="toc-item">
+    <a href="#only-description">Only description</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#only-arguments">Only arguments</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#only-examples">Only examples</a>
+
+
+</li>
+    </ul>
+
+    <button class="toggle-all-sections btn btn-sm btn-light">Collapse all Sections</button>
+</div>
+            <section class="section" id="only-description">
+            <h2>Only description<a class="headerlink" href="#only-description" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
+
+
+    <p>The SplitViewHelper splits a string by the specified separator, which
+results in an array. The number of values in the resulting array can
+be limited with the limit parameter, which results in an array where
+the last item contains the remaining unsplit string.</p>
+
+    <p>This ViewHelper mimicks PHP&#039;s <code class="code-inline"
+          translate="no"
+          aria-description="Code written in PHP"
+          aria-details="Dynamic server-side scripting language."
+          data-bs-html="true">explode<wbr>()</code> function.</p>
+
+
+
+
+
+    </section>
+            <section class="section" id="only-arguments">
+            <h2>Only arguments<a class="headerlink" href="#only-arguments" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
+
+
+
+
+                                <section data-search-title="limit"
+         data-search-id="viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-limit"
+         data-search-facet="ViewHelper Argument"
+         class="confval-section"
+>
+    <h3 class="sr-only">limit</h3>
+    <dl class="confval">
+        <dt            class="d-flex justify-content-between">
+            <div class="confval-header">
+                <code class="sig-name descname"><span
+                        class="pre">limit</span></code>
+                                    <span class="headerNoindex"
+                          title="This configuration value cannot be linked directly. Consider to link to the section above."><i
+                            class="fa-solid fa-link-slash"></i></span>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
+        </dt>
+        <dd>
+            <dl class="field-list simple">
+                <dt class="field">Type</dt>
+                <dd class="field">int
+                </dd>
+                                    <dt class="field">Default</dt>
+                    <dd class="field">9223372036854775807
+                    </dd>
+                                            </dl>
+            <div class="confval-description">
+                If limit is positive, a maximum of $limit items will be returned. If limit is negative, all items except for the last $limit items will be returned. 0 will be treated as 1.
+            </div>
+        </dd>
+    </dl>
+</section>                    <section data-search-title="separator"
+         data-search-id="viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-separator"
+         data-search-facet="ViewHelper Argument"
+         class="confval-section"
+>
+    <h3 class="sr-only">separator</h3>
+    <dl class="confval">
+        <dt            class="d-flex justify-content-between">
+            <div class="confval-header">
+                <code class="sig-name descname"><span
+                        class="pre">separator</span></code>
+                                    <span class="headerNoindex"
+                          title="This configuration value cannot be linked directly. Consider to link to the section above."><i
+                            class="fa-solid fa-link-slash"></i></span>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
+        </dt>
+        <dd>
+            <dl class="field-list simple">
+                <dt class="field">Type</dt>
+                <dd class="field">string
+                </dd>
+                                                    <dt class="field">Required</dt>
+                    <dd class="field">1
+                    </dd>
+                            </dl>
+            <div class="confval-description">
+                Separator string to explode with
+            </div>
+        </dd>
+    </dl>
+</section>                    <section data-search-title="value"
+         data-search-id="viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-value"
+         data-search-facet="ViewHelper Argument"
+         class="confval-section"
+>
+    <h3 class="sr-only">value</h3>
+    <dl class="confval">
+        <dt            class="d-flex justify-content-between">
+            <div class="confval-header">
+                <code class="sig-name descname"><span
+                        class="pre">value</span></code>
+                                    <span class="headerNoindex"
+                          title="This configuration value cannot be linked directly. Consider to link to the section above."><i
+                            class="fa-solid fa-link-slash"></i></span>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
+        </dt>
+        <dd>
+            <dl class="field-list simple">
+                <dt class="field">Type</dt>
+                <dd class="field">string
+                </dd>
+                                            </dl>
+            <div class="confval-description">
+                The string to explode
+            </div>
+        </dd>
+    </dl>
+</section>
+    </section>
+            <section class="section" id="only-examples">
+            <h2>Only examples<a class="headerlink" href="#only-examples" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
+
+                    <section class="section" id="examples">
+            <h2>Examples<a class="headerlink" href="#examples" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
+            <section class="section" id="split-with-a-separator">
+            <h3>Split with a separator<a class="headerlink" href="#split-with-a-separator" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
+            <div class="code-block-wrapper" translate="no">
+
+    <pre class="code-block"><code>&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; /&gt;
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+
+    <pre class="code-block"><code class="hljs plaintext">{0: '1', 1: '5', 2: '8'}</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+            <section class="section" id="split-using-tag-content-as-value">
+            <h3>Split using tag content as value<a class="headerlink" href="#split-using-tag-content-as-value" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
+            <div class="code-block-wrapper" translate="no">
+
+    <pre class="code-block"><code>&lt;f:split separator=&quot;-&quot;&gt;1-5-8&lt;/f:split&gt;
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+
+    <pre class="code-block"><code class="hljs plaintext">{0: '1', 1: '5', 2: '8'}</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+            <section class="section" id="split-with-a-limit">
+            <h3>Split with a limit<a class="headerlink" href="#split-with-a-limit" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
+            <div class="code-block-wrapper" translate="no">
+
+    <pre class="code-block"><code>&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; limit=&quot;2&quot; /&gt;
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+
+    <pre class="code-block"><code class="hljs plaintext">{0: '1', 1: '5,8'}</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+    </section>
+
+
+
+
+    </section>
+    </section>
+        <!-- content end -->

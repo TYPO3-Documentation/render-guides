@@ -17,6 +17,7 @@ use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\ParagraphNode;
+use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
@@ -91,7 +92,7 @@ final class ViewHelperDirective extends BaseDirective
         $noindex = $directive->getOptionBool('noindex');
 
         $data = $json['viewHelpers'][$directive->getData()];
-        $viewHelperNode = $this->getViewHelperNode($data, $json['sourceEdit'] ?? [], $blockContext, $noindex);
+        $viewHelperNode = $this->getViewHelperNode($directive, $data, $json['sourceEdit'] ?? [], $blockContext, $noindex);
         $arguments = [];
         foreach ($json['viewHelpers'][$directive->getData()]['argumentDefinitions'] ?? [] as $argumentDefinition) {
             if (is_array($argumentDefinition)) {
@@ -147,11 +148,29 @@ final class ViewHelperDirective extends BaseDirective
      * @param array<string, mixed> $data
      * @param array<string, array{'sourcePrefix': string, 'editPrefix': string}> $sourceEdit
      */
-    private function getViewHelperNode(array $data, array $sourceEdit, BlockContext $blockContext, bool $noindex): ViewHelperNode
+    private function getViewHelperNode(Directive $directive, array $data, array $sourceEdit, BlockContext $blockContext, bool $noindex): ViewHelperNode
     {
         $rstContent = $this->getString($data, 'documentation');
         $rstContentBlockContext = new BlockContext($blockContext->getDocumentParserContext(), $rstContent, false);
         $collectionNode = $this->startingRule->apply($rstContentBlockContext);
+        $description = [];
+        foreach ($collectionNode->getValue() as $node) {
+            if (!$node instanceof SectionNode) {
+                $description[] = $node;
+            }
+        }
+        $sections = [];
+        $examples = [];
+        foreach ($collectionNode->getValue() as $node) {
+            if ($node instanceof SectionNode) {
+                $title = $node->getTitle()->toString();
+                if (stripos($title, 'example') !== false) { // Case-insensitive check for 'example'
+                    $examples[] = $node;
+                } else {
+                    $sections[] = $node;
+                }
+            }
+        }
         $shortClassName = $this->getString($data, 'name');
         $className = $this->getString($data, 'className');
         $nameSpace = $this->getString($data, 'namespace');
@@ -160,20 +179,28 @@ final class ViewHelperDirective extends BaseDirective
         if ($gitHubLink !== '') {
             $gitHubLink .= sprintf('%s.php', str_replace('\\', '/', $shortClassName));
         }
+        $display = ['tags', 'documentation', 'gitHubLink', 'arguments'];
+        if ($directive->hasOption('display')) {
+            $display =  array_map('trim', explode(',', $directive->getOptionString('display')));
+        }
         $viewHelperId = $this->anchorNormalizer->reduceAnchor($className);
         $viewHelperNode = new ViewHelperNode(
-            $viewHelperId,
-            $this->getString($data, 'tagName'),
-            $shortClassName,
-            $nameSpace,
-            $className,
-            $collectionNode?->getValue() ?? [],
-            $xmlNamespace,
-            ($data['allowsArbitraryArguments'] ?? false) === true,
-            $data['docTags'] ?? [],
-            $gitHubLink,
-            $noindex,
-            [],
+            id: $viewHelperId,
+            tagName: $this->getString($data, 'tagName'),
+            shortClassName: $shortClassName,
+            namespace: $nameSpace,
+            className: $className,
+            documentation: $collectionNode?->getValue() ?? [],
+            description: $description,
+            sections: $sections,
+            examples: $examples,
+            xmlNamespace: $xmlNamespace,
+            allowsArbitraryArguments: ($data['allowsArbitraryArguments'] ?? false) === true,
+            docTags: $data['docTags'] ?? [],
+            gitHubLink: $gitHubLink,
+            noindex: $noindex,
+            display: $display,
+            arguments: [],
         );
         return $viewHelperNode;
     }

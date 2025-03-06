@@ -16,7 +16,11 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
     public const LINK_PREFIX = 'viewhelper-';
     /**
      * @param Node[] $documentation
+     * @param Node[] $description
+     * @param Node[] $sections
+     * @param Node[] $examples
      * @param array<string, string> $docTags
+     * @param string[] $display
      * @param array<string, ViewHelperArgumentNode> $arguments
      */
     public function __construct(
@@ -26,14 +30,50 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
         private readonly string $namespace,
         private readonly string $className,
         private readonly array $documentation,
+        private readonly array $description,
+        private readonly array $sections,
+        private readonly array $examples,
         private readonly string $xmlNamespace,
         private readonly bool $allowsArbitraryArguments,
         private readonly array $docTags,
         private readonly string $gitHubLink = '',
         private readonly bool $noindex = false,
+        private readonly array $display = [],
         private array $arguments = [],
     ) {
         parent::__construct('viewhelper', $tagName, new InlineCompoundNode([new PlainTextInlineNode($tagName)]), $documentation);
+    }
+
+    /**
+     * @return Node[]
+     */
+    public function getSections(): array
+    {
+        return $this->sections;
+    }
+
+    /**
+     * @return Node[]
+     */
+    public function getExamples(): array
+    {
+        return $this->examples;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getDisplay(): array
+    {
+        return $this->display;
+    }
+
+    /**
+     * @return Node[]
+     */
+    public function getDescription(): array
+    {
+        return $this->description;
     }
 
     public function getTagName(): string

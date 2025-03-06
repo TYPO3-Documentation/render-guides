@@ -1,12 +1,27 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#6 \\$documentation of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\>, mixed given\\.$#"
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 2
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: "#^Cannot call method getValue\\(\\) on phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\|null\\.$#"
+			count: 2
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: "#^Parameter \\$description of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\>, array\\<int\\<0, max\\>, mixed\\> given\\.$#"
 			count: 1
 			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
 
 		-
-			message: "#^Parameter \\#9 \\$docTags of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<string, string\\>, mixed given\\.$#"
+			message: "#^Parameter \\$docTags of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<string, string\\>, mixed given\\.$#"
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: "#^Parameter \\$documentation of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\>, mixed given\\.$#"
 			count: 1
 			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
 
