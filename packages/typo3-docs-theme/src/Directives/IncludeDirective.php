@@ -15,7 +15,6 @@ namespace T3Docs\Typo3DocsTheme\Directives;
 
 use League\Flysystem\Adapter\AbstractAdapter;
 use League\Flysystem\Filesystem;
-use League\Flysystem\FilesystemInterface;
 use phpDocumentor\Guides\Nodes\CodeNode;
 use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\Nodes\LiteralBlockNode;
@@ -128,7 +127,7 @@ final class IncludeDirective extends BaseDirective
     /**
      * @throws \League\Flysystem\FileNotFoundException
      */
-    public function getCollectionFromPath(FilesystemInterface $origin, string $path, Directive $directive, BlockContext $blockContext): LiteralBlockNode|CollectionNode|CodeNode
+    public function getCollectionFromPath(\League\Flysystem\FilesystemInterface|\phpDocumentor\FileSystem\FileSystem $origin, string $path, Directive $directive, BlockContext $blockContext): LiteralBlockNode|CollectionNode|CodeNode
     {
         $contents = $origin->read($path);
 

@@ -36,6 +36,8 @@ final class CopyResources
         }
 
         $source = new Filesystem(new Local($fullResourcesPath));
+
+        /** @var \League\Flysystem\FilesystemInterface */
         $destination = $event->getCommand()->getDestination();
 
         $finder = new Finder();
