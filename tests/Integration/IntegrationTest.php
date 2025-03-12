@@ -67,6 +67,7 @@ final class IntegrationTest extends ApplicationTestCase
             assert($plantuml instanceof DecoratingPlantumlRenderer);
             $plantuml->setDisabled(true);
 
+            chdir(dirname($inputPath));
             $input = new ArrayInput(
                 [
                     'input' => $inputPath,

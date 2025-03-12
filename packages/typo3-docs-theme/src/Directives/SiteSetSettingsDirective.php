@@ -13,8 +13,7 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Directives;
 
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem;
+use phpDocumentor\FileSystem\FlySystemAdapter;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use Symfony\Component\Yaml\Yaml;
 use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
@@ -129,11 +128,7 @@ final class SiteSetSettingsDirective extends BaseDirective
     {
         $parser = $blockContext->getDocumentParserContext()->getParser();
         $parserContext = $parser->getParserContext();
-        /** @var Filesystem $origin */
         $origin = $parserContext->getOrigin();
-        /** @var Local $adapter */
-        $adapter = $origin->getAdapter();
-        $pathPrefix = (string)$adapter->getPathPrefix();
 
         // By default, the RST files are placed inside a "Documentation" subdirectory.
         // When using the docker container, this origin root path is then set to "/project/Documentation".
@@ -148,28 +143,24 @@ final class SiteSetSettingsDirective extends BaseDirective
             // and is then passed to absoluteRelativePath() which will set $path = "/Configuration/Sets/File.yaml",
             // but ensure no "../../../" or other path traversal is allowed.
             $path = $parserContext->absoluteRelativePath(str_replace('PROJECT:', '', $filename));
+            $currentDir = getcwd();
+            if ($currentDir === false) {
+                throw new FileLoadingException('The .. typo3:site-set-settings:: cannot detect current directory');
+            }
 
-            // Get the current origin Path, usually "/project/Documentation/", and go one level up.
-            $newOriginPath = dirname($pathPrefix) . '/';
-
-            // Temporarily change the path prefix now to "/project/"
-            $adapter->setPathPrefix($newOriginPath);
+            $origin = FlySystemAdapter::createForPath($currentDir);
         } else {
             $path = $parserContext->absoluteRelativePath($filename);
         }
 
         if (!$origin->has($path)) {
             // Revert temporary change to origin (because it being a singleton)
-            $adapter->setPathPrefix($pathPrefix);
             throw new FileLoadingException(
                 sprintf('The directive .. typo3:site-set-settings:: cannot find the source at %s. ', $path)
             );
         }
 
         $contents = $origin->read($path);
-
-        // Revert temporary change to origin (because it being a singleton).
-        $adapter->setPathPrefix($pathPrefix);
 
         if ($contents === false) {
             throw new FileLoadingException(sprintf('The .. typo3:site-set-settings:: cannot load file from path %s. ', $path));
