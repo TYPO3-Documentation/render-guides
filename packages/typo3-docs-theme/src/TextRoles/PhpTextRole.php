@@ -152,6 +152,7 @@ final class PhpTextRole implements TextRole
             if ($apiInfo['summary']) {
                 $infoArray[] = '<em>' . $apiInfo['summary'] . '</em>';
             }
+            $apiInfo['fqn'] = $fqn;
             $info = implode('<br>', $infoArray);
             $info = str_replace('\\', '&#8203;\\', $info);
             return new CodeInlineNode($name, 'PHP ' . $type, $info, $apiInfo);

@@ -576,9 +576,16 @@ final class ConfigureCommand extends Command
 
     private function createEmptyGuides(string $config, OutputInterface $output): bool
     {
-        if (!is_dir(dirname($config))) {
-            $output->writeln(sprintf('<error>Cannot create guides.xml in missing directory "%s"</error>', dirname($config)));
-            return false;
+        $directory = dirname($config);
+
+        // Ensure the directory exists before proceeding
+        if (!is_dir($directory)) {
+            if (!mkdir($directory, 0o777, true) && !is_dir($directory)) {
+                $output->writeln(sprintf('<error>Failed to create missing directory "%s"</error>', $directory));
+                return false;
+            }
+            // Now the directory exists, proceed with the operation
+            $output->writeln(sprintf('<info>Created directory "%s" for guides.xml</info>', $directory));
         }
 
         $fp = fopen($config, 'w');
