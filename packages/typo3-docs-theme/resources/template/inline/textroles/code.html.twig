@@ -1,14 +1,20 @@
 {% apply spaceless %}
     <code class="code-inline{% if node.value|length > 10 %} code-inline-long{% endif %}"
           translate="no"
-          aria-description="{{ node.language|raw }}"
-          aria-details="{{ node.helpText|raw }}"
-          data-bs-html="true">
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="{{ node.value }}"
+          data-shortdescription="{{ node.language|raw }}"
+          data-details="{{ node.helpText|raw }}"
+          data-morelink="{{  node.info.url }}"
+          {%- if node.info.fqn %}
+              data-fqn="{{ node.info.fqn }}"
+          {%- endif %}
+          data-bs-html="true"
+    >
+        {{ replaceLineBreakOpportunityTags(node.value) }}
         {%- if node.info.url %}
-            <a href="{{ node.info['url'] }}" target="_blank">
-                {{- replaceLineBreakOpportunityTags(node.value) }} <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></a>
-        {%- else -%}
-            {{ replaceLineBreakOpportunityTags(node.value) }}
+            <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span>
         {%- endif -%}
     </code>
 {% endapply %}
