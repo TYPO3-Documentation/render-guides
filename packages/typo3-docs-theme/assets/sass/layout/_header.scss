@@ -1,0 +1,11 @@
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures it's above other content */
+    background-color: white; /* Adjust as needed */
+}
+
+.section {
+    scroll-margin-top: 114px; /* Adjust to match the header height */
+}
