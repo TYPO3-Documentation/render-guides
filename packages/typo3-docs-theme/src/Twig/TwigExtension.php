@@ -99,8 +99,10 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('isRenderedForDeployment', $this->isRenderedForDeployment(...)),
             new TwigFunction('replaceLineBreakOpportunityTags', $this->replaceLineBreakOpportunityTags(...), ['is_safe' => ['html'], 'needs_context' => false]),
             new TwigFunction('filterAllowedSearchFacets', $this->filterAllowedSearchFacets(...), ['is_safe' => ['html'], 'needs_context' => false]),
+            new TwigFunction('getPermalink', $this->getPermalink(...), ['is_safe' => ['html'], 'needs_context' => true]),
         ];
     }
+
     public function filterAllowedSearchFacets(string $value): string
     {
         $allowed = [
@@ -269,6 +271,26 @@ final class TwigExtension extends AbstractExtension
         }
         return '';
     }
+
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getPermalink(array $context, SectionNode $sectionNode): string
+    {
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+        $anchorId = '';
+        foreach ($sectionNode->getChildren() as $childNode) {
+            if ($childNode instanceof AnchorNode) {
+                $anchorId = $this->anchorNormalizer->reduceAnchor($childNode->toString());
+                break;
+            }
+        }
+        if ($anchorId === '') {
+
+        }
+        return 'https://docs.typo3.org/permalink/t3viewhelper:start';
+    }
+
     /**
      * @param array{env: RenderContext} $context
      */

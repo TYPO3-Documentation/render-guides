@@ -25,6 +25,7 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RedirectsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ReplacePermalinksNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\Typo3TalkNodeTransformer;
 use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\GlossaryDirective;
@@ -36,6 +37,7 @@ use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3FileDirective;
+use T3Docs\Typo3DocsTheme\Directives\Typo3TalkDirective;
 use T3Docs\Typo3DocsTheme\Directives\ViewHelperDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
@@ -105,7 +107,8 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
-        ->set(TwigExtension::class)
+        ->set(Typo3TalkNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(TwigExtension::class)
         ->tag('twig.extension')
         ->autowire()
@@ -192,6 +195,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(SiteSetSettingsDirective::class)
         ->set(Typo3FileDirective::class)
         ->set(T3FieldListTableDirective::class)
+        ->set(Typo3TalkDirective::class)
         ->set(ViewHelperDirective::class)
         ->arg('$startingRule', service(DocumentRule::class))
         ->set(YoutubeDirective::class)
