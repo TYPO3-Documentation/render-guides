@@ -80,6 +80,10 @@
         background: transparent;
         padding: 0;
         flex-grow: 1;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
         &:focus {
             outline: none;
