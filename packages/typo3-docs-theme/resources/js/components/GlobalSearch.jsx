@@ -8,27 +8,46 @@ const GlobalSearch = () => {
         setIsModalOpen(true);
     };
 
+    const handleButtonClick = (e) => {
+        e.preventDefault();
+        setIsModalOpen(true);
+    };
+
     useEffect(() => {
         let globalSearchInput = document.getElementById('globalsearchinput');
+        let globalSearchButton = document.querySelector('#global-search-form button');
+
         if (!globalSearchInput) {
             globalSearchInput = document.getElementById('searchinput');
         }
 
         if (globalSearchInput) {
             globalSearchInput.addEventListener('click', handleInputClick);
-
-            return () => {
-                globalSearchInput.removeEventListener('click', handleInputClick);
-            };
         }
+
+        if (globalSearchButton) {
+            globalSearchButton.addEventListener('click', handleButtonClick);
+            globalSearchButton.classList.add('here');
+        }
+
+        return () => {
+            if (globalSearchInput) {
+                globalSearchInput.removeEventListener('click', handleInputClick);
+            }
+            if (globalSearchButton) {
+                globalSearchButton.removeEventListener('click', handleButtonClick);
+                globalSearchButton.classList.remove('here');
+            }
+        };
     }, []);
 
-
     return (
-        <SearchModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-        />
+        <>
+            {isModalOpen && <SearchModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />}
+        </>
     );
 };
 

@@ -20,6 +20,15 @@ const SearchModal = ({ isOpen, onClose }) => {
         fetchSuggestions
     } = useSearchSuggestions();
 
+    useEffect(() => {
+        const url = new URL(window.location.href);
+        const queryParam = url.searchParams.get('q');
+        if (queryParam) {
+            setSearchQuery(queryParam);
+            fetchSuggestions(scopes, searchQuery);
+        }
+    }, []);
+
     const buildHref = useCallback((scopes, query) => {
         const url = new URL('/search/search', PROXY_URL);
 
