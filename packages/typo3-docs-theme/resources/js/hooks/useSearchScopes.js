@@ -9,7 +9,6 @@ export const useSearchScopes = () => {
         url.searchParams?.forEach((value, key) => {
             if (key === 'scope' && value) {
                 const slug = decodeURIComponent(value).split('/').filter(Boolean).join('/');
-                console.log(slug);
                 const packageName = slug.split('/').slice(1, 3).join('/');
                 initialScopes.push({ type: 'manual', title: packageName, slug });
             } else if (key.startsWith('filters[')) {
