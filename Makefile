@@ -1,5 +1,5 @@
 ## Global PHP arguments, applied to both docker and local execution
-PHP_ARGS ?= -d memory_limit=1024M
+PHP_ARGS ?= -d memory_limit=1024M -d date.timezone=UTC
 
 ## Docker wrapper, for raw php commands (so it's not required on the host)
 ## This container has no runtime for the `guides` project!
