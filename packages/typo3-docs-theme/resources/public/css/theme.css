@@ -28256,6 +28256,12 @@ header {
 
 .page-main-navigation {
   flex-grow: 0;
+  background-color: #fff;
+  z-index: 1;
+  position: sticky;
+  top: 114px;
+  height: auto;
+  overflow: auto;
   margin-left: calc(40px / 2 * -1);
   margin-right: calc(40px / 2 * -1);
   padding: calc(40px / 2);
@@ -28267,6 +28273,7 @@ header {
     flex-shrink: 0;
     width: 15rem;
     margin: 0;
+    height: calc(100vh - 114px);
     margin-right: 40px;
     padding-right: calc(40px / 2);
     border-bottom: none;

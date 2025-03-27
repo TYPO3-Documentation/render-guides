@@ -7,7 +7,7 @@
     <dl class="confval">
         <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif %}
             class="d-flex justify-content-between">
-            <div class="confval-header">
+            <div class="confval-header flex-grow-1">
                 <code class="sig-name descname"><span
                         class="pre">{{ replaceLineBreakOpportunityTags(node.plainContent) }}</span></code>
                 {% if not node.noindex %}
@@ -34,6 +34,12 @@
                             class="fa-solid fa-arrow-up fa-xs"></i></a>
                 {%- endif %}
             </div>
+            {%- set gitHubLink = getEditOnGitHubLinkFromPath(node.path) -%}
+            {%- if (gitHubLink)  %}
+                <a href="{{ gitHubLink }}" class="btn-light ms-3" title="Edit on GitHub">
+                    <i class="icon fa-brands fa-github"></i>
+                </a>
+            {%- endif %}
         </dt>
         <dd>
             {% if node.type or node.required or node.default or node.additionalOptions %}
