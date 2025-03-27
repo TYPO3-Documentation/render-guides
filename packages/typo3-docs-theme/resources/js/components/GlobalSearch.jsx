@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import SearchModal from './SearchModal';
 
-const GlobalSearch = () => {
+const GlobalSearch = ({ displayInput = false }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const handleInputClick = () => {
-        setIsModalOpen(true);
-    };
+    useEffect(() => {
+        const url = new URL(window.location.href);
+        const queryParam = url.searchParams.get('q');
+        if (queryParam) {
+            setSearchQuery(queryParam);
+        }
+    }, []);
 
     const handleButtonClick = (e) => {
         e.preventDefault();
@@ -14,31 +19,10 @@ const GlobalSearch = () => {
     };
 
     useEffect(() => {
-        let globalSearchInput = document.getElementById('globalsearchinput');
-        let globalSearchButton = document.querySelector('#global-search-form button');
-
-        if (!globalSearchInput) {
-            globalSearchInput = document.getElementById('searchinput');
+        const form = document.getElementById('global-search-form');
+        if (form) {
+            form.hidden = true;
         }
-
-        if (globalSearchInput) {
-            globalSearchInput.addEventListener('click', handleInputClick);
-        }
-
-        if (globalSearchButton) {
-            globalSearchButton.addEventListener('click', handleButtonClick);
-            globalSearchButton.classList.add('here');
-        }
-
-        return () => {
-            if (globalSearchInput) {
-                globalSearchInput.removeEventListener('click', handleInputClick);
-            }
-            if (globalSearchButton) {
-                globalSearchButton.removeEventListener('click', handleButtonClick);
-                globalSearchButton.classList.remove('here');
-            }
-        };
     }, []);
 
     return (
@@ -47,6 +31,11 @@ const GlobalSearch = () => {
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
             />}
+            {displayInput ? <div class="input-group mb-3 mt-sm-3" onClick={handleButtonClick}>
+                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value={searchQuery}></input>
+                <button class="btn btn-light"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+            </div> :
+                <button onClick={handleButtonClick} class="btn btn-light"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>}
         </>
     );
 };

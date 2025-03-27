@@ -7,6 +7,7 @@ import SuggestRow from './SuggestRow';
 const SearchModal = ({ isOpen, onClose }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [scopes, setScopes] = useSearchScopes();
+    const [currentScopes, setCurrentScopes] = useState([]);
     const [activeIndex, setActiveIndex] = useState(-1);
     const suggestionsRef = useRef([]);
     const inputRef = useRef();
@@ -19,6 +20,17 @@ const SearchModal = ({ isOpen, onClose }) => {
         isLoading,
         fetchSuggestions
     } = useSearchSuggestions();
+
+    useEffect(() => {
+        const select = document.getElementById('searchscope');
+        const currentScopeValue = select?.children?.[1]?.value ?? null;
+        if (currentScopeValue) {
+            const packageName = currentScopeValue.split('/').slice(1, 3).join('/');
+            const version = currentScopeValue.split('/').slice(3, 4)[0]?.split('.')[0];
+            setCurrentScopes([{ type: 'manual', title: packageName, slug: packageName }, { type: 'version', title: version }]);
+        }
+
+    }, []);
 
     useEffect(() => {
         const url = new URL(window.location.href);
@@ -88,9 +100,18 @@ const SearchModal = ({ isOpen, onClose }) => {
                 tooltip: 'Search all',
                 href: buildHref([], searchQuery)
             });
+
+            if (currentScopes.length > 0) {
+                decomposed.push({
+                    scopes: currentScopes,
+                    title: searchQuery,
+                    tooltip: 'Search in current',
+                    href: buildHref(currentScopes, searchQuery)
+                });
+            }
         }
         return decomposed;
-    }, [scopes, searchQuery, buildHref]);
+    }, [scopes, searchQuery, buildHref, currentScopes]);
 
     const handleScopeSelect = useCallback((title, type, slug) => {
         setScopes(prevScopes => {

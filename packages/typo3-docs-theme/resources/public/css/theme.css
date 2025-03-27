@@ -27197,6 +27197,10 @@ figure.uml-diagram {
   background: transparent;
   padding: 0;
   flex-grow: 1;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .search-modal__input:focus {
   outline: none;
@@ -28188,11 +28192,6 @@ header {
   flex: 0.4 !important;
 }
 
-.search__submit:hover {
-  background: rgb(242.25, 242.25, 242.25);
-  outline: 2px solid #333333;
-}
-
 .page {
   display: flex;
   flex-direction: column;
@@ -28227,16 +28226,9 @@ header {
 .menu-search-wrapper {
   display: flex;
   align-items: center;
+  justify-content: end;
   gap: 0.4em;
-}
-.menu-search-wrapper search {
-  flex-grow: 1;
-}
-@media screen and (max-width: 576px) {
-  .menu-search-wrapper {
-    flex-direction: column;
-    align-items: start;
-  }
+  height: 100%;
 }
 
 /**
