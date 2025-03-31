@@ -25,9 +25,10 @@ const SearchModal = ({ isOpen, onClose }) => {
         const select = document.getElementById('searchscope');
         const currentScopeValue = select?.children?.[1]?.value ?? null;
         if (currentScopeValue) {
-            const packageName = currentScopeValue.split('/').slice(1, 3).join('/');
-            const version = currentScopeValue.split('/').slice(3, 4)[0]?.split('.')[0];
-            setCurrentScopes([{ type: 'manual', title: packageName, slug: packageName }, { type: 'version', title: version }]);
+            const currentScopeValueArray = currentScopeValue.split('/').filter(Boolean);
+            const packageName = currentScopeValueArray.slice(1, 3).join('/');
+            const version = currentScopeValueArray.slice(3, 4)[0]?.split('.')[0];
+            setCurrentScopes([{ type: 'manual', title: packageName, slug: currentScopeValueArray.join('/') }, { type: 'version', title: version }]);
         }
 
     }, []);
