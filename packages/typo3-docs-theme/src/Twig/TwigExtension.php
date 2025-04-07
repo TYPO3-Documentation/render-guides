@@ -277,7 +277,12 @@ final class TwigExtension extends AbstractExtension
      */
     public function getPermalink(array $context, SectionNode $sectionNode): string
     {
+        $renderContext = $this->getRenderContext($context);
         $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+        if ($interlink === '') {
+            $this->logger->warning('A permalink can only be generated if "interlink_shortcode" is set in the guides.xml. ', $renderContext->getLoggerInformation());
+            return '';
+        }
         $anchorId = '';
         foreach ($sectionNode->getChildren() as $childNode) {
             if ($childNode instanceof AnchorNode) {
@@ -286,9 +291,9 @@ final class TwigExtension extends AbstractExtension
             }
         }
         if ($anchorId === '') {
-
+            $this->logger->warning('The surrounding section has no anchor. ', $renderContext->getLoggerInformation());
         }
-        return 'https://docs.typo3.org/permalink/t3viewhelper:start';
+        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchorId;
     }
 
     /**

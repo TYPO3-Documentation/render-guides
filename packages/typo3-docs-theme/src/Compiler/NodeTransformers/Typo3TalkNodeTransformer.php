@@ -16,13 +16,9 @@ namespace T3Docs\Typo3DocsTheme\Compiler\NodeTransformers;
 use phpDocumentor\Guides\Compiler\CompilerContextInterface;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
 use phpDocumentor\Guides\Nodes\DocumentNode;
-use phpDocumentor\Guides\Nodes\Inline\HyperLinkNode;
-use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\Nodes\Node;
-
 use phpDocumentor\Guides\Nodes\SectionNode;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3TalkNode;
-use function assert;
 
 /** @implements NodeTransformer<DocumentNode|SectionNode|Typo3TalkNode> */
 final class Typo3TalkNodeTransformer implements NodeTransformer

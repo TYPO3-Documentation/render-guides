@@ -13,15 +13,11 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Directives;
 
-use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
-use phpDocumentor\Guides\Nodes\ParagraphNode;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
-use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3TalkNode;
-use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 
 class Typo3TalkDirective extends BaseDirective
 {
