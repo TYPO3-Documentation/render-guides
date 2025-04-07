@@ -99,8 +99,10 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('isRenderedForDeployment', $this->isRenderedForDeployment(...)),
             new TwigFunction('replaceLineBreakOpportunityTags', $this->replaceLineBreakOpportunityTags(...), ['is_safe' => ['html'], 'needs_context' => false]),
             new TwigFunction('filterAllowedSearchFacets', $this->filterAllowedSearchFacets(...), ['is_safe' => ['html'], 'needs_context' => false]),
+            new TwigFunction('getPermalink', $this->getPermalink(...), ['is_safe' => ['html'], 'needs_context' => true]),
         ];
     }
+
     public function filterAllowedSearchFacets(string $value): string
     {
         $allowed = [
@@ -269,6 +271,31 @@ final class TwigExtension extends AbstractExtension
         }
         return '';
     }
+
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getPermalink(array $context, SectionNode $sectionNode): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+        if ($interlink === '') {
+            $this->logger->warning('A permalink can only be generated if "interlink_shortcode" is set in the guides.xml. ', $renderContext->getLoggerInformation());
+            return '';
+        }
+        $anchorId = '';
+        foreach ($sectionNode->getChildren() as $childNode) {
+            if ($childNode instanceof AnchorNode) {
+                $anchorId = $this->anchorNormalizer->reduceAnchor($childNode->toString());
+                break;
+            }
+        }
+        if ($anchorId === '') {
+            $this->logger->warning('The surrounding section has no anchor. ', $renderContext->getLoggerInformation());
+        }
+        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchorId;
+    }
+
     /**
      * @param array{env: RenderContext} $context
      */
