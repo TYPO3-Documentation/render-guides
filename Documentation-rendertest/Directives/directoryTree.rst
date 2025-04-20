@@ -30,6 +30,22 @@ Directory tree
 Directory tree with links
 =========================
 
+..  directory-tree::
+    :level: 2
+    :show-file-icons: true
+
+    *   :doc:`Directory tree </Directives/directoryTree#directory-tree>`
+
+        *   Layouts
+
+            *   :doc:`Directory tree </Directives/directoryTree#directory-tree>`
+            *   :doc:`Directory tree </Directives/directoryTree#directory-tree>`
+
+        *   Pages
+
+            *   :doc:`Directory tree </Directives/directoryTree#directory-tree>`
+            *   :doc:`Directory tree </Directives/directoryTree#directory-tree>`
+
 Directory structure of a typo3 extension
 ========================================
 

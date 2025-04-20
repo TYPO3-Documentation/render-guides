@@ -23998,7 +23998,11 @@ dl.command .command-arguments section {
 
 .directory-tree ul {
   margin-bottom: 0;
+  padding-left: 0;
   list-style: none;
+}
+.directory-tree ul ul {
+  padding-left: 1.5em;
 }
 .directory-tree ul li {
   margin-bottom: 0;
@@ -24011,10 +24015,10 @@ dl.command .command-arguments section {
 }
 .directory-tree ul li .content .toggle a[data-bs-toggle=collapse] .icon::before {
   font-family: "Font Awesome 6 Free";
-  content: "\f0fe";
+  content: "\f146";
 }
 .directory-tree ul li .content .toggle a[data-bs-toggle=collapse].collapsed .icon::before {
-  content: "\f146";
+  content: "\f0fe";
 }
 .directory-tree ul li .content .no-toggle {
   width: 1.5em;
@@ -24027,6 +24031,7 @@ dl.command .command-arguments section {
   font-family: var(--bs-body-font-family);
   line-height: var(--bs-body-line-height);
   font-size: 1.1rem;
+  padding: 0;
 }
 .directory-tree ul li .content .label code.file::before, .directory-tree ul li .content .label code.path::before {
   width: 1.5em;
