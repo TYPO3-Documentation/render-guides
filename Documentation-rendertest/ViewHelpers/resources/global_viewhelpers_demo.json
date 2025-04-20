@@ -41,6 +41,33 @@
             "namespaceWithoutSuffix": "TYPO3Fluid\\Fluid",
             "uri": "Global\/Split"
         },
+
+        "else": {
+            "className": "TYPO3Fluid\\Fluid\\ViewHelpers\\ElseViewHelper",
+            "namespace": "TYPO3Fluid\\Fluid\\ViewHelpers",
+            "name": "ElseViewHelper",
+            "tagName": "else",
+            "documentation": "Else-Branch of a condition. Only has an effect inside of ``f:if``.\nSee the ``f:if`` ViewHelper for documentation.\n\nExamples\n========\n\nOutput content if condition is not met\n--------------------------------------\n\n::\n\n    <f:if condition=\"{someCondition}\">\n        <f:else>\n            condition was not true\n        <\/f:else>\n    <\/f:if>\n\nOutput::\n\n    Everything inside the \"else\" tag is displayed if the condition evaluates to false.\n    Otherwise, nothing is outputted in this example.",
+            "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3Fluid\/Fluid\/ViewHelpers",
+            "docTags": {
+                "@see": "TYPO3Fluid\\Fluid\\ViewHelpers\\IfViewHelper",
+                "@api": ""
+            },
+            "argumentDefinitions": {
+                "if": {
+                    "name": "if",
+                    "type": "boolean",
+                    "description": "Condition expression conforming to Fluid boolean rules",
+                    "required": false,
+                    "defaultValue": null,
+                    "escape": null
+                }
+            },
+            "allowsArbitraryArguments": false,
+            "nameWithoutSuffix": "Else",
+            "namespaceWithoutSuffix": "TYPO3Fluid\\Fluid",
+            "uri": "Global\/Else"
+        },
         "link.external": {
             "className": "TYPO3\\CMS\\Fluid\\ViewHelpers\\Link\\ExternalViewHelper",
             "namespace": "TYPO3\\CMS\\Fluid\\ViewHelpers",
