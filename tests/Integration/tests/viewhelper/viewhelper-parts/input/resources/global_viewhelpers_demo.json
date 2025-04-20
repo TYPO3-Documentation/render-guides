@@ -1,29 +1,14 @@
 {
-    "uri": "Fluid/Index",
-    "name": "Fluid",
-    "label": "Fluid (f:*)",
-    "namespaceAlias": "f",
-    "targetNamespace": "http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers",
-    "includesNamespaces": ["http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"],
-    "sourceEdit": {
-        "http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers": {
-            "sourcePrefix": "https://github.com/TYPO3/Fluid/blob/main/src/ViewHelpers/",
-            "editPrefix": "https://github.com/TYPO3/Fluid/edit/main/src/ViewHelpers/"
-        },
-        "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers": {
-            "sourcePrefix": "https://github.com/TYPO3/typo3/blob/main/typo3/sysext/fluid/Classes/ViewHelpers/",
-            "editPrefix": "https://github.com/TYPO3/typo3/edit/main/typo3/sysext/fluid/Classes/ViewHelpers/"
-        }
-    },
-    "headlineIdentifierPrefix": null,
+    "namespace": "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers",
     "viewHelpers": {
+
         "split": {
             "className": "TYPO3Fluid\\Fluid\\ViewHelpers\\SplitViewHelper",
             "namespace": "TYPO3Fluid\\Fluid\\ViewHelpers",
             "name": "SplitViewHelper",
             "tagName": "split",
-            "documentation": "The SplitViewHelper splits a string by the specified separator, which\nresults in an array. The number of values in the resulting array can\nbe limited with the limit parameter, which results in an array where\nthe last item contains the remaining unsplit string.\n\nThis ViewHelper mimicks PHP's :php:`explode()` function.\n\n\nExamples\n========\n\nSplit with a separator\n-----------------------\n::\n\n   <f:split value=\"1,5,8\" separator=\",\" />\n\n.. code-block:: text\n\n   {0: '1', 1: '5', 2: '8'}\n\n\nSplit using tag content as value\n--------------------------------\n\n::\n\n   <f:split separator=\"-\">1-5-8</f:split>\n\n.. code-block:: text\n\n   {0: '1', 1: '5', 2: '8'}\n\n\nSplit with a limit\n-------------------\n\n::\n\n   <f:split value=\"1,5,8\" separator=\",\" limit=\"2\" />\n\n.. code-block:: text\n\n   {0: '1', 1: '5,8'}",
-            "xmlNamespace": "http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers",
+            "documentation": "The SplitViewHelper splits a string by the specified separator, which\nresults in an array. The number of values in the resulting array can\nbe limited with the limit parameter, which results in an array where\nthe last item contains the remaining unsplit string.\n\nThis ViewHelper mimicks PHP's :php:`explode()` function.\n\nThe following examples store the result in a variable because an array cannot\nbe outputted directly in a template.\n\nExamples\n========\n\nSplit with a separator\n-----------------------\n::\n\n   <f:variable name=\"result\"><f:split value=\"1,5,8\" separator=\",\" \/><\/f:variable>\n\n.. code-block:: text\n\n   {0: '1', 1: '5', 2: '8'}\n\n\nSplit using tag content as value\n--------------------------------\n\n::\n\n   <f:variable name=\"result\"><f:split separator=\"-\">1-5-8<\/f:split><\/f:variable>\n\n.. code-block:: text\n\n   {0: '1', 1: '5', 2: '8'}\n\n\nSplit with a limit\n-------------------\n\n::\n\n   <f:variable name=\"result\"><f:split value=\"1,5,8\" separator=\",\" limit=\"2\" \/><\/f:variable>\n\n.. code-block:: text\n\n   {0: '1', 1: '5,8'}",
+            "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3Fluid\/Fluid\/ViewHelpers",
             "docTags": [],
             "argumentDefinitions": {
                 "value": {
@@ -54,17 +39,43 @@
             "allowsArbitraryArguments": false,
             "nameWithoutSuffix": "Split",
             "namespaceWithoutSuffix": "TYPO3Fluid\\Fluid",
-            "uri": "Fluid/Split"
+            "uri": "Global\/Split"
         },
-        "link.external":{
+        "link.external": {
             "className": "TYPO3\\CMS\\Fluid\\ViewHelpers\\Link\\ExternalViewHelper",
             "namespace": "TYPO3\\CMS\\Fluid\\ViewHelpers",
             "name": "Link\\ExternalViewHelper",
             "tagName": "link.external",
-            "documentation": "A ViewHelper for creating links to external targets.\n\nExamples\n========\n\nDefault\n-------\n::\n\n    <f:link.external uri=\"https://www.typo3.org\" target=\"_blank\">external link</f:link.external>\n\nOutput::\n\n    <a href=\"https://www.typo3.org\" target=\"_blank\">external link</a>\n\nCustom default scheme\n---------------------\n\n::\n\n    <f:link.external uri=\"typo3.org\" defaultScheme=\"ftp\">external ftp link</f:link.external>\n\nOutput::\n\n    <a href=\"ftp://typo3.org\">external ftp link</a>",
-            "xmlNamespace": "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers",
-            "docTags": {},
+            "documentation": "ViewHelper for creating links to external targets.\n\n```\n  <f:link.external uri=\"https:\/\/www.typo3.org\" target=\"_blank\">external link<\/f:link.external>\n```",
+            "xmlNamespace": "http:\/\/typo3.org\/ns\/TYPO3\/CMS\/Fluid\/ViewHelpers",
+            "docTags": {
+                "@see": "https:\/\/docs.typo3.org\/permalink\/t3viewhelper:typo3-fluid-link-external"
+            },
             "argumentDefinitions": {
+                "additionalAttributes": {
+                    "name": "additionalAttributes",
+                    "type": "array",
+                    "description": "Additional tag attributes. They will be added directly to the resulting HTML tag.",
+                    "required": false,
+                    "defaultValue": null,
+                    "escape": null
+                },
+                "data": {
+                    "name": "data",
+                    "type": "array",
+                    "description": "Additional data-* attributes. They will each be added with a \"data-\" prefix.",
+                    "required": false,
+                    "defaultValue": null,
+                    "escape": null
+                },
+                "aria": {
+                    "name": "aria",
+                    "type": "array",
+                    "description": "Additional aria-* attributes. They will each be added with a \"aria-\" prefix.",
+                    "required": false,
+                    "defaultValue": null,
+                    "escape": null
+                },
                 "uri": {
                     "name": "uri",
                     "type": "string",
@@ -72,12 +83,20 @@
                     "required": true,
                     "defaultValue": null,
                     "escape": null
+                },
+                "defaultScheme": {
+                    "name": "defaultScheme",
+                    "type": "string",
+                    "description": "Scheme the href attribute will be prefixed with if specified $uri does not contain a scheme already",
+                    "required": false,
+                    "defaultValue": "https",
+                    "escape": null
                 }
             },
             "allowsArbitraryArguments": true,
             "nameWithoutSuffix": "Link\\External",
             "namespaceWithoutSuffix": "TYPO3\\CMS\\Fluid",
-            "uri": "Global/Link/External"
+            "uri": "Global\/Link\/External"
         },
         "deprecated":{
             "className": "TYPO3\\CMS\\Fluid\\ViewHelpers\\DeprecatedViewHelper",
@@ -89,11 +108,7 @@
             "docTags": {
                 "@deprecated": "since v11, will be removed in v12"
             },
-            "argumentDefinitions": {},
-            "allowsArbitraryArguments": false,
-            "nameWithoutSuffix": "Deprecated",
-            "namespaceWithoutSuffix": "TYPO3\\CMS\\Fluid",
-            "uri": "Fluid/Deprecated"
+            "allowsArbitraryArguments": false
         }
     }
 }

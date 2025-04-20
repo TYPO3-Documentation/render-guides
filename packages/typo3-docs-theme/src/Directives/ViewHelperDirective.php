@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Directives;
 
+use phpDocumentor\Guides\Markdown\MarkupLanguageParser;
+use phpDocumentor\Guides\Nodes\CodeNode;
+use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
@@ -41,6 +44,7 @@ final class ViewHelperDirective extends BaseDirective
         private readonly LoggerInterface      $logger,
         private readonly Rule $startingRule,
         private readonly AnchorNormalizer $anchorNormalizer,
+        private readonly MarkupLanguageParser $markupLanguageParser,
         GenericLinkProvider $genericLinkProvider,
     ) {
         $genericLinkProvider->addGenericLink(self::NAME, ViewHelperNode::LINK_TYPE, ViewHelperNode::LINK_PREFIX);
@@ -150,24 +154,37 @@ final class ViewHelperDirective extends BaseDirective
      */
     private function getViewHelperNode(Directive $directive, array $data, array $sourceEdit, BlockContext $blockContext, bool $noindex): ViewHelperNode
     {
-        $rstContent = $this->getString($data, 'documentation');
-        $rstContentBlockContext = new BlockContext($blockContext->getDocumentParserContext(), $rstContent, false);
-        $collectionNode = $this->startingRule->apply($rstContentBlockContext);
+        $rawDocumentation = $this->getString($data, 'documentation');
         $description = [];
-        foreach ($collectionNode->getValue() as $node) {
-            if (!$node instanceof SectionNode) {
-                $description[] = $node;
-            }
-        }
         $sections = [];
         $examples = [];
-        foreach ($collectionNode->getValue() as $node) {
-            if ($node instanceof SectionNode) {
-                $title = $node->getTitle()->toString();
-                if (stripos($title, 'example') !== false) { // Case-insensitive check for 'example'
+        if (str_contains($rawDocumentation, '```')) {
+            $node = $this->markupLanguageParser->parse($blockContext->getDocumentParserContext()->getContext(), $rawDocumentation);
+            $collectionNode = new CollectionNode($node->getValue());
+            foreach ($node->getValue() as $node) {
+                if ($node instanceof ParagraphNode) {
+                    $description[] = $node;
+                }
+                if ($node instanceof CodeNode) {
                     $examples[] = $node;
-                } else {
-                    $sections[] = $node;
+                }
+            }
+        } else {
+            $rstContentBlockContext = new BlockContext($blockContext->getDocumentParserContext(), $rawDocumentation, false);
+            $collectionNode = $this->startingRule->apply($rstContentBlockContext);
+            foreach ($collectionNode->getValue() as $node) {
+                if (!$node instanceof SectionNode) {
+                    $description[] = $node;
+                }
+            }
+            foreach ($collectionNode->getValue() as $node) {
+                if ($node instanceof SectionNode) {
+                    $title = $node->getTitle()->toString();
+                    if (stripos($title, 'example') !== false) { // Case-insensitive check for 'example'
+                        $examples[] = $node;
+                    } else {
+                        $sections[] = $node;
+                    }
                 }
             }
         }
