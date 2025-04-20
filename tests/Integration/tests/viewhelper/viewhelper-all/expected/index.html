@@ -29,13 +29,16 @@ the last item contains the remaining unsplit string.</p>
           data-morelink=""          data-bs-html="true"
     >
         explode<wbr>()</code> function.</p>
+
+    <p>The following examples store the result in a variable because an array cannot
+be outputted directly in a template.</p>
 <section class="section" id="examples">
             <h2>Examples<a class="headerlink" href="#examples" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
             <section class="section" id="split-with-a-separator">
             <h3>Split with a separator<a class="headerlink" href="#split-with-a-separator" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code>&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; /&gt;
+    <pre class="code-block"><code>&lt;f:variable name=&quot;result&quot;&gt;&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; /&gt;&lt;/f:variable&gt;
 </code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
@@ -59,7 +62,7 @@ the last item contains the remaining unsplit string.</p>
             <h3>Split using tag content as value<a class="headerlink" href="#split-using-tag-content-as-value" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code>&lt;f:split separator=&quot;-&quot;&gt;1-5-8&lt;/f:split&gt;
+    <pre class="code-block"><code>&lt;f:variable name=&quot;result&quot;&gt;&lt;f:split separator=&quot;-&quot;&gt;1-5-8&lt;/f:split&gt;&lt;/f:variable&gt;
 </code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
@@ -83,7 +86,7 @@ the last item contains the remaining unsplit string.</p>
             <h3>Split with a limit<a class="headerlink" href="#split-with-a-limit" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code>&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; limit=&quot;2&quot; /&gt;
+    <pre class="code-block"><code>&lt;f:variable name=&quot;result&quot;&gt;&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; limit=&quot;2&quot; /&gt;&lt;/f:variable&gt;
 </code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
@@ -109,10 +112,6 @@ the last item contains the remaining unsplit string.</p>
 
 
 
-            <p>
-    Go to the source code of this ViewHelper:
-    <a href="https://github.com/TYPO3/Fluid/blob/main/src/ViewHelpers/SplitViewHelper.php">SplitViewHelper.php (GitHub)</a>.
-</p>
 
 
 
@@ -249,13 +248,16 @@ the last item contains the remaining unsplit string.</p>
           data-morelink=""          data-bs-html="true"
     >
         explode<wbr>()</code> function.</p>
+
+    <p>The following examples store the result in a variable because an array cannot
+be outputted directly in a template.</p>
 <section class="section" id="examples">
             <h2>Examples<a class="headerlink" href="#examples" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
             <section class="section" id="split-with-a-separator">
             <h3>Split with a separator<a class="headerlink" href="#split-with-a-separator" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code>&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; /&gt;
+    <pre class="code-block"><code>&lt;f:variable name=&quot;result&quot;&gt;&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; /&gt;&lt;/f:variable&gt;
 </code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
@@ -279,7 +281,7 @@ the last item contains the remaining unsplit string.</p>
             <h3>Split using tag content as value<a class="headerlink" href="#split-using-tag-content-as-value" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code>&lt;f:split separator=&quot;-&quot;&gt;1-5-8&lt;/f:split&gt;
+    <pre class="code-block"><code>&lt;f:variable name=&quot;result&quot;&gt;&lt;f:split separator=&quot;-&quot;&gt;1-5-8&lt;/f:split&gt;&lt;/f:variable&gt;
 </code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
@@ -303,7 +305,7 @@ the last item contains the remaining unsplit string.</p>
             <h3>Split with a limit<a class="headerlink" href="#split-with-a-limit" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code>&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; limit=&quot;2&quot; /&gt;
+    <pre class="code-block"><code>&lt;f:variable name=&quot;result&quot;&gt;&lt;f:split value=&quot;1,5,8&quot; separator=&quot;,&quot; limit=&quot;2&quot; /&gt;&lt;/f:variable&gt;
 </code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
@@ -329,10 +331,6 @@ the last item contains the remaining unsplit string.</p>
 
 
 
-            <p>
-    Go to the source code of this ViewHelper:
-    <a href="https://github.com/TYPO3/Fluid/blob/main/src/ViewHelpers/SplitViewHelper.php">SplitViewHelper.php (GitHub)</a>.
-</p>
 
 
 
@@ -438,6 +436,7 @@ the last item contains the remaining unsplit string.</p>
     </section>
             <section class="section" id="f-link-external">
             <h2>f:link.external<a class="headerlink" href="#f-link-external" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
+                                                    <p>@see: https://docs.typo3.org/permalink/t3viewhelper:typo3-fluid-link-external</p>
 
 
 
@@ -445,14 +444,10 @@ the last item contains the remaining unsplit string.</p>
 
 
 
-    <p>A ViewHelper for creating links to external targets.</p>
-<section class="section" id="examples">
-            <h2>Examples<a class="headerlink" href="#examples" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
-            <section class="section" id="default">
-            <h3>Default<a class="headerlink" href="#default" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
-            <div class="code-block-wrapper" translate="no">
+    <p>ViewHelper for creating links to external targets.</p>
+<div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code>&lt;f:link.external uri=&quot;https://www.typo3.org&quot; target=&quot;_blank&quot;&gt;external link&lt;/f:link.external&gt;
+    <pre class="code-block"><code>  &lt;f:link.external uri=&quot;https://www.typo3.org&quot; target=&quot;_blank&quot;&gt;external link&lt;/f:link.external&gt;
 </code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
@@ -462,57 +457,10 @@ the last item contains the remaining unsplit string.</p>
     </div>
 </div>
 
-    <p>Output:</p>
-
-            <div class="code-block-wrapper" translate="no">
-
-    <pre class="code-block"><code>&lt;a href=&quot;https://www.typo3.org&quot; target=&quot;_blank&quot;&gt;external link&lt;/a&gt;
-</code></pre>
-    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-    </div>
-</div>
-    </section>
-            <section class="section" id="custom-default-scheme">
-            <h3>Custom default scheme<a class="headerlink" href="#custom-default-scheme" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
-            <div class="code-block-wrapper" translate="no">
-
-    <pre class="code-block"><code>&lt;f:link.external uri=&quot;typo3.org&quot; defaultScheme=&quot;ftp&quot;&gt;external ftp link&lt;/f:link.external&gt;
-</code></pre>
-    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-    </div>
-</div>
-
-    <p>Output:</p>
-
-            <div class="code-block-wrapper" translate="no">
-
-    <pre class="code-block"><code>&lt;a href=&quot;ftp://typo3.org&quot;&gt;external ftp link&lt;/a&gt;</code></pre>
-    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
-            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
-            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-        </button>
-        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-    </div>
-</div>
-    </section>
-    </section>
 
 
 
 
-
-            <p>
-    Go to the source code of this ViewHelper:
-    <a href="https://github.com/TYPO3/typo3/blob/main/typo3/sysext/fluid/Classes/ViewHelpers/Link/ExternalViewHelper.php">Link\ExternalViewHelper.php (GitHub)</a>.
-</p>
 
 
 
@@ -527,7 +475,142 @@ the last item contains the remaining unsplit string.</p>
                         <code class="code-inline" translate="no">data-</code> arguments.</p>
                 </div>
                         <p>The following arguments are available for the link.external ViewHelper: </p>
-                            <section data-search-title="uri"
+                            <section data-search-title="additionalAttributes"
+         data-search-id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-additionalattributes"
+         data-search-facet="ViewHelper Argument"
+         class="confval-section"
+>
+    <h3 class="sr-only">additionalAttributes</h3>
+    <dl class="confval">
+        <dt id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-additionalattributes"            class="d-flex justify-content-between">
+            <div class="confval-header">
+                <code class="sig-name descname"><span
+                        class="pre">additionalAttributes</span></code>
+                                    <a class="headerlink" href="#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-additionalattributes"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-additionalattributes"
+                       data-rstCode=":ref:`additionalAttributes &lt;somemanual:viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-additionalattributes&gt;`"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
+        </dt>
+        <dd>
+            <dl class="field-list simple">
+                <dt class="field">Type</dt>
+                <dd class="field">array
+                </dd>
+                                            </dl>
+            <div class="confval-description">
+                Additional tag attributes. They will be added directly to the resulting HTML tag.
+            </div>
+        </dd>
+    </dl>
+</section>                    <section data-search-title="aria"
+         data-search-id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-aria"
+         data-search-facet="ViewHelper Argument"
+         class="confval-section"
+>
+    <h3 class="sr-only">aria</h3>
+    <dl class="confval">
+        <dt id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-aria"            class="d-flex justify-content-between">
+            <div class="confval-header">
+                <code class="sig-name descname"><span
+                        class="pre">aria</span></code>
+                                    <a class="headerlink" href="#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-aria"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-aria"
+                       data-rstCode=":ref:`aria &lt;somemanual:viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-aria&gt;`"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
+        </dt>
+        <dd>
+            <dl class="field-list simple">
+                <dt class="field">Type</dt>
+                <dd class="field">array
+                </dd>
+                                            </dl>
+            <div class="confval-description">
+                Additional aria-* attributes. They will each be added with a &quot;aria-&quot; prefix.
+            </div>
+        </dd>
+    </dl>
+</section>                    <section data-search-title="data"
+         data-search-id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-data"
+         data-search-facet="ViewHelper Argument"
+         class="confval-section"
+>
+    <h3 class="sr-only">data</h3>
+    <dl class="confval">
+        <dt id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-data"            class="d-flex justify-content-between">
+            <div class="confval-header">
+                <code class="sig-name descname"><span
+                        class="pre">data</span></code>
+                                    <a class="headerlink" href="#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-data"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-data"
+                       data-rstCode=":ref:`data &lt;somemanual:viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-data&gt;`"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
+        </dt>
+        <dd>
+            <dl class="field-list simple">
+                <dt class="field">Type</dt>
+                <dd class="field">array
+                </dd>
+                                            </dl>
+            <div class="confval-description">
+                Additional data-* attributes. They will each be added with a &quot;data-&quot; prefix.
+            </div>
+        </dd>
+    </dl>
+</section>                    <section data-search-title="defaultScheme"
+         data-search-id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-defaultscheme"
+         data-search-facet="ViewHelper Argument"
+         class="confval-section"
+>
+    <h3 class="sr-only">defaultScheme</h3>
+    <dl class="confval">
+        <dt id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-defaultscheme"            class="d-flex justify-content-between">
+            <div class="confval-header">
+                <code class="sig-name descname"><span
+                        class="pre">defaultScheme</span></code>
+                                    <a class="headerlink" href="#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-defaultscheme"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-defaultscheme"
+                       data-rstCode=":ref:`defaultScheme &lt;somemanual:viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-defaultscheme&gt;`"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
+        </dt>
+        <dd>
+            <dl class="field-list simple">
+                <dt class="field">Type</dt>
+                <dd class="field">string
+                </dd>
+                                    <dt class="field">Default</dt>
+                    <dd class="field">&#039;https&#039;
+                    </dd>
+                                            </dl>
+            <div class="confval-description">
+                Scheme the href attribute will be prefixed with if specified $uri does not contain a scheme already
+            </div>
+        </dd>
+    </dl>
+</section>                    <section data-search-title="uri"
          data-search-id="viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri"
          data-search-facet="ViewHelper Argument"
          class="confval-section"
@@ -588,10 +671,6 @@ the last item contains the remaining unsplit string.</p>
 
 
 
-            <p>
-    Go to the source code of this ViewHelper:
-    <a href="https://github.com/TYPO3/typo3/blob/main/typo3/sysext/fluid/Classes/ViewHelpers/DeprecatedViewHelper.php">DeprecatedViewHelper.php (GitHub)</a>.
-</p>
 
 
 

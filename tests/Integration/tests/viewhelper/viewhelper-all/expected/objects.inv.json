@@ -38,6 +38,30 @@
             "index.html#viewhelper-typo3-cms-fluid-viewhelpers-link-externalviewhelper",
             "link.external"
         ],
+        "viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-additionalattributes": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-additionalattributes",
+            "additionalAttributes"
+        ],
+        "viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-aria": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-aria",
+            "aria"
+        ],
+        "viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-data": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-data",
+            "data"
+        ],
+        "viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-defaultscheme": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-defaultscheme",
+            "defaultScheme"
+        ],
         "viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri": [
             "-",
             "-",
@@ -133,6 +157,30 @@
             "-",
             "index.html#viewhelper-argument-typo3fluid-fluid-viewhelpers-splitviewhelper-value",
             "value"
+        ],
+        "typo3-cms-fluid-viewhelpers-link-externalviewhelper-additionalattributes": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-additionalattributes",
+            "additionalAttributes"
+        ],
+        "typo3-cms-fluid-viewhelpers-link-externalviewhelper-aria": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-aria",
+            "aria"
+        ],
+        "typo3-cms-fluid-viewhelpers-link-externalviewhelper-data": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-data",
+            "data"
+        ],
+        "typo3-cms-fluid-viewhelpers-link-externalviewhelper-defaultscheme": [
+            "-",
+            "-",
+            "index.html#viewhelper-argument-typo3-cms-fluid-viewhelpers-link-externalviewhelper-defaultscheme",
+            "defaultScheme"
         ],
         "typo3-cms-fluid-viewhelpers-link-externalviewhelper-uri": [
             "-",
