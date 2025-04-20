@@ -59,6 +59,8 @@ Examples for direct use
 *  :code:`code`
 *  :samp:`samp`
 *  :fluid:`fluid`
+*  :css:`css`
+*  :scss:`scss`
 *  :html:`html`
 *  :input:`input`
 *  :js:`js`
