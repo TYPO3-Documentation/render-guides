@@ -22,6 +22,13 @@ f:link.external
 ..  typo3:viewhelper:: link.external
     :source: resources/global_viewhelpers_demo.json
 
+
+else
+====
+
+..  typo3:viewhelper:: else
+    :source: resources/global_viewhelpers_demo.json
+
 f:deprecated
 ============
 
