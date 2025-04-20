@@ -57,6 +57,7 @@ use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\CssTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\FileTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\FluidTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\HtmlTextTextRole;
@@ -66,6 +67,7 @@ use T3Docs\Typo3DocsTheme\TextRoles\JavaScriptTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\OutputTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\PhpTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\RestructuredTextTextRole;
+use T3Docs\Typo3DocsTheme\TextRoles\ScssTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ShellTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\SqlTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\T3extTextRole;
@@ -133,6 +135,8 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(ComposerTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(CssTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(FileTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(FluidTextTextRole::class)
@@ -148,6 +152,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(PhpTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(RestructuredTextTextRole::class)
+        ->tag('phpdoc.guides.parser.rst.text_role')
+        ->set(ScssTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(ShellTextTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
