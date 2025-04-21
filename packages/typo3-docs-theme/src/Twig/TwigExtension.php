@@ -664,7 +664,7 @@ final class TwigExtension extends AbstractExtension
     /**
      * Returns the singlehtml link for the current version.
      *
-     * @param array $context
+     * @param array{env: RenderContext} $context
      * @return string|null
      */
     public function getSingleHtmlLink(array $context): ?string
@@ -677,14 +677,11 @@ final class TwigExtension extends AbstractExtension
 
         try {
             $topDocument = $this->getTopDocumentEntry($renderContext);
-            if (!$topDocument instanceof DocumentEntryNode) {
-                return null;
-            }
 
             // Use canonical URL generator for top document
             $url = $this->urlGenerator->generateCanonicalOutputUrl($renderContext, $topDocument->getFile());
 
-            if ($url === '#' ) {
+            if ($url === '#') {
                 return 'singlehtml/Index.html';
             }
 
@@ -710,9 +707,6 @@ final class TwigExtension extends AbstractExtension
 
         try {
             $topEntry = $this->getTopDocumentEntry($renderContext);
-            if (!$topEntry instanceof DocumentEntryNode) {
-                return null;
-            }
 
             return new PageLinkNode(
                 $this->urlGenerator->generateCanonicalOutputUrl($renderContext, $topEntry->getFile()),
