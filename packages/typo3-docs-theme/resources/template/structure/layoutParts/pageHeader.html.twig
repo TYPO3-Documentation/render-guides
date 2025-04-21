@@ -8,14 +8,20 @@
     </div>
     <div class="page-header">
         <div class="page-header-inner">
-            <div class="row">
-                <div class="col-2 col-lg-4">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
                     <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
                         <img alt="TYPO3 Logo" class="logo-image" src="{{ getRelativePath('_resources/img/typo3-logo.svg') }}" width="484" height="130">
                     </a>
                 </div>
-                <div class="col-10 col-lg-8">
+                <div class="align-self-center order-lg-2 order-last">
+                    {% include "structure/navigation/navigationHeader.html.twig" %}
+                </div>
+                <div class="ms-auto order-lg-3 d-flex">
                     <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
                         {% if isRenderedForDeployment() -%}
                             <all-documentations-menu></all-documentations-menu>
                         {%- else -%}
@@ -34,6 +40,36 @@
                             </form>
                             <div id="global-search-root"></div>
                         </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                {% if has_page_context %}
+                                    {# We're in multi-page mode #}
+                                    {% include "structure/layoutParts/editOnGithubButtons.html.twig" %}
+                                    {% set singleHtmlUrl = getSingleHtmlLink() %}
+                                    {% if singleHtmlUrl %}
+                                        <a class="dropdown-item d-flex align-items-center gap-2" href="{{ singleHtmlUrl }}" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    {# We're in singlehtml mode → show link back to normal view #}
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="../Index.html" rel="noopener">
+                                        <i class="fas fa-file-alt"></i>
+                                        Switch to regular view
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

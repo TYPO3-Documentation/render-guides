@@ -1,43 +1,27 @@
 
 <div class="toc-header">
-    <div class="toc-title">
-        {% set pagerLinks = getPagerLinks() %}
-        {%- for link in pagerLinks -%}
-            {%- if link.relation=='top' -%}
-                <a class="toc-title-project" href="{{ link.url }}">{{ env.projectNode.title }}</a>
-            {% endif -%}
-        {%- endfor -%}
-
-        {% if env.projectNode.version and not getSettings('disable_version_switch') -%}
-            <div class="toc-version-wrapper" id="toc-version-wrapper">
-                {% if isRenderedForDeployment() -%}
-                <div id="toc-version" class="toc-version">
-                {%- else -%}
-                {#-
-                    This intentionally is a HTML comment, so that when viewing local source
-                    of any documentation repository (not just this one), the information is revealed.
-                -#}
-
-                <!--
-                    LOCAL RENDERING NOTICE:
-                    https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Developer/AjaxVersions.html
-                -->
-
-                <div id="toc-version" class="toc-version" data-override-url-proxy="https://render-guides.ddev.site/_resources/js/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html">
-                {% endif %}
-
-                    <span class="toc-version-prefix">Release:</span>
-                    <span class="toc-version-number" tabindex="0">{{ env.projectNode.version }}</span>
-                </div>
-                <div id="toc-version-options" class="toc-version-options">
-                    <p><span class="fa fa-spinner fa-spin"></span> Loading data.</p>
-                </div>
-            </div>
-        {%- endif -%}
+    <div class="toc-title pe-3">
+        {% set topPageLink = getTopPageLink() %}
+        {% if topPageLink %}
+            <a class="toc-title-project" href="{% if has_page_context %}{{ topPageLink.url }}{% else %}../Index.html{% endif %}">{{ topPageLink.title }}</a>
+        {% endif %}
     </div>
-    <div class="toc-actions">
-        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
-            Menu
-        </button>
-    </div>
+    {% if env.projectNode.version and not getSettings('disable_version_switch') -%}
+        <label for="languageSelect" class="visually-hidden">Select language</label>
+        <select id="languageSelect" class="form-select d-none">
+        </select>
+
+        {% set proxyAttributes = '' %}
+        {% if not isRenderedForDeployment() %}
+            {% set proxyAttributes = 'data-override-url-proxy="https://render-guides.ddev.site/_resources/js/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html"' %}
+        {% endif %}
+
+        <label for="versionSelect" class="visually-hidden">Select version</label>
+        <select id="versionSelect" class="form-select"
+                data-current-version="{{ env.projectNode.version }}"
+            {{ proxyAttributes|raw }}
+        >
+            <option disabled selected>Loading versions...</option>
+        </select>
+    {% endif %}
 </div>

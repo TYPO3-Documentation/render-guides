@@ -100,6 +100,8 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('replaceLineBreakOpportunityTags', $this->replaceLineBreakOpportunityTags(...), ['is_safe' => ['html'], 'needs_context' => false]),
             new TwigFunction('filterAllowedSearchFacets', $this->filterAllowedSearchFacets(...), ['is_safe' => ['html'], 'needs_context' => false]),
             new TwigFunction('getPermalink', $this->getPermalink(...), ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFunction('getSingleHtmlLink', $this->getSingleHtmlLink(...), ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFunction('getTopPageLink', $this->getTopPageLink(...), ['is_safe' => ['html'], 'needs_context' => true]),
         ];
     }
 
@@ -656,6 +658,63 @@ final class TwigExtension extends AbstractExtension
                 'top' => $this->getTopDocumentEntry($renderContext),
             ];
             return $this->getPageLinks($documentEntries, $renderContext);
+        }
+    }
+
+    /**
+     * Returns the singlehtml link for the current version.
+     *
+     * @param array{env: RenderContext} $context
+     * @return string|null
+     */
+    public function getSingleHtmlLink(array $context): ?string
+    {
+        /** @var RenderContext|null $renderContext */
+        $renderContext = $context['env'] ?? null;
+        if (!$renderContext) {
+            return null;
+        }
+
+        try {
+            $topDocument = $this->getTopDocumentEntry($renderContext);
+
+            // Use canonical URL generator for top document
+            $url = $this->urlGenerator->generateCanonicalOutputUrl($renderContext, $topDocument->getFile());
+
+            if ($url === '#') {
+                return 'singlehtml/Index.html';
+            }
+
+            // Replace per-page Index.html with singlehtml entry point
+            return preg_replace('#/Index\.html$#i', '/singlehtml/Index.html', $url);
+
+        } catch (\Exception) {
+            return null;
+        }
+    }
+
+    /**
+     * @param array{env: RenderContext} $context
+     * @return PageLinkNode|null
+     */
+    public function getTopPageLink(array $context): ?PageLinkNode
+    {
+        /** @var RenderContext|null $renderContext */
+        $renderContext = $context['env'] ?? null;
+        if (!$renderContext) {
+            return null;
+        }
+
+        try {
+            $topEntry = $this->getTopDocumentEntry($renderContext);
+
+            return new PageLinkNode(
+                $this->urlGenerator->generateCanonicalOutputUrl($renderContext, $topEntry->getFile()),
+                $topEntry->getTitle()->toString(),
+                'top'
+            );
+        } catch (\Exception) {
+            return null;
         }
     }
 

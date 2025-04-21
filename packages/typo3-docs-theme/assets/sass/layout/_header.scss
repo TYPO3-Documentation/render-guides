@@ -4,6 +4,108 @@ header {
     width: 100%;
     z-index: 1000; /* Ensures it's above other content */
     background-color: white; /* Adjust as needed */
+
+    .logo-wrapper {
+        @include media-breakpoint-up(lg) {
+            width: 15rem;
+        }
+    }
+
+    .toc-header {
+        display: flex;
+        justify-content: space-between;
+        padding-left: calc(#{$spacer} / 1.5);
+
+        a.toc-title-project {
+            display: block;
+            position: relative;
+            font-size: 1.2em;
+            font-weight: 700;
+            line-height: 1.25;
+            color: $secondary;
+            text-decoration: none;
+
+            &:before {
+                content: '';
+                width: 0.2em;
+                height: 100%;
+                background: $primary;
+                position: absolute;
+                top: 0;
+                left: -0.6em;
+            }
+
+            &:hover {
+                text-decoration: .1em underline;
+            }
+        }
+
+        .form-select {
+            padding-top: .25rem;
+            padding-bottom: .25rem;
+            padding-left: .5rem;
+            padding-right: 2rem; /* space for dropdown arrow */
+            height: calc(1.5em + .5rem + 2px); /* matches .btn-sm */
+            line-height: 1.5;
+            font-size: .875rem;
+            width: auto;
+        }
+    }
+    #options-panel {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        min-width: 200px;
+        background-color: $light;
+        border: 1px solid rgba($black, 0.15);
+        border-radius: 0.25rem;
+        z-index: 1050;
+        margin-top: 0.25rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+
+        &.show {
+            display: block;
+        }
+
+        .dropdown-header {
+            padding: 0.25rem 0.75rem 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: $body-color; // now consistent with dropdown items
+            border-bottom: 1px solid rgba($black, 0.05);
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-item {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            line-height: 1.4;
+            color: $body-color; // now matches button/body text
+            background-color: transparent;
+            border-radius: 0.25rem;
+            transition: background-color 0.15s ease, color 0.15s ease;
+            cursor: pointer;
+
+            i {
+                width: 1rem;
+                text-align: center;
+                color: $body-color; // ensure icons match too
+                transition: color 0.15s ease;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: $gray-800;
+                color: $light;
+
+                i {
+                    color: $light;
+                }
+            }
+        }
+    }
 }
 
 .section {

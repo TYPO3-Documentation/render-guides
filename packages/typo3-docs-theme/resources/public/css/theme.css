@@ -25869,6 +25869,95 @@ header {
   z-index: 1000; /* Ensures it's above other content */
   background-color: white; /* Adjust as needed */
 }
+@media (min-width: 992px) {
+  header .logo-wrapper {
+    width: 15rem;
+  }
+}
+header .toc-header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: calc(1rem / 1.5);
+}
+header .toc-header a.toc-title-project {
+  display: block;
+  position: relative;
+  font-size: 1.2em;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #333333;
+  text-decoration: none;
+}
+header .toc-header a.toc-title-project:before {
+  content: "";
+  width: 0.2em;
+  height: 100%;
+  background: #ff8700;
+  position: absolute;
+  top: 0;
+  left: -0.6em;
+}
+header .toc-header a.toc-title-project:hover {
+  text-decoration: 0.1em underline;
+}
+header .toc-header .form-select {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 2rem; /* space for dropdown arrow */
+  height: calc(1.5em + 0.5rem + 2px); /* matches .btn-sm */
+  line-height: 1.5;
+  font-size: 0.875rem;
+  width: auto;
+}
+header #options-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 200px;
+  background-color: rgb(242.25, 242.25, 242.25);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  z-index: 1050;
+  margin-top: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+header #options-panel.show {
+  display: block;
+}
+header #options-panel .dropdown-header {
+  padding: 0.25rem 0.75rem 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333333;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 0.5rem;
+}
+header #options-panel .dropdown-item {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  line-height: 1.4;
+  color: #333333;
+  background-color: transparent;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+}
+header #options-panel .dropdown-item i {
+  width: 1rem;
+  text-align: center;
+  color: #333333;
+  transition: color 0.15s ease;
+}
+header #options-panel .dropdown-item:hover, header #options-panel .dropdown-item:focus {
+  background-color: rgb(89.25, 89.25, 89.25);
+  color: rgb(242.25, 242.25, 242.25);
+}
+header #options-panel .dropdown-item:hover i, header #options-panel .dropdown-item:focus i {
+  color: rgb(242.25, 242.25, 242.25);
+}
 
 .section {
   scroll-margin-top: 114px; /* Adjust to match the header height */
@@ -26031,32 +26120,6 @@ header {
 .page-main-navigation #toc-toggle {
   margin: 0;
 }
-.page-main-navigation .toc-header {
-  display: flex;
-  justify-content: space-between;
-  padding-left: calc(1rem / 1.5);
-}
-.page-main-navigation .toc-header a.toc-title-project {
-  display: block;
-  position: relative;
-  font-size: 1.2em;
-  font-weight: 700;
-  line-height: 1.25;
-  color: #333333;
-  text-decoration: none;
-}
-.page-main-navigation .toc-header a.toc-title-project:before {
-  content: "";
-  width: 0.2em;
-  height: 100%;
-  background: #ff8700;
-  position: absolute;
-  top: 0;
-  left: -0.6em;
-}
-.page-main-navigation .toc-header a.toc-title-project:hover {
-  text-decoration: 0.1em underline;
-}
 .page-main-navigation .toc-search {
   margin-top: 1rem;
   margin-bottom: 2rem;
@@ -26178,7 +26241,6 @@ header {
 }
 
 .toc-version-wrapper {
-  margin-top: 0.5rem;
   border-radius: var(--bs-border-radius);
 }
 
