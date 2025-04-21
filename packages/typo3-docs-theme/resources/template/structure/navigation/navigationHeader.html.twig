@@ -1,14 +1,10 @@
 
 <div class="toc-header">
     <div class="toc-title pe-3">
-        {% set pagerLinks = getPagerLinks() %}
-        {%- for link in pagerLinks -%}
-            {%- if link.relation=='top' -%}
-                <a class="toc-title-project" href="{{ link.url }}">{{ env.projectNode.title }}</a>
-            {% endif -%}
-        {%- endfor -%}
-
-
+        {% set topPageLink = getTopPageLink() %}
+        {% if topPageLink %}
+            <a class="toc-title-project" href="{% if has_page_context %}{{ topPageLink.url }}{% else %}../Index.html{% endif %}">{{ topPageLink.title }}</a>
+        {% endif %}
     </div>
     {% if env.projectNode.version and not getSettings('disable_version_switch') -%}
         <label for="languageSelect" class="visually-hidden">Select language</label>

@@ -9,11 +9,12 @@
 {% endblock %}
 
 {% block menu_doc %}
+    {% include "structure/navigation/all-documentation-menu-mobile.html.twig" %}
     <div aria-label="Main navigation" class="main_menu" role="navigation">
+        {% set topPageLink = getTopPageLink() %}
+        <p class="caption">{{ topPageLink.title }}</p>
         {{ renderMenu('mainmenu') }}
     </div>
-    {% include "structure/navigation/meta-menu.html.twig" %}
-    {% include "structure/navigation/all-documentation-menu-mobile.html.twig" %}
 {% endblock %}
 
 {% block body %}
