@@ -1,3 +1,4 @@
+{% set has_page_context = true %}
 {% extends "structure/layout.html.twig" %}
 
 {% block head %}
@@ -35,7 +36,6 @@
 {% block breadcrumb %}
     <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
         {{ renderBreadcrumb() }}
-        {% include "structure/layoutParts/editOnGithubButtons.html.twig" %}
     </nav>
 {% endblock %}
 

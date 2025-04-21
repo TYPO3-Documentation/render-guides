@@ -1,3 +1,4 @@
+{% set has_page_context = has_page_context | default(false) %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -21,7 +22,7 @@
         <div class="page-main-inner">
             <div class="page-main-navigation">
                 <nav>
-                    {% include "structure/navigation/navigationHeader.html.twig" %}
+
                     <div id="toc-collapse">
                         {% if env.projectNode.searchLink -%}
                             <div class="toc-search" id="searchbox"

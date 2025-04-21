@@ -15,36 +15,6 @@
         margin: 0;
     }
 
-    .toc-header {
-        display: flex;
-        justify-content: space-between;
-        padding-left: calc(#{$spacer} / 1.5);
-
-        a.toc-title-project {
-            display: block;
-            position: relative;
-            font-size: 1.2em;
-            font-weight: 700;
-            line-height: 1.25;
-            color: $secondary;
-            text-decoration: none;
-
-            &:before {
-                content: '';
-                width: 0.2em;
-                height: 100%;
-                background: $primary;
-                position: absolute;
-                top: 0;
-                left: -0.6em;
-            }
-
-            &:hover {
-                text-decoration: .1em underline;
-            }
-        }
-    }
-
     .toc-search {
         margin-top: $spacer;
         margin-bottom: ($spacer * 2);
