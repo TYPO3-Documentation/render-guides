@@ -2,6 +2,8 @@
 Confval
 =======
 
+Permalink to confval: `demo  <https://docs.typo3.org/permalink/test:confval-demo>`_.
+
 ..  confval:: demo
     :type: string
     :default: ``"Hello World"``
