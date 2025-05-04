@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const headerHeight = header ? header.offsetHeight : 80; // Default fallback
 
     document.querySelectorAll("[id]").forEach(el => {
-      section.style.scrollMarginTop = `${headerHeight + 10}px`; // Extra space for visibility
+      el.style.scrollMarginTop = `${headerHeight + 10}px`;
     });
   }
 
