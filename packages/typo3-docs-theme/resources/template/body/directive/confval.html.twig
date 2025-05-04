@@ -1,3 +1,4 @@
+{% set resolvedBackAnchor = backAnchor is defined ? backAnchor : getBackAnchor() %}
 <section data-search-title="{{ node.plainContent }}"
          data-search-id="{{ node.anchor }}"
          data-search-facet="{{ filterAllowedSearchFacets(renderNode(node.additionalOptions.searchFacet)|default(getSettings('confval_default'))) }}"
@@ -25,8 +26,8 @@
                 {% endif -%}
             </div>
             <div class="confval-back-to-top">
-                {%- if backAnchor %}
-                    <a href="#{{ backAnchor }}" class="backToList"
+                {%- if resolvedBackAnchor %}
+                    <a href="#{{ resolvedBackAnchor }}" class="backToList"
                        title="Back to list"><i
                             class="fa-solid fa-angles-up fa-xs"></i></a>
                 {% else %}

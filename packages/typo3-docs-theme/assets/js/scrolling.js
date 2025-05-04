@@ -3,14 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const header = document.querySelector("header");
     const headerHeight = header ? header.offsetHeight : 80; // Default fallback
 
-    document.querySelectorAll(".section").forEach(section => {
+    document.querySelectorAll("[id]").forEach(el => {
       section.style.scrollMarginTop = `${headerHeight + 10}px`; // Extra space for visibility
     });
   }
 
   function scrollToAnchor() {
     const hash = window.location.hash.substring(1); // Get anchor without #
-    if (!hash) return;
+    if (!hash || hash === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
 
     const target = document.getElementById(hash);
     if (target) {
