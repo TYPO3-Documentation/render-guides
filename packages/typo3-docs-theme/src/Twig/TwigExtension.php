@@ -102,6 +102,8 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getPermalink', $this->getPermalink(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getSingleHtmlLink', $this->getSingleHtmlLink(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getTopPageLink', $this->getTopPageLink(...), ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFunction('setBackAnchor', $this->setBackAnchor(...), ['needs_context' => true]),
+            new TwigFunction('getBackAnchor', $this->getBackAnchor(...), ['needs_context' => true]),
         ];
     }
 
@@ -790,5 +792,19 @@ final class TwigExtension extends AbstractExtension
 
         return false;
     }
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function setBackAnchor(array $context, string $value): void
+    {
+        ContextRegistry::set('backAnchor', $value);
+    }
 
+    /**
+     * @param array{env: RenderContext} $context
+     */
+    public function getBackAnchor(array $context): ?string
+    {
+        return ContextRegistry::get('backAnchor');
+    }
 }

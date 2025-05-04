@@ -1,11 +1,13 @@
+{% set resolvedBackAnchor = backAnchor is defined ? backAnchor : getBackAnchor() %}
 <section data-search-title="{{ node.plainContent }}"
          data-search-id="{{ node.anchor }}"
          data-search-facet="{{ filterAllowedSearchFacets(renderNode(node.additionalOptions.searchFacet)|default(getSettings('confval_default'))) }}"
          class="confval-section"
+         id="{{ node.anchor }}"
 >
     <h3 class="sr-only">{{ node.plainContent }}</h3>
     <dl class="confval">
-        <dt{% if not node.noindex %} id="{{ node.anchor }}"{% endif %}
+        <dt{% if not node.noindex %} {% endif %}
             class="d-flex justify-content-between">
             <div class="confval-header flex-grow-1">
                 <code class="sig-name descname"><span
@@ -15,7 +17,6 @@
                        data-bs-toggle="modal"
                        data-bs-target="#linkReferenceModal"
                        data-id="{{ node.anchor }}"
-                       data-rstCode="{{ getRstCodeForLink(node) }}"
                        title="Reference this configuration value"><i
                             class="fa-solid fa-paragraph"></i></a>
                 {% else %}
@@ -25,8 +26,8 @@
                 {% endif -%}
             </div>
             <div class="confval-back-to-top">
-                {%- if backAnchor %}
-                    <a href="#{{ backAnchor }}" class="backToList"
+                {%- if resolvedBackAnchor %}
+                    <a href="#{{ resolvedBackAnchor }}" class="backToList"
                        title="Back to list"><i
                             class="fa-solid fa-angles-up fa-xs"></i></a>
                 {% else %}
