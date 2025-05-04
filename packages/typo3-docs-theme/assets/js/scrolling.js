@@ -35,5 +35,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  function scrollActiveMenuItemIntoView() {
+    const menuContainer = document.querySelector(".page-main-navigation nav");
+    const activeItem = menuContainer?.querySelector(".main_menu .active");
+
+    if (activeItem && typeof activeItem.scrollIntoView === "function") {
+      activeItem.scrollIntoView({
+        behavior: "auto",    // or "smooth" if you prefer
+        block: "center",     // or "nearest" if you want minimal scrolling
+        inline: "nearest"
+      });
+    }
+  }
+
+  scrollActiveMenuItemIntoView();
   window.addEventListener("resize", adjustScrollMargin);
 });
