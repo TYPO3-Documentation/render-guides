@@ -163,3 +163,11 @@ $admonition-icons:
     tip "" #{$fa-var-lightbulb},
     warning $admonition-border-color-highlighted #{$fa-var-exclamation-triangle},
 ;
+
+$container-max-widths: (
+    sm: 600px,
+    md: 800px,
+    lg: 1100px,
+    xl: 1300px,
+    xxl: 1600px,
+);

@@ -64,7 +64,7 @@
     @include media-breakpoint-up(lg) {
         padding: ($spacer * 2) 0;
         flex-shrink: 0;
-        width: 15rem;
+        width: 22rem;
         margin: 0;
         height: calc(100vh - 114px);
         margin-right: $grid-gutter-width;
