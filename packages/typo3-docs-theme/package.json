@@ -21,7 +21,7 @@
         "grunt-exec": "^3.0.0",
         "grunt-sass": "^4.0.0",
         "grunt-stylelint": "^0.20.1",
-        "sass": "^1.87.0",
+        "sass": "^1.88.0",
         "stylelint": "^16.19.1",
         "vite": "^6.3.5"
     },
