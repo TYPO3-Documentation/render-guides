@@ -11,7 +11,7 @@
         "react-dom": "^19.1.0"
     },
     "devDependencies": {
-        "@vitejs/plugin-react": "^4.5.1",
+        "@vitejs/plugin-react": "^4.5.2",
         "grunt": "^1.6.1",
         "grunt-cli": "^1.5.0",
         "grunt-contrib-clean": "^2.0.1",
