@@ -77,6 +77,9 @@ elif [ "$1" = "configure" ]; then
 elif [ "$1" = "render" ]; then
     ENTRYPOINT="${ENTRYPOINT_DEFAULT}"
     shift
+elif [ "$1" = "create-redirects-from-git" ]; then
+    ENTRYPOINT="${ENTRYPOINT_SYMFONY_COMMANDS} create-redirects-from-git"
+    shift
 else
     # Default: "render"; no shifting.
     ENTRYPOINT="${ENTRYPOINT_DEFAULT}"
