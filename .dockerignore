@@ -5,3 +5,4 @@ tools/
 vendor/
 Dockerfile
 *.rst
+build
