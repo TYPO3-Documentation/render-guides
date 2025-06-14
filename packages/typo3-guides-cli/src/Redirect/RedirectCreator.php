@@ -11,7 +11,7 @@ class RedirectCreator
 {
     private string $nginxRedirectFile = 'redirects.nginx.conf';
 
-    public function createRedirects(array $movedFiles, string $docsPath): array
+    public function createRedirects(array $movedFiles, string $docsPath, string $versions, string $path): array
     {
         $createdRedirects = [];
         $nginxRedirects = [];
@@ -23,7 +23,7 @@ class RedirectCreator
             $oldUrlPath = $this->convertToUrlPath($oldRelativePath);
             $newUrlPath = $this->convertToUrlPath($newRelativePath);
 
-            $nginxRedirects[] = "location = /{$oldUrlPath} { return 301 /{$newUrlPath}; }";
+            $nginxRedirects[] = sprintf("location = ^%s%s/en-us/%s { return 301 %s$1/en-us/%s; }", $path, $versions, $oldUrlPath, $path, $newUrlPath);
 
             $createdRedirects[$oldPath] = $newPath;
         }
