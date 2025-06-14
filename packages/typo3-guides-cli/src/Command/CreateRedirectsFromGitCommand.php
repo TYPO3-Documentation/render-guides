@@ -64,6 +64,20 @@ final class CreateRedirectsFromGitCommand extends Command
             'Path to the nginx redirect configuration output file',
             'redirects.nginx.conf'
         );
+        $this->addOption(
+            'versions',
+            'r',
+            InputOption::VALUE_REQUIRED,
+            'Regex of versions to include',
+            '(main|13.4|12.4)'
+        );
+        $this->addOption(
+            'path',
+            'p',
+            InputOption::VALUE_REQUIRED,
+            'Path, for example /m/typo3/reference-coreapi/',
+            '/'
+        );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -78,6 +92,10 @@ final class CreateRedirectsFromGitCommand extends Command
         $io->text("Base branch: {$baseBranch}");
         $io->text("Documentation path: {$docsPath}");
         $io->text("Output file: {$outputFile}");
+        $versions = $input->getOption('versions');
+        $io->text("Versions regex: {$versions}");
+        $path = $input->getOption('path');
+        $io->text("Path: {$path}");
 
         try {
             $movedFiles = $this->gitChangeDetector->detectMovedFiles($baseBranch, $docsPath);
@@ -95,7 +113,7 @@ final class CreateRedirectsFromGitCommand extends Command
             $this->redirectCreator->setNginxRedirectFile($outputFile);
 
 
-            $createdRedirects = $this->redirectCreator->createRedirects($movedFiles, $docsPath);
+            $createdRedirects = $this->redirectCreator->createRedirects($movedFiles, $docsPath, $versions, $path);
 
             $io->section('Created nginx redirects:');
             foreach ($createdRedirects as $source => $target) {
