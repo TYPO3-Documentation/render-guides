@@ -9,6 +9,7 @@ use T3Docs\GuidesCli\Command\InitCommand;
 use T3Docs\GuidesCli\Command\MigrateSettingsCommand;
 use T3Docs\GuidesCli\Command\ConfigureCommand;
 use T3Docs\GuidesCli\Command\LintGuidesXmlCommand;
+use T3Docs\GuidesCli\Command\CreateRedirectsFromGitCommand;
 
 use Symfony\Component\Console\Application;
 
@@ -39,5 +40,6 @@ $application->add(new MigrateSettingsCommand());
 $application->add(new InitCommand());
 $application->add(new ConfigureCommand());
 $application->add(new LintGuidesXmlCommand());
+$application->add(new CreateRedirectsFromGitCommand());
 
 $application->run();

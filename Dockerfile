@@ -20,3 +20,6 @@ ENV TYPO3AZUREEDGEURIVERSION=$TYPO3AZUREEDGEURIVERSION
 WORKDIR /project
 ENTRYPOINT [ "/opt/guides/entrypoint.sh" ]
 CMD ["-h"]
+
+RUN apk add --no-cache \
+    git
