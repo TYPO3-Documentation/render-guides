@@ -11,6 +11,10 @@ class RedirectCreator
 {
     private string $nginxRedirectFile = 'redirects.nginx.conf';
 
+    /**
+     * @param array<string, string> $movedFiles
+     * @return array<string, string>
+     */
     public function createRedirects(array $movedFiles, string $docsPath, string $versions, string $path): array
     {
         $createdRedirects = [];
@@ -58,6 +62,9 @@ class RedirectCreator
     private function convertToUrlPath(string $path): string
     {
         $path = preg_replace('/\.(rst|md)$/', '.html', $path);
+        if (is_string($path) === false) {
+            throw new \RuntimeException('Failed to convert path to URL format');
+        }
 
         if (basename($path) === 'Index') {
             $path = dirname($path);

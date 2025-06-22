@@ -9,6 +9,7 @@ namespace T3Docs\GuidesCli\Git;
  */
 class GitChangeDetector
 {
+    /** @return array<string, string> */
     public function detectMovedFiles(string $baseBranch, string $docsPath): array
     {
         $movedFiles = [];
@@ -36,6 +37,9 @@ class GitChangeDetector
 
             // Format is: R<score>\t<old-file>\t<new-file>
             $parts = preg_split('/\s+/', $line, 3);
+            if ($parts === false) {
+                continue;
+            }
 
             if (count($parts) !== 3 || !str_starts_with($parts[0], 'R')) {
                 continue;

@@ -87,14 +87,39 @@ final class CreateRedirectsFromGitCommand extends Command
         $baseBranch = $input->getOption('base-branch');
         $docsPath = $input->getOption('docs-path');
         $outputFile = $input->getOption('output-file');
+        $versions = $input->getOption('versions');
+        $path = $input->getOption('path');
+
+        if (!is_string($baseBranch)) {
+            $io->error('Base branch must be a string.');
+            return Command::FAILURE;
+        }
+
+        if (!is_string($docsPath)) {
+            $io->error('Documentation path must be a string.');
+            return Command::FAILURE;
+        }
+
+        if (!is_string($outputFile)) {
+            $io->error('Output file must be a string.');
+            return Command::FAILURE;
+        }
+
+        if (!is_string($versions) || preg_match($versions, '') === false) {
+            $io->error('Versions must be valid regex.');
+            return Command::FAILURE;
+        }
+
+        if (!is_string($path)) {
+            $io->error('Path must be a string.');
+            return Command::FAILURE;
+        }
 
         $io->title('Creating nginx redirects from git history');
         $io->text("Base branch: {$baseBranch}");
         $io->text("Documentation path: {$docsPath}");
         $io->text("Output file: {$outputFile}");
-        $versions = $input->getOption('versions');
         $io->text("Versions regex: {$versions}");
-        $path = $input->getOption('path');
         $io->text("Path: {$path}");
 
         try {
@@ -122,6 +147,10 @@ final class CreateRedirectsFromGitCommand extends Command
 
                 $targetUrl = str_replace($docsPath . '/', '', $target);
                 $targetUrl = preg_replace('/\.(rst|md)$/', '', $targetUrl);
+                if (is_string($targetUrl) === false) {
+                    $io->error('Target construct failed');
+                    return Command::FAILURE;
+                }
 
                 $io->text("- <info>/{$sourceUrl}</info> → <info>/{$targetUrl}</info>");
             }
