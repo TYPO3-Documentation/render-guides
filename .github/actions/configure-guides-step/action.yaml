@@ -32,6 +32,4 @@ runs:
     - '--project-release="${{ inputs.configure-project-release }}"'
     - '--project-version="${{ inputs.configure-project-version }}"'
     - '--extension-class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"'
-    - '--extension-attribute="edit-on-github-branch"'
-    - '--extension-value="${{ inputs.configure-branch }}"'
     - '${{ inputs.config }}'
