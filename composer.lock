@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26a8915429be8d65bea759b70c8e12a4",
+    "content-hash": "3a4b9a88a5e4f1a5b6dc8eb96284c7d8",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -1445,20 +1445,20 @@
         },
         {
             "name": "phpdocumentor/guides-cli",
-            "version": "1.7.1",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "a116884f674d55c3f57c6113f3e1fc26293c7353"
+                "reference": "e715653ddfffd328078bed9e1f4558dc03edb37c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/a116884f674d55c3f57c6113f3e1fc26293c7353",
-                "reference": "a116884f674d55c3f57c6113f3e1fc26293c7353",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/e715653ddfffd328078bed9e1f4558dc03edb37c",
+                "reference": "e715653ddfffd328078bed9e1f4558dc03edb37c",
                 "shasum": ""
             },
             "require": {
-                "monolog/monolog": "^2.9 || ^3.0",
+                "monolog/monolog": "^3.0",
                 "php": "^8.1",
                 "phpdocumentor/guides": "^1.0 || ^2.0",
                 "phpdocumentor/guides-restructured-text": "^1.0 || ^2.0",
@@ -1493,9 +1493,9 @@
             ],
             "description": "Allows you to run phpDocumentor Guides as a stand alone application as console command",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.7.1"
+                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.8.1"
             },
-            "time": "2025-02-28T16:16:01+00:00"
+            "time": "2025-06-24T19:19:06+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -7810,5 +7810,5 @@
     "platform-overrides": {
         "php": "8.1.27"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
