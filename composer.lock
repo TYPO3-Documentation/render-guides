@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c73e02b8ac37a5b7b199d2775a3fb107",
+    "content-hash": "7ff221ef636bbf70a311112598209218",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -7803,6 +7803,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1",
+        "ext-curl": "*",
         "ext-dom": "*",
         "ext-libxml": "*"
     },
