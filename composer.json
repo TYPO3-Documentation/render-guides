@@ -4,13 +4,14 @@
     "license": "OPL-1.0",
     "require": {
         "php": "^8.1",
+        "ext-curl": "*",
         "ext-dom": "*",
         "ext-libxml": "*",
         "brotkrueml/twig-codehighlight": "^1.0",
         "league/flysystem": "^1.1.10",
         "phpdocumentor/filesystem": "^1.7",
         "phpdocumentor/guides": "^1.7",
-        "phpdocumentor/guides-cli": "^1.7",
+        "phpdocumentor/guides-cli": "^1.8.1",
         "phpdocumentor/guides-graphs": "^1.0",
         "phpdocumentor/guides-markdown": "^1.7",
         "phpdocumentor/guides-restructured-text": "^1.7",
@@ -38,6 +39,7 @@
     "replace": {
         "symfony/polyfill-php80": "*",
         "symfony/polyfill-php81": "*",
+        "t3docs/typo3-api": "self.version",
         "t3docs/typo3-docs-theme": "self.version",
         "t3docs/typo3-guides-cli": "self.version",
         "t3docs/typo3-guides-extension": "self.version",
