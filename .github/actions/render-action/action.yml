@@ -1,0 +1,224 @@
+name: 'Render TYPO3 Documentation'
+description: 'Uses render-guides to render documentation.'
+branding:
+  icon: 'book-open'
+  color: 'orange'
+inputs:
+  repository_url:
+    description: 'Repository to render'
+    required: false
+    default: https://github.com/${{ github.repository }}.git
+  source_branch:
+    description: 'Branch to render'
+    required: false
+  target_branch_directory:
+    description: 'Target Branch Directory'
+    required: false
+outputs:
+  renderedPath:
+    description: "The path to the final rendered documentation incl. language versions."
+    value: ${{ steps.output.outputs.renderedPath }}
+runs:
+  using: "composite"
+  steps:
+    - id: prepare
+      shell: bash
+      env:
+        GITHUB_REF: ${{ github.ref }}
+      run: |
+        if [[ '${{ inputs.source_branch }}' ]]; then
+          echo "source_branch=${{ inputs.source_branch }}" >> $GITHUB_ENV
+        else
+          echo "source_branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+        fi
+        if [[ '${{ inputs.target_branch_directory }}' ]]; then
+          echo "target_branch_directory=${{ inputs.target_branch_directory }}" >> $GITHUB_ENV
+        else
+          echo "target_branch_directory=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+        fi
+
+    - id: checkout
+      shell: bash
+      run: |
+        git clone --depth 1 ${{ inputs.repository_url }} -b ${{ env.source_branch }} t3docsproject
+
+    - id: prepare-index
+      working-directory: t3docsproject
+      shell: bash
+      run: |
+        # Ensure Documentation directory exists
+        mkdir -p Documentation
+        
+        # Find README files (ignoring case)
+        readme_rst=$(find . -maxdepth 1 -type f -iname "README.rst" | head -n 1)
+        readme_md=$(find . -maxdepth 1 -type f -iname "README.md" | head -n 1)
+        readme_no_ext=$(find . -maxdepth 1 -type f -iname "README" | head -n 1)
+        
+        # Only copy if Documentation/Index.rst or guides.xml is missing
+        if [[ ! -f Documentation/Index.rst && ! -f Documentation/guides.xml ]]; then
+          if [[ -n "$readme_rst" ]]; then
+            echo "Copying $readme_rst to Documentation/Index.rst"
+            cp "$readme_rst" Documentation/Index.rst
+          elif [[ -n "$readme_md" ]]; then
+            echo "Copying $readme_md to Documentation/Index.md"
+            cp "$readme_md" Documentation/Index.md
+          elif [[ -n "$readme_no_ext" ]]; then
+            echo "Assuming $readme_no_ext is Markdown and copying to Documentation/Index.md"
+            cp "$readme_no_ext" Documentation/Index.md
+          fi
+        fi
+
+    - id: enable_guides
+      working-directory: t3docsproject
+      shell: bash
+      run: |
+        if [[ -f Documentation/settings.cfg && ! -f Documentation/guides.xml ]]; then
+          echo "MIGRATED=false" >> $GITHUB_OUTPUT
+        else
+          echo "MIGRATED=true" >> $GITHUB_OUTPUT
+        fi
+
+    - id: pre-render-guides
+      working-directory: t3docsproject
+      shell: bash
+      run: mkdir -p RenderedDocumentation/Result/project/0.0.0
+
+    - id: migrate
+      if: steps.enable_guides.outputs.MIGRATED == 'false' && hashFiles('Documentation/settings.cfg') != ''
+      shell: bash
+      working-directory: t3docsproject
+      run: |
+        echo "::warning file=Documentation/settings.cfg,line=1,title=Please migrate::Forced migration activated. Your project is not yet using the PHP-based rendering, please properly migrate: https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/Howto/Migration/Index.html"
+        
+        # Run migration, but do not exit on failure
+        if ! docker run --rm --user=$(id -u):$(id -g) \
+          --pull always \
+          -v $(pwd):/project \
+          ghcr.io/typo3-documentation/render-guides:latest \
+            migrate Documentation; then
+          echo "::warning::Migration failed, but continuing with the workflow..."
+        fi
+
+    - uses: TYPO3-Documentation/render-guides@main
+      id: render-guides
+      with:
+        working-directory: /github/workspace/t3docsproject
+        config: /github/workspace/t3docsproject/Documentation/
+        output: ./RenderedDocumentation/Result/project/0.0.0
+        configure-branch: ${{ env.source_branch }}
+        configure-project-release: ${{ env.target_branch_directory }}
+        configure-project-version: ${{ env.target_branch_directory }}
+
+    - id: render-guides-localization
+      shell: bash
+      working-directory: t3docsproject
+      run: |
+        echo "::group::Prepare move of possible localizations by render-guides"
+        
+        # "render-guides" uses a different directory structure than sphinx did.
+        # Sphinx puts localizations OUTSIDE the main 0.0.0 directory tree, using "xx-yy"
+        # render-guides puts localizations WITHIN the main 0.0.0 directory tree, and
+        #               uses "Localization.xx_YY" directory names
+        
+        # This step harmonizes that to the expected sphinx directory structure.
+
+        # Expected directory structure BEFORE:
+        # RenderedDocumentation/Result/project/0.0.0/Index.html
+        # RenderedDocumentation/Result/project/0.0.0/Sub/Index.html
+        # RenderedDocumentation/Result/project/0.0.0/Localization.de_DE/Index.html
+        # RenderedDocumentation/Result/project/0.0.0/Localization.de_DE/Sub/Index.html
+        # RenderedDocumentation/Result/project/0.0.0/Localization.ru_RU/Index.html
+        # RenderedDocumentation/Result/project/0.0.0/Localization.ru_RU/Sub/Index.html
+        
+        # Expected directory structure AFTER:
+        # RenderedDocumentation/Result/project/0.0.0/Index.html
+        # RenderedDocumentation/Result/project/0.0.0/Sub/Index.html
+        # RenderedDocumentation/Result/project/de-de/0.0.0/Index.html
+        # RenderedDocumentation/Result/project/de-de/0.0.0/Sub/Index.html
+        # RenderedDocumentation/Result/project/ru-ru/0.0.0/Index.html
+        # RenderedDocumentation/Result/project/ru-ru/0.0.0/Sub/Index.html
+
+        projectBaseDirectory="RenderedDocumentation/Result/project/0.0.0/"
+        if [ -d $projectBaseDirectory ]; then
+                currentWorkingDir=$(pwd)
+                cd $projectBaseDirectory
+                for localizationDirectory in Localization.*; do
+                        echo "$localizationDirectory check..."
+                        if [[ -d $localizationDirectory ]]; then
+                                sub_dir_name=$(echo "$localizationDirectory" | sed 's/Localization.//' | tr '[:upper:]' '[:lower:]' | tr '_' '-')
+                                echo "  Operating on $sub_dir_name"
+                                # Check if the subdirectory name matches the required pattern
+                                if [[ $sub_dir_name =~ ^[a-z]+-[a-z]+$ ]]; then
+                                        # Move something like:
+                                        # > RenderedDocumentation/Result/project/0.0.0/Localization.ru_RU/
+                                        # to
+                                        # > RenderedDocumentation/Result/project/ru_RU/0.0.0
+                                        # This will allow further processing in the next steps.
+                                        echo "    Move $localizationDirectory to ../$sub_dir_name/0.0.0"
+                                        mkdir -p "../$sub_dir_name"
+                                        mv "$localizationDirectory" "../$sub_dir_name/0.0.0"
+                                else
+                                        echo "    Invalid localization."
+                                fi
+                        else
+                            echo "  Not a directory."
+                        fi
+                done
+                cd $currentWorkingDir
+        fi
+        echo "::endgroup::"
+
+    - id: langhandling
+      shell: bash
+      working-directory: t3docsproject
+      run: |
+        echo "::group::Prepare final structure"
+        
+        # Expected directory structure BEFORE:
+        # RenderedDocumentation/Result/project/0.0.0/Index.html
+        # RenderedDocumentation/Result/project/0.0.0/Sub/Index.html
+        # RenderedDocumentation/Result/project/de-de/0.0.0/Index.html
+        # RenderedDocumentation/Result/project/de-de/0.0.0/Sub/Index.html
+        # RenderedDocumentation/Result/project/ru-ru/0.0.0/Index.html
+        # RenderedDocumentation/Result/project/ru-ru/0.0.0/Sub/Index.html
+        
+        # Expected directory structure AFTER:
+        # FinalDocumentation/en-us/Index.html
+        # FinalDocumentation/en-us/Sub/Index.html
+        # FinalDocumentation/de-de/Index.html
+        # FinalDocumentation/de-de/Sub/Index.html
+        # FinalDocumentation/ru-ru/Index.html
+        # FinalDocumentation/ru-ru/Sub/Index.html
+
+        # if a result has been rendered for the main directory, we treat that as the 'en_us' version
+        if [ -d RenderedDocumentation/Result/project/0.0.0/ ]; then
+                echo "Handling main doc result as en-us version"
+                mkdir -p FinalDocumentation/en-us
+                # Move en-us files to target dir, including dot files
+                (shopt -s dotglob; mv RenderedDocumentation/Result/project/0.0.0/* FinalDocumentation/en-us)
+                # Remove the directory, all content has been moved
+                rmdir RenderedDocumentation/Result/project/0.0.0/
+                # Remove a possibly existing Localization.en_us directory, if it exists
+                rm -rf RenderedDocumentation/Result/project/en-us/
+        fi
+
+        # now see if other localization versions have been rendered. if so, move them to FinalDocumentation/, too
+        if [ "$(ls -A RenderedDocumentation/Result/project/)" ]; then
+            for LOCALIZATIONDIR in RenderedDocumentation/Result/project/*; do
+                    LOCALIZATION=`basename $LOCALIZATIONDIR`
+                    echo "Handling localized documentation version ${LOCALIZATION:?Localization could not be determined}"
+                    mkdir FinalDocumentation/${LOCALIZATION}
+                    (shopt -s dotglob; mv ${LOCALIZATIONDIR}/0.0.0/* FinalDocumentation/${LOCALIZATION})
+                    # Remove the localization dir, it should be empty now
+                    rmdir ${LOCALIZATIONDIR}/0.0.0/
+                    rmdir ${LOCALIZATIONDIR}
+            done
+        fi
+        echo "::endgroup::"
+
+    - id: output
+      shell: bash
+      working-directory: t3docsproject
+      run: |
+        rm -Rf RenderedDocumentation
+        echo "renderedPath=t3docsproject/FinalDocumentation/" >> $GITHUB_OUTPUT
