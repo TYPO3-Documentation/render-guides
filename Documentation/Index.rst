@@ -43,5 +43,6 @@ to extend the tool.
     Introduction/Index
     Installation/Index
     Developer/Index
+    Redirects/Index
     Migration/Index
     KnownProblems/Index
