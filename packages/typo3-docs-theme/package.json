@@ -22,7 +22,7 @@
         "grunt-sass": "^4.0.0",
         "grunt-stylelint": "^0.20.1",
         "sass": "^1.90.0",
-        "stylelint": "^16.23.0",
+        "stylelint": "^16.23.1",
         "vite": "^7.1.0"
     },
     "scripts": {
