@@ -134,7 +134,7 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
   createTooltip() {
     const element = document.createElement('div');
     element.classList.add(this.createClassName('tooltip'));
-    element.setAttribute('role', 'topoltip');
+    element.setAttribute('role', 'tooltip');
 
     const arrowElement = document.createElement('div');
     arrowElement.classList.add(this.createClassName('tooltip-arrow'));
