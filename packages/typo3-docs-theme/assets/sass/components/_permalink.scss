@@ -6,12 +6,9 @@ article {
         top: -.15em;
         text-decoration: none;
         &:after {
-            @include fa-icon;
-            content: fa-content($fa-var-link);
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            margin-left: -.35em;
-        }
+      @include fa-solid.icon(fa.$var-link);
+      margin-left: -.35em;
+  }
     }
     .headerNoindex {
         position: relative;
