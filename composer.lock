@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d294f897492920ba7e982e71dd81e2c",
+    "content-hash": "520864ed676268e0730b6492c782afb3",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -1294,16 +1294,16 @@
         },
         {
             "name": "phpdocumentor/filesystem",
-            "version": "1.7.4",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/filesystem.git",
-                "reference": "bb7c7853a32b364cc7ac824eb15fc640b24b765e"
+                "reference": "baf81ce5f6ebf450b798bee74f60d107c21e3a8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/filesystem/zipball/bb7c7853a32b364cc7ac824eb15fc640b24b765e",
-                "reference": "bb7c7853a32b364cc7ac824eb15fc640b24b765e",
+                "url": "https://api.github.com/repos/phpDocumentor/filesystem/zipball/baf81ce5f6ebf450b798bee74f60d107c21e3a8b",
+                "reference": "baf81ce5f6ebf450b798bee74f60d107c21e3a8b",
                 "shasum": ""
             },
             "require": {
@@ -1332,9 +1332,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/filesystem/issues",
-                "source": "https://github.com/phpDocumentor/filesystem/tree/1.7.4"
+                "source": "https://github.com/phpDocumentor/filesystem/tree/1.9.0"
             },
-            "time": "2025-03-10T19:50:04+00:00"
+            "time": "2025-09-10T21:23:28+00:00"
         },
         {
             "name": "phpdocumentor/flyfinder",
@@ -1389,16 +1389,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "1.8.0",
+            "version": "1.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "cc56ae7975848c7f69465e07e722fc93b0ef419b"
+                "reference": "d60e8dae9fcb85da610f05f4ef673a42f266b47a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/cc56ae7975848c7f69465e07e722fc93b0ef419b",
-                "reference": "cc56ae7975848c7f69465e07e722fc93b0ef419b",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/d60e8dae9fcb85da610f05f4ef673a42f266b47a",
+                "reference": "d60e8dae9fcb85da610f05f4ef673a42f266b47a",
                 "shasum": ""
             },
             "require": {
@@ -1415,6 +1415,7 @@
                 "symfony/clock": "^6.4.8",
                 "symfony/html-sanitizer": "^6.4.8",
                 "symfony/http-client": "^6.4.9",
+                "symfony/polyfill-php84": "^1.33.0",
                 "symfony/string": "^6.4.9",
                 "symfony/translation-contracts": "^3.5.1",
                 "twig/twig": "~2.15 || ^3.0",
@@ -1442,22 +1443,22 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/1.8.0"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/1.9.2"
             },
-            "time": "2025-03-16T11:29:49+00:00"
+            "time": "2025-10-17T16:59:53+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
-            "version": "1.8.1",
+            "version": "1.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "e715653ddfffd328078bed9e1f4558dc03edb37c"
+                "reference": "6ee2adab921b2d64f94fd574e90060d8c1e96f45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/e715653ddfffd328078bed9e1f4558dc03edb37c",
-                "reference": "e715653ddfffd328078bed9e1f4558dc03edb37c",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/6ee2adab921b2d64f94fd574e90060d8c1e96f45",
+                "reference": "6ee2adab921b2d64f94fd574e90060d8c1e96f45",
                 "shasum": ""
             },
             "require": {
@@ -1469,6 +1470,9 @@
                 "symfony/console": "^5.4 || ^6.3 || ^7.0",
                 "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.0",
                 "symfony/event-dispatcher": "^5.4 || ^6.3 || ^7.0"
+            },
+            "suggest": {
+                "phpdocumentor/dev-server": "Allows you to run a development server with live reloading to preview your documentation"
             },
             "bin": [
                 "bin/guides"
@@ -1496,9 +1500,9 @@
             ],
             "description": "Allows you to run phpDocumentor Guides as a stand alone application as console command",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.8.1"
+                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.9.3"
             },
-            "time": "2025-06-24T19:19:06+00:00"
+            "time": "2025-10-17T18:51:10+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -1550,16 +1554,16 @@
         },
         {
             "name": "phpdocumentor/guides-markdown",
-            "version": "1.7.3",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-markdown.git",
-                "reference": "d841d5e6a79cd4e2a0858d171f2b116f60ebd1a4"
+                "reference": "04bc3e1da61fcf28758cfa379ced5650a6e9f933"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-markdown/zipball/d841d5e6a79cd4e2a0858d171f2b116f60ebd1a4",
-                "reference": "d841d5e6a79cd4e2a0858d171f2b116f60ebd1a4",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-markdown/zipball/04bc3e1da61fcf28758cfa379ced5650a6e9f933",
+                "reference": "04bc3e1da61fcf28758cfa379ced5650a6e9f933",
                 "shasum": ""
             },
             "require": {
@@ -1587,22 +1591,22 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-markdown/issues",
-                "source": "https://github.com/phpDocumentor/guides-markdown/tree/1.7.3"
+                "source": "https://github.com/phpDocumentor/guides-markdown/tree/1.9.1"
             },
-            "time": "2025-03-07T15:51:49+00:00"
+            "time": "2025-09-22T14:05:17+00:00"
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
-            "version": "1.8.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "c89b0e68cf2ae671dad1d007712fb43decd4b09d"
+                "reference": "26d559996c1d82cb50c7a09004456a9b16e8cda1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/c89b0e68cf2ae671dad1d007712fb43decd4b09d",
-                "reference": "c89b0e68cf2ae671dad1d007712fb43decd4b09d",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/26d559996c1d82cb50c7a09004456a9b16e8cda1",
+                "reference": "26d559996c1d82cb50c7a09004456a9b16e8cda1",
                 "shasum": ""
             },
             "require": {
@@ -1630,9 +1634,9 @@
             "description": "Adds reStructuredText Markup support to the phpDocumentor's Guides library.",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.8.0"
+                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.9.1"
             },
-            "time": "2025-03-16T11:29:49+00:00"
+            "time": "2025-10-16T21:26:46+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -3455,6 +3459,86 @@
                 }
             ],
             "time": "2024-09-09T11:45:10+00:00"
+        },
+        {
+            "name": "symfony/polyfill-php84",
+            "version": "v1.33.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php84.git",
+                "reference": "d8ced4d875142b6a7426000426b8abc631d6b191"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php84/zipball/d8ced4d875142b6a7426000426b8abc631d6b191",
+                "reference": "d8ced4d875142b6a7426000426b8abc631d6b191",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php84\\": ""
+                },
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.4+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php84/tree/v1.33.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2025-06-24T13:30:11+00:00"
         },
         {
             "name": "symfony/process",
@@ -7648,86 +7732,6 @@
             "time": "2025-08-04T17:06:28+00:00"
         },
         {
-            "name": "symfony/polyfill-php84",
-            "version": "v1.33.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php84.git",
-                "reference": "d8ced4d875142b6a7426000426b8abc631d6b191"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php84/zipball/d8ced4d875142b6a7426000426b8abc631d6b191",
-                "reference": "d8ced4d875142b6a7426000426b8abc631d6b191",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2"
-            },
-            "type": "library",
-            "extra": {
-                "thanks": {
-                    "url": "https://github.com/symfony/polyfill",
-                    "name": "symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ],
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php84\\": ""
-                },
-                "classmap": [
-                    "Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 8.4+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "support": {
-                "source": "https://github.com/symfony/polyfill-php84/tree/v1.33.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/nicolas-grekas",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2025-06-24T13:30:11+00:00"
-        },
-        {
             "name": "symfony/stopwatch",
             "version": "v6.4.24",
             "source": {
@@ -7952,7 +7956,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -7961,7 +7965,7 @@
         "ext-dom": "*",
         "ext-libxml": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.1.27"
     },
