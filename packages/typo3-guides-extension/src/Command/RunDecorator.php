@@ -2,15 +2,22 @@
 
 namespace T3Docs\GuidesExtension\Command;
 
-use phpDocumentor\Guides\Cli\Command\Run;
-use Symfony\Component\Console\Application;
+use League\Tactician\CommandBus;
+use Monolog\Handler\ErrorLogHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use phpDocumentor\Guides\Cli\Command\ProgressBarSubscriber;
+use phpDocumentor\Guides\Cli\Command\SettingsBuilder;
+use phpDocumentor\Guides\Cli\Internal\RunCommand;
+use phpDocumentor\Guides\Cli\Logger\SpyProcessor;
+use Psr\Log\LogLevel;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
@@ -36,13 +43,50 @@ final class RunDecorator extends Command
         'README.md' => 'md',
     ];
 
-    private Run $innerCommand;
-    public function __construct(Run $innerCommand, private readonly Typo3DocsInputSettings $inputSettings)
-    {
-        parent::__construct($innerCommand->getName());
-        $this->innerCommand = $innerCommand;
+    public function __construct(
+        private readonly Typo3DocsInputSettings $inputSettings,
+        private readonly SettingsBuilder $settingsBuilder,
+        private readonly CommandBus $commandBus,
+        private readonly EventDispatcher $eventDispatcher,
+        private readonly Logger $logger,
+        private readonly ProgressBarSubscriber $progressBarSubscriber,
+    ) {
+        parent::__construct('run');
+    }
 
-        $this->innerCommand->addOption(
+    protected function configure(): void
+    {
+        $this->settingsBuilder->configureCommand($this);
+
+        $this->addOption(
+            'log-path',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'Write rendering log to this path',
+        );
+        $this->addOption(
+            'fail-on-log',
+            null,
+            InputOption::VALUE_NONE,
+            'If set, returns a non-zero exit code as soon as any warnings/errors occur',
+        );
+
+        $this->addOption(
+            'fail-on-error',
+            null,
+            InputOption::VALUE_NONE,
+            'If set, returns a non-zero exit code as soon as any errors occur',
+        );
+
+        $this->addOption(
+            'progress',
+            null,
+            InputOption::VALUE_NEGATABLE,
+            'Whether to show a progress bar',
+            true,
+        );
+
+        $this->addOption(
             'localization',
             null,
             InputArgument::OPTIONAL,
@@ -50,14 +94,14 @@ final class RunDecorator extends Command
         );
 
         // This option is evaluated in the PostProjectNodeCreated event in packages/typo3-docs-theme/src/EventListeners/AddThemeSettingsToProjectNode.php
-        $this->innerCommand->addOption(
+        $this->addOption(
             'minimal-test',
             null,
             InputOption::VALUE_NONE,
             'Apply preset for minimal testing (format=singlepage)',
         );
-
     }
+
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -71,24 +115,16 @@ final class RunDecorator extends Command
         }
 
         $arguments = $input->getArguments();
+        $guessedInput = [];
         if ($arguments['input'] === null) {
             $guessedInput = $this->guessInput(self::DEFAULT_INPUT_DIRECTORY, $output, false);
-        } else {
-            $guessedInput = [];
+            $input->setArgument('input', $guessedInput['input']);
+            $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
         }
 
         if (!isset($options['--output'])) {
-            $options['--output'] = getcwd() . '/' . self::DEFAULT_OUTPUT_DIRECTORY;
+            $input->setOption('output', getcwd() . '/' . self::DEFAULT_OUTPUT_DIRECTORY);
         }
-
-        $input = new ArrayInput(
-            [
-                ...$arguments,
-                ...$options,
-                ...$guessedInput,
-            ],
-            $this->getDefinition()
-        );
 
         // Propagate all input settings to be used within events
         // through the Typo3DocsInputSettings singleton.
@@ -107,7 +143,7 @@ final class RunDecorator extends Command
             $output->writeln(sprintf("<info>DEBUG</info> Using parameters:\n%s", $readableOutput));
         }
 
-        $baseExecution = $this->innerCommand->execute($input, $output);
+        $baseExecution = $this->internalRun($input, $output);
 
         // When a localization is being rendered, no other sub-localizations
         // are allowed, the execution will end here.
@@ -260,48 +296,6 @@ final class RunDecorator extends Command
         return $shellCommands;
     }
 
-    public function getDescription(): string
-    {
-        return $this->innerCommand->getDescription();
-    }
-
-    public function getHelp(): string
-    {
-        return $this->innerCommand->getHelp();
-    }
-
-    public function setApplication(Application $application = null): void
-    {
-        parent::setApplication($application);
-        $this->innerCommand->setApplication($application);
-    }
-
-    /** @return mixed[] */
-    public function getUsages(): array
-    {
-        return $this->innerCommand->getUsages();
-    }
-
-    public function getNativeDefinition(): InputDefinition
-    {
-        return $this->innerCommand->getNativeDefinition();
-    }
-
-    public function getSynopsis(bool $short = false): string
-    {
-        return $this->innerCommand->getSynopsis($short);
-    }
-
-    public function getDefinition(): InputDefinition
-    {
-        return $this->innerCommand->getDefinition();
-    }
-
-    public function mergeApplicationDefinition(bool $mergeArgs = true): void
-    {
-        $this->innerCommand->mergeApplicationDefinition($mergeArgs);
-    }
-
     /** @return array<string, string> */
     private function guessInput(string $inputBaseDirectory, OutputInterface $output, bool $isAbsoluteDirectory = false): array
     {
@@ -362,5 +356,54 @@ final class RunDecorator extends Command
         }
 
         return [];
+    }
+
+    private function internalRun(InputInterface $input, OutputInterface $output): int
+    {
+        $this->settingsBuilder->overrideWithInput($input);
+        $projectNode = $this->settingsBuilder->createProjectNode();
+        $settings = $this->settingsBuilder->getSettings();
+
+        $logPath = $settings->getLogPath();
+        if ($logPath === 'php://stder') {
+            $this->logger->setHandlers([new ErrorLogHandler(ErrorLogHandler::OPERATING_SYSTEM, Logger::WARNING)]);
+        } else {
+            $this->logger->setHandlers([new StreamHandler($logPath . '/warning.log', Logger::WARNING), new StreamHandler($logPath . '/error.log', Logger::ERROR)]);
+        }
+
+        if ($settings->isFailOnError()) {
+            $spyProcessor = new SpyProcessor($settings->getFailOnError() ?? LogLevel::WARNING);
+            $this->logger->pushProcessor($spyProcessor);
+        }
+
+        if ($output instanceof ConsoleOutputInterface && $settings->isShowProgressBar()) {
+            $this->progressBarSubscriber->subscribe($output, $this->eventDispatcher);
+        }
+
+        $documents = $this->commandBus->handle(
+            new RunCommand($settings, $projectNode, $input),
+        );
+
+        $outputFormats = $settings->getOutputFormats();
+        $outputDir = $settings->getOutput();
+        if ($output->isQuiet() === false) {
+            $lastFormat = '';
+
+            if (count($outputFormats) > 1) {
+                $lastFormat = (count($outputFormats) > 2 ? ',' : '') . ' and ' . strtoupper((string) array_pop($outputFormats));
+            }
+
+            $formatsText = strtoupper(implode(', ', $outputFormats)) . $lastFormat;
+
+            $output->writeln(
+                'Successfully placed ' . (is_countable($documents) ? count($documents) : 0) . ' rendered ' . $formatsText . ' files into ' . $outputDir,
+            );
+        }
+
+        if ($settings->isFailOnError() && $spyProcessor->hasBeenCalled()) {
+            return Command::FAILURE;
+        }
+
+        return Command::SUCCESS;
     }
 }
