@@ -7,7 +7,7 @@ PHP_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -
 
 ## Docker wrapper to use for a typo3-docs:local container.
 ## This container provides a runtime for the `guides` project
-PHP_PROJECT_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/project typo3-docs:local
+PHP_PROJECT_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/project --entrypoint=/project/vendor/bin/guides -p 1337:1337 typo3-docs:local
 
 ## Docker wrapper to use for a typo3-docs:local container.
 ## This container provides a composer-runtime; mounts project on /app
@@ -128,7 +128,7 @@ test: test-integration test-unit test-xml test-docs test-rendertest ## Runs all 
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
 	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/guides --no-progress Documentation --output="/tmp/test" --config=Documentation --minimal-test
+	$(PHP_PROJECT_BIN) --no-progress Documentation --config=Documentation --minimal-test
 
 .PHONY: test-rendertest
 test-rendertest: ## Runs rendering with Documentation-rendertest
