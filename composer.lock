@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ab1055154c96f37cc05d047656acc672",
+    "content-hash": "0129399ab5efd522e80eed17ecf7fea8",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -1448,16 +1448,16 @@
         },
         {
             "name": "phpdocumentor/guides-cli",
-            "version": "1.8.1",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "e715653ddfffd328078bed9e1f4558dc03edb37c"
+                "reference": "4f97b3f56c4163c8612a8197b73f5b894ae620c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/e715653ddfffd328078bed9e1f4558dc03edb37c",
-                "reference": "e715653ddfffd328078bed9e1f4558dc03edb37c",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/4f97b3f56c4163c8612a8197b73f5b894ae620c8",
+                "reference": "4f97b3f56c4163c8612a8197b73f5b894ae620c8",
                 "shasum": ""
             },
             "require": {
@@ -1469,6 +1469,9 @@
                 "symfony/console": "^5.4 || ^6.3 || ^7.0",
                 "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.0",
                 "symfony/event-dispatcher": "^5.4 || ^6.3 || ^7.0"
+            },
+            "suggest": {
+                "phpdocumentor/dev-server": "Allows you to run a development server with live reloading to preview your documentation"
             },
             "bin": [
                 "bin/guides"
@@ -1496,9 +1499,9 @@
             ],
             "description": "Allows you to run phpDocumentor Guides as a stand alone application as console command",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.8.1"
+                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.9.0"
             },
-            "time": "2025-06-24T19:19:06+00:00"
+            "time": "2025-09-12T13:11:44+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -7874,7 +7877,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -7883,7 +7886,7 @@
         "ext-dom": "*",
         "ext-libxml": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.1.27"
     },

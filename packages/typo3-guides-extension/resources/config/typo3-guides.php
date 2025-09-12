@@ -18,10 +18,9 @@ return static function (ContainerConfigurator $container): void {
     $container->services()
         ->defaults()
         ->autowire()
-        ->set(RunDecorator::class)
-        ->decorate(
-            Run::class,
-        )->args([service('.inner')])
+        ->set(Run::class, RunDecorator::class)
+        ->public()
+        ->tag('phpdoc.guides.cli.command')
         ->set(\T3Docs\GuidesExtension\Renderer\SinglePageRenderer::class)
         ->tag(
             'phpdoc.renderer.typerenderer',
