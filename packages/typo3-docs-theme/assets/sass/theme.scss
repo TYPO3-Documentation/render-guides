@@ -1,51 +1,19 @@
-// Font Awesome 7.0 - Complete setup
-@use '../../node_modules/@fortawesome/fontawesome-free/scss/variables' with (
-  $font-path: "../fonts"
-);
-
-// Core FontAwesome (this generates the individual icon classes)
-@use '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
-
-// Style mixins and helpers
-@use '../../node_modules/@fortawesome/fontawesome-free/scss/fa' as fa;
-
-// Individual styles (these generate .fa-solid, .fa-regular classes AND the icon definitions)
-@use '../../node_modules/@fortawesome/fontawesome-free/scss/solid' as fa-solid;
-@use '../../node_modules/@fortawesome/fontawesome-free/scss/regular' as fa-regular;
-@use '../../node_modules/@fortawesome/fontawesome-free/scss/brands' as fa-brands;
-
-// Fonts - remove the fontawesome import since we're handling it above
+// Fonts
+@import 'fonts/fontawesome';
 @import 'fonts/webfonts';
 
 // Functions
 @import '../../node_modules/bootstrap/scss/functions';
 
-// Variables (without Font Awesome variables)
+// Variables
 @import 'variables';
-
-//
-// Admonitions (moved from _variables.scss)
-// --------------------------------------------------
-
-$admonition-border-color-default: #666;
-$admonition-border-color-highlighted: $primary;
-
-$admonition-icons:
-    attention $admonition-border-color-highlighted #{fa.$var-bell},
-    caution $admonition-border-color-highlighted #{fa.$var-exclamation-triangle},
-    danger $admonition-border-color-highlighted #{fa.$var-exclamation-triangle},
-    error $admonition-border-color-highlighted #{fa.$var-times-circle},
-    important "" #{fa.$var-bell},
-    hint "" #{fa.$var-lightbulb},
-    note "" #{fa.$var-info-circle},
-    seealso "" #{fa.$var-share},
-    tip "" #{fa.$var-lightbulb},
-    warning $admonition-border-color-highlighted #{fa.$var-exclamation-triangle},
-;
 
 @import '../../node_modules/bootstrap/scss/bootstrap-reboot';
 
-// Bootstrap
+// Dependencies
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/functions';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/variables';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/mixins';
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
 // Mixings
@@ -106,3 +74,4 @@ $admonition-icons:
 
 // misc
 @import 'utilities';
+
