@@ -1,15 +1,5 @@
 $fa-font-path: "../fonts";
-
-// customize variables
-@use '../../../node_modules/@fortawesome/fontawesome-free/scss/variables' with (
-  // customizing $font-path
-  $font-path: "../fonts",
-);
-// load Font Awesome core
-// @use '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
-
-
-@use '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome' as fa;
-@use '../../../node_modules/@fortawesome/fontawesome-free/scss/regular' as fa-regular;
-@use '../../../node_modules/@fortawesome/fontawesome-free/scss/solid' as fa-solid;
-@use '../../../node_modules/@fortawesome/fontawesome-free/scss/brands' as fa-brands;
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/regular';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/solid';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/brands';
