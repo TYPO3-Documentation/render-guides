@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "737f749bf545f3c1518636821d423c6b",
+    "content-hash": "4a7d5e5da1e90bfa92c98d2c0c99b0e2",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -1576,16 +1576,16 @@
         },
         {
             "name": "phpdocumentor/dev-server",
-            "version": "1.9.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/dev-server.git",
-                "reference": "fb1f858cb7cd77cf32078cc748a5c7d8be62ebda"
+                "reference": "0c52d65bbb3507c1b0b47e11579e5ba9e7c0fe7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/dev-server/zipball/fb1f858cb7cd77cf32078cc748a5c7d8be62ebda",
-                "reference": "fb1f858cb7cd77cf32078cc748a5c7d8be62ebda",
+                "url": "https://api.github.com/repos/phpDocumentor/dev-server/zipball/0c52d65bbb3507c1b0b47e11579e5ba9e7c0fe7c",
+                "reference": "0c52d65bbb3507c1b0b47e11579e5ba9e7c0fe7c",
                 "shasum": ""
             },
             "require": {
@@ -1601,6 +1601,7 @@
                 "symfony/event-dispatcher": "^5.4 || ^6.3 || ^7.0",
                 "symfony/routing": "^5.4 || ^6.3 || ^7.0"
             },
+            "default-branch": true,
             "type": "project",
             "extra": {
                 "branch-alias": {
@@ -1625,9 +1626,9 @@
             "description": "A php development server with live reloading to preview your documentation",
             "support": {
                 "issues": "https://github.com/phpDocumentor/dev-server/issues",
-                "source": "https://github.com/phpDocumentor/dev-server/tree/1.9.0"
+                "source": "https://github.com/phpDocumentor/dev-server/tree/main"
             },
-            "time": "2025-09-10T21:23:28+00:00"
+            "time": "2025-09-14T13:38:46+00:00"
         },
         {
             "name": "phpdocumentor/filesystem",
@@ -1785,16 +1786,16 @@
         },
         {
             "name": "phpdocumentor/guides-cli",
-            "version": "1.9.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "4f97b3f56c4163c8612a8197b73f5b894ae620c8"
+                "reference": "e2afec91dea0d8d0ef6318b16805f6133b39c613"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/4f97b3f56c4163c8612a8197b73f5b894ae620c8",
-                "reference": "4f97b3f56c4163c8612a8197b73f5b894ae620c8",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/e2afec91dea0d8d0ef6318b16805f6133b39c613",
+                "reference": "e2afec91dea0d8d0ef6318b16805f6133b39c613",
                 "shasum": ""
             },
             "require": {
@@ -1810,6 +1811,7 @@
             "suggest": {
                 "phpdocumentor/dev-server": "Allows you to run a development server with live reloading to preview your documentation"
             },
+            "default-branch": true,
             "bin": [
                 "bin/guides"
             ],
@@ -1836,9 +1838,9 @@
             ],
             "description": "Allows you to run phpDocumentor Guides as a stand alone application as console command",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.9.0"
+                "source": "https://github.com/phpDocumentor/guides-cli/tree/main"
             },
-            "time": "2025-09-12T13:11:44+00:00"
+            "time": "2025-09-14T13:38:46+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
@@ -8527,7 +8529,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "phpdocumentor/dev-server": 20,
+        "phpdocumentor/guides-cli": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

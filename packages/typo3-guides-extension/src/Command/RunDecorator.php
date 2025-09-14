@@ -11,16 +11,11 @@ use phpDocumentor\DevServer\Watcher\FileModifiedEvent;
 use phpDocumentor\FileSystem\FlySystemAdapter;
 use phpDocumentor\Guides\Cli\Command\ProgressBarSubscriber;
 use phpDocumentor\Guides\Cli\Command\SettingsBuilder;
+use phpDocumentor\Guides\Cli\DevServer\RerenderListener;
 use phpDocumentor\Guides\Cli\Internal\RunCommand;
 use phpDocumentor\Guides\Cli\Logger\SpyProcessor;
-use phpDocumentor\Guides\Compiler\CompilerContext;
 use phpDocumentor\Guides\Event\PostParseDocument;
-use phpDocumentor\Guides\Handlers\CompileDocumentsCommand;
-use phpDocumentor\Guides\Handlers\ParseFileCommand;
-use phpDocumentor\Guides\Handlers\RenderDocumentCommand;
 use phpDocumentor\Guides\Nodes\DocumentNode;
-use phpDocumentor\Guides\RenderContext;
-use phpDocumentor\Guides\Renderer\DocumentListIterator;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -427,7 +422,10 @@ final class RunDecorator extends Command
                 $host,
                 '0.0.0.0',
                 $port,
-                $settings->getIndexName()
+                array_map(
+                    fn ($file) => trim($file) . '.html',
+                    explode(',', $settings->getIndexName())
+                ),
             );
 
             $server->addListener(
@@ -438,6 +436,7 @@ final class RunDecorator extends Command
             );
         }
 
+        /** @var DocumentNode[] $documents */
         $documents = $this->commandBus->handle(
             new RunCommand($settings, $projectNode, $input),
         );
@@ -468,58 +467,15 @@ final class RunDecorator extends Command
 
         $server->addListener(
             FileModifiedEvent::class,
-            function (FileModifiedEvent $event) use ($documents, $sourceFileSystem, $projectNode, $settings, $server, $output): void {
-                $output->writeln(
-                    sprintf(
-                        'File modified: %s, rerendering...',
-                        $event->path,
-                    ),
-                );
-                $file = substr($event->path, 0, -4);
-
-                $document = $this->commandBus->handle(
-                    new ParseFileCommand(
-                        $sourceFileSystem,
-                        '',
-                        $file,
-                        $settings->getInputFormat(),
-                        1,
-                        $projectNode,
-                        true,
-                    ),
-                );
-                assert($document instanceof DocumentNode);
-
-                $documents[$file] = $document;
-
-                /** @var array<string, DocumentNode> $documents */
-                $documents = $this->commandBus->handle(new CompileDocumentsCommand($documents, new CompilerContext($projectNode)));
-                $destinationFileSystem = FlySystemAdapter::createForPath($settings->getOutput());
-
-                $documentIterator = DocumentListIterator::create(
-                    $projectNode->getRootDocumentEntry(),
-                    $documents,
-                );
-
-                $renderContext = RenderContext::forProject(
-                    $projectNode,
-                    $documents,
-                    $sourceFileSystem,
-                    $destinationFileSystem,
-                    '/',
-                    'html',
-                )->withIterator($documentIterator);
-
-                $this->commandBus->handle(
-                    new RenderDocumentCommand(
-                        $documents[$file],
-                        $renderContext->withDocument($documents[$file]),
-                    ),
-                );
-
-                $output->writeln('Rerendering completed.');
-                $server->notifyClients();
-            },
+            new RerenderListener(
+                $output,
+                $this->commandBus,
+                $sourceFileSystem,
+                $settings,
+                $projectNode,
+                $documents,
+                $server
+            ),
         );
 
         $output->writeln(
