@@ -118,6 +118,22 @@ final class RunDecorator extends Command
             InputOption::VALUE_NONE,
             'Watch the input directory and re-render on changes (requires inotify extension)',
         );
+
+        $this->addOption(
+            'host',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'The host to bind the dev server to',
+            'localhost'
+        );
+
+        $this->addOption(
+            'port',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'The port to bind the dev server to',
+            '1337'
+        );
     }
 
 
@@ -398,20 +414,29 @@ final class RunDecorator extends Command
             $this->progressBarSubscriber->subscribe($output, $this->eventDispatcher);
         }
 
-        $host = 'localhost';
-        $port = 1337;
+        $watch = $input->getOption('watch');
+        if ($watch) {
+            $host = $input->getOption('host');
+            $port = $input->getOption('port');
+            $files = FlySystemAdapter::createForPath($input->getOption('output'));
+            $sourceFileSystem = FlySystemAdapter::createForPath($input->getArgument('input'));
+            $serverFactory = new ServerFactory($this->logger, $this->eventDispatcher);
+            $server = $serverFactory->createDevServer(
+                $input->getArgument('input'),
+                $files,
+                $host,
+                '0.0.0.0',
+                $port,
+                $settings->getIndexName()
+            );
 
-        $files = FlySystemAdapter::createForPath($input->getOption('output'));
-        $sourceFileSystem = FlySystemAdapter::createForPath($input->getArgument('input'));
-        $serverFactory  = new ServerFactory($this->logger, $this->eventDispatcher);
-        $server = $serverFactory->createDevServer($input->getArgument('input'), $files, 'localhost', '0.0.0.0', 1337, $settings->getIndexName());
-
-        $server->addListener(
-            PostParseDocument::class,
-            static function (PostParseDocument $event) use ($server): void {
-                $server->watch($event->getOriginalFileName());
-            },
-        );
+            $server->addListener(
+                PostParseDocument::class,
+                static function (PostParseDocument $event) use ($server): void {
+                    $server->watch($event->getOriginalFileName());
+                },
+            );
+        }
 
         $documents = $this->commandBus->handle(
             new RunCommand($settings, $projectNode, $input),
@@ -435,6 +460,10 @@ final class RunDecorator extends Command
 
         if ($settings->isFailOnError() && $spyProcessor->hasBeenCalled()) {
             return Command::FAILURE;
+        }
+
+        if (!$watch) {
+            return Command::SUCCESS;
         }
 
         $server->addListener(
