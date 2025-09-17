@@ -21,9 +21,12 @@
     font-size: 1.25em;
 
     &::before {
-      @include fa-solid.icon(fa.$var-info-circle);
-      margin-right: calc(#{$spacer} / 2);
-  }
+        @include fa-icon;
+        content: fa-content($fa-var-info-circle);
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        margin-right: calc(#{$spacer} / 2);
+    }
 }
 
 @each $type, $border-color, $icon in $admonition-icons {
@@ -34,7 +37,7 @@
             }
 
             .admonition-title::before {
-                content: '#{$icon}';
+                content: fa-content(#{$icon});
             }
         }
     }
