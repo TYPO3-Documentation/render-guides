@@ -5,4 +5,7 @@ tools/
 vendor/
 Dockerfile
 *.rst
-build
+.Build
+Documentation*
+.phpdoc
+.cache
