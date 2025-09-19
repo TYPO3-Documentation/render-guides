@@ -2,5 +2,5 @@
     <all-documentations-menu-mobile></all-documentations-menu-mobile>
 {%- else -%}
     <all-documentations-menu-mobile
-        data-override-url="https://render-guides.ddev.site/_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+        data-override-url="{{ getRelativePath('_resources/js/menu-proxy.php')}}"></all-documentations-menu-mobile>
 {% endif %}
