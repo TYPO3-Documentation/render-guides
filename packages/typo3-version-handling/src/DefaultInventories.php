@@ -27,6 +27,7 @@ enum DefaultInventories: string
     case t3renderguides = 't3renderguides';
     case t3exceptions = 't3exceptions';
     case api = 'api';
+    case policy = 'policy';
 
     public function isVersioned(): bool
     {
@@ -38,13 +39,13 @@ enum DefaultInventories: string
             // Changelog, it is only deployed to main
             DefaultInventories::changelog => false,
 
-
             // Team Guides, they are commonly not versioned
             DefaultInventories::h2document => false,
             DefaultInventories::t3content => false,
             DefaultInventories::t3contribute => false,
             DefaultInventories::t3writing => false,
             DefaultInventories::t3org => false,
+            DefaultInventories::policy => false,
 
             // Other
             DefaultInventories::fluid => false,
@@ -111,6 +112,7 @@ enum DefaultInventories: string
             DefaultInventories::t3contribute => 'https://docs.typo3.org/m/typo3/guide-contributionworkflow/main/en-us/',
             DefaultInventories::t3writing => 'https://docs.typo3.org/m/typo3/writing-guide/main/en-us/',
             DefaultInventories::t3org => 'https://docs.typo3.org/m/typo3/team-t3oteam/main/en-us/',
+            DefaultInventories::policy => 'https://docs.typo3.org/m/typo3/guide-policy/main/en-us/',
 
             // Other
             DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/main/en-us/',
