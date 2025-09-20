@@ -24,8 +24,5 @@
     {% if titleOfSeverity %}<p class="admonition-title">{{ titleOfSeverity }}</p>
     {% elseif title and isTitled %}<p class="admonition-title">{{ renderNode(title) }}</p>
     {% endif %}
-    {% if title and not isTitled %}<p>{{ renderNode(title) }}</p>
-    {% endif %}
     {{ renderNode(node) }}
 </div>
-
