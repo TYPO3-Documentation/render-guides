@@ -6,9 +6,7 @@ article {
         top: -.15em;
         text-decoration: none;
         &:after {
-      @include fa-solid.icon(fa.$var-link);
-      margin-left: -.35em;
-  }
+      }
     }
     .headerNoindex {
         position: relative;
@@ -18,7 +16,7 @@ article {
         text-decoration: none;
     }
     *:hover {
-        & > a.headerlink:after, & > a.permalink:after, .headerNoindex {
+        & > a.headerlink, & > a.permalink, .headerNoindex {
             visibility: visible;
         }
     }
