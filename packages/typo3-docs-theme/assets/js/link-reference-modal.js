@@ -22,7 +22,7 @@
   function generateShortUri(linkReferenceModal, section, headerText, rstAnchor, filename) {
     const urlPrefix = 'https://docs.typo3.org/permalink/';
     const interlinkTarget = linkReferenceModal.dataset.interlinkShortcode || 'somemanual';
-    // Replaces a link like "typo3/cms-sys-note" to "typo3-cms-sys-note" (https://docs.typo3.org/permalink/typo3-cms-sys-note:for-editors)
+    // Replaces a link like "typo3/cms-sys-note" to "typo3-cms-sys-note"
     const adjustedInterlinkTarget = interlinkTarget.replaceAll('/', '-', interlinkTarget);
 
     if (rstAnchor) {
@@ -37,14 +37,10 @@
   }
 
   function generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename) {
-    const interlinkTarget = linkReferenceModal.dataset.interlinkShortcode || 'somemanual';
-    if (rstAnchor) {
-      return `\`${headerText} <https://docs.typo3.org/permalink/${interlinkTarget}:${rstAnchor}>\`_`;
-    }
-    if (filename === '') {
-      return '';
-    }
-    return `:doc:\`${headerText} <${interlinkTarget}:${filename}#${section?.id || ''}>\``;
+    const url = generateShortUri(linkReferenceModal, section, headerText, rstAnchor, filename);
+    if (!url) return '';
+    // Always use the permalink produced by generateShortUri
+    return `\`${headerText} <${url}>\`_`;
   }
 
   function showHideRstAnchorAlert(linkReferenceModal, rstAnchor) {
