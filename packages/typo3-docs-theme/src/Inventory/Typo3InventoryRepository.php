@@ -85,7 +85,10 @@ final class Typo3InventoryRepository implements InventoryRepository
             }
         }
         if (!preg_match(self::EXTENSION_INTERLINK_REGEX, $key, $matches)) {
-            return false;
+            $key = preg_replace('/[^a-zA-Z0-9]/', '/', $key, 1);
+            if (!preg_match(self::EXTENSION_INTERLINK_REGEX, $key, $matches)) {
+                return false;
+            }
         }
         if ($this->loadInventoryFromComposerExtension($reducedKey, $matches[1], $matches[2], $matches[4] ?? null)) {
             return true;
