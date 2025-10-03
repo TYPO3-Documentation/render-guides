@@ -13,7 +13,7 @@
 
         {% set proxyAttributes = '' %}
         {% if not isRenderedForDeployment() %}
-            {% set proxyAttributes = 'data-override-url-proxy="https://render-guides.ddev.site/_resources/js/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html"' %}
+          {% set proxyAttributes = 'data-override-url-proxy="' ~ getRelativePath('_resources/js/versions-proxy.php') ~ '?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html"' %}
         {% endif %}
 
         <label for="versionSelect" class="visually-hidden">Select version</label>
