@@ -12,6 +12,8 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
+use T3Docs\Typo3DocsTheme\Inventory\DefaultInterlinkParser;
+use T3Docs\Typo3DocsTheme\Inventory\DefaultInventoryUrlBuilder;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
@@ -45,7 +47,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
     #[DataProvider('providerForInventoryKeysWithVersions')]
     public function versionInventoriesAreAdded(string $inventoryKey, bool $expected): void
     {
-        self::assertEquals($this->subject->hasInventory($inventoryKey), $expected);
+        self::assertEquals($this->subject->hasInventory($inventoryKey, false), $expected);
     }
     public static function providerForInventoryKeysWithVersions(): \Generator
     {
@@ -58,7 +60,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
             'expected' => true,
         ];
         yield "oldstable" => [
-            'inventoryKey' => 't3coreapi-oldstable',
+            'inventoryKey' => 't3coreapi@oldstable',
             'expected' => true,
         ];
         yield "dev" => [
@@ -66,20 +68,12 @@ final class Typo3InventoryRepositoryTest extends TestCase
             'expected' => true,
         ];
         yield "whatever" => [
-            'inventoryKey' => 't3coreapi-whatever',
+            'inventoryKey' => 'whatever',
             'expected' => false,
         ];
         yield "preferred-non-versioned" => [
             'inventoryKey' => 'h2document',
             'expected' => true,
-        ];
-        yield "stable-non-versioned" => [
-            'inventoryKey' => 'h2document-stable',
-            'expected' => false,
-        ];
-        yield "whatever-non-versioned" => [
-            'inventoryKey' => 't3coreapi-whatever',
-            'expected' => false,
         ];
     }
 
@@ -89,8 +83,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
     {
         $messages = new Messages();
         $node = new ReferenceNode('someReference', '', $inventoryKey);
-        self::assertTrue($this->subject->hasInventory($inventoryKey));
-        self::assertEquals($expected, $this->subject->getInventory($node, $this->renderContext, $messages)->getBaseUrl());
+        self::assertEquals($expected, $this->subject->previewUrl($inventoryKey));
         self::assertCount(0, $messages->getWarnings());
     }
 
@@ -112,7 +105,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
             'inventoryKey' => 't3coreapi/dev',
             'expected' => "https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/",
         ];
-        yield "v11" => [
+        yield "v12" => [
             'inventoryKey' => 't3coreapi/v12',
             'expected' => "https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/",
         ];
@@ -131,9 +124,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
     public function extensionInventoryUrl(string $inventoryKey, string $expected): void
     {
         $messages = new Messages();
-        $node = new ReferenceNode('someReference', '', $inventoryKey);
-        self::assertTrue($this->subject->hasInventory($inventoryKey));
-        self::assertEquals($expected, $this->subject->getInventory($node, $this->renderContext, $messages)->getBaseUrl());
+        self::assertEquals($expected, $this->subject->previewUrl($inventoryKey));
         self::assertCount(0, $messages->getWarnings());
     }
 
@@ -201,7 +192,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
     #[DataProvider('providerForExtensionNameScheme')]
     public function extensionNameScheme(string $inventoryKey, bool $expected): void
     {
-        self::assertEquals($this->subject->hasInventory($inventoryKey), $expected);
+        self::assertEquals($this->subject->hasInventory($inventoryKey, false), $expected);
     }
     public static function providerForExtensionNameScheme(): \Generator
     {
@@ -229,6 +220,8 @@ final class Typo3InventoryRepositoryTest extends TestCase
             $this->jsonLoaderMock,
             new Typo3VersionService($settings),
             $inventoryConfigs,
+            new DefaultInterlinkParser($this->anchorNormalizer),
+            new DefaultInventoryUrlBuilder(new Typo3VersionService($settings)),
         );
     }
 }

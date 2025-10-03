@@ -45,6 +45,10 @@ use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\OriginalFileNameSetter;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
+use T3Docs\Typo3DocsTheme\Inventory\DefaultInterlinkParser;
+use T3Docs\Typo3DocsTheme\Inventory\DefaultInventoryUrlBuilder;
+use T3Docs\Typo3DocsTheme\Inventory\InterlinkParserInterface;
+use T3Docs\Typo3DocsTheme\Inventory\InventoryUrlBuilderInterface;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
@@ -128,6 +132,10 @@ return static function (ContainerConfigurator $container): void {
         ->set(IssueReferenceTextRole::class)
         ->tag('phpdoc.guides.parser.rst.text_role')
         ->set(phpDocumentor\Guides\ReferenceResolvers\Interlink\DefaultInventoryLoader::class)
+        ->set(DefaultInterlinkParser::class)
+        ->set(DefaultInventoryUrlBuilder::class)
+        ->alias(InterlinkParserInterface::class, DefaultInterlinkParser::class)
+        ->alias(InventoryUrlBuilderInterface::class, DefaultInventoryUrlBuilder::class)
         ->set(InventoryRepository::class, Typo3InventoryRepository::class)
         ->arg('$inventoryConfigs', param('phpdoc.guides.inventories'))
         ->set(InterlinkParser::class, ExtendedInterlinkParser::class)
