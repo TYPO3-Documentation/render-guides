@@ -54,5 +54,4 @@ class Typo3VersionService
         }
         return $version;
     }
-
 }
