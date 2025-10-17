@@ -25,7 +25,7 @@
                         {% if isRenderedForDeployment() -%}
                             <all-documentations-menu></all-documentations-menu>
                         {%- else -%}
-                            <all-documentations-menu data-override-url="https://render-guides.ddev.site/_resources/js/menu-proxy.php"></all-documentations-menu>
+                            <all-documentations-menu data-override-url="{{ getRelativePath('_resources/js/menu-proxy.php')}}"></all-documentations-menu>
                         {% endif %}
                         <search role="search">
                             <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
