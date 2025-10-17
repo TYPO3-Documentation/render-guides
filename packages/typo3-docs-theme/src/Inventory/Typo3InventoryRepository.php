@@ -20,30 +20,35 @@ use T3Docs\VersionHandling\Typo3VersionMapping;
 final class Typo3InventoryRepository implements InventoryRepository
 {
     /**
+     * @see https://getcomposer.org/doc/04-schema.md#name
      * @see https://regex101.com/r/EXCPkt/8
-     *
-     * https://getcomposer.org/doc/04-schema.md#name
      */
-    private const EXTENSION_INTERLINK_REGEX = '/^([^\/\s]+)\/([^\/\s]+)(\/([^\/\s]+))?$/';
+    public const EXTENSION_INTERLINK_REGEX = '/^([^\/\s]+)\/([^\/\s]+)(\/([^\/\s]+))?$/';
 
     /** @var array<string, Inventory> */
     private array $inventories = [];
     /** @var list<string> */
     private array $ignoredInventories = [];
 
-    /** @param array<int, array<string, string>> $inventoryConfigs */
+    /**
+     * @param array<int, array<string, string>> $inventoryConfigs
+     */
     public function __construct(
-        private readonly LoggerInterface        $logger,
-        private readonly AnchorNormalizer       $anchorNormalizer,
+        private readonly LoggerInterface              $logger,
+        private readonly AnchorNormalizer             $anchorNormalizer,
         // We have to use the specific implementation as the interface does not expose the needed methods
-        private readonly DefaultInventoryLoader $inventoryLoader,
-        private readonly JsonLoader             $jsonLoader,
-        private readonly Typo3VersionService    $typo3VersionService,
-        array                                   $inventoryConfigs,
+        private readonly DefaultInventoryLoader       $inventoryLoader,
+        private readonly JsonLoader                   $jsonLoader,
+        private readonly Typo3VersionService          $typo3VersionService,
+        array                                         $inventoryConfigs,
+        private readonly InterlinkParserInterface     $parser,
+        private readonly InventoryUrlBuilderInterface $urlBuilder,
     ) {
         foreach ($inventoryConfigs as $inventory) {
-            $this->inventories[$this->anchorNormalizer->reduceAnchor($inventory['id'])] = new Inventory($inventory['url'], $anchorNormalizer);
+            $this->inventories[$this->anchorNormalizer->reduceAnchor($inventory['id'])]
+                = new Inventory($inventory['url'], $this->anchorNormalizer);
         }
+
         foreach (DefaultInventories::cases() as $defaultInventory) {
             $id = $this->anchorNormalizer->reduceAnchor($defaultInventory->name);
             if (!$defaultInventory->isVersioned()) {
@@ -67,54 +72,67 @@ final class Typo3InventoryRepository implements InventoryRepository
         }
     }
 
-    public function hasInventory(string $key): bool
+    /** Pure parsing; no network, no mutation. */
+    public function parseOnly(string $key): ?InterlinkParts
+    {
+        return $this->parser->parse($key);
+    }
+
+    /** Pure: return the URL we *would* use; no network, no mutation. */
+    public function previewUrl(string $key): ?string
+    {
+        $parts = $this->parser->parse($key);
+        return $parts ? $this->urlBuilder->buildUrl($parts) : null;
+    }
+
+    /**
+     * Lightweight key check with optional eager loading.
+     * When $eagerLoad = false, this will only validate/normalize without any HTTP calls.
+     */
+    public function hasInventory(string $key, bool $eagerLoad = true): bool
     {
         $reducedKey = $this->anchorNormalizer->reduceAnchor($key);
+
         if (isset($this->inventories[$reducedKey])) {
             return true;
         }
-        if (in_array($reducedKey, $this->ignoredInventories, true)) {
+        if (\in_array($reducedKey, $this->ignoredInventories, true)) {
             return false;
         }
-        if (str_starts_with($key, 'ext_')) {
-            // Legacy keys for system extensions
-            // As was commonly defined in the sphinx settings, i.e. ext_adminpanel
-            $extensionKey = 'cms-' . str_replace('_', '-', substr($key, 4));
-            if ($this->loadInventoryFromComposerExtension($reducedKey, 'typo3', $extensionKey, null)) {
-                return true;
-            }
-        }
-        if (!preg_match(self::EXTENSION_INTERLINK_REGEX, $key, $matches)) {
+
+        $parts = $this->parser->parse($key);
+        if (!$parts) {
             return false;
         }
-        if ($this->loadInventoryFromComposerExtension($reducedKey, $matches[1], $matches[2], $matches[4] ?? null)) {
+
+        if (!$eagerLoad) {
+            // syntactically valid & mappable, but skip network
             return true;
         }
-        $this->logger->warning(sprintf('Interlink inventory for manual %s not found.', $key));
+
+        $inventoryUrl = $this->urlBuilder->buildUrl($parts);
+        if (!$inventoryUrl) {
+            $this->ignoredInventories[] = $reducedKey;
+            return false;
+        }
+
+        if ($this->tryLoadInventoryJson($reducedKey, $inventoryUrl)) {
+            return ($this->inventories[$reducedKey] ?? false) instanceof Inventory
+                && $this->inventories[$reducedKey]->isLoaded();
+        }
+
+        $this->logger->warning(\sprintf('Interlink inventory for manual %s not found.', $key));
         $this->ignoredInventories[] = $reducedKey;
         return false;
     }
 
-    private function loadInventoryFromComposerExtension(string $reducedKey, string $match1, string $match2, string|null $version): bool
+    private function tryLoadInventoryJson(string $reducedKey, string $inventoryUrl): bool
     {
         try {
-            if ($match1 === 'typo3') {
-                $version ??= $this->typo3VersionService->getPreferredVersion();
-                $version = $this->typo3VersionService->resolveCoreVersion($version);
-                if ($match2 === 'cms-core') {
-                    $version = 'main';
-                }
-                $inventoryUrl = sprintf("https://docs.typo3.org/c/%s/%s/%s/en-us/", $match1, $match2, $version);
-            } elseif ($defaultInventory = DefaultInventories::tryFrom($match1)) {
-                // we do not have a composer name here but a default inventory with a version, for example "t3coreapi/12.4"
-                $version = $this->typo3VersionService->resolveCoreVersion($match2);
-                $inventoryUrl = $defaultInventory->getUrl($version);
-            } else {
-                $version ??= 'main';
-                $version = $this->typo3VersionService->resolveVersion($version);
-                $inventoryUrl = sprintf("https://docs.typo3.org/p/%s/%s/%s/en-us/", $match1, $match2, $version);
-            }
             $json = $this->jsonLoader->loadJsonFromUrl($inventoryUrl . 'objects.inv.json');
+            if ($json === []) {
+                return false;
+            }
             $this->loadInventoryFromJson($inventoryUrl, $json, $reducedKey);
             return true;
         } catch (ClientException) {
@@ -132,30 +150,28 @@ final class Typo3InventoryRepository implements InventoryRepository
         $this->inventories[$reducedKey] = $inventory;
     }
 
-    public function getInventory(CrossReferenceNode $node, RenderContext $renderContext, Messages $messages): Inventory|null
+    public function getInventory(CrossReferenceNode $node, RenderContext $renderContext, Messages $messages): ?Inventory
     {
         $key = $node->getInterlinkDomain();
-        $reducedKey = $this->anchorNormalizer->reduceAnchor($node->getInterlinkDomain());
+        $reducedKey = $this->anchorNormalizer->reduceAnchor($key);
+
         if (!$this->hasInventory($key)) {
             $messages->addWarning(
                 new Message(
-                    sprintf(
-                        'Inventory with key %s not found. ',
-                        $key,
-                    ),
-                    array_merge($renderContext->getLoggerInformation(), $node->getDebugInformation()),
+                    \sprintf('Inventory with key %s not found. ', $key),
+                    \array_merge($renderContext->getLoggerInformation(), $node->getDebugInformation()),
                 ),
             );
-
             return null;
         }
 
+        // Ensure fully loaded (no-op if already)
         $this->inventoryLoader->loadInventory($this->inventories[$reducedKey]);
 
         return $this->inventories[$reducedKey];
     }
 
-    public function getLink(CrossReferenceNode $node, RenderContext $renderContext, Messages $messages): InventoryLink|null
+    public function getLink(CrossReferenceNode $node, RenderContext $renderContext, Messages $messages): ?InventoryLink
     {
         $inventory = $this->getInventory($node, $renderContext, $messages);
         $group = $inventory?->getGroup($node, $renderContext, $messages);
