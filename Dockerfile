@@ -18,6 +18,8 @@ ARG TYPO3AZUREEDGEURIVERSION
 ENV TYPO3AZUREEDGEURIVERSION=$TYPO3AZUREEDGEURIVERSION
 
 WORKDIR /project
+RUN mkdir -p /project/custom-templates
+
 ENTRYPOINT [ "/opt/guides/entrypoint.sh" ]
 CMD ["-h"]
 
