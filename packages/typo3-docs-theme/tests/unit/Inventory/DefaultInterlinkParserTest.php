@@ -44,6 +44,8 @@ final class DefaultInterlinkParserTest extends TestCase
         yield 'default inventory' => ['t3coreapi', 'default', 'typo3', 't3coreapi', null];
         yield 'default inventory with explicit version' => ['t3coreapi/12.4', 'default', 'typo3', 't3coreapi', '12.4'];
         yield 'default inventory with @stable' => ['t3coreapi@stable', 'default', 'typo3', 't3coreapi', 'stable'];
+        yield 'default inventory with @main' => ['t3coreapi@main', 'default', 'typo3', 't3coreapi', 'main'];
+        yield 'default inventory with @12.4' => ['t3coreapi@12.4', 'default', 'typo3', 't3coreapi', '12.4'];
     }
 
     #[Test]
