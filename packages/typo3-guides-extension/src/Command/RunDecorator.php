@@ -423,7 +423,7 @@ final class RunDecorator extends Command
                 '0.0.0.0',
                 $port,
                 array_map(
-                    fn ($file) => trim($file) . '.html',
+                    fn($file) => trim($file) . '.html',
                     explode(',', $settings->getIndexName())
                 ),
             );
