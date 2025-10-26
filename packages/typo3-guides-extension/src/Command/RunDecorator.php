@@ -145,7 +145,11 @@ final class RunDecorator extends Command
 
         $arguments = $input->getArguments();
         $guessedInput = [];
-        if ($arguments['input'] === null) {
+        if ($arguments['input'] === null && $arguments['command'] !== 'run' && is_string($arguments['command'])) {
+            $guessedInput = $this->guessInput($arguments['command'], $output, false);
+            $input->setArgument('input', $guessedInput['input']);
+            $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
+        } elseif ($arguments['input'] === null) {
             $guessedInput = $this->guessInput(self::DEFAULT_INPUT_DIRECTORY, $output, false);
             $input->setArgument('input', $guessedInput['input']);
             $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
