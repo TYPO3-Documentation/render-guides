@@ -6,10 +6,16 @@ use League\Tactician\CommandBus;
 use Monolog\Handler\ErrorLogHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use phpDocumentor\DevServer\ServerFactory;
+use phpDocumentor\DevServer\Watcher\FileModifiedEvent;
+use phpDocumentor\FileSystem\FlySystemAdapter;
 use phpDocumentor\Guides\Cli\Command\ProgressBarSubscriber;
 use phpDocumentor\Guides\Cli\Command\SettingsBuilder;
+use phpDocumentor\Guides\Cli\DevServer\RerenderListener;
 use phpDocumentor\Guides\Cli\Internal\RunCommand;
 use phpDocumentor\Guides\Cli\Logger\SpyProcessor;
+use phpDocumentor\Guides\Event\PostParseDocument;
+use phpDocumentor\Guides\Nodes\DocumentNode;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -100,6 +106,29 @@ final class RunDecorator extends Command
             InputOption::VALUE_NONE,
             'Apply preset for minimal testing (format=singlepage)',
         );
+
+        $this->addOption(
+            'watch',
+            null,
+            InputOption::VALUE_NONE,
+            'Watch the input directory and re-render on changes (requires inotify extension)',
+        );
+
+        $this->addOption(
+            'host',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'The host to bind the dev server to',
+            'localhost'
+        );
+
+        $this->addOption(
+            'port',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'The port to bind the dev server to',
+            '1337'
+        );
     }
 
 
@@ -116,7 +145,11 @@ final class RunDecorator extends Command
 
         $arguments = $input->getArguments();
         $guessedInput = [];
-        if ($arguments['input'] === null) {
+        if ($arguments['input'] === null && $arguments['command'] !== 'run' && is_string($arguments['command'])) {
+            $guessedInput = $this->guessInput($arguments['command'], $output, false);
+            $input->setArgument('input', $guessedInput['input']);
+            $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
+        } elseif ($arguments['input'] === null) {
             $guessedInput = $this->guessInput(self::DEFAULT_INPUT_DIRECTORY, $output, false);
             $input->setArgument('input', $guessedInput['input']);
             $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
@@ -380,6 +413,47 @@ final class RunDecorator extends Command
             $this->progressBarSubscriber->subscribe($output, $this->eventDispatcher);
         }
 
+        $watch = $input->getOption('watch');
+        if ($watch) {
+            $host = $input->getOption('host');
+            $port = $input->getOption('port');
+
+            if (!is_string($host)) {
+                $output->writeln('<error>Invalid host provided for dev server.</error>');
+                return Command::FAILURE;
+            }
+
+            if (!is_numeric($port)) {
+                $output->writeln('<error>Invalid port provided for dev server.</error>');
+                return Command::FAILURE;
+            }
+
+            $port = (int)$port;
+
+            $files = FlySystemAdapter::createForPath($settings->getOutput());
+            $sourceFileSystem = FlySystemAdapter::createForPath($settings->getInput());
+            $serverFactory = new ServerFactory($this->logger, $this->eventDispatcher);
+            $server = $serverFactory->createDevServer(
+                $settings->getInput(),
+                $files,
+                $host,
+                '0.0.0.0',
+                $port,
+                array_map(
+                    fn($file) => trim($file) . '.html',
+                    explode(',', $settings->getIndexName())
+                ),
+            );
+
+            $server->addListener(
+                PostParseDocument::class,
+                static function (PostParseDocument $event) use ($server): void {
+                    $server->watch($event->getOriginalFileName());
+                },
+            );
+        }
+
+        /** @var DocumentNode[] $documents */
         $documents = $this->commandBus->handle(
             new RunCommand($settings, $projectNode, $input),
         );
@@ -403,6 +477,34 @@ final class RunDecorator extends Command
         if ($settings->isFailOnError() && $spyProcessor->hasBeenCalled()) {
             return Command::FAILURE;
         }
+
+        if (!$watch) {
+            return Command::SUCCESS;
+        }
+
+        $server->addListener(
+            FileModifiedEvent::class,
+            new RerenderListener(
+                $output,
+                $this->commandBus,
+                $sourceFileSystem,
+                $settings,
+                $projectNode,
+                $documents,
+                $server
+            ),
+        );
+
+        $output->writeln(
+            sprintf(
+                'Server running at http://%s:%d',
+                $host,
+                $port,
+            ),
+        );
+        $output->writeln('Press Ctrl+C to stop the server');
+
+        $server->run();
 
         return Command::SUCCESS;
     }

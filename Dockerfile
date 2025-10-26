@@ -1,4 +1,10 @@
-FROM composer:2 AS builder
+FROM php:8.1-cli-alpine AS builder
+
+COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+RUN apk add --update $PHPIZE_DEPS
+RUN pie install arnaud-lb/inotify && docker-php-ext-install pcntl
 
 WORKDIR /opt/guides
 COPY . /opt/guides
@@ -7,6 +13,13 @@ RUN composer install --no-dev --no-interaction --no-progress  \
     --no-suggest --optimize-autoloader --classmap-authoritative
 
 FROM php:8.1-cli-alpine
+
+COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
+RUN apk add --update $PHPIZE_DEPS
+RUN pie install arnaud-lb/inotify && docker-php-ext-install pcntl
+
+RUN apk del $PHPIZE_DEPS && rm -rf /var/cache/apk/* /tmp/* /usr/share/php/* /usr/local/lib/php/doc/* /usr/local/lib/php/test/*
+
 COPY . /opt/guides
 WORKDIR /opt/guides
 

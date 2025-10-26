@@ -36,7 +36,7 @@ Usage with Docker (via custom container)
 
 Build the custom local Docker container::
 
-    docker build --file Dockerfile --tag typo3-docs:local .
+    make docker-build
 
 
 Execute the Docker container that is provided locally, build Documentation
