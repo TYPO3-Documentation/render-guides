@@ -19,7 +19,7 @@
         "grunt-contrib-uglify": "^5.2.2",
         "grunt-contrib-watch": "^1.1.0",
         "grunt-exec": "^3.0.0",
-        "grunt-sass": "^4.0.0",
+        "grunt-sass": "^4.0.1",
         "grunt-stylelint": "^0.20.1",
         "sass": "^1.93.3",
         "stylelint": "^16.25.0",
