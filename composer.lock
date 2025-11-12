@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fc35dadd5d0c879902eb4597fb3f615",
+    "content-hash": "bce88e18dff281cabe309daf94381179",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -785,16 +785,16 @@
         },
         {
             "name": "league/csv",
-            "version": "9.22.0",
+            "version": "9.27.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/csv.git",
-                "reference": "afc109aa11f3086b8be8dfffa04ac31480b36b76"
+                "reference": "26de738b8fccf785397d05ee2fc07b6cd8749797"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/csv/zipball/afc109aa11f3086b8be8dfffa04ac31480b36b76",
-                "reference": "afc109aa11f3086b8be8dfffa04ac31480b36b76",
+                "url": "https://api.github.com/repos/thephpleague/csv/zipball/26de738b8fccf785397d05ee2fc07b6cd8749797",
+                "reference": "26de738b8fccf785397d05ee2fc07b6cd8749797",
                 "shasum": ""
             },
             "require": {
@@ -804,14 +804,14 @@
             "require-dev": {
                 "ext-dom": "*",
                 "ext-xdebug": "*",
-                "friendsofphp/php-cs-fixer": "^3.69.0",
-                "phpbench/phpbench": "^1.4.0",
-                "phpstan/phpstan": "^1.12.18",
+                "friendsofphp/php-cs-fixer": "^3.75.0",
+                "phpbench/phpbench": "^1.4.1",
+                "phpstan/phpstan": "^1.12.27",
                 "phpstan/phpstan-deprecation-rules": "^1.2.1",
                 "phpstan/phpstan-phpunit": "^1.4.2",
                 "phpstan/phpstan-strict-rules": "^1.6.2",
-                "phpunit/phpunit": "^10.5.16 || ^11.5.7",
-                "symfony/var-dumper": "^6.4.8 || ^7.2.3"
+                "phpunit/phpunit": "^10.5.16 || ^11.5.22 || ^12.3.6",
+                "symfony/var-dumper": "^6.4.8 || ^7.3.0"
             },
             "suggest": {
                 "ext-dom": "Required to use the XMLConverter and the HTMLConverter classes",
@@ -872,7 +872,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-28T10:00:39+00:00"
+            "time": "2025-10-25T08:35:20+00:00"
         },
         {
             "name": "league/flysystem",
@@ -1576,16 +1576,16 @@
         },
         {
             "name": "phpdocumentor/dev-server",
-            "version": "1.9.1",
+            "version": "1.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/dev-server.git",
-                "reference": "0c52d65bbb3507c1b0b47e11579e5ba9e7c0fe7c"
+                "reference": "119fce271e09ea9cfb2193946ad54c593397db5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/dev-server/zipball/0c52d65bbb3507c1b0b47e11579e5ba9e7c0fe7c",
-                "reference": "0c52d65bbb3507c1b0b47e11579e5ba9e7c0fe7c",
+                "url": "https://api.github.com/repos/phpDocumentor/dev-server/zipball/119fce271e09ea9cfb2193946ad54c593397db5d",
+                "reference": "119fce271e09ea9cfb2193946ad54c593397db5d",
                 "shasum": ""
             },
             "require": {
@@ -1625,9 +1625,9 @@
             "description": "A php development server with live reloading to preview your documentation",
             "support": {
                 "issues": "https://github.com/phpDocumentor/dev-server/issues",
-                "source": "https://github.com/phpDocumentor/dev-server/tree/1.9.1"
+                "source": "https://github.com/phpDocumentor/dev-server/tree/1.9.4"
             },
-            "time": "2025-09-14T13:38:46+00:00"
+            "time": "2025-11-12T12:20:44+00:00"
         },
         {
             "name": "phpdocumentor/filesystem",
@@ -1934,21 +1934,21 @@
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
-            "version": "1.9.1",
+            "version": "1.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "26d559996c1d82cb50c7a09004456a9b16e8cda1"
+                "reference": "f31f98a0b0e51189eb1fa200fe62b531b60f2cf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/26d559996c1d82cb50c7a09004456a9b16e8cda1",
-                "reference": "26d559996c1d82cb50c7a09004456a9b16e8cda1",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/f31f98a0b0e51189eb1fa200fe62b531b60f2cf0",
+                "reference": "f31f98a0b0e51189eb1fa200fe62b531b60f2cf0",
                 "shasum": ""
             },
             "require": {
                 "doctrine/lexer": "^3.0",
-                "league/csv": "^9.10.0",
+                "league/csv": "^9.27.0",
                 "php": "^8.1",
                 "phpdocumentor/guides": "^1.0 || ^2.0",
                 "webmozart/assert": "^1.11"
@@ -1971,9 +1971,9 @@
             "description": "Adds reStructuredText Markup support to the phpDocumentor's Guides library.",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.9.1"
+                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.9.4"
             },
-            "time": "2025-10-16T21:26:46+00:00"
+            "time": "2025-11-12T19:52:51+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -8610,7 +8610,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -8619,7 +8619,7 @@
         "ext-dom": "*",
         "ext-libxml": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.1.27"
     },
