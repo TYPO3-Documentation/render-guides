@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa8724994725c6297642e0baf6e4afc2",
+    "content-hash": "db1a18c0c03b3d14f807eb3face97921",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -6206,16 +6206,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.90.0",
+            "version": "v3.91.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "61a7496712d388a016ffb152c3382892861690e9"
+                "reference": "b075d845594a90763c480589174f7f90b3aec15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/61a7496712d388a016ffb152c3382892861690e9",
-                "reference": "61a7496712d388a016ffb152c3382892861690e9",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/b075d845594a90763c480589174f7f90b3aec15f",
+                "reference": "b075d845594a90763c480589174f7f90b3aec15f",
                 "shasum": ""
             },
             "require": {
@@ -6297,7 +6297,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.90.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.91.1"
             },
             "funding": [
                 {
@@ -6305,7 +6305,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-20T15:05:44+00:00"
+            "time": "2025-12-01T11:09:57+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
