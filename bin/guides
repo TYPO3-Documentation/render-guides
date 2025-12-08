@@ -1,7 +1,138 @@
 #!/usr/bin/env php
 <?php
 
+declare(strict_types=1);
+
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
+use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
+use Symfony\Component\Console\Input\ArgvInput;
+
 $root = dirname(__DIR__);
 
-require_once  $root . '/vendor/autoload.php';
-require_once  $root . '/vendor/phpdocumentor/guides-cli/bin/guides';
+require_once $root . '/vendor/autoload.php';
+
+/**
+ * Validates a guides.xml file against the XSD schema.
+ *
+ * @return array{valid: bool, errors: string[]}
+ */
+function validateGuidesXml(string $xmlPath, string $xsdPath): array
+{
+    $errors = [];
+
+    if (!file_exists($xmlPath)) {
+        return ['valid' => true, 'errors' => []];
+    }
+
+    if (!file_exists($xsdPath)) {
+        // XSD not found, skip validation
+        return ['valid' => true, 'errors' => []];
+    }
+
+    libxml_use_internal_errors(true);
+
+    $dom = new DOMDocument();
+    if (!$dom->load($xmlPath)) {
+        $errors[] = sprintf('Failed to load %s as XML', $xmlPath);
+        foreach (libxml_get_errors() as $error) {
+            $errors[] = sprintf('  Line %d, Column %d: %s', $error->line, $error->column, trim($error->message));
+        }
+        libxml_clear_errors();
+        return ['valid' => false, 'errors' => $errors];
+    }
+
+    if (!$dom->schemaValidate($xsdPath)) {
+        $errors[] = sprintf('Schema validation failed for %s', $xmlPath);
+        foreach (libxml_get_errors() as $error) {
+            $errors[] = sprintf('  Line %d, Column %d: %s', $error->line, $error->column, trim($error->message));
+        }
+        libxml_clear_errors();
+        return ['valid' => false, 'errors' => $errors];
+    }
+
+    libxml_clear_errors();
+    return ['valid' => true, 'errors' => []];
+}
+
+/**
+ * Outputs an error message to STDERR with formatting.
+ */
+function outputError(string $message, bool $isHeader = false): void
+{
+    if ($isHeader) {
+        fwrite(STDERR, "\033[37;41m " . $message . " \033[0m\n");
+    } else {
+        fwrite(STDERR, $message . "\n");
+    }
+}
+
+// Determine which guides.xml files will be loaded (mirrors upstream logic)
+$input = new ArgvInput();
+$vendorDir = $root . '/vendor';
+$xsdPath = $vendorDir . '/phpdocumentor/guides-cli/resources/schema/guides.xsd';
+
+$configFiles = [];
+
+// Project-level config
+$projectConfig = $vendorDir . '/../guides.xml';
+if (is_file($projectConfig)) {
+    $realPath = realpath($projectConfig);
+    if ($realPath !== false) {
+        $configFiles[] = $realPath;
+    }
+}
+
+// Local config (from --config or working directory)
+$workingDir = $input->getParameterOption(['--working-dir', '-w'], getcwd(), true);
+$localConfigDir = $input->getParameterOption(['--config', '-c'], $workingDir, true);
+$localConfig = $localConfigDir . '/guides.xml';
+
+if (is_file($localConfig)) {
+    $realLocalConfig = realpath($localConfig);
+    $realProjectConfig = isset($realPath) ? $realPath : null;
+    if ($realLocalConfig !== false && $realLocalConfig !== $realProjectConfig) {
+        $configFiles[] = $realLocalConfig;
+    }
+}
+
+// Validate all config files against XSD
+$hasValidationErrors = false;
+$allErrors = [];
+
+foreach ($configFiles as $configFile) {
+    $result = validateGuidesXml($configFile, $xsdPath);
+    if (!$result['valid']) {
+        $hasValidationErrors = true;
+        $allErrors = array_merge($allErrors, $result['errors']);
+    }
+}
+
+if ($hasValidationErrors) {
+    outputError('Invalid guides.xml configuration', true);
+    fwrite(STDERR, "\n");
+    fwrite(STDERR, "Your guides.xml file failed XSD schema validation:\n");
+    fwrite(STDERR, "\n");
+    foreach ($allErrors as $error) {
+        fwrite(STDERR, "\033[33m" . $error . "\033[0m\n");
+    }
+    fwrite(STDERR, "\n");
+    fwrite(STDERR, "See: https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/GeneralConventions/GuideXml.html\n");
+    fwrite(STDERR, "\n");
+    exit(1);
+}
+
+// Validation passed, proceed with normal execution
+// Keep a fallback catch for any edge cases not covered by XSD
+try {
+    require_once $root . '/vendor/phpdocumentor/guides-cli/bin/guides';
+} catch (InvalidTypeException|InvalidConfigurationException $e) {
+    outputError('Invalid guides.xml configuration', true);
+    fwrite(STDERR, "\n");
+    fwrite(STDERR, "Your guides.xml file contains a configuration error:\n");
+    fwrite(STDERR, "  \033[33m" . $e->getMessage() . "\033[0m\n");
+    fwrite(STDERR, "\n");
+    fwrite(STDERR, "Run \033[33mvendor/bin/typo3-guides lint-guides-xml\033[0m for detailed validation.\n");
+    fwrite(STDERR, "See: https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/GeneralConventions/GuideXml.html\n");
+    fwrite(STDERR, "\n");
+    exit(1);
+}
