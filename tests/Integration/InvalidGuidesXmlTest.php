@@ -9,10 +9,32 @@ use Symfony\Component\Process\Process;
 
 /**
  * Tests error handling for invalid guides.xml configurations.
+ *
+ * The fixture is stored as guides.xml.fixture to avoid being picked up by lint-guides-xml.
+ * Tests copy it to a temp directory with the correct name before execution.
  */
 final class InvalidGuidesXmlTest extends TestCase
 {
-    private const FIXTURES_PATH = __DIR__ . '/tests/invalid-guides-xml/input';
+    private const FIXTURE_SOURCE = __DIR__ . '/../fixtures/invalid-guides-xml';
+
+    private string $tempDir = '';
+
+    protected function setUp(): void
+    {
+        $this->tempDir = sys_get_temp_dir() . '/render-guides-invalid-test-' . uniqid();
+        mkdir($this->tempDir, 0755, true);
+
+        // Copy fixture files to temp directory
+        copy(self::FIXTURE_SOURCE . '/guides.xml.fixture', $this->tempDir . '/guides.xml');
+        copy(self::FIXTURE_SOURCE . '/Index.rst', $this->tempDir . '/Index.rst');
+    }
+
+    protected function tearDown(): void
+    {
+        if (is_dir($this->tempDir)) {
+            system('rm -rf ' . escapeshellarg($this->tempDir));
+        }
+    }
 
     public function testInvalidGuidesXmlShowsHelpfulErrorMessage(): void
     {
@@ -22,8 +44,8 @@ final class InvalidGuidesXmlTest extends TestCase
             'php',
             $binPath,
             'run',
-            '--config=' . self::FIXTURES_PATH,
-            self::FIXTURES_PATH,
+            '--config=' . $this->tempDir,
+            $this->tempDir,
         ]);
 
         $process->run();
@@ -50,8 +72,8 @@ final class InvalidGuidesXmlTest extends TestCase
             'php',
             $binPath,
             'run',
-            '--config=' . self::FIXTURES_PATH,
-            self::FIXTURES_PATH,
+            '--config=' . $this->tempDir,
+            $this->tempDir,
         ]);
 
         $process->run();
