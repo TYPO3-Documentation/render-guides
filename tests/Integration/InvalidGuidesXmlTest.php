@@ -64,7 +64,7 @@ final class InvalidGuidesXmlTest extends TestCase
         self::assertStringContainsString('https://docs.typo3.org', $stderr);
     }
 
-    public function testInvalidGuidesXmlShowsCommonCauses(): void
+    public function testInvalidGuidesXmlShowsLineNumber(): void
     {
         $binPath = dirname(__DIR__, 2) . '/bin/guides';
 
@@ -80,8 +80,9 @@ final class InvalidGuidesXmlTest extends TestCase
 
         $stderr = $process->getErrorOutput();
 
-        // Should show common causes section
-        self::assertStringContainsString('Common causes', $stderr);
+        // Should show XSD validation error with line number
+        self::assertStringContainsString('Line 3', $stderr);
+        self::assertStringContainsString('theme', $stderr);
     }
 
     public function testValidGuidesXmlRendersSuccessfully(): void
