@@ -25,6 +25,11 @@ AUF DEUTSCH
 :Author:
    TYPO3
 
+:License:
+   This document is published under the
+   `Creative Commons BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`__
+   license.
+
 :Rendered:
    |today|
 

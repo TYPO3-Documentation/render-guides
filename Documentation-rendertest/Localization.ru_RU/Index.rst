@@ -150,8 +150,9 @@ TYPO3 - Ознакомительное пособие
    Участники проекта TYPO3
 
 :License:
-   Документ публикуется под
-   `Открытой на публикацию лицензией <https://www.opencontent.org/openpub/>`__.
+   This document is published under the
+   `Creative Commons BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`__
+   license.
 
 :Rendered:
    |today|

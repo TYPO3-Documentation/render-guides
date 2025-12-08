@@ -2,6 +2,10 @@
 
 TYPO3 Extension adding Double Opt-In to the TYPO3 CMS Form Framework
 
+**License:** This document is published under the [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.
+
+---
+
 ## Installation
 
 Just install it as a TYPO3 Extension or with `composer require linawolf/form_double_opt_in`.

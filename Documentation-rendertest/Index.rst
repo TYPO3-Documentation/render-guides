@@ -4,6 +4,13 @@
 TYPO3 theme rendering test
 ==========================
 
+:License:
+   This document is published under the
+   `Creative Commons BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`__
+   license.
+
+----
+
 This is taken from this repository:
 
 https://github.com/TYPO3-Documentation/sphinx_typo3_theme_rendering_test
