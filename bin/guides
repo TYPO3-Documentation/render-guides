@@ -1,7 +1,30 @@
 #!/usr/bin/env php
 <?php
 
+declare(strict_types=1);
+
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
+use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
+
 $root = dirname(__DIR__);
 
-require_once  $root . '/vendor/autoload.php';
-require_once  $root . '/vendor/phpdocumentor/guides-cli/bin/guides';
+require_once $root . '/vendor/autoload.php';
+
+try {
+    require_once $root . '/vendor/phpdocumentor/guides-cli/bin/guides';
+} catch (InvalidTypeException|InvalidConfigurationException $e) {
+    fwrite(STDERR, "\033[37;41m Invalid guides.xml configuration \033[0m\n");
+    fwrite(STDERR, "\n");
+    fwrite(STDERR, "Your guides.xml file contains a configuration error:\n");
+    fwrite(STDERR, "  \033[33m" . $e->getMessage() . "\033[0m\n");
+    fwrite(STDERR, "\n");
+    fwrite(STDERR, "\033[32mCommon causes:\033[0m\n");
+    fwrite(STDERR, "  - Invalid or unknown XML element\n");
+    fwrite(STDERR, "  - Missing required attributes\n");
+    fwrite(STDERR, "  - Invalid attribute values or types\n");
+    fwrite(STDERR, "\n");
+    fwrite(STDERR, "Run \033[33mvendor/bin/typo3-guides lint-guides-xml\033[0m for detailed validation.\n");
+    fwrite(STDERR, "See: https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/GeneralConventions/GuideXml.html\n");
+    fwrite(STDERR, "\n");
+    exit(1);
+}
