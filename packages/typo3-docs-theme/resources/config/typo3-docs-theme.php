@@ -8,6 +8,7 @@ use phpDocumentor\Guides\Event\PostParseDocument;
 use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use phpDocumentor\Guides\Event\PreParseProcess;
+use phpDocumentor\Guides\Graphs\Renderer\PlantumlRenderer;
 use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
 use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
@@ -56,6 +57,7 @@ use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItem
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\FileReferenceResolver;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
+use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlBinaryRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
@@ -196,6 +198,10 @@ return static function (ContainerConfigurator $container): void {
 
         ->set(DecoratingPlantumlRenderer::class)
         ->decorate(PlantumlServerRenderer::class)
+        ->public()
+
+        ->set(DecoratingPlantumlBinaryRenderer::class)
+        ->decorate(PlantumlRenderer::class)
         ->public()
 
         ->set(ConfvalMenuDirective::class)
