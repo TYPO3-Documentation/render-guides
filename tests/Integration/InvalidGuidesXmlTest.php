@@ -22,7 +22,7 @@ final class InvalidGuidesXmlTest extends TestCase
     protected function setUp(): void
     {
         $this->tempDir = sys_get_temp_dir() . '/render-guides-invalid-test-' . uniqid();
-        mkdir($this->tempDir, 0755, true);
+        mkdir($this->tempDir, 0o755, true);
 
         // Copy fixture files to temp directory
         copy(self::FIXTURE_SOURCE . '/guides.xml.fixture', $this->tempDir . '/guides.xml');
