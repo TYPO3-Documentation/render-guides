@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\Renderer;
 
 use phpDocumentor\Guides\Graphs\Renderer\DiagramRenderer;
-use phpDocumentor\Guides\Graphs\Renderer\PlantumlRenderer;
 use phpDocumentor\Guides\RenderContext;
 
 use function is_dir;
@@ -24,7 +23,7 @@ final class DecoratingPlantumlBinaryRenderer implements DiagramRenderer
 {
     private const TEMP_SUBDIRECTORY = '/phpdocumentor';
 
-    public function __construct(private readonly PlantumlRenderer $innerRenderer) {}
+    public function __construct(private readonly DiagramRenderer $innerRenderer) {}
 
     public function render(RenderContext $renderContext, string $diagram): string|null
     {
