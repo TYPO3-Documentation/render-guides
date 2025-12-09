@@ -10,13 +10,60 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlBinaryRenderer;
 
+use function file_exists;
 use function is_dir;
 use function rmdir;
+use function set_error_handler;
 use function sys_get_temp_dir;
+use function tempnam;
+use function unlink;
 
 final class DecoratingPlantumlBinaryRendererTest extends TestCase
 {
     private const TEMP_SUBDIRECTORY = '/phpdocumentor';
+
+    /**
+     * Canary test: Verifies that tempnam() still triggers E_NOTICE when directory doesn't exist.
+     *
+     * This test documents the upstream bug that DecoratingPlantumlBinaryRenderer works around.
+     * When this test FAILS, the upstream library (phpDocumentor/guides-graphs) has likely
+     * fixed the issue, and this decorator may no longer be needed.
+     *
+     * @see https://github.com/phpDocumentor/guides-graphs/issues/1
+     * @see https://github.com/TYPO3-Documentation/render-guides/pull/1099
+     */
+    #[Test]
+    public function tempnamStillTriggersNoticeWhenDirectoryMissing(): void
+    {
+        // Use a unique non-existent directory to avoid interference
+        $nonExistentDir = sys_get_temp_dir() . '/phpdocumentor_canary_' . uniqid();
+
+        $noticeTriggered = false;
+        $previousHandler = set_error_handler(static function (int $errno, string $errstr) use (&$noticeTriggered): bool {
+            if ($errno === E_NOTICE && str_contains($errstr, 'tempnam()')) {
+                $noticeTriggered = true;
+            }
+            return false; // Let PHP handle it normally
+        });
+
+        try {
+            $tempFile = @tempnam($nonExistentDir, 'canary_');
+
+            // Clean up the temp file if it was created (in system temp dir)
+            if ($tempFile !== false && file_exists($tempFile)) {
+                unlink($tempFile);
+            }
+        } finally {
+            set_error_handler($previousHandler);
+        }
+
+        self::assertTrue(
+            $noticeTriggered,
+            'Expected tempnam() to trigger E_NOTICE when directory does not exist. '
+            . 'If this test fails, the upstream issue may be fixed and DecoratingPlantumlBinaryRenderer '
+            . 'might no longer be needed. Check: https://github.com/phpDocumentor/guides-graphs/issues/1'
+        );
+    }
 
     #[Test]
     public function renderCreatesTempDirectoryWhenMissing(): void
