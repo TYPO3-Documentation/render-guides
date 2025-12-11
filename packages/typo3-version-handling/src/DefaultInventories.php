@@ -28,6 +28,7 @@ enum DefaultInventories: string
     case t3exceptions = 't3exceptions';
     case api = 'api';
     case policy = 'policy';
+    case guide_policy = 'guide-policy';
 
     public function isVersioned(): bool
     {
@@ -46,6 +47,7 @@ enum DefaultInventories: string
             DefaultInventories::t3writing => false,
             DefaultInventories::t3org => false,
             DefaultInventories::policy => false,
+            DefaultInventories::guide_policy => false,
 
             // Other
             DefaultInventories::fluid => false,
@@ -113,6 +115,7 @@ enum DefaultInventories: string
             DefaultInventories::t3writing => 'https://docs.typo3.org/m/typo3/writing-guide/main/en-us/',
             DefaultInventories::t3org => 'https://docs.typo3.org/m/typo3/team-t3oteam/main/en-us/',
             DefaultInventories::policy => 'https://docs.typo3.org/m/typo3/guide-policy/main/en-us/',
+            DefaultInventories::guide_policy => 'https://docs.typo3.org/m/typo3/guide-policy/main/en-us/',
 
             // Other
             DefaultInventories::fluid => 'https://docs.typo3.org/other/typo3fluid/fluid/main/en-us/',
