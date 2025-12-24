@@ -12,6 +12,13 @@ Images and figures
    :depth: 99
    :local:
 
+Images with zoom
+================
+
+..  figure:: ../images/q150_dddddd.png
+    :zoom: lightbox
+
+    Click to enlarge.
 
 Bright images with border and shadow
 ====================================
