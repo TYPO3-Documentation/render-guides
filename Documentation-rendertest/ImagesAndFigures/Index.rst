@@ -12,6 +12,29 @@ Images and figures
    :depth: 99
    :local:
 
+Images with zoom
+================
+
+..  image:: ../images/q150_f8f8f8.png
+    :zoom: lightbox
+
+    Click to open in lightbox
+
+..  figure:: ../images/q150_dddddd.png
+    :zoom: gallery
+
+    Click to open gallery.
+
+..  figure:: ../images/q150_eeeeee.png
+    :zoom: gallery
+
+    Click to open gallery.
+
+..  figure:: ../images/q150_f8f8f8.png
+    :zoom: lens
+    :zoom-factor: 2
+
+    Hover to magnify
 
 Bright images with border and shadow
 ====================================
