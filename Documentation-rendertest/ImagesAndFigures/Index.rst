@@ -15,10 +15,26 @@ Images and figures
 Images with zoom
 ================
 
-..  figure:: ../images/q150_dddddd.png
+..  image:: ../images/q150_f8f8f8.png
     :zoom: lightbox
 
-    Click to enlarge.
+    Click to open in lightbox
+
+..  figure:: ../images/q150_dddddd.png
+    :zoom: gallery
+
+    Click to open gallery.
+
+..  figure:: ../images/q150_eeeeee.png
+    :zoom: gallery
+
+    Click to open gallery.
+
+..  figure:: ../images/q150_f8f8f8.png
+    :zoom: lens
+    :zoom-factor: 2
+
+    Hover to magnify
 
 Bright images with border and shadow
 ====================================
