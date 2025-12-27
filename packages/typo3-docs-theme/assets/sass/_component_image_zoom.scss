@@ -1,0 +1,357 @@
+// =============================================================================
+// Image Zoom Component
+// =============================================================================
+// Provides multiple zoom modes for figures and images:
+// - lightbox: Click to open full-size in overlay (CSS-only fallback + dialog)
+// - gallery: Click to open with wheel zoom and gallery navigation
+// - inline: Wheel zoom directly on image
+// - lens: Magnifier lens follows cursor
+
+// -----------------------------------------------------------------------------
+// CSS-Only Lightbox (No JavaScript Fallback)
+// -----------------------------------------------------------------------------
+.image-zoom-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    padding: 2rem;
+    cursor: zoom-out;
+
+    &:target {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    img {
+        max-width: 95vw;
+        max-height: 85vh;
+        object-fit: contain;
+        border: none;
+        user-select: none;
+    }
+
+    .zoom-close {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 2rem;
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    .zoom-caption {
+        color: white;
+        margin-top: 1rem;
+        text-align: center;
+        font-style: italic;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Native Dialog Lightbox
+// -----------------------------------------------------------------------------
+.image-lightbox-dialog {
+    border: none;
+    background: transparent;
+    max-width: 95vw;
+    max-height: 95vh;
+    padding: 0;
+    cursor: zoom-out;
+
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(4px);
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 85vh;
+        object-fit: contain;
+        border: none;
+        user-select: none;
+        -webkit-user-drag: none;
+        cursor: zoom-out;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: -3rem;
+        right: 0;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .lightbox-caption {
+        color: white;
+        text-align: center;
+        margin-top: 1rem;
+    }
+}
+
+// Trigger image styling
+.lightbox-trigger {
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:focus-visible {
+        outline: 3px solid var(--color-primary, #ff8700);
+        outline-offset: 2px;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Gallery Overlay (PhotoSwipe-style)
+// -----------------------------------------------------------------------------
+.image-gallery-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    flex-direction: column;
+
+    &.active {
+        display: flex;
+    }
+}
+
+.gallery-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    gap: 0.5rem;
+
+    button {
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        width: 44px;
+        height: 44px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background 0.2s ease;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+    }
+}
+
+.gallery-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem 2rem;
+    overflow: hidden;
+    cursor: zoom-out;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border: none;
+        transition: transform 0.1s ease;
+        user-select: none;
+        -webkit-user-drag: none;
+        cursor: zoom-out;
+    }
+}
+
+.gallery-caption {
+    text-align: center;
+    color: white;
+    padding: 1rem;
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 80px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background 0.2s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    &.prev {
+        left: 1rem;
+    }
+
+    &.next {
+        right: 1rem;
+    }
+}
+
+.gallery-counter {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.gallery-zoom-level {
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+// -----------------------------------------------------------------------------
+// Product-Style Inline Zoom
+// -----------------------------------------------------------------------------
+.inline-zoom-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+
+    img {
+        transition: transform 0.1s ease;
+        cursor: zoom-in;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    &.zoomed img {
+        cursor: grab;
+    }
+
+    &.dragging img {
+        cursor: grabbing;
+    }
+}
+
+.inline-zoom-hint {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    .inline-zoom-container:hover & {
+        opacity: 1;
+    }
+
+    .inline-zoom-container.zoomed & {
+        display: none;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Magnifier Lens
+// -----------------------------------------------------------------------------
+.lens-zoom-container {
+    position: relative;
+    display: inline-block;
+
+    img {
+        cursor: crosshair;
+    }
+}
+
+.zoom-lens {
+    position: absolute;
+    border: 2px solid var(--color-primary, #ff8700);
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+    display: none;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    .lens-zoom-container:hover & {
+        display: block;
+    }
+}
+
+.zoom-result-panel {
+    position: fixed;  // Use fixed positioning for viewport-aware placement
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ddd;
+    background-color: #fff;  // Add white background
+    background-repeat: no-repeat;
+    display: none;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    pointer-events: none;  // Don't interfere with mouse events
+}
+
+// -----------------------------------------------------------------------------
+// Reduced Motion
+// -----------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+    .image-lightbox-dialog img,
+    .gallery-content img,
+    .inline-zoom-container img {
+        transition: none;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Thumbnails
+// -----------------------------------------------------------------------------
+.zoom-thumbnail {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.zoom-thumbnail-small {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+}
