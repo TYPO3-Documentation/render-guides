@@ -352,6 +352,13 @@
         function showCurrentImage() {
             if (!currentGallery) return;
             var current = currentGallery.images[currentGallery.currentIndex];
+            img.onerror = function() {
+                img.alt = 'Image failed to load: ' + current.src;
+                img.style.opacity = '0.5';
+            };
+            img.onload = function() {
+                img.style.opacity = '1';
+            };
             img.src = current.src;
             img.alt = current.caption;
             caption.textContent = current.caption;

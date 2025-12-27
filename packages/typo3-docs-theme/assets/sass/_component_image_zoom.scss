@@ -8,24 +8,6 @@
 // - lens: Magnifier lens follows cursor
 
 // -----------------------------------------------------------------------------
-// Base Figure Styles for Zoom
-// -----------------------------------------------------------------------------
-figure.zoom-enabled {
-    position: relative;
-    display: inline-block;
-
-    img {
-        cursor: zoom-in;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    &:hover img {
-        transform: scale(1.02);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-}
-
-// -----------------------------------------------------------------------------
 // CSS-Only Lightbox (No JavaScript Fallback)
 // -----------------------------------------------------------------------------
 .image-zoom-overlay {
@@ -352,7 +334,6 @@ figure.zoom-enabled {
 // Reduced Motion
 // -----------------------------------------------------------------------------
 @media (prefers-reduced-motion: reduce) {
-    figure.zoom-enabled img,
     .image-lightbox-dialog img,
     .gallery-content img,
     .inline-zoom-container img {

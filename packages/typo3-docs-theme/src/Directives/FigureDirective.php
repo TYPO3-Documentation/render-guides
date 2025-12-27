@@ -88,7 +88,8 @@ final class FigureDirective extends SubDirective
 
         // Add zoom options to the figure node if specified
         $zoomOptions = [];
-        if (isset($scalarOptions['zoom'])) {
+        $validZoomModes = ['lightbox', 'gallery', 'inline', 'lens'];
+        if (isset($scalarOptions['zoom']) && in_array($scalarOptions['zoom'], $validZoomModes, true)) {
             $zoomOptions['zoom'] = $scalarOptions['zoom'];
         }
         if (isset($scalarOptions['zoom-indicator'])) {
@@ -96,6 +97,9 @@ final class FigureDirective extends SubDirective
         }
         if (isset($scalarOptions['gallery'])) {
             $zoomOptions['gallery'] = $scalarOptions['gallery'];
+        }
+        if (isset($scalarOptions['zoom-factor'])) {
+            $zoomOptions['zoom-factor'] = $scalarOptions['zoom-factor'];
         }
         if (!empty($zoomOptions)) {
             $figureNode = $figureNode->withOptions($zoomOptions);
