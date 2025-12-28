@@ -40,6 +40,27 @@
     }
 
     // ==========================================================================
+    // Helper: Get Pinch Distance Between Two Touches
+    // ==========================================================================
+    function getPinchDistance(touches) {
+        if (touches.length < 2) return 0;
+        var dx = touches[0].clientX - touches[1].clientX;
+        var dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    // ==========================================================================
+    // Helper: Get Pinch Center Between Two Touches
+    // ==========================================================================
+    function getPinchCenter(touches) {
+        if (touches.length < 2) return { x: 0, y: 0 };
+        return {
+            x: (touches[0].clientX + touches[1].clientX) / 2,
+            y: (touches[0].clientY + touches[1].clientY) / 2
+        };
+    }
+
+    // ==========================================================================
     // Helper: Add Zoom Indicator Icon
     // ==========================================================================
     function addZoomIndicator(container, img, iconClass, tooltip, trigger, cursor) {
@@ -210,13 +231,17 @@
 
             var galleryId = trigger.getAttribute('data-gallery') || 'default';
             if (!galleries[galleryId]) {
+                // Read configurable zoom limits from first element in gallery
                 galleries[galleryId] = {
                     images: [],
                     currentIndex: 0,
                     zoom: 1,
                     panX: 0,
                     panY: 0,
-                    dragging: false
+                    dragging: false,
+                    maxZoom: parseFloat(trigger.getAttribute('data-max-zoom')) || CONFIG.maxZoom,
+                    minZoom: parseFloat(trigger.getAttribute('data-min-zoom')) || CONFIG.minZoom,
+                    zoomStep: parseFloat(trigger.getAttribute('data-zoom-step')) || CONFIG.zoomStep
                 };
             }
 
@@ -375,7 +400,7 @@
 
         function setZoom(newZoom) {
             if (!currentGallery) return;
-            currentGallery.zoom = Math.max(CONFIG.minZoom, Math.min(CONFIG.maxZoom, newZoom));
+            currentGallery.zoom = Math.max(currentGallery.minZoom, Math.min(currentGallery.maxZoom, newZoom));
             if (currentGallery.zoom === 1) {
                 currentGallery.panX = 0;
                 currentGallery.panY = 0;
@@ -416,8 +441,8 @@
             var mouseY = e.clientY - (contentRect.top + contentRect.height / 2);
 
             var oldZoom = currentGallery.zoom;
-            var delta = e.deltaY > 0 ? -CONFIG.zoomStep : CONFIG.zoomStep;
-            var newZoom = Math.max(CONFIG.minZoom, Math.min(CONFIG.maxZoom, oldZoom + delta));
+            var delta = e.deltaY > 0 ? -currentGallery.zoomStep : currentGallery.zoomStep;
+            var newZoom = Math.max(currentGallery.minZoom, Math.min(currentGallery.maxZoom, oldZoom + delta));
 
             if (newZoom === 1) {
                 currentGallery.panX = 0;
@@ -457,6 +482,66 @@
             currentGallery.dragging = false;
             if (currentGallery.zoom > 1) {
                 img.style.cursor = 'grab';
+            }
+        });
+
+        // Touch support for mobile
+        var touchStartDistance = 0;
+        var touchStartZoom = 1;
+        var touchStartPanX = 0;
+        var touchStartPanY = 0;
+        var lastTouchX = 0;
+        var lastTouchY = 0;
+
+        img.addEventListener('touchstart', function(e) {
+            if (!currentGallery) return;
+            if (e.touches.length === 2) {
+                // Pinch start
+                e.preventDefault();
+                touchStartDistance = getPinchDistance(e.touches);
+                touchStartZoom = currentGallery.zoom;
+                var center = getPinchCenter(e.touches);
+                touchStartPanX = center.x;
+                touchStartPanY = center.y;
+            } else if (e.touches.length === 1 && currentGallery.zoom > 1) {
+                // Pan start
+                e.preventDefault();
+                currentGallery.dragging = true;
+                lastTouchX = e.touches[0].clientX;
+                lastTouchY = e.touches[0].clientY;
+            }
+        }, { passive: false });
+
+        img.addEventListener('touchmove', function(e) {
+            if (!currentGallery) return;
+            if (e.touches.length === 2) {
+                // Pinch zoom
+                e.preventDefault();
+                var newDistance = getPinchDistance(e.touches);
+                if (touchStartDistance > 0) {
+                    var scale = newDistance / touchStartDistance;
+                    var newZoom = Math.max(currentGallery.minZoom, Math.min(currentGallery.maxZoom, touchStartZoom * scale));
+                    currentGallery.zoom = newZoom;
+                    updateTransform();
+                }
+            } else if (e.touches.length === 1 && currentGallery.dragging) {
+                // Pan
+                e.preventDefault();
+                var deltaX = e.touches[0].clientX - lastTouchX;
+                var deltaY = e.touches[0].clientY - lastTouchY;
+                currentGallery.panX += deltaX;
+                currentGallery.panY += deltaY;
+                lastTouchX = e.touches[0].clientX;
+                lastTouchY = e.touches[0].clientY;
+                updateTransform();
+            }
+        }, { passive: false });
+
+        img.addEventListener('touchend', function(e) {
+            if (!currentGallery) return;
+            if (e.touches.length === 0) {
+                currentGallery.dragging = false;
+                touchStartDistance = 0;
             }
         });
 
@@ -582,6 +667,11 @@
             var img = container.querySelector('img');
             if (!img) return;
 
+            // Read configurable zoom limits from data attributes
+            var maxZoom = parseFloat(container.getAttribute('data-max-zoom')) || CONFIG.inlineMaxZoom;
+            var minZoom = parseFloat(container.getAttribute('data-min-zoom')) || CONFIG.minZoom;
+            var zoomStep = parseFloat(container.getAttribute('data-zoom-step')) || CONFIG.zoomStep;
+
             var zoom = 1;
             var panX = 0, panY = 0;
             var dragging = false;
@@ -652,7 +742,7 @@
 
             function setZoom(newZoom, centerX, centerY) {
                 var oldZoom = zoom;
-                newZoom = Math.max(CONFIG.minZoom, Math.min(CONFIG.inlineMaxZoom, newZoom));
+                newZoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
 
                 if (newZoom === 1) {
                     panX = 0;
@@ -770,6 +860,64 @@
                 panY = 0;
                 updateTransform();
                 announceZoom();
+            });
+
+            // Touch support for mobile
+            var touchStartDistance = 0;
+            var touchStartZoom = 1;
+            var lastTouchX = 0;
+            var lastTouchY = 0;
+            var touchDragging = false;
+
+            img.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 2) {
+                    // Pinch start
+                    e.preventDefault();
+                    touchStartDistance = getPinchDistance(e.touches);
+                    touchStartZoom = zoom;
+                } else if (e.touches.length === 1) {
+                    if (zoom > 1) {
+                        // Pan start when zoomed
+                        e.preventDefault();
+                        touchDragging = true;
+                        lastTouchX = e.touches[0].clientX;
+                        lastTouchY = e.touches[0].clientY;
+                        container.classList.add('dragging');
+                    }
+                }
+            }, { passive: false });
+
+            img.addEventListener('touchmove', function(e) {
+                if (e.touches.length === 2) {
+                    // Pinch zoom
+                    e.preventDefault();
+                    var newDistance = getPinchDistance(e.touches);
+                    if (touchStartDistance > 0) {
+                        var scale = newDistance / touchStartDistance;
+                        var newZoom = Math.max(minZoom, Math.min(maxZoom, touchStartZoom * scale));
+                        zoom = newZoom;
+                        updateTransform();
+                        announceZoom();
+                    }
+                } else if (e.touches.length === 1 && touchDragging) {
+                    // Pan
+                    e.preventDefault();
+                    var deltaX = e.touches[0].clientX - lastTouchX;
+                    var deltaY = e.touches[0].clientY - lastTouchY;
+                    panX += deltaX;
+                    panY += deltaY;
+                    lastTouchX = e.touches[0].clientX;
+                    lastTouchY = e.touches[0].clientY;
+                    updateTransform();
+                }
+            }, { passive: false });
+
+            img.addEventListener('touchend', function(e) {
+                if (e.touches.length === 0) {
+                    touchDragging = false;
+                    touchStartDistance = 0;
+                    container.classList.remove('dragging');
+                }
             });
         });
     }

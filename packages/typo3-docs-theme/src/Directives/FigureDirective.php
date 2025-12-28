@@ -34,16 +34,20 @@ use function dirname;
  *      :width: 100
  *      :alt: An image
  *      :zoom: lightbox
+ *      :zoom-factor: 3
  *
  *      Here is an awesome caption
  *
- * Supported zoom values:
- * - lightbox (default) - Dialog overlay
- * - gallery - PhotoSwipe-style with wheel zoom
- * - inline - In-place zoom
- * - lens - Magnifier lens
- * - css-only - No JS fallback
- * - none or false - Disable zoom
+ * Supported zoom modes:
+ * - lightbox - Click to open in dialog overlay
+ * - gallery - Click to open with wheel zoom and navigation
+ * - inline - Scroll wheel zoom directly on image
+ * - lens - Magnifier lens follows cursor
+ *
+ * Additional options:
+ * - :gallery: - Group name for gallery navigation
+ * - :zoom-indicator: - Show/hide zoom icon (default: true)
+ * - :zoom-factor: - Magnification factor for lens mode (default: 2)
  */
 final class FigureDirective extends SubDirective
 {
