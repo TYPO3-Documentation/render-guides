@@ -65,3 +65,12 @@ Zoom Options
     :alt: No indicator
 
     Hidden zoom indicator
+
+Invalid Zoom Value
+==================
+
+..  figure:: /typo3-logo.png
+    :zoom: invalid-value
+    :alt: Invalid zoom
+
+    Should not have data-zoom attribute

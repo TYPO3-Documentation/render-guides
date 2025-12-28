@@ -18,12 +18,13 @@ use phpDocumentor\Guides\Nodes\FigureNode;
 use phpDocumentor\Guides\Nodes\ImageNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
-use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
+use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 
 use function dirname;
+use function in_array;
 
 /**
  * Renders a figure with optional zoom functionality.
@@ -49,13 +50,15 @@ use function dirname;
  * - :zoom-indicator: - Show/hide zoom icon (default: true)
  * - :zoom-factor: - Magnification factor for lens mode (default: 2)
  */
-final class FigureDirective extends SubDirective
+final class FigureDirective extends BaseDirective
 {
+    private const VALID_ZOOM_MODES = ['lightbox', 'gallery', 'inline', 'lens'];
+
+    /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
         private readonly DocumentNameResolverInterface $documentNameResolver,
-        protected Rule $startingRule,
+        private readonly Rule $startingRule,
     ) {
-        parent::__construct($startingRule);
     }
 
     public function getName(): string
@@ -63,20 +66,23 @@ final class FigureDirective extends SubDirective
         return 'figure';
     }
 
-    /** {@inheritDoc}
-     *
-     * @param Directive $directive
-     */
-    protected function processSub(
+    public function process(
         BlockContext $blockContext,
-        CollectionNode $collectionNode,
         Directive $directive,
     ): Node|null {
+        $collectionNode = $this->startingRule->apply($blockContext);
+
+        if ($collectionNode === null) {
+            return null;
+        }
+
+        $scalarOptions = $this->optionsToArray($directive->getOptions());
+
+        // Create the image node with standard options
         $image = new ImageNode($this->documentNameResolver->absoluteUrl(
             dirname($blockContext->getDocumentParserContext()->getContext()->getCurrentAbsolutePath()),
             $directive->getData(),
         ));
-        $scalarOptions = $this->optionsToArray($directive->getOptions());
         $image = $image->withOptions([
             'width' => $scalarOptions['width'] ?? null,
             'height' => $scalarOptions['height'] ?? null,
@@ -90,23 +96,32 @@ final class FigureDirective extends SubDirective
 
         $figureNode = new FigureNode($image, new CollectionNode($collectionNode->getChildren()));
 
-        // Add zoom options to the figure node if specified
-        $zoomOptions = [];
-        $validZoomModes = ['lightbox', 'gallery', 'inline', 'lens'];
-        if (isset($scalarOptions['zoom']) && in_array($scalarOptions['zoom'], $validZoomModes, true)) {
-            $zoomOptions['zoom'] = $scalarOptions['zoom'];
+        // Build filtered options - copy all options but validate zoom mode
+        // We must set all options ourselves because DirectiveRule::postProcessNode
+        // will merge raw options with node options, and we need our filtered
+        // zoom value to take precedence
+        $filteredOptions = $scalarOptions;
+
+        // Validate zoom mode - set to null for invalid values
+        // We must keep the key with null value so it overrides the raw option in postProcessNode
+        if (isset($filteredOptions['zoom']) && !in_array($filteredOptions['zoom'], self::VALID_ZOOM_MODES, true)) {
+            $filteredOptions['zoom'] = null;
         }
-        if (isset($scalarOptions['zoom-indicator'])) {
-            $zoomOptions['zoom-indicator'] = $scalarOptions['zoom-indicator'];
-        }
-        if (isset($scalarOptions['gallery'])) {
-            $zoomOptions['gallery'] = $scalarOptions['gallery'];
-        }
-        if (isset($scalarOptions['zoom-factor'])) {
-            $zoomOptions['zoom-factor'] = $scalarOptions['zoom-factor'];
-        }
-        if (!empty($zoomOptions)) {
-            $figureNode = $figureNode->withOptions($zoomOptions);
+
+        // Remove options that are already handled by the image node
+        unset(
+            $filteredOptions['width'],
+            $filteredOptions['height'],
+            $filteredOptions['alt'],
+            $filteredOptions['scale'],
+            $filteredOptions['target'],
+            $filteredOptions['class'],
+            $filteredOptions['name'],
+            $filteredOptions['align'],
+        );
+
+        if (!empty($filteredOptions)) {
+            $figureNode = $figureNode->withOptions($filteredOptions);
         }
 
         return $figureNode;

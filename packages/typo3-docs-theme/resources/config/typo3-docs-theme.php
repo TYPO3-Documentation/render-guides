@@ -202,6 +202,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(ConfvalMenuDirective::class)
         ->set(DirectoryTreeDirective::class)
         ->set(FigureDirective::class)
+        ->arg('$startingRule', service(DirectiveContentRule::class))
         ->set(GlossaryDirective::class)
         ->set(GroupTabDirective::class)
         ->set(IncludeDirective::class)
