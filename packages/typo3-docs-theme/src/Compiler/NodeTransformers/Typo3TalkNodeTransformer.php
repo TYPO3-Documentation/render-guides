@@ -40,7 +40,7 @@ final class Typo3TalkNodeTransformer implements NodeTransformer
             return $node;
         }
         if ($node instanceof Typo3TalkNode && $this->sectionStack !== []) {
-            $currentSection = end($this->sectionStack);
+            $currentSection = array_last($this->sectionStack);
             $node->setSectionNode($currentSection);
         }
         return $node;
