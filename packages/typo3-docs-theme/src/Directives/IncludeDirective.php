@@ -55,7 +55,7 @@ final class IncludeDirective extends BaseDirective
 
 
     /**
-     * @throws \League\Flysystem\FileNotFoundException
+     * @throws \League\Flysystem\FilesystemException
      */
     public function resolveGlobInclude(BlockContext $blockContext, string $inputPath, Directive $directive): LiteralBlockNode|CollectionNode|CodeNode
     {
@@ -104,7 +104,7 @@ final class IncludeDirective extends BaseDirective
     }
 
     /**
-     * @throws \League\Flysystem\FileNotFoundException
+     * @throws \League\Flysystem\FilesystemException
      */
     public function resolveBasicInclude(BlockContext $blockContext, string $inputPath, Directive $directive): LiteralBlockNode|CollectionNode|CodeNode
     {
@@ -122,9 +122,9 @@ final class IncludeDirective extends BaseDirective
     }
 
     /**
-     * @throws \League\Flysystem\FileNotFoundException
+     * @throws \League\Flysystem\FilesystemException
      */
-    public function getCollectionFromPath(\League\Flysystem\FilesystemInterface|\phpDocumentor\FileSystem\FileSystem $origin, string $path, Directive $directive, BlockContext $blockContext): LiteralBlockNode|CollectionNode|CodeNode
+    public function getCollectionFromPath(\League\Flysystem\FilesystemOperator|\League\Flysystem\FilesystemInterface|\phpDocumentor\FileSystem\FileSystem $origin, string $path, Directive $directive, BlockContext $blockContext): LiteralBlockNode|CollectionNode|CodeNode
     {
         $contents = $origin->read($path);
 

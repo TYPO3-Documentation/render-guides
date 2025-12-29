@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'configure', description: 'Configure guides.xml attributes programmatically.')]
 final class ConfigureCommand extends Command
 {
-    protected static $defaultName = 'configure';
-
     /** @var \DOMDocument Holds the XML document that will be written (guides.xml) */
     private \DOMDocument $xmlDocument;
 

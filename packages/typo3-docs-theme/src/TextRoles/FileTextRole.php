@@ -2,7 +2,6 @@
 
 namespace T3Docs\Typo3DocsTheme\TextRoles;
 
-use phpDocumentor\Guides\Nodes\Inline\AbstractLinkInlineNode;
 use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
 
@@ -21,7 +20,7 @@ final class FileTextRole extends CustomLinkTextRole
     }
 
     #[\Override]
-    protected function createNode(DocumentParserContext $documentParserContext, string $referenceTarget, string|null $referenceName, string $role): AbstractLinkInlineNode
+    protected function createNode(DocumentParserContext $documentParserContext, string $referenceTarget, string|null $referenceName, string $role): \T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode
     {
         return $this->createNodeWithInterlink($referenceTarget, '', $referenceName);
     }

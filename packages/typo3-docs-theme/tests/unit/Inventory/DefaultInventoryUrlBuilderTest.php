@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
+namespace T3Docs\Typo3DocsTheme\Tests\Inventory;
+
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInventoryUrlBuilder;
 use T3Docs\Typo3DocsTheme\Inventory\InterlinkParts;
@@ -12,11 +14,11 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 
 final class DefaultInventoryUrlBuilderTest extends TestCase
 {
-    private Typo3VersionService&MockObject $versions;
+    private Typo3VersionService&Stub $versions;
 
     protected function setUp(): void
     {
-        $this->versions = $this->createMock(Typo3VersionService::class);
+        $this->versions = $this->createStub(Typo3VersionService::class);
     }
 
     #[Test]

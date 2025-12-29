@@ -76,7 +76,7 @@ class SettingsMigrator
     private function createExtensionSection(): \DOMElement
     {
         $extension = $this->xmlDocument->createElement('extension');
-        $extension->setAttribute('class', '\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension');
+        $extension->setAttribute('class', \T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension::class);
 
         if (!is_array($this->legacySettings['html_theme_options'] ?? false)) {
             return $extension;
