@@ -27,7 +27,7 @@ Usage with Docker (via supplied container)
     # "/project" is a fixed directory name, not a placeholder.
     docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:latest --config=Documentation
 
-(see :ref:`_Setup_Docker:Docker containers` for complete documentation. You
+(see `Docker containers <https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Installation/Index.html#docker>`__ for complete documentation. You
 can also use a specific version of the `render-guides` Docker container, i.e. `:1` for the latest `1.x` version.)
 
 
@@ -45,7 +45,7 @@ On macOS you need to specify the parameter "--user=$(id -u):$(id -g)"
 
     docker run --rm -v ${PWD}:/project -it typo3-docs:local --progress --config=Documentation
 
-(see :ref:`_Setup_Docker:Docker containers` for complete documentation)
+(see `Docker <https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Installation/Index.html#docker>`__ for complete documentation)
 
 You can inspect the created container by running a shell::
 
@@ -60,7 +60,7 @@ Usage with DDEV
     # Renders all files in the `Documentation` and store in `Documentation-GENERATED-temp`.
     ddev composer make docs
 
-(see :ref:`_Setup_DDEV:DDEV` for complete documentation)
+(see `DDEV <https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Installation/Index.html#ddev>`__ for complete documentation)
 
 Usage with local PHP
 ====================
@@ -70,9 +70,9 @@ Usage with local PHP
     # Renders all files in the `Documentation` and store in `Documentation-GENERATED-temp`.
     make docs
 
-(see :ref:`_Setup_PHP:Local PHP` for complete documentation)
+(see `PHP <https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Installation/Index.html#php>`__ for complete documentation)
 
 Contributing
 ============
 
-See :ref:`Contributing` for more information.
+See the `Contributing Guide <https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Developer/Contributing.html>`__ for more information.
