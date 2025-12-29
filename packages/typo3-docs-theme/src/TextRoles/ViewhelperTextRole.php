@@ -27,6 +27,7 @@ final class ViewhelperTextRole extends CustomLinkTextRole
         return new ReferenceNode($id, $referenceName ?? '', $interlinkDomain, 'typo3:' . $this->getName());
     }
 
+    #[\Override]
     public function getName(): string
     {
         return self::TYPE;

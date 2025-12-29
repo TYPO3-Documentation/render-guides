@@ -30,11 +30,13 @@ abstract class CustomLinkTextRole implements TextRole
     /**
      * @return list<string>
      */
+    #[\Override]
     public function getAliases(): array
     {
         return [];
     }
 
+    #[\Override]
     public function processNode(
         DocumentParserContext $documentParserContext,
         string $role,

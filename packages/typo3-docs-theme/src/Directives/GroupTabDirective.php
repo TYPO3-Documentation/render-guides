@@ -31,11 +31,13 @@ final class GroupTabDirective extends SubDirective
     ) {
         parent::__construct($startingRule);
     }
+    #[\Override]
     public function getName(): string
     {
         return 'group-tab';
     }
 
+    #[\Override]
     protected function processSub(
         BlockContext $blockContext,
         CollectionNode $collectionNode,

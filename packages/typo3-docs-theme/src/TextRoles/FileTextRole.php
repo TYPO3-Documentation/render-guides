@@ -8,6 +8,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
 
 final class FileTextRole extends CustomLinkTextRole
 {
+    #[\Override]
     public function getName(): string
     {
         return 'file';

@@ -26,6 +26,7 @@ use T3Docs\Typo3DocsTheme\Nodes\GlossaryNode;
 final class GlossaryDirective extends SubDirective
 {
     public const string NAME = 'glossary';
+    #[\Override]
     protected function processSub(
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
@@ -61,6 +62,7 @@ final class GlossaryDirective extends SubDirective
             $entries,
         );
     }
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;

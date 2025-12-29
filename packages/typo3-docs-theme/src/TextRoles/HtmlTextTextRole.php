@@ -8,16 +8,19 @@ use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 
 final class HtmlTextTextRole implements TextRole
 {
+    #[\Override]
     public function getName(): string
     {
         return 'html';
     }
 
+    #[\Override]
     public function getAliases(): array
     {
         return [];
     }
 
+    #[\Override]
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): \T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode
     {
         return new CodeInlineNode($rawContent, 'Code written in HTML', 'HyperText Markup Language.');

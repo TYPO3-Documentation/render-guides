@@ -37,11 +37,13 @@ final class DirectoryTreeDirective extends SubDirective
         parent::__construct($startingRule);
     }
 
+    #[\Override]
     public function getName(): string
     {
         return 'directory-tree';
     }
 
+    #[\Override]
     protected function processSub(
         BlockContext   $blockContext,
         CollectionNode $collectionNode,

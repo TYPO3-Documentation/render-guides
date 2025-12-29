@@ -24,11 +24,13 @@ final class RawDirective extends ActionDirective
         private readonly LoggerInterface $logger
     ) {}
 
+    #[\Override]
     public function getName(): string
     {
         return 'raw';
     }
 
+    #[\Override]
     public function processAction(BlockContext $blockContext, Directive $directive): void
     {
         $this->logger->error('The raw directive is not supported for security reasons. ', $blockContext->getLoggerInformation());

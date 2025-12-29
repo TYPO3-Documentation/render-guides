@@ -37,11 +37,13 @@ final class Typo3FileDirective extends SubDirective
         parent::__construct($startingRule);
     }
 
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;
     }
 
+    #[\Override]
     protected function processSub(
         BlockContext $blockContext,
         CollectionNode $collectionNode,

@@ -42,6 +42,7 @@ final class SiteSetSettingsDirective extends BaseDirective
         private readonly AnchorNormalizer $anchorNormalizer,
     ) {}
 
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;

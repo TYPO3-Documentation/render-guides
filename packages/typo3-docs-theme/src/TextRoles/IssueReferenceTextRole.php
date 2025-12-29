@@ -20,6 +20,7 @@ final class IssueReferenceTextRole extends AbstractReferenceTextRole
 
     final public const string NAME = 'issue';
 
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;
@@ -31,6 +32,7 @@ final class IssueReferenceTextRole extends AbstractReferenceTextRole
         return [];
     }
 
+    #[\Override]
     protected function createNode(string $referenceTarget, string|null $referenceName, string $role): \phpDocumentor\Guides\Nodes\Inline\HyperLinkNode
     {
         if ((int)$referenceTarget <= 0) {

@@ -16,10 +16,10 @@ use phpDocumentor\Guides\RenderContext;
 use T3Docs\Typo3DocsTheme\Nodes\MainMenuJsonNode;
 
 /** @implements NodeRenderer<Node> */
-final class MainMenuJsonDocumentRenderer implements NodeRenderer
+final readonly class MainMenuJsonDocumentRenderer implements NodeRenderer
 {
     public function __construct(
-        private readonly DelegatingReferenceResolver $delegatingReferenceResolver,
+        private DelegatingReferenceResolver $delegatingReferenceResolver,
     ) {}
 
     public function supports(string $nodeFqcn): bool

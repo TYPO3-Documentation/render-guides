@@ -31,6 +31,7 @@ final class ApiClassTextRole extends AbstractReferenceTextRole
         private readonly InterlinkParser $interlinkParser,
     ) {}
 
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;
@@ -42,6 +43,7 @@ final class ApiClassTextRole extends AbstractReferenceTextRole
         return [];
     }
 
+    #[\Override]
     protected function createNode(string $referenceTarget, string|null $referenceName, string $role): \phpDocumentor\Guides\Nodes\Inline\ReferenceNode
     {
         $interlinkData = $this->interlinkParser->extractInterlink($referenceTarget);

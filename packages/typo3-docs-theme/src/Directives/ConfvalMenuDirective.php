@@ -36,6 +36,7 @@ final class ConfvalMenuDirective extends SubDirective
         parent::__construct($startingRule);
         $genericLinkProvider->addGenericLink(self::NAME, ConfvalMenuNode::LINK_TYPE, ConfvalMenuNode::LINK_PREFIX);
     }
+    #[\Override]
     protected function processSub(
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
@@ -93,6 +94,7 @@ final class ConfvalMenuDirective extends SubDirective
             $directive->getOptionBool('noindex'),
         );
     }
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;

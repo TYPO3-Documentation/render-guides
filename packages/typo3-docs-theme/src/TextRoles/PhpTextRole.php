@@ -21,11 +21,13 @@ final readonly class PhpTextRole implements TextRole
         private Typo3VersionService $typo3VersionService,
     ) {}
 
+    #[\Override]
     public function getName(): string
     {
         return 'php';
     }
 
+    #[\Override]
     public function getAliases(): array
     {
         return [
@@ -33,6 +35,7 @@ final readonly class PhpTextRole implements TextRole
         ];
     }
 
+    #[\Override]
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): \T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode
     {
         $fqn = [];

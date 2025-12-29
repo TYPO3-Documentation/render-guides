@@ -36,11 +36,13 @@ final class T3FieldListTableDirective extends SubDirective
         parent::__construct($startingRule);
     }
 
+    #[\Override]
     public function getName(): string
     {
         return 't3-field-list-table';
     }
 
+    #[\Override]
     protected function processSub(
         BlockContext $blockContext,
         CollectionNode $collectionNode,

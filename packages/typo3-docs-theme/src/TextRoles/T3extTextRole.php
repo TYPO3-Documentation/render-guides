@@ -12,6 +12,7 @@ final class T3extTextRole implements TextRole
     use EmbeddedReferenceParser;
     final public const string NAME = 't3ext';
 
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;
@@ -23,6 +24,7 @@ final class T3extTextRole implements TextRole
         return [];
     }
 
+    #[\Override]
     public function processNode(
         DocumentParserContext $documentParserContext,
         string $role,
