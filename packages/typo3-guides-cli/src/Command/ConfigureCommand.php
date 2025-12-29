@@ -335,7 +335,7 @@ final class ConfigureCommand extends Command
         return true;
     }
 
-    private function operateOnXmlGuides(\SimpleXMLElement $xml, InputInterface $input, OutputInterface $output): bool
+    private function operateOnXmlGuides(InputInterface $input, OutputInterface $output): bool
     {
         $guidesVariables = [
             'input'                 => $input->getOption('guides-input'),
@@ -416,7 +416,7 @@ final class ConfigureCommand extends Command
                 }
 
                 // An existing inventoryElement can be removed, if the URL is set empty.
-                if (strlen($inventoryUrl) === 0) {
+                if ($inventoryUrl === '') {
                     $output->writeln(sprintf('Removing empty <info>guides.inventory[id=%s]</info> element.', $inventoryId));
                     unset($inventoryElement[0]);
                 } elseif ($inventoryElement instanceof \SimpleXMLElement) {
@@ -450,7 +450,7 @@ final class ConfigureCommand extends Command
         /** @var array<int,string> $extensionAttributeClasses */
         $extensionAttributeClasses = (array)$input->getOption('extension-class');
 
-        if (count($extensionAttributeKey) != count($extensionAttributeValues) || count($extensionAttributeValues) != count($extensionAttributeClasses)) {
+        if (count($extensionAttributeKey) !== count($extensionAttributeValues) || count($extensionAttributeValues) !== count($extensionAttributeClasses)) {
             $output->writeln('Number of <info>extension-class</info>, <info>extension-attribute</info> and <info>extension-value</info> arguments must be the same, as they relate to each other.');
         } else {
             $extensionAttributes = array_combine($extensionAttributeKey, $extensionAttributeValues);
@@ -484,7 +484,7 @@ final class ConfigureCommand extends Command
                 }
 
                 // An existing extensionElement can be removed, if the URL is set empty.
-                if (strlen($extensionAttributeValue) === 0 && isset($extensionElement[0][$extensionAttribute])) {
+                if ($extensionAttributeValue === '' && isset($extensionElement[0][$extensionAttribute])) {
                     $output->writeln(sprintf('Removing empty <info>guides.extension[class=%s, attribute=%s]</info> element.', $extensionAttributeClasses[$classIndex], $extensionAttribute));
                     unset($extensionElement[0][$extensionAttribute]);
                 } elseif ($extensionElement instanceof \SimpleXMLElement) {
@@ -530,7 +530,7 @@ final class ConfigureCommand extends Command
             }
 
             // An existing inventoryElement can be removed, if the URL is set empty.
-            if (strlen($outputFormat) === 0) {
+            if ($outputFormat === '') {
                 $output->writeln(sprintf('Removing empty <info>guides.output-format[%s]</info> element.', $outputFormat));
                 unset($outputFormatElement[0]);
             } elseif ($outputFormatElement instanceof \SimpleXMLElement) {
@@ -560,7 +560,7 @@ final class ConfigureCommand extends Command
         }
 
         $this->operateOnXmlProject($xml, $input, $output);
-        $this->operateOnXmlGuides($xml, $input, $output);
+        $this->operateOnXmlGuides($input, $output);
         $this->operateOnXmlInventory($xml, $input, $output);
         $this->operateOnXmlExtension($xml, $input, $output);
         $this->operateOnXmlOutputFormat($xml, $input, $output);

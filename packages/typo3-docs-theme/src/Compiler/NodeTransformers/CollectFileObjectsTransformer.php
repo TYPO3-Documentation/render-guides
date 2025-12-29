@@ -24,11 +24,11 @@ use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
 use function sprintf;
 
 /** @implements NodeTransformer<Typo3FileNode> */
-final class CollectFileObjectsTransformer implements NodeTransformer
+final readonly class CollectFileObjectsTransformer implements NodeTransformer
 {
     public function __construct(
-        private readonly ObjectInventory $objectInventory,
-        private readonly LoggerInterface $logger,
+        private ObjectInventory $objectInventory,
+        private LoggerInterface $logger,
     ) {}
 
     public function enterNode(Node $node, CompilerContextInterface $compilerContext): Node
@@ -48,7 +48,7 @@ final class CollectFileObjectsTransformer implements NodeTransformer
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): \phpDocumentor\Guides\Nodes\Node
     {
         return $node;
     }

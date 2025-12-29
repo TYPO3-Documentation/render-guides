@@ -25,7 +25,7 @@ use function phpDocumentor\Guides\DependencyInjection\template;
 
 class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface
 {
-    private const HTML = [
+    private const array HTML = [
         YoutubeNode::class => 'body/directive/youtube.html.twig',
     ];
 
@@ -82,7 +82,6 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
 
     /**
      * @param array<int, mixed> $configs
-     * @return string
      */
     private function getConfigValue(array $configs, string $key, string $default): string
     {

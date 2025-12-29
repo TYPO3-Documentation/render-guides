@@ -8,10 +8,10 @@ use phpDocumentor\Guides\Renderer\TypeRenderer;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 
-final class MainMenuJsonRenderer implements TypeRenderer
+final readonly class MainMenuJsonRenderer implements TypeRenderer
 {
     public function __construct(
-        private readonly MainMenuJsonDocumentRenderer $renderer
+        private MainMenuJsonDocumentRenderer $renderer
     ) {}
 
     public function render(RenderCommand $renderCommand): void
@@ -28,7 +28,7 @@ final class MainMenuJsonRenderer implements TypeRenderer
         )->withIterator($renderCommand->getDocumentIterator())
         ->withOutputFilePath('mainmenu.json');
 
-        foreach ($renderCommand->getDocumentArray() as $key => $document) {
+        foreach ($renderCommand->getDocumentArray() as $document) {
             $headerNodes = $document->getHeaderNodes();
             foreach ($headerNodes as $headerNode) {
                 if ($headerNode instanceof TemplateNode && $headerNode->getValue() === 'mainmenu.json') {

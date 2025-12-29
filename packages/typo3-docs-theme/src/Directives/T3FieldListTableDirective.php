@@ -86,7 +86,6 @@ class T3FieldListTableDirective extends SubDirective
                 $i++;
             }
         }
-        $tableNode = new TableNode($rows, $headers);
-        return $tableNode;
+        return new TableNode($rows, $headers);
     }
 }

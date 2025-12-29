@@ -7,10 +7,11 @@ use Twig\TwigFilter;
 
 final class RstExtension extends AbstractExtension
 {
+    #[\Override]
     public function getFilters(): array
     {
         return [
-            new TwigFilter('repeat', [$this, 'repeatString']),
+            new TwigFilter('repeat', $this->repeatString(...)),
         ];
     }
 

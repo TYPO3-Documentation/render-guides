@@ -15,15 +15,12 @@ final class MigrateSettingsCommand extends Command
 {
     protected static $defaultName = 'migrate';
 
-    private readonly Processor $processor;
-
     /**
      * Arguments for testing only!
      */
-    public function __construct(?Processor $processor = null)
+    public function __construct(private readonly ?Processor $processor = new Processor())
     {
         parent::__construct();
-        $this->processor = $processor ?? new Processor();
     }
 
     protected function configure(): void

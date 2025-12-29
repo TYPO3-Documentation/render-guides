@@ -86,7 +86,6 @@ final class LintGuidesXmlCommand extends Command
     }
 
     /**
-     * @param string $baseDirectory
      * @return array<int, string>
      */
     private function gatherFiles(string $baseDirectory): array

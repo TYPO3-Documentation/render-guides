@@ -10,13 +10,13 @@ use phpDocumentor\Guides\Event\PostRenderProcess;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Finder\Finder;
 
-final class CopyResources
+final readonly class CopyResources
 {
-    private const SOURCE_PATH = '../../resources/public';
-    private const DESTINATION_PATH = '/_resources';
+    private const string SOURCE_PATH = '../../resources/public';
+    private const string DESTINATION_PATH = '/_resources';
 
     public function __construct(
-        private readonly LoggerInterface $logger,
+        private LoggerInterface $logger,
     ) {}
 
     public function __invoke(PostRenderProcess $event): void
@@ -57,7 +57,9 @@ final class CopyResources
                 $file->getFilename()
             );
             $destination->putStream($destinationPath, $stream);
-            is_resource($stream) && fclose($stream);
+            if (is_resource($stream)) {
+                fclose($stream);
+            }
         }
     }
 }

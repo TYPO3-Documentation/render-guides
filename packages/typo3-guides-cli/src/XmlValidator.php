@@ -9,8 +9,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class XmlValidator
 {
     /**
-     * @param string $xmlFilePath
-     * @param string $xsdFilePath
      * @param array<int, string> $errors
      */
     public function __construct(
@@ -31,7 +29,7 @@ final class XmlValidator
         libxml_use_internal_errors(true);
 
         // Custom error handler function
-        set_error_handler([$this, 'errorHandler']);
+        set_error_handler($this->errorHandler(...));
 
         try {
             $dom->load($this->xmlFilePath);

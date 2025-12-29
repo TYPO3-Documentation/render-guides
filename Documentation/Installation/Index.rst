@@ -130,6 +130,11 @@ To render the documentation you can run
 PHP
 ---
 
+..  note::
+
+    **Requirements:** PHP 8.5+ is required to run this project locally.
+    PHP 8.1-8.4 are no longer supported.
+
 If your host environment already has a PHP binary and is able to run Composer,
 as well as interpret Makefile syntax (i.e. through a `build-essential` package),
 you can create documentation natively, without needing docker.

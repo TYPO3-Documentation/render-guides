@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\TextRoles;
 
-use phpDocumentor\Guides\Nodes\Inline\AbstractLinkInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
@@ -22,8 +21,8 @@ use phpDocumentor\Guides\RestructuredText\TextRoles\GenericLinkProvider;
 
 final class ApiClassTextRole extends AbstractReferenceTextRole
 {
-    final public const NAME = 'api-class';
-    final public const TYPE = 'api-class';
+    final public const string NAME = 'api-class';
+    final public const string TYPE = 'api-class';
     protected bool $useRawContent = true;
 
     public function __construct(
@@ -43,8 +42,7 @@ final class ApiClassTextRole extends AbstractReferenceTextRole
         return [];
     }
 
-    /** @return ReferenceNode */
-    protected function createNode(string $referenceTarget, string|null $referenceName, string $role): AbstractLinkInlineNode
+    protected function createNode(string $referenceTarget, string|null $referenceName, string $role): \phpDocumentor\Guides\Nodes\Inline\ReferenceNode
     {
         $interlinkData = $this->interlinkParser->extractInterlink($referenceTarget);
         $reference = $this->anchorReducer->reduceAnchor($interlinkData->reference);

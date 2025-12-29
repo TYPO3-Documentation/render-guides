@@ -53,11 +53,7 @@ class DirectoryTreeDirective extends SubDirective
             self::$counter++;
             $id = 'directory-tree-' . self::$counter;
         }
-        if ($directive->hasOption('level')) {
-            $level = (int) $directive->getOption('level')->getValue();
-        } else {
-            $level = PHP_INT_MAX;
-        }
+        $level = $directive->hasOption('level') ? (int) $directive->getOption('level')->getValue() : PHP_INT_MAX;
         $showFileIcons = false;
         if ($directive->hasOption('show-file-icons')) {
             $showFileIcons = (bool) $directive->getOption('show-file-icons')->getValue();

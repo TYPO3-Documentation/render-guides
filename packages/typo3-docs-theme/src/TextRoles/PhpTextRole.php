@@ -2,24 +2,23 @@
 
 namespace T3Docs\Typo3DocsTheme\TextRoles;
 
-use phpDocumentor\Guides\Nodes\Inline\InlineNode;
 use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
 use phpDocumentor\Guides\RestructuredText\TextRoles\TextRole;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 
-final class PhpTextRole implements TextRole
+final readonly class PhpTextRole implements TextRole
 {
     /**
      * @see https://regex101.com/r/LN5Ick/1
      */
-    final public const CLASS_NAME_PATTERN_REGEX = '/^(\\\\)?[A-Za-z_][A-Za-z0-9_]*(\\\\[A-Za-z_][A-Za-z0-9_]*)*$/';
+    final public const string CLASS_NAME_PATTERN_REGEX = '/^(\\\\)?[A-Za-z_]\w*(\\\\[A-Za-z_]\w*)*$/';
 
 
     public function __construct(
-        private readonly Typo3ApiService $typo3ApiService,
-        private readonly Typo3VersionService $typo3VersionService,
+        private Typo3ApiService $typo3ApiService,
+        private Typo3VersionService $typo3VersionService,
     ) {}
 
     public function getName(): string
@@ -34,7 +33,7 @@ final class PhpTextRole implements TextRole
         ];
     }
 
-    public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
+    public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): \T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode
     {
         $fqn = [];
         $rawContent = trim($rawContent);
@@ -143,13 +142,13 @@ final class PhpTextRole implements TextRole
             if ($role === 'php-short') {
                 $infoArray[] =  '<code>' . $apiInfo['fqn'] . '</code>';
             }
-            if ($apiInfo['internal']) {
+            if ($apiInfo['internal'] !== '' && $apiInfo['internal'] !== '0') {
                 $infoArray[] = 'internal!';
             }
-            if ($apiInfo['deprecated']) {
+            if ($apiInfo['deprecated'] !== '' && $apiInfo['deprecated'] !== '0') {
                 $infoArray[] = 'deprecated!';
             }
-            if ($apiInfo['summary']) {
+            if ($apiInfo['summary'] !== '' && $apiInfo['summary'] !== '0') {
                 $infoArray[] = '<em>' . $apiInfo['summary'] . '</em>';
             }
             $apiInfo['fqn'] = $fqn;
@@ -171,7 +170,7 @@ final class PhpTextRole implements TextRole
                 'This PHP class or interface belongs to the PHP Standards Recommendations (PSR). ',
                 ['url' => 'https://www.php-fig.org/psr/']
             );
-        } elseif (str_starts_with($fqn, '\\MyVendor') or str_starts_with($fqn, '\\Vendor')) {
+        } elseif (str_starts_with($fqn, '\\MyVendor') || str_starts_with($fqn, '\\Vendor')) {
             return new CodeInlineNode(
                 $name,
                 'PHP ' . $type,

@@ -6,7 +6,7 @@ use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
 use phpDocumentor\Guides\Files;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 
-final class IgnoreLocalizationsFolders
+final readonly class IgnoreLocalizationsFolders
 {
     /**
      * Format as described here: https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/HowToAddTranslation/Index.html
@@ -14,9 +14,9 @@ final class IgnoreLocalizationsFolders
      * todo: change this to BCP 47 in the future? deployment actions and language/version switch have to be changed accordingly
      * @see https://regex101.com/r/zUNAFQ/1
      */
-    private const LOCALIZATION_FOLDER_REGEX = '/^Localization\\.[a-z]{2}_[A-Z]{2}/s';
+    private const string LOCALIZATION_FOLDER_REGEX = '/^Localization\\.[a-z]{2}_[A-Z]{2}/s';
 
-    public function __construct(private readonly Typo3DocsInputSettings $input) {}
+    public function __construct(private Typo3DocsInputSettings $input) {}
 
     public function __invoke(PostCollectFilesForParsingEvent $event): void
     {

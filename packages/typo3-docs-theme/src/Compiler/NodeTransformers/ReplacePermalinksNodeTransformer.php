@@ -24,15 +24,12 @@ use function assert;
 /** @implements NodeTransformer<HyperLinkNode|ReferenceNode> */
 final class ReplacePermalinksNodeTransformer implements NodeTransformer
 {
-    public function __construct(
-    ) {}
-
     public function enterNode(Node $node, CompilerContextInterface $compilerContext): Node
     {
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): \phpDocumentor\Guides\Nodes\Node
     {
         assert($node instanceof HyperLinkNode);
         if (!str_starts_with($node->getTargetReference(), 'https://docs.typo3.org/permalink/')) {

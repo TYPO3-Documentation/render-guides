@@ -26,9 +26,6 @@ final class Typo3TalkNodeTransformer implements NodeTransformer
     /** @var SectionNode[] $sectionStack */
     private array $sectionStack = [];
 
-    public function __construct(
-    ) {}
-
     public function enterNode(Node $node, CompilerContextInterface $compilerContext): Node
     {
         if ($node instanceof DocumentNode) {
@@ -39,14 +36,14 @@ final class Typo3TalkNodeTransformer implements NodeTransformer
             $this->sectionStack[] = $node;
             return $node;
         }
-        if ($node instanceof Typo3TalkNode && $this->sectionStack !== []) {
+        if ($this->sectionStack !== []) {
             $currentSection = array_last($this->sectionStack);
             $node->setSectionNode($currentSection);
         }
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): \phpDocumentor\Guides\Nodes\Node
     {
         if ($node instanceof DocumentNode) {
             $this->sectionStack = [];

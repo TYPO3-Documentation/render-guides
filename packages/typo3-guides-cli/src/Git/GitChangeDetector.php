@@ -17,7 +17,7 @@ class GitChangeDetector
         // Get the common ancestor commit between current branch and base branch
         $mergeBase = trim($this->executeGitCommand("merge-base {$baseBranch} HEAD"));
 
-        if (empty($mergeBase)) {
+        if ($mergeBase === '' || $mergeBase === '0') {
             throw new \RuntimeException('Could not determine merge base with the specified branch.');
         }
 
@@ -31,7 +31,7 @@ class GitChangeDetector
         // Parse the output to extract renamed files
         $lines = explode("\n", $output);
         foreach ($lines as $line) {
-            if (empty($line)) {
+            if ($line === '' || $line === '0') {
                 continue;
             }
 

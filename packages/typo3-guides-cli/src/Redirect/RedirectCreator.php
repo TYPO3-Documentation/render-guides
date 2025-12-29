@@ -32,7 +32,7 @@ class RedirectCreator
             $createdRedirects[$oldPath] = $newPath;
         }
 
-        if (!empty($nginxRedirects)) {
+        if ($nginxRedirects !== []) {
             $nginxConfig = "# Nginx redirects for moved files in Documentation\n";
             $nginxConfig .= "# Generated on: " . date('Y-m-d H:i:s') . "\n\n";
             $nginxConfig .= implode("\n", $nginxRedirects) . "\n";

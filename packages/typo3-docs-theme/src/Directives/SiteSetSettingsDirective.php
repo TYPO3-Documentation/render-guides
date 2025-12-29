@@ -33,9 +33,9 @@ use function sprintf;
 
 final class SiteSetSettingsDirective extends BaseDirective
 {
-    public const NAME = 'typo3:site-set-settings';
-    public const FACET = 'Site Setting';
-    public const CATEGORY_FACET = 'Site Setting Category';
+    public const string NAME = 'typo3:site-set-settings';
+    public const string FACET = 'Site Setting';
+    public const string CATEGORY_FACET = 'Site Setting Category';
 
     public function __construct(
         private readonly LoggerInterface $logger,
@@ -48,6 +48,7 @@ final class SiteSetSettingsDirective extends BaseDirective
     }
 
     /** {@inheritDoc} */
+    #[\Override]
     public function processNode(
         BlockContext $blockContext,
         Directive    $directive,
@@ -86,18 +87,18 @@ final class SiteSetSettingsDirective extends BaseDirective
         $labelContents = '';
         // Assume all EXT: references are relative to the rendered PROJECT
         $labelsFile = $labelsFile ?
-            preg_replace('/^EXT:[^\/]*\//', 'PROJECT:/', $labelsFile) :
+            preg_replace('/^EXT:[^\/]*\//', 'PROJECT:/', (string) $labelsFile) :
             dirname($setConfigurationFile) . '/labels.xlf';
         try {
             $labelContents = $this->loadFileFromDocumentation($blockContext, $labelsFile);
-        } catch (FileLoadingException $exception) {
+        } catch (FileLoadingException) {
             // ignore, labels.xlf isn't required
         }
 
         $labels = [];
         $descriptions = [];
         $categoryLabels = [];
-        if ($labelContents) {
+        if ($labelContents !== '' && $labelContents !== '0') {
             $xml = new \DOMDocument();
             if ($xml->loadXML($labelContents)) {
                 foreach ($xml->getElementsByTagName('trans-unit') as $label) {
@@ -219,7 +220,7 @@ final class SiteSetSettingsDirective extends BaseDirective
             }
             $fields[$option->getName()] = $value;
         }
-        $confvalMenu = new ConfvalMenuNode(
+        return new ConfvalMenuNode(
             $this->anchorNormalizer->reduceAnchor($directive->getOptionString('name')),
             $directive->getData(),
             $directive->getDataNode() ?? new InlineCompoundNode([]),
@@ -232,7 +233,6 @@ final class SiteSetSettingsDirective extends BaseDirective
             [],
             $directive->getOptionBool('noindex'),
         );
-        return $confvalMenu;
     }
 
 
@@ -274,8 +274,7 @@ final class SiteSetSettingsDirective extends BaseDirective
 
         $additionalFields['searchFacet'] = new InlineCompoundNode([new PlainTextInlineNode(self::FACET)]);
         assert(is_scalar($setting['type']));
-
-        $confval = new ConfvalNode(
+        return new ConfvalNode(
             $this->anchorNormalizer->reduceAnchor($idPrefix . $key),
             $key,
             new InlineCompoundNode([new CodeInlineNode((string)($setting['type'] ?? ''), '')]),
@@ -285,7 +284,6 @@ final class SiteSetSettingsDirective extends BaseDirective
             $content,
             $directive->getOptionBool('noindex'),
         );
-        return $confval;
     }
 
     private function customPrint(mixed $value): string
