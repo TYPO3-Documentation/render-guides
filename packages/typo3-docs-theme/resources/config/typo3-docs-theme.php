@@ -9,6 +9,7 @@ use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use phpDocumentor\Guides\Event\PreParseProcess;
 use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
+use phpDocumentor\Guides\Handlers\ParseFileHandler;
 use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\JsonLoader;
@@ -55,6 +56,7 @@ use T3Docs\Typo3DocsTheme\Inventory\InterlinkParserInterface;
 use T3Docs\Typo3DocsTheme\Inventory\InventoryUrlBuilderInterface;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
+use T3Docs\Typo3DocsTheme\Parser\CachingParseFileHandler;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
@@ -217,6 +219,13 @@ return static function (ContainerConfigurator $container): void {
 
         ->set(EnvironmentBuilder::class)
         ->call('setEnvironmentFactory', [service(CachedEnvironmentFactory::class)])
+
+        // AST caching for parsed documents (performance optimization)
+        ->set(CachingParseFileHandler::class)
+        ->decorate(ParseFileHandler::class)
+        ->arg('$inner', service('.inner'))
+        ->arg('$cacheDir', '')
+        ->arg('$ttl', 86400)
 
         ->set(ConfvalMenuDirective::class)
         ->set(DirectoryTreeDirective::class)
