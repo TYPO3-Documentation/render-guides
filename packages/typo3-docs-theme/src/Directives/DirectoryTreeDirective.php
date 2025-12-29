@@ -67,7 +67,7 @@ final class DirectoryTreeDirective extends SubDirective
                 $this->logger->warning('A directory-tree may only a list. ', $blockContext->getLoggerInformation());
             }
         }
-        if (count($children) === 0) {
+        if ($children === []) {
             $this->logger->warning('A directory-tree must contain at least one list. ', $blockContext->getLoggerInformation());
         }
         return new DirectoryTreeNode(
