@@ -21,6 +21,23 @@ use T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension;
 abstract class ApplicationTestCase extends TestCase
 {
     private Container|null $container = null;
+    private static bool $cacheCleared = false;
+
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+
+        // Clear AST cache once per test run to ensure test isolation.
+        // The AST cache can persist between PHPUnit runs and cause flaky tests
+        // when cached documents have different project settings than expected.
+        if (!self::$cacheCleared) {
+            $astCacheDir = sys_get_temp_dir() . '/typo3-guides-ast-cache';
+            if (is_dir($astCacheDir)) {
+                system('rm -rf ' . escapeshellarg($astCacheDir));
+            }
+            self::$cacheCleared = true;
+        }
+    }
 
     public function getContainer(): Container
     {
