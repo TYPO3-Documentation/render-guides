@@ -22,4 +22,6 @@ return RectorConfig::configure()
         \Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector::class,
         // PHP 8.3: Add types to class constants
         \Rector\Php83\Rector\ClassConst\AddTypeToConstRector::class,
+        // PHP 8.4: Convert getters/setters to property hooks
+        \Rector\Php84\Rector\Class_\PropertyHookRector::class,
     ]);
