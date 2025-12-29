@@ -17,6 +17,7 @@ final class T3srcTextRole implements TextRole
         private readonly Typo3VersionService $typo3VersionService,
     ) {}
 
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;
@@ -28,6 +29,7 @@ final class T3srcTextRole implements TextRole
         return [];
     }
 
+    #[\Override]
     public function processNode(
         DocumentParserContext $documentParserContext,
         string $role,

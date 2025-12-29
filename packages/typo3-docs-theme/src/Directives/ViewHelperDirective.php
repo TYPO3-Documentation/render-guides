@@ -51,6 +51,7 @@ final class ViewHelperDirective extends BaseDirective
         $genericLinkProvider->addGenericLink(self::NAME . '-argument', ViewHelperArgumentNode::LINK_TYPE, ViewHelperArgumentNode::LINK_PREFIX);
     }
 
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;

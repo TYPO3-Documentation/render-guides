@@ -21,11 +21,13 @@ use T3Docs\Typo3DocsTheme\Nodes\MainMenuJsonNode;
  */
 final class MainMenuJsonDirective extends SubDirective
 {
+    #[\Override]
     public function getName(): string
     {
         return 'main-menu-json';
     }
 
+    #[\Override]
     protected function processSub(
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
