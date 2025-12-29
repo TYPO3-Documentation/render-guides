@@ -82,7 +82,7 @@ final class InitCommand extends Command
 
         $question = new Question('Do you want to use reStructuredText(rst) or MarkDown(md)? <comment>[rst, md]</comment>: ', 'rst');
         $question->setValidator(function ($answer): string {
-            if (is_null($answer) || !in_array($answer, [
+            if ($answer === null || !in_array($answer, [
                     'rst',
                     'md',
                 ], true)) {
@@ -97,7 +97,7 @@ final class InitCommand extends Command
             $composerInfo->getComposerName()
         );
         $projectNameQuestion->setValidator(function ($answer) {
-            if (is_null($answer) || trim($answer) === '') {
+            if ($answer === null || trim($answer) === '') {
                 throw new \RuntimeException('The project title cannot be empty.');
             }
             return $answer;
@@ -235,7 +235,7 @@ final class InitCommand extends Command
             $question->setAutocompleterValues($autocompleteValuesFiltered);
         }
         $question->setValidator(function ($answer) {
-            if (!is_null($answer) && $answer !== '' && !filter_var($answer, FILTER_VALIDATE_URL)) {
+            if ($answer !== null && $answer !== '' && !filter_var($answer, FILTER_VALIDATE_URL)) {
                 throw new \RuntimeException('The URL is not valid');
             }
             return $answer;

@@ -288,7 +288,7 @@ final class SiteSetSettingsDirective extends BaseDirective
 
     private function customPrint(mixed $value): string
     {
-        if (is_null($value)) {
+        if ($value === null) {
             return 'null';
         }
         if (is_bool($value)) {
