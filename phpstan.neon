@@ -1,16 +1,8 @@
 includes:
   - phpstan-baseline.neon
-rules:
-  - Symplify\PHPStanRules\Rules\AnnotateRegexClassConstWithRegexLinkRule
-  - Symplify\PHPStanRules\Rules\RegexSuffixInRegexConstantRule
 parameters:
-  phpVersion: 80100
+  phpVersion: 80500
   level: max
-  strictRules:
-    allRules: false
-    strictCalls: true
-    requireParentConstructorCall: true
-  inferPrivatePropertyTypeFromConstructor: true
   treatPhpDocTypesAsCertain: false
   paths:
     - packages/typo3-docs-theme/src
