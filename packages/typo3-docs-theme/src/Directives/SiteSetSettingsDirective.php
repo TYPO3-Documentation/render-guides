@@ -47,7 +47,6 @@ final class SiteSetSettingsDirective extends BaseDirective
         return self::NAME;
     }
 
-    /** {@inheritDoc} */
     #[\Override]
     public function processNode(
         BlockContext $blockContext,

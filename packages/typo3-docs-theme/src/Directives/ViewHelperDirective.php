@@ -56,7 +56,6 @@ final class ViewHelperDirective extends BaseDirective
         return self::NAME;
     }
 
-    /** {@inheritDoc} */
     #[\Override]
     public function processNode(
         BlockContext $blockContext,
@@ -181,7 +180,7 @@ final class ViewHelperDirective extends BaseDirective
             foreach ($collectionNode->getValue() as $node) {
                 if ($node instanceof SectionNode) {
                     $title = $node->getTitle()->toString();
-                    if (stripos($title, 'example') !== false) { // Case-insensitive check for 'example'
+                    if (str_contains(strtolower($title), 'example')) {
                         $examples[] = $node;
                     } else {
                         $sections[] = $node;

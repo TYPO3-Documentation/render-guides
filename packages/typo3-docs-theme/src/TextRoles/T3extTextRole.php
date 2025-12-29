@@ -17,7 +17,7 @@ final class T3extTextRole implements TextRole
         return self::NAME;
     }
 
-    /** @inheritDoc */
+    #[\Override]
     public function getAliases(): array
     {
         return [];
