@@ -11,6 +11,7 @@ use phpDocumentor\Guides\Event\PreParseProcess;
 use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
 use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\JsonLoader;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
@@ -46,6 +47,7 @@ use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\OriginalFileNameSetter;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
+use T3Docs\Typo3DocsTheme\Inventory\CachingJsonLoader;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInterlinkParser;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInventoryUrlBuilder;
 use T3Docs\Typo3DocsTheme\Inventory\InterlinkParserInterface;
@@ -198,6 +200,13 @@ return static function (ContainerConfigurator $container): void {
         ->set(DecoratingPlantumlRenderer::class)
         ->decorate(PlantumlServerRenderer::class)
         ->public()
+
+        // Inventory caching for performance optimization
+        ->set(CachingJsonLoader::class)
+        ->decorate(JsonLoader::class)
+        ->arg('$inner', service('.inner'))
+        ->arg('$cacheDir', '')
+        ->arg('$ttl', 3600)
 
         ->set(ConfvalMenuDirective::class)
         ->set(DirectoryTreeDirective::class)
