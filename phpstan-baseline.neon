@@ -7,28 +7,10 @@ parameters:
 			path: packages/typo3-docs-theme/src/Api/Typo3ApiService.php
 
 		-
-			message: '#^Only booleans are allowed in an if condition, int given\.$#'
-			identifier: if.condNotBoolean
-			count: 1
-			path: packages/typo3-docs-theme/src/Api/Typo3ApiService.php
-
-		-
-			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\AttachFileObjectsToFileTextRoleTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/AttachFileObjectsToFileTextRoleTransformer.php
-
-		-
 			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
 			identifier: if.condNotBoolean
 			count: 2
 			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/AttachFileObjectsToFileTextRoleTransformer.php
-
-		-
-			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\CollectFileObjectsTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectFileObjectsTransformer.php
 
 		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
@@ -43,12 +25,6 @@ parameters:
 			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
 
 		-
-			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\CollectPrefixLinkTargetsTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
-
-		-
 			message: '#^Parameter \#1 \$rawAnchor of method phpDocumentor\\Guides\\ReferenceResolvers\\AnchorNormalizer\:\:reduceAnchor\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 2
@@ -59,36 +35,6 @@ parameters:
 			identifier: argument.type
 			count: 2
 			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
-
-		-
-			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\ConfvalMenuNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/ConfvalMenuNodeTransformer.php
-
-		-
-			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\RedirectsNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/RedirectsNodeTransformer.php
-
-		-
-			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer.php
-
-		-
-			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\ReplacePermalinksNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/ReplacePermalinksNodeTransformer.php
-
-		-
-			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\Typo3TalkNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/Typo3TalkNodeTransformer.php
 
 		-
 			message: '#^Parameter \#1 \$configs of method T3Docs\\Typo3DocsTheme\\DependencyInjection\\Typo3DocsThemeExtension\:\:getConfigValue\(\) expects array\<int, mixed\>, array\<mixed\> given\.$#'
@@ -121,14 +67,14 @@ parameters:
 			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
 
 		-
-			message: '#^Only booleans are allowed in a ternary operator condition, mixed given\.$#'
-			identifier: ternary.condNotBoolean
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
 			count: 1
 			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
 
 		-
-			message: '#^Only booleans are allowed in an if condition, string given\.$#'
-			identifier: if.condNotBoolean
+			message: '#^Only booleans are allowed in a ternary operator condition, mixed given\.$#'
+			identifier: ternary.condNotBoolean
 			count: 1
 			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
 
@@ -145,6 +91,12 @@ parameters:
 			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
 
 		-
+			message: '#^Parameter \#2 \$filename of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:loadFileFromDocumentation\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
 			message: '#^Parameter \#2 \$settings of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:buildConfvalMenu\(\) expects array\<string, array\<string, string\>\>, array\<mixed, mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
@@ -152,12 +104,6 @@ parameters:
 
 		-
 			message: '#^Parameter \#3 \$categories of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:buildConfvalMenu\(\) expects array\<string, array\<string, string\>\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
-
-		-
-			message: '#^Parameter \#3 \$subject of function preg_replace expects array\<float\|int\|string\>\|string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
@@ -203,12 +149,6 @@ parameters:
 			identifier: nullsafe.neverNull
 			count: 1
 			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
-
-		-
-			message: '#^Method T3Docs\\Typo3DocsTheme\\Directives\\Typo3FileDirective\:\:processSub\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: packages/typo3-docs-theme/src/Directives/Typo3FileDirective.php
 
 		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
@@ -325,20 +265,8 @@ parameters:
 			path: packages/typo3-docs-theme/src/Inventory/DefaultInventoryUrlBuilder.php
 
 		-
-			message: '#^Only booleans are allowed in a negated boolean, T3Docs\\Typo3DocsTheme\\Inventory\\InterlinkParts\|null given\.$#'
-			identifier: booleanNot.exprNotBoolean
-			count: 1
-			path: packages/typo3-docs-theme/src/Inventory/Typo3InventoryRepository.php
-
-		-
 			message: '#^Only booleans are allowed in a negated boolean, string\|null given\.$#'
 			identifier: booleanNot.exprNotBoolean
-			count: 1
-			path: packages/typo3-docs-theme/src/Inventory/Typo3InventoryRepository.php
-
-		-
-			message: '#^Only booleans are allowed in a ternary operator condition, T3Docs\\Typo3DocsTheme\\Inventory\\InterlinkParts\|null given\.$#'
-			identifier: ternary.condNotBoolean
 			count: 1
 			path: packages/typo3-docs-theme/src/Inventory/Typo3InventoryRepository.php
 
@@ -409,12 +337,6 @@ parameters:
 			path: packages/typo3-docs-theme/src/TextRoles/CustomLinkTextRole.php
 
 		-
-			message: '#^Only booleans are allowed in an if condition, string given\.$#'
-			identifier: if.condNotBoolean
-			count: 3
-			path: packages/typo3-docs-theme/src/TextRoles/PhpTextRole.php
-
-		-
 			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
 			identifier: if.condNotBoolean
 			count: 1
@@ -451,12 +373,6 @@ parameters:
 			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
 
 		-
-			message: '#^Loose comparison via "\!\=" is not allowed\.$#'
-			identifier: notEqual.notAllowed
-			count: 2
-			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
-
-		-
 			message: '#^Only booleans are allowed in a negated boolean, resource\|false given\.$#'
 			identifier: booleanNot.exprNotBoolean
 			count: 1
@@ -481,8 +397,20 @@ parameters:
 			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
 
 		-
-			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
-			identifier: empty.notAllowed
+			message: '#^Cannot call method createRedirects\(\) on T3Docs\\GuidesCli\\Redirect\\RedirectCreator\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/CreateRedirectsFromGitCommand.php
+
+		-
+			message: '#^Cannot call method detectMovedFiles\(\) on T3Docs\\GuidesCli\\Git\\GitChangeDetector\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/CreateRedirectsFromGitCommand.php
+
+		-
+			message: '#^Cannot call method setNginxRedirectFile\(\) on T3Docs\\GuidesCli\\Redirect\\RedirectCreator\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: packages/typo3-guides-cli/src/Command/CreateRedirectsFromGitCommand.php
 
@@ -502,18 +430,6 @@ parameters:
 			message: '#^Binary operation "\." between mixed and ''/settings…'' results in an error\.$#'
 			identifier: binaryOp.invalid
 			count: 2
-			path: packages/typo3-guides-cli/src/Command/InitCommand.php
-
-		-
-			message: '#^Casting to string something that''s already string\.$#'
-			identifier: cast.useless
-			count: 1
-			path: packages/typo3-guides-cli/src/Command/InitCommand.php
-
-		-
-			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
-			identifier: empty.notAllowed
-			count: 1
 			path: packages/typo3-guides-cli/src/Command/InitCommand.php
 
 		-
@@ -559,16 +475,28 @@ parameters:
 			path: packages/typo3-guides-cli/src/Command/MigrateSettingsCommand.php
 
 		-
+			message: '#^Cannot call method process\(\) on T3Docs\\GuidesCli\\Migration\\Processor\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/MigrateSettingsCommand.php
+
+		-
 			message: '#^Only booleans are allowed in a negated boolean, mixed given\.$#'
 			identifier: booleanNot.exprNotBoolean
 			count: 1
 			path: packages/typo3-guides-cli/src/Command/MigrateSettingsCommand.php
 
 		-
-			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
-			identifier: empty.notAllowed
-			count: 2
-			path: packages/typo3-guides-cli/src/Git/GitChangeDetector.php
+			message: '#^Cannot call method get\(\) on T3Docs\\GuidesCli\\Repository\\LegacySettingsRepository\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: packages/typo3-guides-cli/src/Migration/Processor.php
+
+		-
+			message: '#^Cannot call method migrate\(\) on T3Docs\\GuidesCli\\Migration\\SettingsMigrator\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: packages/typo3-guides-cli/src/Migration/Processor.php
 
 		-
 			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
@@ -601,12 +529,6 @@ parameters:
 			path: packages/typo3-guides-cli/src/Migration/SettingsMigrator.php
 
 		-
-			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
-			identifier: empty.notAllowed
-			count: 1
-			path: packages/typo3-guides-cli/src/Redirect/RedirectCreator.php
-
-		-
 			message: '#^Method T3Docs\\GuidesCli\\Repository\\LegacySettingsRepository\:\:get\(\) should return array\<string, array\<string, string\>\> but returns array\.$#'
 			identifier: return.type
 			count: 1
@@ -619,8 +541,20 @@ parameters:
 			path: packages/typo3-guides-cli/src/XmlValidator.php
 
 		-
+			message: '#^Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int\)\: bool\)\|null, Closure\(mixed, string\)\: void given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-guides-cli/src/XmlValidator.php
+
+		-
 			message: '#^Binary operation "\." between mixed and ''/''\|''\\\\'' results in an error\.$#'
 			identifier: binaryOp.invalid
+			count: 1
+			path: packages/typo3-guides-extension/src/Command/RunDecorator.php
+
+		-
+			message: '#^Casting to string something that''s already string\.$#'
+			identifier: cast.useless
 			count: 1
 			path: packages/typo3-guides-extension/src/Command/RunDecorator.php
 
@@ -657,12 +591,6 @@ parameters:
 		-
 			message: '#^Cannot access offset string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
-
-		-
-			message: '#^Loose comparison via "\=\=" is not allowed\.$#'
-			identifier: equal.notAllowed
 			count: 1
 			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
 

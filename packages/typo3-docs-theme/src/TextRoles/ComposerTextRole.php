@@ -10,11 +10,11 @@ use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
 use T3Docs\VersionHandling\Packagist\PackagistService;
 
-final class ComposerTextRole implements TextRole
+final readonly class ComposerTextRole implements TextRole
 {
     public function __construct(
-        private readonly PackagistService $packagistService,
-        private readonly LoggerInterface $logger,
+        private PackagistService $packagistService,
+        private LoggerInterface $logger,
     ) {}
 
     public function getName(): string

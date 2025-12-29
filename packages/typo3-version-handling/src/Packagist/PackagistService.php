@@ -67,8 +67,7 @@ class PackagistService
         ) {
             $extensionKey = $this->getString($composerJsonArray['extra']['typo3/cms']['extension-key'] ?? '');
         }
-
-        $composerPackage = new ComposerPackage(
+        return new ComposerPackage(
             $composerName,
             'composer req ' . ($isDev ? '--dev ' : '') . $composerName,
             $packagistStatus,
@@ -82,7 +81,6 @@ class PackagistService
             $this->getString($composerJsonArray['type'] ?? ''),
             $extensionKey,
         );
-        return $composerPackage;
     }
 
     private function getString(mixed $value, string $default = ''): string
@@ -107,9 +105,8 @@ class PackagistService
         $errorNumber = curl_errno($ch);
 
         $response = curl_exec($ch);
-        curl_close($ch);
 
-        if ($errorNumber == CURLE_OPERATION_TIMEOUTED) {
+        if ($errorNumber === CURLE_OPERATION_TIMEOUTED) {
             $this->timeoutOccurred = true;
         }
 

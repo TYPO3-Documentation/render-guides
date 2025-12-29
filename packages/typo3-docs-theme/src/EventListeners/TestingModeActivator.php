@@ -2,21 +2,20 @@
 
 namespace T3Docs\Typo3DocsTheme\EventListeners;
 
-use phpDocumentor\Guides\Event\PreParseProcess;
 use phpDocumentor\Guides\Settings\SettingsManager;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 
 /**
  * Disables HTTP calls that can fail tests
  */
-final class TestingModeActivator
+final readonly class TestingModeActivator
 {
     public function __construct(
-        private readonly SettingsManager $settingsManager,
-        private readonly DecoratingPlantumlRenderer $decoratingPlantumlRenderer
+        private SettingsManager $settingsManager,
+        private DecoratingPlantumlRenderer $decoratingPlantumlRenderer
     ) {}
 
-    public function __invoke(PreParseProcess $event): void
+    public function __invoke(): void
     {
         // We are in test mode
         if ($this->settingsManager->getProjectSettings()->isFailOnError()) {

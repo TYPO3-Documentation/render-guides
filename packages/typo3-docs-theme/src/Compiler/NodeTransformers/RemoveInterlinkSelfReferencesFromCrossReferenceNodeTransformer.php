@@ -24,10 +24,10 @@ use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use function assert;
 
 /** @implements NodeTransformer<CrossReferenceNode> */
-final class RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer implements NodeTransformer
+final readonly class RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer implements NodeTransformer
 {
     public function __construct(
-        private readonly Typo3DocsThemeSettings $themeSettings,
+        private Typo3DocsThemeSettings $themeSettings,
     ) {}
 
     public function enterNode(Node $node, CompilerContextInterface $compilerContext): Node
@@ -35,7 +35,7 @@ final class RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer imple
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): \phpDocumentor\Guides\Nodes\Node
     {
         assert($node instanceof CrossReferenceNode);
         if (!$this->themeSettings->hasSettings('interlink_shortcode')) {
@@ -47,21 +47,19 @@ final class RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer imple
         }
         // Remove interlink references to the own current document
         if ($node instanceof ReferenceNode) {
-            $newRef = new ReferenceNode(
+            return new ReferenceNode(
                 $node->getTargetReference(),
                 $node->getValue(),
                 '',
                 $node->getLinkType(),
                 $node->getPrefix()
             );
-            return $newRef;
         }
         if ($node instanceof DocReferenceNode) {
-            $newDocRef = new DocReferenceNode(
+            return new DocReferenceNode(
                 $node->getTargetReference(),
                 $node->getValue(),
             );
-            return $newDocRef;
         }
         return $node;
     }

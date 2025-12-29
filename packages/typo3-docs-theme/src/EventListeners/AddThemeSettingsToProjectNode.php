@@ -8,10 +8,10 @@ use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
-final class AddThemeSettingsToProjectNode
+final readonly class AddThemeSettingsToProjectNode
 {
     public function __construct(
-        private readonly Typo3DocsThemeSettings $themeSettings,
+        private Typo3DocsThemeSettings $themeSettings,
     ) {}
 
     public function __invoke(PostProjectNodeCreated $event): void

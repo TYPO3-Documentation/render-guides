@@ -7,9 +7,9 @@ use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\TypeRenderer;
 use phpDocumentor\Guides\TemplateRenderer;
 
-final class SinglePageRenderer implements TypeRenderer
+final readonly class SinglePageRenderer implements TypeRenderer
 {
-    public function __construct(private readonly TemplateRenderer $renderer) {}
+    public function __construct(private TemplateRenderer $renderer) {}
 
     public function render(RenderCommand $renderCommand): void
     {

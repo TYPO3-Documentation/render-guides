@@ -28,7 +28,7 @@ class YoutubeDirective extends BaseDirective
      * @see https://www.wikidata.org/wiki/Property:P1651#P8966
      * @see https://regex101.com/r/aKvAce/1
      */
-    private const YOUTUBE_IDENTIFIER_REGEX = '/^[a-zA-Z0-9_-]{11}$/';
+    private const string YOUTUBE_IDENTIFIER_REGEX = '/^[a-zA-Z0-9_-]{11}$/';
 
     public function __construct(
         private readonly LoggerInterface $logger
@@ -39,6 +39,7 @@ class YoutubeDirective extends BaseDirective
         return 'youtube';
     }
 
+    #[\Override]
     public function processNode(
         BlockContext $blockContext,
         Directive $directive,

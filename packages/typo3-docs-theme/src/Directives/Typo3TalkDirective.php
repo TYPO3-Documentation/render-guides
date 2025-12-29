@@ -21,13 +21,12 @@ use T3Docs\Typo3DocsTheme\Nodes\Typo3TalkNode;
 
 class Typo3TalkDirective extends BaseDirective
 {
-    public function __construct() {}
-
     public function getName(): string
     {
         return 'typo3:talk';
     }
 
+    #[\Override]
     public function processNode(
         BlockContext $blockContext,
         Directive $directive,

@@ -41,9 +41,6 @@ class ObjectInventory
         if (!isset($this->objects[$group])) {
             return false;
         }
-        if (!isset($this->objects[$group][$key])) {
-            return false;
-        }
-        return true;
+        return isset($this->objects[$group][$key]);
     }
 }

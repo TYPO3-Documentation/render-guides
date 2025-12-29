@@ -12,8 +12,8 @@ use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
 final class ConfvalMenuNode extends GeneralDirectiveNode implements LinkTargetNode, OptionalLinkTargetsNode, PrefixedLinkTargetNode
 {
-    public const LINK_TYPE = 'std:confval-menu';
-    public const LINK_PREFIX = 'confval-menu-';
+    public const string LINK_TYPE = 'std:confval-menu';
+    public const string LINK_PREFIX = 'confval-menu-';
     /**
      * @param list<Node> $value
      * @param Node[] $value

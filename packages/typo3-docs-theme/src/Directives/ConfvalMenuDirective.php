@@ -70,9 +70,7 @@ class ConfvalMenuDirective extends SubDirective
         }
         $exclude = explode(',', $directive->getOptionString('exclude'));
         $anchorReducer = $this->anchorReducer;
-        $exclude = array_map(function ($element) use ($anchorReducer) {
-            return $anchorReducer->reduceAnchor($element);
-        }, $exclude);
+        $exclude = array_map($anchorReducer->reduceAnchor(...), $exclude);
         $id = $directive->getOptionString(
             'name',
             $directive->getOptionString(

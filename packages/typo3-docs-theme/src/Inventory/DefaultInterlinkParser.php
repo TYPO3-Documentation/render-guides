@@ -5,16 +5,16 @@ namespace T3Docs\Typo3DocsTheme\Inventory;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use T3Docs\VersionHandling\DefaultInventories;
 
-final class DefaultInterlinkParser implements InterlinkParserInterface
+final readonly class DefaultInterlinkParser implements InterlinkParserInterface
 {
     /**
      * @see https://regex101.com/r/OwYQxf/1
      *
      * https://getcomposer.org/doc/04-schema.md#name
      */
-    private const EXTENSION_INTERLINK_REGEX = '/^([^\/\s]+)\/([^\/\@\s]+)([\/\@]([^\/\s]+))?$/';
+    private const string EXTENSION_INTERLINK_REGEX = '/^([^\/\s]+)\/([^\/\@\s]+)([\/\@]([^\/\s]+))?$/';
     public function __construct(
-        private readonly AnchorNormalizer $anchorNormalizer
+        private AnchorNormalizer $anchorNormalizer
     ) {}
 
     public function parse(string $key): ?InterlinkParts

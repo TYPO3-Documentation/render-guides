@@ -10,19 +10,10 @@ use T3Docs\GuidesCli\Repository\LegacySettingsRepository;
 
 class Processor
 {
-    private readonly LegacySettingsRepository $legacySettingsRepository;
-    private readonly SettingsMigrator $settingsMigrator;
-
     /**
      * Arguments for testing only!
      */
-    public function __construct(
-        ?LegacySettingsRepository $legacySettingsRepository = null,
-        ?SettingsMigrator $settingsMigrator = null,
-    ) {
-        $this->legacySettingsRepository = $legacySettingsRepository ?? new LegacySettingsRepository();
-        $this->settingsMigrator = $settingsMigrator ?? new SettingsMigrator();
-    }
+    public function __construct(private readonly ?LegacySettingsRepository $legacySettingsRepository = new LegacySettingsRepository(), private readonly ?SettingsMigrator $settingsMigrator = new SettingsMigrator()) {}
 
     public function process(string $inputFile, string $outputFile): ProcessingResult
     {

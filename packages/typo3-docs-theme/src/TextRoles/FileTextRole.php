@@ -13,17 +13,19 @@ final class FileTextRole extends CustomLinkTextRole
         return 'file';
     }
 
+    #[\Override]
     public function getAliases(): array
     {
         return [];
     }
 
+    #[\Override]
     protected function createNode(DocumentParserContext $documentParserContext, string $referenceTarget, string|null $referenceName, string $role): AbstractLinkInlineNode
     {
-        return $this->createNodeWithInterlink($documentParserContext, $referenceTarget, '', $referenceName);
+        return $this->createNodeWithInterlink($referenceTarget, '', $referenceName);
     }
 
-    private function createNodeWithInterlink(DocumentParserContext $documentParserContext, string $referenceTarget, string $interlinkDomain, string|null $referenceName): AbstractLinkInlineNode
+    private function createNodeWithInterlink(string $referenceTarget, string $interlinkDomain, string|null $referenceName): \T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode
     {
         return new FileInlineNode($referenceTarget, $referenceName ?? $referenceTarget, $interlinkDomain, 'typo3:file');
     }

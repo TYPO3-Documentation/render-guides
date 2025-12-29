@@ -10,11 +10,11 @@ class Typo3VersionService
     /**
      * @see https://regex101.com/r/Kx7VyS/2
      */
-    private const VERSION_MINOR_REGEX = '/^(\d+\.\d+)\.\d+$/';
+    private const string VERSION_MINOR_REGEX = '/^(\d+\.\d+)\.\d+$/';
     /**
      * @see https://regex101.com/r/Ljhv1I/1
      */
-    private const VERSION_MAJOR_REGEX = '/^(\d+)(\.\d+)?(\.\d+)?$/';
+    private const string VERSION_MAJOR_REGEX = '/^(\d+)(\.\d+)?(\.\d+)?$/';
     public function __construct(
         private readonly Typo3DocsThemeSettings $settings,
     ) {}

@@ -23,7 +23,7 @@ final class Typo3InventoryRepository implements InventoryRepository
      * @see https://getcomposer.org/doc/04-schema.md#name
      * @see https://regex101.com/r/EXCPkt/8
      */
-    public const EXTENSION_INTERLINK_REGEX = '/^([^\/\s]+)\/([^\/\s]+)(\/([^\/\s]+))?$/';
+    public const string EXTENSION_INTERLINK_REGEX = '/^([^\/\s]+)\/([^\/\s]+)(\/([^\/\s]+))?$/';
 
     /** @var array<string, Inventory> */
     private array $inventories = [];
@@ -82,7 +82,7 @@ final class Typo3InventoryRepository implements InventoryRepository
     public function previewUrl(string $key): ?string
     {
         $parts = $this->parser->parse($key);
-        return $parts ? $this->urlBuilder->buildUrl($parts) : null;
+        return $parts instanceof \T3Docs\Typo3DocsTheme\Inventory\InterlinkParts ? $this->urlBuilder->buildUrl($parts) : null;
     }
 
     /**
@@ -101,7 +101,7 @@ final class Typo3InventoryRepository implements InventoryRepository
         }
 
         $parts = $this->parser->parse($key);
-        if (!$parts) {
+        if (!$parts instanceof \T3Docs\Typo3DocsTheme\Inventory\InterlinkParts) {
             return false;
         }
 

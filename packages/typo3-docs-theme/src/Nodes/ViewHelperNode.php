@@ -12,8 +12,8 @@ use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
 final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNode, OptionalLinkTargetsNode, PrefixedLinkTargetNode
 {
-    public const LINK_TYPE = 'typo3:viewhelper';
-    public const LINK_PREFIX = 'viewhelper-';
+    public const string LINK_TYPE = 'typo3:viewhelper';
+    public const string LINK_PREFIX = 'viewhelper-';
     /**
      * @param Node[] $documentation
      * @param Node[] $description

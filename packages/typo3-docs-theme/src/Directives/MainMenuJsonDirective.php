@@ -10,7 +10,6 @@ use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
-use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use T3Docs\Typo3DocsTheme\Nodes\MainMenuJsonNode;
 
 /**
@@ -22,12 +21,6 @@ use T3Docs\Typo3DocsTheme\Nodes\MainMenuJsonNode;
  */
 class MainMenuJsonDirective extends SubDirective
 {
-    public function __construct(
-        Rule $startingRule,
-    ) {
-        parent::__construct($startingRule);
-    }
-
     public function getName(): string
     {
         return 'main-menu-json';

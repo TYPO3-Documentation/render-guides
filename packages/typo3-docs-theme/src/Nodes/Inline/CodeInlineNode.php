@@ -6,12 +6,12 @@ use phpDocumentor\Guides\Nodes\Inline\InlineNode;
 
 final class CodeInlineNode extends InlineNode
 {
-    public const TYPE = 'code';
+    public const string TYPE = 'code';
 
     /**
      * @param array<string, string> $info
      */
-    public function __construct(string $value, private string $language, private string $helpText = '', private array $info = [])
+    public function __construct(string $value, private readonly string $language, private readonly string $helpText = '', private readonly array $info = [])
     {
         parent::__construct(self::TYPE, $value);
     }

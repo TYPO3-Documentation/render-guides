@@ -30,21 +30,21 @@ use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 
 final class RunDecorator extends Command
 {
-    private const DEFAULT_OUTPUT_DIRECTORY = 'Documentation-GENERATED-temp';
-    private const DEFAULT_INPUT_DIRECTORY = 'Documentation';
+    private const string DEFAULT_OUTPUT_DIRECTORY = 'Documentation-GENERATED-temp';
+    private const string DEFAULT_INPUT_DIRECTORY = 'Documentation';
 
     /**
      * @see https://regex101.com/r/UD4jUt/1
      */
-    private const LOCALIZATION_DIRECTORY_REGEX = '/Localization\.(([a-z]+)(_[a-z]+)?)$/imsU';
+    private const string LOCALIZATION_DIRECTORY_REGEX = '/Localization\.(([a-z]+)(_[a-z]+)?)$/imsU';
 
-    private const INDEX_FILE_NAMES = [
+    private const array INDEX_FILE_NAMES = [
         'Index.rst' => 'rst',
         'index.rst' => 'rst',
         'Index.md' => 'md',
         'index.md' => 'md',
     ];
-    private const FALLBACK_FILE_NAMES = [
+    private const array FALLBACK_FILE_NAMES = [
         'README.rst' => 'rst',
         'README.md' => 'md',
     ];
@@ -285,7 +285,7 @@ final class RunDecorator extends Command
         $process = new Process($processArguments);
         $output->writeln(sprintf('<info>SUB-PROCESS:</info> %s', $process->getCommandLine()));
         $hasErrors = false;
-        $result = $process->run(function ($type, $buffer) use ($output, &$hasErrors): void {
+        $process->run(function ($type, string|iterable $buffer) use ($output, &$hasErrors): void {
             if ($type === Process::ERR) {
                 $output->write('<error>' . $buffer . '</error>');
                 $hasErrors = true;
@@ -440,7 +440,7 @@ final class RunDecorator extends Command
                 '0.0.0.0',
                 $port,
                 array_map(
-                    fn($file) => trim($file) . '.html',
+                    fn($file): string => trim((string) $file) . '.html',
                     explode(',', $settings->getIndexName())
                 ),
             );
@@ -464,7 +464,7 @@ final class RunDecorator extends Command
             $lastFormat = '';
 
             if (count($outputFormats) > 1) {
-                $lastFormat = (count($outputFormats) > 2 ? ',' : '') . ' and ' . strtoupper((string) array_pop($outputFormats));
+                $lastFormat = (count($outputFormats) > 2 ? ',' : '') . ' and ' . strtoupper(array_pop($outputFormats));
             }
 
             $formatsText = strtoupper(implode(', ', $outputFormats)) . $lastFormat;

@@ -11,7 +11,7 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 final class T3srcTextRole implements TextRole
 {
     use EmbeddedReferenceParser;
-    final public const NAME = 't3src';
+    final public const string NAME = 't3src';
 
     public function __construct(
         private readonly Typo3VersionService $typo3VersionService,

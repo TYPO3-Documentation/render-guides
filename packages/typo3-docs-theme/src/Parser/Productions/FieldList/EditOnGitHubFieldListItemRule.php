@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\Parser\Productions\FieldList;
 
 use phpDocumentor\Guides\Nodes\FieldLists\FieldListItemNode;
-use phpDocumentor\Guides\Nodes\Metadata\MetadataNode;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\FieldList\FieldListItemRule;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode;
@@ -28,7 +27,7 @@ final class EditOnGitHubFieldListItemRule implements FieldListItemRule
         return strtolower($fieldListItemNode->getTerm()) === 'edit-on-github-link';
     }
 
-    public function apply(FieldListItemNode $fieldListItemNode, BlockContext $blockContext): MetadataNode
+    public function apply(FieldListItemNode $fieldListItemNode, BlockContext $blockContext): \T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode
     {
         return new EditOnGitHubNode($fieldListItemNode->getPlaintextContent());
     }

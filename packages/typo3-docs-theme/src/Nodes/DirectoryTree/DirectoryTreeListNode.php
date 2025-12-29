@@ -23,6 +23,7 @@ final class DirectoryTreeListNode extends CompoundNode
     /**
      * @return DirectoryTreeListItemNode[]
      */
+    #[\Override]
     public function getChildren(): array
     {
         return $this->value;

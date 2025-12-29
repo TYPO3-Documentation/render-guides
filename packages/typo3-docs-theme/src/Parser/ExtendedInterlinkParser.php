@@ -12,7 +12,7 @@ use function preg_match;
 final class ExtendedInterlinkParser implements InterlinkParser
 {
     /** @see https://regex101.com/r/1UwRKT/1 */
-    private const INTERLINK_REGEX = '/^([a-zA-Z0-9\-_\/.]+):(.*)$/';
+    private const string INTERLINK_REGEX = '/^([a-zA-Z0-9\-_\/.]+):(.*)$/';
 
     public function extractInterlink(string $fullReference): InterlinkData
     {
