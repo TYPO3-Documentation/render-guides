@@ -1,13 +1,15 @@
 <?php
 
-function reverseTransformUrl($newUrl)
+declare(strict_types=1);
+
+function reverseTransformUrl(string $newUrl): string
 {
     // Parse the URL to get the path
     $parsedUrl = parse_url($newUrl);
-    $path = $parsedUrl['path'];
+    $path = $parsedUrl['path'] ?? '';
 
     // Check if the path starts with /main/classes/
-    if (strpos($path, 'classes/') === 0) {
+    if (str_starts_with($path, 'classes/')) {
         // Remove the 'classes/' prefix and the initial part of the path
         $classPart = str_replace('classes/', '', $path);
 
@@ -23,9 +25,7 @@ function reverseTransformUrl($newUrl)
         // Iterate over the parts to construct the old path
         foreach ($parts as $part) {
             // Convert the part to capitalized format with underscores
-            $transformedPart = preg_replace_callback('/[A-Z]/', function ($matches) {
-                return '_' . strtolower($matches[0]);
-            }, $part);
+            $transformedPart = preg_replace_callback('/[A-Z]/', static fn(array $matches): string => '_' . strtolower($matches[0]), $part);
 
             // Add the transformed part to the array
             $transformedParts[] = $transformedPart;
@@ -60,11 +60,14 @@ if (!file_exists($newUrlsFile)) {
 }
 
 $newUrlsJson = file_get_contents($newUrlsFile);
-$newUrlsArray = json_decode($newUrlsJson, true);
+if ($newUrlsJson === false) {
+    die("Error reading file: $newUrlsFile");
+}
 
-// Check if JSON was parsed correctly
-if (json_last_error() !== JSON_ERROR_NONE) {
-    die("Error parsing JSON: " . json_last_error_msg());
+try {
+    $newUrlsArray = json_decode($newUrlsJson, true, 512, JSON_THROW_ON_ERROR);
+} catch (JsonException $e) {
+    die("Error parsing JSON: " . $e->getMessage());
 }
 
 // Prepare the redirect array
@@ -77,7 +80,11 @@ foreach ($newUrlsArray as $newUrl) {
 
 // Write the redirects to a new JSON file
 $redirectsFile = __DIR__ . '/redirects.json';
-$redirectsJson = json_encode($redirects, JSON_PRETTY_PRINT);
+try {
+    $redirectsJson = json_encode($redirects, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+} catch (JsonException $e) {
+    die("Error encoding JSON: " . $e->getMessage());
+}
 
 if (file_put_contents($redirectsFile, $redirectsJson) === false) {
     die("Error writing to file: $redirectsFile");

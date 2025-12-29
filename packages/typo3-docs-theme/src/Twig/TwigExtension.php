@@ -535,9 +535,9 @@ final class TwigExtension extends AbstractExtension
             // TODO: Fixate the "_resources" string as a class/config constant, not hardcoded
             // (see packages/typo3-docs-theme/src/EventListeners/CopyResources.php)
             return str_replace('/_resources/', '/', $this->typo3AzureEdgeURI . $path);
-        } else {
-            return $this->urlGenerator->generateInternalUrl($context['env'] ?? null, $path);
         }
+
+        return $this->urlGenerator->generateInternalUrl($context['env'] ?? null, $path);
     }
 
     /**
