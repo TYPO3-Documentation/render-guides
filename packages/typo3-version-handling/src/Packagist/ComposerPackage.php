@@ -2,7 +2,7 @@
 
 namespace T3Docs\VersionHandling\Packagist;
 
-class ComposerPackage
+final class ComposerPackage
 {
     public function __construct(
         private readonly string $composerName,

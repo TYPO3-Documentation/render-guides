@@ -23,14 +23,14 @@ use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use T3Docs\Typo3DocsTheme\Nodes\GlossaryNode;
 
-class GlossaryDirective extends SubDirective
+final class GlossaryDirective extends SubDirective
 {
-    public const NAME = 'glossary';
+    public const string NAME = 'glossary';
     protected function processSub(
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
         Directive      $directive,
-    ): Node|null {
+    ): Node {
         $originalChildren = $collectionNode->getChildren();
         $entries = [];
         foreach ($originalChildren as $node) {

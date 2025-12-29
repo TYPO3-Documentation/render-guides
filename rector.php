@@ -15,4 +15,11 @@ return RectorConfig::configure()
         __DIR__ . '/tools',
     ])
     ->withPhpSets(php85: true)
-    ->withPreparedSets(deadCode: true, codeQuality: true, typeDeclarations: true);
+    ->withPreparedSets(deadCode: true, codeQuality: true, typeDeclarations: true)
+    ->withAttributesSets(symfony: true, phpunit: true)
+    ->withRules([
+        // PHP 8.3: Add #[\Override] to methods overriding parent
+        \Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector::class,
+        // PHP 8.3: Add types to class constants
+        \Rector\Php83\Rector\ClassConst\AddTypeToConstRector::class,
+    ]);

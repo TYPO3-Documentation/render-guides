@@ -6,7 +6,7 @@ use T3Docs\GuidesCli\Twig\RstExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class DocumentationGenerator
+final class DocumentationGenerator
 {
     /**
      * @param array<string, mixed> $data

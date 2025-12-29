@@ -9,7 +9,7 @@ use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\TemplateRenderer;
 
 /** @implements NodeRenderer<DocumentNode> */
-class SinglePageDocumentRenderer implements NodeRenderer
+final class SinglePageDocumentRenderer implements NodeRenderer
 {
     private string $template = 'structure/singledocument.html.twig';
 
