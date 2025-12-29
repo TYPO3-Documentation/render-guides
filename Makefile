@@ -3,7 +3,7 @@ PHP_ARGS ?= -d memory_limit=1024M -d date.timezone=UTC
 
 ## Docker wrapper, for raw php commands (so it's not required on the host)
 ## This container has no runtime for the `guides` project!
-PHP_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.1-cli php $(PHP_ARGS)
+PHP_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.5-cli php $(PHP_ARGS)
 
 ## Docker wrapper to use for a typo3-docs:local container.
 ## This container provides a runtime for the `guides` project
@@ -16,7 +16,7 @@ PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app 
 ## These variables can be overriden by other tasks, i.e. by `make PHP_ARGS=-d memory_limit=2G pre-commit-tests`.
 ## The "--user" argument is required for macOS to pass along ownership of /project
 
-## NOTE: Dependencies listed here (PHP 8.1, composer 2) need to be kept
+## NOTE: Dependencies listed here (PHP 8.5, composer 2) need to be kept
 ##       in sync with those inside the Dockerfile and composer.json
 
 ## Parse the "make (target) ENV=(local|docker)" argument to set the environment. Defaults to docker.
@@ -210,5 +210,5 @@ static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan
 
 vendor: composer.json composer.lock
 	@echo "$(ENV_INFO)"
-	$(PHP_COMPOSER_BIN) composer validate --no-check-publish
-	$(PHP_COMPOSER_BIN) composer install --no-interaction --no-progress  --ignore-platform-reqs
+	$(PHP_COMPOSER_BIN) validate --no-check-publish
+	$(PHP_COMPOSER_BIN) install --no-interaction --no-progress --ignore-platform-reqs

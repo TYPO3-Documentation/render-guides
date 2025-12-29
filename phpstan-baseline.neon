@@ -1,66 +1,691 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Api\\Typo3ApiService\:\:decodeJson\(\) should return array\<string, array\<string, string\>\>\|null but returns array\<mixed, mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Api/Typo3ApiService.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Api/Typo3ApiService.php
+
+		-
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\AttachFileObjectsToFileTextRoleTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/AttachFileObjectsToFileTextRoleTransformer.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 2
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/AttachFileObjectsToFileTextRoleTransformer.php
+
+		-
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\CollectFileObjectsTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectFileObjectsTransformer.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
+
+		-
+			message: '#^Binary operation "\." between mixed and string results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
+
+		-
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\CollectPrefixLinkTargetsTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
+
+		-
+			message: '#^Parameter \#1 \$rawAnchor of method phpDocumentor\\Guides\\ReferenceResolvers\\AnchorNormalizer\:\:reduceAnchor\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
+
+		-
+			message: '#^Parameter \#3 \$title of class phpDocumentor\\Guides\\Meta\\InternalTarget constructor expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
+
+		-
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\ConfvalMenuNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/ConfvalMenuNodeTransformer.php
+
+		-
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\RedirectsNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/RedirectsNodeTransformer.php
+
+		-
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer.php
+
+		-
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\ReplacePermalinksNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/ReplacePermalinksNodeTransformer.php
+
+		-
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Compiler\\NodeTransformers\\Typo3TalkNodeTransformer\:\:leaveNode\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/Typo3TalkNodeTransformer.php
+
+		-
+			message: '#^Parameter \#1 \$configs of method T3Docs\\Typo3DocsTheme\\DependencyInjection\\Typo3DocsThemeExtension\:\:getConfigValue\(\) expects array\<int, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 15
+			path: packages/typo3-docs-theme/src/DependencyInjection/Typo3DocsThemeExtension.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 1
+			path: packages/typo3-docs-theme/src/DependencyInjection/Typo3DocsThemeExtension.php
+
+		-
+			message: '#^Parameter \#5 \$value of class T3Docs\\Typo3DocsTheme\\Nodes\\GroupTabNode constructor expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, array\<phpDocumentor\\Guides\\Nodes\\Node\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/GroupTabDirective.php
+
+		-
+			message: '#^Parameter \#1 \$value of class phpDocumentor\\Guides\\Nodes\\CollectionNode constructor expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, array\<phpDocumentor\\Guides\\Nodes\\Node\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/IncludeDirective.php
+
+		-
+			message: '#^Cannot access property \$textContent on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Only booleans are allowed in a ternary operator condition, mixed given\.$#'
+			identifier: ternary.condNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, string given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#1 \$categories of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:buildCategoryConfvals\(\) expects array\<array\<string, mixed\>\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#2 \$categoryArray of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:assignConfvalsToCategories\(\) expects array\<string, array\<string, mixed\>\>, array\<array\<string, mixed\>\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#2 \$settings of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:buildConfvalMenu\(\) expects array\<string, array\<string, string\>\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#3 \$categories of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:buildConfvalMenu\(\) expects array\<string, array\<string, string\>\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function preg_replace expects array\<float\|int\|string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#4 \$labels of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:buildConfvalMenu\(\) expects array\<string, string\>, array\<string, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#5 \$descriptions of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:buildConfvalMenu\(\) expects array\<string, string\>, array\<string, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#6 \$categoryLabels of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:buildConfvalMenu\(\) expects array\<string, string\>, array\<string, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#7 \$categoryArray of method T3Docs\\Typo3DocsTheme\\Directives\\SiteSetSettingsDirective\:\:buildConfval\(\) expects array\<string, array\<string, string\>\>, array\<array\<string, mixed\>\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Parameter \#7 \$value of class phpDocumentor\\Guides\\RestructuredText\\Nodes\\ConfvalNode constructor expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 3
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>textContent" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/SiteSetSettingsDirective.php
+
+		-
+			message: '#^Method T3Docs\\Typo3DocsTheme\\Directives\\Typo3FileDirective\:\:processSub\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/Typo3FileDirective.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 3
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Cannot call method getValue\(\) on phpDocumentor\\Guides\\Nodes\\Node\|null\.$#'
+			identifier: method.nonObject
 			count: 2
 			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
 
 		-
-			message: "#^Cannot call method getValue\\(\\) on phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\|null\\.$#"
+			message: '#^Foreach overwrites \$node with its value variable\.$#'
+			identifier: foreach.valueOverwrite
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Parameter \#1 \$argumentDefinition of method T3Docs\\Typo3DocsTheme\\Directives\\ViewHelperDirective\:\:getArgument\(\) expects array\<string, string\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Parameter \#1 \$array of method T3Docs\\Typo3DocsTheme\\Directives\\ViewHelperDirective\:\:getString\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Parameter \#1 \$value of class phpDocumentor\\Guides\\Nodes\\CollectionNode constructor expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, array\<phpDocumentor\\Guides\\Nodes\\Node\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Parameter \#2 \$data of method T3Docs\\Typo3DocsTheme\\Directives\\ViewHelperDirective\:\:getViewHelperNode\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Parameter \#3 \$sourceEdit of method T3Docs\\Typo3DocsTheme\\Directives\\ViewHelperDirective\:\:getViewHelperNode\(\) expects array\<string, array\{sourcePrefix\: string, editPrefix\: string\}\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Parameter \$description of class T3Docs\\Typo3DocsTheme\\Nodes\\ViewHelperNode constructor expects array\<phpDocumentor\\Guides\\Nodes\\Node\>, list\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Parameter \$docTags of class T3Docs\\Typo3DocsTheme\\Nodes\\ViewHelperNode constructor expects array\<string, string\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Parameter \$documentation of class T3Docs\\Typo3DocsTheme\\Nodes\\ViewHelperNode constructor expects array\<phpDocumentor\\Guides\\Nodes\\Node\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, int\|false given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Directives/YoutubeDirective.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/EventListeners/AddThemeSettingsToProjectNode.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, int\|false given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/EventListeners/IgnoreLocalizationsFolders.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, bool\|null given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/EventListeners/IgnoreLocalizationsFolders.php
+
+		-
+			message: '#^Only booleans are allowed in &&, int\|false given on the right side\.$#'
+			identifier: booleanAnd.rightNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Inventory/DefaultInterlinkParser.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, T3Docs\\VersionHandling\\DefaultInventories\|null given\.$#'
+			identifier: if.condNotBoolean
+			count: 3
+			path: packages/typo3-docs-theme/src/Inventory/DefaultInterlinkParser.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Inventory/DefaultInterlinkParser.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, T3Docs\\VersionHandling\\DefaultInventories\|null given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Inventory/DefaultInventoryUrlBuilder.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, T3Docs\\Typo3DocsTheme\\Inventory\\InterlinkParts\|null given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Inventory/Typo3InventoryRepository.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, string\|null given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Inventory/Typo3InventoryRepository.php
+
+		-
+			message: '#^Only booleans are allowed in a ternary operator condition, T3Docs\\Typo3DocsTheme\\Inventory\\InterlinkParts\|null given\.$#'
+			identifier: ternary.condNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Inventory/Typo3InventoryRepository.php
+
+		-
+			message: '#^Parameter \#2 \$json of method phpDocumentor\\Guides\\ReferenceResolvers\\Interlink\\DefaultInventoryLoader\:\:loadInventoryFromJson\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Inventory/Typo3InventoryRepository.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
 			count: 2
-			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+			path: packages/typo3-docs-theme/src/Inventory/Typo3VersionService.php
 
 		-
-			message: "#^Parameter \\$description of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\>, array\\<int\\<0, max\\>, mixed\\> given\\.$#"
+			message: '#^Parameter \#4 \$value of method phpDocumentor\\Guides\\RestructuredText\\Nodes\\GeneralDirectiveNode\:\:__construct\(\) expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, array\<phpDocumentor\\Guides\\Nodes\\Node\> given\.$#'
+			identifier: argument.type
 			count: 1
-			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+			path: packages/typo3-docs-theme/src/Nodes/ConfvalMenuNode.php
 
 		-
-			message: "#^Parameter \\$docTags of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<string, string\\>, mixed given\\.$#"
+			message: '#^Parameter \#1 \$value of method phpDocumentor\\Guides\\Nodes\\CompoundNode\<phpDocumentor\\Guides\\Nodes\\Node\>\:\:__construct\(\) expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, array\<phpDocumentor\\Guides\\Nodes\\Node\> given\.$#'
+			identifier: argument.type
 			count: 1
-			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+			path: packages/typo3-docs-theme/src/Nodes/DirectoryTree/DirectoryTreeListItemNode.php
 
 		-
-			message: "#^Parameter \\$documentation of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\>, mixed given\\.$#"
+			message: '#^Parameter \#1 \$value of method phpDocumentor\\Guides\\Nodes\\CompoundNode\<T3Docs\\Typo3DocsTheme\\Nodes\\DirectoryTree\\DirectoryTreeListItemNode\>\:\:__construct\(\) expects list\<T3Docs\\Typo3DocsTheme\\Nodes\\DirectoryTree\\DirectoryTreeListItemNode\>, array\<T3Docs\\Typo3DocsTheme\\Nodes\\DirectoryTree\\DirectoryTreeListItemNode\> given\.$#'
+			identifier: argument.type
 			count: 1
-			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+			path: packages/typo3-docs-theme/src/Nodes/DirectoryTree/DirectoryTreeListNode.php
 
 		-
-			message: "#^Result of && is always false\\.$#"
+			message: '#^Parameter \#4 \$value of method phpDocumentor\\Guides\\RestructuredText\\Nodes\\GeneralDirectiveNode\:\:__construct\(\) expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, array\<phpDocumentor\\Guides\\Nodes\\Node\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Nodes/GlossaryNode.php
+
+		-
+			message: '#^Parameter \#4 \$value of method phpDocumentor\\Guides\\RestructuredText\\Nodes\\GeneralDirectiveNode\:\:__construct\(\) expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, array\<phpDocumentor\\Guides\\Nodes\\Node\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Nodes/MainMenuJsonNode.php
+
+		-
+			message: '#^Parameter \#4 \$value of method phpDocumentor\\Guides\\RestructuredText\\Nodes\\GeneralDirectiveNode\:\:__construct\(\) expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, array\<phpDocumentor\\Guides\\Nodes\\Node\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-docs-theme/src/Nodes/ViewHelperNode.php
+
+		-
+			message: '#^Property T3Docs\\Typo3DocsTheme\\Nodes\\ViewHelperNode\:\:\$arguments \(array\<string, T3Docs\\Typo3DocsTheme\\Nodes\\ViewHelperArgumentNode\>\) does not accept array\<T3Docs\\Typo3DocsTheme\\Nodes\\ViewHelperArgumentNode\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: packages/typo3-docs-theme/src/Nodes/ViewHelperNode.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, int\|false given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/Parser/ExtendedInterlinkParser.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/TextRoles/CustomLinkTextRole.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, string given\.$#'
+			identifier: if.condNotBoolean
+			count: 3
+			path: packages/typo3-docs-theme/src/TextRoles/PhpTextRole.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/TextRoles/ViewhelperArgumentTextRole.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/typo3-docs-theme/src/TextRoles/ViewhelperTextRole.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, phpDocumentor\\Guides\\RenderContext\|null given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 2
+			path: packages/typo3-docs-theme/src/Twig/TwigExtension.php
+
+		-
+			message: '#^PHPDoc tag @var with type phpDocumentor\\Guides\\RenderContext\|null is not subtype of type phpDocumentor\\Guides\\RenderContext\.$#'
+			identifier: varTag.type
+			count: 2
+			path: packages/typo3-docs-theme/src/Twig/TwigExtension.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/guides\.xml'' results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
 
 		-
-			message: "#^SimpleXMLElement does not accept string\\.$#"
-			count: 4
+			message: '#^Implicit array creation is not allowed \- variable \$guides does not exist\.$#'
+			identifier: variable.implicitArray
+			count: 1
 			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
 
 		-
-			message: "#^Undefined variable\\: \\$guides$#"
+			message: '#^Loose comparison via "\!\=" is not allowed\.$#'
+			identifier: notEqual.notAllowed
 			count: 2
 			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
 
 		-
-			message: "#^Variable \\$guides in isset\\(\\) is never defined\\.$#"
+			message: '#^Only booleans are allowed in a negated boolean, resource\|false given\.$#'
+			identifier: booleanNot.exprNotBoolean
 			count: 1
 			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
 
 		-
-			message: "#^Method T3Docs\\\\GuidesCli\\\\Migration\\\\SettingsMigrator\\:\\:collectUnmigratedLegacySettings\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
+
+		-
+			message: '#^Undefined variable\: \$guides$#'
+			identifier: variable.undefined
+			count: 2
+			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
+
+		-
+			message: '#^Variable \$guides in isset\(\) is never defined\.$#'
+			identifier: isset.variable
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/CreateRedirectsFromGitCommand.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/\-/issues'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/issues'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/settings…'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Casting to string something that''s already string\.$#'
+			identifier: cast.useless
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Method T3Docs\\GuidesCli\\Command\\InitCommand\:\:fetchComposerArray\(\) should return array\<string, mixed\>\|null but returns array\<mixed, mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, string\|false given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, mixed given\.$#'
+			identifier: if.condNotBoolean
+			count: 2
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strtolower expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Parameter \#1 \$string of function trim expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/InitCommand.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/Settings\.cfg'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/MigrateSettingsCommand.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/guides\.xml'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/MigrateSettingsCommand.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, mixed given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: packages/typo3-guides-cli/src/Command/MigrateSettingsCommand.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 2
+			path: packages/typo3-guides-cli/src/Git/GitChangeDetector.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 2
+			path: packages/typo3-guides-cli/src/Migration/Processor.php
+
+		-
+			message: '#^Method T3Docs\\GuidesCli\\Migration\\SettingsMigrator\:\:collectUnmigratedLegacySettings\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: packages/typo3-guides-cli/src/Migration/SettingsMigrator.php
 
 		-
-			message: "#^Cannot access offset 'packages' on mixed\\.$#"
+			message: '#^Only booleans are allowed in an if condition, T3Docs\\VersionHandling\\DefaultInventories\|null given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/typo3-guides-cli/src/Migration/SettingsMigrator.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, string\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 2
+			path: packages/typo3-guides-cli/src/Migration/SettingsMigrator.php
+
+		-
+			message: '#^Parameter \#3 \$messages of class T3Docs\\GuidesCli\\Migration\\Dto\\MigrationResult constructor expects list\<string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-guides-cli/src/Migration/SettingsMigrator.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 1
+			path: packages/typo3-guides-cli/src/Redirect/RedirectCreator.php
+
+		-
+			message: '#^Method T3Docs\\GuidesCli\\Repository\\LegacySettingsRepository\:\:get\(\) should return array\<string, array\<string, string\>\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/typo3-guides-cli/src/Repository/LegacySettingsRepository.php
+
+		-
+			message: '#^Binary operation "\." between ''xxx'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: packages/typo3-guides-cli/src/XmlValidator.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/''\|''\\\\'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: packages/typo3-guides-extension/src/Command/RunDecorator.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, mixed given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: packages/typo3-guides-extension/src/Command/RunDecorator.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, mixed given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/typo3-guides-extension/src/Command/RunDecorator.php
+
+		-
+			message: '#^Only booleans are allowed in \|\|, mixed given on the right side\.$#'
+			identifier: booleanOr.rightNotBoolean
+			count: 1
+			path: packages/typo3-guides-extension/src/Command/RunDecorator.php
+
+		-
+			message: '#^Cannot access offset ''packages'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
 
 		-
-			message: "#^Cannot access offset 0 on mixed\\.$#"
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
 
 		-
-			message: "#^Cannot access offset string on mixed\\.$#"
+			message: '#^Cannot access offset string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
+
+		-
+			message: '#^Loose comparison via "\=\=" is not allowed\.$#'
+			identifier: equal.notAllowed
+			count: 1
+			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
+
+		-
+			message: '#^Parameter \#1 \$composerJsonArray of method T3Docs\\VersionHandling\\Packagist\\PackagistService\:\:getComposerInfoFromJson\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
+
+		-
+			message: '#^Parameter \#3 \$value of function curl_setopt expects bool, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
+
+		-
+			message: '#^Parameter \#3 \$value of function curl_setopt expects non\-empty\-string, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
+
+		-
+			message: '#^Only numeric types are allowed in \+, int\<0, max\>\|false given on the left side\.$#'
+			identifier: plus.leftNonNumeric
+			count: 1
+			path: tools/integration-test-baseline.php
