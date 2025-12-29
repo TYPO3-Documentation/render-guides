@@ -80,7 +80,7 @@ final class SiteSetSettingsDirective extends BaseDirective
             if (is_array($configYamlData)) {
                 $labelsFile = $configYamlData['labels'] ?? null;
             }
-        } catch (FileLoadingException $exception) {
+        } catch (FileLoadingException) {
             // ignore, config.yaml isn't required
         }
 
@@ -122,7 +122,7 @@ final class SiteSetSettingsDirective extends BaseDirective
     }
 
     /**
-     * @throws \League\Flysystem\FileNotFoundException
+     * @throws \League\Flysystem\FilesystemException
      * @throws FileLoadingException
      */
     public function loadFileFromDocumentation(BlockContext $blockContext, string $filename): string

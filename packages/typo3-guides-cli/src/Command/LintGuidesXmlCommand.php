@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,10 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use T3Docs\GuidesCli\XmlValidator;
 
+#[AsCommand(name: 'lint-guides-xml', description: 'Validates all guides.xml settings files.')]
 final class LintGuidesXmlCommand extends Command
 {
-    protected static $defaultName = 'lint-guides-xml';
-
     private string $xsdSchema = './vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd';
 
     protected function configure(): void
