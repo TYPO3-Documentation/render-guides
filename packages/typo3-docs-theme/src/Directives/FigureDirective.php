@@ -58,8 +58,7 @@ final class FigureDirective extends BaseDirective
     public function __construct(
         private readonly DocumentNameResolverInterface $documentNameResolver,
         private readonly Rule $startingRule,
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {
