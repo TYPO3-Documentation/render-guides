@@ -26,7 +26,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use Psr\Log\LoggerInterface;
 
-class T3FieldListTableDirective extends SubDirective
+final class T3FieldListTableDirective extends SubDirective
 {
     /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
@@ -45,7 +45,7 @@ class T3FieldListTableDirective extends SubDirective
         BlockContext $blockContext,
         CollectionNode $collectionNode,
         Directive $directive,
-    ): Node|null {
+    ): Node {
         $i = 0;
         $headers = [];
         $rows = [];

@@ -7,7 +7,7 @@ namespace T3Docs\GuidesCli\Redirect;
 /**
  * Creates nginx redirect configurations for moved documentation files
  */
-class RedirectCreator
+final class RedirectCreator
 {
     private string $nginxRedirectFile = 'redirects.nginx.conf';
 

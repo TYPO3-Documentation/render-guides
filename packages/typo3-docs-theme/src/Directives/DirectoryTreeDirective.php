@@ -27,7 +27,7 @@ use T3Docs\Typo3DocsTheme\Nodes\DirectoryTree\DirectoryTreeListItemNode;
 use T3Docs\Typo3DocsTheme\Nodes\DirectoryTree\DirectoryTreeListNode;
 use T3Docs\Typo3DocsTheme\Nodes\DirectoryTreeNode;
 
-class DirectoryTreeDirective extends SubDirective
+final class DirectoryTreeDirective extends SubDirective
 {
     private static int $counter = 0;
     public function __construct(
@@ -46,7 +46,7 @@ class DirectoryTreeDirective extends SubDirective
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
         Directive      $directive,
-    ): Node|null {
+    ): Node {
         if ($directive->hasOption('name')) {
             $id = $directive->getOption('name')->toString();
         } else {

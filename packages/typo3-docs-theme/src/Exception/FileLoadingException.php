@@ -2,4 +2,4 @@
 
 namespace T3Docs\Typo3DocsTheme\Exception;
 
-class FileLoadingException extends \Exception {}
+final class FileLoadingException extends \Exception {}

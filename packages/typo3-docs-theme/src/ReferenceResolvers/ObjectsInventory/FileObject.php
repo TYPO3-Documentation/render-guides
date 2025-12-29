@@ -4,9 +4,9 @@ namespace T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory;
 
 use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
 
-class FileObject implements DataObject
+final class FileObject implements DataObject
 {
-    public const KEY = 'file';
+    public const string KEY = 'file';
     public function __construct(
         public string $fileName,
         public string $language,

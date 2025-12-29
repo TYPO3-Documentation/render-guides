@@ -60,27 +60,17 @@ enum DefaultInventories: string
 
     public function getUrl(string $version): string
     {
-        if ($version === 'main') {
-            switch ($this) {
-                case DefaultInventories::t3tsconfig:
-                case DefaultInventories::t3ts45:
-                    return DefaultInventories::t3tsref->getUrl($version);
+        // Redirect deprecated manuals to t3tsref for versions >= 12.4
+        if (in_array($version, ['main', '13.4', '12.4'], true)) {
+            $redirect = match ($this) {
+                self::t3tsconfig, self::t3ts45 => self::t3tsref->getUrl($version),
+                default => null,
+            };
+            if ($redirect !== null) {
+                return $redirect;
             }
         }
-        if ($version === '13.4') {
-            switch ($this) {
-                case DefaultInventories::t3tsconfig:
-                case DefaultInventories::t3ts45:
-                    return DefaultInventories::t3tsref->getUrl($version);
-            }
-        }
-        if ($version === '12.4') {
-            switch ($this) {
-                case DefaultInventories::t3tsconfig:
-                case DefaultInventories::t3ts45:
-                    return DefaultInventories::t3tsref->getUrl($version);
-            }
-        }
+
         return match ($this) {
             // Main doc page, it is only deployed to main
             DefaultInventories::t3docs => 'https://docs.typo3.org/',

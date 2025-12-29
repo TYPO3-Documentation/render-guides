@@ -25,9 +25,9 @@ use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use phpDocumentor\Guides\RestructuredText\TextRoles\GenericLinkProvider;
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 
-class ConfvalMenuDirective extends SubDirective
+final class ConfvalMenuDirective extends SubDirective
 {
-    public const NAME = 'confval-menu';
+    public const string NAME = 'confval-menu';
     public function __construct(
         Rule $startingRule,
         GenericLinkProvider $genericLinkProvider,
@@ -40,7 +40,7 @@ class ConfvalMenuDirective extends SubDirective
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
         Directive      $directive,
-    ): Node|null {
+    ): Node {
         $originalChildren = $collectionNode->getChildren();
         $childConfvals = [];
         foreach ($originalChildren as $child) {

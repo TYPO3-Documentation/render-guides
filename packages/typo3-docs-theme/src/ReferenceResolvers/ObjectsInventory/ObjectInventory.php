@@ -2,7 +2,7 @@
 
 namespace T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory;
 
-class ObjectInventory
+final class ObjectInventory
 {
     /**
      * @var array<string,array<string, DataObject>>

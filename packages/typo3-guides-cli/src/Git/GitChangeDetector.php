@@ -7,7 +7,7 @@ namespace T3Docs\GuidesCli\Git;
 /**
  * Detects file changes in git, specifically focusing on moved files
  */
-class GitChangeDetector
+final class GitChangeDetector
 {
     /** @return array<string, string> */
     public function detectMovedFiles(string $baseBranch, string $docsPath): array

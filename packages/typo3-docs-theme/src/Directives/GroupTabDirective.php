@@ -23,7 +23,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use T3Docs\Typo3DocsTheme\Nodes\GroupTabNode;
 
-class GroupTabDirective extends SubDirective
+final class GroupTabDirective extends SubDirective
 {
     public function __construct(
         Rule                              $startingRule,
@@ -40,7 +40,7 @@ class GroupTabDirective extends SubDirective
         BlockContext $blockContext,
         CollectionNode $collectionNode,
         Directive $directive,
-    ): Node|null {
+    ): Node {
         $key = $this->anchorNormalizer->reduceAnchor($directive->getData());
         return new GroupTabNode(
             'group-tab',

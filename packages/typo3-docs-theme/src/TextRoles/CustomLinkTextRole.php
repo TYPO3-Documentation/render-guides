@@ -16,11 +16,11 @@ abstract class CustomLinkTextRole implements TextRole
     /**
      * @see https://regex101.com/r/OyN05v/1
      */
-    protected const INTERLINK_NAME_REGEX = '/^([a-zA-Z0-9]+):([^:]+.*$)/';
+    protected const string INTERLINK_NAME_REGEX = '/^([a-zA-Z0-9]+):([^:]+.*$)/';
     /**
      * @see https://regex101.com/r/mqBxQj/1
      */
-    protected const TEXTROLE_LINK_REGEX = '/^(.*?)(?:(?:\s|^)<([^<]+)>)?$/s';
+    protected const string TEXTROLE_LINK_REGEX = '/^(.*?)(?:(?:\s|^)<([^<]+)>)?$/s';
 
     public function __construct(
         protected readonly LoggerInterface $logger,
