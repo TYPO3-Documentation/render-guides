@@ -2,7 +2,7 @@
 
 namespace T3Docs\VersionHandling\Packagist;
 
-class PackagistService
+final class PackagistService
 {
     /** @var array<string, ComposerPackage>  */
     private array $cache = [];

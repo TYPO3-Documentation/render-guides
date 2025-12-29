@@ -22,7 +22,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 
-class YoutubeDirective extends BaseDirective
+final class YoutubeDirective extends BaseDirective
 {
     /**
      * @see https://www.wikidata.org/wiki/Property:P1651#P8966

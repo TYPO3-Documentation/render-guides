@@ -19,7 +19,7 @@ use T3Docs\Typo3DocsTheme\Nodes\MainMenuJsonNode;
  * To be used together with the MainMenuJsonRenderer and the template
  * :template: mainMenu.json
  */
-class MainMenuJsonDirective extends SubDirective
+final class MainMenuJsonDirective extends SubDirective
 {
     public function getName(): string
     {
@@ -30,7 +30,7 @@ class MainMenuJsonDirective extends SubDirective
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
         Directive      $directive,
-    ): Node|null {
+    ): Node {
         return new MainMenuJsonNode(
             $directive->getData(),
             $directive->getDataNode() ?? new InlineCompoundNode(),

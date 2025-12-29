@@ -23,7 +23,7 @@ use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use function dirname;
 use function phpDocumentor\Guides\DependencyInjection\template;
 
-class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface
+final class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface
 {
     private const array HTML = [
         YoutubeNode::class => 'body/directive/youtube.html.twig',

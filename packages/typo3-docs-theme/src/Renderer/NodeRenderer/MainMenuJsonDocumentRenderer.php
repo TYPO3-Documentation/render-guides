@@ -16,7 +16,7 @@ use phpDocumentor\Guides\RenderContext;
 use T3Docs\Typo3DocsTheme\Nodes\MainMenuJsonNode;
 
 /** @implements NodeRenderer<Node> */
-class MainMenuJsonDocumentRenderer implements NodeRenderer
+final class MainMenuJsonDocumentRenderer implements NodeRenderer
 {
     public function __construct(
         private readonly DelegatingReferenceResolver $delegatingReferenceResolver,
