@@ -31,14 +31,18 @@ use const JSON_THROW_ON_ERROR;
  * Caching decorator for JsonLoader that stores inventory files locally.
  *
  * This significantly reduces render time by avoiding repeated HTTP requests
- * for inventory files that change infrequently.
+ * for inventory files that change infrequently. Supports parallel loading
+ * for cache misses.
  */
 final class CachingJsonLoader extends JsonLoader
 {
     private const int DEFAULT_TTL = 3600; // 1 hour
 
+    /** @var array<string, array<mixed>> In-memory cache for current request */
+    private array $memoryCache = [];
+
     public function __construct(
-        HttpClientInterface $client,
+        private readonly HttpClientInterface $client,
         private readonly JsonLoader $inner,
         private readonly LoggerInterface $logger,
         private readonly string $cacheDir = '',
@@ -47,16 +51,88 @@ final class CachingJsonLoader extends JsonLoader
         parent::__construct($client);
     }
 
+    /**
+     * Prefetch multiple URLs in parallel, caching results for later use.
+     *
+     * @param array<string> $urls List of URLs to prefetch
+     */
+    public function prefetchAll(array $urls): void
+    {
+        if ($urls === []) {
+            return;
+        }
+
+        // Separate cache hits from misses
+        $cacheMisses = [];
+        foreach ($urls as $url) {
+            $cacheFile = $this->getCacheFilePath($url);
+            $cached = $this->loadFromCache($cacheFile);
+
+            if ($cached !== null) {
+                $this->memoryCache[$url] = $cached;
+            } else {
+                $cacheMisses[$url] = $url;
+            }
+        }
+
+        if ($cacheMisses === []) {
+            $this->logger->debug(sprintf('All %d inventories loaded from cache', count($urls)));
+            return;
+        }
+
+        $this->logger->debug(sprintf('Parallel fetching %d of %d inventories', count($cacheMisses), count($urls)));
+
+        // Fetch all cache misses in parallel
+        $this->parallelFetch($cacheMisses);
+    }
+
+    /**
+     * @param array<string, string> $urls Map of URL => URL
+     */
+    private function parallelFetch(array $urls): void
+    {
+        // Start all requests (non-blocking)
+        $responses = [];
+        foreach ($urls as $url) {
+            try {
+                $responses[$url] = $this->client->request('GET', $url);
+            } catch (\Throwable $e) {
+                $this->logger->debug(sprintf('Failed to start request for %s: %s', $url, $e->getMessage()));
+            }
+        }
+
+        // Collect results (blocks until all complete)
+        foreach ($responses as $url => $response) {
+            try {
+                $statusCode = $response->getStatusCode();
+                if ($statusCode >= 200 && $statusCode < 300) {
+                    $data = $response->toArray();
+                    $this->memoryCache[$url] = $data;
+                    $this->saveToCache($this->getCacheFilePath($url), $data);
+                }
+            } catch (\Throwable $e) {
+                $this->logger->debug(sprintf('Failed to load %s: %s', $url, $e->getMessage()));
+            }
+        }
+    }
+
     /** @return array<mixed> */
     #[\Override]
     public function loadJsonFromUrl(string $url): array
     {
+        // Check memory cache first (populated by prefetchAll)
+        if (isset($this->memoryCache[$url])) {
+            $this->logger->debug(sprintf('Inventory memory cache HIT: %s', $url));
+            return $this->memoryCache[$url];
+        }
+
         $cacheFile = $this->getCacheFilePath($url);
 
-        // Try to load from cache
+        // Try to load from file cache
         $cached = $this->loadFromCache($cacheFile);
         if ($cached !== null) {
-            $this->logger->debug(sprintf('Inventory cache HIT: %s', $url));
+            $this->logger->debug(sprintf('Inventory file cache HIT: %s', $url));
+            $this->memoryCache[$url] = $cached;
             return $cached;
         }
 
@@ -65,7 +141,8 @@ final class CachingJsonLoader extends JsonLoader
         // Fetch from network via the decorated loader
         $data = $this->inner->loadJsonFromUrl($url);
 
-        // Store in cache
+        // Store in both caches
+        $this->memoryCache[$url] = $data;
         $this->saveToCache($cacheFile, $data);
 
         return $data;

@@ -12,6 +12,7 @@ use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
 use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\JsonLoader;
+use phpDocumentor\Guides\Twig\EnvironmentBuilder;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
@@ -86,6 +87,7 @@ use T3Docs\Typo3DocsTheme\TextRoles\ViewhelperArgumentTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ViewhelperTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\XmlTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\YamlTextTextRole;
+use T3Docs\Typo3DocsTheme\Twig\CachedEnvironmentFactory;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
 use T3Docs\VersionHandling\Packagist\PackagistService;
 
@@ -207,6 +209,14 @@ return static function (ContainerConfigurator $container): void {
         ->arg('$inner', service('.inner'))
         ->arg('$cacheDir', '')
         ->arg('$ttl', 3600)
+
+        // Twig template caching for performance optimization
+        ->set(CachedEnvironmentFactory::class)
+        ->arg('$extensions', tagged_iterator('twig.extension'))
+        ->arg('$cacheDir', '')
+
+        ->set(EnvironmentBuilder::class)
+        ->call('setEnvironmentFactory', [service(CachedEnvironmentFactory::class)])
 
         ->set(ConfvalMenuDirective::class)
         ->set(DirectoryTreeDirective::class)
