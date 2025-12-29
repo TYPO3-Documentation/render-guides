@@ -20,8 +20,11 @@ return RectorConfig::configure()
     ->withRules([
         // PHP 8.3: Add #[\Override] to methods overriding parent
         \Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector::class,
-        // PHP 8.3: Add types to class constants
+    ])
+    ->withSkip([
+        // Skip rules that cause issues
         \Rector\Php83\Rector\ClassConst\AddTypeToConstRector::class,
-        // PHP 8.4: Convert getters/setters to property hooks
         \Rector\Php84\Rector\Class_\PropertyHookRector::class,
+        \Rector\DeadCode\Rector\ClassMethod\RemoveEmptyClassMethodRector::class,
+        \Rector\TypeDeclaration\Rector\ClassMethod\ReturnNeverTypeRector::class,
     ]);

@@ -12,8 +12,7 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 
 final class DefaultInventoryUrlBuilderTest extends TestCase
 {
-    /** @var Typo3VersionService&MockObject */
-    private $versions;
+    private Typo3VersionService&MockObject $versions;
 
     protected function setUp(): void
     {

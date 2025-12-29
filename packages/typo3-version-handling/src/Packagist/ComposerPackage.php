@@ -2,21 +2,21 @@
 
 namespace T3Docs\VersionHandling\Packagist;
 
-final class ComposerPackage
+final readonly class ComposerPackage
 {
     public function __construct(
-        private readonly string $composerName,
-        private readonly string $composerCommand,
-        private readonly string $packagistStatus,
-        private readonly string $packagistLink = '',
-        private readonly string $description = '',
-        private readonly string $homepage = '',
-        private readonly string $documentation = '',
-        private readonly string $issues = '',
-        private readonly string $source = '',
-        private readonly bool $development = false,
-        private readonly string $type = '',
-        private readonly string $extensionKey = '',
+        private string $composerName,
+        private string $composerCommand,
+        private string $packagistStatus,
+        private string $packagistLink = '',
+        private string $description = '',
+        private string $homepage = '',
+        private string $documentation = '',
+        private string $issues = '',
+        private string $source = '',
+        private bool $development = false,
+        private string $type = '',
+        private string $extensionKey = '',
     ) {}
 
     public function getComposerName(): string

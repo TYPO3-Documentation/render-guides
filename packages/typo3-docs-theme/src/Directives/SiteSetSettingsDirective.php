@@ -308,7 +308,7 @@ final class SiteSetSettingsDirective extends BaseDirective
             return (string)(json_encode($value, JSON_PRETTY_PRINT));
         }
 
-        return 'unkown'; // For other types or unexpected cases
+        return 'unknown'; // For other types or unexpected cases
     }
 
 
