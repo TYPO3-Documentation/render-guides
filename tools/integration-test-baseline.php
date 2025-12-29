@@ -77,7 +77,7 @@ function copyHtmlWithMarkers(string $sourceFile, string $destinationFile): void
 
     $contentBetweenMarkers = substr($fileContent, $startPos, $endPos + strlen($endMarker) - $startPos);
     $lines = explode("\n", $contentBetweenMarkers);
-    $trimmedLines = array_map('rtrim', $lines);
+    $trimmedLines = array_map(rtrim(...), $lines);
     $trimmedContent = implode("\n", $trimmedLines) . "\n";
 
     file_put_contents($destinationFile, $trimmedContent);
