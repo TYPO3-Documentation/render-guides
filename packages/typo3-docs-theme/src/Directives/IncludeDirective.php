@@ -42,6 +42,7 @@ final class IncludeDirective extends BaseDirective
     }
 
     /** {@inheritDoc} */
+    #[\Override]
     public function processNode(
         BlockContext $blockContext,
         Directive    $directive,

@@ -63,7 +63,6 @@ enum DefaultInventories: string
         if ($version === 'main') {
             switch ($this) {
                 case DefaultInventories::t3tsconfig:
-                    return DefaultInventories::t3tsref->getUrl($version);
                 case DefaultInventories::t3ts45:
                     return DefaultInventories::t3tsref->getUrl($version);
             }
@@ -71,7 +70,6 @@ enum DefaultInventories: string
         if ($version === '13.4') {
             switch ($this) {
                 case DefaultInventories::t3tsconfig:
-                    return DefaultInventories::t3tsref->getUrl($version);
                 case DefaultInventories::t3ts45:
                     return DefaultInventories::t3tsref->getUrl($version);
             }
@@ -79,7 +77,6 @@ enum DefaultInventories: string
         if ($version === '12.4') {
             switch ($this) {
                 case DefaultInventories::t3tsconfig:
-                    return DefaultInventories::t3tsref->getUrl($version);
                 case DefaultInventories::t3ts45:
                     return DefaultInventories::t3tsref->getUrl($version);
             }

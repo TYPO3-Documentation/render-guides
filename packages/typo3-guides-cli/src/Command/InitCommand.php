@@ -47,7 +47,6 @@ final class InitCommand extends Command
         if ($input->getOption('working-dir')) {
             $workdir = $input->getOption('working-dir');
             assert(is_string($workdir));
-            $workdir = (string) $workdir;
 
             if (chdir($workdir)) {
                 $output->writeln('<info>Changed working directory to ' . getcwd() . '</info>');
@@ -73,7 +72,7 @@ final class InitCommand extends Command
 
         $composerInfo = $this->getComposerInfo($output);
 
-        if ($composerInfo === null) {
+        if (!$composerInfo instanceof \T3Docs\VersionHandling\Packagist\ComposerPackage) {
             $output->writeln('<error>No composer.json was found in the current or work directory. Use option --working-dir to set the work directory.</error>');
             return Command::FAILURE;
         }
@@ -81,8 +80,8 @@ final class InitCommand extends Command
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
 
-        $question = new Question(sprintf('Do you want to use reStructuredText(rst) or MarkDown(md)? <comment>[rst, md]</comment>: '), 'rst');
-        $question->setValidator(function ($answer) {
+        $question = new Question('Do you want to use reStructuredText(rst) or MarkDown(md)? <comment>[rst, md]</comment>: ', 'rst');
+        $question->setValidator(function ($answer): string {
             if (is_null($answer) || !in_array($answer, [
                     'rst',
                     'md',
@@ -148,7 +147,7 @@ final class InitCommand extends Command
         $typo3CoreVersion = $helper->ask($input, $output, $question);
 
         $question = new Question('Do you want generate some Documentation? (yes/no) ', 'yes');
-        $question->setValidator(function ($answer) {
+        $question->setValidator(function ($answer): string {
             if (!in_array(strtolower($answer), [
                 'yes',
                 'y',
@@ -213,7 +212,7 @@ final class InitCommand extends Command
             'siteSetPath' => $siteSetPath,
             'siteSetDefinition' => $siteSetDefinition,
         ];
-        (new DocumentationGenerator())->generate($data, __DIR__ . '/../../resources/templates', $outputDir, $enableExampleFileGeneration);
+        new DocumentationGenerator()->generate($data, __DIR__ . '/../../resources/templates', $outputDir, $enableExampleFileGeneration);
 
         return Command::SUCCESS;
     }
@@ -232,7 +231,7 @@ final class InitCommand extends Command
             }
         }
         $question = new Question(sprintf($questionText, $default), $default);
-        if (!empty($autocompleteValues)) {
+        if ($autocompleteValues !== []) {
             $question->setAutocompleterValues($autocompleteValuesFiltered);
         }
         $question->setValidator(function ($answer) {
@@ -254,9 +253,7 @@ final class InitCommand extends Command
 
         $output->writeln('A <comment>composer.json</comment> file was found in the current directory.');
 
-        $composerInfo = (new PackagistService())->getComposerInfoFromJson($this->fetchComposerArray() ?? []);
-
-        return $composerInfo;
+        return new PackagistService()->getComposerInfoFromJson($this->fetchComposerArray() ?? []);
     }
 
     /**

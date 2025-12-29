@@ -27,13 +27,13 @@ use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
  *
  * A link is an anchor if it starts with a hashtag
  */
-final class FileReferenceResolver implements ReferenceResolver
+final readonly class FileReferenceResolver implements ReferenceResolver
 {
-    final public const PRIORITY = -200;
+    final public const int PRIORITY = -200;
 
     public function __construct(
-        private readonly AnchorNormalizer $anchorReducer,
-        private readonly UrlGeneratorInterface $urlGenerator,
+        private AnchorNormalizer $anchorReducer,
+        private UrlGeneratorInterface $urlGenerator,
     ) {}
 
     public function resolve(LinkInlineNode $node, RenderContext $renderContext, Messages $messages): bool
@@ -41,14 +41,14 @@ final class FileReferenceResolver implements ReferenceResolver
         if (!$node instanceof FileInlineNode || $node->getInterlinkDomain() !== '') {
             return false;
         }
-        if ($node->getFileObject() === null) {
+        if (!$node->getFileObject() instanceof \T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\FileObject) {
             return true;
         }
 
         $reducedAnchor = $this->anchorReducer->reduceAnchor($node->getFileObject()->id);
         $target = $renderContext->getProjectNode()->getInternalTarget($reducedAnchor, Typo3FileNode::LINK_TYPE);
 
-        if ($target === null) {
+        if (!$target instanceof \phpDocumentor\Guides\Meta\InternalTarget) {
             return false;
         }
 

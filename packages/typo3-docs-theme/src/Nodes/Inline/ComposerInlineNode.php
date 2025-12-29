@@ -7,11 +7,11 @@ use T3Docs\VersionHandling\Packagist\ComposerPackage;
 
 final class ComposerInlineNode extends InlineNode
 {
-    public const TYPE = 'code';
+    public const string TYPE = 'code';
 
     public function __construct(
-        private string $composerName,
-        private ComposerPackage $package,
+        private readonly string $composerName,
+        private readonly ComposerPackage $package,
     ) {
         parent::__construct(self::TYPE, $composerName);
     }

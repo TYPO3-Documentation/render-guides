@@ -59,13 +59,11 @@ final class LiteralincludeDirective extends BaseDirective
         ];
 
         $extension = pathinfo($path, PATHINFO_EXTENSION);
-        if (isset($extensionMap[$extension])) {
-            return $extensionMap[$extension];
-        }
-        return null;
+        return $extensionMap[$extension] ?? null;
     }
 
     /** {@inheritDoc} */
+    #[\Override]
     public function processNode(
         BlockContext $blockContext,
         Directive    $directive,

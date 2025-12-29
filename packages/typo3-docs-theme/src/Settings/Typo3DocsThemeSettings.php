@@ -2,13 +2,13 @@
 
 namespace T3Docs\Typo3DocsTheme\Settings;
 
-final class Typo3DocsThemeSettings
+final readonly class Typo3DocsThemeSettings
 {
     /**
      * @param array<string, string> $settings
      */
     public function __construct(
-        private readonly array $settings
+        private array $settings
     ) {}
 
     public function hasSettings(string $key): bool

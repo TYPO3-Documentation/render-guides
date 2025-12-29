@@ -24,7 +24,7 @@ abstract class CustomLinkTextRole implements TextRole
 
     public function __construct(
         protected readonly LoggerInterface $logger,
-        private readonly AnchorNormalizer $anchorReducer,
+        protected readonly AnchorNormalizer $anchorNormalizer,
     ) {}
 
     /**
@@ -50,10 +50,10 @@ abstract class CustomLinkTextRole implements TextRole
     {
         if (preg_match(self::INTERLINK_NAME_REGEX, $referenceTarget, $matches)) {
             $interlinkDomain = $matches[1];
-            $id = $this->anchorReducer->reduceAnchor($matches[2]);
+            $id = $this->anchorNormalizer->reduceAnchor($matches[2]);
         } else {
             $interlinkDomain = '';
-            $id = $this->anchorReducer->reduceAnchor($referenceTarget);
+            $id = $this->anchorNormalizer->reduceAnchor($referenceTarget);
         }
 
         return new ReferenceNode($id, $referenceName ?? '', $interlinkDomain, 'php:' . $this->getName());

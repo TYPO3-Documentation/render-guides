@@ -16,16 +16,11 @@ final class CreateRedirectsFromGitCommand extends Command
 {
     protected static $defaultName = 'create-redirects-from-git';
 
-    private GitChangeDetector $gitChangeDetector;
-    private RedirectCreator $redirectCreator;
-
     public function __construct(
-        ?GitChangeDetector $gitChangeDetector = null,
-        ?RedirectCreator $redirectCreator = null
+        private readonly ?GitChangeDetector $gitChangeDetector = new GitChangeDetector(),
+        private readonly ?RedirectCreator $redirectCreator = new RedirectCreator()
     ) {
         parent::__construct();
-        $this->gitChangeDetector = $gitChangeDetector ?? new GitChangeDetector();
-        $this->redirectCreator = $redirectCreator ?? new RedirectCreator();
     }
 
     protected function configure(): void
@@ -125,7 +120,7 @@ final class CreateRedirectsFromGitCommand extends Command
         try {
             $movedFiles = $this->gitChangeDetector->detectMovedFiles($baseBranch, $docsPath);
 
-            if (empty($movedFiles)) {
+            if ($movedFiles === []) {
                 $io->success('No moved files detected in this PR.');
                 return Command::SUCCESS;
             }

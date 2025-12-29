@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\Directives;
 
 use phpDocumentor\Guides\Nodes\CollectionNode;
-use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
@@ -26,7 +25,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
 
 final class Typo3FileDirective extends SubDirective
 {
-    public const NAME = 'typo3:file';
+    public const string NAME = 'typo3:file';
 
     public function __construct(
         Rule $startingRule,
@@ -47,7 +46,7 @@ final class Typo3FileDirective extends SubDirective
         BlockContext $blockContext,
         CollectionNode $collectionNode,
         Directive $directive,
-    ): Node|null {
+    ): \phpDocumentor\Guides\Nodes\Node {
         $filename = $directive->getData();
         $path = $directive->getOptionString('path');
         $language = $directive->getOptionString('language');
