@@ -31,7 +31,7 @@ final class T3FieldListTableDirective extends SubDirective
     /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
         protected Rule $startingRule,
-        protected LoggerInterface $logger,
+        private readonly LoggerInterface $logger,
     ) {
         parent::__construct($startingRule);
     }
