@@ -32,6 +32,7 @@ final class LiteralincludeDirective extends BaseDirective
         private readonly LoggerInterface      $logger,
     ) {}
 
+    #[\Override]
     public function getName(): string
     {
         return 'literalinclude';

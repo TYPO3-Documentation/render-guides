@@ -35,6 +35,7 @@ final class IncludeDirective extends BaseDirective
 {
     public function __construct(private readonly DocumentRule $startingRule) {}
 
+    #[\Override]
     public function getName(): string
     {
         return 'include';

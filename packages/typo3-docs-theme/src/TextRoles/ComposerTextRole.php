@@ -17,11 +17,13 @@ final readonly class ComposerTextRole implements TextRole
         private LoggerInterface $logger,
     ) {}
 
+    #[\Override]
     public function getName(): string
     {
         return 'composer';
     }
 
+    #[\Override]
     public function getAliases(): array
     {
         return [];
@@ -33,6 +35,7 @@ final readonly class ComposerTextRole implements TextRole
         return preg_match($pattern, $name) === 1;
     }
 
+    #[\Override]
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
         $composerName = strtolower(trim($content));

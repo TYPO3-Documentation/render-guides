@@ -34,6 +34,7 @@ final class YoutubeDirective extends BaseDirective
         private readonly LoggerInterface $logger
     ) {}
 
+    #[\Override]
     public function getName(): string
     {
         return 'youtube';
