@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,10 +22,9 @@ use T3Docs\VersionHandling\Typo3VersionMapping;
  * ddev exec packages/typo3-guides-cli/bin/typo3-guides init --working-dir=packages/my-extension
  *
  */
+#[AsCommand(name: 'init', description: 'Initialize a new documentation project.')]
 final class InitCommand extends Command
 {
-    protected static $defaultName = 'init';
-
     protected function configure(): void
     {
         $this->setDescription('Initialize a new documentation project');

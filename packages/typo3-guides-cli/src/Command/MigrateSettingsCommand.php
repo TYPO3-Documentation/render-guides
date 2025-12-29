@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,10 +12,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use T3Docs\GuidesCli\Migration\Processor;
 
+#[AsCommand(name: 'migrate', description: 'Migrates Settings.cfg to guides.xml format.')]
 final class MigrateSettingsCommand extends Command
 {
-    protected static $defaultName = 'migrate';
-
     /**
      * Arguments for testing only!
      */

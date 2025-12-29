@@ -553,12 +553,6 @@ parameters:
 			path: packages/typo3-guides-extension/src/Command/RunDecorator.php
 
 		-
-			message: '#^Casting to string something that''s already string\.$#'
-			identifier: cast.useless
-			count: 1
-			path: packages/typo3-guides-extension/src/Command/RunDecorator.php
-
-		-
 			message: '#^Only booleans are allowed in a negated boolean, mixed given\.$#'
 			identifier: booleanNot.exprNotBoolean
 			count: 1

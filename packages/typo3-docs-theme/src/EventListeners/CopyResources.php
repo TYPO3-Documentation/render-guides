@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\EventListeners;
 
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Finder\Finder;
@@ -35,9 +35,8 @@ final readonly class CopyResources
             return;
         }
 
-        $source = new Filesystem(new Local($fullResourcesPath));
+        $source = new Filesystem(new LocalFilesystemAdapter($fullResourcesPath));
 
-        /** @var \League\Flysystem\FilesystemInterface */
         $destination = $event->getCommand()->getDestination();
 
         $finder = new Finder();
