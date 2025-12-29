@@ -27,7 +27,6 @@ use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use RuntimeException;
 use T3Docs\Typo3DocsTheme\Nodes\EditOnGithubIncludeNode;
 
-use function array_key_exists;
 use function explode;
 use function sprintf;
 use function str_replace;
@@ -41,7 +40,6 @@ final class IncludeDirective extends BaseDirective
         return 'include';
     }
 
-    /** {@inheritDoc} */
     #[\Override]
     public function processNode(
         BlockContext $blockContext,
@@ -133,13 +131,13 @@ final class IncludeDirective extends BaseDirective
             throw new RuntimeException(sprintf('Could not load file from path %s', $path));
         }
 
-        if (array_key_exists('literal', $directive->getOptions())) {
+        if ($directive->hasOption('literal')) {
             $contents = str_replace("\r\n", "\n", $contents);
 
             return new LiteralBlockNode($contents);
         }
 
-        if (array_key_exists('code', $directive->getOptions())) {
+        if ($directive->hasOption('code')) {
             $contents = str_replace("\r\n", "\n", $contents);
             $codeNode = new CodeNode(
                 explode('\n', $contents),

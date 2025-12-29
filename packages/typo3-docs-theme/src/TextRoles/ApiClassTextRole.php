@@ -36,7 +36,7 @@ final class ApiClassTextRole extends AbstractReferenceTextRole
         return self::NAME;
     }
 
-    /** @inheritDoc */
+    #[\Override]
     public function getAliases(): array
     {
         return [];

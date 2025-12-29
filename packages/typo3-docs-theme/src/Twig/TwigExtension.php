@@ -470,20 +470,13 @@ final class TwigExtension extends AbstractExtension
                 )
             );
             $reportButton .= urlencode($description);
-            switch ($version) {
-                case 'main':
-                    $reportButton .= '&issue[custom_field_values][4]=' . Typo3VersionMapping::getMajorVersionOfMain()->value;
-                    break;
-                case '13.4':
-                    $reportButton .= '&issue[custom_field_values][4]=13';
-                    break;
-                case '12.4':
-                    $reportButton .= '&issue[custom_field_values][4]=12';
-                    break;
-                case '11.5':
-                    $reportButton .= '&issue[custom_field_values][4]=11';
-                    break;
-            }
+            $reportButton .= match ($version) {
+                'main' => '&issue[custom_field_values][4]=' . Typo3VersionMapping::getMajorVersionOfMain()->value,
+                '13.4' => '&issue[custom_field_values][4]=13',
+                '12.4' => '&issue[custom_field_values][4]=12',
+                '11.5' => '&issue[custom_field_values][4]=11',
+                default => '',
+            };
         }
         return $reportButton;
     }

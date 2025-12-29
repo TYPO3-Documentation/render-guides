@@ -62,7 +62,6 @@ final class LiteralincludeDirective extends BaseDirective
         return $extensionMap[$extension] ?? null;
     }
 
-    /** {@inheritDoc} */
     #[\Override]
     public function processNode(
         BlockContext $blockContext,

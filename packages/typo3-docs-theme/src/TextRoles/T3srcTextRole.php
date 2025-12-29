@@ -22,7 +22,7 @@ final class T3srcTextRole implements TextRole
         return self::NAME;
     }
 
-    /** @inheritDoc */
+    #[\Override]
     public function getAliases(): array
     {
         return [];
