@@ -3,13 +3,13 @@ FROM php:8.5-cli-alpine AS builder
 COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-RUN apk add --update $PHPIZE_DEPS
+RUN apk add --update $PHPIZE_DEPS patch git
 RUN pie install arnaud-lb/inotify && docker-php-ext-install pcntl
 
 WORKDIR /opt/guides
 COPY . /opt/guides
 
-RUN composer install --no-dev --no-interaction --no-progress  \
+RUN composer install --no-dev --no-interaction --no-progress \
     --no-suggest --optimize-autoloader --classmap-authoritative
 
 FROM php:8.5-cli-alpine
@@ -26,6 +26,8 @@ WORKDIR /opt/guides
 COPY --from=builder /opt/guides/vendor /opt/guides/vendor
 RUN echo "memory_limit=4G" >> /usr/local/etc/php/conf.d/typo3.ini
 RUN echo "error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT" >> /usr/local/etc/php/conf.d/typo3.ini
+RUN echo "opcache.enable_cli=1" >> /usr/local/etc/php/conf.d/typo3.ini
+RUN echo "opcache.interned_strings_buffer=16" >> /usr/local/etc/php/conf.d/typo3.ini
 
 ARG TYPO3AZUREEDGEURIVERSION
 ENV TYPO3AZUREEDGEURIVERSION=$TYPO3AZUREEDGEURIVERSION

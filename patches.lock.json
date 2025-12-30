@@ -1,5 +1,5 @@
 {
-    "_hash": "f00250a83f8065f96578cb655e92ac3f85109ba9686c1cf5a7fdfcd1982af9c0",
+    "_hash": "43732434b9b6d1645652d88698d944384d70b524d5921a501f6cb7b09b5f70e7",
     "patches": {
         "phpdocumentor/guides": [
             {
@@ -56,7 +56,7 @@
                 "package": "phpdocumentor/guides",
                 "description": "Cache document lookup by file for O(1) getDocumentNodeForEntry",
                 "url": "patches/render-context-document-cache.patch",
-                "sha256": "0f52b4b2f200aa81f0c0379b31655c7962c2cc60ac2736d2f82883c68879fefc",
+                "sha256": "521c56be056b7a4f7a7ed7aaf0bbeb1307cf7da86787c2e9ffed23d2ec015842",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"
