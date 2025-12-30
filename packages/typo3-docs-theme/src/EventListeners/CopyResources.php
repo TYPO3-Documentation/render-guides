@@ -36,25 +36,35 @@ final readonly class CopyResources
         }
 
         $source = new Filesystem(new LocalFilesystemAdapter($fullResourcesPath));
-
         $destination = $event->getCommand()->getDestination();
 
         $finder = new Finder();
         $finder->files()->in($fullResourcesPath);
 
         foreach ($finder as $file) {
-            $stream = $source->readStream($file->getRelativePathname());
-            if ($stream === false) {
-                $this->logger->warning(sprintf('Cannot read stream from "%s"', $file->getRealPath()));
-                continue;
-            }
-
             $destinationPath = sprintf(
                 '%s/%s%s',
                 self::DESTINATION_PATH,
                 $file->getRelativePath() !== '' ? $file->getRelativePath() . '/' : '',
                 $file->getFilename()
             );
+
+            // Skip if destination exists (basic duplicate prevention)
+            // Note: We can't efficiently check file size via the abstracted FileSystem interface
+            try {
+                if ($destination->has($destinationPath)) {
+                    continue; // Skip existing files
+                }
+            } catch (\Throwable) {
+                // Continue with copy if check fails
+            }
+
+            $stream = $source->readStream($file->getRelativePathname());
+            if ($stream === false) {
+                $this->logger->warning(sprintf('Cannot read stream from "%s"', $file->getRealPath()));
+                continue;
+            }
+
             $destination->putStream($destinationPath, $stream);
             if (is_resource($stream)) {
                 fclose($stream);

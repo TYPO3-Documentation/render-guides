@@ -1,0 +1,68 @@
+diff --git a/src/Internal/RunCommandHandler.php b/src/Internal/RunCommandHandler.php
+index 1234567..abcdefg 100644
+--- a/src/Internal/RunCommandHandler.php
++++ b/src/Internal/RunCommandHandler.php
+@@ -48,17 +48,29 @@ class RunCommandHandler
+     /** @return DocumentNode[] */
+     public function handle(RunCommand $command): array
+     {
++        $timings = [];
+         $settings = $command->settings;
+         $projectNode = $command->projectNode;
+         $outputDir = $settings->getOutput();
++        $t1 = hrtime(true);
+         $sourceFileSystem = FlySystemAdapter::createForPath($settings->getInput());
+         $documents = [];
+         if ($settings->getInputFile() === '') {
++            $t2 = hrtime(true);
+             $documents = $this->commandBus->handle(
+                 new ParseDirectoryCommand(
+                     $sourceFileSystem,
+                     '',
+                     $settings->getInputFormat(),
+                     $projectNode,
+                     $this->getExclude($settings, $command->input),
+                 ),
+             );
++            $timings['parse'] = (hrtime(true) - $t2) / 1e6;
+         } else {
+             $documents[] = $this->commandBus->handle(
+                 new ParseFileCommand(
+                     $sourceFileSystem,
+                     '',
+                     $settings->getInputFile(),
+                     $settings->getInputFormat(),
+                     1,
+                     $projectNode,
+                     true,
+                 ),
+             );
+         }
+
+         $this->themeManager->useTheme($settings->getTheme());
+
++        $t3 = hrtime(true);
+         $documents = $this->commandBus->handle(new CompileDocumentsCommand($documents, new CompilerContext($projectNode)));
++        $timings['compile'] = (hrtime(true) - $t3) / 1e6;
+
+         $destinationFileSystem = FlySystemAdapter::createForPath($outputDir);
+
+         $outputFormats = $settings->getOutputFormats();
+
++        $t4 = hrtime(true);
+         foreach ($outputFormats as $format) {
+             $this->commandBus->handle(
+                 new RenderCommand(
+                     $format,
+                     $documents,
+                     $sourceFileSystem,
+                     $destinationFileSystem,
+                     $projectNode,
+                 ),
+             );
+         }
++        $timings['render'] = (hrtime(true) - $t4) / 1e6;
+
++        file_put_contents('/tmp/run-timings.json', json_encode($timings, JSON_PRETTY_PRINT));
+         return $documents;
+     }
