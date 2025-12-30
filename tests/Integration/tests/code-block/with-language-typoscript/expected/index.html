@@ -5,13 +5,13 @@
             <h2>Imports<a class="headerlink" href="#imports" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript"><span class="hljs-name">@import '<span class="hljs-bullet">EXT:myproject/Configuration/TypoScript/*.typoscript</span>'</span>
-<span class="hljs-name">@import '<span class="hljs-bullet">./userIsLoggedIn.typoscript</span>'</span>
-<span class="hljs-name">@import "<span class="hljs-bullet">./subDirectory/*.setup.typoscript</span>"</span>
+    <pre class="code-block "><code class="language-typoscript">@import &#039;EXT:myproject/Configuration/TypoScript/*.typoscript&#039;
+@import &#039;./userIsLoggedIn.typoscript&#039;
+@import &quot;./subDirectory/*.setup.typoscript&quot;
 
-<span class="hljs-name">&lt;INCLUDE_TYPOSCRIPT: source="<span class="hljs-bullet">FILE:EXT:my_extension/Configuration/TypoScript/myMenu.typoscript</span>"&gt;</span>
-<span class="hljs-name">&lt;INCLUDE_TYPOSCRIPT: source="<span class="hljs-bullet">DIR:fileadmin/templates/</span>" extensions="typoscript"&gt;</span>
-<span class="hljs-name">&lt;INCLUDE_TYPOSCRIPT: source="<span class="hljs-bullet">FILE:EXT:my_extension/Configuration/TypoScript/user.typoscript</span>" condition="<span class="hljs-meta">[frontend.user.isLoggedIn]</span>"&gt;</span></code></pre>
+&lt;INCLUDE_TYPOSCRIPT: source=&quot;FILE:EXT:my_extension/Configuration/TypoScript/myMenu.typoscript&quot;&gt;
+&lt;INCLUDE_TYPOSCRIPT: source=&quot;DIR:fileadmin/templates/&quot; extensions=&quot;typoscript&quot;&gt;
+&lt;INCLUDE_TYPOSCRIPT: source=&quot;FILE:EXT:my_extension/Configuration/TypoScript/user.typoscript&quot; condition=&quot;[frontend.user.isLoggedIn]&quot;&gt;</code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
             <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
@@ -24,15 +24,15 @@
             <h2>Conditions<a class="headerlink" href="#conditions" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript"><span class="hljs-meta">[date("j") == 9]</span>
-    <span class="hljs-comment"># ...</span>
-<span class="hljs-meta">[END]</span>
+    <pre class="code-block "><code class="language-typoscript">[date(&quot;j&quot;) == 9]
+    # ...
+[END]
 
-<span class="hljs-meta">[date("j") == {$foo.bar}]</span>
-    <span class="hljs-comment"># ...</span>
-<span class="hljs-meta">[ELSE]</span>
-    <span class="hljs-comment"># ...</span>
-<span class="hljs-meta">[GLOBAL]</span></code></pre>
+[date(&quot;j&quot;) == {$foo.bar}]
+    # ...
+[ELSE]
+    # ...
+[GLOBAL]</code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
             <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
@@ -45,7 +45,7 @@
             <h2>Quoting of SQL identifiers<a class="headerlink" href="#quoting-of-sql-identifiers" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript">select.where = (<span class="hljs-name">{#title}</span> LIKE <span class="hljs-name">{#%SOMETHING%}</span> AND NOT <span class="hljs-name">{#doktype}</span>)</code></pre>
+    <pre class="code-block "><code class="language-typoscript">select.where = ({#title} LIKE {#%SOMETHING%} AND NOT {#doktype})</code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
             <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
@@ -58,7 +58,7 @@
             <h2>Variables<a class="headerlink" href="#variables" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript">something = <span class="hljs-name">{$foo.bar}</span></code></pre>
+    <pre class="code-block "><code class="language-typoscript">something = {$foo.bar}</code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
             <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
@@ -71,21 +71,21 @@
             <h2>Comments<a class="headerlink" href="#comments" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript"><span class="hljs-comment"># Some comment</span>
+    <pre class="code-block "><code class="language-typoscript"># Some comment
 
-something = 42 <span class="hljs-comment"># Some comment</span>
+something = 42 # Some comment
 
-<span class="hljs-comment">// Another comment</span>
+// Another comment
 
-<span class="hljs-assignment">something = 42 // Another comment</span>
+something = 42 // Another comment
 
-<span class="hljs-comment">/* Some
+/* Some
 multiline
-comment */</span>
+comment */
 
-something = 42 <span class="hljs-comment">/* some
+something = 42 /* some
 multiline
-comment */</span> and more</code></pre>
+comment */ and more</code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
             <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
@@ -98,7 +98,7 @@ comment */</span> and more</code></pre>
             <h2>Register<a class="headerlink" href="#register" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript">dataWrap = &lt;ul class="<span class="hljs-name">{register:ulClass}</span>"&gt;|&lt;/ul&gt;</code></pre>
+    <pre class="code-block "><code class="language-typoscript">dataWrap = &lt;ul class=&quot;{register:ulClass}&quot;&gt;|&lt;/ul&gt;</code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
             <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
@@ -111,11 +111,11 @@ comment */</span> and more</code></pre>
             <h2>Colors<a class="headerlink" href="#colors" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript">something = <span class="hljs-number">#123</span>
+    <pre class="code-block "><code class="language-typoscript">something = #123
 
-something = <span class="hljs-number">#abcdef</span>
+something = #abcdef
 
-something = 1234 <span class="hljs-comment"># not recognized as color</span></code></pre>
+something = 1234 # not recognized as color</code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
             <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
@@ -128,11 +128,11 @@ something = 1234 <span class="hljs-comment"># not recognized as color</span></co
             <h2>Array numbers<a class="headerlink" href="#array-numbers" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript"><span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
-<span class="hljs-title">10</span>.value = something
+    <pre class="code-block "><code class="language-typoscript">10 = TEXT
+10.value = something
 
-<span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
-<span class="hljs-title">10</span> {
+10 = TEXT
+10 {
     value = something
 }</code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
@@ -147,13 +147,13 @@ something = 1234 <span class="hljs-comment"># not recognized as color</span></co
             <h2>Keywords<a class="headerlink" href="#keywords" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
             <div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript"><span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
+    <pre class="code-block "><code class="language-typoscript">10 = TEXT
 
-<span class="hljs-title">10</span> = <span class="hljs-keyword">GIFBUILDER</span>
+10 = GIFBUILDER
 
-<span class="hljs-title">10</span> = <span class="hljs-keyword">TMENU</span>
+10 = TMENU
 
-<span class="hljs-title">10</span> = <span class="hljs-keyword">NO</span></code></pre>
+10 = NO</code></pre>
     <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
             <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
             <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>

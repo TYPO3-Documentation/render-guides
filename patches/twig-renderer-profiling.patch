@@ -1,0 +1,52 @@
+diff --git a/src/Twig/TwigTemplateRenderer.php b/src/Twig/TwigTemplateRenderer.php
+index 1234567..abcdefg 100644
+--- a/src/Twig/TwigTemplateRenderer.php
++++ b/src/Twig/TwigTemplateRenderer.php
+@@ -18,13 +18,48 @@ use Twig\Error\LoaderError;
+
+ final class TwigTemplateRenderer implements TemplateRenderer
+ {
++    /** @var array<string, array{count: int, total_ns: int}> */
++    private static array $templateStats = [];
++    private static bool $profilingEnabled = false;
++
+     public function __construct(private readonly EnvironmentBuilder $environmentBuilder)
+     {
+     }
+
++    public static function enableProfiling(): void
++    {
++        self::$profilingEnabled = true;
++    }
++
++    /** @return array<string, array{count: int, total_ns: int}> */
++    public static function getProfilingStats(): array
++    {
++        return self::$templateStats;
++    }
++
+     /** @param array<string, mixed> $params */
+     public function renderTemplate(RenderContext $context, string $template, array $params = []): string
+     {
++        if (self::$profilingEnabled) {
++            $start = hrtime(true);
++            $result = $this->doRender($context, $template, $params);
++            $elapsed = hrtime(true) - $start;
++
++            if (!isset(self::$templateStats[$template])) {
++                self::$templateStats[$template] = ['count' => 0, 'total_ns' => 0];
++            }
++            self::$templateStats[$template]['count']++;
++            self::$templateStats[$template]['total_ns'] += $elapsed;
++
++            return $result;
++        }
++        return $this->doRender($context, $template, $params);
++    }
++
++    /** @param array<string, mixed> $params */
++    private function doRender(RenderContext $context, string $template, array $params = []): string
++    {
+         $twig = $this->environmentBuilder->getTwigEnvironment();
+         $twig->addGlobal('env', $context);
+         $twig->addGlobal('debugInformation', $context->getLoggerInformation());

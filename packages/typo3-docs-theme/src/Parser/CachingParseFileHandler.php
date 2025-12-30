@@ -119,20 +119,22 @@ final class CachingParseFileHandler
         // Different project settings = different cache entry
         $projectHash = $this->computeProjectNodeHash($command->getProjectNode());
 
-        // Include filesystem identity for test isolation
-        // Each test creates its own filesystem instance, ensuring cache isolation
-        $filesystemId = spl_object_hash($origin);
-
-        // Cache key includes: file path, content hash, header level, extension, project settings, filesystem
+        // Cache key includes: file path, content hash, header level, extension, project settings
         $keyData = sprintf(
-            '%s|%s|%d|%s|%s|%s',
+            '%s|%s|%d|%s|%s',
             $filePath,
             hash('xxh3', $contents),
             $command->getInitialHeaderLevel(),
             $command->getExtension(),
             $projectHash,
-            $filesystemId,
         );
+
+        // Include filesystem identity for test isolation only
+        // In production, we want to share cache across runs for performance
+        // In tests, each test creates its own filesystem instance and needs isolation
+        if (isset($_ENV['CI_PHPUNIT'])) {
+            $keyData .= '|' . spl_object_hash($origin);
+        }
 
         return hash('xxh3', $keyData);
     }
@@ -203,7 +205,7 @@ final class CachingParseFileHandler
     {
         $cacheDir = dirname($cachePath);
         if (!is_dir($cacheDir)) {
-            mkdir($cacheDir, 0755, true);
+            mkdir($cacheDir, 0o755, true);
         }
 
         try {

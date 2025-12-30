@@ -1,0 +1,23 @@
+diff --git a/src/Twig/EnvironmentBuilder.php b/src/Twig/EnvironmentBuilder.php
+--- a/src/Twig/EnvironmentBuilder.php
++++ b/src/Twig/EnvironmentBuilder.php
+@@ -16,6 +16,7 @@ namespace phpDocumentor\Guides\Twig;
+ use phpDocumentor\Guides\RenderContext;
+ use phpDocumentor\Guides\Twig\Theme\ThemeManager;
+ use Twig\Environment;
++use Twig\Cache\FilesystemCache;
+ use Twig\Extension\DebugExtension;
+ use Twig\Extension\ExtensionInterface;
+
+@@ -27,7 +28,10 @@ final class EnvironmentBuilder
+     public function __construct(ThemeManager $themeManager, iterable $extensions = [])
+     {
+         $this->environment = new Environment(
+             $themeManager->getFilesystemLoader(),
+-            ['debug' => true],
++            [
++                'debug' => true,
++                'cache' => new FilesystemCache(sys_get_temp_dir() . '/guides-twig-cache'),
++            ],
+         );
+         $this->environment->addExtension(new DebugExtension());

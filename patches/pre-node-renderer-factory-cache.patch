@@ -1,0 +1,38 @@
+diff --git a/src/NodeRenderers/PreRenderers/PreNodeRendererFactory.php b/src/NodeRenderers/PreRenderers/PreNodeRendererFactory.php
+--- a/src/NodeRenderers/PreRenderers/PreNodeRendererFactory.php
++++ b/src/NodeRenderers/PreRenderers/PreNodeRendererFactory.php
+@@ -22,6 +22,9 @@ use function count;
+  */
+ final class PreNodeRendererFactory implements NodeRendererFactory
+ {
++    /** @var array<class-string<Node>, NodeRenderer<Node>> */
++    private array $cache = [];
++
+     public function __construct(
+         private readonly NodeRendererFactory $innerFactory,
+         /** @var iterable<PreNodeRenderer> */
+@@ -31,6 +34,12 @@ final class PreNodeRendererFactory implements NodeRendererFactory
+ 
+     public function get(Node $node): NodeRenderer
+     {
++        // Cache by node class to avoid repeated preRenderer iteration
++        $nodeFqcn = $node::class;
++        if (isset($this->cache[$nodeFqcn])) {
++            return $this->cache[$nodeFqcn];
++        }
++
+         $preRenderers = [];
+         foreach ($this->preRenderers as $preRenderer) {
+             if (!$preRenderer->supports($node)) {
+@@ -41,9 +50,9 @@ final class PreNodeRendererFactory implements NodeRendererFactory
+         }
+ 
+         if (count($preRenderers) === 0) {
+-            return $this->innerFactory->get($node);
++            return $this->cache[$nodeFqcn] = $this->innerFactory->get($node);
+         }
+ 
+-        return new PreRenderer($this->innerFactory->get($node), $preRenderers);
++        return $this->cache[$nodeFqcn] = new PreRenderer($this->innerFactory->get($node), $preRenderers);
+     }
+ }

@@ -1,0 +1,35 @@
+diff --git a/src/ReferenceResolvers/SluggerAnchorNormalizer.php b/src/ReferenceResolvers/SluggerAnchorNormalizer.php
+--- a/src/ReferenceResolvers/SluggerAnchorNormalizer.php
++++ b/src/ReferenceResolvers/SluggerAnchorNormalizer.php
+@@ -18,10 +18,27 @@ use function strtolower;
+
+ final class SluggerAnchorNormalizer implements AnchorNormalizer
+ {
++    private ?AsciiSlugger $slugger = null;
++
++    /** @var array<string, string> */
++    private array $cache = [];
++
+     public function reduceAnchor(string $rawAnchor): string
+     {
+-        $slugger = new AsciiSlugger();
+-        $slug = $slugger->slug($rawAnchor);
++        // Check cache first - same anchors are resolved many times
++        if (isset($this->cache[$rawAnchor])) {
++            return $this->cache[$rawAnchor];
++        }
++
++        if ($this->slugger === null) {
++            $this->slugger = new AsciiSlugger();
++        }
+
+-        return strtolower($slug->toString());
++        $slug = $this->slugger->slug($rawAnchor);
++        $result = strtolower($slug->toString());
++
++        // Cache the result for future calls
++        $this->cache[$rawAnchor] = $result;
++
++        return $result;
+     }
+ }

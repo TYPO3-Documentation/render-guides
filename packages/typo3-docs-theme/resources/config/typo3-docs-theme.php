@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
+// CodeHighlight removed - using client-side Prism.js instead
+// use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
 use phpDocumentor\Guides\Event\PostParseDocument;
 use phpDocumentor\Guides\Event\PostProjectNodeCreated;
@@ -244,18 +245,9 @@ return static function (ContainerConfigurator $container): void {
         ->set(ViewHelperDirective::class)
         ->arg('$startingRule', service(DocumentRule::class))
         ->set(YoutubeDirective::class)
-        ->set(CodeHighlight::class)
-        ->arg('$languageAliases', [
-            'none' => 'plaintext',
-            'text' => 'plaintext',
-        ])
-        ->arg('$additionalLanguages', [
-            ['typoscript', __DIR__ . '/../languages/typoscript.json'],
-            ['rst', __DIR__ . '/../languages/rst.json'],
-        ])
-        ->arg('$classes', 'code-block')
-        ->tag('twig.extension')
-        ->autowire()
+        // CodeHighlight removed - using client-side Prism.js instead for better performance
+        // Server-side highlighting loaded 185 language files on every render
+        // See: PERFORMANCE_ANALYSIS.md
 
         ->set(PackagistService::class)
         ->set(Typo3VersionService::class)

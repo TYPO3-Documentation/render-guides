@@ -1,0 +1,32 @@
+diff --git a/src/Twig/TwigTemplateRenderer.php b/src/Twig/TwigTemplateRenderer.php
+--- a/src/Twig/TwigTemplateRenderer.php
++++ b/src/Twig/TwigTemplateRenderer.php
+@@ -18,16 +18,26 @@ use Twig\Error\LoaderError;
+ 
+ final class TwigTemplateRenderer implements TemplateRenderer
+ {
++    private ?RenderContext $lastContext = null;
++    private ?array $lastDebugInfo = null;
++
+     public function __construct(private readonly EnvironmentBuilder $environmentBuilder)
+     {
+     }
+ 
+     /** @param array<string, mixed> $params */
+     public function renderTemplate(RenderContext $context, string $template, array $params = []): string
+     {
+         $twig = $this->environmentBuilder->getTwigEnvironment();
+-        $twig->addGlobal('env', $context);
+-        $twig->addGlobal('debugInformation', $context->getLoggerInformation());
++
++        // Only update globals when context changes (once per document, not per template)
++        if ($this->lastContext !== $context) {
++            $this->lastContext = $context;
++            $debugInfo = $context->getLoggerInformation();
++            $this->lastDebugInfo = $debugInfo;
++            $twig->addGlobal('env', $context);
++            $twig->addGlobal('debugInformation', $debugInfo);
++        }
+ 
+         return $twig->render($template, $params);
+     }

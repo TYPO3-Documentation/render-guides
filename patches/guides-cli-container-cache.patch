@@ -1,0 +1,83 @@
+diff --git a/src/DependencyInjection/ContainerFactory.php b/src/DependencyInjection/ContainerFactory.php
+index 1234567..abcdefg 100644
+--- a/src/DependencyInjection/ContainerFactory.php
++++ b/src/DependencyInjection/ContainerFactory.php
+@@ -23,6 +23,7 @@ use Symfony\Component\Config\FileLocator;
+ use Symfony\Component\DependencyInjection\Container;
+ use Symfony\Component\DependencyInjection\ContainerBuilder;
+ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
++use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
+
+ use function array_merge;
+ use function class_exists;
+@@ -36,6 +37,9 @@ use function substr;
+
+ final class ContainerFactory
+ {
++    private const CACHE_DIR = '/tmp/guides-container-cache';
++    private const CACHE_CLASS = 'CachedGuidesContainer';
++
+     private readonly ContainerBuilder $container;
+     private readonly XmlFileLoader $configLoader;
+
+@@ -76,13 +80,56 @@ final class ContainerFactory
+
+     public function create(string $vendorDir): Container
+     {
++        // Generate cache key from config state
++        $cacheKey = $this->generateCacheKey($vendorDir);
++        $cacheFile = self::CACHE_DIR . '/' . self::CACHE_CLASS . '_' . $cacheKey . '.php';
++        $cacheClass = self::CACHE_CLASS . '_' . $cacheKey;
++
++        // Try to load cached container
++        if (file_exists($cacheFile)) {
++            require_once $cacheFile;
++            if (class_exists($cacheClass)) {
++                return new $cacheClass();
++            }
++        }
++
++        // Build container
+         $this->processConfig();
+-
+         $this->container->setParameter('vendor_dir', $vendorDir);
+         $this->container->setParameter('working_directory', rtrim(getcwd(), '/'));
+-
+         $this->container->compile(true);
+
++        // Cache the compiled container
++        $this->cacheContainer($cacheFile, $cacheClass);
++
+         return $this->container;
+     }
+
++    private function generateCacheKey(string $vendorDir): string
++    {
++        $configData = [
++            'vendor_dir' => $vendorDir,
++            'extensions' => array_keys($this->registeredExtensions),
++            'configs' => serialize($this->configs),
++        ];
++        return substr(md5(serialize($configData)), 0, 12);
++    }
++
++    private function cacheContainer(string $cacheFile, string $cacheClass): void
++    {
++        if (!is_dir(self::CACHE_DIR)) {
++            @mkdir(self::CACHE_DIR, 0755, true);
++        }
++
++        $dumper = new PhpDumper($this->container);
++        $code = $dumper->dump([
++            'class' => $cacheClass,
++            'base_class' => Container::class,
++        ]);
++
++        file_put_contents($cacheFile, $code);
++        // Invalidate opcache for the new file
++        if (function_exists('opcache_invalidate')) {
++            opcache_invalidate($cacheFile, true);
++        }
++    }
++
+     /** @param array<mixed> $config */

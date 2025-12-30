@@ -39,6 +39,12 @@ abstract class ApplicationTestCase extends TestCase
         }
     }
 
+    protected function tearDown(): void
+    {
+        $this->container = null;
+        parent::tearDown();
+    }
+
     public function getContainer(): Container
     {
         if ($this->container === null) {

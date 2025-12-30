@@ -8,15 +8,15 @@
         <span class="caption-text">Some PHP</span>
     </div><div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+    <pre class="code-block "><code class="language-php">&lt;?php
 
-<span class="hljs-keyword">declare</span>(strict_types=<span class="hljs-number">1</span>);
+declare(strict_types=1);
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span>
-</span>{
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span><span class="hljs-params">()</span>: <span class="hljs-title">string</span>
-    </span>{
-        <span class="hljs-keyword">return</span> <span class="hljs-string">'this is a test'</span>;
+class Example
+{
+    public function test(): string
+    {
+        return &#039;this is a test&#039;;
     }
 }
 </code></pre>
@@ -33,9 +33,9 @@
         <span class="caption-text">Some TypoScript</span>
     </div><div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs typoscript">page = <span class="hljs-keyword">PAGE</span>
-page.<span class="hljs-title">10</span> = <span class="hljs-keyword">TEXT</span>
-page.<span class="hljs-title">10</span>.value = Hello World!
+    <pre class="code-block "><code class="language-typoscript">page = PAGE
+page.10 = TEXT
+page.10.value = Hello World!
 </code></pre>
     <div class="code-block-actions">            <a href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/_code/_setup.typoscript" class="code-block-edit" title="Edit on GitHub">
                 <i class="icon fa-brands fa-github"></i>
@@ -50,7 +50,7 @@ page.<span class="hljs-title">10</span>.value = Hello World!
         <span class="caption-text">Some Plaintext</span>
     </div><div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs plaintext">Hello World!
+    <pre class="code-block "><code class="language-plaintext">Hello World!
 </code></pre>
     <div class="code-block-actions">            <a href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/_code/_test.txt" class="code-block-edit" title="Edit on GitHub">
                 <i class="icon fa-brands fa-github"></i>
@@ -65,7 +65,7 @@ page.<span class="hljs-title">10</span>.value = Hello World!
         <span class="caption-text">Some Fluid</span>
     </div><div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">f:debug</span>&gt;</span>{_all}<span class="hljs-tag">&lt;/<span class="hljs-name">f:debug</span>&gt;</span>
+    <pre class="code-block "><code class="language-html">&lt;f:debug&gt;{_all}&lt;/f:debug&gt;
 </code></pre>
     <div class="code-block-actions">            <a href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/_code/_Template.html" class="code-block-edit" title="Edit on GitHub">
                 <i class="icon fa-brands fa-github"></i>
@@ -80,8 +80,8 @@ page.<span class="hljs-title">10</span>.value = Hello World!
         <span class="caption-text">Some JSON</span>
     </div><div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs json">{
-    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"hello/world"</span>
+    <pre class="code-block "><code class="language-json">{
+    &quot;name&quot;: &quot;hello/world&quot;
 }
 </code></pre>
     <div class="code-block-actions">            <a href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/_code/_composer.json" class="code-block-edit" title="Edit on GitHub">
@@ -97,11 +97,11 @@ page.<span class="hljs-title">10</span>.value = Hello World!
         <span class="caption-text">Some YAML</span>
     </div><div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs yaml"><span class="hljs-attr">services:</span>
-  <span class="hljs-attr">_defaults:</span>
-    <span class="hljs-attr">autowire:</span> <span class="hljs-literal">true</span>
-    <span class="hljs-attr">autoconfigure:</span> <span class="hljs-literal">true</span>
-    <span class="hljs-attr">public:</span> <span class="hljs-literal">false</span>
+    <pre class="code-block "><code class="language-yaml">services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
 
 </code></pre>
     <div class="code-block-actions">            <a href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/_code/_Services.yaml" class="code-block-edit" title="Edit on GitHub">
@@ -117,7 +117,7 @@ page.<span class="hljs-title">10</span>.value = Hello World!
         <span class="caption-text">Some YAML</span>
     </div><div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs yaml"><span class="hljs-attr">hello:</span> <span class="hljs-string">world</span>
+    <pre class="code-block "><code class="language-yaml">hello: world
 </code></pre>
     <div class="code-block-actions">            <a href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/_code/_some.yml" class="code-block-edit" title="Edit on GitHub">
                 <i class="icon fa-brands fa-github"></i>
@@ -132,9 +132,9 @@ page.<span class="hljs-title">10</span>.value = Hello World!
         <span class="caption-text">Some diff</span>
     </div><div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs diff">Hello World
-<span class="hljs-deletion">- Hello Typo 3</span>
-<span class="hljs-addition">+ Hello TYPO3</span>
+    <pre class="code-block "><code class="language-diff">Hello World
+- Hello Typo 3
++ Hello TYPO3
 </code></pre>
     <div class="code-block-actions">            <a href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/_code/_some.diff" class="code-block-edit" title="Edit on GitHub">
                 <i class="icon fa-brands fa-github"></i>
@@ -149,7 +149,7 @@ page.<span class="hljs-title">10</span>.value = Hello World!
         <span class="caption-text">Language property takes precedence</span>
     </div><div class="code-block-wrapper" translate="no">
 
-    <pre class="code-block"><code class="hljs plaintext">&lt;?php
+    <pre class="code-block "><code class="language-plaintext">&lt;?php
 
 declare(strict_types=1);
 
@@ -157,7 +157,7 @@ class Example
 {
     public function test(): string
     {
-        return 'this is a test';
+        return &#039;this is a test&#039;;
     }
 }
 </code></pre>

@@ -1,0 +1,66 @@
+diff --git a/src/Nodes/ProjectNode.php b/src/Nodes/ProjectNode.php
+--- a/src/Nodes/ProjectNode.php
++++ b/src/Nodes/ProjectNode.php
+@@ -47,6 +47,9 @@ final class ProjectNode extends CompoundNode
+     /** @var array<string, array<string, InternalTarget>> */
+     private array $internalLinkTargets = [];
+
++    /** Cached root document entry for O(1) lookup */
++    private ?DocumentEntryNode $rootDocumentEntry = null;
++
+     /** @var DocumentEntryNode[] */
+     private array $documentEntries = [];
+     private DateTimeImmutable $lastRendered;
+@@ -182,6 +185,10 @@ final class ProjectNode extends CompoundNode
+
+     public function addDocumentEntry(DocumentEntryNode $documentEntry): void
+     {
++        // Cache root document entry for O(1) lookup
++        if ($documentEntry->isRoot()) {
++            $this->rootDocumentEntry = $documentEntry;
++        }
+         $this->documentEntries[$documentEntry->getFile()] = $documentEntry;
+     }
+
+@@ -193,10 +200,8 @@ final class ProjectNode extends CompoundNode
+
+     public function getRootDocumentEntry(): DocumentEntryNode
+     {
+-        foreach ($this->documentEntries as $documentEntry) {
+-            if ($documentEntry->isRoot()) {
+-                return $documentEntry;
+-            }
++        if ($this->rootDocumentEntry !== null) {
++            return $this->rootDocumentEntry;
+         }
+
+         throw new Exception('No root document entry was found');
+@@ -205,10 +210,8 @@ final class ProjectNode extends CompoundNode
+     /** @throws DocumentEntryNotFound */
+     public function getDocumentEntry(string $file): DocumentEntryNode
+     {
+-        foreach ($this->documentEntries as $documentEntry) {
+-            if ($documentEntry->getFile() === $file) {
+-                return $documentEntry;
+-            }
++        if (isset($this->documentEntries[$file])) {
++            return $this->documentEntries[$file];
+         }
+
+         throw new DocumentEntryNotFound('No document Entry found for file ' . $file);
+@@ -218,6 +221,7 @@ final class ProjectNode extends CompoundNode
+     public function setDocumentEntries(array $documentEntries): void
+     {
+         $this->documentEntries = $documentEntries;
++        $this->rootDocumentEntry = null;
+     }
+
+     public function findDocumentEntry(string $filePath): DocumentEntryNode|null
+@@ -228,6 +232,7 @@ final class ProjectNode extends CompoundNode
+     public function reset(): void
+     {
+         $this->documentEntries = [];
++        $this->rootDocumentEntry = null;
+     }
+
+     public function getLastRendered(): DateTimeImmutable
