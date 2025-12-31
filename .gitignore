@@ -7,3 +7,4 @@
 /Documentation-GENERATED-*
 /.phpdoc/
 /phpdoc.dist.xml
+*-temp/
