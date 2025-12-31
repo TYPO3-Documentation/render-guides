@@ -87,7 +87,7 @@ final class InvalidGuidesXmlTest extends TestCase
     public function testValidGuidesXmlRendersSuccessfully(): void
     {
         $binPath = dirname(__DIR__, 2) . '/bin/guides';
-        $validFixturePath = __DIR__ . '/tests/getting-started/input';
+        $validFixturePath = __DIR__ . '/tests/admonitions/input';
 
         // Skip if fixture doesn't exist
         if (!is_dir($validFixturePath)) {
