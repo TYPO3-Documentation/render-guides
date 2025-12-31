@@ -1,0 +1,14 @@
+{
+    "branch": "feature/php-8.5-only",
+    "scenario": "partial",
+    "timestamp": "20260102_105638",
+    "project": "Documentation-rendertest",
+    "runs": 3,
+    "metrics": {
+        "avg_seconds": .264,
+        "min_seconds": .255182713,
+        "max_seconds": .272833763,
+        "files_rendered": 98
+    },
+    "raw_times": [.264671793,.272833763,.255182713]
+}

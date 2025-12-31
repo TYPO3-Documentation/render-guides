@@ -1,0 +1,34 @@
+{
+    "branch": "feature_php-8.5-only",
+    "commit": "2c5f7b91",
+    "scenario": "warm",
+    "docs_type": "large",
+    "parallel_mode": "auto",
+    "parallel_workers": "0",
+    "timestamp": "20260105_083138",
+    "runs": 3,
+    "metrics": {
+        "wall_time": {
+            "avg_seconds": 28.623,
+            "min_seconds": 28.25,
+            "max_seconds": 29.17
+        },
+        "cpu_time": {
+            "avg_seconds": 117.69,
+            "min_seconds": 114.71,
+            "max_seconds": 123.54,
+            "avg_percent": 410
+        },
+        "memory": {
+            "avg_mb": 523.0,
+            "min_mb": 523.06,
+            "max_mb": 523.06,
+            "source": "php_profiling"
+        },
+        "files_rendered": 957
+    },
+    "raw_wall_times_seconds": [29.17,28.25,28.45],
+    "raw_cpu_times_seconds": [123.54,114.82,114.71],
+    "raw_cpu_percents": [423,406,403],
+    "raw_memories_mb": [523.06,523.06,523.06]
+}

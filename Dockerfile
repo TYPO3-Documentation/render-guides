@@ -36,6 +36,8 @@ COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
 RUN apk add --update $PHPIZE_DEPS
 RUN pie install arnaud-lb/inotify && docker-php-ext-install pcntl
 
+# Install GNU time for benchmarking (busybox time doesn't support -v)
+RUN apk add --no-cache time
 RUN apk del $PHPIZE_DEPS && rm -rf /var/cache/apk/* /tmp/* /usr/share/php/* /usr/local/lib/php/doc/* /usr/local/lib/php/test/*
 
 COPY . /opt/guides
