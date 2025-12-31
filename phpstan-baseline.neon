@@ -571,6 +571,222 @@ parameters:
 			path: packages/typo3-guides-extension/src/Command/RunDecorator.php
 
 		-
+			message: '#^Parameter \#1 \$haystack of function str_starts_with expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/CacheVersioning.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 3
+			path: packages/typo3-guides-extension/src/Compiler/Cache/ChangeDetectionResult.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Cache\\ContentHasher\:\:hashExports\(\) has parameter \$anchors with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/ContentHasher.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Cache\\ContentHasher\:\:hashExports\(\) has parameter \$citations with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/ContentHasher.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Cache\\ContentHasher\:\:hashExports\(\) has parameter \$sectionTitles with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/ContentHasher.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/DependencyGraph.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Cache\\DependencyGraph\:\:getStats\(\) should return array\<string, int\> but returns array\<string, float\|int\<0, max\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/DependencyGraph.php
+
+		-
+			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\DependencyGraph\:\:\$dependents \(array\<string, array\<string\>\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/DependencyGraph.php
+
+		-
+			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\DependencyGraph\:\:\$imports \(array\<string, array\<string\>\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/DependencyGraph.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/DirtyPropagator.php
+
+		-
+			message: '#^Parameter \#1 \$array \(list\<\(int\|string\)\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/DirtyPropagator.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/DocumentExports.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: packages/typo3-guides-extension/src/Compiler/Cache/DocumentExports.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Cache\\IncrementalBuildCache\:\:getSettingsHash\(\) should return string\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
+
+		-
+			message: '#^Parameter \#1 \$data of static method T3Docs\\GuidesExtension\\Compiler\\Cache\\DependencyGraph\:\:fromArray\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
+
+		-
+			message: '#^Parameter \#1 \$data of static method T3Docs\\GuidesExtension\\Compiler\\Cache\\DocumentExports\:\:fromArray\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
+
+		-
+			message: '#^Parameter \#1 \$metadata of method T3Docs\\GuidesExtension\\Compiler\\Cache\\CacheVersioning\:\:isCacheValid\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
+
+		-
+			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\IncrementalBuildCache\:\:\$exports \(array\<string, T3Docs\\GuidesExtension\\Compiler\\Cache\\DocumentExports\>\) does not accept array\<T3Docs\\GuidesExtension\\Compiler\\Cache\\DocumentExports\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
+
+		-
+			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\IncrementalBuildCache\:\:\$metadata \(array\<string, mixed\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
+
+		-
+			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\IncrementalBuildCache\:\:\$outputPaths \(array\<string, string\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
+
+		-
+			message: '#^Cannot call method findDocumentEntry\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Cannot call method getDocumentPath\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Cannot call method getFile\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Cannot call method getInternalTarget\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Passes\\DependencyGraphPass\:\:findImports\(\) has parameter \$projectNode with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Passes\\DependencyGraphPass\:\:resolveCrossReference\(\) has parameter \$projectNode with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Passes\\DependencyGraphPass\:\:resolveCrossReference\(\) should return string\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Passes\\DependencyGraphPass\:\:resolveDocReference\(\) has parameter \$projectNode with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Passes\\DependencyGraphPass\:\:resolveDocReference\(\) should return string\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Passes\\DependencyGraphPass\:\:resolveRefReference\(\) has parameter \$projectNode with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Passes\\DependencyGraphPass\:\:resolveRefReference\(\) should return string\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 2
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Parameter \#1 \$nodes of method T3Docs\\GuidesExtension\\Compiler\\Passes\\DependencyGraphPass\:\:traverseNodes\(\) expects iterable\<phpDocumentor\\Guides\\Nodes\\Node\>, iterable given\.$#'
+			identifier: argument.type
+			count: 2
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/DependencyGraphPass.php
+
+		-
+			message: '#^Parameter \#1 \$nodes of method T3Docs\\GuidesExtension\\Compiler\\Passes\\ExportsCollectorPass\:\:traverseNodes\(\) expects list\<phpDocumentor\\Guides\\Nodes\\Node\>, list\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/typo3-guides-extension/src/Compiler/Passes/ExportsCollectorPass.php
+
+		-
 			message: '#^Cannot access offset ''packages'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
