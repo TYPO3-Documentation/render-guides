@@ -1,0 +1,31 @@
+{
+    "branch": "feature_php-8.5-only",
+    "commit": "f14a2086",
+    "scenario": "cold",
+    "docs_type": "small",
+    "timestamp": "20260104_172203",
+    "runs": 1,
+    "metrics": {
+        "wall_time": {
+            "avg_seconds": 5.180,
+            "min_seconds": 5.18,
+            "max_seconds": 5.18
+        },
+        "cpu_time": {
+            "avg_seconds": 10.48,
+            "min_seconds": 10.48,
+            "max_seconds": 10.48,
+            "avg_percent": 202
+        },
+        "memory": {
+            "avg_mb": 119.8,
+            "min_mb": 119.8,
+            "max_mb": 119.8
+        },
+        "files_rendered": 98
+    },
+    "raw_wall_times_seconds": [5.18],
+    "raw_cpu_times_seconds": [10.48],
+    "raw_cpu_percents": [202],
+    "raw_memories_mb": [119.8]
+}

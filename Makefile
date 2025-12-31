@@ -217,3 +217,58 @@ vendor: composer.json composer.lock
 	@echo "$(ENV_INFO)"
 	$(PHP_COMPOSER_BIN) validate --no-check-publish
 	$(PHP_COMPOSER_BIN) install --no-interaction --no-progress --ignore-platform-reqs
+
+## LIST: Benchmark targets for performance testing
+
+.PHONY: benchmark-cold
+benchmark-cold: ## Run cold render benchmark (no cache)
+	@echo "$(ENV_INFO)"
+	./benchmark/run-benchmark.sh cold 3
+
+.PHONY: benchmark-warm
+benchmark-warm: ## Run warm render benchmark (with cache, no changes)
+	@echo "$(ENV_INFO)"
+	./benchmark/run-benchmark.sh warm 3
+
+.PHONY: benchmark-partial
+benchmark-partial: ## Run partial change benchmark (one file modified)
+	@echo "$(ENV_INFO)"
+	./benchmark/run-benchmark.sh partial 3
+
+.PHONY: benchmark-all
+benchmark-all: benchmark-cold benchmark-warm benchmark-partial ## Run all benchmark scenarios
+
+.PHONY: benchmark-compare
+benchmark-compare: ## Compare benchmarks between main and current branch
+	@echo "$(ENV_INFO)"
+	./benchmark/compare-branches.sh main
+
+## LIST: Docker-based benchmark targets (recommended for reproducibility)
+
+.PHONY: benchmark-download-docs
+benchmark-download-docs: ## Download TYPO3 CoreApi documentation for large benchmarks
+	./benchmark/download-test-docs.sh TYPO3CMS-Reference-CoreApi
+
+.PHONY: benchmark-docker-cold
+benchmark-docker-cold: docker-build ## Run cold benchmark in Docker (small docs)
+	./benchmark/benchmark-docker.sh cold 3 small
+
+.PHONY: benchmark-docker-warm
+benchmark-docker-warm: docker-build ## Run warm benchmark in Docker (small docs)
+	./benchmark/benchmark-docker.sh warm 3 small
+
+.PHONY: benchmark-docker-partial
+benchmark-docker-partial: docker-build ## Run partial benchmark in Docker (small docs)
+	./benchmark/benchmark-docker.sh partial 3 small
+
+.PHONY: benchmark-docker-all
+benchmark-docker-all: docker-build ## Run all benchmarks in Docker (small docs)
+	./benchmark/benchmark-docker.sh all 3 small
+
+.PHONY: benchmark-docker-large
+benchmark-docker-large: docker-build benchmark-download-docs ## Run all benchmarks with large TYPO3 docs
+	./benchmark/benchmark-docker.sh all 3 large
+
+.PHONY: benchmark-report
+benchmark-report: ## Generate markdown comparison report
+	./benchmark/generate-report.sh

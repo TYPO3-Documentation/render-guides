@@ -1,0 +1,18 @@
+{
+    "branch": "feature/php-8.5-only",
+    "scenario": "cold",
+    "timestamp": "20251231_212126",
+    "project": "Documentation-rendertest",
+    "runs": 1,
+    "metrics": {
+        "avg_seconds": 7.399,
+        "min_seconds": Successfully placed 4 rendered HTML, SINGLEPAGE, and INTERLINK files into /tmp/benchmark-output/Localization.de_DE
+7.399782230,
+        "max_seconds": Successfully placed 4 rendered HTML, SINGLEPAGE, and INTERLINK files into /tmp/benchmark-output/Localization.de_DE
+7.399782230,
+        "files_rendered": Successfully placed 4 rendered HTML, SINGLEPAGE, and INTERLINK files into /tmp/benchmark-output/Localization.de_DE
+98
+    },
+    "raw_times": [Successfully placed 4 rendered HTML, SINGLEPAGE, and INTERLINK files into /tmp/benchmark-output/Localization.de_DE
+7.399782230]
+}

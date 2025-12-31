@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Site settings — TYPO3 Theme Rendering Test main
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="TYPO3 Theme Rendering Test" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="main" name="docsearch:release">
+<meta content="main" name="docsearch:version">
+<meta content="2026-01-04T21:05:55+00:00" name="docsearch:modified">
+<meta content="2026-01-04T21:05:55+00:00" name="dc.modified">
+<meta content="2026-01-04T21:05:55+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="../_resources/css/prism.min.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="../Sitemap/Index.html" rel="prev" title="Sitemap"/>
+            <link href="SiteSettingsWithLabels/Index.html" rel="next" title="Site settings with labels"/>
+            <link href="../Index.html" rel="top" title="TYPO3 theme rendering test"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 theme rendering test</a>
+            </div>
+    <label for="languageSelect" class="visually-hidden">Select language</label>
+        <select id="languageSelect" class="form-select d-none">
+        </select>
+
+                                  
+        <label for="versionSelect" class="visually-hidden">Select version</label>
+        <select id="versionSelect" class="form-select"
+                data-current-version="main"
+            data-override-url-proxy="../_resources/js/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html"
+        >
+            <option disabled selected>Loading versions...</option>
+        </select>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/SiteSettings/Index.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 theme rendering test</p>
+            <p class="caption"><span class="caption-text">INTRODUCTION</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Page1.html">
+        Page 1
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Page2.html">
+        Page 2
+    </a></li>    </ul>    <p class="caption"><span class="caption-text">HOWTOS</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Accordion/Index.html">
+        Accordion
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Admonitions-and-buttons/Index.html">
+        Admonitions and buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Api/Index.html">
+        TYPO3 API
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Blockquotes/Index.html">
+        Block quotes
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Buttons/Index.html">
+        Buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Cards/Index.html">
+        Cards
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Codeblocks/Index.html">
+        Codeblocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Confval/Index.html">
+        confval
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Confval/ConfvalTrees.html">
+        Confvals with subtrees
+    </a></li><li class="" role="menuitem">
+    <a href="../Confval/X.html">
+        Confvals with subtrees
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ConsoleCommands/Index.html">
+        Console commands
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAll.html">
+        All commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAllExclude.html">
+        All commands, exclude namespaces and commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListGlobal.html">
+        Global commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListNameSpaceCache.html">
+        Commands in namespace cache
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Directives/Index.html">
+        Directives
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Directives/directoryTree.html">
+        Directory tree
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/plantuml.html">
+        Plantuml basic examples
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/versionadded.html">
+        versionadded &amp; friends
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/youtube.html">
+        Youtube directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ExtLinksAndLinkStyles/Index.html">
+        ExtLinks and Link styles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../FieldLists/Index.html">
+        Field lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Glossary/Index.html">
+        Glossary
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ImagesAndFigures/Index.html">
+        Images and figures
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Inline-code-and-textroles/Index.html">
+        Inline code and text roles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lineblocks/Index.html">
+        Line blocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lists/Index.html">
+        Lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Nested-pages/Index.html">
+        Nested pages
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-2"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-3"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-4"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-5"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/1/index.html">
+        Page title
+    </a></li></ul></li></ul></li></ul></li></ul></li></ul></li>    <li class="" role="menuitem">
+    <a href="../PhpDomain/Index.html">
+        Phpdomain
+    </a></li>    <li class="" role="menuitem">
+    <a href="../PhpInline/Index.html">
+        PHP Inline
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Redirects/Index.html">
+        Redirects
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Sitemap/Index.html">
+        Sitemap
+    </a></li>    <li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        Site settings
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="SiteSettingsWithLabels/Index.html">
+        Site settings with labels
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../SpecialCharacters/Index.html">
+        Special characters
+    </a></li>    <li class="" role="menuitem">
+    <a href="../StyledNumberedLists/Index.html">
+        Styled numbered lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Tables/Index.html">
+        Tables
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Tables/TableDirective.html">
+        Table directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Tabs/Index.html">
+        Tabs
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ThisAndThat/Index.html">
+        This and that
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Typesetting/Index.html">
+        Typesetting code Header 
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Uml/Index.html">
+        Very large UML diagram
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ViewHelpers/Index.html">
+        ViewHelpers
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 theme rendering test</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Site settings</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="site-settings" data-rst-anchor="site-settings">
+            <a id="site_settings"></a>
+            <h1>Site settings<a class="headerlink" href="#site-settings" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            <div class="toctree-wrapper compound">
+        <ul class="menu-level">
+    <li class="toc-item">
+    <a href="SiteSettingsWithLabels/Index.html#site-settings-with-labels">Site settings with labels</a>
+
+
+</li>
+    </ul>
+</div>
+                <div class="code-block-caption">
+        <span class="caption-text">Settings.rst</span>
+    </div><div class="code-block-wrapper" translate="no">
+                        
+    <pre class="code-block "><code class="language-rst">..  typo3:site-set-settings:: settings.definitions.yaml
+    :name: my-set
+    :type:
+    :Label: max=20
+    :default: max=10
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+
+
+
+<a id="confval-menu-my-set"></a>
+<div class="table-responsive confval-table">
+    <table class="table table-hover caption-top">        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            
+                                    <th scope="col">Type</th>
+                            
+                                    <th scope="col">Label</th>
+                            
+                                    <th scope="col">Default</th>
+                                    </tr>
+        </thead>
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-my-set-category-example">Example</a></div></td>
+                    <td>
+                            
+                        </td>
+                    <td>
+                                                <span title="Site settings examples">
+                Site settings exampl...
+            </span>
+        
+                                </td>
+                    <td>
+                                        <span></span>
+        
+                        </td>
+            </tr>
+                            <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-my-set-category-example-examples">Example.<wbr>examples</a></div></td>
+                    <td>
+                            
+                        </td>
+                    <td>
+                                                <span>Examples</span>
+        
+                                </td>
+                    <td>
+                                        <span></span>
+        
+                        </td>
+            </tr>
+                            <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-output-view-templaterootpath">example.<wbr>output.<wbr>view.<wbr>template<wbr>Root<wbr>Path</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </td>
+                    <td>
+                                                <span title="Path to template root (FE)">
+                Path to template roo...
+            </span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        &quot;EXT:example/Resources/Private/Templates/&quot;">
+                
+        &quot;...
+            </span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-output-view-partialrootpath">example.<wbr>output.<wbr>view.<wbr>partial<wbr>Root<wbr>Path</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </td>
+                    <td>
+                                                <span title="Path to template partials (FE)">
+                Path to template par...
+            </span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        &quot;EXT:example/Resources/Private/Partials/&quot;">
+                
+        &quot;...
+            </span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-output-view-layoutrootpath">example.<wbr>output.<wbr>view.<wbr>layout<wbr>Root<wbr>Path</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </td>
+                    <td>
+                                                <span title="Path to template layouts (FE)">
+                Path to template lay...
+            </span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        &quot;EXT:example/Resources/Private/Layouts/&quot;">
+                
+        &quot;...
+            </span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-output-pages-excludeddoktypes">example.<wbr>output.<wbr>pages.<wbr>excluded<wbr>Doktypes</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </td>
+                    <td>
+                                                <span>Doktypes to exclude</span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        &quot;3, 4, 6, 7, 199, 254&quot;">
+                
+        &quot;...
+            </span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-output-pages-excludepagesrecursive">example.<wbr>output.<wbr>pages.<wbr>exclude<wbr>Pages<wbr>Recursive</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </td>
+                    <td>
+                                                <span title="List of page uids which should be excluded recursive">
+                List of page uids wh...
+            </span>
+        
+                                </td>
+                    <td>
+                                        <span></span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-output-pages-additionalwhere">example.<wbr>output.<wbr>pages.<wbr>additional<wbr>Where</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </td>
+                    <td>
+                                                <span title="Additional where clause">
+                Additional where cla...
+            </span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        &quot;{#no_index} = 0 AND {#canonical_link} = &amp;#039;&amp;#039;&quot;">
+                
+        &quot;...
+            </span>
+        
+                        </td>
+            </tr>
+                
+            
+                                    <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-my-set-category-blogexample-types">Blog<wbr>Example.<wbr>types</a></div></td>
+                    <td>
+                            
+                        </td>
+                    <td>
+                                                <span>Available types</span>
+        
+                                </td>
+                    <td>
+                                        <span></span>
+        
+                        </td>
+            </tr>
+                            <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-types-int">example.<wbr>types.<wbr>int</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="int"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        int</code>
+                        </td>
+                    <td>
+                                                <span>Type int</span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        42">
+                
+        4...
+            </span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-types-number">example.<wbr>types.<wbr>number</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="number"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        number</code>
+                        </td>
+                    <td>
+                                                <span>Type number</span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        3.16">
+                
+        3...
+            </span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-types-bool">example.<wbr>types.<wbr>bool</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="bool"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        bool</code>
+                        </td>
+                    <td>
+                                                <span>Type bool</span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        true">
+                
+        t...
+            </span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-types-bool-false">example.<wbr>types.<wbr>bool-<wbr>false</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="bool"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        bool</code>
+                        </td>
+                    <td>
+                                                <span>Type bool</span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        false">
+                
+        f...
+            </span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-types-string">example.<wbr>types.<wbr>string</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </td>
+                    <td>
+                                                <span>Type string</span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        &quot;EXT:example/Resources/Private/Templates/&quot;">
+                
+        &quot;...
+            </span>
+        
+                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-4"><a href="#confval-my-set-example-types-text">example.<wbr>types.<wbr>text</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="text"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        text</code>
+                        </td>
+                    <td>
+                                                <span>Type text</span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        &quot;EXT:example/Resources/Private/Templates/&quot;">
+                
+        &quot;...
+            </span>
+        
+                        </td>
+            </tr>
+                
+            
+            
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-my-set-category-unknown">Unknown</a></div></td>
+                    <td>
+                            
+                        </td>
+                    <td>
+                        </td>
+                    <td>
+                                        <span></span>
+        
+                        </td>
+            </tr>
+                            <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-my-set-example-types-stringlist">example.<wbr>types.<wbr>stringlist</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="stringlist"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        stringlist</code>
+                        </td>
+                    <td>
+                                                <span>Type stringlist</span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        [
+    &quot;Dog&quot;,
+    &quot;Cat&quot;,
+    &quot;Bird&quot;,
+    &quot;Spider&quot;
+]">
+                
+        [...
+            </span>
+        
+                        </td>
+            </tr>
+                
+            
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-my-set-category-global">_global</a></div></td>
+                    <td>
+                            
+                        </td>
+                    <td>
+                        </td>
+                    <td>
+                                        <span></span>
+        
+                        </td>
+            </tr>
+                            <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-my-set-example-types-color">example.<wbr>types.<wbr>color</a></div></td>
+                    <td>
+                            <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="color"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        color</code>
+                        </td>
+                    <td>
+                                                <span>Type text</span>
+        
+                                </td>
+                    <td>
+                                        <span title="
+        &quot;#FF8700&quot;">
+                
+        &quot;...
+            </span>
+        
+                        </td>
+            </tr>
+                
+            
+            </table>
+</div>
+                <section data-search-title="Example"
+         data-search-id="confval-my-set-category-example"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-my-set-category-example"
+>
+    <h3 class="sr-only">Example</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">Example</span></code>
+                                    <a class="headerlink" href="#confval-my-set-category-example"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-category-example"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Site settings examples
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                <section data-search-title="Example.examples"
+         data-search-id="confval-my-set-category-example-examples"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-my-set-category-example-examples"
+>
+    <h3 class="sr-only">Example.examples</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">Example.<wbr>examples</span></code>
+                                    <a class="headerlink" href="#confval-my-set-category-example-examples"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-category-example-examples"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Examples
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                <section data-search-title="example.output.view.templateRootPath"
+         data-search-id="confval-my-set-example-output-view-templaterootpath"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-output-view-templaterootpath"
+>
+    <h3 class="sr-only">example.output.view.templateRootPath</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>output.<wbr>view.<wbr>template<wbr>Root<wbr>Path</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-output-view-templaterootpath"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-output-view-templaterootpath"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&quot;EXT:example/Resources/Private/Templates/&quot;"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        &quot;EXT:<wbr>example/<wbr>Resources/<wbr>Private/<wbr>Templates/&quot;</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Path to template root (FE)
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Examples
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.output.view.partialRootPath"
+         data-search-id="confval-my-set-example-output-view-partialrootpath"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-output-view-partialrootpath"
+>
+    <h3 class="sr-only">example.output.view.partialRootPath</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>output.<wbr>view.<wbr>partial<wbr>Root<wbr>Path</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-output-view-partialrootpath"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-output-view-partialrootpath"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&quot;EXT:example/Resources/Private/Partials/&quot;"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        &quot;EXT:<wbr>example/<wbr>Resources/<wbr>Private/<wbr>Partials/&quot;</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Path to template partials (FE)
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Examples
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.output.view.layoutRootPath"
+         data-search-id="confval-my-set-example-output-view-layoutrootpath"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-output-view-layoutrootpath"
+>
+    <h3 class="sr-only">example.output.view.layoutRootPath</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>output.<wbr>view.<wbr>layout<wbr>Root<wbr>Path</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-output-view-layoutrootpath"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-output-view-layoutrootpath"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&quot;EXT:example/Resources/Private/Layouts/&quot;"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        &quot;EXT:<wbr>example/<wbr>Resources/<wbr>Private/<wbr>Layouts/&quot;</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Path to template layouts (FE)
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Examples
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.output.pages.excludedDoktypes"
+         data-search-id="confval-my-set-example-output-pages-excludeddoktypes"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-output-pages-excludeddoktypes"
+>
+    <h3 class="sr-only">example.output.pages.excludedDoktypes</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>output.<wbr>pages.<wbr>excluded<wbr>Doktypes</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-output-pages-excludeddoktypes"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-output-pages-excludeddoktypes"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&quot;3, 4, 6, 7, 199, 254&quot;"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        &quot;3, 4, 6, 7, 199, 254&quot;</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Doktypes to exclude
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Examples
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.output.pages.excludePagesRecursive"
+         data-search-id="confval-my-set-example-output-pages-excludepagesrecursive"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-output-pages-excludepagesrecursive"
+>
+    <h3 class="sr-only">example.output.pages.excludePagesRecursive</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>output.<wbr>pages.<wbr>exclude<wbr>Pages<wbr>Recursive</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-output-pages-excludepagesrecursive"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-output-pages-excludepagesrecursive"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">List of page uids which should be excluded recursive
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Examples
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.output.pages.additionalWhere"
+         data-search-id="confval-my-set-example-output-pages-additionalwhere"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-output-pages-additionalwhere"
+>
+    <h3 class="sr-only">example.output.pages.additionalWhere</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>output.<wbr>pages.<wbr>additional<wbr>Where</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-output-pages-additionalwhere"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-output-pages-additionalwhere"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&quot;{#no_index} = 0 AND {#canonical_link} = &#039;&#039;&quot;"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        &quot;<wbr>{#no_<wbr>index} = 0 AND <wbr>{#canonical_<wbr>link} = &#039;&#039;&quot;</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Additional where clause
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Examples
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="BlogExample.types"
+         data-search-id="confval-my-set-category-blogexample-types"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-my-set-category-blogexample-types"
+>
+    <h3 class="sr-only">BlogExample.types</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">Blog<wbr>Example.<wbr>types</span></code>
+                                    <a class="headerlink" href="#confval-my-set-category-blogexample-types"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-category-blogexample-types"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Available types
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                <section data-search-title="example.types.int"
+         data-search-id="confval-my-set-example-types-int"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-types-int"
+>
+    <h3 class="sr-only">example.types.int</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>types.<wbr>int</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-types-int"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-types-int"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="int"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        int</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="42"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        42</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Type int
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Available types
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>Checks whether the value is already an integer or can be interpreted as an integer. If yes, the string is converted into an integer.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.types.number"
+         data-search-id="confval-my-set-example-types-number"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-types-number"
+>
+    <h3 class="sr-only">example.types.number</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>types.<wbr>number</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-types-number"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-types-number"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="number"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        number</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="3.16"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        3.<wbr>16</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Type number
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Available types
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>Checks whether the value is already an integer or float or whether the string can be interpreted as an integer or float. If yes, the string is converted to an integer or float.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.types.bool"
+         data-search-id="confval-my-set-example-types-bool"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-types-bool"
+>
+    <h3 class="sr-only">example.types.bool</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>types.<wbr>bool</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-types-bool"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-types-bool"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="bool"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        bool</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="true"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        true</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Type bool
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Available types
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>Casts the value to a boolean.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.types.bool-false"
+         data-search-id="confval-my-set-example-types-bool-false"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-types-bool-false"
+>
+    <h3 class="sr-only">example.types.bool-false</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>types.<wbr>bool-<wbr>false</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-types-bool-false"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-types-bool-false"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="bool"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        bool</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="false"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        false</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Type bool
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Available types
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>Casts the value to a boolean.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.types.string"
+         data-search-id="confval-my-set-example-types-string"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-types-string"
+>
+    <h3 class="sr-only">example.types.string</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>types.<wbr>string</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-types-string"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-types-string"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="string"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        string</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&quot;EXT:example/Resources/Private/Templates/&quot;"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        &quot;EXT:<wbr>example/<wbr>Resources/<wbr>Private/<wbr>Templates/&quot;</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Type string
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Available types
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>Converts almost all data types into a string. If an object has been specified, it must be stringable, otherwise no conversion takes place. Boolean values are converted to &quot;true&quot; and &quot;false&quot;.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="example.types.text"
+         data-search-id="confval-my-set-example-types-text"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-types-text"
+>
+    <h3 class="sr-only">example.types.text</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>types.<wbr>text</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-types-text"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-types-text"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="text"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        text</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&quot;EXT:example/Resources/Private/Templates/&quot;"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        &quot;EXT:<wbr>example/<wbr>Resources/<wbr>Private/<wbr>Templates/&quot;</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Type text
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Site settings examples &gt; Available types
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>Exactly the same as the `string` type. Use it as an alias if someone doesn&#039;t know what to do with `string`.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            </div>
+        </dd>
+    </dl>
+</section>
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="Unknown"
+         data-search-id="confval-my-set-category-unknown"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-my-set-category-unknown"
+>
+    <h3 class="sr-only">Unknown</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">Unknown</span></code>
+                                    <a class="headerlink" href="#confval-my-set-category-unknown"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-category-unknown"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                    </dl>
+                        <div class="confval-description">
+                <section data-search-title="example.types.stringlist"
+         data-search-id="confval-my-set-example-types-stringlist"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-types-stringlist"
+>
+    <h3 class="sr-only">example.types.stringlist</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>types.<wbr>stringlist</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-types-stringlist"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-types-stringlist"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="stringlist"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        stringlist</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="[
+    &quot;Dog&quot;,
+    &quot;Cat&quot;,
+    &quot;Bird&quot;,
+    &quot;Spider&quot;
+]"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        [
+    &quot;Dog&quot;,
+    &quot;Cat&quot;,
+    &quot;Bird&quot;,
+    &quot;Spider&quot;
+]</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Type stringlist
+                            </dd>
+                                                    <dt class="field-even">Category</dt>
+                            <dd class="field-even">Unknown
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>The value must be an array whose array keys start at 0 and increase by 1 per element. The list in this type is derived from the internal PHP method array_is_list() and has nothing to do with the fact that comma-separated lists can also be converted here.
+The `string` type is executed for each array entry.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="_global"
+         data-search-id="confval-my-set-category-global"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-my-set-category-global"
+>
+    <h3 class="sr-only">_global</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">_global</span></code>
+                                    <a class="headerlink" href="#confval-my-set-category-global"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-category-global"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                    </dl>
+                        <div class="confval-description">
+                <section data-search-title="example.types.color"
+         data-search-id="confval-my-set-example-types-color"
+         data-search-facet="Site Setting"
+         class="confval-section"
+         id="confval-my-set-example-types-color"
+>
+    <h3 class="sr-only">example.types.color</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">example.<wbr>types.<wbr>color</span></code>
+                                    <a class="headerlink" href="#confval-my-set-example-types-color"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-my-set-example-types-color"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-my-set" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="color"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        color</code>
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&quot;#FF8700&quot;"
+          data-shortdescription=""
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        &quot;#FF8700&quot;</code>
+                        </dd>
+                                                <dt class="field-even">Label</dt>
+                            <dd class="field-even">Type text
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>Checks whether the specified string can be interpreted as a color code. Entries starting with `rgb`, `rgba` and `#` are permitted here.
+For `#` color codes, for example, the system checks whether they have 3, 6 or 8 digits.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            </div>
+        </dd>
+    </dl>
+</section>
+        
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="../Sitemap/Index.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="SiteSettingsWithLabels/Index.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="SiteSettings/Index" data-interlink-shortcode="rendertest">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="SiteSettings/Index"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 04, 2026 21:05</p>
+                </div>
+                <div class="footer-meta">
+                                        <div class="footer-meta-copyright">
+                        &copy; 2020, TYPO3 Documentation Team
+                    </div>
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+<script src="../_resources/js/prism.min.js"></script>
+<script src="../_resources/js/prism-languages.min.js"></script>
+<script src="../_resources/js/prism-plugins.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>
