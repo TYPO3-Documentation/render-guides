@@ -1,0 +1,23 @@
+{
+    "branch": "main",
+    "commit": "65a3b6ff",
+    "scenario": "warm",
+    "docs_type": "small",
+    "timestamp": "20260101_094632",
+    "runs": 3,
+    "metrics": {
+        "time": {
+            "avg_seconds": 9.233,
+            "min_seconds": 9.055695679,
+            "max_seconds": 9.515127955
+        },
+        "memory": {
+            "avg_mb": 1011.0,
+            "min_mb": 1011,
+            "max_mb": 1011
+        },
+        "files_rendered": 98
+    },
+    "raw_times_seconds": [9.128457255,9.055695679,9.515127955],
+    "raw_memories_mb": [1011,1011,1011]
+}

@@ -405,18 +405,18 @@
                 <div class="label">Faster on Extra-Large Docs (Cold Build)</div>
             </div>
             <div class="highlight-box">
-                <div class="big-number">76%</div>
+                <div class="big-number">72%</div>
                 <div class="label">Faster on Large Docs (Cold Build)</div>
             </div>
         </div>
 
         <div class="metrics-grid">
             <div class="metric-card">
-                <div class="value">1180s &rarr; 56s</div>
-                <div class="label">TYPO3 Core Changelog (3667 files)</div>
+                <div class="value">997s &rarr; 47s</div>
+                <div class="label">TYPO3 Core Changelog (3666 files)</div>
             </div>
             <div class="metric-card">
-                <div class="value">186s &rarr; 44s</div>
+                <div class="value">132s &rarr; 37s</div>
                 <div class="label">TYPO3 Core API Docs (957 files)</div>
             </div>
             <div class="metric-card">
@@ -441,123 +441,66 @@
                         <th>Files</th>
                         <th>main Branch</th>
                         <th>feature Branch</th>
-                        <th>Time Improvement</th>
+                        <th>Improvement</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>TYPO3 Core Changelog</strong></td>
-                        <td>3667</td>
-                        <td>1179.6s (19.7min)</td>
-                        <td>56.3s</td>
-                        <td class="improvement">-95.2% (1123s faster)</td>
+                        <td>3666</td>
+                        <td>997.5s (16.6min)</td>
+                        <td>46.5s</td>
+                        <td class="improvement">-95.3% (951s faster)</td>
                     </tr>
                     <tr>
                         <td><strong>TYPO3 Core API</strong></td>
                         <td>957</td>
-                        <td>185.5s</td>
-                        <td>44.2s</td>
-                        <td class="improvement">-76.2% (141s faster)</td>
+                        <td>132.06s</td>
+                        <td>36.72s</td>
+                        <td class="improvement">-72.2% (95.3s faster)</td>
                     </tr>
                     <tr>
                         <td><strong>Rendertest</strong></td>
                         <td>98</td>
-                        <td>9.34s</td>
-                        <td>6.83s</td>
-                        <td class="improvement">-26.9% (2.5s faster)</td>
+                        <td>11.24s</td>
+                        <td>7.20s</td>
+                        <td class="improvement">-35.9% (4.0s faster)</td>
                     </tr>
                 </tbody>
             </table>
-
-            <h3 style="margin-top: 2rem;">Resource Usage Comparison</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Documentation</th>
-                        <th>Branch</th>
-                        <th>CPU Usage</th>
-                        <th>Peak Memory</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="2"><strong>TYPO3 Core Changelog</strong> (3667 files)</td>
-                        <td>main</td>
-                        <td>101%</td>
-                        <td>2986 MB</td>
-                    </tr>
-                    <tr>
-                        <td style="color: var(--primary); font-weight: 600;">feature</td>
-                        <td>440%</td>
-                        <td>900 MB <span style="color: var(--success);">(-70%)</span></td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2"><strong>TYPO3 Core API</strong> (957 files)</td>
-                        <td>main</td>
-                        <td>91%</td>
-                        <td>358 MB</td>
-                    </tr>
-                    <tr>
-                        <td style="color: var(--primary); font-weight: 600;">feature</td>
-                        <td>391%</td>
-                        <td>521 MB <span style="color: var(--text-muted);">(+46%)</span></td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2"><strong>Rendertest</strong> (98 files)</td>
-                        <td>main</td>
-                        <td>62%</td>
-                        <td>98 MB</td>
-                    </tr>
-                    <tr>
-                        <td style="color: var(--primary); font-weight: 600;">feature</td>
-                        <td>214%</td>
-                        <td>33 MB <span style="color: var(--success);">(-66%)</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            <p style="color: var(--text-muted); margin-top: 0.75rem; font-size: 0.9rem;">
-                <strong>CPU Usage &gt;100%:</strong> Indicates parallel processing via <code>pcntl_fork</code> across multiple cores.
-                440% CPU = ~4.4 cores utilized on average.
-            </p>
-            <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem;">
-                <strong>Memory Efficiency:</strong> Feature branch uses <strong>3x less memory</strong> on Changelog (900 MB vs 2986 MB)
-                and small docs (33 MB vs 98 MB). The Core API shows higher memory on feature branch due to parallel process overhead,
-                but wall time is still 4x faster. Memory from PHP <code>memory_get_peak_usage(true)</code> (feature) and
-                <code>/usr/bin/time</code> (main).
-            </p>
 
             <div class="chart-container">
                 <h4 style="margin-bottom: 1rem; text-align: center;">Build Time Comparison (seconds)</h4>
                 <div class="bar-chart">
                     <div class="bar-group">
                         <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
-                            <div class="bar main" style="height: 248px;">
-                                <span class="bar-value">1180s</span>
+                            <div class="bar main" style="height: 250px;">
+                                <span class="bar-value">997.5s</span>
                             </div>
                             <div class="bar" style="height: 12px;">
-                                <span class="bar-value">56.3s</span>
+                                <span class="bar-value">46.5s</span>
                             </div>
                         </div>
-                        <div class="bar-label">Core Changelog<br>(3667 files)</div>
+                        <div class="bar-label">Core Changelog<br>(3666 files)</div>
                     </div>
                     <div class="bar-group">
                         <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
-                            <div class="bar main" style="height: 39px;">
-                                <span class="bar-value">185.5s</span>
+                            <div class="bar main" style="height: 33px;">
+                                <span class="bar-value">132.1s</span>
                             </div>
                             <div class="bar" style="height: 9px;">
-                                <span class="bar-value">44.2s</span>
+                                <span class="bar-value">36.7s</span>
                             </div>
                         </div>
                         <div class="bar-label">TYPO3 Core API<br>(957 files)</div>
                     </div>
                     <div class="bar-group">
                         <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
-                            <div class="bar main" style="height: 2px;">
-                                <span class="bar-value">9.34s</span>
+                            <div class="bar main" style="height: 3px;">
+                                <span class="bar-value">11.2s</span>
                             </div>
-                            <div class="bar" style="height: 1px;">
-                                <span class="bar-value">6.83s</span>
+                            <div class="bar" style="height: 2px;">
+                                <span class="bar-value">7.2s</span>
                             </div>
                         </div>
                         <div class="bar-label">Rendertest<br>(98 files)</div>
@@ -589,235 +532,33 @@
                         <th>Documentation</th>
                         <th>Cold Build</th>
                         <th>Warm Build</th>
-                        <th>Improvement</th>
+                        <th>Difference</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>TYPO3 Core Changelog</strong> (3667 files)</td>
-                        <td>56.3s</td>
-                        <td>49.9s</td>
-                        <td><span style="color: var(--success); font-weight: bold;">-11%</span></td>
+                        <td><strong>TYPO3 Core Changelog</strong> (3666 files)</td>
+                        <td>46.5s</td>
+                        <td>36.5s</td>
+                        <td><span style="color: var(--success); font-weight: bold;">-21%</span></td>
                     </tr>
                     <tr>
                         <td><strong>TYPO3 Core API</strong> (957 files)</td>
-                        <td>44.2s</td>
-                        <td>35.5s</td>
-                        <td><span style="color: var(--success); font-weight: bold;">-20%</span></td>
+                        <td>35.1s</td>
+                        <td>28.4s</td>
+                        <td><span style="color: var(--success); font-weight: bold;">-19%</span></td>
                     </tr>
                     <tr>
                         <td><strong>Rendertest</strong> (98 files)</td>
-                        <td>6.83s</td>
-                        <td>5.23s</td>
-                        <td><span style="color: var(--success); font-weight: bold;">-23%</span></td>
+                        <td>6.0s</td>
+                        <td>4.96s</td>
+                        <td><span style="color: var(--success); font-weight: bold;">-17%</span></td>
                     </tr>
                 </tbody>
             </table>
             <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
                 <strong>Note:</strong> Warm builds benefit from Twig template caching persisted between runs.
-                The 11-23% improvement comes primarily from avoiding Twig template recompilation.
-                CPU usage and memory consumption are similar between cold and warm builds.
-            </p>
-        </div>
-
-        <!-- Partial/Incremental Rendering -->
-        <div class="card">
-            <h2>Incremental Rendering (Partial Builds)</h2>
-            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                When a file is modified, the feature branch can re-render only the affected documents.
-                This dramatically speeds up development workflows.
-            </p>
-
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Documentation</th>
-                        <th>Cold Build</th>
-                        <th>Warm Build</th>
-                        <th>Partial Build</th>
-                        <th>Partial vs Cold</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>TYPO3 Core Changelog</strong> (3667 files)</td>
-                        <td>56.3s</td>
-                        <td>49.9s</td>
-                        <td>34.8s</td>
-                        <td><span style="color: var(--success); font-weight: bold;">-38%</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>TYPO3 Core API</strong> (957 files)</td>
-                        <td>44.2s</td>
-                        <td>35.5s</td>
-                        <td>27.1s</td>
-                        <td><span style="color: var(--success); font-weight: bold;">-39%</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Rendertest</strong> (98 files)</td>
-                        <td>6.83s</td>
-                        <td>5.23s</td>
-                        <td>4.07s</td>
-                        <td><span style="color: var(--success); font-weight: bold;">-40%</span></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
-                <strong>Note:</strong> Partial builds use content hashing to detect changes and re-render only affected documents.
-                Combined with warm Twig caches, this enables rapid iteration during documentation development.
-                The main branch does not support incremental rendering.
-            </p>
-        </div>
-
-        <!-- Parallel Processing -->
-        <div class="card">
-            <h2>Parallel Processing Comparison</h2>
-            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                The feature branch uses <code>pcntl_fork</code> for parallel rendering. The <code>--parallel-workers</code>
-                CLI option controls worker count: <code>-1</code> = disabled (sequential), <code>0</code> = auto-detect (default, capped at 8), or specify a number.
-            </p>
-
-            <h3>Small Docs (Rendertest - 98 files)</h3>
-            <table class="comparison-table" style="margin-top: 0.5rem;">
-                <thead>
-                    <tr>
-                        <th>Configuration</th>
-                        <th>Cold Build</th>
-                        <th>Warm Build</th>
-                        <th>Memory</th>
-                        <th>CPU Usage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="background: #f8f9fa;">
-                        <td><strong>main branch</strong></td>
-                        <td>9.34s</td>
-                        <td>8.47s</td>
-                        <td>98 MB</td>
-                        <td>62%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>feature</strong> (sequential)</td>
-                        <td>6.55s <span style="color: var(--success);">(-30%)</span></td>
-                        <td>4.56s <span style="color: var(--success);">(-46%)</span></td>
-                        <td>34 MB</td>
-                        <td>115%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>feature</strong> (auto)</td>
-                        <td>5.23s <span style="color: var(--success);">(-44%)</span></td>
-                        <td>4.10s <span style="color: var(--success);">(-52%)</span></td>
-                        <td>32 MB</td>
-                        <td>202%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>feature</strong> (16 workers)</td>
-                        <td>5.24s <span style="color: var(--success);">(-44%)</span></td>
-                        <td>3.86s <span style="color: var(--success);">(-54%)</span></td>
-                        <td>33 MB</td>
-                        <td>229%</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3 style="margin-top: 1.5rem;">Large Docs (TYPO3 Core API - 957 files)</h3>
-            <table class="comparison-table" style="margin-top: 0.5rem;">
-                <thead>
-                    <tr>
-                        <th>Configuration</th>
-                        <th>Cold Build</th>
-                        <th>Warm Build</th>
-                        <th>Memory</th>
-                        <th>CPU Usage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="background: #f8f9fa;">
-                        <td><strong>main branch</strong></td>
-                        <td>185.5s (3.1min)</td>
-                        <td>162.6s</td>
-                        <td>358 MB</td>
-                        <td>91%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>feature</strong> (sequential)</td>
-                        <td>77.5s <span style="color: var(--success);">(-58%)</span></td>
-                        <td>66.6s <span style="color: var(--success);">(-59%)</span></td>
-                        <td>975 MB</td>
-                        <td>136%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>feature</strong> (auto)</td>
-                        <td>32.1s <span style="color: var(--success);">(-83%)</span></td>
-                        <td>28.6s <span style="color: var(--success);">(-82%)</span></td>
-                        <td>521 MB</td>
-                        <td>376%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>feature</strong> (16 workers)</td>
-                        <td>32.0s <span style="color: var(--success);">(-83%)</span></td>
-                        <td>27.1s <span style="color: var(--success);">(-83%)</span></td>
-                        <td>521 MB</td>
-                        <td>537%</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3 style="margin-top: 1.5rem;">Extra-Large Docs (TYPO3 Core Changelog - 3667 files)</h3>
-            <table class="comparison-table" style="margin-top: 0.5rem;">
-                <thead>
-                    <tr>
-                        <th>Configuration</th>
-                        <th>Cold Build</th>
-                        <th>Warm Build</th>
-                        <th>Memory</th>
-                        <th>CPU Usage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="background: #f8f9fa;">
-                        <td><strong>main branch</strong></td>
-                        <td>1179.6s (19.7min)</td>
-                        <td>917.6s (15.3min)</td>
-                        <td>2986 MB</td>
-                        <td>101%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>feature</strong> (sequential)</td>
-                        <td>65.5s <span style="color: var(--success);">(-94%)</span></td>
-                        <td>58.2s <span style="color: var(--success);">(-94%)</span></td>
-                        <td>980 MB <span style="color: var(--success);">(-67%)</span></td>
-                        <td>246%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>feature</strong> (auto)</td>
-                        <td>43.7s <span style="color: var(--success);">(-96%)</span></td>
-                        <td>37.3s <span style="color: var(--success);">(-96%)</span></td>
-                        <td>900 MB <span style="color: var(--success);">(-70%)</span></td>
-                        <td>431%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>feature</strong> (16 workers)</td>
-                        <td>44.4s <span style="color: var(--success);">(-96%)</span></td>
-                        <td>37.5s <span style="color: var(--success);">(-96%)</span></td>
-                        <td>900 MB <span style="color: var(--success);">(-70%)</span></td>
-                        <td>491%</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3 style="margin-top: 1.5rem;">Key Observations</h3>
-            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                <li><strong>Sequential mode validates caching patches:</strong> Even without parallelism, feature branch is 30-94% faster than main - this is pure algorithmic optimization.</li>
-                <li><strong>Parallelism adds significant value:</strong> Auto mode is 1.2-2.4x faster than sequential for large docs (77.5s → 32.1s for Core API).</li>
-                <li><strong>Auto vs 16 workers:</strong> Auto-detect (capped at 8) performs similarly to 16 workers - diminishing returns above 8 cores.</li>
-                <li><strong>Memory efficiency:</strong> Parallel modes use LESS memory than sequential (521 MB vs 975 MB for Core API) due to per-process isolation.</li>
-            </ul>
-
-            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
-                <strong>Note:</strong> Sequential mode shows >100% CPU on changelog (246%) because the parsing/compilation phases
-                may still use parallelism. The <code>--parallel-workers</code> option controls the render phase specifically.
+                The ~18-21% improvement comes primarily from avoiding Twig template recompilation.
             </p>
         </div>
 
@@ -1165,17 +906,9 @@
         <!-- Incremental/Partial Builds -->
         <div class="card">
             <h2>Incremental Build Performance (Feature Branch)</h2>
-
-            <!-- Success Banner -->
-            <div style="background: #d4edda; border-left: 4px solid #28a745; padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-                <strong style="color: #155724;">✓ Incremental Rendering Working!</strong>
-                <span style="color: #155724;">The feature branch now properly caches document exports and only re-renders
-                changed documents. Single-file changes now complete in under 1 second.</span>
-            </div>
-
             <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                Incremental rendering dramatically reduces build times when only a few files change.
-                The cache tracks document exports (anchors, titles, citations) and only re-renders affected documents.
+                Incremental rendering re-renders only changed files and their dependents.
+                The table below compares different change scenarios.
             </p>
 
             <table class="comparison-table">
@@ -1184,53 +917,49 @@
                         <th>Documentation</th>
                         <th>Cold Build</th>
                         <th>Warm (no changes)</th>
-                        <th>Partial (1 file change)</th>
-                        <th>Speedup</th>
+                        <th>Root Doc Change</th>
+                        <th>Leaf Doc Change</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>TYPO3 Core Changelog</strong> (3667 files)</td>
-                        <td>56.3s</td>
-                        <td>49.9s</td>
-                        <td><span style="color: var(--success); font-weight: 700;">~1.5s</span></td>
-                        <td><span style="color: var(--success); font-weight: 700;">97% faster</span></td>
+                        <td><strong>TYPO3 Core Changelog</strong> (3666 files)</td>
+                        <td>46.5s</td>
+                        <td>36.5s <span style="color: var(--success);">(-21%)</span></td>
+                        <td>36.8s <span style="color: var(--success);">(-21%)</span></td>
+                        <td>36.2s <span style="color: var(--success);">(-22%)</span></td>
                     </tr>
                     <tr>
                         <td><strong>TYPO3 Core API</strong> (957 files)</td>
-                        <td>44.2s</td>
-                        <td>35.5s</td>
-                        <td><span style="color: var(--success); font-weight: 700;">~1.5s</span></td>
-                        <td><span style="color: var(--success); font-weight: 700;">96% faster</span></td>
+                        <td>35.1s</td>
+                        <td>27.5s <span style="color: var(--success);">(-22%)</span></td>
+                        <td>27.4s <span style="color: var(--success);">(-22%)</span></td>
+                        <td>28.1s <span style="color: var(--success);">(-20%)</span></td>
                     </tr>
                     <tr>
                         <td><strong>Rendertest</strong> (98 files)</td>
-                        <td>5.11s</td>
-                        <td>4.23s</td>
-                        <td><span style="color: var(--success); font-weight: 700;">0.41s</span></td>
-                        <td><span style="color: var(--success); font-weight: 700;">92% faster</span></td>
+                        <td>6.0s</td>
+                        <td>5.0s <span style="color: var(--success);">(-17%)</span></td>
+                        <td>5.1s <span style="color: var(--success);">(-15%)</span></td>
+                        <td>4.9s <span style="color: var(--success);">(-18%)</span></td>
                     </tr>
                 </tbody>
             </table>
 
             <h3>What the scenarios mean</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                <li><strong>Cold Build:</strong> All caches cleared, first render - builds the incremental cache</li>
-                <li><strong>Warm (no changes):</strong> Re-render with caches populated - validates all docs unchanged</li>
-                <li><strong>Partial (1 file change):</strong> Modify <code>Index.rst</code> - only re-renders affected doc</li>
+                <li><strong>Cold Build:</strong> All caches cleared, first render</li>
+                <li><strong>Warm (no changes):</strong> Re-render with all caches populated, no file changes</li>
+                <li><strong>Root Doc Change:</strong> Modify <code>Index.rst</code> (referenced by all pages &mdash; worst case)</li>
+                <li><strong>Leaf Doc Change:</strong> Modify a leaf document (only referenced by its parent)</li>
             </ul>
 
-            <h3>How It Works</h3>
             <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
-                The incremental rendering system uses a <code>_build_meta.json</code> cache file stored in the output directory:
+                <strong>Key insight:</strong> With incremental caching, all partial builds (whether changing root or leaf documents)
+                achieve similar times to warm builds. The caching infrastructure effectively avoids redundant work through
+                Twig template caching, AST caching, and content hash-based change detection. The ~20% improvement over cold builds
+                comes from these cached artifacts.
             </p>
-            <ol style="margin: 0.5rem 0 1rem; padding-left: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
-                <li><strong>Export Collection:</strong> <code>ExportsCollectorPass</code> collects anchors, titles, and citations from each document</li>
-                <li><strong>Cache State Merging:</strong> During parallel compilation, child processes serialize their cache state back to the parent</li>
-                <li><strong>Change Detection:</strong> <code>ChangeDetector</code> compares content hashes to identify modified files</li>
-                <li><strong>Dependency Propagation:</strong> If a document's exports change, dependent documents are also marked dirty</li>
-                <li><strong>Selective Rendering:</strong> Only dirty documents are re-parsed and re-rendered</li>
-            </ol>
         </div>
 
         <!-- Benchmark Details -->
@@ -1370,7 +1099,7 @@ docker run --rm -v $(pwd)/benchmark/test-docs/TYPO3-Core-Changelog/typo3/sysext/
 
     <footer>
         <p>
-            Generated on 2026-01-05 |
+            Generated on 2026-01-04 |
             <a href="https://github.com/TYPO3-Documentation/render-guides">TYPO3 Render Guides</a> |
             Branch: <code>feature/php-8.5-only</code>
         </p>

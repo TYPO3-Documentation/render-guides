@@ -1,0 +1,2 @@
+app.WARNING: Expected a positive integer as issue number. Found abc
+app.WARNING: Expected a positive integer as issue number. Found https://forge.typo3.org/issues/99508
