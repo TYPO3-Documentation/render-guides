@@ -27,6 +27,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use T3Docs\GuidesExtension\Compiler\Cache\ContentHasher;
+use T3Docs\GuidesExtension\EventListener\IncrementalCacheListener;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 
 final class RunDecorator extends Command
@@ -58,6 +59,7 @@ final class RunDecorator extends Command
         private readonly Logger $logger,
         private readonly ProgressBarSubscriber $progressBarSubscriber,
         private readonly ContentHasher $contentHasher,
+        private readonly IncrementalCacheListener $cacheListener,
     ) {
         parent::__construct('run');
     }
@@ -131,6 +133,28 @@ final class RunDecorator extends Command
             'The port to bind the dev server to',
             '1337'
         );
+
+        $this->addOption(
+            'parallel-workers',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'Number of parallel worker processes for rendering (0 = auto-detect, -1 = disable)',
+            '0'
+        );
+
+        $this->addOption(
+            'render-batch',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'Internal: Comma-separated list of document paths to render (used by worker processes)',
+        );
+
+        $this->addOption(
+            'worker-id',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'Internal: Worker process identifier (used by worker processes)',
+        );
     }
 
 
@@ -165,6 +189,25 @@ final class RunDecorator extends Command
         // through the Typo3DocsInputSettings singleton.
         $this->inputSettings->setInput($input);
 
+        // Check for worker subprocess mode (--render-batch option)
+        $renderBatch = $input->getOption('render-batch');
+        $workerId = $input->getOption('worker-id');
+        if (is_string($renderBatch) && $renderBatch !== '') {
+            $batchDocuments = array_filter(explode(',', $renderBatch), static fn(string $s): bool => $s !== '');
+            $workerIdInt = is_numeric($workerId) ? (int) $workerId : 0;
+
+            // Configure the cache listener for worker mode
+            $this->cacheListener->setBatchFilter($batchDocuments, $workerIdInt);
+
+            if ($output->isVerbose()) {
+                $output->writeln(sprintf(
+                    '<info>Worker %d: Processing %d documents</info>',
+                    $workerIdInt,
+                    count($batchDocuments)
+                ));
+            }
+        }
+
         if ($output->isDebug()) {
             $readableOutput = "<info>Options:</info>\n";
             $readableOutput .= print_r($input->getOptions(), true);
@@ -180,9 +223,12 @@ final class RunDecorator extends Command
 
         $baseExecution = $this->internalRun($input, $output);
 
-        // When a localization is being rendered, no other sub-localizations
-        // are allowed, the execution will end here.
-        if ($baseExecution !== Command::SUCCESS || $input->getParameterOption('--localization')) {
+        // When a localization is being rendered or we're in worker mode,
+        // no other sub-localizations are allowed, the execution will end here.
+        if ($baseExecution !== Command::SUCCESS
+            || $input->getParameterOption('--localization')
+            || $this->cacheListener->isWorkerMode()
+        ) {
             return $baseExecution;
         }
 

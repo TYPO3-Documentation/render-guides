@@ -133,7 +133,7 @@ test: test-integration test-unit test-xml test-docs test-rendertest ## Runs all 
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
 	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/guides --no-progress Documentation --output="/tmp/test" --config=Documentation --minimal-test
+	rm -rf /tmp/test && $(PHP_BIN) vendor/bin/guides --no-progress Documentation --output="/tmp/test" --config=Documentation --minimal-test
 
 .PHONY: test-rendertest
 test-rendertest: ## Runs rendering with Documentation-rendertest
