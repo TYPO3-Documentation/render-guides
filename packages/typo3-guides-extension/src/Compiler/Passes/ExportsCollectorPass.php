@@ -40,8 +40,12 @@ final class ExportsCollectorPass implements CompilerPass
     {
         $projectNode = $compilerContext->getProjectNode();
 
-        // Get input directory for file path resolution
-        $inputDir = getcwd() . '/Documentation'; // Fallback
+        // Get input directory from cache (set by IncrementalCacheListener)
+        $inputDir = $this->cache->getInputDir();
+        if ($inputDir === '') {
+            // Fallback if not set (should not happen in normal flow)
+            $inputDir = getcwd() . '/Documentation';
+        }
 
         foreach ($documents as $document) {
             $docPath = $document->getFilePath();

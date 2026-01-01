@@ -215,4 +215,36 @@ final class DependencyGraph
             'avgImportsPerDoc' => $totalEdges > 0 ? $totalEdges / max(1, count($this->imports)) : 0,
         ];
     }
+
+    /**
+     * Merge another dependency graph into this one.
+     *
+     * Used to combine results from parallel child processes.
+     */
+    public function merge(self $other): void
+    {
+        // Merge imports
+        foreach ($other->imports as $from => $toList) {
+            if (!isset($this->imports[$from])) {
+                $this->imports[$from] = [];
+            }
+            foreach ($toList as $to) {
+                if (!in_array($to, $this->imports[$from], true)) {
+                    $this->imports[$from][] = $to;
+                }
+            }
+        }
+
+        // Merge dependents
+        foreach ($other->dependents as $to => $fromList) {
+            if (!isset($this->dependents[$to])) {
+                $this->dependents[$to] = [];
+            }
+            foreach ($fromList as $from) {
+                if (!in_array($from, $this->dependents[$to], true)) {
+                    $this->dependents[$to][] = $from;
+                }
+            }
+        }
+    }
 }
