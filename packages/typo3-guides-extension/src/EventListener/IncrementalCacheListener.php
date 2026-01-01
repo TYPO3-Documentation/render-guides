@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesExtension\EventListener;
 
+use phpDocumentor\Guides\Files;
 use phpDocumentor\Guides\Handlers\ParseDirectoryCommand;
 use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
 use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
+use phpDocumentor\Guides\Meta\InternalTarget;
+use phpDocumentor\Guides\Nodes\ProjectNode;
 use phpDocumentor\Guides\Settings\ProjectSettings;
 use T3Docs\GuidesExtension\Compiler\Cache\ChangeDetector;
 use T3Docs\GuidesExtension\Compiler\Cache\ChangeDetectionResult;
@@ -41,6 +44,17 @@ final class IncrementalCacheListener
 
     private ?ChangeDetectionResult $changeResult = null;
 
+    private ?ProjectNode $projectNode = null;
+
+    /** @var string[] Files that were skipped (not parsed) */
+    private array $skippedFiles = [];
+
+    /** @var string[]|null Batch filter for worker subprocess mode */
+    private ?array $batchFilter = null;
+
+    /** @var int|null Worker ID for subprocess mode */
+    private ?int $workerId = null;
+
     public function __construct(
         private readonly IncrementalBuildCache $cache,
         private readonly ChangeDetector $changeDetector,
@@ -56,6 +70,7 @@ final class IncrementalCacheListener
         $settings = $event->getSettings();
         $this->outputDir = $this->getOutputDirectory($settings);
         $this->inputDir = $settings->getInput();
+        $this->projectNode = $event->getProjectNode();
 
         // Store input directory in cache for ExportsCollectorPass to use
         $this->cache->setInputDir($this->inputDir);
@@ -74,16 +89,23 @@ final class IncrementalCacheListener
     }
 
     /**
-     * Handle PostCollectFilesForParsingEvent: Detect changes and optionally filter files.
+     * Handle PostCollectFilesForParsingEvent: Detect changes, pre-populate cache, filter files.
      *
-     * Note: For proper incremental parsing, all files still need to be parsed
-     * to maintain cross-reference integrity. However, we use this event to
-     * detect changes for later use in rendering phase.
+     * For incremental parsing optimization:
+     * 1. Detect which files have changed
+     * 2. Pre-populate ProjectNode with cached link targets for unchanged files
+     * 3. Filter file list to only include changed files (skip parsing unchanged)
      */
     public function onPostCollectFilesForParsing(PostCollectFilesForParsingEvent $event): void
     {
         // Always compute settings hash for cache saving
         $this->parsingSettingsHash = $this->computeSettingsHash($event->getCommand());
+
+        // Handle worker subprocess mode - filter files even without incremental cache
+        if ($this->batchFilter !== null) {
+            $this->applyBatchFilterOnly($event);
+            return;
+        }
 
         if (!$this->incrementalEnabled) {
             // No cache - process all files normally
@@ -124,9 +146,174 @@ final class IncrementalCacheListener
             return;
         }
 
-        // Store the change detection result for use in rendering phase
-        // The actual filtering happens in the render phase, not here,
-        // because we need all documents parsed for cross-reference resolution.
+        // Pre-populate ProjectNode with cached link targets for unchanged files
+        $this->prepopulateCachedTargets();
+
+        // At this point, changeResult is guaranteed non-null (set above, only nulled on early return)
+        assert($this->changeResult !== null);
+
+        // Filter to only parse changed files
+        $filesToParse = $this->changeResult->getFilesToProcess();
+
+        // Apply batch filter if in worker subprocess mode
+        if ($this->batchFilter !== null) {
+            // In worker mode: only process documents assigned to this worker
+            $filesToParse = array_intersect($filesToParse, $this->batchFilter);
+        } else {
+            // In main process mode: always include root index document
+            // This is required for rendering even if index hasn't changed
+            // Find the actual index document path (case-insensitive match for "index" or "Index")
+            $indexDoc = null;
+            foreach ($documentPaths as $docPath) {
+                if (strcasecmp($docPath, 'index') === 0) {
+                    $indexDoc = $docPath;
+                    break;
+                }
+            }
+            if ($indexDoc !== null && !in_array($indexDoc, $filesToParse, true)) {
+                $filesToParse[] = $indexDoc;
+            }
+        }
+
+        $this->skippedFiles = array_diff($documentPaths, $filesToParse);
+
+        // Update the file iterator to only include files that need parsing
+        $newFiles = new Files();
+        foreach ($filesToParse as $filePath) {
+            $newFiles->add($filePath);
+        }
+        $event->setFiles($newFiles);
+    }
+
+    /**
+     * Apply batch filter for worker subprocess mode (without incremental logic).
+     * Used when a worker needs to process only its assigned documents.
+     */
+    private function applyBatchFilterOnly(PostCollectFilesForParsingEvent $event): void
+    {
+        $files = $event->getFiles();
+        $documentPaths = iterator_to_array($files->getIterator());
+
+        // Filter to only include documents in the batch
+        $filesToParse = array_intersect($documentPaths, $this->batchFilter ?? []);
+
+        $this->skippedFiles = array_diff($documentPaths, $filesToParse);
+
+        // Pre-populate cached targets for documents not in batch (for cross-refs)
+        $this->prepopulateCachedTargetsForBatch($filesToParse);
+
+        // Update the file iterator
+        $newFiles = new Files();
+        foreach ($filesToParse as $filePath) {
+            $newFiles->add($filePath);
+        }
+        $event->setFiles($newFiles);
+    }
+
+    /**
+     * Pre-populate cached targets for documents not being processed in this batch.
+     * This allows cross-reference resolution to work in worker subprocess mode.
+     *
+     * @param string[] $batchFiles Files being processed in this batch
+     */
+    private function prepopulateCachedTargetsForBatch(array $batchFiles): void
+    {
+        if ($this->projectNode === null) {
+            return;
+        }
+
+        // Get all cached exports (from documents not in this batch)
+        $allExports = $this->cache->getAllExports();
+
+        foreach ($allExports as $docPath => $exports) {
+            // Skip documents that are in this batch (they'll be freshly parsed)
+            if (in_array($docPath, $batchFiles, true)) {
+                continue;
+            }
+
+            // Add cached internal targets to ProjectNode
+            foreach ($exports->internalTargets as $targetData) {
+                if (!is_array($targetData)) {
+                    continue;
+                }
+
+                $anchorName = $targetData['anchorName'] ?? '';
+                $title = $targetData['title'] ?? null;
+                $linkType = $targetData['linkType'] ?? '';
+                $prefix = $targetData['prefix'] ?? '';
+
+                if ($anchorName === '') {
+                    continue;
+                }
+
+                try {
+                    $this->projectNode->addLinkTarget(
+                        $anchorName,
+                        new InternalTarget(
+                            $docPath,
+                            $anchorName,
+                            $title,
+                            $linkType,
+                            $prefix,
+                        )
+                    );
+                } catch (\Exception) {
+                    // Ignore duplicate target errors
+                }
+            }
+        }
+    }
+
+    /**
+     * Pre-populate ProjectNode with cached InternalTargets for unchanged files.
+     * This allows cross-reference resolution without parsing unchanged documents.
+     */
+    private function prepopulateCachedTargets(): void
+    {
+        if ($this->projectNode === null || $this->changeResult === null) {
+            return;
+        }
+
+        // Get files that don't need parsing (clean = unchanged)
+        $unchangedFiles = $this->changeResult->clean;
+
+        foreach ($unchangedFiles as $docPath) {
+            $exports = $this->oldExports[$docPath] ?? null;
+            if ($exports === null) {
+                continue;
+            }
+
+            // Add cached internal targets to ProjectNode
+            foreach ($exports->internalTargets as $targetData) {
+                if (!is_array($targetData)) {
+                    continue;
+                }
+
+                $anchorName = $targetData['anchorName'] ?? '';
+                $title = $targetData['title'] ?? null;
+                $linkType = $targetData['linkType'] ?? '';
+                $prefix = $targetData['prefix'] ?? '';
+
+                if ($anchorName === '') {
+                    continue;
+                }
+
+                try {
+                    $this->projectNode->addLinkTarget(
+                        $anchorName,
+                        new InternalTarget(
+                            $docPath,
+                            $anchorName,
+                            $title,
+                            $linkType,
+                            $prefix,
+                        )
+                    );
+                } catch (\Exception) {
+                    // Ignore duplicate target errors
+                }
+            }
+        }
     }
 
     /**
@@ -213,6 +400,16 @@ final class IncrementalCacheListener
     }
 
     /**
+     * Get the list of files that were skipped (not parsed).
+     *
+     * @return string[]
+     */
+    public function getSkippedFiles(): array
+    {
+        return $this->skippedFiles;
+    }
+
+    /**
      * Compute the final dirty set after compilation.
      * This compares old exports vs new exports and propagates through dependency graph.
      *
@@ -228,30 +425,74 @@ final class IncrementalCacheListener
         $graph = $this->cache->getDependencyGraph();
         $newExports = $this->cache->getAllExports();
 
-        // Start with documents whose content changed
-        $dirtyDocs = $this->changeResult->getFilesToProcess();
+        // Documents that need rendering (content changed)
+        $contentChangedDocs = $this->changeResult->getFilesToProcess();
 
-        // Add documents whose exports changed
+        // Documents that need propagation (exports changed or deleted)
+        $docsNeedingPropagation = [];
+
+        // Check which dirty docs have changed exports
         foreach ($this->changeResult->dirty as $docPath) {
             $old = $this->oldExports[$docPath] ?? null;
             $new = $newExports[$docPath] ?? null;
 
             if ($old !== null && $new !== null && $old->hasExportsChanged($new)) {
-                // Exports changed - propagate to dependents
-                $dependents = $graph->getDependents($docPath);
-                $dirtyDocs = array_merge($dirtyDocs, $dependents);
+                // Exports changed - this doc's dependents need re-rendering
+                $docsNeedingPropagation[] = $docPath;
             }
         }
 
-        // Handle deleted files - their dependents need re-rendering
+        // Deleted files also need propagation to dependents
         foreach ($this->changeResult->deleted as $deletedPath) {
-            $dependents = $graph->getDependents($deletedPath);
-            $dirtyDocs = array_merge($dirtyDocs, $dependents);
+            $docsNeedingPropagation[] = $deletedPath;
         }
 
-        // Propagate through the full graph
-        $allDirty = $graph->propagateDirty($dirtyDocs);
+        // Only propagate from docs with changed exports, not all content changes
+        $propagatedDirty = [];
+        if ($docsNeedingPropagation !== []) {
+            $propagatedDirty = $graph->propagateDirty($docsNeedingPropagation);
+        }
 
-        return array_unique($allDirty);
+        // Combine: content-changed docs + propagated dependents
+        return array_unique(array_merge($contentChangedDocs, $propagatedDirty));
+    }
+
+    /**
+     * Set batch filter for worker subprocess mode.
+     * When set, only documents in the batch will be processed.
+     *
+     * @param string[] $documents Document paths to process in this batch
+     * @param int $workerId Worker identifier
+     */
+    public function setBatchFilter(array $documents, int $workerId): void
+    {
+        $this->batchFilter = $documents;
+        $this->workerId = $workerId;
+    }
+
+    /**
+     * Check if running in worker subprocess mode.
+     */
+    public function isWorkerMode(): bool
+    {
+        return $this->batchFilter !== null;
+    }
+
+    /**
+     * Get the worker ID (null if not in worker mode).
+     */
+    public function getWorkerId(): ?int
+    {
+        return $this->workerId;
+    }
+
+    /**
+     * Get the batch filter (null if not in worker mode).
+     *
+     * @return string[]|null
+     */
+    public function getBatchFilter(): ?array
+    {
+        return $this->batchFilter;
     }
 }
