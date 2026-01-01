@@ -26,6 +26,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
+use T3Docs\GuidesExtension\Compiler\Cache\ContentHasher;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 
 final class RunDecorator extends Command
@@ -56,6 +57,7 @@ final class RunDecorator extends Command
         private readonly EventDispatcher $eventDispatcher,
         private readonly Logger $logger,
         private readonly ProgressBarSubscriber $progressBarSubscriber,
+        private readonly ContentHasher $contentHasher,
     ) {
         parent::__construct('run');
     }
@@ -195,7 +197,8 @@ final class RunDecorator extends Command
      * `Documentation/Localization.ru_RU/Index.rst` to
      * `Documentation-GENERATED-temp/Localization.ru_RU/Index.html`.
      *
-     * This is performed via symfony process calls to the render guides
+     * This is performed via symfony process calls to the render guides.
+     * Localizations that need rendering are run in parallel for better performance.
      */
     public function renderLocalizations(InputInterface $input, OutputInterface $output): int
     {
@@ -225,90 +228,117 @@ final class RunDecorator extends Command
             ->depth(0)
             ->name(self::LOCALIZATION_DIRECTORY_REGEX);
 
-        foreach ($finder as $directory) {
-            $singleLocalizationExecution = $this->renderSingleLocalization(
-                $directory->getRelativePathname(),
-                $baseInputDirectives,
-                $input,
-                $output
-            );
+        // Collect localizations that need rendering (can't be skipped)
+        /** @var array<string, array{process: Process, localization: string}> $runningProcesses */
+        $runningProcesses = [];
 
-            if ($singleLocalizationExecution !== Command::SUCCESS) {
-                return $singleLocalizationExecution;
+        foreach ($finder as $directory) {
+            $localization = $directory->getRelativePathname();
+            $process = $this->prepareLocalizationProcess($localization, $baseInputDirectives, $input, $output);
+
+            if ($process === null) {
+                // Skipped or no entrypoint
+                continue;
             }
 
+            // Start process in background
+            $process->start();
+            $runningProcesses[$localization] = ['process' => $process, 'localization' => $localization];
+            $output->writeln(sprintf('<info>Started parallel render: %s</info>', $localization));
         }
 
-        return Command::SUCCESS;
+        if ($runningProcesses === []) {
+            return Command::SUCCESS;
+        }
+
+        $output->writeln(sprintf('<info>Waiting for %d localization(s) to complete...</info>', count($runningProcesses)));
+
+        // Wait for all processes to complete
+        $hasErrors = false;
+        foreach ($runningProcesses as $data) {
+            $process = $data['process'];
+            $localization = $data['localization'];
+
+            $process->wait(function ($type, string|iterable $buffer) use ($output, $localization, &$hasErrors): void {
+                if ($type === Process::ERR) {
+                    $output->write(sprintf('<error>[%s] %s</error>', $localization, $buffer));
+                    $hasErrors = true;
+                } else {
+                    $output->write($buffer);
+                }
+            });
+
+            if (!$process->isSuccessful()) {
+                $output->writeln(sprintf('<error>Localization %s failed</error>', $localization));
+                $hasErrors = true;
+            }
+        }
+
+        return $hasErrors ? Command::FAILURE : Command::SUCCESS;
     }
 
     /**
+     * Prepare a Process for rendering a single localization.
+     * Returns null if the localization should be skipped.
+     *
      * @param array<string, mixed> $baseInputDirectives
      */
-    public function renderSingleLocalization(string $availableLocalization, array $baseInputDirectives, InputInterface $input, OutputInterface $output): int
+    private function prepareLocalizationProcess(string $availableLocalization, array $baseInputDirectives, InputInterface $input, OutputInterface $output): ?Process
     {
         $localInputDirectives = [];
         foreach ($baseInputDirectives as $baseInputDirectiveKey => $baseInputDirectiveValue) {
             $localInputDirectives[$baseInputDirectiveKey] = $baseInputDirectiveValue . DIRECTORY_SEPARATOR . $availableLocalization;
         }
-        $output->writeln(sprintf('<info>Trying to render %s ...</info>', $availableLocalization));
+        $output->writeln(sprintf('<info>Checking %s ...</info>', $availableLocalization));
 
         $guessInput = $this->guessInput($localInputDirectives['input-file'], $output, true);
         if ($guessInput === []) {
             $output->writeln('<info>Skipping, no entrypoint for localization found.</info>');
-            return Command::SUCCESS;
+            return null;
         }
 
-        // Re-wire the command arguments to what we need for localization ...
-        $input->setArgument('input', $guessInput['input']);
-        $input->setOption('input-format', $guessInput['--input-format']);
-        $input->setOption('output', $localInputDirectives['output']);
-        $input->setOption('config', $localInputDirectives['config']);
-        $input->setOption('localization', $availableLocalization);
-
-        if ($output->isDebug()) {
-            $readableOutput = "<info>baseInputDirectives:</info>\n";
-            $readableOutput .= print_r($baseInputDirectives, true);
-            $readableOutput .= "<info>localInputDirectives:</info>\n";
-            $readableOutput .= print_r($localInputDirectives, true);
-            $readableOutput .= "<info>Entry file:</info>\n";
-            $readableOutput .= print_r($guessInput, true);
-            $readableOutput .= "<info>Actual Arguments:</info>\n";
-            $readableOutput .= print_r($input->getArguments(), true);
-            $readableOutput .= "<info>Actual Options:</info>\n";
-            $readableOutput .= print_r($input->getOptions(), true);
-            $output->writeln(sprintf("<info>DEBUG</info> Using parameters:\n%s", $readableOutput));
+        // Check if localization can be skipped (nothing changed)
+        $inputDir = $guessInput['input'] ?? $localInputDirectives['input-file'];
+        $outputDir = $localInputDirectives['output'];
+        if ($this->canSkipLocalization($inputDir, $outputDir, $output)) {
+            $output->writeln(sprintf('<info>Skipping %s - no changes detected</info>', $availableLocalization));
+            return null;
         }
 
-        $processArguments = array_merge(['env', 'php', $_SERVER['PHP_SELF']], $this->retrieveLocalizationArgumentsFromCurrentArguments($input));
+        // Build process arguments (don't modify input object as we're running in parallel)
+        $processArguments = $this->buildLocalizationProcessArguments(
+            $guessInput,
+            $localInputDirectives,
+            $availableLocalization,
+            $input
+        );
 
         $process = new Process($processArguments);
-        $output->writeln(sprintf('<info>SUB-PROCESS:</info> %s', $process->getCommandLine()));
-        $hasErrors = false;
-        $process->run(function ($type, string|iterable $buffer) use ($output, &$hasErrors): void {
-            if ($type === Process::ERR) {
-                $output->write('<error>' . $buffer . '</error>');
-                $hasErrors = true;
-            } else {
-                $output->write($buffer);
-            }
-        });
+        $output->writeln(sprintf('<comment>SUB-PROCESS:</comment> %s', $process->getCommandLine()));
 
-        if ($hasErrors) {
-            return Command::FAILURE;
-        }
-
-        return Command::SUCCESS;
+        return $process;
     }
 
-    /** @return mixed[] */
-    public function retrieveLocalizationArgumentsFromCurrentArguments(InputInterface $input): array
+    /**
+     * Build the process arguments for a localization render.
+     *
+     * @param array<string, string> $guessInput
+     * @param array<string, mixed> $localInputDirectives
+     * @return list<string>
+     */
+    private function buildLocalizationProcessArguments(array $guessInput, array $localInputDirectives, string $localization, InputInterface $input): array
     {
-        $arguments = $input->getArguments();
         $options = $input->getOptions();
+        $phpSelf = is_string($_SERVER['PHP_SELF'] ?? null) ? $_SERVER['PHP_SELF'] : 'vendor/bin/guides';
 
-        $shellCommands = [];
+        /** @var list<string> $shellCommands */
+        $shellCommands = ['env', 'php', $phpSelf];
+
         foreach ($options as $option => $value) {
+            // Skip options we'll override
+            if (in_array($option, ['output', 'input-format', 'config', 'localization', 'progress'], true)) {
+                continue;
+            }
             if (is_bool($value) && $value) {
                 $shellCommands[] = "--$option";
             } elseif (is_string($value)) {
@@ -316,15 +346,32 @@ final class RunDecorator extends Command
             }
         }
 
+        // Add the localization-specific options
+        $outputDir = $localInputDirectives['output'] ?? '';
+        $shellCommands[] = '--output=' . (is_string($outputDir) ? $outputDir : '');
+        $shellCommands[] = '--input-format=' . ($guessInput['--input-format'] ?? 'rst');
+
+        // Only add config if the directory exists
+        $configDir = $localInputDirectives['config'] ?? null;
+        if (is_string($configDir) && is_dir($configDir)) {
+            $shellCommands[] = '--config=' . $configDir;
+        }
+
+        $shellCommands[] = '--localization=' . $localization;
+
         // Localizations are rendered as a sub-process. There the progress bar
         // disturbs the output that is returned. We only want normal and error output then.
         $shellCommands[] = '--no-progress';
 
-        foreach ($arguments as $argument) {
-            if (is_string($argument)) {
-                $shellCommands[] = $argument;
-            }
+        // Add command name (e.g., 'run') as positional argument
+        $command = $input->getArgument('command');
+        if (is_string($command) && $command !== 'run') {
+            $shellCommands[] = $command;
         }
+
+        // Add input directory as the final positional argument
+        $inputDir = $guessInput['input'] ?? ($localInputDirectives['input-file'] ?? '');
+        $shellCommands[] = is_string($inputDir) ? $inputDir : '';
 
         return $shellCommands;
     }
@@ -389,6 +436,103 @@ final class RunDecorator extends Command
         }
 
         return [];
+    }
+
+    /**
+     * Check if a localization can be skipped because nothing has changed.
+     *
+     * @param string $inputDir The localization input directory
+     * @param string $outputDir The localization output directory
+     * @return bool True if the localization can be skipped
+     */
+    private function canSkipLocalization(string $inputDir, string $outputDir, OutputInterface $output): bool
+    {
+        $metaPath = $outputDir . '/_build_meta.json';
+
+        // Check if cache file exists
+        if (!file_exists($metaPath)) {
+            if ($output->isVerbose()) {
+                $output->writeln('<comment>No cache found, full render needed</comment>');
+            }
+            return false;
+        }
+
+        // Load and parse cache
+        $json = file_get_contents($metaPath);
+        if ($json === false) {
+            return false;
+        }
+
+        $data = json_decode($json, true);
+        if (!is_array($data) || !isset($data['exports']) || !is_array($data['exports'])) {
+            return false;
+        }
+
+        // Get all source files in the localization directory
+        if (!is_dir($inputDir)) {
+            return false;
+        }
+
+        $finder = new Finder();
+        $finder->files()->in($inputDir)->name(['*.rst', '*.md']);
+
+        /** @var array<string, array<string, mixed>> $exports */
+        $exports = $data['exports'];
+        $unchangedCount = 0;
+        $totalCount = 0;
+
+        foreach ($finder as $file) {
+            $totalCount++;
+            $relativePath = $file->getRelativePathname();
+            // Remove extension to get docPath
+            $docPath = preg_replace('/\.(rst|md)$/', '', $relativePath);
+            if (!is_string($docPath)) {
+                continue;
+            }
+
+            if (!isset($exports[$docPath]) || !is_array($exports[$docPath])) {
+                // New file, needs rendering
+                if ($output->isVerbose()) {
+                    $output->writeln(sprintf('<comment>New file detected: %s</comment>', $docPath));
+                }
+                return false;
+            }
+
+            // Check content hash
+            $currentHash = $this->contentHasher->hashFile($file->getRealPath());
+            $cachedData = $exports[$docPath];
+            $cachedHash = isset($cachedData['contentHash']) && is_string($cachedData['contentHash'])
+                ? $cachedData['contentHash']
+                : null;
+
+            if ($currentHash !== $cachedHash) {
+                if ($output->isVerbose()) {
+                    $output->writeln(sprintf('<comment>File changed: %s</comment>', $docPath));
+                }
+                return false;
+            }
+
+            $unchangedCount++;
+        }
+
+        // Check for deleted files
+        foreach (array_keys($exports) as $cachedDocPath) {
+            $rstPath = $inputDir . '/' . $cachedDocPath . '.rst';
+            $mdPath = $inputDir . '/' . $cachedDocPath . '.md';
+
+            if (!file_exists($rstPath) && !file_exists($mdPath)) {
+                if ($output->isVerbose()) {
+                    $output->writeln(sprintf('<comment>File deleted: %s</comment>', $cachedDocPath));
+                }
+                return false;
+            }
+        }
+
+        if ($output->isVerbose()) {
+            $output->writeln(sprintf('<info>All %d files unchanged, skipping localization</info>', $unchangedCount));
+        }
+
+        return true;
     }
 
     private function internalRun(InputInterface $input, OutputInterface $output): int
