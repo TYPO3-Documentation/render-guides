@@ -41,9 +41,9 @@ final class ContentHasher
 
     /**
      * Compute hash of document exports for dependency invalidation.
-     * Only includes the "public interface" - anchors, titles, citations.
+     * Only includes the "public interface" - anchors, titles, citations, document title.
      */
-    public function hashExports(array $anchors, array $sectionTitles, array $citations): string
+    public function hashExports(array $anchors, array $sectionTitles, array $citations, string $documentTitle = ''): string
     {
         // Sort keys for deterministic hashing
         ksort($anchors);
@@ -54,6 +54,7 @@ final class ContentHasher
             'anchors' => $anchors,
             'sectionTitles' => $sectionTitles,
             'citations' => $citations,
+            'documentTitle' => $documentTitle,
         ], JSON_THROW_ON_ERROR);
 
         return hash($this->algorithm, $data);

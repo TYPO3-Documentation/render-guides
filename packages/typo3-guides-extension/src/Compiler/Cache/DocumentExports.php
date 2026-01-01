@@ -18,6 +18,8 @@ final class DocumentExports
      * @param array<string, string> $sectionTitles Section ID => title mapping
      * @param array<string> $citations Citation names defined in this document
      * @param int $lastModified Unix timestamp of last modification
+     * @param string $documentTitle Document title (first heading, used by :doc: refs)
+     * @param array<string, array{anchorName: string, title: string|null, linkType: string, prefix: string}> $internalTargets Full link target data for pre-population
      */
     public function __construct(
         public readonly string $documentPath,
@@ -27,6 +29,8 @@ final class DocumentExports
         public readonly array $sectionTitles,
         public readonly array $citations,
         public readonly int $lastModified,
+        public readonly string $documentTitle = '',
+        public readonly array $internalTargets = [],
     ) {}
 
     /**
@@ -71,6 +75,8 @@ final class DocumentExports
             'sectionTitles' => $this->sectionTitles,
             'citations' => $this->citations,
             'lastModified' => $this->lastModified,
+            'documentTitle' => $this->documentTitle,
+            'internalTargets' => $this->internalTargets,
         ];
     }
 
@@ -87,6 +93,8 @@ final class DocumentExports
         $sectionTitles = $data['sectionTitles'] ?? [];
         /** @var array<string> $citations */
         $citations = $data['citations'] ?? [];
+        /** @var array<string, array{anchorName: string, title: string|null, linkType: string, prefix: string}> $internalTargets */
+        $internalTargets = $data['internalTargets'] ?? [];
 
         return new self(
             documentPath: (string) ($data['documentPath'] ?? ''),
@@ -96,6 +104,8 @@ final class DocumentExports
             sectionTitles: $sectionTitles,
             citations: $citations,
             lastModified: (int) ($data['lastModified'] ?? 0),
+            documentTitle: (string) ($data['documentTitle'] ?? ''),
+            internalTargets: $internalTargets,
         );
     }
 }
