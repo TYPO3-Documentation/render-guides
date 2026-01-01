@@ -82,7 +82,13 @@ final class ExportsCollectorPass implements CompilerPass
                 $lastModified = time();
             }
 
-            $exportsHash = $this->hasher->hashExports($anchors, $sectionTitles, $citations);
+            // Get document title (first heading, used by :doc: references)
+            $documentTitle = $document->getTitle()?->toString() ?? '';
+
+            // Collect full internal target data for pre-population
+            $internalTargets = $this->collectInternalTargets($document, $projectNode);
+
+            $exportsHash = $this->hasher->hashExports($anchors, $sectionTitles, $citations, $documentTitle);
 
             $exports = new DocumentExports(
                 documentPath: $docPath,
@@ -92,6 +98,8 @@ final class ExportsCollectorPass implements CompilerPass
                 sectionTitles: $sectionTitles,
                 citations: $citations,
                 lastModified: $lastModified,
+                documentTitle: $documentTitle,
+                internalTargets: $internalTargets,
             );
 
             $this->cache->setExports($docPath, $exports);
@@ -123,6 +131,38 @@ final class ExportsCollectorPass implements CompilerPass
         }
 
         return $anchors;
+    }
+
+    /**
+     * Collect full internal target data for pre-population during incremental builds.
+     *
+     * @return array<string, array{anchorName: string, title: string|null, linkType: string, prefix: string}>
+     */
+    private function collectInternalTargets(DocumentNode $document, ProjectNode $projectNode): array
+    {
+        /** @var array<string, array{anchorName: string, title: string|null, linkType: string, prefix: string}> $targets */
+        $targets = [];
+        $filePath = $document->getFilePath();
+
+        // Get all internal targets from the project node for this document
+        $allTargets = $projectNode->getAllInternalTargets();
+
+        foreach ($allTargets as $linkType => $typeTargets) {
+            foreach ($typeTargets as $anchorKey => $target) {
+                if ($target->getDocumentPath() === $filePath) {
+                    // Use linkType::anchorKey as unique key to avoid collisions
+                    $key = $linkType . '::' . $anchorKey;
+                    $targets[$key] = [
+                        'anchorName' => $target->getAnchor(),
+                        'title' => $target->getTitle(),
+                        'linkType' => $target->getLinkType(),
+                        'prefix' => $target->getPrefix(),
+                    ];
+                }
+            }
+        }
+
+        return $targets;
     }
 
     /**

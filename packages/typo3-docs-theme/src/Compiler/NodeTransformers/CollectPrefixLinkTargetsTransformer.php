@@ -120,8 +120,8 @@ final readonly class CollectPrefixLinkTargetsTransformer implements NodeTransfor
 
     public function getPriority(): int
     {
-        // After CollectLinkTargetsTransformer
-        return 4000;
+        // After CollectLinkTargetsTransformer (5000) but before ExportsCollectorPass (4500)
+        return 4900;
     }
 
     private function addLinkTargetToProject(CompilerContextInterface $compilerContext, InternalTarget $internalTarget): void
