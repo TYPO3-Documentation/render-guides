@@ -91,6 +91,11 @@ fix-code-style: ## Executes php-cs-fixer with "fix" option
 	@echo "$(ENV_INFO)"
 	$(PHP_BIN) vendor/bin/php-cs-fixer fix
 
+.PHONY: composer-normalize
+composer-normalize: ## Normalizes composer.json
+	@echo "$(ENV_INFO)"
+	$(PHP_COMPOSER_BIN) normalize
+
 .PHONE: githooks
 githooks: ## Runs script that injects githooks (for contributors)
 	./tools/add-githooks.sh
@@ -201,7 +206,7 @@ clone-typo3:
 cleanup: cleanup-tests cleanup-cache ## Runs all cleanup tasks
 
 .PHONY: pre-commit-test
-pre-commit-test: fix-code-style test code-style static-code-analysis test-monorepo ## Runs all tests and code guideline checks (for contributors)
+pre-commit-test: composer-normalize fix-code-style test code-style static-code-analysis test-monorepo ## Runs all tests and code guideline checks (for contributors)
 
 .PHONY: static-code-analysis
 static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan (ensures composer)
