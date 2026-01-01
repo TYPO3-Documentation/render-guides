@@ -30,6 +30,7 @@ use T3Docs\GuidesExtension\Compiler\Cache\IncrementalBuildCache;
 final class IncrementalCacheListener
 {
     private ?string $outputDir = null;
+    private ?string $inputDir = null;
     private bool $incrementalEnabled = true;
 
     /** @var array<string, DocumentExports> Old exports before recompilation */
@@ -54,6 +55,10 @@ final class IncrementalCacheListener
     {
         $settings = $event->getSettings();
         $this->outputDir = $this->getOutputDirectory($settings);
+        $this->inputDir = $settings->getInput();
+
+        // Store input directory in cache for ExportsCollectorPass to use
+        $this->cache->setInputDir($this->inputDir);
 
         // Try to load the cache from output directory
         $loaded = $this->cache->load($this->outputDir);
@@ -88,12 +93,9 @@ final class IncrementalCacheListener
         // Get all source files
         $files = $event->getFiles();
         $command = $event->getCommand();
-        $inputDir = $command->getDirectory();
 
-        // If directory is empty, try to get from settings
-        if ($inputDir === '') {
-            $inputDir = getcwd() . '/Documentation';
-        }
+        // Use the input directory saved from PostProjectNodeCreated event
+        $inputDir = $this->inputDir ?? '';
 
         $inputFormat = $command->getInputFormat();
         $extension = $inputFormat === 'rst' ? '.rst' : '.md';
