@@ -33,6 +33,9 @@ final class IncrementalBuildCache
 
     private bool $loaded = false;
 
+    /** Input directory for file path resolution */
+    private string $inputDir = '';
+
     public function __construct(
         private readonly CacheVersioning $versioning,
     ) {
@@ -231,5 +234,72 @@ final class IncrementalBuildCache
             'graph' => $this->dependencyGraph->getStats(),
             'loaded' => $this->loaded,
         ];
+    }
+
+    /**
+     * Extract cache state for serialization (used in parallel compilation).
+     *
+     * @return array<string, mixed>
+     */
+    public function extractState(): array
+    {
+        $exportsData = [];
+        foreach ($this->exports as $path => $exports) {
+            $exportsData[$path] = $exports->toArray();
+        }
+
+        return [
+            'exports' => $exportsData,
+            'dependencies' => $this->dependencyGraph->toArray(),
+            'outputPaths' => $this->outputPaths,
+        ];
+    }
+
+    /**
+     * Merge state from another cache instance (used after parallel compilation).
+     *
+     * @param array<string, mixed> $state State from extractState()
+     */
+    public function mergeState(array $state): void
+    {
+        // Merge exports
+        $exportsData = $state['exports'] ?? [];
+        foreach ($exportsData as $path => $exportData) {
+            // Only add if not already present (first write wins)
+            if (!isset($this->exports[$path])) {
+                $this->exports[$path] = DocumentExports::fromArray($exportData);
+            }
+        }
+
+        // Merge dependency graph
+        $depsData = $state['dependencies'] ?? [];
+        if ($depsData !== []) {
+            $childGraph = DependencyGraph::fromArray($depsData);
+            $this->dependencyGraph->merge($childGraph);
+        }
+
+        // Merge output paths
+        $outputPaths = $state['outputPaths'] ?? [];
+        foreach ($outputPaths as $docPath => $outputPath) {
+            if (!isset($this->outputPaths[$docPath])) {
+                $this->outputPaths[$docPath] = $outputPath;
+            }
+        }
+    }
+
+    /**
+     * Set the input directory for file path resolution.
+     */
+    public function setInputDir(string $inputDir): void
+    {
+        $this->inputDir = $inputDir;
+    }
+
+    /**
+     * Get the input directory for file path resolution.
+     */
+    public function getInputDir(): string
+    {
+        return $this->inputDir;
     }
 }

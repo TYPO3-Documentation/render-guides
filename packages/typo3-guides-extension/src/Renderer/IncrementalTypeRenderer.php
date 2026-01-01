@@ -38,7 +38,6 @@ final class IncrementalTypeRenderer implements TypeRenderer
 
     public function render(RenderCommand $renderCommand): void
     {
-
         $context = RenderContext::forProject(
             $renderCommand->getProjectNode(),
             $renderCommand->getDocumentArray(),
@@ -94,7 +93,6 @@ final class IncrementalTypeRenderer implements TypeRenderer
         // Check if incremental is enabled via the cache listener
         if (!$this->cacheListener->isIncrementalEnabled()) {
             $this->incrementalEnabled = false;
-            $this->logger?->debug('Incremental rendering disabled - full render required');
             return;
         }
 
@@ -104,8 +102,6 @@ final class IncrementalTypeRenderer implements TypeRenderer
         // Build dirty set lookup - empty means no documents changed (skip all)
         $this->dirtySet = array_flip($allDirty);
         $this->incrementalEnabled = true;
-
-        $this->logger?->debug(sprintf('Incremental rendering enabled - %d documents marked dirty', count($allDirty)));
     }
 
     /**
