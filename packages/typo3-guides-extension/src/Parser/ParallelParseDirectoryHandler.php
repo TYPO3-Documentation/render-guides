@@ -310,9 +310,11 @@ final class ParallelParseDirectoryHandler
 
         $contentFromFilesystem = $filesystem->listContents($directory);
         $hashedContentFromFilesystem = [];
-        /** @var \League\Flysystem\StorageAttributes $itemFromFilesystem */
+        /** @var \ArrayAccess<string, mixed> $itemFromFilesystem */
         foreach ($contentFromFilesystem as $itemFromFilesystem) {
-            $basename = basename($itemFromFilesystem->path());
+            // Use array access as phpDocumentor's FileAttributes wrapper supports it
+            /** @var string $basename */
+            $basename = $itemFromFilesystem['basename'];
             $hashedContentFromFilesystem[$basename] = true;
         }
 

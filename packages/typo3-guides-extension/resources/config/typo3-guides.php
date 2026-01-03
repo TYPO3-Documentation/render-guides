@@ -28,6 +28,7 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use phpDocumentor\Guides\Compiler\NodeTransformers\NodeTransformerFactory;
 use phpDocumentor\Guides\FileCollector;
 use phpDocumentor\Guides\Handlers\CompileDocumentsCommand;
+use phpDocumentor\Guides\Handlers\ParseDirectoryCommand;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\inline_service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
@@ -115,16 +116,25 @@ return static function (ContainerConfigurator $container): void {
             ->arg('$commandBus', service('League\Tactician\CommandBus'))
             ->arg('$eventDispatcher', service('Psr\EventDispatcher\EventDispatcherInterface'))
             ->arg('$logger', service('Psr\Log\LoggerInterface')->nullOnInvalid())
+            ->tag('phpdoc.guides.command', ['command' => ParseDirectoryCommand::class])
 
         // Parallel Rendering - Document navigation for forked processes
         // Singleton that stores pre-computed prev/next relationships for use in child processes
         ->set(DocumentNavigationProvider::class)
 
         // Parallel Rendering - pcntl_fork based renderer for cold builds
+        // Replaces the default HTML TypeRenderer for parallel rendering
         ->set(ForkingRenderer::class)
             ->arg('$commandBus', service('League\Tactician\CommandBus'))
             ->arg('$navigationProvider', service(DocumentNavigationProvider::class))
             ->arg('$logger', service('Psr\Log\LoggerInterface')->nullOnInvalid())
+            ->tag(
+                'phpdoc.renderer.typerenderer',
+                [
+                    'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                    'format' => 'html',
+                ],
+            )
 
         // Parallel Compilation Infrastructure
         // The ParallelCompiler uses pcntl_fork for parallel compilation. Currently
