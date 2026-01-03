@@ -1,0 +1,42 @@
+diff --git a/src/RestructuredText/Parser/Productions/DirectiveRule.php b/src/RestructuredText/Parser/Productions/DirectiveRule.php
+--- a/src/RestructuredText/Parser/Productions/DirectiveRule.php
++++ b/src/RestructuredText/Parser/Productions/DirectiveRule.php
+@@ -44,6 +44,15 @@ use function trim;
+ final class DirectiveRule implements Rule
+ {
+     public const PRIORITY = 70;
++
++    /** @var string Cached directive pattern */
++    private const DIRECTIVE_PATTERN = '/^\.\.\s+(\|(.+)\| |)([^\s]+)::( (.*)|)$/mUsi';
++
++    /** @var string Cached option with value pattern */
++    private const OPTION_WITH_VALUE_PATTERN = '/^(\s+):(.+): (.*)$/mUsi';
++
++    /** @var string Cached option without value pattern */
++    private const OPTION_EMPTY_PATTERN = '/^(\s+):(.+):(\s*)$/mUsi';
+
+     /** @var array<string, DirectiveHandler> */
+     private array $directives;
+@@ -170,7 +179,7 @@ final class DirectiveRule implements Rule
+
+     private function parseDirective(string $line): Directive|null
+     {
+-        if (preg_match('/^\.\.\s+(\|(.+)\| |)([^\s]+)::( (.*)|)$/mUsi', $line, $match) > 0) {
++        if (preg_match(self::DIRECTIVE_PATTERN, $line, $match) > 0) {
+             return new Directive(
+                 $match[2],
+                 $match[3],
+@@ -256,11 +265,11 @@ final class DirectiveRule implements Rule
+      */
+     private function parseDirectiveOption(string $line): DirectiveOption
+     {
+-        if (preg_match('/^(\s+):(.+): (.*)$/mUsi', $line, $match) === 1) {
++        if (preg_match(self::OPTION_WITH_VALUE_PATTERN, $line, $match) === 1) {
+             return new DirectiveOption($match[2], trim($match[3]));
+         }
+
+-        if (preg_match('/^(\s+):(.+):(\s*)$/mUsi', $line, $match) === 1) {
++        if (preg_match(self::OPTION_EMPTY_PATTERN, $line, $match) === 1) {
+             return new DirectiveOption($match[2], true);
+         }
+

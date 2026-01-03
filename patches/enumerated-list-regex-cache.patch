@@ -1,20 +1,21 @@
 diff --git a/src/RestructuredText/Parser/Productions/EnumeratedListRule.php b/src/RestructuredText/Parser/Productions/EnumeratedListRule.php
 --- a/src/RestructuredText/Parser/Productions/EnumeratedListRule.php
 +++ b/src/RestructuredText/Parser/Productions/EnumeratedListRule.php
-@@ -52,6 +52,12 @@ final class EnumeratedListRule implements Rule
+@@ -53,6 +53,13 @@ final class EnumeratedListRule implements Rule
 
-     private const ALPHABETIC = '([a-z])';
+     private const LIST_MARKER = '(^%s([\.)])(?:\s+|$)|^[(]%s[)](?:\s+|$))';
 
-+    /** @var string Cached marker patterns to avoid repeated sprintf calls */
++    /** @var string Cached number marker pattern */
++    private const NUMBER_MARKER_PATTERN = '/' . self::LIST_MARKER_NUMBER . '/';
 +    private const LIST_MARKER_NUMBER = '(^(\d+|#)([\.)])(?:\s+|$)|^[(](\d+|#)[)](?:\s+|$))';
 +    private const LIST_MARKER_ROMAN = '(^((?:M{0,3})(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3}))(?<!^)([\.)])(?:\s+|$)|^[(]((?:M{0,3})(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3}))(?<!^)[)](?:\s+|$))';
 +    private const LIST_MARKER_ALPHA = '(^([a-z])([\.)])(?:\s+|$)|^[(]([a-z])[)](?:\s+|$))';
 +    private const ROMAN_PATTERN = '/^((?:M{0,3})(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3}))(?<!^)$/i';
 +
-     private const LIST_MARKER = '(^%s([\.)])(?:\s+|$)|^[(]%s[)](?:\s+|$))';
-
      private readonly string $expression;
-@@ -213,7 +219,7 @@ final class EnumeratedListRule implements Rule
+
+     public function __construct(private readonly RuleContainer $productions)
+@@ -213,15 +220,15 @@ final class EnumeratedListRule implements Rule
              return 'unknown';
          }
 
@@ -23,7 +24,7 @@ diff --git a/src/RestructuredText/Parser/Productions/EnumeratedListRule.php b/sr
              if (strpos($marker, '#')) {
                  return 'auto_number' . $this->markerSuffix($marker);
              }
-@@ -221,11 +227,11 @@ final class EnumeratedListRule implements Rule
+
              return 'number' . $this->markerSuffix($marker);
          }
 
@@ -37,7 +38,7 @@ diff --git a/src/RestructuredText/Parser/Productions/EnumeratedListRule.php b/sr
              return 'alphabetic' . $this->markerSuffix($marker);
          }
 
-@@ -267,7 +273,7 @@ final class EnumeratedListRule implements Rule
+@@ -263,7 +270,7 @@ final class EnumeratedListRule implements Rule
              return (int) $firstItemNumber;
          }
 
