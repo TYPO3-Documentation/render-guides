@@ -12,6 +12,18 @@ COPY . /opt/guides
 RUN composer install --no-dev --no-interaction --no-progress \
     --no-suggest --optimize-autoloader --classmap-authoritative
 
+# Apply performance patches for guides-restructured-text
+# Use --forward to skip already-applied hunks, --reject-file=/dev/null to suppress reject files
+RUN cd /opt/guides/vendor/phpdocumentor/guides-restructured-text && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/inline-parser-lexer-reuse.patch || true && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/line-checker-cache.patch || true && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/buffer-unindent-cache.patch || true && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/inline-lexer-regex-cache.patch || true && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/field-list-regex-cache.patch || true && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/directive-rule-regex-cache.patch || true && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/enumerated-list-regex-cache.patch || true && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/link-rule-regex-cache.patch || true
+
 FROM php:8.5-cli-alpine
 
 COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
