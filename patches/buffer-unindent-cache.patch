@@ -1,0 +1,41 @@
+diff --git a/src/RestructuredText/Parser/Buffer.php b/src/RestructuredText/Parser/Buffer.php
+--- a/src/RestructuredText/Parser/Buffer.php
++++ b/src/RestructuredText/Parser/Buffer.php
+@@ -26,6 +26,9 @@ use const PHP_INT_MAX;
+
+ final class Buffer
+ {
++    /** @var bool Whether unIndent() has already been called */
++    private bool $unindented = false;
++
+     /** @param string[] $lines */
+     public function __construct(
+         private array $lines = [],
+@@ -56,6 +59,7 @@ final class Buffer
+
+     public function push(string $line): void
+     {
++        $this->unindented = false;
+         $this->lines[] = $line;
+     }
+
+@@ -107,6 +111,10 @@ final class Buffer
+
+     private function unIndent(): void
+     {
++        if ($this->unindented) {
++            return;
++        }
++
+         if ($this->unindentStrategy === UnindentStrategy::NONE) {
+             return;
+         }
+@@ -122,6 +130,8 @@ final class Buffer
+
+             $this->lines[$i] = substr($line, $indentation);
+         }
++
++        $this->unindented = true;
+     }
+
+     private function detectIndentation(): int
