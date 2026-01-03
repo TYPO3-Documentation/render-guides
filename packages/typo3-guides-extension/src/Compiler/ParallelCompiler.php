@@ -15,7 +15,6 @@ use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\ExternalEntryNode;
 use Psr\Log\LoggerInterface;
 use SplPriorityQueue;
-use T3Docs\GuidesExtension\Compiler\Cache\IncrementalBuildCache;
 
 use function array_chunk;
 use function count;
@@ -86,7 +85,6 @@ final class ParallelCompiler
         private readonly Compiler $sequentialCompiler,
         iterable $passes,
         NodeTransformerFactory $nodeTransformerFactory,
-        private readonly ?IncrementalBuildCache $incrementalCache = null,
         private readonly ?LoggerInterface $logger = null,
         ?int $workerCount = null,
     ) {
@@ -495,7 +493,6 @@ final class ParallelCompiler
 
         // Collect results
         $allDocuments = [];
-        $cacheStates = [];
         foreach ($childPids as $workerId => $pid) {
             $status = 0;
             pcntl_waitpid($pid, $status);
@@ -506,25 +503,11 @@ final class ParallelCompiler
             if (pcntl_wifexited($status) && pcntl_wexitstatus($status) === 0) {
                 $serialized = file_get_contents($tempFiles[$workerId]);
                 if ($serialized !== false && $serialized !== '') {
-                    $data = unserialize($serialized);
-                    if (is_array($data)) {
-                        // New format with cache state
-                        if (isset($data['documents'])) {
-                            foreach ($data['documents'] as $doc) {
-                                if ($doc instanceof DocumentNode) {
-                                    $allDocuments[$doc->getFilePath()] = $doc;
-                                }
-                            }
-                            // Collect cache state for merging
-                            if (isset($data['cacheState']) && is_array($data['cacheState'])) {
-                                $cacheStates[] = $data['cacheState'];
-                            }
-                        } else {
-                            // Legacy format (just documents array)
-                            foreach ($data as $doc) {
-                                if ($doc instanceof DocumentNode) {
-                                    $allDocuments[$doc->getFilePath()] = $doc;
-                                }
+                    $batchResult = unserialize($serialized);
+                    if (is_array($batchResult)) {
+                        foreach ($batchResult as $doc) {
+                            if ($doc instanceof DocumentNode) {
+                                $allDocuments[$doc->getFilePath()] = $doc;
                             }
                         }
                     }
@@ -532,18 +515,6 @@ final class ParallelCompiler
             }
 
             @unlink($tempFiles[$workerId]);
-        }
-
-        // Merge cache states from all children
-        if ($this->incrementalCache !== null && $cacheStates !== []) {
-            foreach ($cacheStates as $state) {
-                $this->incrementalCache->mergeState($state);
-            }
-            $this->logger?->debug(sprintf(
-                'Merged cache states from %d workers, now have %d exports',
-                count($cacheStates),
-                count($this->incrementalCache->getAllExports())
-            ));
         }
 
         // Preserve order
@@ -570,13 +541,7 @@ final class ParallelCompiler
             $batch = $pass->run($batch, $compilerContext);
         }
 
-        // Serialize documents and cache state (if cache is available)
-        $data = [
-            'documents' => $batch,
-            'cacheState' => $this->incrementalCache?->extractState() ?? [],
-        ];
-
-        file_put_contents($tempFile, serialize($data));
+        file_put_contents($tempFile, serialize($batch));
     }
 
     /**

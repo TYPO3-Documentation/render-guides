@@ -23,12 +23,16 @@ use T3Docs\GuidesExtension\Renderer\IncrementalTypeRenderer;
 use T3Docs\GuidesExtension\Parser\ParallelParseDirectoryHandler;
 use T3Docs\GuidesExtension\Renderer\Parallel\DocumentNavigationProvider;
 use T3Docs\GuidesExtension\Renderer\Parallel\ForkingRenderer;
+use T3Docs\GuidesExtension\Compiler\ParallelCompileDocumentsHandler;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
+use phpDocumentor\Guides\Compiler\NodeTransformers\NodeTransformerFactory;
 use phpDocumentor\Guides\FileCollector;
+use phpDocumentor\Guides\Handlers\CompileDocumentsCommand;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\inline_service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
@@ -121,5 +125,16 @@ return static function (ContainerConfigurator $container): void {
             ->arg('$commandBus', service('League\Tactician\CommandBus'))
             ->arg('$navigationProvider', service(DocumentNavigationProvider::class))
             ->arg('$logger', service('Psr\Log\LoggerInterface')->nullOnInvalid())
+
+        // Parallel Compilation Infrastructure
+        // The ParallelCompiler uses pcntl_fork for parallel compilation. Currently
+        // using sequential fallback (threshold=1000) pending fix for toctree
+        // relationship issues when documents are split across child processes.
+        ->set(ParallelCompileDocumentsHandler::class)
+            ->arg('$sequentialCompiler', service(\phpDocumentor\Guides\Compiler\Compiler::class))
+            ->arg('$passes', tagged_iterator('phpdoc.guides.compiler.passes'))
+            ->arg('$nodeTransformerFactory', service(NodeTransformerFactory::class))
+            ->arg('$logger', service('Psr\Log\LoggerInterface')->nullOnInvalid())
+            ->tag('phpdoc.guides.command', ['command' => CompileDocumentsCommand::class])
     ;
 };
