@@ -21,6 +21,7 @@ use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use T3Docs\GuidesExtension\Renderer\Parallel\DocumentNavigationProvider;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
@@ -63,6 +64,7 @@ final class TwigExtension extends AbstractExtension
         private readonly DocumentNameResolverInterface $documentNameResolver,
         private readonly Typo3VersionService           $typo3VersionService,
         private readonly AnchorNormalizer              $anchorNormalizer,
+        private readonly ?DocumentNavigationProvider   $navigationProvider = null,
     ) {
         if ((string) (string)getenv('GITHUB_ACTIONS') !== '' && (string) (string)getenv('TYPO3AZUREEDGEURIVERSION') !== '' && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
@@ -138,7 +140,6 @@ final class TwigExtension extends AbstractExtension
         $brokenValue = htmlspecialchars($value);
         $brokenValue  = preg_replace(self::BRACKETS_BREAK_REGEX, '<wbr>$1', $brokenValue);
         $brokenValue  = preg_replace(self::CAMEL_CASE_BREAK_REGEX, '$1<wbr>$2', $brokenValue ?? $value);
-        $brokenValue  = preg_replace(self::NON_LETTER_BREAK_REGEX, '$1<wbr>$2', $brokenValue ?? $value);
         $brokenValue  = preg_replace(self::NON_LETTER_BREAK_REGEX, '$1<wbr>$2', $brokenValue ?? $value);
         return $brokenValue ?? $value;
     }
@@ -765,11 +766,25 @@ final class TwigExtension extends AbstractExtension
 
     private function getNextDocumentEntry(RenderContext $renderContext): DocumentEntryNode|null
     {
+        // For parallel rendering, use the navigation provider which has the full document order
+        if ($this->navigationProvider !== null && $this->navigationProvider->isInitialized() && $renderContext->hasCurrentFileName()) {
+            $nextDoc = $this->navigationProvider->getNextDocument($renderContext->getCurrentFileName());
+            return $nextDoc?->getDocumentEntry();
+        }
+
+        // Fall back to iterator-based navigation for sequential rendering
         return $renderContext->getIterator()->nextNode()?->getDocumentEntry();
     }
 
     private function getPrevDocumentEntry(RenderContext $renderContext): DocumentEntryNode|null
     {
+        // For parallel rendering, use the navigation provider which has the full document order
+        if ($this->navigationProvider !== null && $this->navigationProvider->isInitialized() && $renderContext->hasCurrentFileName()) {
+            $prevDoc = $this->navigationProvider->getPreviousDocument($renderContext->getCurrentFileName());
+            return $prevDoc?->getDocumentEntry();
+        }
+
+        // Fall back to iterator-based navigation for sequential rendering
         return $renderContext->getIterator()->previousNode()?->getDocumentEntry();
     }
 
