@@ -1,0 +1,30 @@
+diff --git a/src/RestructuredText/Parser/Productions/FieldListRule.php b/src/RestructuredText/Parser/Productions/FieldListRule.php
+--- a/src/RestructuredText/Parser/Productions/FieldListRule.php
++++ b/src/RestructuredText/Parser/Productions/FieldListRule.php
+@@ -37,6 +37,9 @@ use function trim;
+ final class FieldListRule implements Rule
+ {
+     public const PRIORITY = 20;
++
++    /** @var string Cached field pattern to avoid recompilation */
++    private const FIELD_PATTERN = '/^:([^:]+):( (.*)|)$/mUsi';
+
+     /** @param FieldListItemRule[] $fieldListItemRules */
+     public function __construct(private readonly RuleContainer $productions, private readonly iterable $fieldListItemRules)
+@@ -101,7 +104,7 @@ final class FieldListRule implements Rule
+     /** @return string[] */
+     private function parseField(string $line): array
+     {
+-        if (preg_match('/^:([^:]+):( (.*)|)$/mUsi', $line, $match) > 0) {
++        if (preg_match(self::FIELD_PATTERN, $line, $match) > 0) {
+             return [
+                 $match[1],
+                 $match[2],
+@@ -191,6 +194,6 @@ final class FieldListRule implements Rule
+             return false;
+         }
+
+-        return preg_match('/^:([^:]+):( (.*)|)$/mUsi', $currentLine) > 0;
++        return preg_match(self::FIELD_PATTERN, $currentLine) > 0;
+     }
+ }

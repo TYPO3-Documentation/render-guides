@@ -1,0 +1,42 @@
+diff --git a/src/RestructuredText/Parser/InlineLexer.php b/src/RestructuredText/Parser/InlineLexer.php
+--- a/src/RestructuredText/Parser/InlineLexer.php
++++ b/src/RestructuredText/Parser/InlineLexer.php
+@@ -55,6 +55,15 @@ final class InlineLexer extends AbstractLexer
+     public const VARIABLE_DELIMITER = 24;
+     public const ESCAPED_SIGN = 25;
+
++    /** @var string Cached literal pattern */
++    private const LITERAL_PATTERN = '/^``.+``(?!`)$/i';
++
++    /** @var string Cached email pattern */
++    private const EMAIL_PATTERN = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/i';
++
++    /** @var string|null Cached hyperlink pattern (built once from SUPPORTED_SCHEMAS) */
++    private static ?string $hyperlinkPattern = null;
++
+     /**
+      * Map between string position and position in token list.
+      *
+@@ -158,15 +167,19 @@ final class InlineLexer extends AbstractLexer
+             return self::WHITESPACE;
+         }
+
+-        if (preg_match('/^``.+``(?!`)$/i', $value)) {
++        if (preg_match(self::LITERAL_PATTERN, $value)) {
+             return self::LITERAL;
+         }
+
+-        if (preg_match('/' . ExternalReferenceResolver::SUPPORTED_SCHEMAS . ':[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*[-a-zA-Z0-9()@%_\\+~#&\\/=]/', $value) && parse_url($value, PHP_URL_SCHEME) !== null) {
++        // Cache the expensive hyperlink pattern (5600+ chars from SUPPORTED_SCHEMAS)
++        if (self::$hyperlinkPattern === null) {
++            self::$hyperlinkPattern = '/' . ExternalReferenceResolver::SUPPORTED_SCHEMAS . ':[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*[-a-zA-Z0-9()@%_\\+~#&\\/=]/';
++        }
++        if (preg_match(self::$hyperlinkPattern, $value) && parse_url($value, PHP_URL_SCHEME) !== null) {
+             return self::HYPERLINK;
+         }
+
+-        if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/i', $value)) {
++        if (preg_match(self::EMAIL_PATTERN, $value)) {
+             return self::EMAIL;
+         }
+

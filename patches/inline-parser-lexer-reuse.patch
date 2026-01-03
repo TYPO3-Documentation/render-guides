@@ -1,0 +1,30 @@
+diff --git a/src/RestructuredText/Parser/InlineParser.php b/src/RestructuredText/Parser/InlineParser.php
+--- a/src/RestructuredText/Parser/InlineParser.php
++++ b/src/RestructuredText/Parser/InlineParser.php
+@@ -32,6 +32,9 @@
+     /** @var array<InlineLexer::*, CachableInlineRule> */
+     private array $cache = [];
+
++    /** Reusable lexer instance to avoid repeated instantiation */
++    private InlineLexer $lexer;
++
+     /** @param iterable<InlineRule> $inlineRules */
+     public function __construct(iterable $inlineRules)
+     {
+@@ -44,12 +47,14 @@
+
+             $this->cache[$rule->getToken()] = $rule;
+         }
++
++        $this->lexer = new InlineLexer();
+     }
+
+     public function parse(string $content, BlockContext $blockContext): InlineCompoundNode
+     {
+-        $lexer = new InlineLexer();
+-        $lexer->setInput($content);
++        $lexer = $this->lexer;
++        $lexer->setInput($content);
+         $lexer->moveNext();
+         $lexer->moveNext();
+         $nodes = [];

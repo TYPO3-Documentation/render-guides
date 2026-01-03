@@ -1,0 +1,54 @@
+diff --git a/src/RestructuredText/Parser/Productions/LinkRule.php b/src/RestructuredText/Parser/Productions/LinkRule.php
+--- a/src/RestructuredText/Parser/Productions/LinkRule.php
++++ b/src/RestructuredText/Parser/Productions/LinkRule.php
+@@ -30,6 +30,14 @@ use function trim;
+ final class LinkRule implements Rule
+ {
+     public const PRIORITY = 120;
++
++    /** @var string Cached link patterns to avoid recompilation */
++    private const BACKTICK_LINK_PATTERN = '/^\.\.\s+_`(.+)`: (.+)$/mUsi';
++    private const NAMED_LINK_PATTERN = '/^\.\.\s+_(.+): (.+)$/mUsi';
++    private const SHORT_ANON_LINK_PATTERN = '/^__\s+(.+)$/mUsi';
++    private const BACKTICK_ANCHOR_PATTERN = '/^\.\.\s+_`(.+)`:$/mUsi';
++    private const NAMED_ANCHOR_PATTERN = '/^\.\.\s+_(.+):$/mUsi';
++
+
+     public function applies(BlockContext $blockContext): bool
+     {
+@@ -61,26 +69,26 @@ final class LinkRule implements Rule
+     private function parseLink(string $line): LinkParser|null
+     {
+         // Links
+-        if (preg_match('/^\.\.\s+_`(.+)`: (.+)$/mUsi', $line, $match) === 1) {
++        if (preg_match(self::BACKTICK_LINK_PATTERN, $line, $match) === 1) {
+             return $this->createLink($match[1], $match[2], LinkParser::TYPE_LINK);
+         }
+
+         // anonymous links
+-        if (preg_match('/^\.\.\s+_(.+): (.+)$/mUsi', $line, $match) === 1) {
++        if (preg_match(self::NAMED_LINK_PATTERN, $line, $match) === 1) {
+             return $this->createLink($match[1], $match[2], LinkParser::TYPE_LINK);
+         }
+
+         // Short anonymous links
+-        if (preg_match('/^__\s+(.+)$/mUsi', trim($line), $match) === 1) {
++        if (preg_match(self::SHORT_ANON_LINK_PATTERN, trim($line), $match) === 1) {
+             $url = $match[1];
+
+             return $this->createLink('_', $url, LinkParser::TYPE_LINK);
+         }
+
+         // Anchor links - ".. _`anchor-link`:"
+-        if (preg_match('/^\.\.\s+_`(.+)`:$/mUsi', trim($line), $match) === 1) {
++        if (preg_match(self::BACKTICK_ANCHOR_PATTERN, trim($line), $match) === 1) {
+             $anchor = $match[1];
+
+             return new LinkParser($anchor, '#' . $anchor, LinkParser::TYPE_ANCHOR);
+         }
+
+-        if (preg_match('/^\.\.\s+_(.+):$/mUsi', trim($line), $match) === 1) {
++        if (preg_match(self::NAMED_ANCHOR_PATTERN, trim($line), $match) === 1) {
+             $anchor = $match[1];
+
+             return $this->createLink($anchor, '#' . $anchor, LinkParser::TYPE_ANCHOR);
