@@ -1,0 +1,32 @@
+--- a/src/RestructuredText/Parser/Productions/SimpleTableRule.php
++++ b/src/RestructuredText/Parser/Productions/SimpleTableRule.php
+@@ -33,6 +33,11 @@ use function trim;
+ /** @implements Rule<TableNode> */
+ final class SimpleTableRule implements Rule
+ {
++    /** @var string Pattern for column definition lines (two or more equals signs separated by spaces) */
++    private const COLUMN_DEFINITION_PATTERN = '/^(?:={2,} +)+={2,}$/';
++    /** @var string Pattern for colspan definition lines (two or more dashes separated by spaces) */
++    private const COLSPAN_DEFINITION_PATTERN = '/^(?:-{2,} +)+-{2,}$/';
++
+     public const PRIORITY = 40;
+
+     public function __construct(
+@@ -216,7 +221,7 @@ final class SimpleTableRule implements Rule
+
+     private function isColumnDefinitionLine(string $line): bool
+     {
+-        return preg_match('/^(?:={2,} +)+={2,}$/', trim($line)) > 0;
++        return preg_match(self::COLUMN_DEFINITION_PATTERN, trim($line)) > 0;
+     }
+
+     private function isColspanDefinition(string|null $line): bool
+@@ -225,7 +230,7 @@ final class SimpleTableRule implements Rule
+             return false;
+         }
+
+-        return preg_match('/^(?:-{2,} +)+-{2,}$/', trim($line)) > 0;
++        return preg_match(self::COLSPAN_DEFINITION_PATTERN, trim($line)) > 0;
+     }
+
+     /** @param array{start: int, length:int|null} $columnDefinition */

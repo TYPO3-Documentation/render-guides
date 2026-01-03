@@ -22,7 +22,13 @@ RUN cd /opt/guides/vendor/phpdocumentor/guides-restructured-text && \
     patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/field-list-regex-cache.patch || true && \
     patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/directive-rule-regex-cache.patch || true && \
     patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/enumerated-list-regex-cache.patch || true && \
-    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/link-rule-regex-cache.patch || true
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/link-rule-regex-cache.patch || true && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/grid-table-rule-regex-cache.patch || true && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/simple-table-rule-regex-cache.patch || true
+
+# Apply performance patches for guides
+RUN cd /opt/guides/vendor/phpdocumentor/guides && \
+    patch -p1 --forward --reject-file=/dev/null < /opt/guides/patches/external-reference-resolver-cache.patch || true
 
 FROM php:8.5-cli-alpine
 
