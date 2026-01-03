@@ -85,6 +85,14 @@
                 "Cache document lookup by file for O(1) getDocumentNodeForEntry": "patches/render-context-document-cache.patch",
                 "Cache URL resolution results in DocumentNameResolver": "patches/document-name-resolver-cache.patch",
                 "Cache URL generator relative path calculations": "patches/url-generator-cache.patch"
+            },
+            "phpdocumentor/guides-restructured-text": {
+                "Reuse InlineLexer instance to avoid repeated instantiation": "patches/inline-parser-lexer-reuse.patch",
+                "Cache LineChecker regex results to avoid repeated pattern matching": "patches/line-checker-cache.patch",
+                "Cache Buffer unindent to avoid repeated detection loops": "patches/buffer-unindent-cache.patch",
+                "Cache InlineLexer regex patterns including expensive SUPPORTED_SCHEMAS": "patches/inline-lexer-regex-cache.patch",
+                "Cache FieldListRule field pattern": "patches/field-list-regex-cache.patch",
+                "Cache DirectiveRule parsing patterns": "patches/directive-rule-regex-cache.patch"
             }
         }
     },
