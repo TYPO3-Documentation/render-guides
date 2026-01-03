@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
-use T3Docs\GuidesExtension\Renderer\IncrementalTypeRenderer;
+use T3Docs\GuidesExtension\Renderer\Parallel\ForkingRenderer;
 
 final class Typo3GuidesExtension extends Extension implements CompilerPassInterface
 {
@@ -24,27 +24,38 @@ final class Typo3GuidesExtension extends Extension implements CompilerPassInterf
 
     public function process(ContainerBuilder $container): void
     {
-        // Replace HtmlRenderer with IncrementalTypeRenderer for HTML output
-        if (!$container->hasDefinition(HtmlRenderer::class) || !$container->hasDefinition(IncrementalTypeRenderer::class)) {
+        // NOTE: Parallel parsing is available (ParallelParseDirectoryHandler) but NOT enabled
+        // by default. Testing shows the overhead of forking and serializing DocumentNodes
+        // outweighs gains for typical document sizes. The serialization cost through temp
+        // files makes it slower than sequential parsing for most use cases.
+
+        // Replace HtmlRenderer with ForkingRenderer for HTML output.
+        // This enables parallel rendering using pcntl_fork for better performance.
+        // ForkingRenderer uses DocumentNavigationProvider to maintain correct
+        // prev/next navigation links across all forked child processes.
+        $this->replaceHtmlRenderer($container);
+    }
+
+    private function replaceHtmlRenderer(ContainerBuilder $container): void
+    {
+        if (!$container->hasDefinition(HtmlRenderer::class) || !$container->hasDefinition(ForkingRenderer::class)) {
             return;
         }
 
         $htmlRenderer = $container->getDefinition(HtmlRenderer::class);
-        $incrementalRenderer = $container->getDefinition(IncrementalTypeRenderer::class);
+        $forkingRenderer = $container->getDefinition(ForkingRenderer::class);
 
-        // Copy all tags from HtmlRenderer to IncrementalTypeRenderer
+        // Copy all tags from HtmlRenderer to ForkingRenderer
         /** @var array<string, list<array<string, mixed>>> $tags */
         $tags = $htmlRenderer->getTags();
         foreach ($tags as $tagName => $tagAttributesList) {
             foreach ($tagAttributesList as $attributes) {
-                $incrementalRenderer->addTag($tagName, $attributes);
+                $forkingRenderer->addTag($tagName, $attributes);
             }
         }
 
-        // Replace HtmlRenderer with IncrementalTypeRenderer
-        $container->setDefinition(HtmlRenderer::class, $incrementalRenderer);
-
-        // Remove the original IncrementalTypeRenderer definition since we moved it
-        $container->removeDefinition(IncrementalTypeRenderer::class);
+        // Replace HtmlRenderer with ForkingRenderer
+        $container->setDefinition(HtmlRenderer::class, $forkingRenderer);
+        $container->removeDefinition(ForkingRenderer::class);
     }
 }
