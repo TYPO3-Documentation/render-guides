@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Целостность выпуска TYPO3
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:56:59+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:56:59+00:00" name="dc.modified">
+<meta content="2026-01-03T21:56:59+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="TuneTYPO3.html" rel="prev" title="Наладка TYPO3"/>
+            <link href="TutorialDdev.html" rel="next" title="Установка TYPO3 с помощью DDEV"/>
+            <link href="../Index.html" rel="top" title="TYPO3 - Ознакомительное пособие"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 - Ознакомительное пособие</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/Installation/ReleaseIntegrity.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 - Ознакомительное пособие</p>
+            <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Concepts/Index.html">
+        Концепции TYPO3
+    </a></li>    <li class="" role="menuitem">
+    <a href="../SystemRequirements/Index.html">
+        Системные требования
+    </a></li>    <li class=" active" role="menuitem">
+    <a href="Index.html">
+        Установка
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="Install.html">
+        Установка TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="DeployTYPO3.html">
+        Развертывание системы TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="TuneTYPO3.html">
+        Наладка TYPO3
+    </a></li><li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        Целостность выпуска TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="TutorialDdev.html">
+        Установка TYPO3 с помощью DDEV
+    </a></li><li class="" role="menuitem">
+    <a href="LegacyInstallation.html">
+        Традиционная установка
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Setup/Index.html">
+        Настройка
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Setup/SiteRecords.html">
+        Создание Записи сайта / Site Record
+    </a></li><li class="" role="menuitem">
+    <a href="../Setup/BackendUsers.html">
+        Добавление внутренних пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../Setup/BackendLanguages.html">
+        Изменение языка внутреннего интерфейса
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Troubleshooting/Index.html">
+        Поиск и устранение неисправностей
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Troubleshooting/TYPO3.html">
+        TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/SystemModules.html">
+        Системные модули
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/PHP.html">
+        PHP
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/WebServer.html">
+        Веб сервер
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/Database.html">
+        База данных
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Extensions/Index.html">
+        Работа с расширениями
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/main/en-us/Extensions/Management.html#installing-local-extensions">
+        Установка локальных расширений
+    </a></li><li class="" role="menuitem">
+    <a href="../Extensions/Management.html">
+        Управление расширениями
+    </a></li><li class="" role="menuitem">
+    <a href="../Extensions/LegacyManagement.html">
+        Управление расширениями - традиционное руководство
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../UserManagement/Index.html">
+        Управление пользователями внутреннего интерфейса
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../UserManagement/BackendPrivileges/Index.html">
+        Привилегии внутреннего интерфейса
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/BackendUsers/Index.html">
+        Внутренние пользователи
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/Groups/Index.html">
+        Группы
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/GroupPermissions/Index.html">
+        Настройка прав доступа пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/PagePermissions/Index.html">
+        Права доступа к странице
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/UserSetup/Index.html">
+        Настройка пользователя
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../IntroductionPackage/Index.html">
+        Ознакомительный пакет Introduction Package
+    </a></li>    <li class="" role="menuitem">
+    <a href="../NextSteps/Index.html">
+        Дальнейшие шаги и дополнительная литература
+    </a></li>    </ul>    <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Sitemap.html">
+        Sitemap
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 - Ознакомительное пособие</a></li>
+        <li class="breadcrumb-item"><a href="Index.html">Установка</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Целостность выпуска TYPO3</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="typo3" data-rst-anchor="release-integrity">
+            <a id="release_integrity"></a>
+            <h1>Целостность выпуска TYPO3<a class="headerlink" href="#typo3" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            
+    <p>Релиз-пакеты TYPO3 (загружаемые tar- и zip-файлы), а также Git-теги подписываются с помощью PGP-подписей в процессе автоматизированного выпуска. Для этих файлов также генерируются хэши SHA2-256, SHA1 и MD5.</p>
+
+            <section class="section" id="">
+            <h2>Содержание выпуска<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Каждый выпуск TYPO3 поставляется со следующими файлами:</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text"><a href="https://get.typo3.org/version/11#accordion-heading-zip">TYPO3 CMS 11.5.1</a> релиз в качестве примера</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">typo3_src-11.5.1.tar.gz
+typo3_src-11.5.1.tar.gz.sig
+typo3_src-11.5.1.zip
+typo3_src-11.5.1.zip.sig</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+
+<ul>
+    <li><code>*.tar.gz</code> и <code>*.zip</code> файлы - это собственно релизные пакеты, в которых представлен исходный код TYPO3 CMS.</li>
+    <li><code>*.sig</code> в файлах представлены соответствующие подписи для каждого файла пакета релиза.</li>
+</ul>
+
+    </section>
+            <section class="section" id="">
+            <h2>Проверка хэшей файлов<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Хеши файлов используются для проверки того, что загруженный файл был передан и правильно сохранен в локальной системе. В TYPO3 используются криптографические методы хэширования, включая <a href="https://en.wikipedia.org/wiki/MD5">MD5</a> и <a href="https://en.wikipedia.org/wiki/SHA-2">SHA2-256</a>.</p>
+
+            
+    <p>Хеши файлов для каждой версии публикуются на сайте get.typo3.org и могут быть найдены на странице соответствующего релиза, например, на <a href="https://get.typo3.org/version/11#package-checksums">https://get.typo3.org/version/11#package-checksums</a> содержит:</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">TYPO3 v11.5.1 Checksums</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">SHA256:
+205d1879e05c75093a2c427f7f7cacb297ca841e491450b3577987e259ff6c5b typo3_src-11.5.1.tar.gz
+e07b303405d182f4450fda4a7a7acdbe5080c22123d52f74ef5f2fbf78233a49 typo3_src-11.5.1.zip
+
+SHA1:
+aa88171cfb5aa9935b2a989f51e68b6d8eb6e5f0 typo3_src-11.5.1.tar.gz
+3dbe9322015e1d5266d78c6c3ff40846f8a6492f typo3_src-11.5.1.zip
+
+MD5:
+cda2a4494f6673e9251c265c9ef1c345 typo3_src-11.5.1.tar.gz
+252583501d30bb5679305b58ed6e6f94 typo3_src-11.5.1.zip</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Для проверки хэшей файлов необходимо локально сгенерировать хэши для загружаемых пакетов и сравнить их с опубликованными хэшами на get.typo3.org. Для локальной генерации хэшей необходимо использовать один из следующих инструментов командной строки <code>md5sum</code>, <code>ha1sum</code> или <code>shasum</code>.</p>
+
+            
+    <p>Следующие команды генерируют хэши для пакетов <code class="code-inline" translate="no">.tar.<wbr>gz</code> и <code class="code-inline" translate="no">.zip</code>:</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">&nbsp;$</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">shasum -a 256 typo3_src-*.tar.gz typo3_src-*.zip
+205d1879e05c75093a2c427f7f7cacb297ca841e491450b3577987e259ff6c5b typo3_src-11.5.1.tar.gz
+e07b303405d182f4450fda4a7a7acdbe5080c22123d52f74ef5f2fbf78233a49 typo3_src-11.5.1.zip</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+                <div class="code-block-caption">
+        <span class="caption-text">&nbsp;$</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">sha1sum -c typo3_src-*.tar.gz typo3_src-*.zip
+aa88171cfb5aa9935b2a989f51e68b6d8eb6e5f0 typo3_src-11.5.1.tar.gz
+3dbe9322015e1d5266d78c6c3ff40846f8a6492f typo3_src-11.5.1.zip</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+                <div class="code-block-caption">
+        <span class="caption-text">&nbsp;$</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">md5sum typo3_src-*.tar.gz typo3_src-*.zip
+cda2a4494f6673e9251c265c9ef1c345 typo3_src-11.5.1.tar.gz
+252583501d30bb5679305b58ed6e6f94 typo3_src-11.5.1.zip</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Для обеспечения целостности пакета эти хэши должны совпадать с хэшами, опубликованными на get.typo3.org.</p>
+
+    </section>
+            <section class="section" id="">
+            <h2>Проверка подписей файлов<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>TYPO3 использует <a href="https://en.wikipedia.org/wiki/Pretty_Good_Privacy">Pretty Good Privacy</a> для подписи пакетов выпуска и тегов выпуска Git. Для проверки этих подписей рекомендуется использовать <a href="http://www.gnupg.org/">The GNU Privacy Guard</a>, однако можно также использовать любой инструмент, совместимый с <a href="http://www.openpgp.org/">OpenPGP</a>.</p>
+
+            
+    <p>В релизных пакетах используется отделенная бинарная подпись. Это означает, что файл <code>typo3_src-11.5.1.tar.gz</code> содержит дополнительный файл подписи <code>typo3_src-11.5.1.tar.gz.sig</code>, являющийся отсоединенной подписью.</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">&nbsp;$</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">gpg --verify typo3_src-11.5.1.tar.gz.sig typo3_src-11.5.1.tar.gz</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs plaintext">gpg: Signature made Tue Oct 12 12:20:19 2021 UTC
+gpg:                using RSA key E7ED29A70309A0D1AE34DA733304BBDBFA9613D1
+gpg: Can't check signature: No public key</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Предупреждение означает, что открытый ключ <code>E7ED29A70309A0D1AE34DA733304BBDBFA9613D1</code> еще не доступен в локальной системе и не может быть использован для проверки подписи. Открытый ключ может быть получен на любом сервере ключей - популярным является <a href="https://pgpkeys.mit.edu/">pgpkeys.mit.edu</a>.</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">&nbsp;$</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">wget -qO- https://get.typo3.org/KEYS | gpg --import</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs plaintext">gpg: requesting key 59BC94C4 from hkp server pgpkeys.mit.edu
+gpg: key 59BC94C4: public key "TYPO3 Release Team (RELEASE) &lt;typo3cms@typo3.org&gt;" imported
+gpg: key FA9613D1: public key "Benjamin Mack &lt;benni@typo3.org&gt;" imported
+gpg: key 16490937: public key "Oliver Hader &lt;oliver@typo3.org&gt;" imported
+gpg: no ultimately trusted keys found
+gpg: Total number processed: 3
+gpg:               imported: 3  (RSA: 3)</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>После импорта открытого ключа можно повторить предыдущую команду по проверке подписи файла <code>typo3_src-11.5.1.tar.gz</code>.</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">&nbsp;$</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">gpg --verify typo3_src-11.5.1.tar.gz.sig typo3_src-11.5.1.tar.gz</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs plaintext">gpg: Signature made Tue Oct 12 12:20:19 2021 UTC
+gpg:                using RSA key E7ED29A70309A0D1AE34DA733304BBDBFA9613D1
+gpg: Good signature from "Benjamin Mack &lt;benni@typo3.org&gt;" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: E7ED 29A7 0309 A0D1 AE34  DA73 3304 BBDB FA96 13D1</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Появление нового предупреждения вполне ожидаемо, постольку любой мог создать открытый ключ и загрузить его на сервер ключей. Важным моментом здесь является проверка отпечатка ключа <code>E7ED 29A7 0309 A0D1 AE34 DA73 3304 BBDB FA96 13D1</code>, который в данном случае является правильным для пакетов выпуска TYPO3 CMS (список используемых в настоящее время ключей см. ниже или обратитесь непосредственно к файлу <a href="https://get.typo3.org/KEYS">https://get.typo3.org/KEYS</a>).</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">&nbsp;$</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">gpg --fingerprint E7ED29A70309A0D1AE34DA733304BBDBFA9613D1</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs plaintext">pub   rsa4096 2010-06-22 [SC]
+      E7ED 29A7 0309 A0D1 AE34  DA73 3304 BBDB FA96 13D1
+uid                  [ unknown] Benjamin Mack &lt;benni@typo3.org&gt;
+sub   rsa4096 2010-06-22 [E]</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+            <section class="section" id="">
+            <h2>Проверка подписи тегов<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Проверка подписей на Git-тегах работает аналогично проверке результатов с помощью инструмента <code>gpg</code>, но с использованием команды <code>git tag --verify</code> напрямую.</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">&nbsp;$</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">git tag --verify v11.5.1</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs plaintext">object dcba2a7ce93eaef0ad025dc21fdeb85636d7b4f4
+type commit
+tag v11.5.1
+tagger Benni Mack &lt;benni@typo3.org&gt; 1634041135 +0200
+
+Release of TYPO3 11.5.1
+gpg: Signature made Tue Oct 12 14:18:55 2021 CEST
+gpg: using RSA key E7ED29A70309A0D1AE34DA733304BBDBFA9613D1
+gpg: Good signature from "Benjamin Mack &lt;benni@typo3.org&gt;"</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Команда <code>git show</code> по имени тега позволяет получить более подробную информацию.</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">&nbsp;$</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">git show v11.5.1</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs plaintext">tag v11.5.1
+Tagger: Benni Mack &lt;benni@typo3.org&gt;
+Date:   Tue Oct 12 14:17:52 2021 +0200
+
+Release of TYPO3 11.5.1
+-----BEGIN PGP SIGNATURE-----
+...
+-----END PGP SIGNATURE-----</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+            <section class="section" id="">
+            <h2>Публичные ключи<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+                
+<div class="admonition note" role="alert">
+    <p class="admonition-title">Note</p>
+        
+    <p>Начиная с июня 2017 года, релизы TYPO3 подписываются криптографической подписью <code>TYPO3 Release Team&#039;&#039; &lt;typo3cms@typo3.org&gt;</code> с использованием специального открытого ключа. С июля 2017 года релизы подписываются непосредственно отдельными членами команды TYPO3 Release Team, а именно <code>Бенни Маком (Benni Mack) &lt;benni@typo3.org&gt;</code> и <code>Оливером Хадером (Oliver Hader) &lt;oliver@typo3.org&gt;</code>.</p>
+
+</div>
+            
+    <p>Используемые открытые ключи можно загрузить с сайта <a href="https://get.typo3.org/KEYS">get.typo3.org.keys</a></p>
+
+            
+
+<ul>
+    <li>
+    <p>TYPO3 Release Team &lt;<a href="mailto:typo3cms@typo3.org">typo3cms@typo3.org</a>&gt;</p>
+<blockquote>
+
+<ul>
+    <li>4096 bit RSA key</li>
+    <li>Key ID <a href="https://pgpkeys.mit.edu/pks/lookup?search=0x9B9CB92E59BC94C4">0x9B9CB92E59BC94C4</a></li>
+    <li>Fingerprint <code>7AF5 1AAA DED9 D002 4F89  B06B 9B9C B92E 59BC 94C4</code></li>
+</ul>
+</blockquote></li>
+    <li>
+    <p>Benni Mack &lt;<a href="mailto:benni@typo3.org">benni@typo3.org</a>&gt;</p>
+<blockquote>
+
+<ul>
+    <li>4096 bit RSA key</li>
+    <li>Key ID <a href="https://pgpkeys.mit.edu/pks/lookup?search=0x3304BBDBFA9613D1">0x3304BBDBFA9613D1</a></li>
+    <li>Fingerprint <code>E7ED 29A7 0309 A0D1 AE34  DA73 3304 BBDB FA96 13D1</code></li>
+</ul>
+</blockquote></li>
+    <li>
+    <p>Oliver Hader &lt;<a href="mailto:oliver@typo3.org">oliver@typo3.org</a>&gt;</p>
+<blockquote>
+
+<ul>
+    <li>4096 bit RSA key</li>
+    <li>Key ID <a href="https://pgpkeys.mit.edu/pks/lookup?search=0xC19FAFD699012A5A">0xC19FAFD699012A5A</a>, subkey of <a href="https://pgpkeys.mit.edu/pks/lookup?search=0xA36E4D1F16490937">0xA36E4D1F16490937</a></li>
+    <li>Fingerprint <code>0C4E 4936 2CFA CA0B BFCE  5D16 A36E 4D1F 1649 0937</code></li>
+</ul>
+</blockquote></li>
+</ul>
+
+            <hr />
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="TuneTYPO3.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="TutorialDdev.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Installation/ReleaseIntegrity">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Installation/ReleaseIntegrity"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:56</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>

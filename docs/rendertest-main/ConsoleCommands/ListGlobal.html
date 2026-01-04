@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Global commands
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:58:04+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:58:04+00:00" name="dc.modified">
+<meta content="2026-01-03T21:58:04+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="ListAllExclude.html" rel="prev" title="All commands, exclude namespaces and commands"/>
+            <link href="ListNameSpaceCache.html" rel="next" title="Commands in namespace cache"/>
+            <link href="../Index.html" rel="top" title="TYPO3 theme rendering test"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 theme rendering test</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/ConsoleCommands/ListGlobal.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 theme rendering test</p>
+            <p class="caption"><span class="caption-text">INTRODUCTION</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Page1.html">
+        Page 1
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Page2.html">
+        Page 2
+    </a></li>    </ul>    <p class="caption"><span class="caption-text">HOWTOS</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Accordion/Index.html">
+        Accordion
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Admonitions-and-buttons/Index.html">
+        Admonitions and buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Api/Index.html">
+        TYPO3 API
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Blockquotes/Index.html">
+        Block quotes
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Buttons/Index.html">
+        Buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Cards/Index.html">
+        Cards
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Codeblocks/Index.html">
+        Codeblocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Confval/Index.html">
+        confval
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Confval/ConfvalTrees.html">
+        Confvals with subtrees
+    </a></li><li class="" role="menuitem">
+    <a href="../Confval/X.html">
+        Confvals with subtrees
+    </a></li></ul></li>    <li class=" active" role="menuitem">
+    <a href="Index.html">
+        Console commands
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="ListAll.html">
+        All commands
+    </a></li><li class="" role="menuitem">
+    <a href="ListAllExclude.html">
+        All commands, exclude namespaces and commands
+    </a></li><li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        Global commands
+    </a></li><li class="" role="menuitem">
+    <a href="ListNameSpaceCache.html">
+        Commands in namespace cache
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Directives/Index.html">
+        Directives
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Directives/directoryTree.html">
+        Directory tree
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/plantuml.html">
+        Plantuml basic examples
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/versionadded.html">
+        versionadded &amp; friends
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/youtube.html">
+        Youtube directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ExtLinksAndLinkStyles/Index.html">
+        ExtLinks and Link styles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../FieldLists/Index.html">
+        Field lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Glossary/Index.html">
+        Glossary
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ImagesAndFigures/Index.html">
+        Images and figures
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Inline-code-and-textroles/Index.html">
+        Inline code and text roles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lineblocks/Index.html">
+        Line blocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lists/Index.html">
+        Lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Nested-pages/Index.html">
+        Nested pages
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-2"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-3"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-4"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-5"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/1/index.html">
+        Page title
+    </a></li></ul></li></ul></li></ul></li></ul></li></ul></li>    <li class="" role="menuitem">
+    <a href="../PhpDomain/Index.html">
+        Phpdomain
+    </a></li>    <li class="" role="menuitem">
+    <a href="../PhpInline/Index.html">
+        PHP Inline
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Redirects/Index.html">
+        Redirects
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Sitemap/Index.html">
+        Sitemap
+    </a></li>    <li class="" role="menuitem">
+    <a href="../SiteSettings/Index.html">
+        Site settings
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../SiteSettings/SiteSettingsWithLabels/Index.html">
+        Site settings with labels
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../SpecialCharacters/Index.html">
+        Special characters
+    </a></li>    <li class="" role="menuitem">
+    <a href="../StyledNumberedLists/Index.html">
+        Styled numbered lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Tables/Index.html">
+        Tables
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Tables/TableDirective.html">
+        Table directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Tabs/Index.html">
+        Tabs
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ThisAndThat/Index.html">
+        This and that
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Typesetting/Index.html">
+        Typesetting code Header 
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Uml/Index.html">
+        Very large UML diagram
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ViewHelpers/Index.html">
+        ViewHelpers
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 theme rendering test</a></li>
+        <li class="breadcrumb-item"><a href="Index.html">Console commands</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Global commands</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                <section class="section" id="global-commands">
+            <h1>Global commands<a class="headerlink" href="#global-commands" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            <div class="command-list">
+
+    <div class="table-responsive command-table" id="console-command-list-consolecommands-listglobal">
+        <table class="table table-hover caption-top">            <thead>
+            <tr>
+                <th scope="col">Command</th>
+                <th scope="col">Description</th>            </tr>
+            </thead>
+                                                                            <tr>
+                        <td>
+                            <pre class="command-label  "><a href="#console-command-list">bin/typo3 list</a></pre>
+                        </td>
+                        <td>List commands</td>                    </tr>
+                                    <tr>
+                        <td>
+                            <pre class="command-label  "><a href="#console-command-setup">bin/typo3 setup</a></pre>
+                        </td>
+                        <td>Setup TYPO3 via CLI using environment variables, CLI options or interactive</td>                    </tr>
+                                    </table>
+    </div>
+            <section data-search-title="bin/typo3 list" data-search-id="console-command-list" data-search-facet="Console Command">
+    <h3 class="sr-only">bin/typo3 list</h3>
+<dl class="command">
+    <dt>
+        <code class="sig-name descname"><span class="pre">bin/typo3 list</span></code>
+    <span class="headerNoindex" title="This command cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+ <a href="#console-command-list-consolecommands-listglobal" title="Back to list"><i class="fa-solid fa-angles-up fa-xs"></i> <span class="sr-only"> Back to list</span></a>    </dt>
+    <dd>
+        <div class="command-description">
+            List commands
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">bin/typo3 list [--raw] [--format FORMAT] [--short] [--] [&lt;namespace&gt;]</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+                            </div>
+                            <div class="command-arguments">
+                <div class="h4">Arguments</div>
+                                    <section data-search-title="namespace"
+         data-search-id="console-argument-list-namespace"
+         data-search-facet="Console Command Argument"
+         class="confval-section"
+>
+    <h4 class="sr-only">namespace</h4>
+    <dl class="argument">
+        <dt id="console-argument-list-namespace">
+            <code class="sig-name descname"><span class="pre">namespace</span></code>
+    <a class="headerlink" href="#console-argument-list-namespace" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-argument-list-namespace" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <dl class="field-list simple">
+                </dl>
+            <div class="argument-description">
+                The namespace name
+            </div>
+                    </dd>
+    </dl>
+</section>
+                            </div>
+                            <div class="command-options">
+                <div class="h4">Options</div>
+                                    <section data-search-title="--raw"
+         data-search-id="console-option-list-raw"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--raw</h4>
+    <dl class="option">
+        <dt id="console-option-list-raw">
+            <code class="sig-name descname"><span class="pre">--raw</span></code>
+    <a class="headerlink" href="#console-option-list-raw" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-raw" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                To output raw command list
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">None allowed                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        false
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--format"
+         data-search-id="console-option-list-format"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--format</h4>
+    <dl class="option">
+        <dt id="console-option-list-format">
+            <code class="sig-name descname"><span class="pre">--format</span></code>
+    <a class="headerlink" href="#console-option-list-format" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-format" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                The output format (txt, xml, json, or md)
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Required                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        &quot;txt&quot;
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--short"
+         data-search-id="console-option-list-short"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--short</h4>
+    <dl class="option">
+        <dt id="console-option-list-short">
+            <code class="sig-name descname"><span class="pre">--short</span></code>
+    <a class="headerlink" href="#console-option-list-short" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-list-short" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                To skip describing commands&#039; arguments
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">None allowed                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        false
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+                
+    <p>The <code class="code-inline" translate="no">list</code> command lists all commands:</p>
+<div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code>bin/typo3 list
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    <p>You can also display the commands for a specific namespace:</p>
+<div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code>bin/typo3 list test
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    <p>You can also output the information in other formats by using the <em>--format</em> option:</p>
+<div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code>bin/typo3 list --format=xml
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    <p>It&#039;s also possible to get raw list of commands (useful for embedding command runner):</p>
+<div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code>bin/typo3 list --raw</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            </div>
+                    </dd>
+</dl>
+</section>            <section data-search-title="bin/typo3 setup" data-search-id="console-command-setup" data-search-facet="Console Command">
+    <h3 class="sr-only">bin/typo3 setup</h3>
+<dl class="command">
+    <dt>
+        <code class="sig-name descname"><span class="pre">bin/typo3 setup</span></code>
+    <span class="headerNoindex" title="This command cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+ <a href="#console-command-list-consolecommands-listglobal" title="Back to list"><i class="fa-solid fa-angles-up fa-xs"></i> <span class="sr-only"> Back to list</span></a>    </dt>
+    <dd>
+        <div class="command-description">
+            Setup TYPO3 via CLI using environment variables, CLI options or interactive
+        </div>
+                    <div class="command-usage">
+                <div class="h4">Usage</div>
+                                    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">bin/typo3 setup [--driver [DRIVER]] [--host HOST] [--port [PORT]] [--dbname DBNAME] [--username USERNAME] [--password PASSWORD] [--admin-username [ADMIN-USERNAME]] [--admin-user-password ADMIN-USER-PASSWORD] [--admin-email ADMIN-EMAIL] [--project-name PROJECT-NAME] [--create-site [CREATE-SITE]] [--server-type [SERVER-TYPE]] [--force] [-n|--no-interaction]</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+                            </div>
+                                    <div class="command-options">
+                <div class="h4">Options</div>
+                                    <section data-search-title="--driver"
+         data-search-id="console-option-setup-driver"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--driver</h4>
+    <dl class="option">
+        <dt id="console-option-setup-driver">
+            <code class="sig-name descname"><span class="pre">--driver</span></code>
+    <a class="headerlink" href="#console-option-setup-driver" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-driver" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Select which database driver to use
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Optional                </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--host"
+         data-search-id="console-option-setup-host"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--host</h4>
+    <dl class="option">
+        <dt id="console-option-setup-host">
+            <code class="sig-name descname"><span class="pre">--host</span></code>
+    <a class="headerlink" href="#console-option-setup-host" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-host" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Set the database host to use
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Required                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        &quot;db&quot;
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--port"
+         data-search-id="console-option-setup-port"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--port</h4>
+    <dl class="option">
+        <dt id="console-option-setup-port">
+            <code class="sig-name descname"><span class="pre">--port</span></code>
+    <a class="headerlink" href="#console-option-setup-port" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-port" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Set the database port to use
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Optional                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        &quot;3306&quot;
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--dbname"
+         data-search-id="console-option-setup-dbname"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--dbname</h4>
+    <dl class="option">
+        <dt id="console-option-setup-dbname">
+            <code class="sig-name descname"><span class="pre">--dbname</span></code>
+    <a class="headerlink" href="#console-option-setup-dbname" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-dbname" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Set the database name to use
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Required                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        &quot;db&quot;
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--username"
+         data-search-id="console-option-setup-username"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--username</h4>
+    <dl class="option">
+        <dt id="console-option-setup-username">
+            <code class="sig-name descname"><span class="pre">--username</span></code>
+    <a class="headerlink" href="#console-option-setup-username" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-username" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Set the database username to use
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Required                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        &quot;db&quot;
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--password"
+         data-search-id="console-option-setup-password"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--password</h4>
+    <dl class="option">
+        <dt id="console-option-setup-password">
+            <code class="sig-name descname"><span class="pre">--password</span></code>
+    <a class="headerlink" href="#console-option-setup-password" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-password" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Set the database password to use
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Required                </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--admin-username"
+         data-search-id="console-option-setup-admin-username"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--admin-username</h4>
+    <dl class="option">
+        <dt id="console-option-setup-admin-username">
+            <code class="sig-name descname"><span class="pre">--admin-username</span></code>
+    <a class="headerlink" href="#console-option-setup-admin-username" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-admin-username" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Set a username
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Optional                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        &quot;admin&quot;
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--admin-user-password"
+         data-search-id="console-option-setup-admin-user-password"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--admin-user-password</h4>
+    <dl class="option">
+        <dt id="console-option-setup-admin-user-password">
+            <code class="sig-name descname"><span class="pre">--admin-user-password</span></code>
+    <a class="headerlink" href="#console-option-setup-admin-user-password" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-admin-user-password" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Set users password
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Required                </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--admin-email"
+         data-search-id="console-option-setup-admin-email"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--admin-email</h4>
+    <dl class="option">
+        <dt id="console-option-setup-admin-email">
+            <code class="sig-name descname"><span class="pre">--admin-email</span></code>
+    <a class="headerlink" href="#console-option-setup-admin-email" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-admin-email" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Set users email
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Required                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        &quot;&quot;
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--project-name"
+         data-search-id="console-option-setup-project-name"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--project-name</h4>
+    <dl class="option">
+        <dt id="console-option-setup-project-name">
+            <code class="sig-name descname"><span class="pre">--project-name</span></code>
+    <a class="headerlink" href="#console-option-setup-project-name" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-project-name" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Set the TYPO3 project name
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Required                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        &quot;New TYPO3 Project&quot;
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--create-site"
+         data-search-id="console-option-setup-create-site"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--create-site</h4>
+    <dl class="option">
+        <dt id="console-option-setup-create-site">
+            <code class="sig-name descname"><span class="pre">--create-site</span></code>
+    <a class="headerlink" href="#console-option-setup-create-site" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-create-site" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Create a basic site setup (root page and site configuration) with the given domain
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Optional                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        false
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--server-type"
+         data-search-id="console-option-setup-server-type"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--server-type</h4>
+    <dl class="option">
+        <dt id="console-option-setup-server-type">
+            <code class="sig-name descname"><span class="pre">--server-type</span></code>
+    <a class="headerlink" href="#console-option-setup-server-type" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-server-type" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Define the web server the TYPO3 installation will be running on
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">Optional                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        &quot;other&quot;
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                                    <section data-search-title="--force"
+         data-search-id="console-option-setup-force"
+         data-search-facet="Console Command"
+         class="confval-section"
+>
+    <h4 class="sr-only">--force</h4>
+    <dl class="option">
+        <dt id="console-option-setup-force">
+            <code class="sig-name descname"><span class="pre">--force</span></code>
+    <a class="headerlink" href="#console-option-setup-force" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-id="console-option-setup-force" data-rstCode=""  title="Reference this configuration value"><i class="fa-solid fa-paragraph"></i></a>
+        </dt>
+        <dd>
+            <div class="argument-description">
+                Force settings overwrite - use this if TYPO3 has been installed already
+            </div>
+            <dl class="field-list simple">
+                <dt class="field-even">Value</dt>
+                <dd class="field-even">None allowed                </dd>
+                                    <dt class="field-even">Default value</dt>
+                    <dd class="field-even">
+                        false
+                    </dd>
+                </dl>
+                    </dd>
+    </dl>
+
+</section>
+                            </div>
+                            <div class="command-description-help">
+                <div class="h4">Help</div>
+                <dl>
+                        <dt>The command offers 3 ways to setup TYPO3:</dt>
+        
+        <dd>
+    
+<ol start="1" type="1">
+    <li value="1">environment variables</li>
+    <li value="2">commandline options</li>
+    <li value="3">interactive guided walk-through</li>
+</ol>
+</dd>
+            </dl>
+    <p>All values are validated no matter where it was set.
+If a value is missing, the user will be asked for it.</p>
+
+    <p><em>Setup using environment variables</em></p>
+<div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code>TYPO3_DB_DRIVER=mysqli \
+TYPO3_DB_USERNAME=db \
+TYPO3_DB_PORT=3306 \
+TYPO3_DB_HOST=db \
+TYPO3_DB_DBNAME=db \
+TYPO3_SETUP_ADMIN_EMAIL=admin@example.com \
+TYPO3_SETUP_ADMIN_USERNAME=admin \
+TYPO3_SETUP_CREATE_SITE=&quot;https://your-typo3-site.com/&quot; \
+TYPO3_PROJECT_NAME=&quot;Automated Setup&quot; \
+TYPO3_SERVER_TYPE=&quot;apache&quot; \
+./bin/typo3 setup --force
+
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>    
+<div class="admonition warning" role="alert">
+    <p class="admonition-title">Warning</p>
+        
+    <p>Variable <code class="code-inline" translate="no">TYPO3_<wbr>DB_<wbr>PASSWORD</code> (option <code class="code-inline" translate="no">--<wbr>password</code>) can be used to provide a
+password for the database and <code class="code-inline" translate="no">TYPO3_<wbr>SETUP_<wbr>ADMIN_<wbr>PASSWORD</code>
+(option <code class="code-inline" translate="no">--<wbr>admin-<wbr>user-<wbr>password</code>) for the admin user password.
+Using this can be a security risk since the password may end up in shell
+history files. Prefer the interactive mode. Additionally, writing a command
+to shell history can be suppressed by prefixing the command with a space
+when using <code class="code-inline" translate="no">bash</code> or <code class="code-inline" translate="no">zsh</code>.</p>
+
+</div>
+            </div>
+                    </dd>
+</dl>
+</section>    </div>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="ListAllExclude.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="ListNameSpaceCache.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="ConsoleCommands/ListGlobal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="ConsoleCommands/ListGlobal"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:58</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>

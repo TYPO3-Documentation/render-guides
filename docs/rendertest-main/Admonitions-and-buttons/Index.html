@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Admonitions and buttons
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:58:04+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:58:04+00:00" name="dc.modified">
+<meta content="2026-01-03T21:58:04+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="../Accordion/Index.html" rel="prev" title="Accordion"/>
+            <link href="../Api/Index.html" rel="next" title="TYPO3 API"/>
+            <link href="../Index.html" rel="top" title="TYPO3 theme rendering test"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 theme rendering test</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/Admonitions-and-buttons/Index.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 theme rendering test</p>
+            <p class="caption"><span class="caption-text">INTRODUCTION</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Page1.html">
+        Page 1
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Page2.html">
+        Page 2
+    </a></li>    </ul>    <p class="caption"><span class="caption-text">HOWTOS</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Accordion/Index.html">
+        Accordion
+    </a></li>    <li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        Admonitions and buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Api/Index.html">
+        TYPO3 API
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Blockquotes/Index.html">
+        Block quotes
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Buttons/Index.html">
+        Buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Cards/Index.html">
+        Cards
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Codeblocks/Index.html">
+        Codeblocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Confval/Index.html">
+        confval
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Confval/ConfvalTrees.html">
+        Confvals with subtrees
+    </a></li><li class="" role="menuitem">
+    <a href="../Confval/X.html">
+        Confvals with subtrees
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ConsoleCommands/Index.html">
+        Console commands
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAll.html">
+        All commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAllExclude.html">
+        All commands, exclude namespaces and commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListGlobal.html">
+        Global commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListNameSpaceCache.html">
+        Commands in namespace cache
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Directives/Index.html">
+        Directives
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Directives/directoryTree.html">
+        Directory tree
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/plantuml.html">
+        Plantuml basic examples
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/versionadded.html">
+        versionadded &amp; friends
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/youtube.html">
+        Youtube directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ExtLinksAndLinkStyles/Index.html">
+        ExtLinks and Link styles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../FieldLists/Index.html">
+        Field lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Glossary/Index.html">
+        Glossary
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ImagesAndFigures/Index.html">
+        Images and figures
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Inline-code-and-textroles/Index.html">
+        Inline code and text roles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lineblocks/Index.html">
+        Line blocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lists/Index.html">
+        Lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Nested-pages/Index.html">
+        Nested pages
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-2"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-3"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-4"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-5"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/1/index.html">
+        Page title
+    </a></li></ul></li></ul></li></ul></li></ul></li></ul></li>    <li class="" role="menuitem">
+    <a href="../PhpDomain/Index.html">
+        Phpdomain
+    </a></li>    <li class="" role="menuitem">
+    <a href="../PhpInline/Index.html">
+        PHP Inline
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Redirects/Index.html">
+        Redirects
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Sitemap/Index.html">
+        Sitemap
+    </a></li>    <li class="" role="menuitem">
+    <a href="../SiteSettings/Index.html">
+        Site settings
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../SiteSettings/SiteSettingsWithLabels/Index.html">
+        Site settings with labels
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../SpecialCharacters/Index.html">
+        Special characters
+    </a></li>    <li class="" role="menuitem">
+    <a href="../StyledNumberedLists/Index.html">
+        Styled numbered lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Tables/Index.html">
+        Tables
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Tables/TableDirective.html">
+        Table directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Tabs/Index.html">
+        Tabs
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ThisAndThat/Index.html">
+        This and that
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Typesetting/Index.html">
+        Typesetting code Header 
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Uml/Index.html">
+        Very large UML diagram
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ViewHelpers/Index.html">
+        ViewHelpers
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 theme rendering test</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Admonitions and buttons</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="admonitions-and-buttons" data-rst-anchor="adminitions-and-buttons">
+            <a id="Adminitions_And_Buttons"></a>
+            <h1>Admonitions and buttons<a class="headerlink" href="#admonitions-and-buttons" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            <div class="contents-wrapper">
+        <p class="topic-title">This page</p>
+        <ul class="menu-level">
+    <li class="toc-item">
+    <a href="#admonitions-boxes">Admonitions (boxes)</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#buttons">Buttons</a>
+
+        <ul class="section-level-1">
+            <li class="toc-item">
+    <a href="#using-and-abusing">Using and abusing</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-attention-m">horizbuttons-attention-m</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-important-m">horizbuttons-important-m</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-note-m">horizbuttons-note-m</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-primary-m">horizbuttons-primary-m</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-striking-m">horizbuttons-striking-m</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-tip-m">horizbuttons-tip-m</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-warning-m">horizbuttons-warning-m</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-attention-xxl">horizbuttons-attention-xxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-important-xxl">horizbuttons-important-xxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-note-xxl">horizbuttons-note-xxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-primary-xxl">horizbuttons-primary-xxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-striking-xxl">horizbuttons-striking-xxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-tip-xxl">horizbuttons-tip-xxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-warning-xxl">horizbuttons-warning-xxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-attention-xxxl">horizbuttons-attention-xxxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-important-xxxl">horizbuttons-important-xxxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-note-xxxl">horizbuttons-note-xxxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-primary-xxxl">horizbuttons-primary-xxxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-striking-xxxl">horizbuttons-striking-xxxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-tip-xxxl">horizbuttons-tip-xxxl</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#horizbuttons-warning-xxxl">horizbuttons-warning-xxxl</a>
+
+
+</li>
+                    </ul>
+</li>
+    </ul>
+
+    <button class="toggle-all-sections btn btn-sm btn-light">Collapse all Sections</button>
+</div>
+            <section class="section" id="admonitions-boxes">
+            <h2>Admonitions (boxes)<a class="headerlink" href="#admonitions-boxes" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+<div class="admonition admonition-with-individual-title" role="alert">
+    <p class="admonition-title">Admonition with individual title</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+                
+<div class="admonition note" role="alert">
+    <p class="admonition-title">Note</p>
+        
+    <p>Unfortunately, PhpStorm only recognizes a file as a PHP archive when it has the <code>.phar</code> suffix.
+This is remedied by creating a symbolic link: <code>ln -s phpunit tools/phpunit.phar</code>.</p>
+
+</div>
+                
+<div class="admonition attention" role="alert">
+    <p class="admonition-title">Attention</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+                
+<div class="admonition caution" role="alert">
+    <p class="admonition-title">Caution</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+                
+<div class="admonition danger" role="alert">
+    <p class="admonition-title">Danger</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+                
+<div class="admonition error" role="alert">
+    <p class="admonition-title">Error</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+                
+<div class="admonition hint" role="alert">
+    <p class="admonition-title">Hint</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+                
+<div class="admonition important" role="alert">
+    <p class="admonition-title">Important</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+                
+<div class="admonition note" role="alert">
+    <p class="admonition-title">Note</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+                
+<div class="admonition seealso" role="alert">
+    <p class="admonition-title">See also</p>
+        
+</div>
+                
+<div class="admonition tip" role="alert">
+    <p class="admonition-title">Tip</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+                
+<div class="admonition warning" role="alert">
+    <p class="admonition-title">Warning</p>
+        
+    <p>Equations within a note
+<math>G_{\mu\nu} = 8 \pi G (T_{\mu\nu}  + \rho_\Lambda g_{\mu\nu})</math>.</p>
+
+</div>
+    </section>
+            <section class="section" id="buttons">
+            <h2>Buttons<a class="headerlink" href="#buttons" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Technically speaking the following &quot;buttons&quot; aren&#039;t real buttons as we know them
+from the Bootstrap framework, but they are &quot;list items&quot; styled like buttons and
+arranged horizontally.</p>
+
+            
+    <p>These list items are just list items, so you are free to add links wherever you
+want and &quot;misuse&quot; things, if you like.</p>
+
+            <section class="section" id="using-and-abusing">
+            <h3>Using and abusing<a class="headerlink" href="#using-and-abusing" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>To link to something just use ordinary reST links.</p>
+
+            
+
+<ul class="horizbuttons-important-m">
+    <li>To click this &quot;button&quot;, click directly on the link: <a href="https://typo3.org/">TYPO3</a></li>
+    <li><a href="https://docs.typo3.org/">https://docs.typo3.org/</a></li>
+    <li>Main product is <a href="https://typo3.org/">TYPO3</a> and the <a href="https://docs.typo3.org/">docs</a></li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-attention-m">
+            <h3>horizbuttons-attention-m<a class="headerlink" href="#horizbuttons-attention-m" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonition &#039;attention&#039; (blue)</p>
+
+            
+
+<ul class="horizbuttons-attention-m">
+    <li class="dash">horizbuttons-attention-m</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-important-m">
+            <h3>horizbuttons-important-m<a class="headerlink" href="#horizbuttons-important-m" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;error&#039;, &#039;important&#039; (yellow)</p>
+
+            
+
+<ul class="horizbuttons-important-m">
+    <li class="dash">horizbuttons-important-m</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-note-m">
+            <h3>horizbuttons-note-m<a class="headerlink" href="#horizbuttons-note-m" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;generic&#039;, &#039;note&#039;, &#039;see also&#039; (neutral, grey)</p>
+
+            
+
+<ul class="horizbuttons-note-m">
+    <li class="dash">horizbuttons-note-m</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-primary-m">
+            <h3>horizbuttons-primary-m<a class="headerlink" href="#horizbuttons-primary-m" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Use the primary = key color (TYPO3 orange)</p>
+
+            
+
+<ul class="horizbuttons-primary-m">
+    <li class="dash">horizbuttons-primary-m</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-striking-m">
+            <h3>horizbuttons-striking-m<a class="headerlink" href="#horizbuttons-striking-m" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Very strinking an unusuable, cannot be overseen.</p>
+
+            
+
+<ul class="horizbuttons-striking-m">
+    <li class="dash">horizbuttons-striking-m</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-tip-m">
+            <h3>horizbuttons-tip-m<a class="headerlink" href="#horizbuttons-tip-m" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;hint&#039;, &#039;tip&#039; (green)</p>
+
+            
+
+<ul class="horizbuttons-tip-m">
+    <li class="dash">horizbuttons-tip-m</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-warning-m">
+            <h3>horizbuttons-warning-m<a class="headerlink" href="#horizbuttons-warning-m" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;caution&#039;, &#039;danger&#039;, &#039;warning&#039; (red)</p>
+
+            
+
+<ul class="horizbuttons-warning-m">
+    <li class="dash">horizbuttons-danger-m</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-attention-xxl">
+            <h3>horizbuttons-attention-xxl<a class="headerlink" href="#horizbuttons-attention-xxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonition &#039;attention&#039; (blue)</p>
+
+            
+
+<ul class="horizbuttons-attention-xxl">
+    <li class="dash">horizbuttons-attention-xxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-important-xxl">
+            <h3>horizbuttons-important-xxl<a class="headerlink" href="#horizbuttons-important-xxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;error&#039;, &#039;important&#039; (yellow)</p>
+
+            
+
+<ul class="horizbuttons-important-xxl">
+    <li class="dash">horizbuttons-important-xxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-note-xxl">
+            <h3>horizbuttons-note-xxl<a class="headerlink" href="#horizbuttons-note-xxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;generic&#039;, &#039;note&#039;, &#039;see also&#039; (neutral, grey)</p>
+
+            
+
+<ul class="horizbuttons-note-xxl">
+    <li class="dash">horizbuttons-note-xxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-primary-xxl">
+            <h3>horizbuttons-primary-xxl<a class="headerlink" href="#horizbuttons-primary-xxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Use the primary = key color (TYPO3 orange)</p>
+
+            
+
+<ul class="horizbuttons-primary-xxl">
+    <li class="dash">horizbuttons-primary-xxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-striking-xxl">
+            <h3>horizbuttons-striking-xxl<a class="headerlink" href="#horizbuttons-striking-xxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Very strinking an unusuable, cannot be overseen.</p>
+
+            
+
+<ul class="horizbuttons-striking-xxl">
+    <li class="dash">horizbuttons-striking-xxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-tip-xxl">
+            <h3>horizbuttons-tip-xxl<a class="headerlink" href="#horizbuttons-tip-xxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;hint&#039;, &#039;tip&#039; (green)</p>
+
+            
+
+<ul class="horizbuttons-tip-xxl">
+    <li class="dash">horizbuttons-tip-xxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-warning-xxl">
+            <h3>horizbuttons-warning-xxl<a class="headerlink" href="#horizbuttons-warning-xxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;caution&#039;, &#039;danger&#039;, &#039;warning&#039; (red)</p>
+
+            
+
+<ul class="horizbuttons-warning-xxl">
+    <li class="dash">horizbuttons-danger-xxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-attention-xxxl">
+            <h3>horizbuttons-attention-xxxl<a class="headerlink" href="#horizbuttons-attention-xxxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonition &#039;attention&#039; (blue)</p>
+
+            
+
+<ul class="horizbuttons-attention-xxxl">
+    <li class="dash">horizbuttons-attention-xxxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-important-xxxl">
+            <h3>horizbuttons-important-xxxl<a class="headerlink" href="#horizbuttons-important-xxxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;error&#039;, &#039;important&#039; (yellow)</p>
+
+            
+
+<ul class="horizbuttons-important-xxxl">
+    <li class="dash">horizbuttons-important-xxxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-note-xxxl">
+            <h3>horizbuttons-note-xxxl<a class="headerlink" href="#horizbuttons-note-xxxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;generic&#039;, &#039;note&#039;, &#039;see also&#039; (neutral, grey)</p>
+
+            
+
+<ul class="horizbuttons-note-xxxl">
+    <li class="dash">horizbuttons-note-xxxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-primary-xxxl">
+            <h3>horizbuttons-primary-xxxl<a class="headerlink" href="#horizbuttons-primary-xxxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Use the primary = key color (TYPO3 orange)</p>
+
+            
+
+<ul class="horizbuttons-primary-xxxl">
+    <li class="dash">horizbuttons-primary-xxxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-striking-xxxl">
+            <h3>horizbuttons-striking-xxxl<a class="headerlink" href="#horizbuttons-striking-xxxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Very strinking an unusuable, cannot be overseen.</p>
+
+            
+
+<ul class="horizbuttons-striking-xxxl">
+    <li class="dash">horizbuttons-striking-xxxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-tip-xxxl">
+            <h3>horizbuttons-tip-xxxl<a class="headerlink" href="#horizbuttons-tip-xxxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;hint&#039;, &#039;tip&#039; (green)</p>
+
+            
+
+<ul class="horizbuttons-tip-xxxl">
+    <li class="dash">horizbuttons-tip-xxxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+            <section class="section" id="horizbuttons-warning-xxxl">
+            <h3>horizbuttons-warning-xxxl<a class="headerlink" href="#horizbuttons-warning-xxxl" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Like admonitions &#039;caution&#039;, &#039;danger&#039;, &#039;warning&#039; (red)</p>
+
+            
+
+<ul class="horizbuttons-warning-xxxl">
+    <li class="dash">horizbuttons-danger-xxxl</li>
+    <li class="dash">two</li>
+    <li class="dash">three</li>
+</ul>
+
+    </section>
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="../Accordion/Index.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="../Api/Index.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Admonitions-and-buttons/Index">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Admonitions-and-buttons/Index"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:58</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>

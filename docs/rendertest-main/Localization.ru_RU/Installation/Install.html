@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Установка TYPO3
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:58:10+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:58:10+00:00" name="dc.modified">
+<meta content="2026-01-03T21:58:10+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="Index.html" rel="prev" title="Установка"/>
+            <link href="DeployTYPO3.html" rel="next" title="Развертывание системы TYPO3"/>
+            <link href="../Index.html" rel="top" title="TYPO3 - Ознакомительное пособие"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 - Ознакомительное пособие</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/Installation/Install.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 - Ознакомительное пособие</p>
+            <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Concepts/Index.html">
+        Концепции TYPO3
+    </a></li>    <li class="" role="menuitem">
+    <a href="../SystemRequirements/Index.html">
+        Системные требования
+    </a></li>    <li class=" active" role="menuitem">
+    <a href="Index.html">
+        Установка
+    </a>        <ul class="menu-level-1"><li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        Установка TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="DeployTYPO3.html">
+        Развертывание системы TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="TuneTYPO3.html">
+        Наладка TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="ReleaseIntegrity.html">
+        Целостность выпуска TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="TutorialDdev.html">
+        Установка TYPO3 с помощью DDEV
+    </a></li><li class="" role="menuitem">
+    <a href="LegacyInstallation.html">
+        Традиционная установка
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Setup/Index.html">
+        Настройка
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Setup/SiteRecords.html">
+        Создание Записи сайта / Site Record
+    </a></li><li class="" role="menuitem">
+    <a href="../Setup/BackendUsers.html">
+        Добавление внутренних пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../Setup/BackendLanguages.html">
+        Изменение языка внутреннего интерфейса
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Troubleshooting/Index.html">
+        Поиск и устранение неисправностей
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Troubleshooting/TYPO3.html">
+        TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/SystemModules.html">
+        Системные модули
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/PHP.html">
+        PHP
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/WebServer.html">
+        Веб сервер
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/Database.html">
+        База данных
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Extensions/Index.html">
+        Работа с расширениями
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/main/en-us/Extensions/Management.html#installing-local-extensions">
+        Установка локальных расширений
+    </a></li><li class="" role="menuitem">
+    <a href="../Extensions/Management.html">
+        Управление расширениями
+    </a></li><li class="" role="menuitem">
+    <a href="../Extensions/LegacyManagement.html">
+        Управление расширениями - традиционное руководство
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../UserManagement/Index.html">
+        Управление пользователями внутреннего интерфейса
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../UserManagement/BackendPrivileges/Index.html">
+        Привилегии внутреннего интерфейса
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/BackendUsers/Index.html">
+        Внутренние пользователи
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/Groups/Index.html">
+        Группы
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/GroupPermissions/Index.html">
+        Настройка прав доступа пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/PagePermissions/Index.html">
+        Права доступа к странице
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/UserSetup/Index.html">
+        Настройка пользователя
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../IntroductionPackage/Index.html">
+        Ознакомительный пакет Introduction Package
+    </a></li>    <li class="" role="menuitem">
+    <a href="../NextSteps/Index.html">
+        Дальнейшие шаги и дополнительная литература
+    </a></li>    </ul>    <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Sitemap.html">
+        Sitemap
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 - Ознакомительное пособие</a></li>
+        <li class="breadcrumb-item"><a href="Index.html">Установка</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Установка TYPO3</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="typo3" data-rst-anchor="install">
+            <a id="install"></a>
+            <h1>Установка TYPO3<a class="headerlink" href="#typo3" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            
+    <p>Руководство по установке TYPO3. Здесь описаны все необходимые шаги
+для установки TYPO3 с помощью Composer.</p>
+
+            
+    <p>Подробнее о развертывании TYPO3 в реальной среде читайте в главе <a href="DeployTYPO3.html#deploytypo3">Развертывание TYPO3</a>.</p>
+
+            <section class="section" id="">
+            <h2>Проверка перед установкой<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+
+<ul>
+    <li class="dash">Доступ к командной строке (CLI) с возможностью создания каталогов и символических ссылок.</li>
+    <li class="dash">Доступ к <a href="https://getcomposer.org">Composer</a> через CLI (для локальной разработки).</li>
+    <li class="dash">Доступ к корневой директории веб-сервера.</li>
+    <li class="dash">База данных с соответствующими полномочиями.</li>
+</ul>
+
+    </section>
+            <section class="section" id="composer-create-project">
+            <h2>Выполнить Composer Create-Project<a class="headerlink" href="#composer-create-project" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Приведенный ниже сценарий устанавливает TYPO3 v12, которая является последней версией CMS. Если вы хотите установить версию TYPO3 с долгосрочной поддержкой (LTS), обратитесь к <span class="invalid-link" title="This link cannot be resolved anymore">t3start11:install</span>.</p>
+
+            
+    <p>На корневом уровне веб-сервера выполните следующую команду:</p>
+
+            <div class="tabs">
+    <ul class="nav nav-tabs" id="tab-tabs-2" role="tablist">
+        <li class="nav-item" role="presentation">
+    <button class="nav-link active"
+            id="bash-tab-tabs-2" data-bs-toggle="tab" data-bs-target="#bash-tabs-2"
+            type="button" role="tab" aria-controls="bash-tabs-2"
+            aria-selected="true">
+        bash
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="powershell-tab-tabs-2" data-bs-toggle="tab" data-bs-target="#powershell-tabs-2"
+            type="button" role="tab" aria-controls="powershell-tabs-2"
+            aria-selected="false">
+        powershell
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="ddev-tab-tabs-2" data-bs-toggle="tab" data-bs-target="#ddev-tabs-2"
+            type="button" role="tab" aria-controls="ddev-tabs-2"
+            aria-selected="false">
+        ddev
+    </button>
+</li>
+    </ul>
+    <div class="tab-content" id="tab-content-tabs-2">
+        <div class="tab-pane fade show active" id="bash-tabs-2" role="tabpanel" aria-labelledby="bash-tab-tabs-2">
+    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">composer create-project typo3/cms-base-distribution example-project-directory <span class="hljs-string">"^12"</span>
+
+<span class="hljs-comment"># Use console command to run the install process</span>
+<span class="hljs-comment"># or use the Install Tool GUI (See below)</span>
+./vendor/bin/typo3 setup</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+<div class="tab-pane fade" id="powershell-tabs-2" role="tabpanel" aria-labelledby="powershell-tab-tabs-2">
+    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs powershell">composer create<span class="hljs-literal">-project</span> <span class="hljs-string">"typo3/cms-base-distribution:^12"</span> example<span class="hljs-literal">-project</span><span class="hljs-literal">-directory</span>
+
+<span class="hljs-comment"># Use console command to run the install process</span>
+<span class="hljs-comment"># or use the Install Tool GUI (See below)</span>
+./vendor/bin/typo3 setup</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+<div class="tab-pane fade" id="ddev-tabs-2" role="tabpanel" aria-labelledby="ddev-tab-tabs-2">
+    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash"><span class="hljs-comment"># Create a directory for your project</span>
+mkdir example-project-directory
+
+<span class="hljs-comment"># Go into that directory</span>
+<span class="hljs-built_in">cd</span> example-project-directory
+
+<span class="hljs-comment"># Tell DDEV to create a new project of type "typo3"</span>
+<span class="hljs-comment"># 'docroot' MUST be 'public' PHP 8.1 is required by TYPO3 v12</span>
+ddev config --project-type=typo3 --docroot=public --create-docroot --php-version 8.1
+
+<span class="hljs-comment"># Start the server</span>
+ddev start
+
+<span class="hljs-comment"># Fetch a basic TYPO3 installation and its' dependencies</span>
+ddev composer create <span class="hljs-string">"typo3/cms-base-distribution:^12"</span>
+
+<span class="hljs-comment"># Depending on your DDEV version the configuration file may have been</span>
+<span class="hljs-comment"># created in an outdated location, you can move it with</span>
+mkdir -p config/system/ &amp;&amp; mv  public/typo3conf/AdditionalConfiguration.php <span class="hljs-variable">$_</span>/additional.php
+
+<span class="hljs-comment"># Use console command to run the install process</span>
+<span class="hljs-comment"># or use the Install Tool GUI (See below)</span>
+ddev <span class="hljs-built_in">exec</span> ./vendor/bin/typo3 setup</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+    </div>
+</div>
+            
+    <p>Эта команда получает последнюю версию TYPO3 и помещает ее в
+<code class="code-inline file" translate="no" title="File path">example-<wbr>project-<wbr>directory</code>.</p>
+
+            
+    <p>После выполнения этой команды, <code class="code-inline file" translate="no" title="File path">example-<wbr>project-<wbr>directory</code> будет представлена следующая структура:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs plaintext">.
+├── .gitignore
+├── composer.json
+├── composer.lock
+├── LICENSE
+├── public
+├── README.md
+├── var
+└── vendor</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+            <section class="section" id="">
+            <h2>Запуск процесса установки<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <section class="section" id="typo3">
+            <h3>Настройка TYPO3 через консоль<a class="headerlink" href="#typo3" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            <div class="versionchange versionadded">
+    <p class="versionmodified">
+        <span class="versionicon"><i class="fa-solid fa-rocket"></i></span>
+        New in version 12.1</p>
+    <article>
+        
+    <p>Начиная с TYPO3 v12.1 в качестве альтернативы существующему веб-инсталлятору с графическим интерфейсом введена новая <a href="https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/ApiOverview/CommandControllers/Index.html#symfony-console-commands">CLI команда</a> <code class="code-inline" translate="no">setup</code>.</p>
+
+    </article>
+</div>
+            
+    <p>Интерактивная / управляемая установка (вопросы/ответы):</p>
+
+            <div class="tabs">
+    <ul class="nav nav-tabs" id="tab-tabs-3" role="tablist">
+        <li class="nav-item" role="presentation">
+    <button class="nav-link active"
+            id="bash-tab-tabs-3" data-bs-toggle="tab" data-bs-target="#bash-tabs-3"
+            type="button" role="tab" aria-controls="bash-tabs-3"
+            aria-selected="true">
+        bash
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="powershell-tab-tabs-3" data-bs-toggle="tab" data-bs-target="#powershell-tabs-3"
+            type="button" role="tab" aria-controls="powershell-tabs-3"
+            aria-selected="false">
+        powershell
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="ddev-tab-tabs-3" data-bs-toggle="tab" data-bs-target="#ddev-tabs-3"
+            type="button" role="tab" aria-controls="ddev-tabs-3"
+            aria-selected="false">
+        ddev
+    </button>
+</li>
+    </ul>
+    <div class="tab-content" id="tab-content-tabs-3">
+        <div class="tab-pane fade show active" id="bash-tabs-3" role="tabpanel" aria-labelledby="bash-tab-tabs-3">
+    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">./vendor/bin/typo3 setup</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+<div class="tab-pane fade" id="powershell-tabs-3" role="tabpanel" aria-labelledby="powershell-tab-tabs-3">
+    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs powershell">./vendor/bin/typo3 setup</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+<div class="tab-pane fade" id="ddev-tabs-3" role="tabpanel" aria-labelledby="ddev-tab-tabs-3">
+    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">ddev <span class="hljs-built_in">exec</span> ./vendor/bin/typo3 setup</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+    </div>
+</div>
+    </section>
+            <section class="section" id="gui">
+            <h3>Или используйте GUI-инсталлятор в браузере<a class="headerlink" href="#gui" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Создайте пустой файл с названием <code class="code-inline" translate="no">FIRST_<wbr>INSTALL</code> в каталоге <code class="code-inline" translate="no">/public</code> directory:</p>
+
+            <div class="tabs">
+    <ul class="nav nav-tabs" id="tab-tabs-4" role="tablist">
+        <li class="nav-item" role="presentation">
+    <button class="nav-link active"
+            id="bash-tab-tabs-4" data-bs-toggle="tab" data-bs-target="#bash-tabs-4"
+            type="button" role="tab" aria-controls="bash-tabs-4"
+            aria-selected="true">
+        bash
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="powershell-tab-tabs-4" data-bs-toggle="tab" data-bs-target="#powershell-tabs-4"
+            type="button" role="tab" aria-controls="powershell-tabs-4"
+            aria-selected="false">
+        powershell
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="ddev-tab-tabs-4" data-bs-toggle="tab" data-bs-target="#ddev-tabs-4"
+            type="button" role="tab" aria-controls="ddev-tabs-4"
+            aria-selected="false">
+        ddev
+    </button>
+</li>
+    </ul>
+    <div class="tab-content" id="tab-content-tabs-4">
+        <div class="tab-pane fade show active" id="bash-tabs-4" role="tabpanel" aria-labelledby="bash-tab-tabs-4">
+    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">touch example-project-directory/public/FIRST_INSTALL</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+<div class="tab-pane fade" id="powershell-tabs-4" role="tabpanel" aria-labelledby="powershell-tab-tabs-4">
+    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs powershell">echo <span class="hljs-variable">$null</span> &gt;&gt; public/FIRST_INSTALL</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+<div class="tab-pane fade" id="ddev-tabs-4" role="tabpanel" aria-labelledby="ddev-tab-tabs-4">
+    <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">ddev <span class="hljs-built_in">exec</span> touch public/FIRST_INSTALL</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+    </div>
+</div>
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs plaintext">.
+├── .gitignore
+├── composer.json
+├── composer.lock
+├── LICENSE
+├── public
+    ├── FIRST_INSTALL
+├── README.md
+├── var
+└── vendor</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            <section class="section" id="typo3">
+            <h4>Доступ к TYPO3 через браузер<a class="headerlink" href="#typo3" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h4>
+            
+    <p>После настройки веб-сервера на директорию <code class="code-inline" translate="no">public</code> вашего проекта, доступ к TYPO3 можно получить через веб-браузер. При первом обращении к новому сайту TYPO3 автоматически перенаправляет все запросы на <code class="code-inline">/typo3/<wbr>install.<wbr>php</code> для завершения процесса установки.</p>
+
+                
+<div class="admonition tip" role="alert">
+    <p class="admonition-title">Tip</p>
+        
+    <p>При доступе к странице по протоколу HTTPS может появиться предупреждение &quot;Ошибка конфиденциальности&quot; или что-то подобное. В локальной среде можно игнорировать это предупреждение, указав браузеру игнорировать подобные этому предупреждения для данного домена.</p>
+
+    <p>Предупреждение связано с тем, что используются самоподписанные сертификаты.</p>
+
+    <p>Если при первом доступе возникает ошибка <code class="code-inline" translate="no">trusted<wbr>Hosts<wbr>Pattern</code>, то возможен также вариант доступа к TYPO3 без (<code class="code-inline" translate="no">http://</code>).</p>
+
+</div>
+    </section>
+            <section class="section" id="">
+            <h4>Сканирование среды<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h4>
+            
+    <p>Теперь TYPO3 просканирует среду хоста. Во время сканирования TYPO3 проверяет хост-систему на наличие следующих параметров:</p>
+
+            
+
+<ul>
+    <li class="dash">Установлена минимально необходимая версия PHP.</li>
+    <li class="dash">Загружены необходимые расширения PHP.</li>
+    <li class="dash">php.ini настроен.</li>
+    <li class="dash">TYPO3 может создавать и удалять файлы и каталоги в корневом каталоге установки.</li>
+</ul>
+
+            
+    <p>Если проблем не обнаружено, процесс установки можно продолжить.</p>
+
+            
+    <p>В случае невыполнения определенных критериев TYPO3 отобразит список обнаруженных проблем, с указанием решения для каждой из них.</p>
+
+            
+    <p>После внесения изменений TYPO3 может повторно просканировать среду хоста, перезагрузив страницу <code class="code-inline" translate="no">https://<wbr>example-<wbr>project-<wbr>site.<wbr>local/<wbr>typo3/<wbr>install.<wbr>php</code>.</p>
+
+            <figure class="with-shadow">
+    <img
+    src="../Images/AutomaticScreenshots/QuickInstall/Step1SystemEnvironment.png"
+                        />
+
+
+            
+                    <figcaption>
+    <p>Install Tool in 1-2-3 mode, first step.</p>
+</figcaption>
+            </figure>
+    </section>
+            <section class="section" id="">
+            <h4>Выбор базы данных<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h4>
+            
+    <p>Выберите драйвер подключения к базе данных и введите учетные данные для базы данных.</p>
+
+            <figure class="with-shadow">
+    <img
+    src="../Images/AutomaticScreenshots/QuickInstall/Step2DatabaseConnection.png"
+                        />
+
+
+            
+                    <figcaption>
+    <p>Install Tool in 1-2-3 mode, second step.</p>
+</figcaption>
+            </figure>
+            
+    <p>TYPO3 может подключаться к существующей пустой базе данных или же создать новую.</p>
+
+            
+    <p>Список доступных баз данных зависит от того, какие драйверы баз данных установлены на хостинге.</p>
+
+            
+    <p>Например, если экземпляр TYPO3 предполагается использовать с базой данных MySQL, то необходимо установить расширение PHP &#039;pdo_mysql&#039;. После его установки станет доступна опция <span class="guilabel">MySQL Database</span>.</p>
+
+            <figure class="with-shadow">
+    <img
+    src="../Images/AutomaticScreenshots/QuickInstall/Step3ChooseDb.png"
+                        />
+
+
+            
+                    <figcaption>
+    <p>Install Tool in 1-2-3 mode, third step.</p>
+</figcaption>
+            </figure>
+    </section>
+            <section class="section" id="">
+            <h4>Создание Администратора и установка названия сайта<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h4>
+            
+    <p>Для получения доступа к внутреннему интерфейсу TYPO3 необходимо создать учетную запись администратора.</p>
+
+            
+    <p>Можно также указать адрес электронной почты этого пользователя и указать его имя.</p>
+
+            <figure class="with-shadow">
+    <img
+    src="../Images/AutomaticScreenshots/QuickInstall/Step4AdminUserSitename.png"
+                        />
+
+
+            
+                    <figcaption>
+    <p>Install Tool in 1-2-3 mode, forth step.</p>
+</figcaption>
+            </figure>
+                
+<div class="admonition note" role="alert">
+    <p class="admonition-title">Note</p>
+        
+    <p>Пароль должен соответствовать заданной конфигурации <a href="https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/ApiOverview/Authentication/PasswordPolicies/Index.html#password-policies">политики паролей</a>.</p>
+
+</div>
+    </section>
+    </section>
+            <section class="section" id="">
+            <h3>Инициализация<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>TYPO3 предлагает два варианта инициализации: создание пустой стартовой страницы или переход непосредственно к внутреннему интерфейсу администратора. Новичкам лучше выбрать первый вариант и позволить TYPO3 создать пустую стартовую страницу. При этом также будет сгенерирован файл конфигурации сайта.</p>
+
+            <figure class="with-shadow">
+    <img
+    src="../Images/AutomaticScreenshots/QuickInstall/Step5LastStep.png"
+                        />
+
+
+            
+                    <figcaption>
+    <p>Install Tool in 1-2-3 mode, fifth step.</p>
+</figcaption>
+            </figure>
+    </section>
+            <section class="section" id="">
+            <h3>Следующие шаги<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>По окончании установки TYPO3 может быть <a href="../Setup/Index.html#setup">настроена</a>.</p>
+
+    </section>
+            <section class="section" id="ddev">
+            <h3>Использование DDEV<a class="headerlink" href="#ddev" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Кроме того, предлагается пошаговое руководство по <a href="TutorialDdev.html#installation-ddev-tutorial">Установке TYPO3 с помощью DDEV</a>. Учебник также содержит видеоролик.</p>
+
+    </section>
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="Index.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="DeployTYPO3.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Installation/Install">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Installation/Install"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:58</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>

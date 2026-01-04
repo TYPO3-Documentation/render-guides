@@ -1,0 +1,104 @@
+.. include:: /Includes.rst.txt
+.. highlight:: rst
+.. index:: sphinx-tabs, Tabs
+.. index:: pair: Tabs; Bootstrap
+.. index:: pair: Tabs; Sphinx
+
+.. _Tabs:
+.. _Sphinx-Tabs:
+
+====
+Tabs
+====
+
+See https://pypi.org/project/sphinx-tabs/
+
+.. contents:: This page
+   :backlinks: top
+   :class: compact-list
+   :depth: 99
+   :local:
+
+
+Simple Tabs
+===========
+
+.. tabs::
+
+   .. tab:: Apples
+
+      Apples are green, or sometimes red.
+
+   .. tab:: Pears
+
+      Pears are green.
+
+   .. tab:: Oranges
+
+      Oranges are orange.
+
+
+Nested Tabs
+===========
+
+.. tabs::
+
+   .. tab:: Stars
+
+      .. tabs::
+
+         .. tab:: The Sun
+
+            The closest star to us.
+
+         .. tab:: Proxima Centauri
+
+            The second closest star to us.
+
+         .. tab:: Polaris
+
+            The North Star.
+
+   .. tab:: Moons
+
+      .. tabs::
+
+         .. tab:: The Moon
+
+            Orbits the Earth
+
+         .. tab:: Titan
+
+            Orbits Jupiter
+
+
+Group Tabs
+==========
+
+.. tabs::
+
+   .. group-tab:: Linux
+
+      Linux Line 1
+
+   .. group-tab:: Mac OSX
+
+      Mac OSX Line 1
+
+   .. group-tab:: Windows
+
+      Windows Line 1
+
+.. tabs::
+
+   .. group-tab:: Linux
+
+      Linux Line 2
+
+   .. group-tab:: Mac OSX
+
+      Mac OSX Line 2
+
+   .. group-tab:: Windows
+
+      Windows Line 2

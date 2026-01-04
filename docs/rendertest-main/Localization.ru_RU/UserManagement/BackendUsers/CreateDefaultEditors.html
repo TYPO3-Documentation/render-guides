@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Создание пользователей по умолчанию
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:58:10+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:58:10+00:00" name="dc.modified">
+<meta content="2026-01-03T21:58:10+00:00" property="article:modified_time">
+<meta name="x-typo3-indexer" content="noindex">
+    <meta name="robots" content="noindex">    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="../../About.html" rel="prev" title="Об этом руководстве"/>
+            <link href="../../Index.html" rel="top" title="TYPO3 - Ознакомительное пособие"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../../Index.html">TYPO3 - Ознакомительное пособие</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../../_sources/UserManagement/BackendUsers/CreateDefaultEditors.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 - Ознакомительное пособие</p>
+            <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../../Concepts/Index.html">
+        Концепции TYPO3
+    </a></li>    <li class="" role="menuitem">
+    <a href="../../SystemRequirements/Index.html">
+        Системные требования
+    </a></li>    <li class="" role="menuitem">
+    <a href="../../Installation/Index.html">
+        Установка
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../../Installation/Install.html">
+        Установка TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../../Installation/DeployTYPO3.html">
+        Развертывание системы TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../../Installation/TuneTYPO3.html">
+        Наладка TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../../Installation/ReleaseIntegrity.html">
+        Целостность выпуска TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../../Installation/TutorialDdev.html">
+        Установка TYPO3 с помощью DDEV
+    </a></li><li class="" role="menuitem">
+    <a href="../../Installation/LegacyInstallation.html">
+        Традиционная установка
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../../Setup/Index.html">
+        Настройка
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../../Setup/SiteRecords.html">
+        Создание Записи сайта / Site Record
+    </a></li><li class="" role="menuitem">
+    <a href="../../Setup/BackendUsers.html">
+        Добавление внутренних пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../../Setup/BackendLanguages.html">
+        Изменение языка внутреннего интерфейса
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../../Troubleshooting/Index.html">
+        Поиск и устранение неисправностей
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../../Troubleshooting/TYPO3.html">
+        TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../../Troubleshooting/SystemModules.html">
+        Системные модули
+    </a></li><li class="" role="menuitem">
+    <a href="../../Troubleshooting/PHP.html">
+        PHP
+    </a></li><li class="" role="menuitem">
+    <a href="../../Troubleshooting/WebServer.html">
+        Веб сервер
+    </a></li><li class="" role="menuitem">
+    <a href="../../Troubleshooting/Database.html">
+        База данных
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../../Extensions/Index.html">
+        Работа с расширениями
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/main/en-us/Extensions/Management.html#installing-local-extensions">
+        Установка локальных расширений
+    </a></li><li class="" role="menuitem">
+    <a href="../../Extensions/Management.html">
+        Управление расширениями
+    </a></li><li class="" role="menuitem">
+    <a href="../../Extensions/LegacyManagement.html">
+        Управление расширениями - традиционное руководство
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Index.html">
+        Управление пользователями внутреннего интерфейса
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../BackendPrivileges/Index.html">
+        Привилегии внутреннего интерфейса
+    </a></li><li class="" role="menuitem">
+    <a href="Index.html">
+        Внутренние пользователи
+    </a></li><li class="" role="menuitem">
+    <a href="../Groups/Index.html">
+        Группы
+    </a></li><li class="" role="menuitem">
+    <a href="../GroupPermissions/Index.html">
+        Настройка прав доступа пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../PagePermissions/Index.html">
+        Права доступа к странице
+    </a></li><li class="" role="menuitem">
+    <a href="../UserSetup/Index.html">
+        Настройка пользователя
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../../IntroductionPackage/Index.html">
+        Ознакомительный пакет Introduction Package
+    </a></li>    <li class="" role="menuitem">
+    <a href="../../NextSteps/Index.html">
+        Дальнейшие шаги и дополнительная литература
+    </a></li>    </ul>    <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../../Sitemap.html">
+        Sitemap
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../../Index.html">TYPO3 - Ознакомительное пособие</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Создание пользователей по умолчанию</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="" data-rst-anchor="user-management-create-default-editors">
+            <a id="user-management-create-default-editors"></a>
+            <h1>Создание пользователей по умолчанию<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            <section class="section" id="simple-editor">
+            <h2>Создание simple_editor<a class="headerlink" href="#simple-editor" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Создание новых пользователей и групп подробно рассматривается в разделе <a href="../UserSetup/Index.html#creating-a-new-user-for-the-introduction-site">Настройка пользователя</a>.</p>
+
+            
+    <p>Здесь будут созданы 2 новых пользователя, использующих уже существующие группы ( созданные с помощью &quot; Introduction Package &quot;).</p>
+
+            
+    
+<ol class="bignums" start="1" type="1">
+    <li value="1">Войдите в модуль &quot;Внутренние пользователи&quot;</li>
+    <li value="2">
+    <p>Щелкните по <code class="code-inline" translate="no">+</code>: &quot;Создать новую запись&quot; / &quot;Create new record&quot;</p>
+<figure class="with-shadow">
+    <img
+    src="../../Images/ManualScreenshots/UserManagement/UserManagementCreateNewUser.png"
+                alt="Создание нового пользователя"        />
+
+
+            
+                    <figcaption>
+    <p>Создайте нового внутреннего пользователя</p>
+</figcaption>
+            </figure></li>
+    <li value="3">
+    <p>Заполните поля.</p>
+
+
+<ul>
+    <li><strong>Имя пользователя</strong> / <strong>Username:</strong> simple_editor</li>
+    <li><strong>Пароль</strong> / <strong>Password:</strong> <em>choose some password</em></li>
+    <li><strong>Группа</strong> / <strong>Group:</strong> Select &quot;Simple editors&quot; in the &quot;Available Items&quot;</li>
+    <li><strong>Имя</strong> / <strong>Name:</strong> Simple Editor</li>
+</ul>
+<figure class="with-shadow">
+    <img
+    src="../../Images/ManualScreenshots/UserManagement/UserManagementCreateNewUserSimpleEditor.png"
+                alt="Заполнение полей данными для нового внутреннего пользователя"        />
+
+
+            
+            </figure></li>
+    <li value="4">Нажмите Сохранить (вверху)</li>
+    <li value="5">
+    <p>Активация внутреннего пользователя</p>
+<figure class="with-shadow">
+    <img
+    src="../../Images/ManualScreenshots/UserManagement/BackendEditorUnhide.png"
+                alt="Активация редактора"        />
+
+
+            
+            </figure></li>
+</ol>
+
+            
+    <p>Создан пользователь с уже существующей группой &quot;Simple editors&quot;.</p>
+
+    </section>
+            <section class="section" id="advanced-editor">
+            <h2>Создание &quot;advanced_editor&quot;<a class="headerlink" href="#advanced-editor" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Создаем еще одного пользователя &quot;advanced_editor&quot;. Используем группу &quot;Advanced Editors&quot;.</p>
+
+    </section>
+            <section class="section" id="db-mount-simple-editors">
+            <h2>Изменить монтирование БД / DB Mount для группы &quot;Simple Editors&quot;<a class="headerlink" href="#db-mount-simple-editors" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Группа &quot;&quot;Simple Editors&quot;&quot; должна иметь страницу &quot;Content Examples&quot;, установленную как &quot;DB Mounts&quot; в разделе &quot;Mounts and Workspaces&quot;.</p>
+
+            
+    
+<ol class="bignums" start="1" type="1">
+    <li value="1">В верхней части выберите &quot;Группы внутренних пользователей&quot; / &quot;Backend user groups&quot;.</li>
+    <li value="2">Щелкните на группе &quot; Simple editors&quot; (или на карандаше для редактирования).</li>
+    <li value="3">Выберите вкладку &quot;Точки доступа и рабочие области&quot; / &quot;Mounts and Workspaces&quot;</li>
+    <li value="4">
+    <p>Проверьте</p>
+
+    <p>Если вы видите страницу &quot;Congratulations&quot; в DB Mounts, то следует продолжить, если вы видите &quot;Content Examples&quot;, то вы закончили и можете прервать работу, выбрав вверху &quot;Закрыть&quot;.</p>
+</li>
+    <li value="5">Щелкните на &quot; Congratulation &quot; и мусорном ведре, чтобы удалить ее.</li>
+    <li value="6">Щелкните по значку с папкой &quot;Обзор записей&quot;</li>
+    <li value="7">Выберете страницу &quot;Content Examples&quot;</li>
+    <li value="8">Сохраните</li>
+</ol>
+
+            <figure class="with-shadow">
+    <img
+    src="../../Images/ManualScreenshots/UserManagement/BackendGroupDbMount.png"
+                alt="Изменение точки доступа к базе данных"        />
+
+
+            
+                    <figcaption>
+    <p>Изменить точку монтирования БД</p>
+</figcaption>
+            </figure>
+            
+    <p>Что мы сейчас сделали?</p>
+
+            
+    <p>Мы изменили монтирование БД со страницы &quot;Congratulations&quot; (изначально установленной) на &quot;Content Examples&quot;. Редактор должен видеть и редактировать только страницы из раздела &quot;Content Examples&quot;. Результат вы увидите на следующем шаге.</p>
+
+    </section>
+            <section class="section" id="">
+            <h2>Далее<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Перейдите к <a href="Index.html#simulate-user">Имитация пользователя</a></p>
+
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="../../About.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="UserManagement/BackendUsers/CreateDefaultEditors">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="UserManagement/BackendUsers/CreateDefaultEditors"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:58</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../../_resources/js/popper.min.js"></script>
+<script src="../../_resources/js/bootstrap.min.js"></script>
+<script src="../../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>
