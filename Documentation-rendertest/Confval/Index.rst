@@ -6,7 +6,7 @@
 confval
 =======
 
-Permalink to confval: `array of cObjects  <https://docs.typo3.org/permalink/rendertest:confval-case-array>`_.
+Permalink to confval: :confval:`case-array` (defined in ConfvalTrees.rst).
 
 ..  toctree::
     :glob:
