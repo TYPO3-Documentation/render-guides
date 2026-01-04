@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Inline code and text roles
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:56:53+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:56:53+00:00" name="dc.modified">
+<meta content="2026-01-03T21:56:53+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="../ImagesAndFigures/Index.html" rel="prev" title="Images and figures"/>
+            <link href="../Lineblocks/Index.html" rel="next" title="Line blocks"/>
+            <link href="../Index.html" rel="top" title="TYPO3 theme rendering test"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 theme rendering test</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/Inline-code-and-textroles/Index.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 theme rendering test</p>
+            <p class="caption"><span class="caption-text">INTRODUCTION</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Page1.html">
+        Page 1
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Page2.html">
+        Page 2
+    </a></li>    </ul>    <p class="caption"><span class="caption-text">HOWTOS</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Accordion/Index.html">
+        Accordion
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Admonitions-and-buttons/Index.html">
+        Admonitions and buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Api/Index.html">
+        TYPO3 API
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Blockquotes/Index.html">
+        Block quotes
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Buttons/Index.html">
+        Buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Cards/Index.html">
+        Cards
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Codeblocks/Index.html">
+        Codeblocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Confval/Index.html">
+        confval
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Confval/ConfvalTrees.html">
+        Confvals with subtrees
+    </a></li><li class="" role="menuitem">
+    <a href="../Confval/X.html">
+        Confvals with subtrees
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ConsoleCommands/Index.html">
+        Console commands
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAll.html">
+        All commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAllExclude.html">
+        All commands, exclude namespaces and commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListGlobal.html">
+        Global commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListNameSpaceCache.html">
+        Commands in namespace cache
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Directives/Index.html">
+        Directives
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Directives/directoryTree.html">
+        Directory tree
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/plantuml.html">
+        Plantuml basic examples
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/versionadded.html">
+        versionadded &amp; friends
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/youtube.html">
+        Youtube directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ExtLinksAndLinkStyles/Index.html">
+        ExtLinks and Link styles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../FieldLists/Index.html">
+        Field lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Glossary/Index.html">
+        Glossary
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ImagesAndFigures/Index.html">
+        Images and figures
+    </a></li>    <li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        Inline code and text roles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lineblocks/Index.html">
+        Line blocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lists/Index.html">
+        Lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Nested-pages/Index.html">
+        Nested pages
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-2"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-3"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-4"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-5"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/1/index.html">
+        Page title
+    </a></li></ul></li></ul></li></ul></li></ul></li></ul></li>    <li class="" role="menuitem">
+    <a href="../PhpDomain/Index.html">
+        Phpdomain
+    </a></li>    <li class="" role="menuitem">
+    <a href="../PhpInline/Index.html">
+        PHP Inline
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Redirects/Index.html">
+        Redirects
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Sitemap/Index.html">
+        Sitemap
+    </a></li>    <li class="" role="menuitem">
+    <a href="../SiteSettings/Index.html">
+        Site settings
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../SiteSettings/SiteSettingsWithLabels/Index.html">
+        Site settings with labels
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../SpecialCharacters/Index.html">
+        Special characters
+    </a></li>    <li class="" role="menuitem">
+    <a href="../StyledNumberedLists/Index.html">
+        Styled numbered lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Tables/Index.html">
+        Tables
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Tables/TableDirective.html">
+        Table directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Tabs/Index.html">
+        Tabs
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ThisAndThat/Index.html">
+        This and that
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Typesetting/Index.html">
+        Typesetting code Header 
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Uml/Index.html">
+        Very large UML diagram
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ViewHelpers/Index.html">
+        ViewHelpers
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 theme rendering test</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Inline code and text roles</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="inline-code-and-text-roles" data-rst-anchor="inline-code-and-text-roles">
+            <a id="Inline-code-and-text-roles"></a>
+            <h1>Inline code and text roles<a class="headerlink" href="#inline-code-and-text-roles" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            <div class="contents-wrapper">
+        <p class="topic-title">This page</p>
+        <ul class="menu-level">
+    <li class="toc-item">
+    <a href="#how-to-markup-specific-text-semantically">How to markup specific text semantically</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#using-text-roles">Using text roles</a>
+
+        <ul class="section-level-1">
+            <li class="toc-item">
+    <a href="#self-defined-interpreted-text-roles">Self defined interpreted text roles</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#examples-for-direct-use">Examples for direct use</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#standard-sphinx-interpreted-text-roles">Standard Sphinx interpreted text roles</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#standard-docutils-interpreted-text-roles">Standard Docutils interpreted text roles</a>
+
+
+</li>
+                    </ul>
+</li>
+    <li class="toc-item">
+    <a href="#a-glossary-and-the-term-textrole">A glossary and the :term: textrole</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#some-really-long-inline-text">Some really long inline text</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#older-stuff-needs-cleaning-up">Older stuff - needs cleaning up</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#standard-sphinx-and-docutils-textroles">Standard Sphinx and Docutils Textroles</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#self-defined-textroles">Self Defined Textroles</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#inline-code-php-mycustomexception-ts-page-in-title">Inline code MyCustomException PAGE in title</a>
+
+        <ul class="section-level-1">
+            <li class="toc-item">
+    <a href="#inline-code-php-mycustomexception-ts-page-in-title">Inline code MyCustomException PAGE in title</a>
+
+        <ul class="section-level-2">
+            <li class="toc-item">
+    <a href="#inline-code-php-mycustomexception-ts-page-in-title">Inline code MyCustomException PAGE in title</a>
+
+        <ul class="section-level-3">
+            <li class="toc-item">
+    <a href="#inline-code-php-mycustomexception-ts-page-in-title">Inline code MyCustomException PAGE in title</a>
+
+        <ul class="section-level-4">
+            <li class="toc-item">
+    <a href="#inline-code-php-mycustomexception-ts-page-in-title">Inline code MyCustomException PAGE in title</a>
+
+
+</li>
+                    </ul>
+</li>
+                    </ul>
+</li>
+                    </ul>
+</li>
+                    </ul>
+</li>
+    <li class="toc-item">
+    <a href="#fully-qualified-names-with-backslashes">Fully qualified names with backslashes</a>
+
+
+</li>
+    </ul>
+
+    <button class="toggle-all-sections btn btn-sm btn-light">Collapse all Sections</button>
+</div>
+            <section class="section" id="how-to-markup-specific-text-semantically">
+            <h2>How to markup specific text semantically<a class="headerlink" href="#how-to-markup-specific-text-semantically" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>There are several ways to semantically mark specific parts of the text. The
+main goal is to be able to use a consistent style for specific parts of the
+text, for example code fragments, file names and GUI elements.</p>
+
+            
+    <p><strong>Preferred:</strong> Use <a href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html">Sphinx interpreted text roles</a> to
+explicitly specify what kind of text / code (= textrole) it is. This shows the
+semantics and in the output there may be a a special coloring or highlighting:</p>
+
+    </section>
+            <section class="section" id="using-text-roles">
+            <h2>Using text roles<a class="headerlink" href="#using-text-roles" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <section class="section" id="self-defined-interpreted-text-roles">
+            <h3>Self defined interpreted text roles<a class="headerlink" href="#self-defined-interpreted-text-roles" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>See also file <code class="code-inline file" translate="no" title="File path">/Includes.<wbr>rst.<wbr>txt</code>, if present in a project.</p>
+
+            <div class="table-responsive">
+    <table class="table table-bordered align-default">
+                            <thead>
+            <tr>
+                            <th>Role</th>
+                            <th>Source</th>
+                            <th>Output</th>
+                            <th>Note</th>
+                    </tr>
+        </thead>
+        <tbody>
+    <tr>
+            <td>(default)</td>            <td><code>`result = (1 + x) * 32`</code></td>            <td><code class="code-inline" translate="no">result = <wbr>(1 + x) * 32</code></td>            <td>This works because in <code class="code-inline file" translate="no" title="File path">/Includes.<wbr>rst.<wbr>txt</code> we set the default role to <code>:code:`...`</code></td>    </tr>    <tr>
+            <td>aspect</td>            <td><code>:aspect:`Description:`</code></td>            <td><em class="aspect">Description:</em></td>            <td>For better optics</td>    </tr>    <tr>
+            <td>html</td>            <td><code>:html:`&lt;a href=&quot;#&quot;&gt;`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&lt;a href=&quot;#&quot;&gt;"
+          data-shortdescription="Code written in HTML"
+          data-details="HyperText Markup Language."
+          data-morelink=""          data-bs-html="true"
+    >
+        &lt;a href=&quot;#&quot;&gt;</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>issue</td>            <td><code>:issue:`12345`</code></td>            <td><a href="https://forge.typo3.org/issues/12345">forge#12345</a></td>            <td>To link to a TYPO3 issue.</td>    </tr>    <tr>
+            <td>js</td>            <td><code>:js:`var f = function () {return 1;}`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="var f = function () {return 1;}"
+          data-shortdescription="Code written in JavaScript"
+          data-details="Dynamic client-side scripting language for dynamic applications."
+          data-morelink=""          data-bs-html="true"
+    >
+        var f = function <wbr>() <wbr>{return 1;}</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>php</td>            <td><code>:php:`$result = $a + 23;`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="$result = $a + 23;"
+          data-shortdescription="Code written in PHP"
+          data-details="Dynamic server-side scripting language."
+          data-morelink=""          data-bs-html="true"
+    >
+        $result = $a + 23;</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>sep</td>            <td><code>:sep:`|`</code></td>            <td><code class="code-inline">|</code></td>            <td>To give the separator &#039;|&#039; a special style in some contexts like <code>:ref:`Styled-Definition-Lists`</code></td>    </tr>    <tr>
+            <td>ts</td>            <td><code>:ts:`lib.hello.value = Hello World!`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="lib.hello.value = Hello World!"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        lib.<wbr>hello.<wbr>value = Hello World!</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>typoscript</td>            <td><code>:typoscript:`lib.hello.value = Hello World!`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="lib.hello.value = Hello World!"
+          data-shortdescription="Code written in TypoScript"
+          data-details="Directive-based configuration language used by TYPO3."
+          data-morelink=""          data-bs-html="true"
+    >
+        lib.<wbr>hello.<wbr>value = Hello World!</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>yaml</td>            <td><code>:yaml:`- {name: John Smith, age: 33}`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="- {name: John Smith, age: 33}"
+          data-shortdescription="Code written in YAML"
+          data-details="Yet Another Markup Language, used for key-value configuration."
+          data-morelink=""          data-bs-html="true"
+    >
+        - <wbr>{name: John Smith, age: 33}</code></td>            <td>&nbsp;</td>    </tr></tbody>    </table>
+</div>
+    </section>
+            <section class="section" id="examples-for-direct-use">
+            <h3>Examples for direct use<a class="headerlink" href="#examples-for-direct-use" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+
+<ul>
+    <li><code class="code-inline" translate="no">code</code></li>
+    <li><code class="code-inline">samp</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="fluid"
+          data-shortdescription="Code written in Fluid"
+          data-details="Templating engine used by TYPO3."
+          data-morelink=""          data-bs-html="true"
+    >
+        fluid</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="css"
+          data-shortdescription="Code written in CSS"
+          data-details="CSS (Cascading Style Sheets) is used to style the appearance of HTML elements on a web page."
+          data-morelink=""          data-bs-html="true"
+    >
+        css</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="scss"
+          data-shortdescription="Code written in SCSS"
+          data-details="SCSS is a syntax of Sass, a CSS preprocessor that adds variables, nesting, and functions to make writing styles more powerful and maintainable."
+          data-morelink=""          data-bs-html="true"
+    >
+        scss</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="html"
+          data-shortdescription="Code written in HTML"
+          data-details="HyperText Markup Language."
+          data-morelink=""          data-bs-html="true"
+    >
+        html</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="input"
+          data-shortdescription="Input value"
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        input</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="js"
+          data-shortdescription="Code written in JavaScript"
+          data-details="Dynamic client-side scripting language for dynamic applications."
+          data-morelink=""          data-bs-html="true"
+    >
+        js</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="javascript"
+          data-shortdescription="Code written in JavaScript"
+          data-details="Dynamic client-side scripting language for dynamic applications."
+          data-morelink=""          data-bs-html="true"
+    >
+        javascript</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="output"
+          data-shortdescription="Output value"
+          data-details=""
+          data-morelink=""          data-bs-html="true"
+    >
+        output</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="rst"
+          data-shortdescription="Code written in reStructuredText"
+          data-details="Easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system."
+          data-morelink=""          data-bs-html="true"
+    >
+        rst</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="rest"
+          data-shortdescription="Code written in reStructuredText"
+          data-details="Easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system."
+          data-morelink=""          data-bs-html="true"
+    >
+        rest</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="shell"
+          data-shortdescription="Code written in Shell Script"
+          data-details="Raw command line interface code on operating-system level."
+          data-morelink=""          data-bs-html="true"
+    >
+        shell</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="php"
+          data-shortdescription="Code written in PHP"
+          data-details="Dynamic server-side scripting language."
+          data-morelink=""          data-bs-html="true"
+    >
+        php</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="sql"
+          data-shortdescription="Code written in SQL"
+          data-details="Structured Query Language for database queries."
+          data-morelink=""          data-bs-html="true"
+    >
+        sql</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="sh"
+          data-shortdescription="Code written in Shell Script"
+          data-details="Raw command line interface code on operating-system level."
+          data-morelink=""          data-bs-html="true"
+    >
+        sh</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="bash"
+          data-shortdescription="Code written in Shell Script"
+          data-details="Raw command line interface code on operating-system level."
+          data-morelink=""          data-bs-html="true"
+    >
+        bash</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="tsconfig"
+          data-shortdescription="Code written in TSconfig"
+          data-details="TypoScript Configuration directives."
+          data-morelink=""          data-bs-html="true"
+    >
+        tsconfig</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="ts"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        ts</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="typescript"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        typescript</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="typoscript"
+          data-shortdescription="Code written in TypoScript"
+          data-details="Directive-based configuration language used by TYPO3."
+          data-morelink=""          data-bs-html="true"
+    >
+        typoscript</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="xml"
+          data-shortdescription="Code written in XML"
+          data-details="Extensible Markup Language."
+          data-morelink=""          data-bs-html="true"
+    >
+        xml</code></li>
+    <li><code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="yaml"
+          data-shortdescription="Code written in YAML"
+          data-details="Yet Another Markup Language, used for key-value configuration."
+          data-morelink=""          data-bs-html="true"
+    >
+        yaml</code></li>
+</ul>
+
+    </section>
+            <section class="section" id="standard-sphinx-interpreted-text-roles">
+            <h3>Standard Sphinx interpreted text roles<a class="headerlink" href="#standard-sphinx-interpreted-text-roles" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>See also: <a href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#other-semantic-markup">Standard Sphinx interpreted text roles</a></p>
+
+            <div class="table-responsive">
+    <table class="table table-bordered align-default">
+                            <thead>
+            <tr>
+                            <th>Role</th>
+                            <th>Source</th>
+                            <th>Output</th>
+                            <th>Note</th>
+                    </tr>
+        </thead>
+        <tbody>
+    <tr>
+            <td>abbr</td>            <td><code>:abbr:`LIFO (last-in, first-out)`</code></td>            <td><abbr title="last-in, first-out">LIFO</abbr></td>            <td>An abbreviation. If the role content contains a parenthesized explanation, it will be treated specially: it will be shown in a tool-tip in HTML, and output only once in LaTeX.</td>    </tr>    <tr>
+            <td>code</td>            <td><code>:code:`result = (1 + x) * 32`</code></td>            <td><code class="code-inline" translate="no">result = <wbr>(1 + x) * 32</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>command</td>            <td><code>:command:`rm`</code></td>            <td><strong class="command">rm</strong></td>            <td>The name of an OS-level command, such as rm.</td>    </tr>    <tr>
+            <td>dfn</td>            <td><code>:dfn:`something`</code></td>            <td><em class="dfn">something</em></td>            <td>Mark the defining instance of a term in the text. (No index entries are generated.)</td>    </tr>    <tr>
+            <td>file</td>            <td><code>:file:`/etc/passwd`</code></td>            <td><code class="code-inline file" translate="no" title="File path">/etc/<wbr>passwd</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>guilabel</td>            <td><code>:guilabel:`&amp;Cancel`</code>,                         
+<code>:guilabel:`O&amp;k`</code>,                             
+<code>:guilabel:`&amp;Reset`</code>,                          
+<code>:guilabel:`F&amp;&amp;Q`</code></td>            <td><span class="guilabel">&amp;Cancel</span>,                        
+<span class="guilabel">O&amp;k</span>,
+<span class="guilabel">&amp;Reset</span>,
+<span class="guilabel">F&amp;&amp;Q</span></td>            <td>Labels presented as part of an interactive user interface should be marked using guilabel. This includes labels from text-based interfaces such as those created using curses or other text-based libraries. Any label used in the interface should be marked with this role, including button labels, window titles, field names, menu and menu selection names, and even values in selection lists.</td>    </tr>    <tr>
+            <td>kbd</td>            <td><code>Press :kbd:`ctrl` + :kbd:`s`</code></td>            <td>Press <kbd>ctrl</kbd> + <kbd>s</kbd></td>            <td>Mark a sequence of keystrokes. What form the key sequence takes may depend on platform- or application-specific conventions. When there are no relevant conventions, the names of modifier keys should be spelled out, to improve accessibility for new users and non-native speakers. For example, an xemacs key sequence may be marked like <kbd>C</kbd> + :kbd<code class="code-inline" translate="no">x</code>, <kbd>C</kbd> + <kbd>f</kbd>, but without reference to a specific application or platform, the same sequence should be marked as <kbd>ctrl</kbd> + <kbd>x</kbd>, <kbd>ctrl</kbd> + <kbd>f</kbd>.</td>    </tr>    <tr>
+            <td>mailheader</td>            <td><code>:mailheader:`Content-Type`</code></td>            <td><em class="mailheader">Content-Type</em></td>            <td>The name of an RFC 822-style mail header. This markup does not imply that the header is being used in an email message, but can be used to refer to any header of the same “style.” This is also used for headers defined by the various MIME specifications. The header name should be entered in the same way it would normally be found in practice, with the camel-casing conventions being preferred where there is more than one common usage.</td>    </tr>    <tr>
+            <td>term</td>            <td><code>:term:`CMS`</code>, <code>:term:`cms`</code>,                
+<code>:term:`magic number`</code>,                        
+<code>:term:`term text role`</code></td>            <td><code class="code-inline">CMS</code>, <code class="code-inline">cms</code>,                   
+<code class="code-inline">magic number</code>,
+<code class="code-inline">term text role</code></td>            <td>Reference the term of a glossary</td>    </tr>    <tr>
+            <td>ref</td>            <td><code>:ref:`Inline-Code`</code></td>            <td><a href="#Inline-code-and-text-roles">Inline code and text roles</a></td>            <td>Sphinx cross-referencing</td>    </tr></tbody>    </table>
+</div>
+    </section>
+            <section class="section" id="standard-docutils-interpreted-text-roles">
+            <h3>Standard Docutils interpreted text roles<a class="headerlink" href="#standard-docutils-interpreted-text-roles" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>See also: <a href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#standard-roles">Standard Docutils interpreted text roles</a></p>
+
+            <div class="table-responsive">
+    <table class="table table-bordered align-default">
+                            <thead>
+            <tr>
+                            <th>Role</th>
+                            <th>Source</th>
+                            <th>Output</th>
+                            <th>Note</th>
+                    </tr>
+        </thead>
+        <tbody>
+    <tr>
+            <td>emphasis</td>            <td><code>:emphasis:`text`, *text*</code></td>            <td><em>text</em>, <em>text</em></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>literal</td>            <td><code>:literal:`\ \ abc`</code></td>            <td><code class="code-inline" translate="no">\ \ abc</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>literal</td>            <td><code>:literal:`text`, &#039;&#039;text&#039;&#039;</code> (backticks!)</td>            <td><code class="code-inline" translate="no">text</code>, <code>text</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>math</td>            <td><code>:math:`A_\text{c} = (\pi/4) d^2`</code></td>            <td><math>A_\text{c} = (\pi/4) d^2</math></td>            <td>The math role marks its content as mathematical notation (inline formula). The input format is LaTeX math syntax without the “math delimiters“ ($ $).</td>    </tr>    <tr>
+            <td>rfc, rfc-reference</td>            <td><code>:RFC:`2822`</code></td>            <td><code class="code-inline">2822</code></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>strong</td>            <td><code>:strong:`text`, **text**</code></td>            <td><strong>text</strong>, <strong>text</strong></td>            <td>Implements strong emphasis.</td>    </tr>    <tr>
+            <td>subscript</td>            <td><code>:subscript:`subscripted`</code></td>            <td><sub>subscripted</sub></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>superscript</td>            <td><code>:superscript:`superscripted`</code></td>            <td><sup>superscripted</sup></td>            <td>&nbsp;</td>    </tr>    <tr>
+            <td>t, title-reference</td>            <td><code>:t:`Design Patterns`</code></td>            <td><cite>Design Patterns</cite></td>            <td>The :title-reference: role is used to describe the titles of books, periodicals, and other materials.</td>    </tr></tbody>    </table>
+</div>
+    </section>
+    </section>
+            <section class="section" id="a-glossary-and-the-term-textrole">
+            <h2>A glossary and the :term: textrole<a class="headerlink" href="#a-glossary-and-the-term-textrole" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p><em>Glossary</em> to define some demo terms</p>
+
+            
+    <p>This is a small demo glossary to allow the <code class="code-inline" translate="no">:term:</code> text role in the above
+examples.</p>
+
+            <div class="container my-4">
+    <!-- A-Z Index -->
+    <nav id="indexNav" class="navbar navbar-light sticky-top">
+        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                    <a class="nav-link" href="#C">C</a>
+                </li>
+                            <li class="nav-item">
+                    <a class="nav-link" href="#M">M</a>
+                </li>
+                            <li class="nav-item">
+                    <a class="nav-link" href="#T">T</a>
+                </li>
+                    </ul>
+    </nav>
+
+    <!-- Glossary Entries -->
+    <div class="mt-4">
+                    <div id="C" class="pt-5">
+                <div class="h2">C</div>
+                                    <section class="section">
+                        <h3>CMS</h3>
+                        <div>Content management system</div>
+                    </section>
+                            </div>
+                    <div id="M" class="pt-5">
+                <div class="h2">M</div>
+                                    <section class="section">
+                        <h3>magic number</h3>
+                        <div>A magic number is a magic number.</div>
+                    </section>
+                            </div>
+                    <div id="T" class="pt-5">
+                <div class="h2">T</div>
+                                    <section class="section">
+                        <h3>term text role</h3>
+                        <div>The <code class="code-inline" translate="no">:term:</code> texrole is used to create crossreferences to terms of the
+glossary.</div>
+                    </section>
+                            </div>
+            </div>
+</div>
+            
+    <p><em>Example:</em> &quot;Refer to our glossary to find out about <code class="code-inline">CMS</code> or
+<code class="code-inline">magic number</code> or <code class="code-inline">term text role</code>&quot;.</p>
+
+    </section>
+            <section class="section" id="some-really-long-inline-text">
+            <h2>Some really long inline text<a class="headerlink" href="#some-really-long-inline-text" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Now, let&#039;s see what happens when you have some really long inline text like
+<code class="code-inline" translate="no">$GLOBALS<wbr>[&#039;TYPO3_<wbr>CONF_<wbr>VARS&#039;]<wbr>[&#039;SYS&#039;]<wbr>[&#039;caching&#039;]<wbr>[&#039;cache<wbr>Configurations&#039;]
+<wbr>[&#039;rootline&#039;]<wbr>[&#039;backend&#039;] = \<wbr>TYPO3\<wbr>CMS\<wbr>Core\<wbr>Cache\<wbr>Backend\<wbr>Apcu<wbr>Backend::<wbr>class;</code>
+How does it show up?</p>
+
+    </section>
+            <section class="section" id="older-stuff-needs-cleaning-up">
+            <h2>Older stuff - needs cleaning up<a class="headerlink" href="#older-stuff-needs-cleaning-up" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <div class="table-responsive">
+    <table class="table table-bordered align-default">
+                            <thead>
+            <tr>
+                            <th>role</th>
+                            <th>source</th>
+                            <th>output</th>
+                    </tr>
+        </thead>
+        <tbody>
+    <tr>
+            <td>(default)</td>            <td><code>`result = (1 + x) * 32`</code></td>            <td><code class="code-inline" translate="no">result = <wbr>(1 + x) * 32</code></td>    </tr>    <tr>
+            <td>aspect</td>            <td><code>:aspect:`Description:`</code></td>            <td><em class="aspect">Description:</em></td>    </tr>    <tr>
+            <td>code</td>            <td><code>:code:`result = (1 + x) * 32`</code></td>            <td><code class="code-inline" translate="no">result = <wbr>(1 + x) * 32</code></td>    </tr>    <tr>
+            <td>file</td>            <td><code>:file:`/etc/passwd`</code></td>            <td><code class="code-inline file" translate="no" title="File path">/etc/<wbr>passwd</code></td>    </tr>    <tr>
+            <td>js</td>            <td><code>:js:`var f = function () {return 1;}`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="var f = function () {return 1;}"
+          data-shortdescription="Code written in JavaScript"
+          data-details="Dynamic client-side scripting language for dynamic applications."
+          data-morelink=""          data-bs-html="true"
+    >
+        var f = function <wbr>() <wbr>{return 1;}</code></td>    </tr>    <tr>
+            <td>html</td>            <td><code>:html:`&lt;a href=&quot;#&quot;&gt;`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="&lt;a href=&quot;#&quot;&gt;"
+          data-shortdescription="Code written in HTML"
+          data-details="HyperText Markup Language."
+          data-morelink=""          data-bs-html="true"
+    >
+        &lt;a href=&quot;#&quot;&gt;</code></td>    </tr>    <tr>
+            <td>ts</td>            <td><code>:ts:`lib.hello.value = Hello World!`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="lib.hello.value = Hello World!"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        lib.<wbr>hello.<wbr>value = Hello World!</code></td>    </tr>    <tr>
+            <td>typoscript</td>            <td><code>:typoscript:`lib.hello.value = Hello World!`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="lib.hello.value = Hello World!"
+          data-shortdescription="Code written in TypoScript"
+          data-details="Directive-based configuration language used by TYPO3."
+          data-morelink=""          data-bs-html="true"
+    >
+        lib.<wbr>hello.<wbr>value = Hello World!</code></td>    </tr>    <tr>
+            <td>php</td>            <td><code>:php:`$result = $a + 23;`</code></td>            <td><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="$result = $a + 23;"
+          data-shortdescription="Code written in PHP"
+          data-details="Dynamic server-side scripting language."
+          data-morelink=""          data-bs-html="true"
+    >
+        $result = $a + 23;</code></td>    </tr></tbody>    </table>
+</div>
+    </section>
+            <section class="section" id="standard-sphinx-and-docutils-textroles">
+            <h2>Standard Sphinx and Docutils Textroles<a class="headerlink" href="#standard-sphinx-and-docutils-textroles" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+
+<ul>
+    <li class="dash">This is how <code>:code:`result = (1 + x) * 32`</code> looks like: <code class="code-inline" translate="no">result = <wbr>(1 + x) * 32</code></li>
+    <li class="dash">&quot;code&quot; also is the <strong>default</strong> <em>text-role</em>. So <code>`result = (1 + x) * 32`</code> looks the
+same <code class="code-inline" translate="no">result = <wbr>(1 + x) * 32</code> as <code>:code:`result = (1 + x) * 32`</code>.</li>
+    <li class="dash">This is how <code>:file:`/etc/passwd`</code> looks like: <code class="code-inline file" translate="no" title="File path">/etc/<wbr>passwd</code></li>
+</ul>
+
+    </section>
+            <section class="section" id="self-defined-textroles">
+            <h2>Self Defined Textroles<a class="headerlink" href="#self-defined-textroles" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>In file <code class="code-inline file" translate="no" title="File path">/Includes.<wbr>rst.<wbr>txt</code> we usually have:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs rst"><span class="hljs-comment">.. This is '/Includes.rst.txt'. It is included at the very top of each</span>
+   and every ReST source file in THIS documentation project (= manual).
+<span class="hljs-meta">
+.. role::</span> aspect (emphasis)
+<span class="hljs-meta">.. role::</span> html(code)
+<span class="hljs-meta">.. role::</span> js(code)
+<span class="hljs-meta">.. role::</span> php(code)
+<span class="hljs-meta">.. role::</span> typoscript(code)
+<span class="hljs-meta">.. role::</span> ts(typoscript)
+<span class="hljs-symbol"><span class="hljs-name">   :class:</span> <span class="hljs-string">typoscript</span></span>
+<span class="hljs-meta">
+.. highlight::</span> php
+<span class="hljs-meta">.. default-role::</span> code
+
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Check the following to see if we have give those an individual styling:</p>
+
+            
+
+<ul>
+    <li class="dash">This is how <code>:php:`$result = $a + 23;`</code> looks like: <code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="$result = $a + 23;"
+          data-shortdescription="Code written in PHP"
+          data-details="Dynamic server-side scripting language."
+          data-morelink=""          data-bs-html="true"
+    >
+        $result = $a + 23;</code></li>
+    <li class="dash">This is how <code>:typoscript:`lib.hello.value = Hello World!`</code> looks like: <code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="lib.hello.value = Hello World!"
+          data-shortdescription="Code written in TypoScript"
+          data-details="Directive-based configuration language used by TYPO3."
+          data-morelink=""          data-bs-html="true"
+    >
+        lib.<wbr>hello.<wbr>value = Hello World!</code></li>
+    <li class="dash">This is how <code>:ts:`lib.hello.value = Hello World!`</code> looks like: <code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="lib.hello.value = Hello World!"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        lib.<wbr>hello.<wbr>value = Hello World!</code></li>
+</ul>
+
+    </section>
+            <section class="section" id="inline-code-php-mycustomexception-ts-page-in-title">
+            <h2>Inline <code class="code-inline" translate="no">code</code> <code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="MyCustomException"
+          data-shortdescription="Code written in PHP"
+          data-details="Dynamic server-side scripting language."
+          data-morelink=""          data-bs-html="true"
+    >
+        My<wbr>Custom<wbr>Exception</code> <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="PAGE"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        PAGE</code> in title<a class="headerlink" href="#inline-code-php-mycustomexception-ts-page-in-title" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <section class="section" id="inline-code-php-mycustomexception-ts-page-in-title">
+            <h3>Inline <code class="code-inline" translate="no">code</code> <code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="MyCustomException"
+          data-shortdescription="Code written in PHP"
+          data-details="Dynamic server-side scripting language."
+          data-morelink=""          data-bs-html="true"
+    >
+        My<wbr>Custom<wbr>Exception</code> <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="PAGE"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        PAGE</code> in title<a class="headerlink" href="#inline-code-php-mycustomexception-ts-page-in-title" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            <section class="section" id="inline-code-php-mycustomexception-ts-page-in-title">
+            <h4>Inline <code class="code-inline" translate="no">code</code> <code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="MyCustomException"
+          data-shortdescription="Code written in PHP"
+          data-details="Dynamic server-side scripting language."
+          data-morelink=""          data-bs-html="true"
+    >
+        My<wbr>Custom<wbr>Exception</code> <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="PAGE"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        PAGE</code> in title<a class="headerlink" href="#inline-code-php-mycustomexception-ts-page-in-title" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h4>
+            <section class="section" id="inline-code-php-mycustomexception-ts-page-in-title">
+            <h5>Inline <code class="code-inline" translate="no">code</code> <code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="MyCustomException"
+          data-shortdescription="Code written in PHP"
+          data-details="Dynamic server-side scripting language."
+          data-morelink=""          data-bs-html="true"
+    >
+        My<wbr>Custom<wbr>Exception</code> <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="PAGE"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        PAGE</code> in title<a class="headerlink" href="#inline-code-php-mycustomexception-ts-page-in-title" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h5>
+            <section class="section" id="inline-code-php-mycustomexception-ts-page-in-title">
+            <h6>Inline <code class="code-inline" translate="no">code</code> <code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="MyCustomException"
+          data-shortdescription="Code written in PHP"
+          data-details="Dynamic server-side scripting language."
+          data-morelink=""          data-bs-html="true"
+    >
+        My<wbr>Custom<wbr>Exception</code> <code class="code-inline"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="PAGE"
+          data-shortdescription="Code written in TypeScript"
+          data-details="Makes JavaScript utilize type declarations."
+          data-morelink=""          data-bs-html="true"
+    >
+        PAGE</code> in title<a class="headerlink" href="#inline-code-php-mycustomexception-ts-page-in-title" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h6>
+    </section>
+    </section>
+    </section>
+    </section>
+    </section>
+            <section class="section" id="fully-qualified-names-with-backslashes">
+            <h2>Fully qualified names with backslashes<a class="headerlink" href="#fully-qualified-names-with-backslashes" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Source:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs rst"><span class="hljs-name">:code:`TYPO3\CMS\Core\Cache\Frontend\FrontendInterface`</span>
+
+<span class="hljs-name">:php:`TYPO3\CMS\Core\Cache\Frontend\FrontendInterface`</span>
+
+`TYPO3\CMS\Core\Cache\Frontend\FrontendInterface`
+
+``TYPO3\CMS\Core\Cache\Frontend\FrontendInterface``
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Result:</p>
+
+            
+    <p><code class="code-inline" translate="no">TYPO3\<wbr>CMS\<wbr>Core\<wbr>Cache\<wbr>Frontend\<wbr>Frontend<wbr>Interface</code></p>
+
+            
+    <p><code class="code-inline code-inline-long"
+          translate="no"
+          data-bs-toggle="modal"
+          data-bs-target="#generalModal"
+          data-code="\TYPO3\CMS\Core\Cache\Frontend\FrontendInterface"
+          data-shortdescription="PHP interface"
+          data-details="<code>interface FrontendInterface</code><br><em>Contract for a Cache (frontend)</em>"
+          data-morelink="https://api.typo3.org/13.4/classes/TYPO3-CMS-Core-Cache-Frontend-FrontendInterface.html"              data-fqn="\TYPO3\CMS\Core\Cache\Frontend\FrontendInterface"          data-bs-html="true"
+    >
+        \TYPO3\<wbr>CMS\<wbr>Core\<wbr>Cache\<wbr>Frontend\<wbr>Frontend<wbr>Interface            <span class="text-secondary"><i class="fa-regular fa-circle-question"></i></span></code></p>
+
+            
+    <p><code class="code-inline" translate="no">TYPO3\<wbr>CMS\<wbr>Core\<wbr>Cache\<wbr>Frontend\<wbr>Frontend<wbr>Interface</code></p>
+
+            
+    <p><code>TYPO3\CMS\Core\Cache\Frontend\FrontendInterface</code></p>
+
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="../ImagesAndFigures/Index.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="../Lineblocks/Index.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Inline-code-and-textroles/Index">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Inline-code-and-textroles/Index"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:56</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>

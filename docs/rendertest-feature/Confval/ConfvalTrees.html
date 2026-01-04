@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Confvals with subtrees
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:56:53+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:56:53+00:00" name="dc.modified">
+<meta content="2026-01-03T21:56:53+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="Index.html" rel="prev" title="confval"/>
+            <link href="X.html" rel="next" title="Confvals with subtrees"/>
+            <link href="../Index.html" rel="top" title="TYPO3 theme rendering test"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 theme rendering test</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/Confval/ConfvalTrees.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 theme rendering test</p>
+            <p class="caption"><span class="caption-text">INTRODUCTION</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Page1.html">
+        Page 1
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Page2.html">
+        Page 2
+    </a></li>    </ul>    <p class="caption"><span class="caption-text">HOWTOS</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Accordion/Index.html">
+        Accordion
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Admonitions-and-buttons/Index.html">
+        Admonitions and buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Api/Index.html">
+        TYPO3 API
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Blockquotes/Index.html">
+        Block quotes
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Buttons/Index.html">
+        Buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Cards/Index.html">
+        Cards
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Codeblocks/Index.html">
+        Codeblocks
+    </a></li>    <li class=" active" role="menuitem">
+    <a href="Index.html">
+        confval
+    </a>        <ul class="menu-level-1"><li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        Confvals with subtrees
+    </a></li><li class="" role="menuitem">
+    <a href="X.html">
+        Confvals with subtrees
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ConsoleCommands/Index.html">
+        Console commands
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAll.html">
+        All commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAllExclude.html">
+        All commands, exclude namespaces and commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListGlobal.html">
+        Global commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListNameSpaceCache.html">
+        Commands in namespace cache
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Directives/Index.html">
+        Directives
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Directives/directoryTree.html">
+        Directory tree
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/plantuml.html">
+        Plantuml basic examples
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/versionadded.html">
+        versionadded &amp; friends
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/youtube.html">
+        Youtube directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ExtLinksAndLinkStyles/Index.html">
+        ExtLinks and Link styles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../FieldLists/Index.html">
+        Field lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Glossary/Index.html">
+        Glossary
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ImagesAndFigures/Index.html">
+        Images and figures
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Inline-code-and-textroles/Index.html">
+        Inline code and text roles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lineblocks/Index.html">
+        Line blocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lists/Index.html">
+        Lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Nested-pages/Index.html">
+        Nested pages
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-2"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-3"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-4"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-5"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/1/index.html">
+        Page title
+    </a></li></ul></li></ul></li></ul></li></ul></li></ul></li>    <li class="" role="menuitem">
+    <a href="../PhpDomain/Index.html">
+        Phpdomain
+    </a></li>    <li class="" role="menuitem">
+    <a href="../PhpInline/Index.html">
+        PHP Inline
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Redirects/Index.html">
+        Redirects
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Sitemap/Index.html">
+        Sitemap
+    </a></li>    <li class="" role="menuitem">
+    <a href="../SiteSettings/Index.html">
+        Site settings
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../SiteSettings/SiteSettingsWithLabels/Index.html">
+        Site settings with labels
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../SpecialCharacters/Index.html">
+        Special characters
+    </a></li>    <li class="" role="menuitem">
+    <a href="../StyledNumberedLists/Index.html">
+        Styled numbered lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Tables/Index.html">
+        Tables
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Tables/TableDirective.html">
+        Table directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Tabs/Index.html">
+        Tabs
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ThisAndThat/Index.html">
+        This and that
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Typesetting/Index.html">
+        Typesetting code Header 
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Uml/Index.html">
+        Very large UML diagram
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ViewHelpers/Index.html">
+        ViewHelpers
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 theme rendering test</a></li>
+        <li class="breadcrumb-item"><a href="Index.html">confval</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Confvals with subtrees</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="confvals-with-subtrees">
+            <h1>Confvals with subtrees<a class="headerlink" href="#confvals-with-subtrees" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            <section class="section" id="properties-of-case">
+            <h2>Properties of CASE<a class="headerlink" href="#properties-of-case" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+
+
+
+<a id="confval-menu-typoscript-case-properties"></a>
+<div class="table-responsive confval-table">
+    <table class="table table-hover caption-top"><caption>TypoScript Case Properties</caption>        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            
+                                    <th scope="col">Type</th>
+                                    </tr>
+        </thead>
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-case-array">array of c<wbr>Objects</a></div></td>
+                    <td>
+                            cObject
+                        </td>
+            </tr>
+                
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-case-cache">cache</a></div></td>
+                    <td>
+                            cache
+                        </td>
+            </tr>
+                
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-case-default">default</a></div></td>
+                    <td>
+                            cObject
+                        </td>
+            </tr>
+                
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-case-if">if</a></div></td>
+                    <td>
+                            -&gt;if
+                        </td>
+            </tr>
+                
+            </table>
+</div>
+                <section data-search-title="array of cObjects"
+         data-search-id="confval-case-array"
+         data-search-facet="TypoScript"
+         class="confval-section"
+         id="confval-case-array"
+>
+    <h3 class="sr-only">array of cObjects</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">array of c<wbr>Objects</span></code>
+                                    <a class="headerlink" href="#confval-case-array"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-case-array"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript-case-properties" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">cObject
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>Array of cObjects. Use this to define cObjects for the different
+values of <code class="code-inline" translate="no">cobj-<wbr>case-<wbr>key</code>. If <code class="code-inline" translate="no">cobj-<wbr>case-<wbr>key</code> has a certain value,
+the according cObject will be rendered. The cObjects can have any name, but not
+the names of the other properties of the cObject CASE.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="cache"
+         data-search-id="confval-case-cache"
+         data-search-facet="TypoScript"
+         class="confval-section"
+         id="confval-case-cache"
+>
+    <h3 class="sr-only">cache</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">cache</span></code>
+                                    <a class="headerlink" href="#confval-case-cache"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-case-cache"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript-case-properties" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">cache
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>See  for details.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="default"
+         data-search-id="confval-case-default"
+         data-search-facet="TypoScript"
+         class="confval-section"
+         id="confval-case-default"
+>
+    <h3 class="sr-only">default</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">default</span></code>
+                                    <a class="headerlink" href="#confval-case-default"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-case-default"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript-case-properties" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">cObject
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>Use this to define the rendering for <em>those</em> values of cobj-case-key that
+do <em>not</em> match any of the values of the cobj-case-array-of-cObjects. If no
+default cObject is defined, an empty string will be returned for
+the default case.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="if"
+         data-search-id="confval-case-if"
+         data-search-facet="TypoScript"
+         class="confval-section"
+         id="confval-case-if"
+>
+    <h3 class="sr-only">if</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">if</span></code>
+                                    <a class="headerlink" href="#confval-case-if"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-case-if"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript-case-properties" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">-&gt;if
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>If if returns false, nothing is returned.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+        
+    </section>
+            <section class="section" id="properties-of-coa">
+            <h2>Properties of COA<a class="headerlink" href="#properties-of-coa" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+
+
+
+<a id="confval-menu-confval-confvaltrees"></a>
+<div class="table-responsive confval-table">
+    <table class="table table-hover caption-top">        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            
+                                    <th scope="col">Type</th>
+                                    </tr>
+        </thead>
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-coa-array">1,2,3,4...</a></div></td>
+                    <td>
+                            cObject
+                        </td>
+            </tr>
+                
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-coa-cache">cache</a></div></td>
+                    <td>
+                            cache
+                        </td>
+            </tr>
+                
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-coa-if">if</a></div></td>
+                    <td>
+                            -&gt;if &lt;if&gt;
+                        </td>
+            </tr>
+                
+            </table>
+</div>
+                <section data-search-title="1,2,3,4..."
+         data-search-id="confval-coa-array"
+         data-search-facet="TCA"
+         class="confval-section"
+         id="confval-coa-array"
+>
+    <h3 class="sr-only">1,2,3,4...</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">1,2,3,4...</span></code>
+                                    <a class="headerlink" href="#confval-coa-array"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-coa-array"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-confval-confvaltrees" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">cObject
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>Numbered properties to define the different cObjects, which should be
+rendered.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="cache"
+         data-search-id="confval-coa-cache"
+         data-search-facet="TCA"
+         class="confval-section"
+         id="confval-coa-cache"
+>
+    <h3 class="sr-only">cache</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">cache</span></code>
+                                    <a class="headerlink" href="#confval-coa-cache"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-coa-cache"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-confval-confvaltrees" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">cache
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>See cache function description for details.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="if"
+         data-search-id="confval-coa-if"
+         data-search-facet="TCA"
+         class="confval-section"
+         id="confval-coa-if"
+>
+    <h3 class="sr-only">if</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">if</span></code>
+                                    <a class="headerlink" href="#confval-coa-if"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-coa-if"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-confval-confvaltrees" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">-&gt;if &lt;if&gt;
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>If <code class="code-inline" translate="no">if</code> returns false, the COA is <strong>not</strong> rendered.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+        
+    </section>
+            <section class="section" id="long-default-values">
+            <h2>Long default values<a class="headerlink" href="#long-default-values" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+
+
+
+<a id="confval-menu-typoscript"></a>
+<div class="table-responsive confval-table">
+    <table class="table table-hover caption-top">        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            
+                                    <th scope="col">Type</th>
+                            
+                                    <th scope="col">Default</th>
+                            
+                                    <th scope="col">test</th>
+                                    </tr>
+        </thead>
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-typoscript-pages">pages</a></div></td>
+                    <td>
+                            string
+                        </td>
+                    <td>
+                                        <span title="{$styles.content.loginform.pid}">
+                {$styles.content.log...
+            </span>
+        
+                        </td>
+                    <td>
+                                    <code class="code-inline" translate="no">1</code>
+                                </td>
+            </tr>
+                
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-typoscript-redirectpageloginerror">redirect<wbr>Page<wbr>Login<wbr>Error</a></div></td>
+                    <td>
+                            integer
+                        </td>
+                    <td>
+                                        <span title="{$styles.content.loginform.redirectPageLoginError}">
+                {$styles.content.log...
+            </span>
+        
+                        </td>
+                    <td>
+                        </td>
+            </tr>
+                
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-typoscript-dateformat">date<wbr>Format</a></div></td>
+                    <td>
+                            date-conf
+                        </td>
+                    <td>
+                                        <span>Y-m-d H:i</span>
+        
+                        </td>
+                    <td>
+                        </td>
+            </tr>
+    
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-typoscript-email">email</a></div></td>
+                    <td>
+                            
+                        </td>
+                    <td>
+                                        <span></span>
+        
+                        </td>
+                    <td>
+                        </td>
+            </tr>
+                            <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-typoscript-email-templaterootpaths">email.<wbr>template<wbr>Root<wbr>Paths</a></div></td>
+                    <td>
+                            array
+                        </td>
+                    <td>
+                                        <span title="{$styles.content.loginform.email.templateRootPaths}">
+                {$styles.content.log...
+            </span>
+        
+                        </td>
+                    <td>
+                        </td>
+            </tr>
+                
+            
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-typoscript-exposenonexistentuserinforgotpassworddialog">expose<wbr>Nonexistent<wbr>User<wbr>In<wbr>Forgot<wbr>Password<wbr>Dialog</a></div></td>
+                    <td>
+                            bool
+                        </td>
+                    <td>
+                                        <span title="{$styles.content.loginform.exposeNonexistentUserInForgotPasswordDialog}">
+                {$styles.content.log...
+            </span>
+        
+                        </td>
+                    <td>
+                        </td>
+            </tr>
+                
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-widget-tag-title">title</a></div></td>
+                    <td>
+                            string (language reference)
+                        </td>
+                    <td>
+                                        <span></span>
+        
+                        </td>
+                    <td>
+                        </td>
+            </tr>
+                
+            </table>
+</div>
+                <section data-search-title="pages"
+         data-search-id="confval-typoscript-pages"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-typoscript-pages"
+>
+    <h3 class="sr-only">pages</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">pages</span></code>
+                                    <a class="headerlink" href="#confval-typoscript-pages"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-typoscript-pages"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">string
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline" translate="no">{$styles.<wbr>content.<wbr>loginform.<wbr>pid}</code>
+                        </dd>
+                                                <dt class="field-even">test</dt>
+                            <dd class="field-even"><code class="code-inline" translate="no">1</code>
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>Define the User Storage Page with the Website User Records, using a
+comma separated list or single value</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="redirectPageLoginError"
+         data-search-id="confval-typoscript-redirectpageloginerror"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-typoscript-redirectpageloginerror"
+>
+    <h3 class="sr-only">redirectPageLoginError</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">redirect<wbr>Page<wbr>Login<wbr>Error</span></code>
+                                    <a class="headerlink" href="#confval-typoscript-redirectpageloginerror"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-typoscript-redirectpageloginerror"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">integer
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline" translate="no">{$styles.<wbr>content.<wbr>loginform.<wbr>redirect<wbr>Page<wbr>Login<wbr>Error}</code>
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>Page id to redirect to after Login Error</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="dateFormat"
+         data-search-id="confval-typoscript-dateformat"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-typoscript-dateformat"
+>
+    <h3 class="sr-only">dateFormat</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">date<wbr>Format</span></code>
+                                    <a class="headerlink" href="#confval-typoscript-dateformat"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-typoscript-dateformat"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">date-conf
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd">Y-m-d H:i
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="email"
+         data-search-id="confval-typoscript-email"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-typoscript-email"
+>
+    <h3 class="sr-only">email</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">email</span></code>
+                                    <a class="headerlink" href="#confval-typoscript-email"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-typoscript-email"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                        <div class="confval-description">
+                <section data-search-title="email.templateRootPaths"
+         data-search-id="confval-typoscript-email-templaterootpaths"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-typoscript-email-templaterootpaths"
+>
+    <h3 class="sr-only">email.templateRootPaths</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">email.<wbr>template<wbr>Root<wbr>Paths</span></code>
+                                    <a class="headerlink" href="#confval-typoscript-email-templaterootpaths"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-typoscript-email-templaterootpaths"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">array
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd"><code class="code-inline" translate="no">{$styles.<wbr>content.<wbr>loginform.<wbr>email.<wbr>template<wbr>Root<wbr>Paths}</code>
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>Path to template directory used for emails</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="exposeNonexistentUserInForgotPasswordDialog"
+         data-search-id="confval-typoscript-exposenonexistentuserinforgotpassworddialog"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-typoscript-exposenonexistentuserinforgotpassworddialog"
+>
+    <h3 class="sr-only">exposeNonexistentUserInForgotPasswordDialog</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">expose<wbr>Nonexistent<wbr>User<wbr>In<wbr>Forgot<wbr>Password<wbr>Dialog</span></code>
+                                    <a class="headerlink" href="#confval-typoscript-exposenonexistentuserinforgotpassworddialog"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-typoscript-exposenonexistentuserinforgotpassworddialog"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">bool
+                        </dd>
+                                            <dt class="field-odd">Default</dt>
+                        <dd class="field-odd">{$styles.content.loginform.exposeNonexistentUserInForgotPasswordDialog}
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>If set and the user account cannot be found in the forgot password
+dialogue, an error message will be shown that the account could not be
+found.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="title"
+         data-search-id="confval-widget-tag-title"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-widget-tag-title"
+>
+    <h3 class="sr-only">title</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">title</span></code>
+                                    <a class="headerlink" href="#confval-widget-tag-title"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-widget-tag-title"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-typoscript" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">string (language reference)
+                        </dd>
+                                            <dt class="field-odd">Required</dt>
+                        <dd class="field-odd"><p>true</p>
+                        </dd>
+                                                <dt class="field-even">Example</dt>
+                            <dd class="field-even"><code class="code-inline" translate="no">LLL:<wbr>EXT:<wbr>dashboard/<wbr>Resources/<wbr>Private/<wbr>Language/<wbr>locallang.<wbr>xlf:<wbr>widgets.<wbr>t3news.<wbr>title</code>
+                            </dd>
+                        </dl>
+                        <div class="confval-description">
+                
+    <p>Defines the title of the widget. Language references are resolved.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+        
+            
+
+
+
+<a id="confval-menu-site-setting-definition"></a>
+<div class="table-responsive confval-table">
+    <table class="table table-hover caption-top">        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            
+                                    <th scope="col">Type</th>
+                            
+                                    <th scope="col">Required</th>
+                                    </tr>
+        </thead>
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-site-settings-definition-categories">categories</a></div></td>
+                    <td>
+                            array
+                        </td>
+                    <td>
+                                    </td>
+            </tr>
+                            <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-site-settings-definition-categories-label">label</a></div></td>
+                    <td>
+                            string
+                        </td>
+                    <td>
+                                    </td>
+            </tr>
+    
+                                    <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-site-settings-definition-categories-parent">parent</a></div></td>
+                    <td>
+                            <a href="#confval-site-settings-definition-categories">categories</a> key
+                        </td>
+                    <td>
+                                    </td>
+            </tr>
+    
+            
+                        <tr>
+        <td><div class="confval-label ps-0"><a href="#confval-site-settings-definition-settings">settings</a></div></td>
+                    <td>
+                            array
+                        </td>
+                    <td>
+                                    </td>
+            </tr>
+                            <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-site-settings-definition-settings-label">label</a></div></td>
+                    <td>
+                            string
+                        </td>
+                    <td>
+                                    </td>
+            </tr>
+    
+                                    <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-site-settings-definition-settings-description">description</a></div></td>
+                    <td>
+                            string
+                        </td>
+                    <td>
+                                    </td>
+            </tr>
+    
+                                    <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-site-settings-definition-settings-category">category</a></div></td>
+                    <td>
+                            <a href="#confval-site-settings-definition-categories">categories</a> key
+                        </td>
+                    <td>
+                                    </td>
+            </tr>
+    
+                                    <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-site-settings-definition-settings-type">type</a></div></td>
+                    <td>
+                            definition type
+                        </td>
+                    <td>
+            true                        </td>
+            </tr>
+    
+                                    <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-site-settings-definition-settings-default">default</a></div></td>
+                    <td>
+                            mixed
+                        </td>
+                    <td>
+            true                        </td>
+            </tr>
+                
+                                    <tr>
+        <td><div class="confval-label ps-2"><a href="#confval-site-settings-definition-settings-readonly">readonly</a></div></td>
+                    <td>
+                            bool
+                        </td>
+                    <td>
+                                    </td>
+            </tr>
+                
+            
+            </table>
+</div>
+                <section data-search-title="categories"
+         data-search-id="confval-site-settings-definition-categories"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-categories"
+>
+    <h3 class="sr-only">categories</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">categories</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-categories"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-categories"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">array
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                <section data-search-title="label"
+         data-search-id="confval-site-settings-definition-categories-label"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-categories-label"
+>
+    <h3 class="sr-only">label</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">label</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-categories-label"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-categories-label"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">string
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="parent"
+         data-search-id="confval-site-settings-definition-categories-parent"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-categories-parent"
+>
+    <h3 class="sr-only">parent</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">parent</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-categories-parent"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-categories-parent"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><a href="#confval-site-settings-definition-categories">categories</a> key
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+            </div>
+        </dd>
+    </dl>
+</section>
+            </div>
+        </dd>
+    </dl>
+</section>
+                        <section data-search-title="settings"
+         data-search-id="confval-site-settings-definition-settings"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-settings"
+>
+    <h3 class="sr-only">settings</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">settings</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-settings"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-settings"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">array
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                <section data-search-title="label"
+         data-search-id="confval-site-settings-definition-settings-label"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-settings-label"
+>
+    <h3 class="sr-only">label</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">label</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-settings-label"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-settings-label"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">string
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="description"
+         data-search-id="confval-site-settings-definition-settings-description"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-settings-description"
+>
+    <h3 class="sr-only">description</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">description</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-settings-description"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-settings-description"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">string
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="category"
+         data-search-id="confval-site-settings-definition-settings-category"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-settings-category"
+>
+    <h3 class="sr-only">category</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">category</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-settings-category"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-settings-category"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even"><a href="#confval-site-settings-definition-categories">categories</a> key
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="type"
+         data-search-id="confval-site-settings-definition-settings-type"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-settings-type"
+>
+    <h3 class="sr-only">type</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">type</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-settings-type"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-settings-type"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">definition type
+                        </dd>
+                                            <dt class="field-odd">Required</dt>
+                        <dd class="field-odd"><p>true</p>
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="default"
+         data-search-id="confval-site-settings-definition-settings-default"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-settings-default"
+>
+    <h3 class="sr-only">default</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">default</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-settings-default"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-settings-default"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">mixed
+                        </dd>
+                                            <dt class="field-odd">Required</dt>
+                        <dd class="field-odd"><p>true</p>
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>The default value must have the same type like defined in
+site-settings-definition-settings-type.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section><section data-search-title="readonly"
+         data-search-id="confval-site-settings-definition-settings-readonly"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-site-settings-definition-settings-readonly"
+>
+    <h3 class="sr-only">readonly</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">readonly</span></code>
+                                    <a class="headerlink" href="#confval-site-settings-definition-settings-readonly"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-site-settings-definition-settings-readonly"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-site-setting-definition" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
+        <dd>
+                            <dl class="field-list simple">
+                                            <dt class="field-even">Type</dt>
+                        <dd class="field-even">bool
+                        </dd>
+                    </dl>
+                        <div class="confval-description">
+                
+    <p>If a site setting is marked as readonly, it can be overridden only
+by editing  the <code class="code-inline file" translate="no" title="File path">config/<wbr>sites/<wbr>my-<wbr>site/<wbr>settings.<wbr>yaml</code> directly,
+but not from within the editor.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            </div>
+        </dd>
+    </dl>
+</section>
+        
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="Index.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="X.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Confval/ConfvalTrees">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Confval/ConfvalTrees"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:56</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>

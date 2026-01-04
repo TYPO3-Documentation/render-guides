@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>ExtLinks and Link styles
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:56:53+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:56:53+00:00" name="dc.modified">
+<meta content="2026-01-03T21:56:53+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="../Directives/youtube.html" rel="prev" title="Youtube directive"/>
+            <link href="../FieldLists/Index.html" rel="next" title="Field lists"/>
+            <link href="../Index.html" rel="top" title="TYPO3 theme rendering test"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 theme rendering test</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/ExtLinksAndLinkStyles/Index.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 theme rendering test</p>
+            <p class="caption"><span class="caption-text">INTRODUCTION</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Page1.html">
+        Page 1
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Page2.html">
+        Page 2
+    </a></li>    </ul>    <p class="caption"><span class="caption-text">HOWTOS</span></p>
+<ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Accordion/Index.html">
+        Accordion
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Admonitions-and-buttons/Index.html">
+        Admonitions and buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Api/Index.html">
+        TYPO3 API
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Blockquotes/Index.html">
+        Block quotes
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Buttons/Index.html">
+        Buttons
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Cards/Index.html">
+        Cards
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Codeblocks/Index.html">
+        Codeblocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Confval/Index.html">
+        confval
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Confval/ConfvalTrees.html">
+        Confvals with subtrees
+    </a></li><li class="" role="menuitem">
+    <a href="../Confval/X.html">
+        Confvals with subtrees
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../ConsoleCommands/Index.html">
+        Console commands
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAll.html">
+        All commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListAllExclude.html">
+        All commands, exclude namespaces and commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListGlobal.html">
+        Global commands
+    </a></li><li class="" role="menuitem">
+    <a href="../ConsoleCommands/ListNameSpaceCache.html">
+        Commands in namespace cache
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Directives/Index.html">
+        Directives
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Directives/directoryTree.html">
+        Directory tree
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/plantuml.html">
+        Plantuml basic examples
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/versionadded.html">
+        versionadded &amp; friends
+    </a></li><li class="" role="menuitem">
+    <a href="../Directives/youtube.html">
+        Youtube directive
+    </a></li></ul></li>    <li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        ExtLinks and Link styles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../FieldLists/Index.html">
+        Field lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Glossary/Index.html">
+        Glossary
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ImagesAndFigures/Index.html">
+        Images and figures
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Inline-code-and-textroles/Index.html">
+        Inline code and text roles
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lineblocks/Index.html">
+        Line blocks
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Lists/Index.html">
+        Lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Nested-pages/Index.html">
+        Nested pages
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-2"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-3"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-4"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/index.html">
+        Page title
+    </a>        <ul class="menu-level-5"><li class="" role="menuitem">
+    <a href="../Nested-pages/1/1/1/1/1/index.html">
+        Page title
+    </a></li></ul></li></ul></li></ul></li></ul></li></ul></li>    <li class="" role="menuitem">
+    <a href="../PhpDomain/Index.html">
+        Phpdomain
+    </a></li>    <li class="" role="menuitem">
+    <a href="../PhpInline/Index.html">
+        PHP Inline
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Redirects/Index.html">
+        Redirects
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Sitemap/Index.html">
+        Sitemap
+    </a></li>    <li class="" role="menuitem">
+    <a href="../SiteSettings/Index.html">
+        Site settings
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../SiteSettings/SiteSettingsWithLabels/Index.html">
+        Site settings with labels
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../SpecialCharacters/Index.html">
+        Special characters
+    </a></li>    <li class="" role="menuitem">
+    <a href="../StyledNumberedLists/Index.html">
+        Styled numbered lists
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Tables/Index.html">
+        Tables
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Tables/TableDirective.html">
+        Table directive
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Tabs/Index.html">
+        Tabs
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ThisAndThat/Index.html">
+        This and that
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Typesetting/Index.html">
+        Typesetting code Header 
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Uml/Index.html">
+        Very large UML diagram
+    </a></li>    <li class="" role="menuitem">
+    <a href="../ViewHelpers/Index.html">
+        ViewHelpers
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 theme rendering test</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">ExtLinks and Link styles</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="extlinks-and-link-styles" data-rst-anchor="references-and-links">
+            <a id="references-and-links"></a>
+            <h1>ExtLinks and Link styles<a class="headerlink" href="#extlinks-and-link-styles" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            <div class="contents-wrapper">
+        <p class="topic-title">This page</p>
+        <ul class="menu-level">
+    <li class="toc-item">
+    <a href="#extlinks">ExtLinks</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#various">Various</a>
+
+        <ul class="section-level-1">
+            <li class="toc-item">
+    <a href="#within-a-page">Within a page</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#other-within-page">Other, within page</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#external-links-outside-typo3-universe">External links, outside TYPO3 universe</a>
+
+
+</li>
+            <li class="toc-item">
+    <a href="#external-links-inside-typo3-universe">External links, inside TYPO3 universe</a>
+
+
+</li>
+                    </ul>
+</li>
+    </ul>
+
+    <button class="toggle-all-sections btn btn-sm btn-light">Collapse all Sections</button>
+</div>
+            <section class="section" id="extlinks">
+            <h2>ExtLinks<a class="headerlink" href="#extlinks" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>In <code class="code-inline file" translate="no" title="File path">conf.<wbr>py</code> we have:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs python">extlinks = {}
+extlinks[<span class="hljs-string">"forge"</span>] = (<span class="hljs-string">"https://forge.typo3.org/issues/%s"</span>, <span class="hljs-string">"Forge #"</span>)
+extlinks[<span class="hljs-string">"issue"</span>] = (<span class="hljs-string">"https://forge.typo3.org/issues/%s"</span>, <span class="hljs-string">"Issue #"</span>)
+extlinks[<span class="hljs-string">"review"</span>] = (<span class="hljs-string">"https://review.typo3.org/%s"</span>, <span class="hljs-string">"Review #"</span>)</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Defined in <code class="code-inline file" translate="no" title="File path">Settings.<wbr>cfg</code>:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs ini"><span class="hljs-section">[extlinks]</span>
+
+<span class="hljs-attr">example1</span>    = https://example.org/%s                    | example<span class="hljs-comment">#</span>
+<span class="hljs-attr">example2</span>    = https://example.org/%s                    | example↗
+<span class="hljs-attr">example3</span>    = https://example.org/%s                    | example:
+<span class="hljs-attr">forge</span>       = https://forge.typo3.org/issues/%s         | forge<span class="hljs-comment">#</span>
+<span class="hljs-attr">issue</span>       = https://forge.typo3.org/issues/%s<span class="hljs-string">"        | forge:
+packagist   = https://packagist.org/packages/%s         |
+review      = https://review.typo3.org/%s               | review:
+t3ext       = https://extensions.typo3.org/extension/%s | EXT:
+theme-issue = https://github.com/TYPO3-Documentation/sphinx_typo3_theme/issues/%s | theme#</span></code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Source:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs rst">===== ================================= ================================== =========================
+Line  Notation                          Alt-notation                       Result
+===== ================================= ================================== =========================
+1     ``:example1:`dummy```             ```dummy`:example1:``              <span class="hljs-name">:example1:`dummy`</span>
+2     ``:example2:`dummy```             ```dummy`:example2:``              <span class="hljs-name">:example2:`dummy`</span>
+3     ``:example3:`dummy```             ```dummy`:example3:``              <span class="hljs-name">:example3:`dummy`</span>
+4     ``:forge:`345```                  ```345`:forge:``                   <span class="hljs-name">:forge:`345`</span>
+5     ``:issue:`12345```                ```12345`:issue:``                 <span class="hljs-name">:issue:`12345`</span>
+6     ``:packagist:`georgringer/news``` ```georgringer/news`:packagist:``  <span class="hljs-name">:packagist:`georgringer/news`</span>
+7     ``:review:`567```                 ```567`:review:``                  <span class="hljs-name">:review:`567`</span>
+8     ``:t3ext:`news```                 ```news`:t3ext:``                  <span class="hljs-name">:t3ext:`news`</span>
+9     ``:theme-issue:`21```             ```21`:theme-issue:``              :theme-issue:`21`
+===== ================================= ================================== =========================
+
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Rendering:</p>
+
+            <blockquote><div class="table-responsive">
+    <table class="table table-bordered align-default">
+                            <thead>
+            <tr>
+                            <th>Line</th>
+                            <th>Notation</th>
+                            <th>Alt-notation</th>
+                            <th>Result</th>
+                    </tr>
+        </thead>
+        <tbody>
+    <tr>
+            <td>1</td>            <td><code>:example1:`dummy`</code></td>            <td><code>`dummy`:example1:</code></td>            <td><code class="code-inline">dummy</code></td>    </tr>    <tr>
+            <td>2</td>            <td><code>:example2:`dummy`</code></td>            <td><code>`dummy`:example2:</code></td>            <td><code class="code-inline">dummy</code></td>    </tr>    <tr>
+            <td>3</td>            <td><code>:example3:`dummy`</code></td>            <td><code>`dummy`:example3:</code></td>            <td><code class="code-inline">dummy</code></td>    </tr>    <tr>
+            <td>4</td>            <td><code>:forge:`345`</code></td>            <td><code>`345`:forge:</code></td>            <td><code class="code-inline">345</code></td>    </tr>    <tr>
+            <td>5</td>            <td><code>:issue:`12345`</code></td>            <td><code>`12345`:issue:</code></td>            <td><a href="https://forge.typo3.org/issues/12345">forge#12345</a></td>    </tr>    <tr>
+            <td>6</td>            <td><code>:packagist:`georgringer/news`</code></td>            <td><code>`georgringer/news`:packagist:</code></td>            <td><code class="code-inline">georgringer/<wbr>news</code></td>    </tr>    <tr>
+            <td>7</td>            <td><code>:review:`567`</code></td>            <td><code>`567`:review:</code></td>            <td><code class="code-inline">567</code></td>    </tr>    <tr>
+            <td>8</td>            <td><code>:t3ext:`news`</code></td>            <td><code>`news`:t3ext:</code></td>            <td><a href="https://extensions.typo3.org/extension/news">EXT:news</a></td>    </tr>    <tr>
+            <td>9</td>            <td><code>:theme-issue:`21`</code></td>            <td><code>`21`:theme-issue:</code></td>            <td><code class="code-inline">21</code></td>    </tr></tbody>    </table>
+</div></blockquote>
+    </section>
+            <section class="section" id="various">
+            <h2>Various<a class="headerlink" href="#various" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <section class="section" id="within-a-page">
+            <h3>Within a page<a class="headerlink" href="#within-a-page" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Source:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs rst">Defining a _`target`.
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Rendering:</p>
+
+            <blockquote>
+    <p>Defining a <a href="../ThisAndThat/Index.html#target">target</a>.</p>
+</blockquote>
+            
+    <p>Source:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs rst">Linking to that <span class="hljs-name">`target`_</span>.
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Rendering:</p>
+
+            <blockquote>
+    <p>Linking to that <a href="../ThisAndThat/Index.html#target">target</a>.</p>
+</blockquote>
+    </section>
+            <section class="section" id="other-within-page">
+            <h3>Other, within page<a class="headerlink" href="#other-within-page" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Source:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs rst">Let's link to <span class="hljs-name">`various`_</span>.
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Result:</p>
+
+            <blockquote>
+    <p>Let&#039;s link to <a href="#various">various</a>.</p>
+</blockquote>
+    </section>
+            <section class="section" id="external-links-outside-typo3-universe">
+            <h3>External links, outside TYPO3 universe<a class="headerlink" href="#external-links-outside-typo3-universe" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>The domain names <a href="https://example.com">https://example.com</a>, <a href="https://example.net">https://example.net</a>, <a href="https://example.org">https://example.org</a>,
+and <a href="https://example.edu">https://example.edu</a> are
+second-level domain names in the Domain Name System of the Internet. They are
+reserved by the Internet Assigned Numbers Authority (IANA) at the direction of
+the Internet Engineering Task Force (IETF) as special-use domain names for
+documentation purposes.</p>
+
+            
+    <p>Expected:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"reference external"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://example.com"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"nofollow noopener"</span>&gt;</span>https://example.com<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"reference external"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://example.net"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"nofollow noopener"</span>&gt;</span>https://example.net<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"reference external"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://example.org"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"nofollow noopener"</span>&gt;</span>https://example.org<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"reference external"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://example.edu"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"nofollow noopener"</span>&gt;</span>https://example.edu<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+            <section class="section" id="external-links-inside-typo3-universe">
+            <h3>External links, inside TYPO3 universe<a class="headerlink" href="#external-links-inside-typo3-universe" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+
+<ul>
+    <li><a href="https://typo3.org/">https://typo3.org/</a></li>
+    <li><a href="https://typo3.com/">https://typo3.com/</a></li>
+    <li><a href="https://docs.typo3.org/">https://docs.typo3.org/</a></li>
+</ul>
+
+            
+    <p>Expected:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"reference external"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://typo3.org/"</span>&gt;</span>https://typo3.org/<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"reference external"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://typo3.com/"</span>&gt;</span>https://typo3.com/<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"reference external"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://docs.typo3.org/"</span>&gt;</span>https://docs.typo3.org/<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="../Directives/youtube.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="../FieldLists/Index.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="ExtLinksAndLinkStyles/Index">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="ExtLinksAndLinkStyles/Index"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:56</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>

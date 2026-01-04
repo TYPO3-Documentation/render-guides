@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Наладка TYPO3
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:58:10+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:58:10+00:00" name="dc.modified">
+<meta content="2026-01-03T21:58:10+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="DeployTYPO3.html" rel="prev" title="Развертывание системы TYPO3"/>
+            <link href="ReleaseIntegrity.html" rel="next" title="Целостность выпуска TYPO3"/>
+            <link href="../Index.html" rel="top" title="TYPO3 - Ознакомительное пособие"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 - Ознакомительное пособие</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/Installation/TuneTYPO3.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 - Ознакомительное пособие</p>
+            <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Concepts/Index.html">
+        Концепции TYPO3
+    </a></li>    <li class="" role="menuitem">
+    <a href="../SystemRequirements/Index.html">
+        Системные требования
+    </a></li>    <li class=" active" role="menuitem">
+    <a href="Index.html">
+        Установка
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="Install.html">
+        Установка TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="DeployTYPO3.html">
+        Развертывание системы TYPO3
+    </a></li><li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        Наладка TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="ReleaseIntegrity.html">
+        Целостность выпуска TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="TutorialDdev.html">
+        Установка TYPO3 с помощью DDEV
+    </a></li><li class="" role="menuitem">
+    <a href="LegacyInstallation.html">
+        Традиционная установка
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Setup/Index.html">
+        Настройка
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Setup/SiteRecords.html">
+        Создание Записи сайта / Site Record
+    </a></li><li class="" role="menuitem">
+    <a href="../Setup/BackendUsers.html">
+        Добавление внутренних пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../Setup/BackendLanguages.html">
+        Изменение языка внутреннего интерфейса
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Troubleshooting/Index.html">
+        Поиск и устранение неисправностей
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Troubleshooting/TYPO3.html">
+        TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/SystemModules.html">
+        Системные модули
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/PHP.html">
+        PHP
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/WebServer.html">
+        Веб сервер
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/Database.html">
+        База данных
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Extensions/Index.html">
+        Работа с расширениями
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/main/en-us/Extensions/Management.html#installing-local-extensions">
+        Установка локальных расширений
+    </a></li><li class="" role="menuitem">
+    <a href="../Extensions/Management.html">
+        Управление расширениями
+    </a></li><li class="" role="menuitem">
+    <a href="../Extensions/LegacyManagement.html">
+        Управление расширениями - традиционное руководство
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../UserManagement/Index.html">
+        Управление пользователями внутреннего интерфейса
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../UserManagement/BackendPrivileges/Index.html">
+        Привилегии внутреннего интерфейса
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/BackendUsers/Index.html">
+        Внутренние пользователи
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/Groups/Index.html">
+        Группы
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/GroupPermissions/Index.html">
+        Настройка прав доступа пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/PagePermissions/Index.html">
+        Права доступа к странице
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/UserSetup/Index.html">
+        Настройка пользователя
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../IntroductionPackage/Index.html">
+        Ознакомительный пакет Introduction Package
+    </a></li>    <li class="" role="menuitem">
+    <a href="../NextSteps/Index.html">
+        Дальнейшие шаги и дополнительная литература
+    </a></li>    </ul>    <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Sitemap.html">
+        Sitemap
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 - Ознакомительное пособие</a></li>
+        <li class="breadcrumb-item"><a href="Index.html">Установка</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Наладка TYPO3</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="typo3" data-rst-anchor="tunetypo3">
+            <a id="tunetypo3"></a>
+            <h1>Наладка TYPO3<a class="headerlink" href="#typo3" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            
+    <p>В этой главе представлена информация о настройке и оптимизации инфраструктуры, на которой работает TYPO3.</p>
+
+            <section class="section" id="opcache">
+            <h2>OPcache<a class="headerlink" href="#opcache" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Рекомендуется включить OPcache на веб-сервере, на котором работает TYPO3. Настройки OPcache по умолчанию обеспечивают значительный прирост производительности, однако есть некоторые коррективы, которые помогут еще больше повысить стабильность и производительность. Кроме того, включение некоторых функций OPcache может привести к снижению производительности.</p>
+
+            <section class="section" id="opcache">
+            <h3>Включение OPcache<a class="headerlink" href="#opcache" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+                <div class="code-block-caption">
+        <span class="caption-text">php.ini</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs ini"><span class="hljs-attr">opcache.enable</span>=<span class="hljs-number">1</span>
+<span class="hljs-attr">opcache.revalidate_freq</span>=<span class="hljs-number">30</span>
+<span class="hljs-attr">opcache.revalidate_path</span>=<span class="hljs-number">0</span></code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+            <section class="section" id="opcache">
+            <h3>Доработка OPcache<a class="headerlink" href="#opcache" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Ниже приведен список функций OPcache с информацией о том, как они могут влиять на производительность TYPO3.</p>
+
+            <section data-search-title="opcache.save_comments"
+         data-search-id="confval-opcache-save-comments"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-opcache-save-comments"
+>
+    <h3 class="sr-only">opcache.save_comments</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">opcache.<wbr>save_<wbr>comments</span></code>
+                                    <a class="headerlink" href="#confval-opcache-save-comments"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-opcache-save-comments"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>        </dt>
+        <dd>
+                        <div class="confval-description">
+                <dl class="field-list simple ">
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+            <dt class="field-odd">Recommended</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+    </dl>
+    <p>Установка значения 0 может повысить производительность, но некоторые части TYPO3 (включая Extbase) для правильной работы полагаются на информацию, хранящуюся в комментариях phpDoc.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            <section data-search-title="opcache.use_cwd"
+         data-search-id="confval-opcache-use-cwd"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-opcache-use-cwd"
+>
+    <h3 class="sr-only">opcache.use_cwd</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">opcache.<wbr>use_<wbr>cwd</span></code>
+                                    <a class="headerlink" href="#confval-opcache-use-cwd"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-opcache-use-cwd"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>        </dt>
+        <dd>
+                        <div class="confval-description">
+                <dl class="field-list simple ">
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+            <dt class="field-odd">Recommended</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+    </dl>
+    <p>Установка значения 0 может вызвать проблемы в некоторых приложениях, поскольку файлы с одинаковыми названиями могут быть смешаны из-за того, что полный путь к файлу не сохраняется в качестве ключа. TYPO3 работает с абсолютными путями, поэтому это не приведет к улучшению производительности.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            <section data-search-title="opcache.validate_timestamps"
+         data-search-id="confval-opcache-validate-timestamps"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-opcache-validate-timestamps"
+>
+    <h3 class="sr-only">opcache.validate_timestamps</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">opcache.<wbr>validate_<wbr>timestamps</span></code>
+                                    <a class="headerlink" href="#confval-opcache-validate-timestamps"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-opcache-validate-timestamps"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>        </dt>
+        <dd>
+                        <div class="confval-description">
+                <dl class="field-list simple ">
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+            <dt class="field-odd">Recommended</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+    </dl>
+    <p>Хотя установка этого значения в 0 может ускорить работу, вы <strong>должны</strong> убедиться, что opcache очищается при каждом изменении PHP-скриптов, иначе они не будут обновляться в OPcache. Достичь этого можно с помощью правильного конвейера развертывания. Кроме того, некоторые файлы могут быть добавлены в черный список, подробнее об этом см. в разделе <code class="code-inline" translate="no">opcache.<wbr>blacklist_<wbr>filename</code>.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            <section data-search-title="opcache.revalidate_freq"
+         data-search-id="confval-opcache-revalidate-freq"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-opcache-revalidate-freq"
+>
+    <h3 class="sr-only">opcache.revalidate_freq</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">opcache.<wbr>revalidate_<wbr>freq</span></code>
+                                    <a class="headerlink" href="#confval-opcache-revalidate-freq"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-opcache-revalidate-freq"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>        </dt>
+        <dd>
+                        <div class="confval-description">
+                <dl class="field-list simple ">
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>2</p>
+        </dd>
+            <dt class="field-odd">Recommended</dt>
+
+        <dd class="field-odd">
+            
+    <p>30</p>
+        </dd>
+    </dl>
+    <p>Установка этого значения в большую величину может повысить производительность, но при этом возникает та же проблема, что и при установке <code class="code-inline" translate="no">validate_<wbr>timestamps</code> в 0.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            <section data-search-title="opcache.revalidate_path"
+         data-search-id="confval-opcache-revalidate-path"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-opcache-revalidate-path"
+>
+    <h3 class="sr-only">opcache.revalidate_path</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">opcache.<wbr>revalidate_<wbr>path</span></code>
+                                    <a class="headerlink" href="#confval-opcache-revalidate-path"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-opcache-revalidate-path"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>        </dt>
+        <dd>
+                        <div class="confval-description">
+                <dl class="field-list simple ">
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+            <dt class="field-odd">Recommended</dt>
+
+        <dd class="field-odd">
+            
+        </dd>
+    </dl>
+    <p>Установка этого значения в 0 безопасна для TYPO3. Однако это может стать проблемой, если для загрузки скриптов используются значения относительных путей, а также если один и тот же файл несколько раз встречается в пути включения.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            <section data-search-title="opcache.max_accelerated_files"
+         data-search-id="confval-opcache-max-accelerated-files"
+         data-search-facet="Option"
+         class="confval-section"
+         id="confval-opcache-max-accelerated-files"
+>
+    <h3 class="sr-only">opcache.max_accelerated_files</h3>
+    <dl class="confval">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
+                <code class="sig-name descname"><span
+                        class="pre">opcache.<wbr>max_<wbr>accelerated_<wbr>files</span></code>
+                                    <a class="headerlink" href="#confval-opcache-max-accelerated-files"
+                       data-bs-toggle="modal"
+                       data-bs-target="#linkReferenceModal"
+                       data-id="confval-opcache-max-accelerated-files"
+                       title="Reference this configuration value"><i
+                            class="fa-solid fa-paragraph"></i></a>
+                </div>
+            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
+                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>        </dt>
+        <dd>
+                        <div class="confval-description">
+                <dl class="field-list simple ">
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>10000</p>
+        </dd>
+            <dt class="field-odd">Recommended</dt>
+
+        <dd class="field-odd">
+            
+    <p>10000</p>
+        </dd>
+    </dl>
+    <p>Установки по умолчанию должно быть достаточно для TYPO3, но это зависит от количества дополнительных скриптов, которые должны быть загружены системой.</p>
+
+            </div>
+        </dd>
+    </dl>
+</section>
+            
+    <p>Дополнительную информацию об OPcache можно найти в <a href="https://www.php.net/manual/en/opcache.configuration.php">Официальной документации по PHP</a>.</p>
+
+    </section>
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="DeployTYPO3.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="ReleaseIntegrity.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Installation/TuneTYPO3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="Installation/TuneTYPO3"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:58</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>

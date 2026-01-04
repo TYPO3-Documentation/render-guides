@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Системные требования
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2026-01-03T21:58:10+00:00" name="docsearch:modified">
+<meta content="2026-01-03T21:58:10+00:00" name="dc.modified">
+<meta content="2026-01-03T21:58:10+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="../Concepts/Index.html" rel="prev" title="Концепции TYPO3"/>
+            <link href="../Installation/Index.html" rel="next" title="Установка"/>
+            <link href="../Index.html" rel="top" title="TYPO3 - Ознакомительное пособие"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">TYPO3 - Ознакомительное пособие</a>
+            </div>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
+                    <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
+                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                            <div id="global-search-root"></div>
+                        </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/SystemRequirements/Index.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 - Ознакомительное пособие</p>
+            <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Concepts/Index.html">
+        Концепции TYPO3
+    </a></li>    <li class=" current active" role="menuitem">
+    <a href="#" aria-current="page">
+        Системные требования
+    </a></li>    <li class="" role="menuitem">
+    <a href="../Installation/Index.html">
+        Установка
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Installation/Install.html">
+        Установка TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../Installation/DeployTYPO3.html">
+        Развертывание системы TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../Installation/TuneTYPO3.html">
+        Наладка TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../Installation/ReleaseIntegrity.html">
+        Целостность выпуска TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../Installation/TutorialDdev.html">
+        Установка TYPO3 с помощью DDEV
+    </a></li><li class="" role="menuitem">
+    <a href="../Installation/LegacyInstallation.html">
+        Традиционная установка
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Setup/Index.html">
+        Настройка
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Setup/SiteRecords.html">
+        Создание Записи сайта / Site Record
+    </a></li><li class="" role="menuitem">
+    <a href="../Setup/BackendUsers.html">
+        Добавление внутренних пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../Setup/BackendLanguages.html">
+        Изменение языка внутреннего интерфейса
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Troubleshooting/Index.html">
+        Поиск и устранение неисправностей
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../Troubleshooting/TYPO3.html">
+        TYPO3
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/SystemModules.html">
+        Системные модули
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/PHP.html">
+        PHP
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/WebServer.html">
+        Веб сервер
+    </a></li><li class="" role="menuitem">
+    <a href="../Troubleshooting/Database.html">
+        База данных
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../Extensions/Index.html">
+        Работа с расширениями
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/main/en-us/Extensions/Management.html#installing-local-extensions">
+        Установка локальных расширений
+    </a></li><li class="" role="menuitem">
+    <a href="../Extensions/Management.html">
+        Управление расширениями
+    </a></li><li class="" role="menuitem">
+    <a href="../Extensions/LegacyManagement.html">
+        Управление расширениями - традиционное руководство
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../UserManagement/Index.html">
+        Управление пользователями внутреннего интерфейса
+    </a>        <ul class="menu-level-1"><li class="" role="menuitem">
+    <a href="../UserManagement/BackendPrivileges/Index.html">
+        Привилегии внутреннего интерфейса
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/BackendUsers/Index.html">
+        Внутренние пользователи
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/Groups/Index.html">
+        Группы
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/GroupPermissions/Index.html">
+        Настройка прав доступа пользователей
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/PagePermissions/Index.html">
+        Права доступа к странице
+    </a></li><li class="" role="menuitem">
+    <a href="../UserManagement/UserSetup/Index.html">
+        Настройка пользователя
+    </a></li></ul></li>    <li class="" role="menuitem">
+    <a href="../IntroductionPackage/Index.html">
+        Ознакомительный пакет Introduction Package
+    </a></li>    <li class="" role="menuitem">
+    <a href="../NextSteps/Index.html">
+        Дальнейшие шаги и дополнительная литература
+    </a></li>    </ul>    <ul class="menu-level-1" role="menubar">
+    <li class="" role="menuitem">
+    <a href="../Sitemap.html">
+        Sitemap
+    </a></li>    </ul>
+    </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../Index.html">TYPO3 - Ознакомительное пособие</a></li>
+                    <li aria-current="page"  class="breadcrumb-item  active">Системные требования</li>
+        </ol>
+        <div class="breadcrumb-additions"></div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                
+<section class="section" id="" data-rst-anchor="system-requirements">
+            <a id="system-requirements"></a>
+            <h1>Системные требования<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            
+    <p>Для работы TYPO3 требуется веб-сервер под управлением PHP и доступ к базе данных.</p>
+
+            
+    <p>Для локальной разработки понадобится Composer.</p>
+
+            
+    <p>Если нужно, чтобы TYPO3 автоматически выполнял обработку изображений, например, масштабирование или обрезку, необходимо установить на сервере <a href="http://www.graphicsmagick.org">GraphicsMagick (версия 1.3 или выше)</a> или <a href="https://imagemagick.org">ImageMagick (версия 6 или выше)</a> (GraphicsMagick предпочтительнее).</p>
+
+            
+    <p>Актуальную информацию о системных требованиях TYPO3 можно получить на сайте <a href="https://get.typo3.org/version/#system-requirements">get.typo3.org</a>.</p>
+
+            <section class="section" id="php" data-rst-anchor="systemrequirements-php">
+            <a id="systemrequirements_php"></a>
+            <h2>PHP<a class="headerlink" href="#php" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <section class="section" id="">
+            <h3>Настройка<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>В настройках необходимо задать следующие параметры <code class="code-inline file" translate="no" title="File path">php.<wbr>ini</code></p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">php.ini</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs ini"><span class="hljs-comment">; memory_limit &gt;= 256MB</span>
+<span class="hljs-attr">memory_limit</span>=<span class="hljs-number">256</span>M
+
+<span class="hljs-comment">; max_execution_time &gt;= 240 seconds</span>
+<span class="hljs-attr">max_execution_time</span>=<span class="hljs-number">240</span>
+
+<span class="hljs-comment">; max_input_vars &gt;= 1500</span>
+<span class="hljs-attr">max_input_vars</span>=<span class="hljs-number">1500</span></code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Следующие настройки определяют максимальный размер загружаемого файла (и при необходимости должны быть изменены):</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">php.ini</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs ini"><span class="hljs-comment">; To allow uploads of a maximum of 10 MB</span>
+<span class="hljs-attr">post_max_size</span> = <span class="hljs-number">10</span>M
+<span class="hljs-attr">upload_max_filesize</span> = <span class="hljs-number">10</span>M</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+            <section class="section" id="">
+            <h3>Необходимые расширения<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+
+<ul>
+    <li><strong>pdo</strong></li>
+    <li><strong>session</strong></li>
+    <li><strong>xml</strong></li>
+    <li><strong>filter</strong></li>
+    <li><strong>SPL</strong></li>
+    <li><strong>standard</strong></li>
+    <li><strong>tokenizer</strong></li>
+    <li><strong>mbstring</strong></li>
+    <li><strong>intl</strong></li>
+</ul>
+
+            
+    <p>В зависимости от варианта использования могут потребоваться следующие расширения:</p>
+
+            
+
+<ul>
+    <li><strong>fileinfo</strong> (используется для определения расширений загружаемых файлов);</li>
+    <li><strong>gd</strong> (GDlib/Freetype необходим для создания изображений с текстом (GIFBUILDER), а также используется для масштабирования изображений);</li>
+    <li><strong>zip</strong> (TYPO3 использует zip для извлечения языковых архивов, а также для извлечения и архивирования расширений);</li>
+    <li><strong>zlib</strong> (TYPO3 использует zlib для сжатия на выводе);</li>
+    <li><strong>openssl</strong> (OpenSSL необходим для отправки SMTP-сообщений через зашифрованный канал конечной точки).</li>
+</ul>
+
+    </section>
+            <section class="section" id="">
+            <h3>Необходимые расширения для баз данных<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            <div class="tabs">
+    <ul class="nav nav-tabs" id="tab-tabs-7" role="tablist">
+        <li class="nav-item" role="presentation">
+    <button class="nav-link active"
+            id="mysql--mariadb-tab-tabs-7" data-bs-toggle="tab" data-bs-target="#mysql--mariadb-tabs-7"
+            type="button" role="tab" aria-controls="mysql--mariadb-tabs-7"
+            aria-selected="true">
+        MySQL / MariaDB
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="postgres-tab-tabs-7" data-bs-toggle="tab" data-bs-target="#postgres-tabs-7"
+            type="button" role="tab" aria-controls="postgres-tabs-7"
+            aria-selected="false">
+        Postgres
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="sqlite-tab-tabs-7" data-bs-toggle="tab" data-bs-target="#sqlite-tabs-7"
+            type="button" role="tab" aria-controls="sqlite-tabs-7"
+            aria-selected="false">
+        SQLite
+    </button>
+</li>
+    </ul>
+    <div class="tab-content" id="tab-content-tabs-7">
+        <div class="tab-pane fade show active" id="mysql--mariadb-tabs-7" role="tabpanel" aria-labelledby="mysql--mariadb-tab-tabs-7">
+    
+
+<ul>
+    <li>pdo_mysql (рекомендуется)</li>
+    <li>ИЛИ mysqli</li>
+</ul>
+
+    <p>Для работы экземпляров MySQL и MariaDB требуется движок InnoDB.</p>
+
+</div>
+<div class="tab-pane fade" id="postgres-tabs-7" role="tabpanel" aria-labelledby="postgres-tab-tabs-7">
+    
+
+<ul>
+    <li>pdo_pgsql</li>
+    <li>postgresql</li>
+</ul>
+
+</div>
+<div class="tab-pane fade" id="sqlite-tabs-7" role="tabpanel" aria-labelledby="sqlite-tab-tabs-7">
+    
+
+<ul>
+    <li>sqlite</li>
+</ul>
+
+</div>
+    </div>
+</div>
+    </section>
+    </section>
+            <section class="section" id="">
+            <h2>Веб сервер<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <div class="tabs">
+    <ul class="nav nav-tabs" id="tab-tabs-8" role="tablist">
+        <li class="nav-item" role="presentation">
+    <button class="nav-link active"
+            id="apache-tab-tabs-8" data-bs-toggle="tab" data-bs-target="#apache-tabs-8"
+            type="button" role="tab" aria-controls="apache-tabs-8"
+            aria-selected="true">
+        Apache
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="nginx-tab-tabs-8" data-bs-toggle="tab" data-bs-target="#nginx-tabs-8"
+            type="button" role="tab" aria-controls="nginx-tabs-8"
+            aria-selected="false">
+        NGINX
+    </button>
+</li>
+<li class="nav-item" role="presentation">
+    <button class="nav-link"
+            id="iis-tab-tabs-8" data-bs-toggle="tab" data-bs-target="#iis-tabs-8"
+            type="button" role="tab" aria-controls="iis-tabs-8"
+            aria-selected="false">
+        IIS
+    </button>
+</li>
+    </ul>
+    <div class="tab-content" id="tab-content-tabs-8">
+        <div class="tab-pane fade show active" id="apache-tabs-8" role="tabpanel" aria-labelledby="apache-tab-tabs-8">
+    <a id="apache"></a>
+    <p>При первоначальной установке в корневой каталог TYPO3 копируется файл <code class="code-inline file" translate="no" title="File path">.htaccess</code> с настройками по умолчанию.</p>
+
+    <p><strong>Запись Virtual Host</strong></p>
+
+
+<ul>
+    <li><a href="https://httpd.apache.org/docs/current/mod/core.html#allowoverride">AllowOverride</a> необходимо включить &quot;Indexes&quot; и &quot;FileInfo&quot; в запись виртуального хоста Virtual Host.</li>
+</ul>
+
+    <p><strong>Модули Apache</strong></p>
+
+    <p>Необходимы следующие модули Apache. Список составлен на основе того, что используется в стандартном TYPO3 <a href="https://github.com/TYPO3/typo3/blob/main/typo3/sysext/install/Resources/Private/FolderStructureTemplateFiles/root-htaccess">.htaccess</a>. В некоторых случаях это не является &quot;жестким&quot; требованием, но настоятельно рекомендуется по соображениям безопасности или производительности, однако желаемый результат можно получить и другим способом, используя другой модуль.</p>
+<dl>
+                        <dt>mod_alias:</dt>
+        
+        <dd>Блокировка доступа к каталогам vcs.</dd>
+                                <dt>mod_authz_core:</dt>
+        
+        <dd>Блокировка доступа к определенным файлам и каталогам.</dd>
+                                <dt>mod_deflate:</dt>
+        
+        <dd>Используется для сжатия и повышения производительности.</dd>
+                                <dt>mod_expires:</dt>
+        
+        <dd>Добавляет HTTP-заголовки для кэширования в браузере и повышения производительности.</dd>
+                                <dt>mod_filter:</dt>
+        
+        <dd>Используется с mod_deflate.</dd>
+                                <dt>mod_headers:</dt>
+        
+        <dd>Используется в комбинации с <code class="code-inline" translate="no">mod_<wbr>deflate</code>.</dd>
+                                <dt>mod_rewrite:</dt>
+        
+        <dd>Включение человекочитаемые урлы.</dd>
+                                <dt>mod_setenvif:</dt>
+        
+        <dd>Используется в комбинации с <code class="code-inline" translate="no">mod_<wbr>deflate</code>.</dd>
+            </dl>
+</div>
+<div class="tab-pane fade" id="nginx-tabs-8" role="tabpanel" aria-labelledby="nginx-tab-tabs-8">
+    <a id="nginx"></a>
+    <p>NGINX не поддерживает статические конфигурационные файлы, которые хранятся в корне проекта, как это делают Apache и IIS. Вместо этого NGINX требует, чтобы конфигурационный файл был создан в собственном каталоге конфигурации приложения.</p>
+
+    <p>Пример файла конфигурации NGINX:</p>
+    <div class="code-block-caption">
+        <span class="caption-text">/etc/nginx/conf.d/nginx.conf</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs nginx"><span class="hljs-comment"># Compressing resource files will save bandwidth and so improve loading speed especially for users</span>
+<span class="hljs-comment"># with slower internet connections. TYPO3 can compress the .js and .css files for you.</span>
+<span class="hljs-comment"># *) Set $GLOBALS['TYPO3_CONF_VARS']['BE']['compressionLevel'] = 9 for the Backend</span>
+<span class="hljs-comment"># *) Set $GLOBALS['TYPO3_CONF_VARS']['FE']['compressionLevel'] = 9 together with the TypoScript properties</span>
+<span class="hljs-comment">#    config.compressJs and config.compressCss for GZIP compression of Frontend JS and CSS files.</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ \.js\.gzip$</span> {
+    <span class="hljs-attribute">add_header</span> Content-Encoding gzip;
+    <span class="hljs-attribute">gzip</span> <span class="hljs-literal">off</span>;
+    <span class="hljs-section">types</span> { text/<span class="hljs-attribute">javascript</span> gzip; }
+}
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ \.css\.gzip$</span> {
+    <span class="hljs-attribute">add_header</span> Content-Encoding gzip;
+    <span class="hljs-attribute">gzip</span> <span class="hljs-literal">off</span>;
+    <span class="hljs-section">types</span> { text/<span class="hljs-attribute">css</span> gzip; }
+}
+
+<span class="hljs-comment"># TYPO3 - Rule for versioned static files, configured through:</span>
+<span class="hljs-comment"># - $GLOBALS['TYPO3_CONF_VARS']['BE']['versionNumberInFilename']</span>
+<span class="hljs-comment"># - $GLOBALS['TYPO3_CONF_VARS']['FE']['versionNumberInFilename']</span>
+<span class="hljs-attribute">if</span> (!-e <span class="hljs-variable">$request_filename</span>) {
+    <span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^/(.+)\.(\d+)\.(php|js|css|png|jpg|gif|gzip)$</span> /<span class="hljs-variable">$1</span>.<span class="hljs-variable">$3</span> <span class="hljs-literal">last</span>;
+}
+
+<span class="hljs-comment"># TYPO3 - Block access to composer files</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~* composer\.(?:json|lock)</span> {
+    <span class="hljs-attribute">deny</span> all;
+}
+
+<span class="hljs-comment"># TYPO3 - Block access to flexform files</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~* flexform[^.]*\.xml</span> {
+    <span class="hljs-attribute">deny</span> all;
+}
+
+<span class="hljs-comment"># TYPO3 - Block access to language files</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~* locallang[^.]*\.(?:xml|xlf)$</span> {
+    <span class="hljs-attribute">deny</span> all;
+}
+
+<span class="hljs-comment"># TYPO3 - Block access to static typoscript files</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~* ext_conf_template\.txt|ext_typoscript_constants\.txt|ext_typoscript_setup\.txt</span> {
+    <span class="hljs-attribute">deny</span> all;
+}
+
+<span class="hljs-comment"># TYPO3 - Block access to miscellaneous protected files</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~* /.*\.(?:bak|co?nf|cfg|ya?ml|ts|typoscript|tsconfig|dist|fla|in[ci]|log|sh|sql|sqlite)$</span> {
+    <span class="hljs-attribute">deny</span> all;
+}
+
+<span class="hljs-comment"># TYPO3 - Block access to recycler and temporary directories</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ _(?:recycler|temp)_/</span> {
+    <span class="hljs-attribute">deny</span> all;
+}
+
+<span class="hljs-comment"># TYPO3 - Block access to configuration files stored in fileadmin</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ fileadmin/(?:templates)/.*\.(?:txt|ts|typoscript)$</span> {
+    <span class="hljs-attribute">deny</span> all;
+}
+
+<span class="hljs-comment"># TYPO3 - Block access to libraries, source and temporary compiled data</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ ^(?:vendor|typo3_src|typo3temp/var)</span> {
+    <span class="hljs-attribute">deny</span> all;
+}
+
+<span class="hljs-comment"># TYPO3 - Block access to protected extension directories</span>
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ (?:typo3conf/ext|typo3/sysext|typo3/ext)/[^/]+/(?:Configuration|Resources/Private|Tests?|Documentation|docs?)/</span> {
+    <span class="hljs-attribute">deny</span> all;
+}
+
+<span class="hljs-attribute">location</span> / {
+    <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.php<span class="hljs-variable">$is_args</span><span class="hljs-variable">$args</span>;
+}
+
+<span class="hljs-attribute">location</span> = /typo3 {
+    <span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^</span> /typo3/;
+}
+
+<span class="hljs-attribute">location</span> /typo3/ {
+    <span class="hljs-attribute">absolute_redirect</span> <span class="hljs-literal">off</span>;
+    <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> /typo3/index.php<span class="hljs-variable">$is_args</span><span class="hljs-variable">$args</span>;
+}
+
+<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ [^/]\.php(/|$)</span> {
+    <span class="hljs-attribute">fastcgi_split_path_info</span><span class="hljs-regexp"> ^(.+?\.php)(/.*)$</span>;
+    <span class="hljs-attribute">if</span> (!-f <span class="hljs-variable">$document_root</span><span class="hljs-variable">$fastcgi_script_name</span>) {
+        <span class="hljs-attribute">return</span> <span class="hljs-number">404</span>;
+    }
+    <span class="hljs-attribute">fastcgi_buffer_size</span> <span class="hljs-number">32k</span>;
+    <span class="hljs-attribute">fastcgi_buffers</span> <span class="hljs-number">8</span> <span class="hljs-number">16k</span>;
+    <span class="hljs-attribute">fastcgi_connect_timeout</span> <span class="hljs-number">240s</span>;
+    <span class="hljs-attribute">fastcgi_read_timeout</span> <span class="hljs-number">240s</span>;
+    <span class="hljs-attribute">fastcgi_send_timeout</span> <span class="hljs-number">240s</span>;
+
+    <span class="hljs-comment"># this is the PHP-FPM upstream - see also: https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/#connecting-nginx-to-php-fpm</span>
+    <span class="hljs-attribute">fastcgi_pass</span>         php-fpm:<span class="hljs-number">9000</span>;
+    <span class="hljs-attribute">fastcgi_index</span>        index.php;
+    <span class="hljs-attribute">include</span>              fastcgi.conf;
+}</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+</div>
+<div class="tab-pane fade" id="iis-tabs-8" role="tabpanel" aria-labelledby="iis-tab-tabs-8">
+    <a id="iis"></a>
+
+<ul>
+    <li>При первоначальной установки TYPO3 в корневую папку установки копируется стандартный файл веб-конфигурации IIS.</li>
+    <li>Стандартный файл веб-конфигурации IIS с правилами перезаписи можно найти в <code class="code-inline file" translate="no" title="File path">EXT:<wbr>install/<wbr>Resources/<wbr>Private/<wbr>Folder<wbr>Structure<wbr>Template<wbr>Files/<wbr>root-<wbr>web-<wbr>config</code></li>
+    <li>Требуется <a href="https://www.iis.net/downloads/microsoft/url-rewrite">URL Rewrite дополнение</a>.</li>
+</ul>
+
+</div>
+    </div>
+</div>
+    </section>
+            <section class="section" id="">
+            <h2>База данных<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <section class="section" id="" data-rst-anchor="database">
+            <a id="database"></a>
+            <h3>Необходимые права доступа к базе данных<a class="headerlink" href="#" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h3>
+            
+    <p>Пользователю базы данных требуются следующие привилегии доступа к базе данных TYPO3:</p>
+
+            
+
+<ul>
+    <li>SELECT, INSERT, UPDATE, DELETE</li>
+    <li>CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES</li>
+</ul>
+
+            
+    <p>Рекомендуется также гарантировать следующие привелегии:</p>
+
+            
+
+<ul>
+    <li>CREATE VIEW, SHOW VIEW</li>
+    <li>EXECUTE, CREATE ROUTINE, ALTER ROUTINE</li>
+</ul>
+
+    </section>
+    </section>
+            <section class="section" id="composer">
+            <h2>Composer<a class="headerlink" href="#composer" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>Composer требуется только для <strong>локальных</strong> установок - см. <a href="https://getcomposer.org">https://getcomposer.org</a> для получения дополнительной информации. Рекомендуется всегда использовать последнюю доступную версию Composer. Для TYPO3 v12 LTS требуется версия Composer не ниже 2.1.0.</p>
+
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center"><li class="page-item">
+                            <a class="page-link" href="../Concepts/Index.html"
+                               title="Accesskey Alt(+Shift)+p">
+                                <i class="fa-solid fa-chevron-left"></i> Previous
+                            </a>
+                        </li>
+                    <li class="page-item">
+                            <a class="page-link" href="../Installation/Index.html"
+                               title="Accesskey Alt(+Shift)+n">
+                                Next <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+        </nav>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="SystemRequirements/Index">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="SystemRequirements/Index"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 03, 2026 21:58</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>
