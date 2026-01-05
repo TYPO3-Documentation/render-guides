@@ -15,6 +15,9 @@ use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\ExternalEntryNode;
 use Psr\Log\LoggerInterface;
 use SplPriorityQueue;
+use T3Docs\GuidesExtension\Compiler\Cache\IncrementalBuildCache;
+use T3Docs\GuidesExtension\Util\CpuDetector;
+use T3Docs\GuidesExtension\Util\ProcessManager;
 
 use function array_chunk;
 use function count;
@@ -23,14 +26,8 @@ use function file_put_contents;
 use function function_exists;
 use function iterator_to_array;
 use function pcntl_fork;
-use function pcntl_waitpid;
-use function pcntl_wexitstatus;
-use function pcntl_wifexited;
 use function serialize;
 use function sprintf;
-use function sys_get_temp_dir;
-use function tempnam;
-use function unlink;
 use function unserialize;
 
 /**
@@ -85,6 +82,7 @@ final class ParallelCompiler
         private readonly Compiler $sequentialCompiler,
         iterable $passes,
         NodeTransformerFactory $nodeTransformerFactory,
+        private readonly ?IncrementalBuildCache $incrementalCache = null,
         private readonly ?LoggerInterface $logger = null,
         ?int $workerCount = null,
     ) {
@@ -218,7 +216,7 @@ final class ParallelCompiler
                 continue;
             }
 
-            $tempFile = tempnam(sys_get_temp_dir(), 'compile_collect_' . $workerId . '_');
+            $tempFile = ProcessManager::createSecureTempFile('compile_collect_' . $workerId . '_');
             if ($tempFile === false) {
                 $this->logger?->error('Failed to create temp file, falling back to sequential');
                 return [$this->runSequentially($documents, $compilerContext), []];
@@ -230,7 +228,7 @@ final class ParallelCompiler
             if ($pid === -1) {
                 $this->logger?->error('pcntl_fork failed, falling back to sequential');
                 foreach ($tempFiles as $tf) {
-                    @unlink($tf);
+                    ProcessManager::cleanupTempFile($tf);
                 }
                 return [$this->runSequentially($documents, $compilerContext), []];
             }
@@ -244,18 +242,14 @@ final class ParallelCompiler
             $childPids[$workerId] = $pid;
         }
 
-        // Wait for children and collect results
+        // Wait for children with timeout and collect results
+        $waitResult = ProcessManager::waitForChildrenWithTimeout($childPids);
         $allDocuments = [];
         $allResults = [];
 
         foreach ($childPids as $workerId => $pid) {
-            $status = 0;
-            pcntl_waitpid($pid, $status);
-
-            // pcntl_waitpid always sets $status to an int
-            assert(is_int($status));
-
-            if (pcntl_wifexited($status) && pcntl_wexitstatus($status) === 0) {
+            // Only read results from successful workers
+            if (in_array($workerId, $waitResult['successes'], true)) {
                 $serialized = file_get_contents($tempFiles[$workerId]);
                 if ($serialized !== false && $serialized !== '') {
                     $data = unserialize($serialized);
@@ -274,7 +268,14 @@ final class ParallelCompiler
                 }
             }
 
-            @unlink($tempFiles[$workerId]);
+            ProcessManager::cleanupTempFile($tempFiles[$workerId]);
+        }
+
+        // Log any failures
+        if ($waitResult['failures'] !== []) {
+            foreach ($waitResult['failures'] as $workerId => $reason) {
+                $this->logger?->warning(sprintf('Collection worker %d failed: %s', $workerId, $reason));
+            }
         }
 
         // Preserve document order
@@ -468,7 +469,7 @@ final class ParallelCompiler
                 continue;
             }
 
-            $tempFile = tempnam(sys_get_temp_dir(), 'compile_resolve_' . $workerId . '_');
+            $tempFile = ProcessManager::createSecureTempFile('compile_resolve_' . $workerId . '_');
             if ($tempFile === false) {
                 return $this->runResolutionSequentially($documents, $compilerContext);
             }
@@ -478,7 +479,7 @@ final class ParallelCompiler
 
             if ($pid === -1) {
                 foreach ($tempFiles as $tf) {
-                    @unlink($tf);
+                    ProcessManager::cleanupTempFile($tf);
                 }
                 return $this->runResolutionSequentially($documents, $compilerContext);
             }
@@ -491,30 +492,63 @@ final class ParallelCompiler
             $childPids[$workerId] = $pid;
         }
 
-        // Collect results
+        // Wait for children with timeout and collect results
+        $waitResult = ProcessManager::waitForChildrenWithTimeout($childPids);
         $allDocuments = [];
+        $cacheStates = [];
+
         foreach ($childPids as $workerId => $pid) {
-            $status = 0;
-            pcntl_waitpid($pid, $status);
-
-            // pcntl_waitpid always sets $status to an int
-            assert(is_int($status));
-
-            if (pcntl_wifexited($status) && pcntl_wexitstatus($status) === 0) {
+            // Only read results from successful workers
+            if (in_array($workerId, $waitResult['successes'], true)) {
                 $serialized = file_get_contents($tempFiles[$workerId]);
                 if ($serialized !== false && $serialized !== '') {
-                    $batchResult = unserialize($serialized);
-                    if (is_array($batchResult)) {
-                        foreach ($batchResult as $doc) {
-                            if ($doc instanceof DocumentNode) {
-                                $allDocuments[$doc->getFilePath()] = $doc;
+                    $data = unserialize($serialized);
+                    if (is_array($data)) {
+                        // New format with cache state
+                        if (isset($data['documents']) && is_array($data['documents'])) {
+                            foreach ($data['documents'] as $doc) {
+                                if ($doc instanceof DocumentNode) {
+                                    $allDocuments[$doc->getFilePath()] = $doc;
+                                }
+                            }
+                            // Collect cache state for merging
+                            if (isset($data['cacheState']) && is_array($data['cacheState'])) {
+                                /** @var array{exports?: array<string, array<string, mixed>>, dependencies?: array<string, mixed>, outputPaths?: array<string, string>} $cacheState */
+                                $cacheState = $data['cacheState'];
+                                $cacheStates[] = $cacheState;
+                            }
+                        } else {
+                            // Legacy format (just documents array)
+                            foreach ($data as $doc) {
+                                if ($doc instanceof DocumentNode) {
+                                    $allDocuments[$doc->getFilePath()] = $doc;
+                                }
                             }
                         }
                     }
                 }
             }
 
-            @unlink($tempFiles[$workerId]);
+            ProcessManager::cleanupTempFile($tempFiles[$workerId]);
+        }
+
+        // Log any failures
+        if ($waitResult['failures'] !== []) {
+            foreach ($waitResult['failures'] as $workerId => $reason) {
+                $this->logger?->warning(sprintf('Resolution worker %d failed: %s', $workerId, $reason));
+            }
+        }
+
+        // Merge cache states from all children
+        if ($this->incrementalCache !== null && $cacheStates !== []) {
+            foreach ($cacheStates as $state) {
+                $this->incrementalCache->mergeState($state);
+            }
+            $this->logger?->debug(sprintf(
+                'Merged cache states from %d workers, now have %d exports',
+                count($cacheStates),
+                count($this->incrementalCache->getAllExports())
+            ));
         }
 
         // Preserve order
@@ -541,7 +575,13 @@ final class ParallelCompiler
             $batch = $pass->run($batch, $compilerContext);
         }
 
-        file_put_contents($tempFile, serialize($batch));
+        // Serialize documents and cache state (if cache is available)
+        $data = [
+            'documents' => $batch,
+            'cacheState' => $this->incrementalCache?->extractState() ?? [],
+        ];
+
+        file_put_contents($tempFile, serialize($data));
     }
 
     /**
@@ -698,25 +738,7 @@ final class ParallelCompiler
 
     private function detectCpuCount(): int
     {
-        if (is_file('/proc/cpuinfo')) {
-            $cpuinfo = file_get_contents('/proc/cpuinfo');
-            if ($cpuinfo !== false) {
-                $count = substr_count($cpuinfo, 'processor');
-                if ($count > 0) {
-                    return min($count, 8);
-                }
-            }
-        }
-
-        $nproc = @shell_exec('nproc 2>/dev/null');
-        if ($nproc !== null && $nproc !== false) {
-            $count = (int) trim($nproc);
-            if ($count > 0) {
-                return min($count, 8);
-            }
-        }
-
-        return 4;
+        return CpuDetector::detectCores();
     }
 
     public function setParallelEnabled(bool $enabled): void
