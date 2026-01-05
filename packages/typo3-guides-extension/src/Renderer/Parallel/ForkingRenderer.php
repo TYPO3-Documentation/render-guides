@@ -11,6 +11,7 @@ use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\TypeRenderer;
 use Psr\Log\LoggerInterface;
+use T3Docs\GuidesExtension\Settings\ParallelSettings;
 
 /**
  * Parallel renderer using pcntl_fork for CPU-bound Twig rendering.
@@ -46,11 +47,17 @@ final class ForkingRenderer implements TypeRenderer
     public function __construct(
         private readonly CommandBus $commandBus,
         private readonly DocumentNavigationProvider $navigationProvider,
+        private readonly ?ParallelSettings $parallelSettings = null,
         private readonly ?LoggerInterface $logger = null,
-        ?int $workerCount = null,
     ) {
-        // Default to number of CPU cores, with reasonable bounds
-        $this->workerCount = $workerCount ?? $this->detectCpuCount();
+        // Use settings if available, otherwise auto-detect
+        if ($this->parallelSettings !== null) {
+            $autoDetected = $this->detectCpuCount();
+            $this->workerCount = $this->parallelSettings->resolveWorkerCount($autoDetected);
+            $this->parallelEnabled = $this->parallelSettings->isEnabled();
+        } else {
+            $this->workerCount = $this->detectCpuCount();
+        }
     }
 
     public function render(RenderCommand $renderCommand): void
