@@ -1,0 +1,199 @@
+{
+    "_hash": "43ca0686084f40e8e609e5f4d7c57f7b0ce7df80fc35a2c27094de62ddf525b7",
+    "patches": {
+        "phpdocumentor/guides": [
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Optimize SluggerAnchorNormalizer with instance and result caching",
+                "url": "patches/slugger-anchor-normalizer.patch",
+                "sha256": "f1b5790810442f89f704425eb59a0c45c61e2e25162ab914350668a5c5d95070",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache Twig globals to avoid redundant addGlobal calls per template",
+                "url": "patches/twig-template-renderer-globals.patch",
+                "sha256": "13af429f0801d7c007abedb45158fcf423d9e3d88c1fbb2142e304f5e6d5bd15",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache PreNodeRendererFactory lookups by node class",
+                "url": "patches/pre-node-renderer-factory-cache.patch",
+                "sha256": "b1af98b8f828ad952622dd4f79e412e965d722cb4ec84c4a8bec0d6040c5efe1",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache root document entry and use hash lookup for getDocumentEntry",
+                "url": "patches/project-node-cache.patch",
+                "sha256": "8baa1501fb403450a743b93b356757f00d2c0d0fb9d3d0350ff84cb9f80debab",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Enable Twig template caching for faster compilation",
+                "url": "patches/twig-environment-cache.patch",
+                "sha256": "a8b2da6ff0067c66d3979eb8aafcb296d8b34cad2ce9225b13066287448b8aaf",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache document lookup by file for O(1) getDocumentNodeForEntry",
+                "url": "patches/render-context-document-cache.patch",
+                "sha256": "521c56be056b7a4f7a7ed7aaf0bbeb1307cf7da86787c2e9ffed23d2ec015842",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache URL resolution results in DocumentNameResolver",
+                "url": "patches/document-name-resolver-cache.patch",
+                "sha256": "ebff7d41ce2e5147f50d40f49593160b88803b2c91fbfe473068e4378a363b55",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache URL generator relative path calculations",
+                "url": "patches/url-generator-cache.patch",
+                "sha256": "ad02a9de4a9881138e2f3d0fe856ae86516aea98474d6639aa943c1cb1499cdf",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache ExternalReferenceResolver SUPPORTED_SCHEMAS pattern",
+                "url": "patches/external-reference-resolver-cache.patch",
+                "sha256": "7b93640f4090abbc670f8cfac67f5c771d940bfc3b3d188967f022c26252ae0b",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "phpdocumentor/guides-restructured-text": [
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Reuse InlineLexer instance to avoid repeated instantiation",
+                "url": "patches/inline-parser-lexer-reuse.patch",
+                "sha256": "58858ab873e5e8ae31449ee1105227dd1b0ee60361745ced2202ca7117ae2b1d",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache LineChecker regex results to avoid repeated pattern matching",
+                "url": "patches/line-checker-cache.patch",
+                "sha256": "062fe2273ab8a04a42c712a0853d85cb74826ff47bfe73797168656656aeecee",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache Buffer unindent to avoid repeated detection loops",
+                "url": "patches/buffer-unindent-cache.patch",
+                "sha256": "c05586f6c61a64000b2561851555959262fdc404ade448fa036426ed97d7a392",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache InlineLexer regex patterns including expensive SUPPORTED_SCHEMAS",
+                "url": "patches/inline-lexer-regex-cache.patch",
+                "sha256": "eb2d9115763450a14f4750f39ee2dbdc28562d70b8a3307a8c3bc2c293b98d8f",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache FieldListRule field pattern",
+                "url": "patches/field-list-regex-cache.patch",
+                "sha256": "ee3b037235fb535bcc85af4848bc8d40a12bb320fe43dccd290af8268d355df5",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache DirectiveRule parsing patterns",
+                "url": "patches/directive-rule-regex-cache.patch",
+                "sha256": "005629bfa65ac5fcc571693bf43b83d6e649184f1f4c2cc8a1300eb502aa31f2",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache EnumeratedListRule marker type patterns",
+                "url": "patches/enumerated-list-regex-cache.patch",
+                "sha256": "eb5f9aecb9a513577f34f92ede862e187809c91444a32482ed1cf6e7c5c53241",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache LinkRule parsing patterns",
+                "url": "patches/link-rule-regex-cache.patch",
+                "sha256": "17c5a73ba8c0264a69f54c67fcc0d710ea6fd45126623de8e9900eaa20063bef",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache GridTableRule definition patterns",
+                "url": "patches/grid-table-rule-regex-cache.patch",
+                "sha256": "2c94bb0f6ee09f543d584e231f8a41faa075a1ac8ff04af2d2d594c521de901d",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache SimpleTableRule column and colspan patterns",
+                "url": "patches/simple-table-rule-regex-cache.patch",
+                "sha256": "53cf3a5b9fd6e2804c2504c0e4111937e4db402411149abe7d607b51e90047fc",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}
