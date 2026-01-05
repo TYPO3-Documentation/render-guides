@@ -234,7 +234,8 @@ final class ParallelCompiler
             }
 
             if ($pid === 0) {
-                // Child process
+                // Child process: clear inherited temp file tracking
+                ProcessManager::clearTempFileTracking();
                 $this->processCollectionBatch($batch, $compilerContext, $tempFile);
                 exit(0);
             }
@@ -485,6 +486,8 @@ final class ParallelCompiler
             }
 
             if ($pid === 0) {
+                // Child process: clear inherited temp file tracking
+                ProcessManager::clearTempFileTracking();
                 $this->processResolutionBatch($batch, $compilerContext, $tempFile);
                 exit(0);
             }

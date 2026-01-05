@@ -12,6 +12,8 @@ use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\TypeRenderer;
 use Psr\Log\LoggerInterface;
 use T3Docs\GuidesExtension\Settings\ParallelSettings;
+use T3Docs\GuidesExtension\Util\CpuDetector;
+use T3Docs\GuidesExtension\Util\ProcessManager;
 
 /**
  * Parallel renderer using pcntl_fork for CPU-bound Twig rendering.
@@ -122,7 +124,8 @@ final class ForkingRenderer implements TypeRenderer
             }
 
             if ($pid === 0) {
-                // Child process: render batch
+                // Child process: clear inherited temp file tracking
+                ProcessManager::clearTempFileTracking();
                 // Navigation provider is already initialized (inherited via COW)
                 $this->renderChildBatch($batch, $renderCommand, $workerId);
                 exit(0);
@@ -297,40 +300,23 @@ final class ForkingRenderer implements TypeRenderer
     }
 
     /**
-     * Wait for all child processes to complete.
+     * Wait for all child processes to complete with timeout.
+     *
+     * Uses non-blocking wait with timeout to prevent hanging builds.
+     * Stuck processes are killed after timeout expires.
      *
      * @throws \RuntimeException If any child process fails
      */
     private function waitForChildren(): void
     {
-        $failures = [];
+        $result = ProcessManager::waitForChildrenWithTimeout(
+            $this->childPids,
+            ProcessManager::DEFAULT_TIMEOUT_SECONDS
+        );
 
-        foreach ($this->childPids as $workerId => $pid) {
-            $status = 0;
-            $waitedPid = pcntl_waitpid($pid, $status);
-
-            if ($waitedPid === -1) {
-                $failures[$workerId] = 'waitpid failed';
-                continue;
-            }
-
-            // pcntl_waitpid always sets $status to an int
-            assert(is_int($status));
-
-            if (pcntl_wifexited($status)) {
-                $exitCode = pcntl_wexitstatus($status);
-                if ($exitCode !== 0) {
-                    $failures[$workerId] = sprintf('exit code %d', $exitCode);
-                }
-            } elseif (pcntl_wifsignaled($status)) {
-                $signal = pcntl_wtermsig($status);
-                $failures[$workerId] = sprintf('killed by signal %d', $signal);
-            }
-        }
-
-        if ($failures !== []) {
+        if ($result['failures'] !== []) {
             $errorDetails = [];
-            foreach ($failures as $workerId => $reason) {
+            foreach ($result['failures'] as $workerId => $reason) {
                 $errorDetails[] = sprintf('Worker %d: %s', $workerId, $reason);
             }
             throw new \RuntimeException(
@@ -340,41 +326,11 @@ final class ForkingRenderer implements TypeRenderer
     }
 
     /**
-     * Detect number of CPU cores.
+     * Detect number of CPU cores using shared utility.
      */
     private function detectCpuCount(): int
     {
-        // Try /proc/cpuinfo on Linux
-        if (is_file('/proc/cpuinfo')) {
-            $cpuinfo = file_get_contents('/proc/cpuinfo');
-            if ($cpuinfo !== false) {
-                $count = substr_count($cpuinfo, 'processor');
-                if ($count > 0) {
-                    return min($count, 8); // Cap at 8 workers
-                }
-            }
-        }
-
-        // Try nproc command
-        $nproc = @shell_exec('nproc 2>/dev/null');
-        if ($nproc !== null && $nproc !== false) {
-            $count = (int) trim($nproc);
-            if ($count > 0) {
-                return min($count, 8);
-            }
-        }
-
-        // Try sysctl on macOS
-        $sysctl = @shell_exec('sysctl -n hw.ncpu 2>/dev/null');
-        if ($sysctl !== null && $sysctl !== false) {
-            $count = (int) trim($sysctl);
-            if ($count > 0) {
-                return min($count, 8);
-            }
-        }
-
-        // Default to 4 workers
-        return 4;
+        return CpuDetector::detectCores();
     }
 
     /**

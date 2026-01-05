@@ -17,6 +17,8 @@ use phpDocumentor\Guides\Settings\ProjectSettings;
 use phpDocumentor\Guides\Settings\SettingsManager;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
+use T3Docs\GuidesExtension\Util\CpuDetector;
+use T3Docs\GuidesExtension\Util\ProcessManager;
 
 use function array_chunk;
 use function array_map;
@@ -28,13 +30,7 @@ use function file_get_contents;
 use function file_put_contents;
 use function function_exists;
 use function pcntl_fork;
-use function pcntl_waitpid;
-use function pcntl_wifexited;
-use function pcntl_wexitstatus;
 use function serialize;
-use function sys_get_temp_dir;
-use function tempnam;
-use function unlink;
 use function unserialize;
 
 /**
@@ -165,8 +161,8 @@ final class ParallelParseDirectoryHandler
                 continue;
             }
 
-            // Create temp file for this worker's results
-            $tempFile = tempnam(sys_get_temp_dir(), 'parse_' . $workerId . '_');
+            // Create secure temp file for this worker's results
+            $tempFile = ProcessManager::createSecureTempFile('parse_' . $workerId . '_');
             if ($tempFile === false) {
                 $this->logger?->error('Failed to create temp file, falling back to sequential');
                 return $this->parseSequentially($command, $files, $indexName);
@@ -179,13 +175,17 @@ final class ParallelParseDirectoryHandler
                 // Fork failed - clean up and fall back
                 $this->logger?->error('pcntl_fork failed, falling back to sequential parsing');
                 foreach ($tempFiles as $tf) {
-                    @unlink($tf);
+                    ProcessManager::cleanupTempFile($tf);
                 }
                 return $this->parseSequentially($command, $files, $indexName);
             }
 
             if ($pid === 0) {
-                // Child process: parse batch and write results to temp file
+                // Child process: clear inherited temp file tracking to prevent
+                // cleanup of parent's temp files when this child exits
+                ProcessManager::clearTempFileTracking();
+
+                // Parse batch and write results to temp file
                 $this->parseChildBatch($command, $batch, $indexName, $tempFile);
                 exit(0);
             }
@@ -194,20 +194,14 @@ final class ParallelParseDirectoryHandler
             $childPids[$workerId] = $pid;
         }
 
-        // Parent: wait for all children and collect results
+        // Parent: wait for all children with timeout and collect results
+        $waitResult = ProcessManager::waitForChildrenWithTimeout($childPids);
         $documents = [];
-        $failures = [];
 
         foreach ($childPids as $workerId => $pid) {
-            $status = 0;
-            pcntl_waitpid($pid, $status);
-
-            // pcntl_waitpid always sets $status to an int
-            assert(is_int($status));
-            if (pcntl_wifexited($status) && pcntl_wexitstatus($status) === 0) {
-                // Read results from temp file
-                $tempFile = $tempFiles[$workerId];
-                $serialized = file_get_contents($tempFile);
+            // Only read results from successful workers
+            if (in_array($workerId, $waitResult['successes'], true)) {
+                $serialized = file_get_contents($tempFiles[$workerId]);
                 if ($serialized !== false && $serialized !== '') {
                     $batchDocs = unserialize($serialized);
                     if (is_array($batchDocs)) {
@@ -218,19 +212,16 @@ final class ParallelParseDirectoryHandler
                         }
                     }
                 }
-            } else {
-                $failures[] = $workerId;
             }
 
             // Clean up temp file
-            @unlink($tempFiles[$workerId]);
+            ProcessManager::cleanupTempFile($tempFiles[$workerId]);
         }
 
-        if ($failures !== []) {
-            $this->logger?->warning(sprintf(
-                'Parallel parsing: %d workers failed',
-                count($failures)
-            ));
+        if ($waitResult['failures'] !== []) {
+            foreach ($waitResult['failures'] as $workerId => $reason) {
+                $this->logger?->warning(sprintf('Parse worker %d failed: %s', $workerId, $reason));
+            }
         }
 
         $this->logger?->info(sprintf(
@@ -333,24 +324,6 @@ final class ParallelParseDirectoryHandler
 
     private function detectCpuCount(): int
     {
-        if (is_file('/proc/cpuinfo')) {
-            $cpuinfo = file_get_contents('/proc/cpuinfo');
-            if ($cpuinfo !== false) {
-                $count = substr_count($cpuinfo, 'processor');
-                if ($count > 0) {
-                    return min($count, 8);
-                }
-            }
-        }
-
-        $nproc = @shell_exec('nproc 2>/dev/null');
-        if ($nproc !== null && $nproc !== false) {
-            $count = (int) trim($nproc);
-            if ($count > 0) {
-                return min($count, 8);
-            }
-        }
-
-        return 4;
+        return CpuDetector::detectCores();
     }
 }
