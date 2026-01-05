@@ -28,6 +28,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use T3Docs\GuidesExtension\Compiler\Cache\ContentHasher;
 use T3Docs\GuidesExtension\EventListener\IncrementalCacheListener;
+use T3Docs\GuidesExtension\Settings\ParallelSettings;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 
 final class RunDecorator extends Command
@@ -60,6 +61,7 @@ final class RunDecorator extends Command
         private readonly ProgressBarSubscriber $progressBarSubscriber,
         private readonly ContentHasher $contentHasher,
         private readonly IncrementalCacheListener $cacheListener,
+        private readonly ParallelSettings $parallelSettings,
     ) {
         parent::__construct('run');
     }
@@ -188,6 +190,20 @@ final class RunDecorator extends Command
         // Propagate all input settings to be used within events
         // through the Typo3DocsInputSettings singleton.
         $this->inputSettings->setInput($input);
+
+        // Configure parallel processing based on CLI option
+        // -1 = disabled (truly sequential), 0 = auto-detect, N = explicit worker count
+        $parallelWorkersOption = $input->getOption('parallel-workers');
+        if (is_numeric($parallelWorkersOption)) {
+            $this->parallelSettings->setWorkerCount((int) $parallelWorkersOption);
+            if ($output->isVerbose()) {
+                $output->writeln(sprintf(
+                    '<info>Parallel workers: %s</info>',
+                    (int) $parallelWorkersOption === -1 ? 'disabled (sequential)'
+                        : ((int) $parallelWorkersOption === 0 ? 'auto-detect' : (int) $parallelWorkersOption)
+                ));
+            }
+        }
 
         // Check for worker subprocess mode (--render-batch option)
         $renderBatch = $input->getOption('render-batch');
