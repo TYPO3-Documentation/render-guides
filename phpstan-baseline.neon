@@ -649,56 +649,8 @@ parameters:
 			path: packages/typo3-guides-extension/src/Compiler/Cache/DocumentExports.php
 
 		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
-
-		-
 			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Cache\\IncrementalBuildCache\:\:getSettingsHash\(\) should return string\|null but returns mixed\.$#'
 			identifier: return.type
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
-
-		-
-			message: '#^Parameter \#1 \$data of static method T3Docs\\GuidesExtension\\Compiler\\Cache\\DependencyGraph\:\:fromArray\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
-
-		-
-			message: '#^Parameter \#1 \$data of static method T3Docs\\GuidesExtension\\Compiler\\Cache\\DocumentExports\:\:fromArray\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
-
-		-
-			message: '#^Parameter \#1 \$metadata of method T3Docs\\GuidesExtension\\Compiler\\Cache\\CacheVersioning\:\:isCacheValid\(\) expects array\<string, mixed\>, array given\.$#'
-			identifier: argument.type
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
-
-		-
-			message: '#^Possibly invalid array key type mixed\.$#'
-			identifier: offsetAccess.invalidOffset
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
-
-		-
-			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\IncrementalBuildCache\:\:\$exports \(array\<string, T3Docs\\GuidesExtension\\Compiler\\Cache\\DocumentExports\>\) does not accept array\<T3Docs\\GuidesExtension\\Compiler\\Cache\\DocumentExports\>\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
-
-		-
-			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\IncrementalBuildCache\:\:\$metadata \(array\<string, mixed\>\) does not accept mixed\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
-
-		-
-			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\IncrementalBuildCache\:\:\$outputPaths \(array\<string, string\>\) does not accept mixed\.$#'
-			identifier: assign.propertyType
 			count: 1
 			path: packages/typo3-guides-extension/src/Compiler/Cache/IncrementalBuildCache.php
 
@@ -785,6 +737,12 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: packages/typo3-guides-extension/src/Compiler/Passes/ExportsCollectorPass.php
+
+		-
+			message: '#^Static property T3Docs\\GuidesExtension\\Util\\ProcessManager\:\:\$tempFilesToClean \(list\<string\>\) does not accept array\<int\<0, max\>, string\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: packages/typo3-guides-extension/src/Util/ProcessManager.php
 
 		-
 			message: '#^Cannot access offset ''packages'' on mixed\.$#'

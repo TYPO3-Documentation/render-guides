@@ -67,23 +67,29 @@ final class IncrementalBuildCache
         }
 
         // Load and validate metadata
-        $this->metadata = $data['metadata'] ?? [];
+        /** @var array<string, mixed> $metadata */
+        $metadata = $data['metadata'] ?? [];
+        $this->metadata = $metadata;
         if (!$this->versioning->isCacheValid($this->metadata)) {
             return false;
         }
 
         // Load exports
+        /** @var array<string, array<string, mixed>> $exportsData */
         $exportsData = $data['exports'] ?? [];
         foreach ($exportsData as $path => $exportData) {
             $this->exports[$path] = DocumentExports::fromArray($exportData);
         }
 
         // Load dependencies
+        /** @var array<string, mixed> $depsData */
         $depsData = $data['dependencies'] ?? [];
         $this->dependencyGraph = DependencyGraph::fromArray($depsData);
 
         // Load output paths
-        $this->outputPaths = $data['outputs'] ?? [];
+        /** @var array<string, string> $outputPaths */
+        $outputPaths = $data['outputs'] ?? [];
+        $this->outputPaths = $outputPaths;
 
         $this->loaded = true;
         return true;
@@ -258,7 +264,7 @@ final class IncrementalBuildCache
     /**
      * Merge state from another cache instance (used after parallel compilation).
      *
-     * @param array<string, mixed> $state State from extractState()
+     * @param array{exports?: array<string, array<string, mixed>>, dependencies?: array<string, mixed>, outputPaths?: array<string, string>} $state State from extractState()
      */
     public function mergeState(array $state): void
     {
