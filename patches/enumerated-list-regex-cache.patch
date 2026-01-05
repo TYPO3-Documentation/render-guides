@@ -1,0 +1,48 @@
+diff --git a/src/RestructuredText/Parser/Productions/EnumeratedListRule.php b/src/RestructuredText/Parser/Productions/EnumeratedListRule.php
+--- a/src/RestructuredText/Parser/Productions/EnumeratedListRule.php
++++ b/src/RestructuredText/Parser/Productions/EnumeratedListRule.php
+@@ -52,6 +52,12 @@ final class EnumeratedListRule implements Rule
+
+     private const ALPHABETIC = '([a-z])';
+
++    /** @var string Cached marker patterns to avoid repeated sprintf calls */
++    private const LIST_MARKER_NUMBER = '(^(\d+|#)([\.)])(?:\s+|$)|^[(](\d+|#)[)](?:\s+|$))';
++    private const LIST_MARKER_ROMAN = '(^((?:M{0,3})(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3}))(?<!^)([\.)])(?:\s+|$)|^[(]((?:M{0,3})(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3}))(?<!^)[)](?:\s+|$))';
++    private const LIST_MARKER_ALPHA = '(^([a-z])([\.)])(?:\s+|$)|^[(]([a-z])[)](?:\s+|$))';
++    private const ROMAN_PATTERN = '/^((?:M{0,3})(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3}))(?<!^)$/i';
++
+     private const LIST_MARKER = '(^%s([\.)])(?:\s+|$)|^[(]%s[)](?:\s+|$))';
+
+     private readonly string $expression;
+@@ -213,7 +219,7 @@ final class EnumeratedListRule implements Rule
+             return 'unknown';
+         }
+
+-        if (preg_match('/' . sprintf(self::LIST_MARKER, self::NUMBER, self::NUMBER) . '/', $marker)) {
++        if (preg_match('/' . self::LIST_MARKER_NUMBER . '/', $marker)) {
+             if (strpos($marker, '#')) {
+                 return 'auto_number' . $this->markerSuffix($marker);
+             }
+@@ -221,11 +227,11 @@ final class EnumeratedListRule implements Rule
+             return 'number' . $this->markerSuffix($marker);
+         }
+
+-        if (preg_match('/' . sprintf(self::LIST_MARKER, self::ROMAN_NUMBER, self::ROMAN_NUMBER) . '/', $marker)) {
++        if (preg_match('/' . self::LIST_MARKER_ROMAN . '/', $marker)) {
+             return 'roman' . $this->markerSuffix($marker);
+         }
+
+-        if (preg_match('/' . sprintf(self::LIST_MARKER, self::ALPHABETIC, self::ALPHABETIC) . '/', $marker)) {
++        if (preg_match('/' . self::LIST_MARKER_ALPHA . '/i', $marker)) {
+             return 'alphabetic' . $this->markerSuffix($marker);
+         }
+
+@@ -267,7 +273,7 @@ final class EnumeratedListRule implements Rule
+             return (int) $firstItemNumber;
+         }
+
+-        if (preg_match('/^' . self::ROMAN_NUMBER . '$/i', $firstItemNumber, $m)) {
++        if (preg_match(self::ROMAN_PATTERN, $firstItemNumber, $m)) {
+             $roman = strtoupper($m[1]);
+             $map = [
+                 'M' => 1000,

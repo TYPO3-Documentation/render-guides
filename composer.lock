@@ -4,66 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81613e373590f930e6ac9b46f00093b9",
+    "content-hash": "b2b7b549bf2f236ba3820d51e2144380",
     "packages": [
-        {
-            "name": "brotkrueml/twig-codehighlight",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/brotkrueml/twig-codehighlight.git",
-                "reference": "ef26e168e6a92cb21880014921fbf46849a11a3b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/brotkrueml/twig-codehighlight/zipball/ef26e168e6a92cb21880014921fbf46849a11a3b",
-                "reference": "ef26e168e6a92cb21880014921fbf46849a11a3b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">= 8.1",
-                "scrivo/highlight.php": "^9.18",
-                "twig/twig": "^3.7"
-            },
-            "require-dev": {
-                "brotkrueml/coding-standards": "~6.1.0",
-                "ergebnis/composer-normalize": "~2.44.0",
-                "infection/infection": "^0.29.7",
-                "phpstan/phpstan": "1.12.7",
-                "phpunit/phpunit": "^10.5 || 11.4",
-                "psr/log": "^3.0",
-                "rector/rector": "1.2.8"
-            },
-            "suggest": {
-                "psr/log": "Output a warning when a given language is not available"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Brotkrueml\\TwigCodeHighlight\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Müller",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Twig extension for code highlighting using highlight.php",
-            "keywords": [
-                "Syntax highlighter",
-                "twig"
-            ],
-            "support": {
-                "issues": "https://github.com/brotkrueml/twig-codehighlight/issues",
-                "source": "https://github.com/brotkrueml/twig-codehighlight/tree/v1.0.0"
-            },
-            "time": "2024-10-20T18:39:17+00:00"
-        },
         {
             "name": "cboden/ratchet",
             "version": "v0.4.4",
@@ -126,6 +68,129 @@
                 "source": "https://github.com/ratchetphp/Ratchet/tree/v0.4.4"
             },
             "time": "2021-12-14T00:20:41+00:00"
+        },
+        {
+            "name": "cweagans/composer-configurable-plugin",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cweagans/composer-configurable-plugin.git",
+                "reference": "15433906511a108a1806710e988629fd24b89974"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cweagans/composer-configurable-plugin/zipball/15433906511a108a1806710e988629fd24b89974",
+                "reference": "15433906511a108a1806710e988629fd24b89974",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "~4.0",
+                "codeception/module-asserts": "^2.0",
+                "composer/composer": "~2.0",
+                "php-coveralls/php-coveralls": "~2.0",
+                "php-parallel-lint/php-parallel-lint": "^1.0.0",
+                "phpro/grumphp": "^1.8.0",
+                "sebastian/phpcpd": "^6.0",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "cweagans\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cameron Eagans",
+                    "email": "me@cweagans.net"
+                }
+            ],
+            "description": "Provides a lightweight configuration system for Composer plugins.",
+            "support": {
+                "issues": "https://github.com/cweagans/composer-configurable-plugin/issues",
+                "source": "https://github.com/cweagans/composer-configurable-plugin/tree/2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/cweagans",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-12T04:58:58+00:00"
+        },
+        {
+            "name": "cweagans/composer-patches",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cweagans/composer-patches.git",
+                "reference": "bfa6018a5f864653d9ed899b902ea72f858a2cf7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/bfa6018a5f864653d9ed899b902ea72f858a2cf7",
+                "reference": "bfa6018a5f864653d9ed899b902ea72f858a2cf7",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0",
+                "cweagans/composer-configurable-plugin": "^2.0",
+                "ext-json": "*",
+                "php": ">=8.0.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "~4.0",
+                "codeception/module-asserts": "^2.0",
+                "codeception/module-cli": "^2.0",
+                "codeception/module-filesystem": "^2.0",
+                "composer/composer": "~2.0",
+                "php-coveralls/php-coveralls": "~2.0",
+                "php-parallel-lint/php-parallel-lint": "^1.0.0",
+                "phpro/grumphp": "^1.8.0",
+                "sebastian/phpcpd": "^6.0",
+                "squizlabs/php_codesniffer": "^4.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "_": "The following two lines ensure that composer-patches is loaded as early as possible.",
+                "class": "cweagans\\Composer\\Plugin\\Patches",
+                "plugin-modifies-downloads": true,
+                "plugin-modifies-install-path": true
+            },
+            "autoload": {
+                "psr-4": {
+                    "cweagans\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cameron Eagans",
+                    "email": "me@cweagans.net"
+                }
+            ],
+            "description": "Provides a way to patch Composer packages.",
+            "support": {
+                "issues": "https://github.com/cweagans/composer-patches/issues",
+                "source": "https://github.com/cweagans/composer-patches/tree/2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/cweagans",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-10-30T23:44:22+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -1783,16 +1848,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "1.9.2",
+            "version": "1.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "d60e8dae9fcb85da610f05f4ef673a42f266b47a"
+                "reference": "7431c7cc32bd6d2ba52174c3ce86aac5a029711f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/d60e8dae9fcb85da610f05f4ef673a42f266b47a",
-                "reference": "d60e8dae9fcb85da610f05f4ef673a42f266b47a",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/7431c7cc32bd6d2ba52174c3ce86aac5a029711f",
+                "reference": "7431c7cc32bd6d2ba52174c3ce86aac5a029711f",
                 "shasum": ""
             },
             "require": {
@@ -1806,11 +1871,11 @@
                 "phpdocumentor/filesystem": "^1.7.4",
                 "phpdocumentor/flyfinder": "^1.1 || ^2.0",
                 "psr/event-dispatcher": "^1.0",
-                "symfony/clock": "^6.4.8",
-                "symfony/html-sanitizer": "^6.4.8",
-                "symfony/http-client": "^6.4.9",
+                "symfony/clock": "^6.4.8 || ^7.4 || ^8",
+                "symfony/html-sanitizer": "^6.4.8 || ^7.4 || ^8",
+                "symfony/http-client": "^6.4.9 || ^7.4 || ^8",
                 "symfony/polyfill-php84": "^1.33.0",
-                "symfony/string": "^6.4.9",
+                "symfony/string": "^6.4.9 || ^7.4 || ^8",
                 "symfony/translation-contracts": "^3.5.1",
                 "twig/twig": "~2.15 || ^3.0",
                 "webmozart/assert": "^1.11"
@@ -1837,22 +1902,22 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/1.9.2"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/1.9.5"
             },
-            "time": "2025-10-17T16:59:53+00:00"
+            "time": "2025-12-28T13:55:49+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
-            "version": "1.9.3",
+            "version": "1.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-cli.git",
-                "reference": "6ee2adab921b2d64f94fd574e90060d8c1e96f45"
+                "reference": "8dd93c89e828a3c5efb4666acd98924c703026eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/6ee2adab921b2d64f94fd574e90060d8c1e96f45",
-                "reference": "6ee2adab921b2d64f94fd574e90060d8c1e96f45",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-cli/zipball/8dd93c89e828a3c5efb4666acd98924c703026eb",
+                "reference": "8dd93c89e828a3c5efb4666acd98924c703026eb",
                 "shasum": ""
             },
             "require": {
@@ -1860,10 +1925,10 @@
                 "php": "^8.1",
                 "phpdocumentor/guides": "^1.0 || ^2.0",
                 "phpdocumentor/guides-restructured-text": "^1.0 || ^2.0",
-                "symfony/config": "^5.4 || ^6.3 || ^7.0",
-                "symfony/console": "^5.4 || ^6.3 || ^7.0",
-                "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.0",
-                "symfony/event-dispatcher": "^5.4 || ^6.3 || ^7.0"
+                "symfony/config": "^5.4 || ^6.3 || ^7.0 || ^8.0",
+                "symfony/console": "^5.4 || ^6.3 || ^7.0 || ^8.0",
+                "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.0 || ^8.0",
+                "symfony/event-dispatcher": "^5.4 || ^6.3 || ^7.0 || ^8.0"
             },
             "suggest": {
                 "phpdocumentor/dev-server": "Allows you to run a development server with live reloading to preview your documentation"
@@ -1894,22 +1959,22 @@
             ],
             "description": "Allows you to run phpDocumentor Guides as a stand alone application as console command",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.9.3"
+                "source": "https://github.com/phpDocumentor/guides-cli/tree/1.9.5"
             },
-            "time": "2025-10-17T18:51:10+00:00"
+            "time": "2025-12-28T13:55:49+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
-            "version": "1.7.3",
+            "version": "1.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-graphs.git",
-                "reference": "e0fedc704884c261f60bc840760120b280bc2240"
+                "reference": "85a7849dd982ca63a07a9086a1d9df8fd93c4c5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-graphs/zipball/e0fedc704884c261f60bc840760120b280bc2240",
-                "reference": "e0fedc704884c261f60bc840760120b280bc2240",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-graphs/zipball/85a7849dd982ca63a07a9086a1d9df8fd93c4c5d",
+                "reference": "85a7849dd982ca63a07a9086a1d9df8fd93c4c5d",
                 "shasum": ""
             },
             "require": {
@@ -1917,7 +1982,7 @@
                 "php": "^8.1",
                 "phpdocumentor/guides": "^1.0 || ^2.0",
                 "phpdocumentor/guides-restructured-text": "^1.0 || ^2.0",
-                "symfony/process": "^5.4 || ^6.3 || ^7.0",
+                "symfony/process": "^5.4 || ^6.3 || ^7.0 || ^8.0",
                 "twig/twig": "~2.0 || ^3.0"
             },
             "suggest": {
@@ -1942,29 +2007,29 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-graphs/issues",
-                "source": "https://github.com/phpDocumentor/guides-graphs/tree/1.7.3"
+                "source": "https://github.com/phpDocumentor/guides-graphs/tree/1.9.5"
             },
-            "time": "2025-03-07T15:51:49+00:00"
+            "time": "2026-01-04T12:15:25+00:00"
         },
         {
             "name": "phpdocumentor/guides-markdown",
-            "version": "1.9.1",
+            "version": "1.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-markdown.git",
-                "reference": "04bc3e1da61fcf28758cfa379ced5650a6e9f933"
+                "reference": "09678083f68a5630195b2378e65c7c9961e690d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-markdown/zipball/04bc3e1da61fcf28758cfa379ced5650a6e9f933",
-                "reference": "04bc3e1da61fcf28758cfa379ced5650a6e9f933",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-markdown/zipball/09678083f68a5630195b2378e65c7c9961e690d4",
+                "reference": "09678083f68a5630195b2378e65c7c9961e690d4",
                 "shasum": ""
             },
             "require": {
                 "league/commonmark": "^2.4",
                 "php": "^8.1",
                 "phpdocumentor/guides": "^1.0 || ^2.0",
-                "symfony/yaml": "^6.4 || ^7.0"
+                "symfony/yaml": "^6.4 || ^7.0 || ^8.0"
             },
             "type": "library",
             "extra": {
@@ -1985,22 +2050,22 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-markdown/issues",
-                "source": "https://github.com/phpDocumentor/guides-markdown/tree/1.9.1"
+                "source": "https://github.com/phpDocumentor/guides-markdown/tree/1.9.5"
             },
-            "time": "2025-09-22T14:05:17+00:00"
+            "time": "2025-11-29T17:03:22+00:00"
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
-            "version": "1.9.4",
+            "version": "1.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "f31f98a0b0e51189eb1fa200fe62b531b60f2cf0"
+                "reference": "25efd3eb618f63a5f48e4b37feaca2158b44680b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/f31f98a0b0e51189eb1fa200fe62b531b60f2cf0",
-                "reference": "f31f98a0b0e51189eb1fa200fe62b531b60f2cf0",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/25efd3eb618f63a5f48e4b37feaca2158b44680b",
+                "reference": "25efd3eb618f63a5f48e4b37feaca2158b44680b",
                 "shasum": ""
             },
             "require": {
@@ -2028,9 +2093,9 @@
             "description": "Adds reStructuredText Markup support to the phpDocumentor's Guides library.",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.9.4"
+                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.9.5"
             },
-            "time": "2025-11-12T19:52:51+00:00"
+            "time": "2026-01-02T21:43:37+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
@@ -2075,16 +2140,16 @@
         },
         {
             "name": "phpdocumentor/guides-theme-rst",
-            "version": "1.7.3",
+            "version": "1.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-rst.git",
-                "reference": "7d9312f41e53f4640b8e892b11b7b24e79e2d0ab"
+                "reference": "422110746919cc127f36442bb8b2af3afd625da6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-rst/zipball/7d9312f41e53f4640b8e892b11b7b24e79e2d0ab",
-                "reference": "7d9312f41e53f4640b8e892b11b7b24e79e2d0ab",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-rst/zipball/422110746919cc127f36442bb8b2af3afd625da6",
+                "reference": "422110746919cc127f36442bb8b2af3afd625da6",
                 "shasum": ""
             },
             "require": {
@@ -2111,9 +2176,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-theme-rst/issues",
-                "source": "https://github.com/phpDocumentor/guides-theme-rst/tree/1.7.3"
+                "source": "https://github.com/phpDocumentor/guides-theme-rst/tree/1.9.5"
             },
-            "time": "2025-03-07T15:51:49+00:00"
+            "time": "2025-12-28T13:55:49+00:00"
         },
         {
             "name": "psr/clock",
@@ -3066,84 +3131,6 @@
                 }
             ],
             "time": "2024-06-11T12:45:25+00:00"
-        },
-        {
-            "name": "scrivo/highlight.php",
-            "version": "v9.18.1.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/850f4b44697a2552e892ffe71490ba2733c2fc6e",
-                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8|^5.7",
-                "sabberworm/php-css-parser": "^8.3",
-                "symfony/finder": "^2.8|^3.4|^5.4",
-                "symfony/var-dumper": "^2.8|^3.4|^5.4"
-            },
-            "suggest": {
-                "ext-mbstring": "Allows highlighting code with unicode characters and supports language with unicode keywords"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "HighlightUtilities/functions.php"
-                ],
-                "psr-0": {
-                    "Highlight\\": "",
-                    "HighlightUtilities\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Geert Bergman",
-                    "homepage": "http://www.scrivo.org/",
-                    "role": "Project Author"
-                },
-                {
-                    "name": "Vladimir Jimenez",
-                    "homepage": "https://allejo.io",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Martin Folkers",
-                    "homepage": "https://twobrain.io",
-                    "role": "Contributor"
-                }
-            ],
-            "description": "Server side syntax highlighter that supports 185 languages. It's a PHP port of highlight.js",
-            "keywords": [
-                "code",
-                "highlight",
-                "highlight.js",
-                "highlight.php",
-                "syntax"
-            ],
-            "support": {
-                "issues": "https://github.com/scrivo/highlight.php/issues",
-                "source": "https://github.com/scrivo/highlight.php"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/allejo",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-12-17T21:53:22+00:00"
         },
         {
             "name": "symfony/clock",
@@ -6286,16 +6273,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.92.3",
+            "version": "v3.92.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "2ba8f5a60f6f42fb65758cfb3768434fa2d1c7e8"
+                "reference": "9e7488b19403423e02e8403cc1eb596baf4673b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/2ba8f5a60f6f42fb65758cfb3768434fa2d1c7e8",
-                "reference": "2ba8f5a60f6f42fb65758cfb3768434fa2d1c7e8",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/9e7488b19403423e02e8403cc1eb596baf4673b0",
+                "reference": "9e7488b19403423e02e8403cc1eb596baf4673b0",
                 "shasum": ""
             },
             "require": {
@@ -6327,17 +6314,17 @@
             },
             "require-dev": {
                 "facile-it/paraunit": "^1.3.1 || ^2.7",
-                "infection/infection": "^0.31.0",
-                "justinrainbow/json-schema": "^6.5",
-                "keradus/cli-executor": "^2.2",
+                "infection/infection": "^0.31",
+                "justinrainbow/json-schema": "^6.6",
+                "keradus/cli-executor": "^2.3",
                 "mikey179/vfsstream": "^1.6.12",
                 "php-coveralls/php-coveralls": "^2.9",
                 "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.6",
                 "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.6",
-                "phpunit/phpunit": "^9.6.25 || ^10.5.53 || ^11.5.34",
+                "phpunit/phpunit": "^9.6.31 || ^10.5.60 || ^11.5.46",
                 "symfony/polyfill-php85": "^1.33",
-                "symfony/var-dumper": "^5.4.48 || ^6.4.24 || ^7.3.2 || ^8.0",
-                "symfony/yaml": "^5.4.45 || ^6.4.24 || ^7.3.2 || ^8.0"
+                "symfony/var-dumper": "^5.4.48 || ^6.4.26 || ^7.4.0 || ^8.0",
+                "symfony/yaml": "^5.4.45 || ^6.4.30 || ^7.4.1 || ^8.0"
             },
             "suggest": {
                 "ext-dom": "For handling output formats in XML",
@@ -6378,7 +6365,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.92.3"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.92.4"
             },
             "funding": [
                 {
@@ -6386,7 +6373,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-18T10:45:02+00:00"
+            "time": "2026-01-04T00:38:52+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -9087,23 +9074,23 @@
         },
         {
             "name": "symplify/phpstan-rules",
-            "version": "14.9.5",
+            "version": "14.9.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/phpstan-rules.git",
-                "reference": "8557736b5e7b8c10f68e6c6f0692b5dce305d307"
+                "reference": "5ea4bbd9357cba253aada506dd96d37d7069ac3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/phpstan-rules/zipball/8557736b5e7b8c10f68e6c6f0692b5dce305d307",
-                "reference": "8557736b5e7b8c10f68e6c6f0692b5dce305d307",
+                "url": "https://api.github.com/repos/symplify/phpstan-rules/zipball/5ea4bbd9357cba253aada506dd96d37d7069ac3b",
+                "reference": "5ea4bbd9357cba253aada506dd96d37d7069ac3b",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^3.2|^4.0",
                 "php": "^7.4|^8.0",
-                "phpstan/phpstan": "^2.1.22",
-                "webmozart/assert": "^1.11"
+                "phpstan/phpstan": "^2.1.33",
+                "webmozart/assert": "^1.12 || ^2.0"
             },
             "type": "phpstan-extension",
             "extra": {
@@ -9128,7 +9115,7 @@
             "description": "Set of Symplify rules for PHPStan",
             "support": {
                 "issues": "https://github.com/symplify/phpstan-rules/issues",
-                "source": "https://github.com/symplify/phpstan-rules/tree/14.9.5"
+                "source": "https://github.com/symplify/phpstan-rules/tree/14.9.11"
             },
             "funding": [
                 {
@@ -9140,7 +9127,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-08T15:34:48+00:00"
+            "time": "2026-01-05T13:53:59+00:00"
         },
         {
             "name": "theseer/tokenizer",
