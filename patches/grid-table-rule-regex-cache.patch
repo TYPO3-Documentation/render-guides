@@ -1,0 +1,22 @@
+--- a/src/RestructuredText/Parser/Productions/GridTableRule.php
++++ b/src/RestructuredText/Parser/Productions/GridTableRule.php
+@@ -36,6 +36,10 @@ use function trim;
+  */
+ final class GridTableRule implements Rule
+ {
++    /** @var string Pattern for column definition lines with dashes */
++    private const COLUMN_DEFINITION_PATTERN = '/^(?:\+-+)+\+$/';
++    /** @var string Pattern for header definition lines with equals */
++    private const HEADER_DEFINITION_PATTERN = '/^(?:\+=+)+\+$/';
+     public const PRIORITY = 50;
+
+     public function __construct(private readonly LoggerInterface $logger, private readonly RuleContainer $productions, private readonly GridTableBuilder $builder)
+@@ -145,6 +149,7 @@ final class GridTableRule implements Rule
+
+     private function isDefintionLine(string $line, string $char): bool
+     {
+-        return preg_match('/^(?:\+' . $char . '+)+\+$/', trim($line)) > 0;
++        $pattern = $char === '-' ? self::COLUMN_DEFINITION_PATTERN : self::HEADER_DEFINITION_PATTERN;
++        return preg_match($pattern, trim($line)) > 0;
+     }
+ }
