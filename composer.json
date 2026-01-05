@@ -20,10 +20,10 @@
         "phpdocumentor/guides-theme-bootstrap": "^1.7",
         "phpdocumentor/guides-theme-rst": "^1.7",
         "psr/http-message": "^1.1",
-        "symfony/clock": "^6.4 || ^7.0",
-        "symfony/finder": "^6.4 || ^7.0",
-        "symfony/http-client": "^6.4 || ^7.0",
-        "symfony/yaml": "^6.4 || ^7.0",
+        "symfony/clock": "^8.0",
+        "symfony/finder": "^8.0",
+        "symfony/http-client": "^8.0",
+        "symfony/yaml": "^8.0",
         "t3docs/console-command": "^0.2.0",
         "t3docs/guides-php-domain": "^1.0",
         "twig/twig": "^3.20"
@@ -36,7 +36,7 @@
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^12.5",
         "rector/rector": "^2.3",
-        "symfony/console": "^6.4 || ^7.0",
+        "symfony/console": "^8.0",
         "symplify/monorepo-builder": "^12.4",
         "symplify/phpstan-rules": "^14.9"
     },
@@ -87,6 +87,9 @@
                 "Cache URL resolution results in DocumentNameResolver": "patches/document-name-resolver-cache.patch",
                 "Cache URL generator relative path calculations": "patches/url-generator-cache.patch",
                 "Cache ExternalReferenceResolver SUPPORTED_SCHEMAS pattern": "patches/external-reference-resolver-cache.patch"
+            },
+            "phpdocumentor/guides-cli": {
+                "Fix Symfony Console 8 compatibility (add -> addCommand)": "patches/guides-cli-symfony8-compat.patch"
             },
             "phpdocumentor/guides-restructured-text": {
                 "Reuse InlineLexer instance to avoid repeated instantiation": "patches/inline-parser-lexer-reuse.patch",
