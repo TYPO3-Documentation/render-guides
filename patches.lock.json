@@ -1,5 +1,5 @@
 {
-    "_hash": "43ca0686084f40e8e609e5f4d7c57f7b0ce7df80fc35a2c27094de62ddf525b7",
+    "_hash": "2fe3ab5fc17f04379c5ffb16b67c329087289d1eaaa1982422609d1a7004d041",
     "patches": {
         "phpdocumentor/guides": [
             {
@@ -87,6 +87,18 @@
                 "description": "Cache ExternalReferenceResolver SUPPORTED_SCHEMAS pattern",
                 "url": "patches/external-reference-resolver-cache.patch",
                 "sha256": "7b93640f4090abbc670f8cfac67f5c771d940bfc3b3d188967f022c26252ae0b",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "phpdocumentor/guides-cli": [
+            {
+                "package": "phpdocumentor/guides-cli",
+                "description": "Fix Symfony Console 8 compatibility (add -> addCommand)",
+                "url": "patches/guides-cli-symfony8-compat.patch",
+                "sha256": "02643114094cb4c21cf29ee0e808bb438b17b5bb514b2c42ef433814dcd65b79",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"
