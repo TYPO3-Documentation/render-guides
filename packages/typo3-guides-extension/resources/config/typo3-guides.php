@@ -24,6 +24,7 @@ use T3Docs\GuidesExtension\Parser\ParallelParseDirectoryHandler;
 use T3Docs\GuidesExtension\Renderer\Parallel\DocumentNavigationProvider;
 use T3Docs\GuidesExtension\Renderer\Parallel\ForkingRenderer;
 use T3Docs\GuidesExtension\Compiler\ParallelCompileDocumentsHandler;
+use T3Docs\GuidesExtension\Settings\ParallelSettings;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use phpDocumentor\Guides\Compiler\NodeTransformers\NodeTransformerFactory;
 use phpDocumentor\Guides\FileCollector;
@@ -42,6 +43,7 @@ return static function (ContainerConfigurator $container): void {
 
         // Original TYPO3 Guides Extension services
         ->set(Run::class, RunDecorator::class)
+        ->arg('$parallelSettings', service(ParallelSettings::class))
         ->public()
         ->tag('phpdoc.guides.cli.command')
         ->set(\T3Docs\GuidesExtension\Renderer\SinglePageRenderer::class)
@@ -118,6 +120,9 @@ return static function (ContainerConfigurator $container): void {
             ->arg('$logger', service('Psr\Log\LoggerInterface')->nullOnInvalid())
             ->tag('phpdoc.guides.command', ['command' => ParseDirectoryCommand::class])
 
+        // Parallel Settings - Stores --parallel-workers CLI configuration
+        ->set(ParallelSettings::class)
+
         // Parallel Rendering - Document navigation for forked processes
         // Singleton that stores pre-computed prev/next relationships for use in child processes
         ->set(DocumentNavigationProvider::class)
@@ -127,6 +132,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(ForkingRenderer::class)
             ->arg('$commandBus', service('League\Tactician\CommandBus'))
             ->arg('$navigationProvider', service(DocumentNavigationProvider::class))
+            ->arg('$parallelSettings', service(ParallelSettings::class))
             ->arg('$logger', service('Psr\Log\LoggerInterface')->nullOnInvalid())
             ->tag(
                 'phpdoc.renderer.typerenderer',
