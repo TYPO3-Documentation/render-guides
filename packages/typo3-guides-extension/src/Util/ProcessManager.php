@@ -68,6 +68,9 @@ final class ProcessManager
                 // Child exited
                 unset($remaining[$workerId]);
 
+                // $status is always set to int by pcntl_waitpid when result > 0
+                assert(is_int($status));
+
                 if (pcntl_wifexited($status)) {
                     $exitCode = pcntl_wexitstatus($status);
                     if ($exitCode === 0) {

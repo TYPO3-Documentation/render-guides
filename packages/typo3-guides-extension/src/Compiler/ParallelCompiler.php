@@ -505,7 +505,7 @@ final class ParallelCompiler
                     $data = unserialize($serialized);
                     if (is_array($data)) {
                         // New format with cache state
-                        if (isset($data['documents'])) {
+                        if (isset($data['documents']) && is_array($data['documents'])) {
                             foreach ($data['documents'] as $doc) {
                                 if ($doc instanceof DocumentNode) {
                                     $allDocuments[$doc->getFilePath()] = $doc;
@@ -513,7 +513,9 @@ final class ParallelCompiler
                             }
                             // Collect cache state for merging
                             if (isset($data['cacheState']) && is_array($data['cacheState'])) {
-                                $cacheStates[] = $data['cacheState'];
+                                /** @var array{exports?: array<string, array<string, mixed>>, dependencies?: array<string, mixed>, outputPaths?: array<string, string>} $cacheState */
+                                $cacheState = $data['cacheState'];
+                                $cacheStates[] = $cacheState;
                             }
                         } else {
                             // Legacy format (just documents array)
