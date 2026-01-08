@@ -86,12 +86,14 @@ final class DependencyGraph
         $visited = [];
 
         // Use SplQueue for O(1) enqueue/dequeue instead of array_shift O(n)
+        /** @var \SplQueue<string> $queue */
         $queue = new \SplQueue();
         foreach ($dirtyDocs as $doc) {
             $queue->enqueue($doc);
         }
 
         while (!$queue->isEmpty()) {
+            /** @var string $current */
             $current = $queue->dequeue();
 
             if (isset($visited[$current])) {
@@ -108,6 +110,7 @@ final class DependencyGraph
             }
         }
 
+        /** @var string[] $result */
         return $result; // No array_unique needed - visited check prevents duplicates
     }
 
@@ -206,16 +209,20 @@ final class DependencyGraph
         $graph = new self();
 
         // Convert value arrays to keyed arrays for O(1) lookup
-        foreach ($data['imports'] ?? [] as $from => $toList) {
-            if (is_array($toList)) {
-                $graph->imports[$from] = array_fill_keys($toList, true);
-            }
+        /** @var array<string, string[]> $imports */
+        $imports = $data['imports'] ?? [];
+        foreach ($imports as $from => $toList) {
+            /** @var array<string, true> $keyedImports */
+            $keyedImports = array_fill_keys($toList, true);
+            $graph->imports[$from] = $keyedImports;
         }
 
-        foreach ($data['dependents'] ?? [] as $to => $fromList) {
-            if (is_array($fromList)) {
-                $graph->dependents[$to] = array_fill_keys($fromList, true);
-            }
+        /** @var array<string, string[]> $dependents */
+        $dependents = $data['dependents'] ?? [];
+        foreach ($dependents as $to => $fromList) {
+            /** @var array<string, true> $keyedDependents */
+            $keyedDependents = array_fill_keys($fromList, true);
+            $graph->dependents[$to] = $keyedDependents;
         }
 
         return $graph;

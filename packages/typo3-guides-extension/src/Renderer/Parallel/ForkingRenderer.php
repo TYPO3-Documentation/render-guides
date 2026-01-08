@@ -444,7 +444,7 @@ final class ForkingRenderer implements TypeRenderer
         $allDirty = $this->cacheListener->computeDirtySet();
 
         // Build dirty set lookup - empty means no documents changed (skip all)
-        $this->dirtySet = array_flip($allDirty);
+        $this->dirtySet = array_fill_keys($allDirty, true);
         $this->incrementalEnabled = true;
 
         $this->logger?->debug(sprintf(

@@ -601,26 +601,8 @@ parameters:
 			path: packages/typo3-guides-extension/src/Compiler/Cache/ContentHasher.php
 
 		-
-			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
-			identifier: empty.notAllowed
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/DependencyGraph.php
-
-		-
 			message: '#^Method T3Docs\\GuidesExtension\\Compiler\\Cache\\DependencyGraph\:\:getStats\(\) should return array\<string, int\> but returns array\<string, float\|int\<0, max\>\>\.$#'
 			identifier: return.type
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/DependencyGraph.php
-
-		-
-			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\DependencyGraph\:\:\$dependents \(array\<string, array\<string\>\>\) does not accept mixed\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: packages/typo3-guides-extension/src/Compiler/Cache/DependencyGraph.php
-
-		-
-			message: '#^Property T3Docs\\GuidesExtension\\Compiler\\Cache\\DependencyGraph\:\:\$imports \(array\<string, array\<string\>\>\) does not accept mixed\.$#'
-			identifier: assign.propertyType
 			count: 1
 			path: packages/typo3-guides-extension/src/Compiler/Cache/DependencyGraph.php
 

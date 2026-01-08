@@ -139,13 +139,16 @@ final class IncrementalBuildCache
                 }
 
                 $data = json_decode($json, true);
-                if (!is_array($data) || !isset($data['path'])) {
+                if (!is_array($data) || !isset($data['path']) || !is_string($data['path'])) {
                     continue;
                 }
 
+                /** @var string $docPath */
                 $docPath = $data['path'];
                 unset($data['path']); // Remove path from export data
-                $this->exports[$docPath] = DocumentExports::fromArray($data);
+                /** @var array<string, mixed> $exportData */
+                $exportData = $data;
+                $this->exports[$docPath] = DocumentExports::fromArray($exportData);
             }
         }
     }
