@@ -520,10 +520,11 @@
                 440% CPU = ~4.4 cores utilized on average.
             </p>
             <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem;">
-                <strong>Memory Efficiency:</strong> Feature branch uses <strong>3x less memory</strong> on Changelog (900 MB vs 2986 MB)
-                and small docs (33 MB vs 98 MB). The Core API shows higher memory on feature branch due to parallel process overhead,
-                but wall time is still 4x faster. Memory from PHP <code>memory_get_peak_usage(true)</code> (feature) and
-                <code>/usr/bin/time</code> (main).
+                <strong>Memory Efficiency:</strong> Feature branch uses <strong>~50% less total memory</strong> on Changelog
+                (~1.3 GB vs 3 GB) despite parallel processing. Each forked worker processes its batch and exits,
+                avoiding the memory accumulation seen in sequential processing. The 900 MB figure shown in detailed
+                tables represents the <em>parent process peak</em> (from PHP <code>memory_get_peak_usage()</code>),
+                while total system memory (all processes) is ~1.3 GB for Changelog.
             </p>
 
             <div class="chart-container">
@@ -790,7 +791,7 @@
             <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
                 <strong>Key insight:</strong> Sequential mode outperforms auto/16-workers on Changelog docs, achieving 21x speedup.
                 The main branch takes <strong>20 minutes</strong> cold / <strong>15 minutes</strong> warm while feature branch
-                completes in under <strong>1 minute</strong>. Memory usage drops from 3GB to 900MB despite parallel processing.
+                completes in under <strong>1 minute</strong>. Total memory usage drops from ~3 GB to ~1.3 GB (parent process: 900 MB).
             </p>
         </div>
 
@@ -1139,9 +1140,15 @@
         <div class="card">
             <h2>Incremental Build Performance (Feature Branch)</h2>
 
+            <div style="background: #d4edda; border-left: 4px solid var(--success); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
+                <strong style="color: #155724;">✓ Incremental Rendering Working!</strong>
+                <span style="color: #155724;">Warm and partial builds complete in under 500ms regardless of project size -
+                a <strong>99%+ reduction</strong> from cold builds. Only changed files and their dependents are re-rendered.</span>
+            </div>
+
             <p style="color: var(--text-muted); margin-bottom: 1rem;">
                 Incremental builds skip unchanged documents, only re-rendering files that have been modified or depend on changed exports.
-                The "Warm" build shows no changes (full cache hit), while "Partial" re-renders only the modified document.
+                "Warm" = no changes (full cache hit), "Partial-Index" = main document changed, "Partial-Leaf" = deep nested document changed.
             </p>
 
             <table class="comparison-table">
@@ -1149,56 +1156,58 @@
                     <tr>
                         <th>Documentation</th>
                         <th>Cold Build</th>
-                        <th>Warm (no changes)</th>
-                        <th>Partial (1 file changed)</th>
+                        <th>Warm</th>
+                        <th>Partial-Index</th>
+                        <th>Partial-Leaf</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Rendertest</strong> (98 files)</td>
-                        <td>5.93s</td>
-                        <td>0.24s <span style="color: var(--success); font-weight: 700;">(-96%)</span></td>
+                        <td><strong>TYPO3 Core Changelog</strong><br><small>(3668 files)</small></td>
+                        <td>172.7s</td>
+                        <td>0.47s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span></td>
+                        <td>0.44s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span></td>
+                        <td>0.48s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>TYPO3 Core API</strong><br><small>(957 files)</small></td>
+                        <td>35.3s</td>
+                        <td>0.39s <span style="color: var(--success); font-weight: 700;">(-99%)</span></td>
+                        <td>0.40s <span style="color: var(--success); font-weight: 700;">(-99%)</span></td>
+                        <td>0.41s <span style="color: var(--success); font-weight: 700;">(-99%)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rendertest</strong><br><small>(94 files)</small></td>
+                        <td>6.9s</td>
+                        <td>0.26s <span style="color: var(--success); font-weight: 700;">(-96%)</span></td>
+                        <td>0.25s <span style="color: var(--success); font-weight: 700;">(-96%)</span></td>
                         <td>0.24s <span style="color: var(--success); font-weight: 700;">(-96%)</span></td>
                     </tr>
                 </tbody>
             </table>
 
-            <div style="background: #d4edda; border-left: 4px solid var(--success); padding: 1rem; margin: 1.5rem 0; border-radius: 4px;">
-                <strong style="color: #155724;">✓ Incremental Rendering Working!</strong>
-                <span style="color: #155724;">Warm and partial builds now complete in under 250ms - a <strong>96% reduction</strong> from cold builds.
-                Only changed files and their dependents are re-rendered.</span>
-            </div>
+            <h3>Key Insight: Constant Time Incremental Builds</h3>
+            <p style="color: var(--text-muted); margin: 1rem 0;">
+                Notice that incremental build times are nearly <strong>identical across all project sizes</strong>:
+                ~0.4-0.5s for 3668 files vs ~0.25s for 94 files. This demonstrates that incremental builds scale
+                with the <em>number of changed files</em>, not the <em>total project size</em>.
+            </p>
 
             <h3>What Gets Re-rendered</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                <li><strong>Warm (no changes):</strong> Nothing - all documents skipped, localizations skipped</li>
-                <li><strong>Partial (1 file changed):</strong> Only the modified file is parsed and rendered (~0.01s overhead)</li>
-                <li><strong>Dependency cascade:</strong> Files that depend on changed exports are also re-rendered</li>
+                <li><strong>Warm (no changes):</strong> Nothing - all documents skipped, localizations skipped entirely</li>
+                <li><strong>Partial-Index:</strong> Main Index.rst and any documents that depend on its exports</li>
+                <li><strong>Partial-Leaf:</strong> Only the leaf document - no dependents to cascade</li>
+                <li><strong>Dependency cascade:</strong> Documents referencing changed anchors/titles are also re-rendered</li>
             </ul>
 
-            <h3>What the scenarios mean</h3>
+            <h3>Benchmark Scenarios</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                <li><strong>Cold Build:</strong> All caches cleared, first render</li>
-                <li><strong>Warm (no changes):</strong> Re-render with all caches populated, no file changes</li>
-                <li><strong>Partial (Index.rst change):</strong> Modify <code>Index.rst</code> to trigger incremental rebuild</li>
+                <li><strong>Cold:</strong> All caches cleared, fresh render from scratch</li>
+                <li><strong>Warm:</strong> No file changes, full cache hit</li>
+                <li><strong>Partial-Index:</strong> Modify <code>Index.rst</code> (main document, many potential dependents)</li>
+                <li><strong>Partial-Leaf:</strong> Modify a deep nested document (few/no dependents)</li>
             </ul>
-
-            <h3>Root Cause Analysis</h3>
-            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
-                The incremental rendering infrastructure (IncrementalBuildCache, ExportsCollectorPass, ChangeDetector)
-                is fully implemented but doesn't function because:
-            </p>
-            <ol style="margin: 0.5rem 0 1rem; padding-left: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
-                <li><code>ParallelCompiler</code> uses <code>pcntl_fork()</code> for compilation phases</li>
-                <li>Each forked child process gets a <strong>copy</strong> of the empty <code>IncrementalBuildCache</code></li>
-                <li>Children run <code>ExportsCollectorPass</code> and populate their local cache copy</li>
-                <li>When children exit, their cache data is <strong>lost</strong> (not merged back to parent)</li>
-                <li>Parent's cache instance remains empty when <code>save()</code> is called</li>
-            </ol>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">
-                <strong>Fix required:</strong> Either disable parallel compilation when building the cache, or add cache
-                state serialization/merging to the <code>DocumentCompilationResult</code> mechanism.
-            </p>
         </div>
 
         <!-- Benchmark Details -->
