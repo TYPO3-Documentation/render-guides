@@ -35,7 +35,7 @@ use function sprintf;
 
 final class ViewHelperDirective extends BaseDirective
 {
-    public const NAME = 'typo3:viewhelper';
+    public const string NAME = 'typo3:viewhelper';
 
     /**
      * @param Rule<Node> $startingRule
@@ -51,12 +51,13 @@ final class ViewHelperDirective extends BaseDirective
         $genericLinkProvider->addGenericLink(self::NAME . '-argument', ViewHelperArgumentNode::LINK_TYPE, ViewHelperArgumentNode::LINK_PREFIX);
     }
 
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;
     }
 
-    /** {@inheritDoc} */
+    #[\Override]
     public function processNode(
         BlockContext $blockContext,
         Directive    $directive,
@@ -180,7 +181,7 @@ final class ViewHelperDirective extends BaseDirective
             foreach ($collectionNode->getValue() as $node) {
                 if ($node instanceof SectionNode) {
                     $title = $node->getTitle()->toString();
-                    if (stripos($title, 'example') !== false) { // Case-insensitive check for 'example'
+                    if (str_contains(strtolower($title), 'example')) {
                         $examples[] = $node;
                     } else {
                         $sections[] = $node;
@@ -198,10 +199,10 @@ final class ViewHelperDirective extends BaseDirective
         }
         $display = ['tags', 'documentation', 'gitHubLink', 'arguments'];
         if ($directive->hasOption('display')) {
-            $display =  array_map('trim', explode(',', $directive->getOptionString('display')));
+            $display =  array_map(trim(...), explode(',', $directive->getOptionString('display')));
         }
         $viewHelperId = $this->anchorNormalizer->reduceAnchor($className);
-        $viewHelperNode = new ViewHelperNode(
+        return new ViewHelperNode(
             id: $viewHelperId,
             tagName: $this->getString($data, 'tagName'),
             shortClassName: $shortClassName,
@@ -219,7 +220,6 @@ final class ViewHelperDirective extends BaseDirective
             display: $display,
             arguments: [],
         );
-        return $viewHelperNode;
     }
 
     private function getErrorNode(): ParagraphNode

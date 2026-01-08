@@ -1,0 +1,32 @@
+{
+    "branch": "main",
+    "commit": "official-container",
+    "scenario": "warm",
+    "docs_type": "large",
+    "parallel_mode": "sequential",
+    "parallel_workers": "N/A",
+    "timestamp": "20260105_000634",
+    "runs": 3,
+    "metrics": {
+        "wall_time": {
+            "avg_seconds": 162.603,
+            "min_seconds": 161.85,
+            "max_seconds": 163.91
+        },
+        "cpu_time": {
+            "avg_seconds": 147.23,
+            "avg_percent": 90
+        },
+        "memory": {
+            "avg_mb": 360.0,
+            "min_mb": 360.0,
+            "max_mb": 360.2,
+            "source": "usr_bin_time"
+        },
+        "files_rendered": 957
+    },
+    "raw_wall_times_seconds": [161.85,162.05,163.91],
+    "raw_cpu_percents": [90,90,90],
+    "raw_memories_mb": [360.0,360.0,360.2],
+    "notes": "Memory from /usr/bin/time - may be less accurate than PHP profiling"
+}

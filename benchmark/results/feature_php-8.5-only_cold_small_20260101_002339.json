@@ -1,0 +1,23 @@
+{
+    "branch": "feature_php-8.5-only",
+    "commit": "9261719b",
+    "scenario": "cold",
+    "docs_type": "small",
+    "timestamp": "20260101_002339",
+    "runs": 1,
+    "metrics": {
+        "time": {
+            "avg_seconds": 3.506,
+            "min_seconds": 3.506421769,
+            "max_seconds": 3.506421769
+        },
+        "memory": {
+            "avg_mb": 64.0,
+            "min_mb": 64,
+            "max_mb": 64
+        },
+        "files_rendered": 0
+    },
+    "raw_times_seconds": [3.506421769],
+    "raw_memories_mb": [64]
+}

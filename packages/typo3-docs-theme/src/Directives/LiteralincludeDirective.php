@@ -32,6 +32,7 @@ final class LiteralincludeDirective extends BaseDirective
         private readonly LoggerInterface      $logger,
     ) {}
 
+    #[\Override]
     public function getName(): string
     {
         return 'literalinclude';
@@ -59,13 +60,10 @@ final class LiteralincludeDirective extends BaseDirective
         ];
 
         $extension = pathinfo($path, PATHINFO_EXTENSION);
-        if (isset($extensionMap[$extension])) {
-            return $extensionMap[$extension];
-        }
-        return null;
+        return $extensionMap[$extension] ?? null;
     }
 
-    /** {@inheritDoc} */
+    #[\Override]
     public function processNode(
         BlockContext $blockContext,
         Directive    $directive,

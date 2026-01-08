@@ -10,7 +10,6 @@ use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
-use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use T3Docs\Typo3DocsTheme\Nodes\MainMenuJsonNode;
 
 /**
@@ -20,24 +19,20 @@ use T3Docs\Typo3DocsTheme\Nodes\MainMenuJsonNode;
  * To be used together with the MainMenuJsonRenderer and the template
  * :template: mainMenu.json
  */
-class MainMenuJsonDirective extends SubDirective
+final class MainMenuJsonDirective extends SubDirective
 {
-    public function __construct(
-        Rule $startingRule,
-    ) {
-        parent::__construct($startingRule);
-    }
-
+    #[\Override]
     public function getName(): string
     {
         return 'main-menu-json';
     }
 
+    #[\Override]
     protected function processSub(
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
         Directive      $directive,
-    ): Node|null {
+    ): Node {
         return new MainMenuJsonNode(
             $directive->getData(),
             $directive->getDataNode() ?? new InlineCompoundNode(),

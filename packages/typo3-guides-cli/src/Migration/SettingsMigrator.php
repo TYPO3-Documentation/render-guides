@@ -44,7 +44,7 @@ class SettingsMigrator
         $extension->setAttribute('typo3-core-preferred', $this->detectedVersion);
 
         $guides->append($extension);
-        if ($project !== null) {
+        if ($project instanceof \DOMElement) {
             $guides->append($project);
         }
         foreach ($inventories as $inventory) {
@@ -76,7 +76,7 @@ class SettingsMigrator
     private function createExtensionSection(): \DOMElement
     {
         $extension = $this->xmlDocument->createElement('extension');
-        $extension->setAttribute('class', '\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension');
+        $extension->setAttribute('class', \T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension::class);
 
         if (!is_array($this->legacySettings['html_theme_options'] ?? false)) {
             return $extension;
@@ -202,7 +202,6 @@ class SettingsMigrator
         $differingPart2 = substr($defaultUrl, $commonPrefixLength);
 
         $commonSuffixLength = strspn(strrev($differingPart1), strrev($differingPart2));
-        $differingPart1 = substr($differingPart1, 0, -$commonSuffixLength);
-        return $differingPart1;
+        return substr($differingPart1, 0, -$commonSuffixLength);
     }
 }

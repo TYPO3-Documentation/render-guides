@@ -33,13 +33,13 @@ use Webmozart\Assert\Assert;
 use function sprintf;
 
 /** @implements NodeTransformer<DocumentNode|AnchorNode|SectionNode> */
-final class CollectPrefixLinkTargetsTransformer implements NodeTransformer
+final readonly class CollectPrefixLinkTargetsTransformer implements NodeTransformer
 {
     /** @var SplStack<DocumentNode> */
-    private readonly SplStack $documentStack;
+    private SplStack $documentStack;
 
     public function __construct(
-        private readonly AnchorNormalizer $anchorReducer,
+        private AnchorNormalizer $anchorReducer,
         private LoggerInterface|null $logger = null,
     ) {
         /*
@@ -104,7 +104,7 @@ final class CollectPrefixLinkTargetsTransformer implements NodeTransformer
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): \phpDocumentor\Guides\Nodes\Node
     {
         if ($node instanceof DocumentNode) {
             $this->documentStack->pop();
@@ -120,8 +120,8 @@ final class CollectPrefixLinkTargetsTransformer implements NodeTransformer
 
     public function getPriority(): int
     {
-        // After CollectLinkTargetsTransformer
-        return 4000;
+        // After CollectLinkTargetsTransformer (5000) but before ExportsCollectorPass (4500)
+        return 4900;
     }
 
     private function addLinkTargetToProject(CompilerContextInterface $compilerContext, InternalTarget $internalTarget): void

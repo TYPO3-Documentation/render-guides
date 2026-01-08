@@ -1,0 +1,12 @@
+diff --git a/src/Application.php b/src/Application.php
+--- a/src/Application.php
++++ b/src/Application.php
+@@ -34,7 +34,7 @@ final class Application extends BaseApplication
+
+         $commands = is_array($commands) ? $commands : iterator_to_array($commands);
+         foreach ($commands as $command) {
+-            $this->add($command);
++            $this->addCommand($command);
+         }
+
+         if (count($commands) !== 1) {

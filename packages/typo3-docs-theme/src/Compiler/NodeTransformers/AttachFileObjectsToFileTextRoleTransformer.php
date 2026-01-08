@@ -22,10 +22,10 @@ use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\FileObject;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
 
 /** @implements NodeTransformer<FileInlineNode> */
-final class AttachFileObjectsToFileTextRoleTransformer implements NodeTransformer
+final readonly class AttachFileObjectsToFileTextRoleTransformer implements NodeTransformer
 {
     public function __construct(
-        private readonly ObjectInventory $objectInventory,
+        private ObjectInventory $objectInventory,
     ) {}
 
     public function enterNode(Node $node, CompilerContextInterface $compilerContext): Node
@@ -64,7 +64,7 @@ final class AttachFileObjectsToFileTextRoleTransformer implements NodeTransforme
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): \phpDocumentor\Guides\Nodes\Node
     {
         return $node;
     }

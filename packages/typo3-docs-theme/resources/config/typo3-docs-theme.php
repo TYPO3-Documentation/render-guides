@@ -2,15 +2,19 @@
 
 declare(strict_types=1);
 
-use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
+// CodeHighlight removed - using client-side Prism.js instead
+// use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
 use phpDocumentor\Guides\Event\PostParseDocument;
 use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use phpDocumentor\Guides\Event\PreParseProcess;
 use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
+use phpDocumentor\Guides\Handlers\ParseFileHandler;
 use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\JsonLoader;
+use phpDocumentor\Guides\Twig\EnvironmentBuilder;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
@@ -45,12 +49,14 @@ use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\OriginalFileNameSetter;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
+use T3Docs\Typo3DocsTheme\Inventory\CachingJsonLoader;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInterlinkParser;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInventoryUrlBuilder;
 use T3Docs\Typo3DocsTheme\Inventory\InterlinkParserInterface;
 use T3Docs\Typo3DocsTheme\Inventory\InventoryUrlBuilderInterface;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
+use T3Docs\Typo3DocsTheme\Parser\CachingParseFileHandler;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
@@ -83,6 +89,7 @@ use T3Docs\Typo3DocsTheme\TextRoles\ViewhelperArgumentTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ViewhelperTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\XmlTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\YamlTextTextRole;
+use T3Docs\Typo3DocsTheme\Twig\CachedEnvironmentFactory;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
 use T3Docs\VersionHandling\Packagist\PackagistService;
 
@@ -198,6 +205,28 @@ return static function (ContainerConfigurator $container): void {
         ->decorate(PlantumlServerRenderer::class)
         ->public()
 
+        // Inventory caching for performance optimization
+        ->set(CachingJsonLoader::class)
+        ->decorate(JsonLoader::class)
+        ->arg('$inner', service('.inner'))
+        ->arg('$cacheDir', '')
+        ->arg('$ttl', 3600)
+
+        // Twig template caching for performance optimization
+        ->set(CachedEnvironmentFactory::class)
+        ->arg('$extensions', tagged_iterator('twig.extension'))
+        ->arg('$cacheDir', '')
+
+        ->set(EnvironmentBuilder::class)
+        ->call('setEnvironmentFactory', [service(CachedEnvironmentFactory::class)])
+
+        // AST caching for parsed documents (performance optimization)
+        ->set(CachingParseFileHandler::class)
+        ->decorate(ParseFileHandler::class)
+        ->arg('$inner', service('.inner'))
+        ->arg('$cacheDir', '')
+        ->arg('$ttl', 86400)
+
         ->set(ConfvalMenuDirective::class)
         ->set(DirectoryTreeDirective::class)
         ->set(GlossaryDirective::class)
@@ -213,18 +242,9 @@ return static function (ContainerConfigurator $container): void {
         ->set(ViewHelperDirective::class)
         ->arg('$startingRule', service(DocumentRule::class))
         ->set(YoutubeDirective::class)
-        ->set(CodeHighlight::class)
-        ->arg('$languageAliases', [
-            'none' => 'plaintext',
-            'text' => 'plaintext',
-        ])
-        ->arg('$additionalLanguages', [
-            ['typoscript', __DIR__ . '/../languages/typoscript.json'],
-            ['rst', __DIR__ . '/../languages/rst.json'],
-        ])
-        ->arg('$classes', 'code-block')
-        ->tag('twig.extension')
-        ->autowire()
+        // CodeHighlight removed - using client-side Prism.js instead for better performance
+        // Server-side highlighting loaded 185 language files on every render
+        // See: PERFORMANCE_ANALYSIS.md
 
         ->set(PackagistService::class)
         ->set(Typo3VersionService::class)

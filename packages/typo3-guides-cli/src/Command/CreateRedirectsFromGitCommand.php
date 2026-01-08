@@ -4,28 +4,23 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Console\Input\InputOption;
 use T3Docs\GuidesCli\Git\GitChangeDetector;
 use T3Docs\GuidesCli\Redirect\RedirectCreator;
 
+#[AsCommand(name: 'create-redirects-from-git', description: 'Creates nginx redirects for moved files.')]
 final class CreateRedirectsFromGitCommand extends Command
 {
-    protected static $defaultName = 'create-redirects-from-git';
-
-    private GitChangeDetector $gitChangeDetector;
-    private RedirectCreator $redirectCreator;
-
     public function __construct(
-        ?GitChangeDetector $gitChangeDetector = null,
-        ?RedirectCreator $redirectCreator = null
+        private readonly ?GitChangeDetector $gitChangeDetector = new GitChangeDetector(),
+        private readonly ?RedirectCreator $redirectCreator = new RedirectCreator()
     ) {
         parent::__construct();
-        $this->gitChangeDetector = $gitChangeDetector ?? new GitChangeDetector();
-        $this->redirectCreator = $redirectCreator ?? new RedirectCreator();
     }
 
     protected function configure(): void
@@ -125,7 +120,7 @@ final class CreateRedirectsFromGitCommand extends Command
         try {
             $movedFiles = $this->gitChangeDetector->detectMovedFiles($baseBranch, $docsPath);
 
-            if (empty($movedFiles)) {
+            if ($movedFiles === []) {
                 $io->success('No moved files detected in this PR.');
                 return Command::SUCCESS;
             }

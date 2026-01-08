@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\GuidesCli\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,10 +22,9 @@ use T3Docs\VersionHandling\Typo3VersionMapping;
  * ddev exec packages/typo3-guides-cli/bin/typo3-guides init --working-dir=packages/my-extension
  *
  */
+#[AsCommand(name: 'init', description: 'Initialize a new documentation project.')]
 final class InitCommand extends Command
 {
-    protected static $defaultName = 'init';
-
     protected function configure(): void
     {
         $this->setDescription('Initialize a new documentation project');
@@ -47,7 +47,6 @@ final class InitCommand extends Command
         if ($input->getOption('working-dir')) {
             $workdir = $input->getOption('working-dir');
             assert(is_string($workdir));
-            $workdir = (string) $workdir;
 
             if (chdir($workdir)) {
                 $output->writeln('<info>Changed working directory to ' . getcwd() . '</info>');
@@ -73,7 +72,7 @@ final class InitCommand extends Command
 
         $composerInfo = $this->getComposerInfo($output);
 
-        if ($composerInfo === null) {
+        if (!$composerInfo instanceof \T3Docs\VersionHandling\Packagist\ComposerPackage) {
             $output->writeln('<error>No composer.json was found in the current or work directory. Use option --working-dir to set the work directory.</error>');
             return Command::FAILURE;
         }
@@ -81,9 +80,9 @@ final class InitCommand extends Command
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
 
-        $question = new Question(sprintf('Do you want to use reStructuredText(rst) or MarkDown(md)? <comment>[rst, md]</comment>: '), 'rst');
-        $question->setValidator(function ($answer) {
-            if (is_null($answer) || !in_array($answer, [
+        $question = new Question('Do you want to use reStructuredText(rst) or MarkDown(md)? <comment>[rst, md]</comment>: ', 'rst');
+        $question->setValidator(function ($answer): string {
+            if ($answer === null || !in_array($answer, [
                     'rst',
                     'md',
                 ], true)) {
@@ -98,7 +97,7 @@ final class InitCommand extends Command
             $composerInfo->getComposerName()
         );
         $projectNameQuestion->setValidator(function ($answer) {
-            if (is_null($answer) || trim($answer) === '') {
+            if ($answer === null || trim($answer) === '') {
                 throw new \RuntimeException('The project title cannot be empty.');
             }
             return $answer;
@@ -148,7 +147,7 @@ final class InitCommand extends Command
         $typo3CoreVersion = $helper->ask($input, $output, $question);
 
         $question = new Question('Do you want generate some Documentation? (yes/no) ', 'yes');
-        $question->setValidator(function ($answer) {
+        $question->setValidator(function ($answer): string {
             if (!in_array(strtolower($answer), [
                 'yes',
                 'y',
@@ -213,7 +212,7 @@ final class InitCommand extends Command
             'siteSetPath' => $siteSetPath,
             'siteSetDefinition' => $siteSetDefinition,
         ];
-        (new DocumentationGenerator())->generate($data, __DIR__ . '/../../resources/templates', $outputDir, $enableExampleFileGeneration);
+        new DocumentationGenerator()->generate($data, __DIR__ . '/../../resources/templates', $outputDir, $enableExampleFileGeneration);
 
         return Command::SUCCESS;
     }
@@ -232,11 +231,11 @@ final class InitCommand extends Command
             }
         }
         $question = new Question(sprintf($questionText, $default), $default);
-        if (!empty($autocompleteValues)) {
+        if ($autocompleteValues !== []) {
             $question->setAutocompleterValues($autocompleteValuesFiltered);
         }
         $question->setValidator(function ($answer) {
-            if (!is_null($answer) && $answer !== '' && !filter_var($answer, FILTER_VALIDATE_URL)) {
+            if ($answer !== null && $answer !== '' && !filter_var($answer, FILTER_VALIDATE_URL)) {
                 throw new \RuntimeException('The URL is not valid');
             }
             return $answer;
@@ -254,9 +253,7 @@ final class InitCommand extends Command
 
         $output->writeln('A <comment>composer.json</comment> file was found in the current directory.');
 
-        $composerInfo = (new PackagistService())->getComposerInfoFromJson($this->fetchComposerArray() ?? []);
-
-        return $composerInfo;
+        return new PackagistService()->getComposerInfoFromJson($this->fetchComposerArray() ?? []);
     }
 
     /**

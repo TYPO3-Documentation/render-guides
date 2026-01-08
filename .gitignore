@@ -7,3 +7,8 @@
 /Documentation-GENERATED-*
 /.phpdoc/
 /phpdoc.dist.xml
+*-temp/
+
+# Benchmark test documentation (downloaded on demand)
+/benchmark/test-docs/
+!/benchmark/test-docs/.gitkeep

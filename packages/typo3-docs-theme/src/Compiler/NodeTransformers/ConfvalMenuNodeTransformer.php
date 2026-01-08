@@ -24,10 +24,10 @@ use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 use function assert;
 
 /** @implements NodeTransformer<ConfvalMenuNode> */
-final class ConfvalMenuNodeTransformer implements NodeTransformer
+final readonly class ConfvalMenuNodeTransformer implements NodeTransformer
 {
     public function __construct(
-        private readonly LoggerInterface $logger,
+        private LoggerInterface $logger,
     ) {}
 
     public function enterNode(Node $node, CompilerContextInterface $compilerContext): Node
@@ -35,14 +35,14 @@ final class ConfvalMenuNodeTransformer implements NodeTransformer
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): \phpDocumentor\Guides\Nodes\Node
     {
         assert($node instanceof ConfvalMenuNode);
-        if (count($node->getConfvals()) > 0) {
+        if ($node->getConfvals() !== []) {
             return $node;
         }
         $confvals = $this->findConfvals($compilerContext->getDocumentNode(), $node);
-        if (count($confvals) < 1) {
+        if ($confvals === []) {
             $this->logger->warning('No confvals found for the confval-menu', $compilerContext->getLoggerInformation());
         }
         $node->setConfvals($confvals);

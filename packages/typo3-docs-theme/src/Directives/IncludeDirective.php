@@ -27,7 +27,6 @@ use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use RuntimeException;
 use T3Docs\Typo3DocsTheme\Nodes\EditOnGithubIncludeNode;
 
-use function array_key_exists;
 use function explode;
 use function sprintf;
 use function str_replace;
@@ -36,12 +35,13 @@ final class IncludeDirective extends BaseDirective
 {
     public function __construct(private readonly DocumentRule $startingRule) {}
 
+    #[\Override]
     public function getName(): string
     {
         return 'include';
     }
 
-    /** {@inheritDoc} */
+    #[\Override]
     public function processNode(
         BlockContext $blockContext,
         Directive    $directive,
@@ -55,7 +55,7 @@ final class IncludeDirective extends BaseDirective
 
 
     /**
-     * @throws \League\Flysystem\FileNotFoundException
+     * @throws \League\Flysystem\FilesystemException
      */
     public function resolveGlobInclude(BlockContext $blockContext, string $inputPath, Directive $directive): LiteralBlockNode|CollectionNode|CodeNode
     {
@@ -104,7 +104,7 @@ final class IncludeDirective extends BaseDirective
     }
 
     /**
-     * @throws \League\Flysystem\FileNotFoundException
+     * @throws \League\Flysystem\FilesystemException
      */
     public function resolveBasicInclude(BlockContext $blockContext, string $inputPath, Directive $directive): LiteralBlockNode|CollectionNode|CodeNode
     {
@@ -122,9 +122,9 @@ final class IncludeDirective extends BaseDirective
     }
 
     /**
-     * @throws \League\Flysystem\FileNotFoundException
+     * @throws \League\Flysystem\FilesystemException
      */
-    public function getCollectionFromPath(\League\Flysystem\FilesystemInterface|\phpDocumentor\FileSystem\FileSystem $origin, string $path, Directive $directive, BlockContext $blockContext): LiteralBlockNode|CollectionNode|CodeNode
+    public function getCollectionFromPath(\League\Flysystem\FilesystemOperator|\League\Flysystem\FilesystemInterface|\phpDocumentor\FileSystem\FileSystem $origin, string $path, Directive $directive, BlockContext $blockContext): LiteralBlockNode|CollectionNode|CodeNode
     {
         $contents = $origin->read($path);
 
@@ -132,13 +132,13 @@ final class IncludeDirective extends BaseDirective
             throw new RuntimeException(sprintf('Could not load file from path %s', $path));
         }
 
-        if (array_key_exists('literal', $directive->getOptions())) {
+        if ($directive->hasOption('literal')) {
             $contents = str_replace("\r\n", "\n", $contents);
 
             return new LiteralBlockNode($contents);
         }
 
-        if (array_key_exists('code', $directive->getOptions())) {
+        if ($directive->hasOption('code')) {
             $contents = str_replace("\r\n", "\n", $contents);
             $codeNode = new CodeNode(
                 explode('\n', $contents),

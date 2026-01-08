@@ -2,7 +2,7 @@
 
 namespace T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory;
 
-class ObjectInventory
+final class ObjectInventory
 {
     /**
      * @var array<string,array<string, DataObject>>
@@ -41,9 +41,6 @@ class ObjectInventory
         if (!isset($this->objects[$group])) {
             return false;
         }
-        if (!isset($this->objects[$group][$key])) {
-            return false;
-        }
-        return true;
+        return isset($this->objects[$group][$key]);
     }
 }

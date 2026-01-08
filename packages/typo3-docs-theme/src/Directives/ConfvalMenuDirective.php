@@ -25,9 +25,9 @@ use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use phpDocumentor\Guides\RestructuredText\TextRoles\GenericLinkProvider;
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 
-class ConfvalMenuDirective extends SubDirective
+final class ConfvalMenuDirective extends SubDirective
 {
-    public const NAME = 'confval-menu';
+    public const string NAME = 'confval-menu';
     public function __construct(
         Rule $startingRule,
         GenericLinkProvider $genericLinkProvider,
@@ -36,11 +36,12 @@ class ConfvalMenuDirective extends SubDirective
         parent::__construct($startingRule);
         $genericLinkProvider->addGenericLink(self::NAME, ConfvalMenuNode::LINK_TYPE, ConfvalMenuNode::LINK_PREFIX);
     }
+    #[\Override]
     protected function processSub(
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
         Directive      $directive,
-    ): Node|null {
+    ): Node {
         $originalChildren = $collectionNode->getChildren();
         $childConfvals = [];
         foreach ($originalChildren as $child) {
@@ -70,9 +71,7 @@ class ConfvalMenuDirective extends SubDirective
         }
         $exclude = explode(',', $directive->getOptionString('exclude'));
         $anchorReducer = $this->anchorReducer;
-        $exclude = array_map(function ($element) use ($anchorReducer) {
-            return $anchorReducer->reduceAnchor($element);
-        }, $exclude);
+        $exclude = array_map($anchorReducer->reduceAnchor(...), $exclude);
         $id = $directive->getOptionString(
             'name',
             $directive->getOptionString(
@@ -95,6 +94,7 @@ class ConfvalMenuDirective extends SubDirective
             $directive->getOptionBool('noindex'),
         );
     }
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;

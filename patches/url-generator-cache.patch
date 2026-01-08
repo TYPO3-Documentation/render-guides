@@ -1,0 +1,68 @@
+diff --git a/src/Renderer/UrlGenerator/AbstractUrlGenerator.php b/src/Renderer/UrlGenerator/AbstractUrlGenerator.php
+--- a/src/Renderer/UrlGenerator/AbstractUrlGenerator.php
++++ b/src/Renderer/UrlGenerator/AbstractUrlGenerator.php
+@@ -26,6 +26,9 @@
+ 
+ abstract class AbstractUrlGenerator implements UrlGeneratorInterface
+ {
++    /** @var array<string, bool> */
++    private array $relativeUrlCache = [];
++
+     public function __construct(private readonly DocumentNameResolverInterface $documentNameResolver)
+     {
+     }
+@@ -83,7 +86,11 @@
+ 
+     private function isRelativeUrl(string $url): bool
+     {
+-        return BaseUri::from($url)->isRelativePath();
++        if (isset($this->relativeUrlCache[$url])) {
++            return $this->relativeUrlCache[$url];
++        }
++
++        return $this->relativeUrlCache[$url] = BaseUri::from($url)->isRelativePath();
+     }
+ 
+     public function getCurrentFileUrl(RenderContext $renderContext): string
+diff --git a/src/Renderer/UrlGenerator/RelativeUrlGenerator.php b/src/Renderer/UrlGenerator/RelativeUrlGenerator.php
+--- a/src/Renderer/UrlGenerator/RelativeUrlGenerator.php
++++ b/src/Renderer/UrlGenerator/RelativeUrlGenerator.php
+@@ -26,18 +26,28 @@
+ 
+ final class RelativeUrlGenerator extends AbstractUrlGenerator
+ {
++    /** @var array<string, string> */
++    private array $pathCache = [];
++
+     public function generateInternalPathFromRelativeUrl(
+         RenderContext $renderContext,
+         string $canonicalUrl,
+     ): string {
+-        $currentPathUri = Uri::new($renderContext->getOutputFilePath());
++        $outputFilePath = $renderContext->getOutputFilePath();
++        $cacheKey = $outputFilePath . '|' . $canonicalUrl;
++
++        if (isset($this->pathCache[$cacheKey])) {
++            return $this->pathCache[$cacheKey];
++        }
++
++        $currentPathUri = Uri::new($outputFilePath);
+         $canonicalUrlUri = Uri::new($canonicalUrl);
+ 
+         $canonicalAnchor = $canonicalUrlUri->getFragment();
+ 
+         // If the paths are the same, include the anchor
+         if ($currentPathUri->getPath() === $canonicalUrlUri->getPath()) {
+-            return '#' . $canonicalAnchor;
++            return $this->pathCache[$cacheKey] = '#' . $canonicalAnchor;
+         }
+ 
+         // Split paths into arrays
+@@ -66,6 +76,6 @@
+             $relativePath .= '#' . $canonicalAnchor;
+         }
+ 
+-        return $relativePath;
++        return $this->pathCache[$cacheKey] = $relativePath;
+     }
+ }

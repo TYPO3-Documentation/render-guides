@@ -9,14 +9,14 @@ use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\FileObject;
 
 final class FileInlineNode extends AbstractLinkInlineNode implements CrossReferenceNode
 {
-    public const TYPE = 'file';
+    public const string TYPE = 'file';
     private ?FileObject $fileObject = null;
 
     public function __construct(
-        private string $fileLink,
+        private readonly string $fileLink,
         private string $fileLabel,
-        private string $interlinkDomain,
-        private string $linkType
+        private readonly string $interlinkDomain,
+        private readonly string $linkType
     ) {
         parent::__construct(self::TYPE, $fileLink, $fileLabel, [new PlainTextInlineNode($fileLabel)]);
     }

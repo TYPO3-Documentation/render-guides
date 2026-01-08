@@ -51,8 +51,6 @@ final class Typo3ApiService
 
     /**
      * Fetch JSON data from the given URL.
-     *
-     * @return string|null
      */
     private function fetchJsonData(string $url): ?string
     {
@@ -75,7 +73,7 @@ final class Typo3ApiService
         $jsonData = curl_exec($ch);
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        if (curl_errno($ch)) {
+        if (curl_errno($ch) !== 0) {
             $this->logger->warning(
                 sprintf(
                     'TYPO3 API could not be loaded from %s, cURL error: %s',
@@ -83,7 +81,6 @@ final class Typo3ApiService
                     curl_error($ch)
                 )
             );
-            curl_close($ch);
             return null;
         }
 
@@ -95,11 +92,8 @@ final class Typo3ApiService
                     $httpStatus
                 )
             );
-            curl_close($ch);
             return null;
         }
-
-        curl_close($ch);
         if (!is_string($jsonData)) {
             $this->logger->warning(
                 'TYPO3 API data is not a valid string.'
@@ -112,7 +106,6 @@ final class Typo3ApiService
     /**
      * Decode JSON data into an array.
      *
-     * @param string $jsonData
      * @return array<string, array<string, string>>|null
      */
     private function decodeJson(string $jsonData): ?array
@@ -142,7 +135,6 @@ final class Typo3ApiService
      * Validate the structure of the API data.
      *
      * @param array<string, array<string, string>> $apiData
-     * @return bool
      */
     private function validateApiData(array $apiData): bool
     {
@@ -175,7 +167,7 @@ final class Typo3ApiService
      */
     private function processApiData(array $apiData): array
     {
-        foreach ($apiData as $key => &$class) {
+        foreach ($apiData as &$class) {
             foreach ($class as $fqn => $info) {
                 $class[$fqn] = (string) $info;
             }

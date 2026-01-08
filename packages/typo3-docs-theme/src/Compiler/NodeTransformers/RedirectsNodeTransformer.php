@@ -24,10 +24,10 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use function assert;
 
 /** @implements NodeTransformer<CrossReferenceNode> */
-final class RedirectsNodeTransformer implements NodeTransformer
+final readonly class RedirectsNodeTransformer implements NodeTransformer
 {
     public function __construct(
-        private readonly Typo3VersionService $typo3VersionService
+        private Typo3VersionService $typo3VersionService
     ) {}
 
     public function enterNode(Node $node, CompilerContextInterface $compilerContext): Node
@@ -35,7 +35,7 @@ final class RedirectsNodeTransformer implements NodeTransformer
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): \phpDocumentor\Guides\Nodes\Node
     {
         assert($node instanceof CrossReferenceNode);
         if ($node->getInterlinkDomain() === '') {

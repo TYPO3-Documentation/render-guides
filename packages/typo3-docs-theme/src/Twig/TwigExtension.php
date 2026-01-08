@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Twig;
 
-use League\Flysystem\Exception;
+use League\Flysystem\FilesystemException;
 use LogicException;
 use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
@@ -21,6 +21,7 @@ use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use T3Docs\GuidesExtension\Renderer\Parallel\DocumentNavigationProvider;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
@@ -42,17 +43,17 @@ final class TwigExtension extends AbstractExtension
     /**
      * @see https://regex101.com/r/qWKenb/1
      */
-    public const CAMEL_CASE_BREAK_REGEX = '/([a-z])([A-Z])/';
+    public const string CAMEL_CASE_BREAK_REGEX = '/([a-z])([A-Z])/';
 
     /**
      * @see https://regex101.com/r/nxExYM/2
      */
-    public const NON_LETTER_BREAK_REGEX = '/(?<!^)([.\_\-\\\\\/:])([a-zA-Z0-9])/';
+    public const string NON_LETTER_BREAK_REGEX = '/(?<!^)([.\_\-\\\\\/:])([a-zA-Z0-9])/';
 
     /**
      * @see https://regex101.com/r/uIul8d/1
      */
-    public const BRACKETS_BREAK_REGEX = '/(?<!^)([\[\(\{\<\|])/';
+    public const string BRACKETS_BREAK_REGEX = '/(?<!^)([\[\(\{\<\|])/';
 
     private string $typo3AzureEdgeURI = '';
 
@@ -63,8 +64,9 @@ final class TwigExtension extends AbstractExtension
         private readonly DocumentNameResolverInterface $documentNameResolver,
         private readonly Typo3VersionService           $typo3VersionService,
         private readonly AnchorNormalizer              $anchorNormalizer,
+        private readonly ?DocumentNavigationProvider   $navigationProvider = null,
     ) {
-        if (strlen((string)getenv('GITHUB_ACTIONS')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
+        if ((string) (string)getenv('GITHUB_ACTIONS') !== '' && (string) (string)getenv('TYPO3AZUREEDGEURIVERSION') !== '' && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
             // The environment variable 'TYPO3AZUREEDGEURIVERSION' is set during
             // the creation of our Docker image, and holds the last pushed version
@@ -77,6 +79,7 @@ final class TwigExtension extends AbstractExtension
     }
 
     /** @return TwigFunction[] */
+    #[\Override]
     public function getFunctions(): array
     {
         return [
@@ -138,7 +141,6 @@ final class TwigExtension extends AbstractExtension
         $brokenValue  = preg_replace(self::BRACKETS_BREAK_REGEX, '<wbr>$1', $brokenValue);
         $brokenValue  = preg_replace(self::CAMEL_CASE_BREAK_REGEX, '$1<wbr>$2', $brokenValue ?? $value);
         $brokenValue  = preg_replace(self::NON_LETTER_BREAK_REGEX, '$1<wbr>$2', $brokenValue ?? $value);
-        $brokenValue  = preg_replace(self::NON_LETTER_BREAK_REGEX, '$1<wbr>$2', $brokenValue ?? $value);
         return $brokenValue ?? $value;
     }
 
@@ -164,7 +166,7 @@ final class TwigExtension extends AbstractExtension
             return $this->renderPlainText($value->getValue());
         }
         if (is_object($value)) {
-            throw new \Exception('Cannot render object ' . get_class($value) . ' as plaintext.');
+            throw new \Exception('Cannot render object ' . $value::class . ' as plaintext.');
         } else {
             throw new \Exception('Cannot render type ' . gettype($value) . ' as plaintext.');
         }
@@ -177,7 +179,7 @@ final class TwigExtension extends AbstractExtension
     {
         $renderContext = $this->getRenderContext($context);
         try {
-            if ($renderContext->getCurrentDocumentEntry() === null) {
+            if (!$renderContext->getCurrentDocumentEntry() instanceof \phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode) {
                 return false;
             }
             $document = $renderContext->getDocumentNodeForEntry($renderContext->getCurrentDocumentEntry());
@@ -345,7 +347,7 @@ final class TwigExtension extends AbstractExtension
     private function getEditOnGitHubLinkPerPage(RenderContext $renderContext): string|null
     {
         try {
-            if ($renderContext->getCurrentDocumentEntry() === null) {
+            if (!$renderContext->getCurrentDocumentEntry() instanceof \phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode) {
                 return null;
             }
             $document = $renderContext->getDocumentNodeForEntry($renderContext->getCurrentDocumentEntry());
@@ -376,19 +378,16 @@ final class TwigExtension extends AbstractExtension
             return $this->urlGenerator->generateCanonicalOutputUrl($renderContext, $reportButton);
         }
         if (str_starts_with($reportButton, 'https://forge.typo3.org/')) {
-            $reportButton = $this->enrichForgeLink($reportButton, $renderContext);
-            return $reportButton;
+            return $this->enrichForgeLink($reportButton, $renderContext);
         }
         if (str_starts_with($reportButton, 'https://github.com/')) {
-            $reportButton = $this->enrichGithubReport($reportButton, $renderContext);
-            return $reportButton;
+            return $this->enrichGithubReport($reportButton, $renderContext);
         }
         if (str_starts_with($reportButton, 'https://gitlab.com/')) {
             return $reportButton;
         }
         if (str_starts_with($reportButton, 'https://bitbucket.org/')) {
-            $reportButton = $this->enrichBitbuckedReport($reportButton, $renderContext);
-            return $reportButton;
+            return $this->enrichBitbuckedReport($reportButton, $renderContext);
         }
         if ($reportButton !== '') {
             $this->logger->warning(
@@ -407,12 +406,10 @@ final class TwigExtension extends AbstractExtension
             return '';
         }
         if (str_starts_with($reportButton, 'https://forge.typo3.org/')) {
-            $reportButton = $this->enrichForgeLink($reportButton, $renderContext);
-            return $reportButton;
+            return $this->enrichForgeLink($reportButton, $renderContext);
         }
         if (str_starts_with($reportButton, 'https://github.com/')) {
-            $reportButton = $this->enrichGithubReport($reportButton, $renderContext);
-            return $reportButton;
+            return $this->enrichGithubReport($reportButton, $renderContext);
         }
         if (str_starts_with($reportButton, 'https://gitlab.com/')) {
             if (str_ends_with($reportButton, '/issues')) {
@@ -430,7 +427,7 @@ final class TwigExtension extends AbstractExtension
         if (str_ends_with($reportButton, '/issues')) {
             $reportButton .= '/new/choose';
         }
-        if (str_ends_with($reportButton, '/new/choose') or str_ends_with($reportButton, '/new')) {
+        if (str_ends_with($reportButton, '/new/choose') || str_ends_with($reportButton, '/new')) {
             $reportButton .= '?title=';
             $description = $this->getIssueTitle($renderContext);
             $reportButton .= urlencode($description);
@@ -453,11 +450,6 @@ final class TwigExtension extends AbstractExtension
         return $reportButton;
     }
 
-    /**
-     * @param string $reportButton
-     * @param RenderContext $renderContext
-     * @return string
-     */
     public function enrichForgeLink(string $reportButton, RenderContext $renderContext): string
     {
         if (str_ends_with($reportButton, '/issues')) {
@@ -479,28 +471,17 @@ final class TwigExtension extends AbstractExtension
                 )
             );
             $reportButton .= urlencode($description);
-            switch ($version) {
-                case 'main':
-                    $reportButton .= '&issue[custom_field_values][4]=' . Typo3VersionMapping::getMajorVersionOfMain()->value;
-                    break;
-                case '13.4':
-                    $reportButton .= '&issue[custom_field_values][4]=13';
-                    break;
-                case '12.4':
-                    $reportButton .= '&issue[custom_field_values][4]=12';
-                    break;
-                case '11.5':
-                    $reportButton .= '&issue[custom_field_values][4]=11';
-                    break;
-            }
+            $reportButton .= match ($version) {
+                'main' => '&issue[custom_field_values][4]=' . Typo3VersionMapping::getMajorVersionOfMain()->value,
+                '13.4' => '&issue[custom_field_values][4]=13',
+                '12.4' => '&issue[custom_field_values][4]=12',
+                '11.5' => '&issue[custom_field_values][4]=11',
+                default => '',
+            };
         }
         return $reportButton;
     }
 
-    /**
-     * @param RenderContext $renderContext
-     * @return string
-     */
     public function getIssueTitle(RenderContext $renderContext, ?string $docsPath = null): string
     {
         return sprintf(
@@ -516,7 +497,7 @@ final class TwigExtension extends AbstractExtension
      */
     public function getStandardInventories(array $context): array
     {
-        $outputArray = array_map(fn($value) => $value->value, DefaultInventories::cases());
+        $outputArray = array_map(fn(\T3Docs\VersionHandling\DefaultInventories $value) => $value->value, DefaultInventories::cases());
         sort($outputArray, SORT_STRING);
 
         return $outputArray;
@@ -549,20 +530,19 @@ final class TwigExtension extends AbstractExtension
      */
     public function getRelativePath(array $context, string $path): string
     {
-        $renderContext = $this->getRenderContext($context);
+        $this->getRenderContext($context);
         if ($this->typo3AzureEdgeURI !== '') {
             // CI (GitHub Actions) gets special treatment, then we use a fixed URI for assets.
             // TODO: Fixate the "_resources" string as a class/config constant, not hardcoded
             // (see packages/typo3-docs-theme/src/EventListeners/CopyResources.php)
             return str_replace('/_resources/', '/', $this->typo3AzureEdgeURI . $path);
-        } else {
-            return $this->urlGenerator->generateInternalUrl($context['env'] ?? null, $path);
         }
+
+        return $this->urlGenerator->generateInternalUrl($context['env'] ?? null, $path);
     }
 
     /**
      * @param array{env: RenderContext} $context
-     * @return string
      */
     public function copyDownload(
         array  $context,
@@ -570,9 +550,8 @@ final class TwigExtension extends AbstractExtension
         string $targetPath
     ): string {
         $outputPath = $this->copyAsset($context['env'] ?? null, $sourcePath, $targetPath);
-        $relativePath = $this->urlGenerator->generateInternalUrl($context['env'] ?? null, trim($outputPath, '/'));
         // make it relative so it plays nice with the base tag in the HEAD
-        return $relativePath;
+        return $this->urlGenerator->generateInternalUrl($context['env'] ?? null, trim($outputPath, '/'));
     }
 
     private function copyAsset(
@@ -584,7 +563,7 @@ final class TwigExtension extends AbstractExtension
             return $sourcePath;
         }
 
-        $canonicalUrl = $this->documentNameResolver->canonicalUrl($renderContext->getDirName(), $sourcePath);
+        $this->documentNameResolver->canonicalUrl($renderContext->getDirName(), $sourcePath);
         $outputPath = $this->documentNameResolver->absoluteUrl(
             $renderContext->getDestinationPath(),
             $targetPath,
@@ -617,7 +596,7 @@ final class TwigExtension extends AbstractExtension
                     $renderContext->getLoggerInformation(),
                 );
             }
-        } catch (LogicException|Exception $e) {
+        } catch (LogicException|FilesystemException $e) {
             $this->logger->error(
                 sprintf('Unable to write file "%s", %s', $outputPath, $e->getMessage()),
                 $renderContext->getLoggerInformation(),
@@ -629,7 +608,6 @@ final class TwigExtension extends AbstractExtension
 
     /**
      * @param array{env: RenderContext} $context
-     * @return string
      */
     public function getSettings(array $context, string $key, string $default = ''): string
     {
@@ -695,7 +673,6 @@ final class TwigExtension extends AbstractExtension
      * Returns the singlehtml link for the current version.
      *
      * @param array{env: RenderContext} $context
-     * @return string|null
      */
     public function getSingleHtmlLink(array $context): ?string
     {
@@ -725,7 +702,6 @@ final class TwigExtension extends AbstractExtension
 
     /**
      * @param array{env: RenderContext} $context
-     * @return PageLinkNode|null
      */
     public function getTopPageLink(array $context): ?PageLinkNode
     {
@@ -790,11 +766,25 @@ final class TwigExtension extends AbstractExtension
 
     private function getNextDocumentEntry(RenderContext $renderContext): DocumentEntryNode|null
     {
+        // For parallel rendering, use the navigation provider which has the full document order
+        if ($this->navigationProvider !== null && $this->navigationProvider->isInitialized() && $renderContext->hasCurrentFileName()) {
+            $nextDoc = $this->navigationProvider->getNextDocument($renderContext->getCurrentFileName());
+            return $nextDoc?->getDocumentEntry();
+        }
+
+        // Fall back to iterator-based navigation for sequential rendering
         return $renderContext->getIterator()->nextNode()?->getDocumentEntry();
     }
 
     private function getPrevDocumentEntry(RenderContext $renderContext): DocumentEntryNode|null
     {
+        // For parallel rendering, use the navigation provider which has the full document order
+        if ($this->navigationProvider !== null && $this->navigationProvider->isInitialized() && $renderContext->hasCurrentFileName()) {
+            $prevDoc = $this->navigationProvider->getPreviousDocument($renderContext->getCurrentFileName());
+            return $prevDoc?->getDocumentEntry();
+        }
+
+        // Fall back to iterator-based navigation for sequential rendering
         return $renderContext->getIterator()->previousNode()?->getDocumentEntry();
     }
 
@@ -841,7 +831,6 @@ final class TwigExtension extends AbstractExtension
 
     /**
      * @param array<string, DocumentEntryNode|null> $documentEntries
-     * @param RenderContext $renderContext
      * @return list<PageLinkNode>
      */
     public function getPageLinks(array $documentEntries, RenderContext $renderContext): array
@@ -861,11 +850,7 @@ final class TwigExtension extends AbstractExtension
 
     public function isRenderedForDeployment(): bool
     {
-        if ($this->typo3AzureEdgeURI !== '') {
-            return true;
-        }
-
-        return false;
+        return $this->typo3AzureEdgeURI !== '';
     }
     /**
      * @param array{env: RenderContext} $context

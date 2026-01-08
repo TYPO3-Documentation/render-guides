@@ -38,10 +38,10 @@ final class SingleHtmlUrlGenerator extends AbstractUrlGenerator
             // if no directory is set $fileInfo['dirname'] returns "."
             $dirname = '';
         } else {
-            $dirname = $dirname . '/';
+            $dirname .= '/';
         }
         $filename = $fileInfo['filename'] ?? '';
-        if ($renderContext->getProjectNode()->findDocumentEntry($dirname . $filename) === null) {
+        if (!$renderContext->getProjectNode()->findDocumentEntry($dirname . $filename) instanceof \phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode) {
             // this is not a link to a rendered document, therefore to an asset
             return $this->relativeUrlGenerator->generateInternalPathFromRelativeUrl($renderContext, $canonicalUrl);
         }

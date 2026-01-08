@@ -59,7 +59,7 @@ enum Typo3VersionMapping: string
      */
     public static function getAllVersions(): array
     {
-        return array_map(static fn(Typo3VersionMapping $enumValue) => $enumValue->getVersion(), self::cases());
+        return array_map(static fn(Typo3VersionMapping $enumValue): string => $enumValue->getVersion(), self::cases());
     }
 
     public static function getMajorVersionOfMain(): Typo3VersionMapping

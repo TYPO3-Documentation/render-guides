@@ -26,26 +26,28 @@ use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use Psr\Log\LoggerInterface;
 
-class T3FieldListTableDirective extends SubDirective
+final class T3FieldListTableDirective extends SubDirective
 {
     /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
         protected Rule $startingRule,
-        protected LoggerInterface $logger,
+        private readonly LoggerInterface $logger,
     ) {
         parent::__construct($startingRule);
     }
 
+    #[\Override]
     public function getName(): string
     {
         return 't3-field-list-table';
     }
 
+    #[\Override]
     protected function processSub(
         BlockContext $blockContext,
         CollectionNode $collectionNode,
         Directive $directive,
-    ): Node|null {
+    ): Node {
         $i = 0;
         $headers = [];
         $rows = [];
@@ -86,7 +88,6 @@ class T3FieldListTableDirective extends SubDirective
                 $i++;
             }
         }
-        $tableNode = new TableNode($rows, $headers);
-        return $tableNode;
+        return new TableNode($rows, $headers);
     }
 }

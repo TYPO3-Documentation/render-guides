@@ -21,22 +21,17 @@ use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
-use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use T3Docs\Typo3DocsTheme\Nodes\GlossaryNode;
 
-class GlossaryDirective extends SubDirective
+final class GlossaryDirective extends SubDirective
 {
-    public const NAME = 'glossary';
-    public function __construct(
-        Rule $startingRule
-    ) {
-        parent::__construct($startingRule);
-    }
+    public const string NAME = 'glossary';
+    #[\Override]
     protected function processSub(
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
         Directive      $directive,
-    ): Node|null {
+    ): Node {
         $originalChildren = $collectionNode->getChildren();
         $entries = [];
         foreach ($originalChildren as $node) {
@@ -50,18 +45,14 @@ class GlossaryDirective extends SubDirective
                 $term = $item->getTerm()->toString();
                 $firstChar = $term[0];
 
-                if (ctype_alpha($firstChar)) {
-                    $firstChar = strtoupper($firstChar);
-                } else {
-                    $firstChar = '*';
-                }
+                $firstChar = ctype_alpha($firstChar) ? strtoupper($firstChar) : '*';
                 $entries[$firstChar] ??= [];
                 $entries[$firstChar][$term] = $item;
             }
         }
-        uksort($entries, 'strcasecmp');
+        uksort($entries, strcasecmp(...));
         foreach ($entries as &$terms) {
-            uksort($terms, 'strcasecmp');
+            uksort($terms, strcasecmp(...));
         }
         unset($terms);
         return new GlossaryNode(
@@ -71,6 +62,7 @@ class GlossaryDirective extends SubDirective
             $entries,
         );
     }
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;

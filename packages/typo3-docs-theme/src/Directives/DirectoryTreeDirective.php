@@ -27,7 +27,7 @@ use T3Docs\Typo3DocsTheme\Nodes\DirectoryTree\DirectoryTreeListItemNode;
 use T3Docs\Typo3DocsTheme\Nodes\DirectoryTree\DirectoryTreeListNode;
 use T3Docs\Typo3DocsTheme\Nodes\DirectoryTreeNode;
 
-class DirectoryTreeDirective extends SubDirective
+final class DirectoryTreeDirective extends SubDirective
 {
     private static int $counter = 0;
     public function __construct(
@@ -37,27 +37,25 @@ class DirectoryTreeDirective extends SubDirective
         parent::__construct($startingRule);
     }
 
+    #[\Override]
     public function getName(): string
     {
         return 'directory-tree';
     }
 
+    #[\Override]
     protected function processSub(
         BlockContext   $blockContext,
         CollectionNode $collectionNode,
         Directive      $directive,
-    ): Node|null {
+    ): Node {
         if ($directive->hasOption('name')) {
             $id = $directive->getOption('name')->toString();
         } else {
             self::$counter++;
             $id = 'directory-tree-' . self::$counter;
         }
-        if ($directive->hasOption('level')) {
-            $level = (int) $directive->getOption('level')->getValue();
-        } else {
-            $level = PHP_INT_MAX;
-        }
+        $level = $directive->hasOption('level') ? (int) $directive->getOption('level')->getValue() : PHP_INT_MAX;
         $showFileIcons = false;
         if ($directive->hasOption('show-file-icons')) {
             $showFileIcons = (bool) $directive->getOption('show-file-icons')->getValue();
@@ -71,7 +69,7 @@ class DirectoryTreeDirective extends SubDirective
                 $this->logger->warning('A directory-tree may only a list. ', $blockContext->getLoggerInformation());
             }
         }
-        if (count($children) === 0) {
+        if ($children === []) {
             $this->logger->warning('A directory-tree must contain at least one list. ', $blockContext->getLoggerInformation());
         }
         return new DirectoryTreeNode(

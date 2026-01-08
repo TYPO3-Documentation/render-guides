@@ -1,0 +1,87 @@
+{
+    "_hash": "43732434b9b6d1645652d88698d944384d70b524d5921a501f6cb7b09b5f70e7",
+    "patches": {
+        "phpdocumentor/guides": [
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Optimize SluggerAnchorNormalizer with instance and result caching",
+                "url": "patches/slugger-anchor-normalizer.patch",
+                "sha256": "f1b5790810442f89f704425eb59a0c45c61e2e25162ab914350668a5c5d95070",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache Twig globals to avoid redundant addGlobal calls per template",
+                "url": "patches/twig-template-renderer-globals.patch",
+                "sha256": "13af429f0801d7c007abedb45158fcf423d9e3d88c1fbb2142e304f5e6d5bd15",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache PreNodeRendererFactory lookups by node class",
+                "url": "patches/pre-node-renderer-factory-cache.patch",
+                "sha256": "b1af98b8f828ad952622dd4f79e412e965d722cb4ec84c4a8bec0d6040c5efe1",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache root document entry and use hash lookup for getDocumentEntry",
+                "url": "patches/project-node-cache.patch",
+                "sha256": "8baa1501fb403450a743b93b356757f00d2c0d0fb9d3d0350ff84cb9f80debab",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Enable Twig template caching for faster compilation",
+                "url": "patches/twig-environment-cache.patch",
+                "sha256": "a8b2da6ff0067c66d3979eb8aafcb296d8b34cad2ce9225b13066287448b8aaf",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache document lookup by file for O(1) getDocumentNodeForEntry",
+                "url": "patches/render-context-document-cache.patch",
+                "sha256": "521c56be056b7a4f7a7ed7aaf0bbeb1307cf7da86787c2e9ffed23d2ec015842",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache URL resolution results in DocumentNameResolver",
+                "url": "patches/document-name-resolver-cache.patch",
+                "sha256": "ebff7d41ce2e5147f50d40f49593160b88803b2c91fbfe473068e4378a363b55",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache URL generator relative path calculations",
+                "url": "patches/url-generator-cache.patch",
+                "sha256": "ad02a9de4a9881138e2f3d0fe856ae86516aea98474d6639aa943c1cb1499cdf",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

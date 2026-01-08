@@ -16,25 +16,27 @@ abstract class CustomLinkTextRole implements TextRole
     /**
      * @see https://regex101.com/r/OyN05v/1
      */
-    protected const INTERLINK_NAME_REGEX = '/^([a-zA-Z0-9]+):([^:]+.*$)/';
+    protected const string INTERLINK_NAME_REGEX = '/^([a-zA-Z0-9]+):([^:]+.*$)/';
     /**
      * @see https://regex101.com/r/mqBxQj/1
      */
-    protected const TEXTROLE_LINK_REGEX = '/^(.*?)(?:(?:\s|^)<([^<]+)>)?$/s';
+    protected const string TEXTROLE_LINK_REGEX = '/^(.*?)(?:(?:\s|^)<([^<]+)>)?$/s';
 
     public function __construct(
         protected readonly LoggerInterface $logger,
-        private readonly AnchorNormalizer $anchorReducer,
+        protected readonly AnchorNormalizer $anchorNormalizer,
     ) {}
 
     /**
      * @return list<string>
      */
+    #[\Override]
     public function getAliases(): array
     {
         return [];
     }
 
+    #[\Override]
     public function processNode(
         DocumentParserContext $documentParserContext,
         string $role,
@@ -50,10 +52,10 @@ abstract class CustomLinkTextRole implements TextRole
     {
         if (preg_match(self::INTERLINK_NAME_REGEX, $referenceTarget, $matches)) {
             $interlinkDomain = $matches[1];
-            $id = $this->anchorReducer->reduceAnchor($matches[2]);
+            $id = $this->anchorNormalizer->reduceAnchor($matches[2]);
         } else {
             $interlinkDomain = '';
-            $id = $this->anchorReducer->reduceAnchor($referenceTarget);
+            $id = $this->anchorNormalizer->reduceAnchor($referenceTarget);
         }
 
         return new ReferenceNode($id, $referenceName ?? '', $interlinkDomain, 'php:' . $this->getName());

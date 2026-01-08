@@ -3,7 +3,7 @@ PHP_ARGS ?= -d memory_limit=1024M -d date.timezone=UTC
 
 ## Docker wrapper, for raw php commands (so it's not required on the host)
 ## This container has no runtime for the `guides` project!
-PHP_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.1-cli php $(PHP_ARGS)
+PHP_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.5-cli php $(PHP_ARGS)
 
 ## Docker wrapper to use for a typo3-docs:local container.
 ## This container provides a runtime for the `guides` project
@@ -16,7 +16,7 @@ PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app 
 ## These variables can be overriden by other tasks, i.e. by `make PHP_ARGS=-d memory_limit=2G pre-commit-tests`.
 ## The "--user" argument is required for macOS to pass along ownership of /project
 
-## NOTE: Dependencies listed here (PHP 8.1, composer 2) need to be kept
+## NOTE: Dependencies listed here (PHP 8.5, composer 2) need to be kept
 ##       in sync with those inside the Dockerfile and composer.json
 
 ## Parse the "make (target) ENV=(local|docker)" argument to set the environment. Defaults to docker.
@@ -91,6 +91,11 @@ fix-code-style: ## Executes php-cs-fixer with "fix" option
 	@echo "$(ENV_INFO)"
 	$(PHP_BIN) vendor/bin/php-cs-fixer fix
 
+.PHONY: composer-normalize
+composer-normalize: ## Normalizes composer.json
+	@echo "$(ENV_INFO)"
+	$(PHP_COMPOSER_BIN) normalize
+
 .PHONE: githooks
 githooks: ## Runs script that injects githooks (for contributors)
 	./tools/add-githooks.sh
@@ -128,7 +133,7 @@ test: test-integration test-unit test-xml test-docs test-rendertest ## Runs all 
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
 	@echo "$(ENV_INFO)"
-	$(PHP_BIN) vendor/bin/guides --no-progress Documentation --output="/tmp/test" --config=Documentation --minimal-test
+	rm -rf /tmp/test && $(PHP_BIN) vendor/bin/guides --no-progress Documentation --output="/tmp/test" --config=Documentation --minimal-test
 
 .PHONY: test-rendertest
 test-rendertest: ## Runs rendering with Documentation-rendertest
@@ -201,7 +206,7 @@ clone-typo3:
 cleanup: cleanup-tests cleanup-cache ## Runs all cleanup tasks
 
 .PHONY: pre-commit-test
-pre-commit-test: fix-code-style test code-style static-code-analysis test-monorepo ## Runs all tests and code guideline checks (for contributors)
+pre-commit-test: composer-normalize fix-code-style test code-style static-code-analysis test-monorepo ## Runs all tests and code guideline checks (for contributors)
 
 .PHONY: static-code-analysis
 static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan (ensures composer)
@@ -210,5 +215,60 @@ static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan
 
 vendor: composer.json composer.lock
 	@echo "$(ENV_INFO)"
-	$(PHP_COMPOSER_BIN) composer validate --no-check-publish
-	$(PHP_COMPOSER_BIN) composer install --no-interaction --no-progress  --ignore-platform-reqs
+	$(PHP_COMPOSER_BIN) validate --no-check-publish
+	$(PHP_COMPOSER_BIN) install --no-interaction --no-progress --ignore-platform-reqs
+
+## LIST: Benchmark targets for performance testing
+
+.PHONY: benchmark-cold
+benchmark-cold: ## Run cold render benchmark (no cache)
+	@echo "$(ENV_INFO)"
+	./benchmark/run-benchmark.sh cold 3
+
+.PHONY: benchmark-warm
+benchmark-warm: ## Run warm render benchmark (with cache, no changes)
+	@echo "$(ENV_INFO)"
+	./benchmark/run-benchmark.sh warm 3
+
+.PHONY: benchmark-partial
+benchmark-partial: ## Run partial change benchmark (one file modified)
+	@echo "$(ENV_INFO)"
+	./benchmark/run-benchmark.sh partial 3
+
+.PHONY: benchmark-all
+benchmark-all: benchmark-cold benchmark-warm benchmark-partial ## Run all benchmark scenarios
+
+.PHONY: benchmark-compare
+benchmark-compare: ## Compare benchmarks between main and current branch
+	@echo "$(ENV_INFO)"
+	./benchmark/compare-branches.sh main
+
+## LIST: Docker-based benchmark targets (recommended for reproducibility)
+
+.PHONY: benchmark-download-docs
+benchmark-download-docs: ## Download TYPO3 CoreApi documentation for large benchmarks
+	./benchmark/download-test-docs.sh TYPO3CMS-Reference-CoreApi
+
+.PHONY: benchmark-docker-cold
+benchmark-docker-cold: docker-build ## Run cold benchmark in Docker (small docs)
+	./benchmark/benchmark-docker.sh cold 3 small
+
+.PHONY: benchmark-docker-warm
+benchmark-docker-warm: docker-build ## Run warm benchmark in Docker (small docs)
+	./benchmark/benchmark-docker.sh warm 3 small
+
+.PHONY: benchmark-docker-partial
+benchmark-docker-partial: docker-build ## Run partial benchmark in Docker (small docs)
+	./benchmark/benchmark-docker.sh partial 3 small
+
+.PHONY: benchmark-docker-all
+benchmark-docker-all: docker-build ## Run all benchmarks in Docker (small docs)
+	./benchmark/benchmark-docker.sh all 3 small
+
+.PHONY: benchmark-docker-large
+benchmark-docker-large: docker-build benchmark-download-docs ## Run all benchmarks with large TYPO3 docs
+	./benchmark/benchmark-docker.sh all 3 large
+
+.PHONY: benchmark-report
+benchmark-report: ## Generate markdown comparison report
+	./benchmark/generate-report.sh

@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\EventListeners;
 
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use phpDocumentor\Guides\Event\PostRenderProcess;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Finder\Finder;
 
-final class CopyResources
+final readonly class CopyResources
 {
-    private const SOURCE_PATH = '../../resources/public';
-    private const DESTINATION_PATH = '/_resources';
+    private const string SOURCE_PATH = '../../resources/public';
+    private const string DESTINATION_PATH = '/_resources';
 
     public function __construct(
-        private readonly LoggerInterface $logger,
+        private LoggerInterface $logger,
     ) {}
 
     public function __invoke(PostRenderProcess $event): void
@@ -35,29 +35,40 @@ final class CopyResources
             return;
         }
 
-        $source = new Filesystem(new Local($fullResourcesPath));
-
-        /** @var \League\Flysystem\FilesystemInterface */
+        $source = new Filesystem(new LocalFilesystemAdapter($fullResourcesPath));
         $destination = $event->getCommand()->getDestination();
 
         $finder = new Finder();
         $finder->files()->in($fullResourcesPath);
 
         foreach ($finder as $file) {
-            $stream = $source->readStream($file->getRelativePathname());
-            if ($stream === false) {
-                $this->logger->warning(sprintf('Cannot read stream from "%s"', $file->getRealPath()));
-                continue;
-            }
-
             $destinationPath = sprintf(
                 '%s/%s%s',
                 self::DESTINATION_PATH,
                 $file->getRelativePath() !== '' ? $file->getRelativePath() . '/' : '',
                 $file->getFilename()
             );
+
+            // Skip if destination exists (basic duplicate prevention)
+            // Note: We can't efficiently check file size via the abstracted FileSystem interface
+            try {
+                if ($destination->has($destinationPath)) {
+                    continue; // Skip existing files
+                }
+            } catch (\Throwable) {
+                // Continue with copy if check fails
+            }
+
+            $stream = $source->readStream($file->getRelativePathname());
+            if ($stream === false) {
+                $this->logger->warning(sprintf('Cannot read stream from "%s"', $file->getRealPath()));
+                continue;
+            }
+
             $destination->putStream($destinationPath, $stream);
-            is_resource($stream) && fclose($stream);
+            if (is_resource($stream)) {
+                fclose($stream);
+            }
         }
     }
 }

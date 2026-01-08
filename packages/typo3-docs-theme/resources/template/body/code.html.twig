@@ -4,14 +4,14 @@
     </div>
 {%- endif -%}
 <div class="code-block-wrapper" translate="no">
-    {% set showLineNumbers = false %}
-    {% set startWithLineNumber = 1 %}
-    {% if node.startingLineNumber %}
-        {% set showLineNumbers = true %}
-        {% set startWithLineNumber = node.startingLineNumber %}
-    {% endif %}
+    {% set showLineNumbers = node.startingLineNumber ? true : false %}
+    {% set startWithLineNumber = node.startingLineNumber|default(1) %}
+    {% set language = node.language|default('plaintext') %}
+    {# Map language aliases #}
+    {% set languageMap = {'none': 'plaintext', 'text': 'plaintext', 'shell': 'bash', 'console': 'bash'} %}
+    {% set language = languageMap[language]|default(language) %}
 
-    {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber, emphasizeLines=node.emphasizeLines, classes=node.classesString)}}
+    <pre class="code-block {{ node.classesString }}{% if showLineNumbers %} line-numbers{% endif %}"{% if showLineNumbers and startWithLineNumber > 1 %} data-start="{{ startWithLineNumber }}"{% endif %}{% if node.emphasizeLines %} data-line="{{ node.emphasizeLines }}"{% endif %}><code class="language-{{ language }}">{{ node.value | e }}</code></pre>
     <div class="code-block-actions">
 
         {%- set gitHubLink = getEditOnGitHubLinkFromPath(node.options.path) -%}

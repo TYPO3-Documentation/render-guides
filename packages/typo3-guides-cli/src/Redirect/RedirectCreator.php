@@ -7,7 +7,7 @@ namespace T3Docs\GuidesCli\Redirect;
 /**
  * Creates nginx redirect configurations for moved documentation files
  */
-class RedirectCreator
+final class RedirectCreator
 {
     private string $nginxRedirectFile = 'redirects.nginx.conf';
 
@@ -32,7 +32,7 @@ class RedirectCreator
             $createdRedirects[$oldPath] = $newPath;
         }
 
-        if (!empty($nginxRedirects)) {
+        if ($nginxRedirects !== []) {
             $nginxConfig = "# Nginx redirects for moved files in Documentation\n";
             $nginxConfig .= "# Generated on: " . date('Y-m-d H:i:s') . "\n\n";
             $nginxConfig .= implode("\n", $nginxRedirects) . "\n";

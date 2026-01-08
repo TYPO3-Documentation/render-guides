@@ -4,10 +4,10 @@ namespace T3Docs\Typo3DocsTheme\Inventory;
 
 use T3Docs\VersionHandling\DefaultInventories;
 
-final class DefaultInventoryUrlBuilder implements InventoryUrlBuilderInterface
+final readonly class DefaultInventoryUrlBuilder implements InventoryUrlBuilderInterface
 {
     public function __construct(
-        private readonly Typo3VersionService $versions
+        private Typo3VersionService $versions
     ) {}
 
     public function buildUrl(InterlinkParts $parts): ?string

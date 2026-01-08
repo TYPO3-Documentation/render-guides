@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+namespace T3Docs\Typo3DocsTheme\Tests\Inventory;
+
 use phpDocumentor\Guides\ReferenceResolvers\SluggerAnchorNormalizer;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;

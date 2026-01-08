@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+namespace T3Docs\Typo3DocsTheme\Tests\Inventory;
+
 use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\DefaultInventoryLoader;
@@ -9,7 +13,7 @@ use phpDocumentor\Guides\ReferenceResolvers\SluggerAnchorNormalizer;
 use phpDocumentor\Guides\RenderContext;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInterlinkParser;
@@ -22,9 +26,9 @@ final class Typo3InventoryRepositoryTest extends TestCase
 {
     private Typo3InventoryRepository $subject;
     private Typo3DocsThemeSettings $settings;
-    private JsonLoader&MockObject $jsonLoaderMock;
+    private JsonLoader&Stub $jsonLoaderStub;
     private AnchorNormalizer $anchorNormalizer;
-    private RenderContext&MockObject $renderContext;
+    private RenderContext&Stub $renderContextStub;
 
     /** @var array<int, array<string, string>> $inventoryConfigs */
     private array $inventoryConfigs;
@@ -38,9 +42,9 @@ final class Typo3InventoryRepositoryTest extends TestCase
         );
         $this->inventoryConfigs = [
         ];
-        $this->jsonLoaderMock =  $this->createMock(JsonLoader::class);
+        $this->jsonLoaderStub = $this->createStub(JsonLoader::class);
         $this->subject = $this->getInventoryRepository($this->settings, $this->inventoryConfigs);
-        $this->renderContext = $this->createMock(RenderContext::class);
+        $this->renderContextStub = $this->createStub(RenderContext::class);
     }
 
     #[Test]
@@ -211,13 +215,13 @@ final class Typo3InventoryRepositoryTest extends TestCase
     }
 
 
-    private function getInventoryRepository(Typo3DocsThemeSettings $settings, array $inventoryConfigs)
+    private function getInventoryRepository(Typo3DocsThemeSettings $settings, array $inventoryConfigs): Typo3InventoryRepository
     {
         return new Typo3InventoryRepository(
             new NullLogger(),
             $this->anchorNormalizer,
-            new DefaultInventoryLoader(new NullLogger(), $this->jsonLoaderMock, $this->anchorNormalizer),
-            $this->jsonLoaderMock,
+            new DefaultInventoryLoader(new NullLogger(), $this->jsonLoaderStub, $this->anchorNormalizer),
+            $this->jsonLoaderStub,
             new Typo3VersionService($settings),
             $inventoryConfigs,
             new DefaultInterlinkParser($this->anchorNormalizer),

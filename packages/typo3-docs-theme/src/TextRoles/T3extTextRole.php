@@ -10,19 +10,21 @@ use phpDocumentor\Guides\RestructuredText\TextRoles\TextRole;
 final class T3extTextRole implements TextRole
 {
     use EmbeddedReferenceParser;
-    final public const NAME = 't3ext';
+    final public const string NAME = 't3ext';
 
+    #[\Override]
     public function getName(): string
     {
         return self::NAME;
     }
 
-    /** @inheritDoc */
+    #[\Override]
     public function getAliases(): array
     {
         return [];
     }
 
+    #[\Override]
     public function processNode(
         DocumentParserContext $documentParserContext,
         string $role,

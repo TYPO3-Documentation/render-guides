@@ -19,15 +19,15 @@ use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3TalkNode;
 
-class Typo3TalkDirective extends BaseDirective
+final class Typo3TalkDirective extends BaseDirective
 {
-    public function __construct() {}
-
+    #[\Override]
     public function getName(): string
     {
         return 'typo3:talk';
     }
 
+    #[\Override]
     public function processNode(
         BlockContext $blockContext,
         Directive $directive,
