@@ -1139,17 +1139,9 @@
         <div class="card">
             <h2>Incremental Build Performance (Feature Branch)</h2>
 
-            <!-- Bug Warning -->
-            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-                <strong style="color: #856404;">Known Issue:</strong>
-                <span style="color: #856404;">Incremental rendering is currently not functional. The cache state is lost during
-                parallel compilation (forked child processes collect exports but don't merge them back to the parent).
-                This will be addressed in a future update.</span>
-            </div>
-
             <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                The table below shows current build times. Note that "partial" builds currently re-render ALL documents
-                because the incremental cache is not being populated correctly.
+                Incremental builds skip unchanged documents, only re-rendering files that have been modified or depend on changed exports.
+                The "Warm" build shows no changes (cache hit), while "Partial" shows a single file change propagating to dependent documents.
             </p>
 
             <table class="comparison-table">
