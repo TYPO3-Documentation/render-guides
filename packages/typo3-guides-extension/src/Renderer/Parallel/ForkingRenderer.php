@@ -11,6 +11,7 @@ use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\TypeRenderer;
 use Psr\Log\LoggerInterface;
+use T3Docs\GuidesExtension\EventListener\IncrementalCacheListener;
 use T3Docs\GuidesExtension\Settings\ParallelSettings;
 use T3Docs\GuidesExtension\Util\CpuDetector;
 use T3Docs\GuidesExtension\Util\ProcessManager;
@@ -45,10 +46,17 @@ final class ForkingRenderer implements TypeRenderer
     private array $childPids = [];
 
     private int $totalRendered = 0;
+    private int $skippedCount = 0;
+
+    /** @var array<string, bool> Documents that need rendering */
+    private array $dirtySet = [];
+
+    private bool $incrementalEnabled = false;
 
     public function __construct(
         private readonly CommandBus $commandBus,
         private readonly DocumentNavigationProvider $navigationProvider,
+        private readonly ?IncrementalCacheListener $cacheListener = null,
         private readonly ?ParallelSettings $parallelSettings = null,
         private readonly ?LoggerInterface $logger = null,
     ) {
@@ -64,6 +72,9 @@ final class ForkingRenderer implements TypeRenderer
 
     public function render(RenderCommand $renderCommand): void
     {
+        // Compute dirty set for incremental rendering
+        $this->computeDirtySet();
+
         $documentCount = count($renderCommand->getDocumentArray());
 
         // Check if parallel rendering is beneficial and available
@@ -220,6 +231,13 @@ final class ForkingRenderer implements TypeRenderer
 
         // Render assigned documents
         foreach ($batch as $document) {
+            $filePath = $document->getFilePath();
+
+            // Skip clean documents in incremental mode
+            if ($this->shouldSkipDocument($filePath)) {
+                continue;
+            }
+
             try {
                 $this->commandBus->handle(
                     new RenderDocumentCommand($document, $context->withDocument($document))
@@ -254,18 +272,38 @@ final class ForkingRenderer implements TypeRenderer
             $renderCommand->getOutputFormat(),
         )->withIterator($renderCommand->getDocumentIterator());
 
-        $count = 0;
+        $rendered = 0;
+        $skipped = 0;
         foreach ($context->getIterator() as $document) {
+            $filePath = $document->getFilePath();
+
+            // Skip clean documents in incremental mode
+            if ($this->shouldSkipDocument($filePath)) {
+                $skipped++;
+                $this->logger?->debug('Skipping unchanged document: ' . $filePath);
+                continue;
+            }
+
             $this->commandBus->handle(
                 new RenderDocumentCommand(
                     $document,
                     $context->withDocument($document),
                 )
             );
-            $count++;
+            $rendered++;
         }
 
-        $this->totalRendered = $count;
+        $this->totalRendered = $rendered;
+        $this->skippedCount = $skipped;
+
+        if ($this->incrementalEnabled && ($skipped > 0 || $rendered > 0)) {
+            $this->logger?->info(sprintf(
+                'Incremental render: %d rendered, %d skipped (%.1f%% saved)',
+                $rendered,
+                $skipped,
+                $skipped > 0 ? ($skipped / ($rendered + $skipped)) * 100 : 0
+            ));
+        }
     }
 
     /**
@@ -287,16 +325,28 @@ final class ForkingRenderer implements TypeRenderer
             $renderCommand->getOutputFormat(),
         )->withIterator($renderCommand->getDocumentIterator());
 
+        $rendered = 0;
+        $skipped = 0;
         foreach ($documents as $document) {
+            $filePath = $document->getFilePath();
+
+            // Skip clean documents in incremental mode
+            if ($this->shouldSkipDocument($filePath)) {
+                $skipped++;
+                continue;
+            }
+
             $this->commandBus->handle(
                 new RenderDocumentCommand(
                     $document,
                     $context->withDocument($document),
                 )
             );
+            $rendered++;
         }
 
-        $this->totalRendered = count($documents);
+        $this->totalRendered = $rendered;
+        $this->skippedCount = $skipped;
     }
 
     /**
@@ -371,5 +421,47 @@ final class ForkingRenderer implements TypeRenderer
     public function getTotalRendered(): int
     {
         return $this->totalRendered;
+    }
+
+    /**
+     * Get the number of skipped documents in the last render.
+     */
+    public function getSkippedCount(): int
+    {
+        return $this->skippedCount;
+    }
+
+    /**
+     * Compute the dirty set from the incremental cache listener.
+     */
+    private function computeDirtySet(): void
+    {
+        if ($this->cacheListener === null || !$this->cacheListener->isIncrementalEnabled()) {
+            $this->incrementalEnabled = false;
+            return;
+        }
+
+        $allDirty = $this->cacheListener->computeDirtySet();
+
+        // Build dirty set lookup - empty means no documents changed (skip all)
+        $this->dirtySet = array_flip($allDirty);
+        $this->incrementalEnabled = true;
+
+        $this->logger?->debug(sprintf(
+            'Incremental rendering: %d documents in dirty set',
+            count($this->dirtySet)
+        ));
+    }
+
+    /**
+     * Check if a document should be skipped (not dirty).
+     */
+    private function shouldSkipDocument(string $filePath): bool
+    {
+        if (!$this->incrementalEnabled) {
+            return false;
+        }
+
+        return !isset($this->dirtySet[$filePath]);
     }
 }
