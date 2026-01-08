@@ -1156,32 +1156,32 @@
                     <tr>
                         <th>Documentation</th>
                         <th>Cold Build</th>
-                        <th>Warm</th>
-                        <th>Partial-Index</th>
-                        <th>Partial-Leaf</th>
+                        <th>Warm<br><small>(0 files)</small></th>
+                        <th>Partial-Index<br><small>(1 file)</small></th>
+                        <th>Partial-Leaf<br><small>(1-2 files)</small></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>TYPO3 Core Changelog</strong><br><small>(3668 files)</small></td>
-                        <td>172.7s</td>
+                        <td>172.7s<br><small>~1.3 GB</small></td>
                         <td>0.47s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span></td>
-                        <td>0.44s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span></td>
-                        <td>0.48s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span></td>
+                        <td>0.44s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span><br><small>1 rendered</small></td>
+                        <td>0.48s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span><br><small>2 rendered</small></td>
                     </tr>
                     <tr>
                         <td><strong>TYPO3 Core API</strong><br><small>(957 files)</small></td>
-                        <td>35.3s</td>
+                        <td>35.3s<br><small>~580 MB</small></td>
                         <td>0.39s <span style="color: var(--success); font-weight: 700;">(-99%)</span></td>
-                        <td>0.40s <span style="color: var(--success); font-weight: 700;">(-99%)</span></td>
-                        <td>0.41s <span style="color: var(--success); font-weight: 700;">(-99%)</span></td>
+                        <td>0.40s <span style="color: var(--success); font-weight: 700;">(-99%)</span><br><small>1 rendered</small></td>
+                        <td>0.41s <span style="color: var(--success); font-weight: 700;">(-99%)</span><br><small>2 rendered</small></td>
                     </tr>
                     <tr>
                         <td><strong>Rendertest</strong><br><small>(94 files)</small></td>
-                        <td>6.9s</td>
+                        <td>6.9s<br><small>~200 MB</small></td>
                         <td>0.26s <span style="color: var(--success); font-weight: 700;">(-96%)</span></td>
-                        <td>0.25s <span style="color: var(--success); font-weight: 700;">(-96%)</span></td>
-                        <td>0.24s <span style="color: var(--success); font-weight: 700;">(-96%)</span></td>
+                        <td>0.25s <span style="color: var(--success); font-weight: 700;">(-96%)</span><br><small>1 rendered</small></td>
+                        <td>0.24s <span style="color: var(--success); font-weight: 700;">(-96%)</span><br><small>1-2 rendered</small></td>
                     </tr>
                 </tbody>
             </table>
@@ -1193,13 +1193,19 @@
                 with the <em>number of changed files</em>, not the <em>total project size</em>.
             </p>
 
-            <h3>What Gets Re-rendered</h3>
+            <h3>Documents Re-rendered Per Scenario</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                <li><strong>Warm (no changes):</strong> Nothing - all documents skipped, localizations skipped entirely</li>
-                <li><strong>Partial-Index:</strong> Main Index.rst and any documents that depend on its exports</li>
-                <li><strong>Partial-Leaf:</strong> Only the leaf document - no dependents to cascade</li>
-                <li><strong>Dependency cascade:</strong> Documents referencing changed anchors/titles are also re-rendered</li>
+                <li><strong>Warm (0 files):</strong> Nothing re-rendered - full cache hit, all documents skipped</li>
+                <li><strong>Partial-Index (1 file):</strong> Only Index.rst re-rendered. Root document has no dependents (nothing references it)</li>
+                <li><strong>Partial-Leaf (1-2 files):</strong> The modified leaf document + any documents that reference its exports via <code>:ref:</code>, <code>:doc:</code>, or includes</li>
             </ul>
+
+            <h3>Dependency Cascade</h3>
+            <p style="color: var(--text-muted); margin: 1rem 0;">
+                When a document's <strong>exports change</strong> (anchors, titles, citations), the system automatically
+                re-renders dependent documents. In the tests above, leaf documents had 1-2 dependents that were cascaded.
+                Simple content changes (comments, text edits) that don't affect exports only re-render the modified file.
+            </p>
 
             <h3>Benchmark Scenarios</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
