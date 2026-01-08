@@ -133,23 +133,29 @@ run_scenario() {
             done
             ;;
         partial)
-            # Modify one file between runs
+            # Modify one file between runs (actual content change, not just touch)
             log_info "Initial render..."
             clean_caches
             clean_output
+            # Save original content for restoration
+            cp "$DOCS_INPUT/Index.rst" "$DOCS_INPUT/Index.rst.bak"
             run_render 0 > /dev/null
 
             for ((i=1; i<=RUNS; i++)); do
-                log_info "Run $i/$RUNS (partial - modifying Index.rst)..."
-                # Touch a file to trigger partial re-render
-                touch "$DOCS_INPUT/Index.rst"
-                sleep 0.1  # Ensure mtime changes
+                log_info "Run $i/$RUNS (partial - modifying Index.rst content)..."
+                # Actually modify file content to trigger re-render
+                # (touch alone won't work if content hashing is used)
+                echo ".. Benchmark run $i at $(date +%s)" >> "$DOCS_INPUT/Index.rst"
                 result=$(run_render $i)
                 time_val=$(echo "$result" | cut -d'|' -f1)
                 files=$(echo "$result" | cut -d'|' -f2)
                 times+=("$time_val")
                 log_success "  Time: ${time_val}s, Files: $files"
+                # Restore for next run to ensure consistent content change
+                cp "$DOCS_INPUT/Index.rst.bak" "$DOCS_INPUT/Index.rst"
             done
+            # Final cleanup
+            rm -f "$DOCS_INPUT/Index.rst.bak"
             ;;
         config)
             # Modify config to trigger full re-render
