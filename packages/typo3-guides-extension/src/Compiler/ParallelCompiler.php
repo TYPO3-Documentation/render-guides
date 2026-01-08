@@ -323,7 +323,8 @@ final class ParallelCompiler
     /**
      * Phase 2: Merge all collected data into ProjectNode.
      *
-     * This is fast O(n) where n = total entries across all results.
+     * This is O(n) where n = total entries across all results.
+     * Uses hash-based deduplication for O(1) duplicate checks.
      *
      * @param DocumentCompilationResult[] $results
      * @return array<string, array{children: list<array{type: string, path?: string, url?: string, title?: string}>, parent: string|null}>
@@ -333,7 +334,11 @@ final class ParallelCompiler
         $projectNode = $compilerContext->getProjectNode();
 
         // Merge toctree relationships from all batches
+        // Use separate tracking for seen children per path for O(1) deduplication
+        /** @var array<string, array{children: list<array{type: string, path?: string, url?: string, title?: string}>, parent: string|null}> $allRelationships */
         $allRelationships = [];
+        /** @var array<string, array<string, true>> $seenChildren path -> [childKey => true] */
+        $seenChildren = [];
 
         foreach ($results as $result) {
             $result->mergeIntoProjectNode($projectNode);
@@ -342,27 +347,21 @@ final class ParallelCompiler
             foreach ($result->toctreeRelationships as $path => $relations) {
                 if (!isset($allRelationships[$path])) {
                     $allRelationships[$path] = ['children' => [], 'parent' => null];
+                    $seenChildren[$path] = [];
                 }
-                // Merge children (preserving order, avoiding duplicates)
+
+                // Merge children using hash-based deduplication (O(1) per child)
                 foreach ($relations['children'] as $child) {
-                    // Check for duplicates based on path/url
-                    $isDuplicate = false;
-                    foreach ($allRelationships[$path]['children'] as $existing) {
-                        if ($child['type'] === 'document' && $existing['type'] === 'document'
-                            && ($child['path'] ?? '') === ($existing['path'] ?? '')) {
-                            $isDuplicate = true;
-                            break;
-                        }
-                        if ($child['type'] === 'external' && $existing['type'] === 'external'
-                            && ($child['url'] ?? '') === ($existing['url'] ?? '')) {
-                            $isDuplicate = true;
-                            break;
-                        }
-                    }
-                    if (!$isDuplicate) {
+                    // Generate unique key for this child
+                    $childKey = $this->getChildKey($child);
+
+                    // O(1) duplicate check using isset
+                    if (!isset($seenChildren[$path][$childKey])) {
+                        $seenChildren[$path][$childKey] = true;
                         $allRelationships[$path]['children'][] = $child;
                     }
                 }
+
                 // Take non-null parent (should be consistent across batches)
                 if ($relations['parent'] !== null) {
                     $allRelationships[$path]['parent'] = $relations['parent'];
@@ -379,6 +378,16 @@ final class ParallelCompiler
         ));
 
         return $allRelationships;
+    }
+
+    /**
+     * Generate a unique key for a toctree child entry.
+     *
+     * @param array{type: string, path?: string, url?: string, title?: string} $child
+     */
+    private function getChildKey(array $child): string
+    {
+        return $child['type'] . ':' . ($child['path'] ?? $child['url'] ?? '');
     }
 
     /**
@@ -642,6 +651,21 @@ final class ParallelCompiler
             $entriesByPath[$entry->getFile()] = $entry;
         }
 
+        // Pre-build existing children sets for O(1) duplicate detection
+        /** @var array<string, array<string, true>> $existingChildrenByEntry path -> [childKey => true] */
+        $existingChildrenByEntry = [];
+        foreach ($projectEntries as $entry) {
+            $entryPath = $entry->getFile();
+            $existingChildrenByEntry[$entryPath] = [];
+            foreach ($entry->getMenuEntries() as $child) {
+                if ($child instanceof DocumentEntryNode) {
+                    $existingChildrenByEntry[$entryPath]['doc:' . $child->getFile()] = true;
+                } elseif ($child instanceof ExternalEntryNode) {
+                    $existingChildrenByEntry[$entryPath]['ext:' . $child->getValue()] = true;
+                }
+            }
+        }
+
         // Update each document to use the ProjectNode's entry instance
         foreach ($documents as $document) {
             $filePath = $document->getFilePath();
@@ -659,34 +683,22 @@ final class ParallelCompiler
                     // Resolve child to ProjectNode's entry if it's a document
                     if ($child instanceof DocumentEntryNode) {
                         $childPath = $child->getFile();
+                        $childKey = 'doc:' . $childPath;
                         $resolvedChild = $entriesByPath[$childPath] ?? null;
-                        if ($resolvedChild !== null) {
-                            // Check if not already a child (avoid duplicates)
-                            $isAlreadyChild = false;
-                            foreach ($projectEntry->getMenuEntries() as $existing) {
-                                if ($existing instanceof DocumentEntryNode
-                                    && $existing->getFile() === $childPath) {
-                                    $isAlreadyChild = true;
-                                    break;
-                                }
-                            }
-                            if (!$isAlreadyChild) {
-                                $projectEntry->addChild($resolvedChild);
-                                $resolvedChild->setParent($projectEntry);
-                            }
+
+                        // O(1) duplicate check using isset
+                        if ($resolvedChild !== null && !isset($existingChildrenByEntry[$filePath][$childKey])) {
+                            $projectEntry->addChild($resolvedChild);
+                            $resolvedChild->setParent($projectEntry);
+                            $existingChildrenByEntry[$filePath][$childKey] = true;
                         }
                     } elseif ($child instanceof ExternalEntryNode) {
-                        // Check if external entry already exists (avoid duplicates)
-                        $isAlreadyChild = false;
-                        foreach ($projectEntry->getMenuEntries() as $existing) {
-                            if ($existing instanceof ExternalEntryNode
-                                && $existing->getValue() === $child->getValue()) {
-                                $isAlreadyChild = true;
-                                break;
-                            }
-                        }
-                        if (!$isAlreadyChild) {
+                        $childKey = 'ext:' . $child->getValue();
+
+                        // O(1) duplicate check using isset
+                        if (!isset($existingChildrenByEntry[$filePath][$childKey])) {
                             $projectEntry->addChild($child);
+                            $existingChildrenByEntry[$filePath][$childKey] = true;
                         }
                     }
                 }
