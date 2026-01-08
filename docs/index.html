@@ -489,7 +489,7 @@
                     <tr>
                         <td style="color: var(--primary); font-weight: 600;">feature</td>
                         <td>440%</td>
-                        <td>900 MB <span style="color: var(--success);">(-70%)</span></td>
+                        <td>~1.3 GB <span style="color: var(--success);">(-56%)</span></td>
                     </tr>
                     <tr>
                         <td rowspan="2"><strong>TYPO3 Core API</strong> (957 files)</td>
@@ -520,11 +520,9 @@
                 440% CPU = ~4.4 cores utilized on average.
             </p>
             <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem;">
-                <strong>Memory Efficiency:</strong> Feature branch uses <strong>~50% less total memory</strong> on Changelog
+                <strong>Memory Efficiency:</strong> Feature branch uses <strong>~56% less total memory</strong> on Changelog
                 (~1.3 GB vs 3 GB) despite parallel processing. Each forked worker processes its batch and exits,
-                avoiding the memory accumulation seen in sequential processing. The 900 MB figure shown in detailed
-                tables represents the <em>parent process peak</em> (from PHP <code>memory_get_peak_usage()</code>),
-                while total system memory (all processes) is ~1.3 GB for Changelog.
+                avoiding the memory accumulation seen in sequential processing.
             </p>
 
             <div class="chart-container">
@@ -1148,7 +1146,7 @@
 
             <p style="color: var(--text-muted); margin-bottom: 1rem;">
                 Incremental builds skip unchanged documents, only re-rendering files that have been modified or depend on changed exports.
-                "Warm" = no changes (full cache hit), "Partial-Index" = main document changed, "Partial-Leaf" = deep nested document changed.
+                "Warm" = no changes (full cache hit), "Single File" = one document changed, "Cascade" = heavily-referenced document changed (triggers dependent re-renders).
             </p>
 
             <table class="comparison-table">
@@ -1157,8 +1155,8 @@
                         <th>Documentation</th>
                         <th>Cold Build</th>
                         <th>Warm<br><small>(0 files)</small></th>
-                        <th>Partial-Index<br><small>(1 file)</small></th>
-                        <th>Partial-Leaf<br><small>(1-2 files)</small></th>
+                        <th>Single File<br><small>(1 file)</small></th>
+                        <th>Cascade<br><small>(N dependents)</small></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1167,21 +1165,21 @@
                         <td>172.7s<br><small>~1.3 GB</small></td>
                         <td>0.47s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span></td>
                         <td>0.44s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span><br><small>1 rendered</small></td>
-                        <td>0.48s <span style="color: var(--success); font-weight: 700;">(-99.7%)</span><br><small>2 rendered</small></td>
+                        <td style="color: var(--text-muted);"><small>N/A</small></td>
                     </tr>
                     <tr>
                         <td><strong>TYPO3 Core API</strong><br><small>(957 files)</small></td>
                         <td>35.3s<br><small>~580 MB</small></td>
                         <td>0.39s <span style="color: var(--success); font-weight: 700;">(-99%)</span></td>
                         <td>0.40s <span style="color: var(--success); font-weight: 700;">(-99%)</span><br><small>1 rendered</small></td>
-                        <td>0.41s <span style="color: var(--success); font-weight: 700;">(-99%)</span><br><small>2 rendered</small></td>
+                        <td>0.37s <span style="color: var(--success); font-weight: 700;">(-99%)</span><br><small>158 rendered</small></td>
                     </tr>
                     <tr>
                         <td><strong>Rendertest</strong><br><small>(94 files)</small></td>
                         <td>6.9s<br><small>~200 MB</small></td>
                         <td>0.26s <span style="color: var(--success); font-weight: 700;">(-96%)</span></td>
                         <td>0.25s <span style="color: var(--success); font-weight: 700;">(-96%)</span><br><small>1 rendered</small></td>
-                        <td>0.24s <span style="color: var(--success); font-weight: 700;">(-96%)</span><br><small>1-2 rendered</small></td>
+                        <td style="color: var(--text-muted);"><small>N/A</small></td>
                     </tr>
                 </tbody>
             </table>
@@ -1196,8 +1194,8 @@
             <h3>Documents Re-rendered Per Scenario</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
                 <li><strong>Warm (0 files):</strong> Nothing re-rendered - full cache hit, all documents skipped</li>
-                <li><strong>Partial-Index (1 file):</strong> Only Index.rst re-rendered. Root document has no dependents (nothing references it)</li>
-                <li><strong>Partial-Leaf (1-2 files):</strong> The modified leaf document + any documents that reference its exports via <code>:ref:</code>, <code>:doc:</code>, or includes</li>
+                <li><strong>Single File (1 file):</strong> Only the modified document re-rendered (e.g., Index.rst has no dependents)</li>
+                <li><strong>Cascade (N files):</strong> Modified document + all dependents. E.g., EventDispatcher/Index.rst (156 refs) → 158 files re-rendered</li>
             </ul>
 
             <h3>Dependency Cascade</h3>
@@ -1216,8 +1214,8 @@
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
                 <li><strong>Cold:</strong> All caches cleared, fresh render from scratch</li>
                 <li><strong>Warm:</strong> No file changes, full cache hit</li>
-                <li><strong>Partial-Index:</strong> Modify <code>Index.rst</code> (main document, many potential dependents)</li>
-                <li><strong>Partial-Leaf:</strong> Modify a deep nested document (few/no dependents)</li>
+                <li><strong>Single File:</strong> Modify one document with no/few dependents (e.g., Index.rst)</li>
+                <li><strong>Cascade:</strong> Modify a heavily-referenced document (e.g., EventDispatcher/Index.rst with 156 dependents)</li>
             </ul>
         </div>
 
