@@ -155,6 +155,24 @@ final class IncrementalCacheListener
         // Filter to only parse changed files
         $filesToParse = $this->changeResult->getFilesToProcess();
 
+        // Include dependent files that might need re-rendering.
+        // We don't know yet if exports will change, so we conservatively include
+        // all dependents of content-changed files in the parse list.
+        // This ensures they're available for rendering if export propagation occurs.
+        $graph = $this->cache->getDependencyGraph();
+        $dependentsToInclude = [];
+        foreach ($this->changeResult->dirty as $dirtyDoc) {
+            $dependents = $graph->getDependents($dirtyDoc);
+            foreach ($dependents as $dependent) {
+                if (!in_array($dependent, $filesToParse, true)) {
+                    $dependentsToInclude[] = $dependent;
+                }
+            }
+        }
+        // Only add dependents that exist in the current document list
+        $dependentsToInclude = array_intersect($dependentsToInclude, $documentPaths);
+        $filesToParse = array_unique(array_merge($filesToParse, $dependentsToInclude));
+
         // Apply batch filter if in worker subprocess mode
         if ($this->batchFilter !== null) {
             // In worker mode: only process documents assigned to this worker

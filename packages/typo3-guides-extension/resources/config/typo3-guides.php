@@ -132,6 +132,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(ForkingRenderer::class)
             ->arg('$commandBus', service('League\Tactician\CommandBus'))
             ->arg('$navigationProvider', service(DocumentNavigationProvider::class))
+            ->arg('$cacheListener', service(IncrementalCacheListener::class))
             ->arg('$parallelSettings', service(ParallelSettings::class))
             ->arg('$logger', service('Psr\Log\LoggerInterface')->nullOnInvalid())
             ->tag(
