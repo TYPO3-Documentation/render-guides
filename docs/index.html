@@ -500,7 +500,7 @@
                     <tr>
                         <td style="color: var(--primary); font-weight: 600;">feature</td>
                         <td>391%</td>
-                        <td>521 MB <span style="color: var(--text-muted);">(+46%)</span></td>
+                        <td>~580 MB <span style="color: var(--text-muted);">(+62%)</span></td>
                     </tr>
                     <tr>
                         <td rowspan="2"><strong>Rendertest</strong> (98 files)</td>
@@ -511,7 +511,7 @@
                     <tr>
                         <td style="color: var(--primary); font-weight: 600;">feature</td>
                         <td>214%</td>
-                        <td>33 MB <span style="color: var(--success);">(-66%)</span></td>
+                        <td>~200 MB <span style="color: var(--text-muted);">(+104%)</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -520,9 +520,9 @@
                 440% CPU = ~4.4 cores utilized on average.
             </p>
             <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem;">
-                <strong>Memory Efficiency:</strong> Feature branch uses <strong>~56% less total memory</strong> on Changelog
-                (~1.3 GB vs 3 GB) despite parallel processing. Each forked worker processes its batch and exits,
-                avoiding the memory accumulation seen in sequential processing.
+                <strong>Memory Trade-off:</strong> For extra-large docs (Changelog), feature branch uses <strong>~56% less memory</strong>
+                (~1.3 GB vs 3 GB) because forked workers process batches and exit, avoiding memory accumulation.
+                For smaller docs, fork overhead increases total memory but provides significant speed improvements.
             </p>
 
             <div class="chart-container">
@@ -648,21 +648,21 @@
                         <td><strong>feature</strong> (sequential, --parallel-workers=-1)</td>
                         <td>6.83s <span style="color: var(--success);">(-27%)</span></td>
                         <td>5.23s <span style="color: var(--success);">(-38%)</span></td>
-                        <td>33 MB <span style="color: var(--success);">(-66%)</span></td>
+                        <td>~200 MB</td>
                         <td>214%</td>
                     </tr>
                     <tr>
                         <td><strong>feature</strong> (auto, --parallel-workers=0)</td>
                         <td>6.62s <span style="color: var(--success);">(-29%)</span></td>
                         <td>5.05s <span style="color: var(--success);">(-40%)</span></td>
-                        <td>34 MB <span style="color: var(--success);">(-65%)</span></td>
+                        <td>~200 MB</td>
                         <td>197%</td>
                     </tr>
                     <tr>
                         <td><strong>feature</strong> (16 workers, --parallel-workers=16)</td>
                         <td>6.77s <span style="color: var(--success);">(-28%)</span></td>
                         <td>6.17s <span style="color: var(--success);">(-27%)</span></td>
-                        <td>34 MB <span style="color: var(--success);">(-65%)</span></td>
+                        <td>~200 MB</td>
                         <td>171%</td>
                     </tr>
                 </tbody>
@@ -671,7 +671,7 @@
             <h3 style="margin-top: 1.5rem;">Key Observations</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
                 <li><strong>27-29% faster even without parallelism:</strong> The feature branch's optimizations (caching patches, PHP 8.5 improvements) provide significant speedup independent of parallel processing.</li>
-                <li><strong>65-66% less memory:</strong> Feature branch uses only 33-34 MB vs main's 98 MB &mdash; more efficient memory management.</li>
+                <li><strong>Memory trade-off:</strong> Feature branch uses ~200 MB total (vs main's 98 MB) due to fork overhead, but gains significant speed.</li>
                 <li><strong>Warm caching works:</strong> Feature branch warm builds are 23-38% faster than cold; main branch shows modest improvement (8.47s warm vs 9.34s cold).</li>
                 <li><strong>Parallelism overhead on small docs:</strong> For small documentation sets, forcing 16 workers adds slight overhead. Auto-detection or sequential mode perform best.</li>
             </ul>
@@ -711,21 +711,21 @@
                         <td><strong>feature</strong> (sequential, --parallel-workers=-1)</td>
                         <td>44.2s <span style="color: var(--success);">(-76%)</span></td>
                         <td>35.5s <span style="color: var(--success);">(-78%)</span></td>
-                        <td>521 MB</td>
+                        <td>~580 MB</td>
                         <td>391%</td>
                     </tr>
                     <tr>
                         <td><strong>feature</strong> (auto, --parallel-workers=0)</td>
                         <td>47.7s <span style="color: var(--success);">(-74%)</span></td>
                         <td>46.2s <span style="color: var(--success);">(-72%)</span></td>
-                        <td>521 MB</td>
+                        <td>~580 MB</td>
                         <td>421%</td>
                     </tr>
                     <tr>
                         <td><strong>feature</strong> (16 workers, --parallel-workers=16)</td>
                         <td>53.5s <span style="color: var(--success);">(-71%)</span></td>
                         <td>44.9s <span style="color: var(--success);">(-72%)</span></td>
-                        <td>521 MB</td>
+                        <td>~580 MB</td>
                         <td>436%</td>
                     </tr>
                 </tbody>
@@ -766,21 +766,21 @@
                         <td><strong>feature</strong> (sequential, --parallel-workers=-1)</td>
                         <td>56.3s <span style="color: var(--success);">(-95%)</span></td>
                         <td>49.9s <span style="color: var(--success);">(-95%)</span></td>
-                        <td>900 MB <span style="color: var(--success);">(-70%)</span></td>
+                        <td>~1.3 GB <span style="color: var(--success);">(-56%)</span></td>
                         <td>440%</td>
                     </tr>
                     <tr>
                         <td><strong>feature</strong> (auto, --parallel-workers=0)</td>
                         <td>76.6s <span style="color: var(--success);">(-94%)</span></td>
                         <td>72.3s <span style="color: var(--success);">(-92%)</span></td>
-                        <td>900 MB <span style="color: var(--success);">(-70%)</span></td>
+                        <td>~1.3 GB <span style="color: var(--success);">(-56%)</span></td>
                         <td>420%</td>
                     </tr>
                     <tr>
                         <td><strong>feature</strong> (16 workers, --parallel-workers=16)</td>
                         <td>71.1s <span style="color: var(--success);">(-94%)</span></td>
                         <td>52.5s <span style="color: var(--success);">(-94%)</span></td>
-                        <td>900 MB <span style="color: var(--success);">(-70%)</span></td>
+                        <td>~1.3 GB <span style="color: var(--success);">(-56%)</span></td>
                         <td>437%</td>
                     </tr>
                 </tbody>
@@ -789,7 +789,7 @@
             <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
                 <strong>Key insight:</strong> Sequential mode outperforms auto/16-workers on Changelog docs, achieving 21x speedup.
                 The main branch takes <strong>20 minutes</strong> cold / <strong>15 minutes</strong> warm while feature branch
-                completes in under <strong>1 minute</strong>. Total memory usage drops from ~3 GB to ~1.3 GB (parent process: 900 MB).
+                completes in under <strong>1 minute</strong>. Total memory usage drops from ~3 GB to ~1.3 GB.
             </p>
         </div>
 
