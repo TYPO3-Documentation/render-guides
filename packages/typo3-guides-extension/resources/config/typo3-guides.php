@@ -150,6 +150,7 @@ return static function (ContainerConfigurator $container): void {
             ->arg('$sequentialCompiler', service(\phpDocumentor\Guides\Compiler\Compiler::class))
             ->arg('$passes', tagged_iterator('phpdoc.guides.compiler.passes'))
             ->arg('$nodeTransformerFactory', service(NodeTransformerFactory::class))
+            ->arg('$incrementalCache', service(IncrementalBuildCache::class))
             ->arg('$logger', service('Psr\Log\LoggerInterface')->nullOnInvalid())
             ->tag('phpdoc.guides.command', ['command' => CompileDocumentsCommand::class])
     ;
