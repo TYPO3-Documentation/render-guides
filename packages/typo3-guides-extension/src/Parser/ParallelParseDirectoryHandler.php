@@ -181,7 +181,11 @@ final class ParallelParseDirectoryHandler
             }
 
             if ($pid === 0) {
-                // Child process: parse batch and write results to temp file
+                // Child process: clear inherited temp file tracking to prevent
+                // cleanup of parent's temp files when this child exits
+                ProcessManager::clearTempFileTracking();
+
+                // Parse batch and write results to temp file
                 $this->parseChildBatch($command, $batch, $indexName, $tempFile);
                 exit(0);
             }

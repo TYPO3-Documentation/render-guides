@@ -124,7 +124,8 @@ final class ForkingRenderer implements TypeRenderer
             }
 
             if ($pid === 0) {
-                // Child process: render batch
+                // Child process: clear inherited temp file tracking
+                ProcessManager::clearTempFileTracking();
                 // Navigation provider is already initialized (inherited via COW)
                 $this->renderChildBatch($batch, $renderCommand, $workerId);
                 exit(0);

@@ -111,7 +111,8 @@ final class SingleForkPipeline
             }
 
             if ($pid === 0) {
-                // Child: execute pipeline for this batch
+                // Child: clear inherited temp file tracking
+                ProcessManager::clearTempFileTracking();
                 try {
                     $result = $pipelineExecutor($batch);
                     // Only serialize document paths (not full AST) to save memory

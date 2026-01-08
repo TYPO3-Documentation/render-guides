@@ -15,6 +15,7 @@ use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Twig\Theme\ThemeManager;
 use Psr\Log\LoggerInterface;
 use T3Docs\GuidesExtension\Renderer\Parallel\DocumentNavigationProvider;
+use T3Docs\GuidesExtension\Util\ProcessManager;
 
 use function array_chunk;
 use function count;
@@ -143,7 +144,9 @@ final class SingleForkRunHandler
             }
 
             if ($pid === 0) {
-                // Child: compile + render this batch
+                // Child: clear inherited temp file tracking
+                ProcessManager::clearTempFileTracking();
+                // Compile + render this batch
                 $this->executeWorkerCompileRender($command, $batch, $workerId, $tempFile);
                 exit(0);
             }

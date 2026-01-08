@@ -153,6 +153,17 @@ final class ProcessManager
     }
 
     /**
+     * Clear temp file tracking list.
+     *
+     * Call this in child processes after fork to prevent them from cleaning up
+     * temp files that belong to the parent process when they exit.
+     */
+    public static function clearTempFileTracking(): void
+    {
+        self::$tempFilesToClean = [];
+    }
+
+    /**
      * Ensure shutdown and signal handlers are registered.
      *
      * Note: Handlers are only registered when pcntl is available (CLI mode)
