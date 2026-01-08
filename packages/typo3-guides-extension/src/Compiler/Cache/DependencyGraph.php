@@ -16,23 +16,26 @@ namespace T3Docs\GuidesExtension\Compiler\Cache;
 final class DependencyGraph
 {
     /**
-     * Forward edges: docPath -> [imported docPaths]
+     * Forward edges: docPath -> [imported docPath => true]
      * "Document A imports from documents B, C, D"
+     * Uses keyed arrays for O(1) lookup instead of in_array O(n).
      *
-     * @var array<string, string[]>
+     * @var array<string, array<string, true>>
      */
     private array $imports = [];
 
     /**
-     * Reverse edges: docPath -> [dependent docPaths]
+     * Reverse edges: docPath -> [dependent docPath => true]
      * "Document B is depended on by documents A, E, F"
+     * Uses keyed arrays for O(1) lookup instead of in_array O(n).
      *
-     * @var array<string, string[]>
+     * @var array<string, array<string, true>>
      */
     private array $dependents = [];
 
     /**
      * Record that $fromDoc imports/references something from $toDoc.
+     * O(1) operation using keyed arrays.
      */
     public function addImport(string $fromDoc, string $toDoc): void
     {
@@ -41,21 +44,11 @@ final class DependencyGraph
             return;
         }
 
-        // Add forward edge
-        if (!isset($this->imports[$fromDoc])) {
-            $this->imports[$fromDoc] = [];
-        }
-        if (!in_array($toDoc, $this->imports[$fromDoc], true)) {
-            $this->imports[$fromDoc][] = $toDoc;
-        }
+        // Add forward edge (O(1) with isset check)
+        $this->imports[$fromDoc][$toDoc] = true;
 
-        // Add reverse edge
-        if (!isset($this->dependents[$toDoc])) {
-            $this->dependents[$toDoc] = [];
-        }
-        if (!in_array($fromDoc, $this->dependents[$toDoc], true)) {
-            $this->dependents[$toDoc][] = $fromDoc;
-        }
+        // Add reverse edge (O(1) with isset check)
+        $this->dependents[$toDoc][$fromDoc] = true;
     }
 
     /**
@@ -65,7 +58,7 @@ final class DependencyGraph
      */
     public function getImports(string $docPath): array
     {
-        return $this->imports[$docPath] ?? [];
+        return array_keys($this->imports[$docPath] ?? []);
     }
 
     /**
@@ -75,12 +68,14 @@ final class DependencyGraph
      */
     public function getDependents(string $docPath): array
     {
-        return $this->dependents[$docPath] ?? [];
+        return array_keys($this->dependents[$docPath] ?? []);
     }
 
     /**
      * Given a set of dirty documents, propagate to find all affected documents.
      * Uses transitive closure: if A depends on B, and B is dirty, A is dirty.
+     *
+     * Optimized to O(V+E) using SplQueue for O(1) dequeue operations.
      *
      * @param string[] $dirtyDocs Initially dirty documents
      * @return string[] All documents that need re-rendering
@@ -89,10 +84,15 @@ final class DependencyGraph
     {
         $result = [];
         $visited = [];
-        $queue = $dirtyDocs;
 
-        while (!empty($queue)) {
-            $current = array_shift($queue);
+        // Use SplQueue for O(1) enqueue/dequeue instead of array_shift O(n)
+        $queue = new \SplQueue();
+        foreach ($dirtyDocs as $doc) {
+            $queue->enqueue($doc);
+        }
+
+        while (!$queue->isEmpty()) {
+            $current = $queue->dequeue();
 
             if (isset($visited[$current])) {
                 continue;
@@ -103,57 +103,56 @@ final class DependencyGraph
             // Add all dependents to the queue
             foreach ($this->getDependents($current) as $dependent) {
                 if (!isset($visited[$dependent])) {
-                    $queue[] = $dependent;
+                    $queue->enqueue($dependent);
                 }
             }
         }
 
-        return array_unique($result);
+        return $result; // No array_unique needed - visited check prevents duplicates
     }
 
     /**
      * Remove a document from the graph (when deleted).
+     * O(E) where E is edges involving this document.
      */
     public function removeDocument(string $docPath): void
     {
-        // Remove from imports
-        unset($this->imports[$docPath]);
-
-        // Remove from dependents
-        unset($this->dependents[$docPath]);
-
-        // Remove references to this doc from other entries
+        // Remove references to this doc from other entries (before removing own entries)
+        // Use keyed lookup for O(1) unset
         foreach ($this->imports as $from => $toList) {
-            $this->imports[$from] = array_values(array_filter(
-                $toList,
-                fn($to) => $to !== $docPath
-            ));
+            unset($this->imports[$from][$docPath]);
+            if ($this->imports[$from] === []) {
+                unset($this->imports[$from]);
+            }
         }
 
         foreach ($this->dependents as $to => $fromList) {
-            $this->dependents[$to] = array_values(array_filter(
-                $fromList,
-                fn($from) => $from !== $docPath
-            ));
+            unset($this->dependents[$to][$docPath]);
+            if ($this->dependents[$to] === []) {
+                unset($this->dependents[$to]);
+            }
         }
+
+        // Remove own entries
+        unset($this->imports[$docPath]);
+        unset($this->dependents[$docPath]);
     }
 
     /**
      * Clear all edges for a document (before re-computing).
+     * O(I) where I is number of imports for this document.
      */
     public function clearImportsFor(string $docPath): void
     {
-        // Remove this doc's imports
+        // Get old imports before clearing
         $oldImports = $this->imports[$docPath] ?? [];
         unset($this->imports[$docPath]);
 
-        // Remove this doc from dependents of its old imports
-        foreach ($oldImports as $importedDoc) {
-            if (isset($this->dependents[$importedDoc])) {
-                $this->dependents[$importedDoc] = array_values(array_filter(
-                    $this->dependents[$importedDoc],
-                    fn($dep) => $dep !== $docPath
-                ));
+        // Remove this doc from dependents of its old imports (O(1) per import)
+        foreach (array_keys($oldImports) as $importedDoc) {
+            unset($this->dependents[$importedDoc][$docPath]);
+            if (isset($this->dependents[$importedDoc]) && $this->dependents[$importedDoc] === []) {
+                unset($this->dependents[$importedDoc]);
             }
         }
     }
@@ -173,27 +172,52 @@ final class DependencyGraph
 
     /**
      * Serialize to array for JSON persistence.
+     * Converts keyed arrays to value arrays for compact storage.
      *
      * @return array<string, mixed>
      */
     public function toArray(): array
     {
+        // Convert keyed arrays to value arrays for JSON storage
+        $imports = [];
+        foreach ($this->imports as $from => $toMap) {
+            $imports[$from] = array_keys($toMap);
+        }
+
+        $dependents = [];
+        foreach ($this->dependents as $to => $fromMap) {
+            $dependents[$to] = array_keys($fromMap);
+        }
+
         return [
-            'imports' => $this->imports,
-            'dependents' => $this->dependents,
+            'imports' => $imports,
+            'dependents' => $dependents,
         ];
     }
 
     /**
      * Deserialize from array.
+     * Converts value arrays back to keyed arrays for O(1) lookups.
      *
      * @param array<string, mixed> $data
      */
     public static function fromArray(array $data): self
     {
         $graph = new self();
-        $graph->imports = $data['imports'] ?? [];
-        $graph->dependents = $data['dependents'] ?? [];
+
+        // Convert value arrays to keyed arrays for O(1) lookup
+        foreach ($data['imports'] ?? [] as $from => $toList) {
+            if (is_array($toList)) {
+                $graph->imports[$from] = array_fill_keys($toList, true);
+            }
+        }
+
+        foreach ($data['dependents'] ?? [] as $to => $fromList) {
+            if (is_array($fromList)) {
+                $graph->dependents[$to] = array_fill_keys($fromList, true);
+            }
+        }
+
         return $graph;
     }
 
@@ -218,32 +242,28 @@ final class DependencyGraph
 
     /**
      * Merge another dependency graph into this one.
+     * O(E) where E is number of edges in the other graph.
      *
      * Used to combine results from parallel child processes.
      */
     public function merge(self $other): void
     {
-        // Merge imports
-        foreach ($other->imports as $from => $toList) {
+        // Merge imports using array union (O(1) per entry with keyed arrays)
+        foreach ($other->imports as $from => $toMap) {
             if (!isset($this->imports[$from])) {
-                $this->imports[$from] = [];
-            }
-            foreach ($toList as $to) {
-                if (!in_array($to, $this->imports[$from], true)) {
-                    $this->imports[$from][] = $to;
-                }
+                $this->imports[$from] = $toMap;
+            } else {
+                // Union of keyed arrays - O(n) but no in_array lookups
+                $this->imports[$from] += $toMap;
             }
         }
 
-        // Merge dependents
-        foreach ($other->dependents as $to => $fromList) {
+        // Merge dependents using array union
+        foreach ($other->dependents as $to => $fromMap) {
             if (!isset($this->dependents[$to])) {
-                $this->dependents[$to] = [];
-            }
-            foreach ($fromList as $from) {
-                if (!in_array($from, $this->dependents[$to], true)) {
-                    $this->dependents[$to][] = $from;
-                }
+                $this->dependents[$to] = $fromMap;
+            } else {
+                $this->dependents[$to] += $fromMap;
             }
         }
     }
