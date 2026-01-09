@@ -12,3 +12,6 @@
 # Benchmark test documentation (downloaded on demand)
 /benchmark/test-docs/
 !/benchmark/test-docs/.gitkeep
+
+# Benchmark results (environment-specific, accumulate over time)
+benchmark/results/*.json
