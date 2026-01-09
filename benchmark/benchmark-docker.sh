@@ -216,6 +216,35 @@ run_scenario() {
                 log_success "    Time: ${time_s}s, Memory: ~${memory_mb}MB, Files: $files"
             done
             ;;
+        cascade)
+            # First run to populate cache
+            log_info "  Initial render to populate cache..."
+            clean_caches
+            run_benchmark_simple 0 fresh > /dev/null
+
+            for ((i=1; i<=RUNS; i++)); do
+                log_info "  Run $i/$RUNS (cascade - modifying CrossRefs/Index.rst hub)..."
+                # Modify hub document to trigger cascade re-render to dependents
+                local hub_file="$PROJECT_DIR/$DOCS_INPUT/CrossRefs/Index.rst"
+                if [ -f "$hub_file" ]; then
+                    echo "" >> "$hub_file"  # Append newline to change content hash
+                else
+                    log_warn "    CrossRefs/Index.rst not found, falling back to Index.rst"
+                    local index_file="$PROJECT_DIR/$DOCS_INPUT/Index.rst"
+                    if [ ! -f "$index_file" ]; then
+                        index_file="$PROJECT_DIR/$DOCS_INPUT/index.rst"
+                    fi
+                    echo "" >> "$index_file"
+                fi
+                sleep 0.1
+                result=$(run_benchmark_simple $i)  # Reuse existing cache
+                results+=("$result")
+                time_s=$(echo "$result" | jq -r '.total_time_seconds')
+                memory_mb=$(echo "$result" | jq -r '.peak_memory_mb')
+                files=$(echo "$result" | jq -r '.files_rendered')
+                log_success "    Time: ${time_s}s, Memory: ~${memory_mb}MB, Files: $files"
+            done
+            ;;
     esac
 
     # Extract values for aggregation
@@ -308,6 +337,7 @@ if [ "$SCENARIO" = "all" ]; then
     run_scenario cold
     run_scenario warm
     run_scenario partial
+    run_scenario cascade
 else
     run_scenario "$SCENARIO"
 fi
