@@ -405,18 +405,18 @@
                 <div class="label">Faster on Extra-Large Docs (Cold Build)</div>
             </div>
             <div class="highlight-box">
-                <div class="big-number">76%</div>
+                <div class="big-number">73%</div>
                 <div class="label">Faster on Large Docs (Cold Build)</div>
             </div>
         </div>
 
         <div class="metrics-grid">
             <div class="metric-card">
-                <div class="value">1180s &rarr; 56s</div>
+                <div class="value">970s &rarr; 47s</div>
                 <div class="label">TYPO3 Core Changelog (3667 files)</div>
             </div>
             <div class="metric-card">
-                <div class="value">186s &rarr; 44s</div>
+                <div class="value">129s &rarr; 35s</div>
                 <div class="label">TYPO3 Core API Docs (957 files)</div>
             </div>
             <div class="metric-card">
@@ -448,23 +448,23 @@
                     <tr>
                         <td><strong>TYPO3 Core Changelog</strong></td>
                         <td>3667</td>
-                        <td>1179.6s (19.7min)</td>
-                        <td>56.3s</td>
-                        <td class="improvement">-95.2% (1123s faster)</td>
+                        <td>970s (16.2min)</td>
+                        <td>47.3s</td>
+                        <td class="improvement">-95.1% (923s faster)</td>
                     </tr>
                     <tr>
                         <td><strong>TYPO3 Core API</strong></td>
                         <td>957</td>
-                        <td>185.5s</td>
-                        <td>44.2s</td>
-                        <td class="improvement">-76.2% (141s faster)</td>
+                        <td>128.6s</td>
+                        <td>34.9s</td>
+                        <td class="improvement">-72.9% (94s faster)</td>
                     </tr>
                     <tr>
                         <td><strong>Rendertest</strong></td>
                         <td>98</td>
-                        <td>9.34s</td>
-                        <td>6.83s</td>
-                        <td class="improvement">-26.9% (2.5s faster)</td>
+                        <td>9.1s</td>
+                        <td>6.4s</td>
+                        <td class="improvement">-29.7% (2.7s faster)</td>
                     </tr>
                 </tbody>
             </table>
@@ -531,21 +531,21 @@
                     <div class="bar-group">
                         <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
                             <div class="bar main" style="height: 248px;">
-                                <span class="bar-value">1180s</span>
+                                <span class="bar-value">970s</span>
                             </div>
                             <div class="bar" style="height: 12px;">
-                                <span class="bar-value">56.3s</span>
+                                <span class="bar-value">47.3s</span>
                             </div>
                         </div>
                         <div class="bar-label">Core Changelog<br>(3667 files)</div>
                     </div>
                     <div class="bar-group">
                         <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
-                            <div class="bar main" style="height: 39px;">
-                                <span class="bar-value">185.5s</span>
+                            <div class="bar main" style="height: 33px;">
+                                <span class="bar-value">128.6s</span>
                             </div>
                             <div class="bar" style="height: 9px;">
-                                <span class="bar-value">44.2s</span>
+                                <span class="bar-value">34.9s</span>
                             </div>
                         </div>
                         <div class="bar-label">TYPO3 Core API<br>(957 files)</div>
@@ -553,10 +553,10 @@
                     <div class="bar-group">
                         <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
                             <div class="bar main" style="height: 2px;">
-                                <span class="bar-value">9.34s</span>
+                                <span class="bar-value">9.1s</span>
                             </div>
-                            <div class="bar" style="height: 1px;">
-                                <span class="bar-value">6.83s</span>
+                            <div class="bar" style="height: 2px;">
+                                <span class="bar-value">6.4s</span>
                             </div>
                         </div>
                         <div class="bar-label">Rendertest<br>(98 files)</div>
@@ -588,34 +588,38 @@
                         <th>Documentation</th>
                         <th>Cold Build</th>
                         <th>Warm Build</th>
-                        <th>Improvement</th>
+                        <th>Partial Build</th>
+                        <th>Improvement (Warm)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>TYPO3 Core Changelog</strong> (3667 files)</td>
-                        <td>56.3s</td>
-                        <td>49.9s</td>
-                        <td><span style="color: var(--success); font-weight: bold;">-11%</span></td>
+                        <td>47.3s</td>
+                        <td>1.84s</td>
+                        <td>2.02s</td>
+                        <td><span style="color: var(--success); font-weight: bold;">-96%</span></td>
                     </tr>
                     <tr>
                         <td><strong>TYPO3 Core API</strong> (957 files)</td>
-                        <td>44.2s</td>
-                        <td>35.5s</td>
-                        <td><span style="color: var(--success); font-weight: bold;">-20%</span></td>
+                        <td>34.9s</td>
+                        <td>1.55s</td>
+                        <td>5.43s</td>
+                        <td><span style="color: var(--success); font-weight: bold;">-96%</span></td>
                     </tr>
                     <tr>
                         <td><strong>Rendertest</strong> (98 files)</td>
-                        <td>6.83s</td>
-                        <td>5.23s</td>
-                        <td><span style="color: var(--success); font-weight: bold;">-23%</span></td>
+                        <td>6.4s</td>
+                        <td>1.78s</td>
+                        <td>1.83s</td>
+                        <td><span style="color: var(--success); font-weight: bold;">-72%</span></td>
                     </tr>
                 </tbody>
             </table>
             <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
-                <strong>Note:</strong> Warm builds benefit from Twig template caching persisted between runs.
-                The 11-23% improvement comes primarily from avoiding Twig template recompilation.
-                CPU usage and memory consumption are similar between cold and warm builds.
+                <strong>Note:</strong> Warm builds benefit from incremental caching - unchanged documents are skipped entirely.
+                Partial builds (single file modified) show the overhead of dependency checking and minimal re-rendering.
+                The 72-96% improvement comes from skipping unchanged documents in the render phase.
             </p>
         </div>
 
@@ -1363,7 +1367,7 @@ docker run --rm -v $(pwd)/benchmark/test-docs/TYPO3-Core-Changelog/typo3/sysext/
 
     <footer>
         <p>
-            Generated on 2026-01-05 |
+            Generated on 2026-01-09 |
             <a href="https://github.com/TYPO3-Documentation/render-guides">TYPO3 Render Guides</a> |
             Branch: <code>feature/php-8.5-only</code>
         </p>

@@ -48,6 +48,14 @@ case "$DOCS_TYPE" in
             "$SCRIPT_DIR/download-test-docs.sh" TYPO3CMS-Reference-CoreApi
         fi
         ;;
+    changelog)
+        DOCS_INPUT="benchmark/test-docs/TYPO3-Core-Changelog/typo3/sysext/core/Documentation"
+        # Ensure changelog docs are downloaded
+        if [ ! -d "$PROJECT_DIR/benchmark/test-docs/TYPO3-Core-Changelog" ]; then
+            log_info "Downloading TYPO3 Core Changelog documentation..."
+            "$SCRIPT_DIR/download-test-docs.sh" TYPO3-Core-Changelog
+        fi
+        ;;
     *)
         # Assume it's a custom path
         DOCS_INPUT="$DOCS_TYPE"
