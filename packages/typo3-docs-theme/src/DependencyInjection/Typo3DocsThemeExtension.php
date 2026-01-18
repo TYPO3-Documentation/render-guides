@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\DependencyInjection;
 
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
+use phpDocumentor\Guides\RestructuredText\Directives\FigureDirective as BaseFigureDirective;
 use phpDocumentor\Guides\TemplateRenderer;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
+use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
@@ -23,7 +26,7 @@ use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use function dirname;
 use function phpDocumentor\Guides\DependencyInjection\template;
 
-class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface
+class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface, CompilerPassInterface
 {
     private const HTML = [
         YoutubeNode::class => 'body/directive/youtube.html.twig',
@@ -108,5 +111,17 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 template(FileInlineNode::class, 'inline/textroles/file.html.twig'),
             ],
         ]);
+    }
+
+    /**
+     * Remove the base library's FigureDirective in favor of our custom implementation
+     * that supports zoom functionality.
+     */
+    public function process(ContainerBuilder $container): void
+    {
+        // Remove the base library's FigureDirective to let our custom one take over
+        if ($container->hasDefinition(BaseFigureDirective::class)) {
+            $container->removeDefinition(BaseFigureDirective::class);
+        }
     }
 }

@@ -1,6 +1,10 @@
 <figure
     {%- if node.classesString %} class="{{ node.classesString }}"{% endif -%}
     {%- if node.hasOption('figwidth') %} style="{% if node.hasOption('figwidth') %}width: {{ node.option('figwidth') }};{% endif %}"{% endif -%}
+    {%- if node.hasOption('zoom') %} data-zoom="{{ node.option('zoom') }}"{% endif -%}
+    {%- if node.hasOption('gallery') %} data-gallery="{{ node.option('gallery') }}"{% endif -%}
+    {%- if node.hasOption('zoom-factor') %} data-zoom-factor="{{ node.option('zoom-factor') }}"{% endif -%}
+    {%- if node.hasOption('zoom-indicator') %} data-zoom-indicator="{{ node.option('zoom-indicator') }}"{% endif -%}
 >
     {{ renderNode(node.image) }}
 
