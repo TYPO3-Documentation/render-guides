@@ -1355,19 +1355,85 @@ docker run --rm -v $(pwd)/benchmark/test-docs/TYPO3-Core-Changelog/typo3/sysext/
             </p>
         </div>
 
+        <!-- Upstream PR Status -->
+        <div class="card">
+            <h2>Upstream Pull Requests</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                Performance patches submitted to <a href="https://github.com/phpDocumentor/guides">phpDocumentor/guides</a> monorepo for upstream integration.
+            </p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>PR</th>
+                        <th>Package</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1287">#1287</a></td>
+                        <td><code>guides</code></td>
+                        <td>Caching improvements (SluggerAnchorNormalizer, TwigTemplateRenderer, PreNodeRendererFactory, ProjectNode, TwigEnvironment, RenderContext, DocumentNameResolver, UrlGenerator, ExternalReferenceResolver hash set)</td>
+                        <td><span class="badge badge-success">Ready</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1288">#1288</a></td>
+                        <td><code>guides-restructured-text</code></td>
+                        <td>RST parsing optimizations (InlineParser lexer reuse, LineChecker, Buffer, InlineLexer O(1) scheme lookup, FieldListRule, DirectiveRule, EnumeratedListRule, LinkRule, GridTableRule, SimpleTableRule)</td>
+                        <td><span class="badge badge-success">Ready</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1289">#1289</a></td>
+                        <td><code>guides-cli</code></td>
+                        <td>DI container caching with graceful fallback for uncacheable containers</td>
+                        <td><span class="badge badge-success">Ready</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1290">#1290</a></td>
+                        <td><code>guides</code></td>
+                        <td>Refactoring: Use object identity for DocumentEntryNode comparisons (enables caching)</td>
+                        <td><span class="badge badge-success">Ready</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1291">#1291</a></td>
+                        <td><code>guides-cli</code></td>
+                        <td>Symfony 8 compatibility: Replace deprecated <code>add()</code> with <code>addCommand()</code></td>
+                        <td><span class="badge badge-success">Ready</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 1.5rem;">Key Optimizations</h3>
+            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                <li><strong>O(1) URI scheme lookup:</strong> Replaced 5600+ character regex with hash set lookup (~6x faster)</li>
+                <li><strong>Instance caching:</strong> Reuse parser instances instead of repeated instantiation</li>
+                <li><strong>Result caching:</strong> Cache expensive computations (URL resolution, slugger, Twig globals)</li>
+                <li><strong>DI container caching:</strong> Cache compiled Symfony container for faster startup</li>
+                <li><strong>Object identity:</strong> Use identity comparison for cached DocumentEntryNode lookups</li>
+            </ul>
+
+            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
+                <strong>Note:</strong> All PRs target PHP 8.1+ and maintain backwards compatibility. The patches in this repository
+                will be removed once the upstream PRs are merged and released.
+            </p>
+        </div>
+
         <!-- References -->
         <div class="card">
             <h2>References</h2>
             <ul style="margin: 0; padding-left: 1.5rem;">
                 <li><a href="https://github.com/TYPO3-Documentation/render-guides/pull/1143">PR #1143</a> &mdash; Original performance optimization proposal and discussion</li>
                 <li><a href="https://github.com/CybotTM/render-guides/tree/feature/php-8.5-only">Feature Branch</a> &mdash; Source code for this implementation</li>
+                <li><a href="https://github.com/phpDocumentor/guides/pulls?q=is%3Apr+author%3ACybotTM">Upstream PRs</a> &mdash; Performance patches submitted to phpDocumentor/guides</li>
             </ul>
         </div>
     </main>
 
     <footer>
         <p>
-            Generated on 2026-01-09 |
+            Generated on 2026-01-22 |
             <a href="https://github.com/TYPO3-Documentation/render-guides">TYPO3 Render Guides</a> |
             Branch: <code>feature/php-8.5-only</code>
         </p>
