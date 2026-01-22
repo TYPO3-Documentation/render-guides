@@ -420,7 +420,7 @@
                 <div class="label">TYPO3 Core API Docs (957 files)</div>
             </div>
             <div class="metric-card">
-                <div class="value">14</div>
+                <div class="value">15</div>
                 <div class="label">Patches in Upstream PRs</div>
             </div>
             <div class="metric-card">
@@ -804,7 +804,7 @@
                 Performance patches submitted to <a href="https://github.com/phpDocumentor/guides">phpDocumentor/guides</a> monorepo.
             </p>
 
-            <h3>Submitted Pull Requests (14 patches in 5 PRs)</h3>
+            <h3>Submitted Pull Requests (15 patches in 6 PRs)</h3>
             <table class="comparison-table">
                 <thead>
                     <tr>
@@ -869,12 +869,22 @@
                         </td>
                         <td><span class="badge badge-success">Open</span></td>
                     </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1292">#1292</a></td>
+                        <td><code>guides</code></td>
+                        <td>
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/project-node-cache.patch">project-node-cache</a>
+                            <strong>(1 patch)</strong>
+                        </td>
+                        <td><span class="badge badge-success">Open</span></td>
+                    </tr>
                 </tbody>
             </table>
 
             <h3 style="margin-top: 2rem;">Key Optimizations</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
                 <li><strong>O(1) URI scheme lookup:</strong> Replaced 5600+ character regex with hash set lookup (~6x faster)</li>
+                <li><strong>O(1) document lookup:</strong> Direct hash map access for ProjectNode document entries</li>
                 <li><strong>Instance caching:</strong> Reuse parser instances instead of repeated instantiation</li>
                 <li><strong>Result caching:</strong> Cache expensive computations (URL resolution, slugger, Twig globals)</li>
                 <li><strong>DI container caching:</strong> Cache compiled Symfony container for faster startup</li>
@@ -889,13 +899,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="color: var(--text-muted);">
-                            project-node-cache
-                            <strong>(1 patch)</strong>
-                        </td>
-                        <td><strong>Needs investigation:</strong> O(1) document lookup causes functional test failures. Requires deeper analysis of document entry storage semantics.</td>
-                    </tr>
                     <tr>
                         <td style="color: var(--text-muted);">
                             directive-rule-regex-cache, enumerated-list-regex-cache, field-list-regex-cache,
