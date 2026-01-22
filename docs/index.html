@@ -420,8 +420,8 @@
                 <div class="label">TYPO3 Core API Docs (957 files)</div>
             </div>
             <div class="metric-card">
-                <div class="value">19</div>
-                <div class="label">Upstream Patches Applied</div>
+                <div class="value">14</div>
+                <div class="label">Patches in Upstream PRs</div>
             </div>
             <div class="metric-card">
                 <div class="value">15+</div>
@@ -797,153 +797,127 @@
             </p>
         </div>
 
-        <!-- Upstream Patches -->
+        <!-- Upstream Contributions -->
         <div class="card">
-            <h2>Upstream Performance Patches (19 patches)</h2>
+            <h2>Upstream Contributions</h2>
             <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                These patches target <code>phpdocumentor/guides</code> and <code>phpdocumentor/guides-restructured-text</code> packages.
+                Performance patches submitted to <a href="https://github.com/phpDocumentor/guides">phpDocumentor/guides</a> monorepo.
             </p>
 
-            <h3>phpdocumentor/guides (9 patches)</h3>
-            <ul class="patch-list">
-                <li>
-                    <div class="patch-icon">1</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/slugger-anchor-normalizer.patch">slugger-anchor-normalizer.patch</a></div>
-                        <div class="patch-desc">Optimize SluggerAnchorNormalizer with instance and result caching</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">2</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/twig-template-renderer-globals.patch">twig-template-renderer-globals.patch</a></div>
-                        <div class="patch-desc">Cache Twig globals to avoid redundant addGlobal calls per template</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">3</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/pre-node-renderer-factory-cache.patch">pre-node-renderer-factory-cache.patch</a></div>
-                        <div class="patch-desc">Cache PreNodeRendererFactory lookups by node class</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">4</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/project-node-cache.patch">project-node-cache.patch</a></div>
-                        <div class="patch-desc">Cache root document entry and use hash lookup for getDocumentEntry</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">5</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/twig-environment-cache.patch">twig-environment-cache.patch</a></div>
-                        <div class="patch-desc">Enable Twig template caching for faster compilation</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">6</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/render-context-document-cache.patch">render-context-document-cache.patch</a></div>
-                        <div class="patch-desc">Cache document lookup by file for O(1) getDocumentNodeForEntry</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">7</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/document-name-resolver-cache.patch">document-name-resolver-cache.patch</a></div>
-                        <div class="patch-desc">Cache URL resolution results in DocumentNameResolver</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">8</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/url-generator-cache.patch">url-generator-cache.patch</a></div>
-                        <div class="patch-desc">Cache URL generator relative path calculations</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">9</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/external-reference-resolver-cache.patch">external-reference-resolver-cache.patch</a></div>
-                        <div class="patch-desc">Cache ExternalReferenceResolver SUPPORTED_SCHEMAS pattern</div>
-                    </div>
-                </li>
+            <h3>Submitted Pull Requests (14 patches in 5 PRs)</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>PR</th>
+                        <th>Package</th>
+                        <th>Patches</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1287">#1287</a></td>
+                        <td><code>guides</code></td>
+                        <td>
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/slugger-anchor-normalizer.patch">slugger-anchor-normalizer</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/twig-template-renderer-globals.patch">twig-template-renderer-globals</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/pre-node-renderer-factory-cache.patch">pre-node-renderer-factory-cache</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/twig-environment-cache.patch">twig-environment-cache</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/render-context-document-cache.patch">render-context-document-cache</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/document-name-resolver-cache.patch">document-name-resolver-cache</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/url-generator-cache.patch">url-generator-cache</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/external-reference-resolver-cache.patch">external-reference-resolver-cache</a>
+                            <strong>(8 patches)</strong>
+                        </td>
+                        <td><span class="badge badge-success">Open</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1288">#1288</a></td>
+                        <td><code>guides-restructured-text</code></td>
+                        <td>
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/inline-parser-lexer-reuse.patch">inline-parser-lexer-reuse</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/line-checker-cache.patch">line-checker-cache</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/buffer-unindent-cache.patch">buffer-unindent-cache</a>,
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/inline-lexer-regex-cache.patch">inline-lexer-regex-cache</a>
+                            <strong>(4 patches)</strong>
+                        </td>
+                        <td><span class="badge badge-success">Open</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1289">#1289</a></td>
+                        <td><code>guides-cli</code></td>
+                        <td>
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/guides-cli-container-cache.patch">guides-cli-container-cache</a>
+                            <strong>(1 patch)</strong>
+                        </td>
+                        <td><span class="badge badge-success">Open</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1290">#1290</a></td>
+                        <td><code>guides</code></td>
+                        <td>
+                            <em>Refactoring: Use file path comparison for DocumentEntryNode (no patch file)</em>
+                        </td>
+                        <td><span class="badge badge-success">Open</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1291">#1291</a></td>
+                        <td><code>guides-cli</code></td>
+                        <td>
+                            <a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/guides-cli-symfony8-compat.patch">guides-cli-symfony8-compat</a>
+                            <strong>(1 patch)</strong>
+                        </td>
+                        <td><span class="badge badge-success">Open</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Key Optimizations</h3>
+            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                <li><strong>O(1) URI scheme lookup:</strong> Replaced 5600+ character regex with hash set lookup (~6x faster)</li>
+                <li><strong>Instance caching:</strong> Reuse parser instances instead of repeated instantiation</li>
+                <li><strong>Result caching:</strong> Cache expensive computations (URL resolution, slugger, Twig globals)</li>
+                <li><strong>DI container caching:</strong> Cache compiled Symfony container for faster startup</li>
             </ul>
 
-            <h3>phpdocumentor/guides-restructured-text (10 patches)</h3>
-            <ul class="patch-list">
-                <li>
-                    <div class="patch-icon">1</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/inline-parser-lexer-reuse.patch">inline-parser-lexer-reuse.patch</a></div>
-                        <div class="patch-desc">Reuse InlineLexer instance to avoid repeated instantiation</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">2</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/line-checker-cache.patch">line-checker-cache.patch</a></div>
-                        <div class="patch-desc">Cache LineChecker regex results to avoid repeated pattern matching</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">3</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/buffer-unindent-cache.patch">buffer-unindent-cache.patch</a></div>
-                        <div class="patch-desc">Cache Buffer unindent to avoid repeated detection loops</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">4</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/inline-lexer-regex-cache.patch">inline-lexer-regex-cache.patch</a></div>
-                        <div class="patch-desc">Cache InlineLexer regex patterns including expensive SUPPORTED_SCHEMAS</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">5</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/field-list-regex-cache.patch">field-list-regex-cache.patch</a></div>
-                        <div class="patch-desc">Cache FieldListRule field pattern</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">6</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/directive-rule-regex-cache.patch">directive-rule-regex-cache.patch</a></div>
-                        <div class="patch-desc">Cache DirectiveRule parsing patterns</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">7</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/enumerated-list-regex-cache.patch">enumerated-list-regex-cache.patch</a></div>
-                        <div class="patch-desc">Cache EnumeratedListRule marker type patterns</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">8</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/link-rule-regex-cache.patch">link-rule-regex-cache.patch</a></div>
-                        <div class="patch-desc">Cache LinkRule parsing patterns</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">9</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/grid-table-rule-regex-cache.patch">grid-table-rule-regex-cache.patch</a></div>
-                        <div class="patch-desc">Cache GridTableRule definition patterns</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="patch-icon">10</div>
-                    <div class="patch-content">
-                        <div class="patch-title"><a href="https://github.com/CybotTM/render-guides/blob/feature/php-8.5-only/patches/simple-table-rule-regex-cache.patch">simple-table-rule-regex-cache.patch</a></div>
-                        <div class="patch-desc">Cache SimpleTableRule column and colspan patterns</div>
-                    </div>
-                </li>
-            </ul>
+            <h3 style="margin-top: 2rem;">Not Submitted Upstream</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Patches</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color: var(--text-muted);">
+                            project-node-cache
+                            <strong>(1 patch)</strong>
+                        </td>
+                        <td><strong>Needs investigation:</strong> O(1) document lookup causes functional test failures. Requires deeper analysis of document entry storage semantics.</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--text-muted);">
+                            directive-rule-regex-cache, enumerated-list-regex-cache, field-list-regex-cache,
+                            grid-table-rule-regex-cache, link-rule-regex-cache, simple-table-rule-regex-cache
+                            <strong>(6 patches)</strong>
+                        </td>
+                        <td><strong>Minimal value:</strong> Only moves regex patterns to class constants. PHP's PCRE engine already caches compiled patterns internally.</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--text-muted);">
+                            timing-run-handler, twig-renderer-profiling
+                            <strong>(2 patches)</strong>
+                        </td>
+                        <td><strong>Dev tooling:</strong> Profiling/benchmarking infrastructure for render-guides development, not suitable for upstream.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
+                <strong>Note:</strong> All upstream PRs target PHP 8.1+ and maintain backwards compatibility. The patches in this repository
+                will be removed once the upstream PRs are merged and released.
+            </p>
         </div>
 
         <!-- Project Changes -->
@@ -1352,71 +1326,6 @@ docker run --rm -v $(pwd)/benchmark/test-docs/TYPO3-Core-Changelog/typo3/sysext/
             <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
                 <strong>Result files:</strong> Benchmark results are saved as JSON files in <code>benchmark/results/</code>
                 with naming convention: <code>{branch}_{scenario}_{docs}_{timestamp}.json</code>
-            </p>
-        </div>
-
-        <!-- Upstream PR Status -->
-        <div class="card">
-            <h2>Upstream Pull Requests</h2>
-            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                Performance patches submitted to <a href="https://github.com/phpDocumentor/guides">phpDocumentor/guides</a> monorepo for upstream integration.
-            </p>
-
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>PR</th>
-                        <th>Package</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="https://github.com/phpDocumentor/guides/pull/1287">#1287</a></td>
-                        <td><code>guides</code></td>
-                        <td>Caching improvements (SluggerAnchorNormalizer, TwigTemplateRenderer, PreNodeRendererFactory, ProjectNode, TwigEnvironment, RenderContext, DocumentNameResolver, UrlGenerator, ExternalReferenceResolver hash set)</td>
-                        <td><span class="badge badge-success">Ready</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://github.com/phpDocumentor/guides/pull/1288">#1288</a></td>
-                        <td><code>guides-restructured-text</code></td>
-                        <td>RST parsing optimizations (InlineParser lexer reuse, LineChecker, Buffer, InlineLexer O(1) scheme lookup, FieldListRule, DirectiveRule, EnumeratedListRule, LinkRule, GridTableRule, SimpleTableRule)</td>
-                        <td><span class="badge badge-success">Ready</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://github.com/phpDocumentor/guides/pull/1289">#1289</a></td>
-                        <td><code>guides-cli</code></td>
-                        <td>DI container caching with graceful fallback for uncacheable containers</td>
-                        <td><span class="badge badge-success">Ready</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://github.com/phpDocumentor/guides/pull/1290">#1290</a></td>
-                        <td><code>guides</code></td>
-                        <td>Refactoring: Use object identity for DocumentEntryNode comparisons (enables caching)</td>
-                        <td><span class="badge badge-success">Ready</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://github.com/phpDocumentor/guides/pull/1291">#1291</a></td>
-                        <td><code>guides-cli</code></td>
-                        <td>Symfony 8 compatibility: Replace deprecated <code>add()</code> with <code>addCommand()</code></td>
-                        <td><span class="badge badge-success">Ready</span></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3 style="margin-top: 1.5rem;">Key Optimizations</h3>
-            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                <li><strong>O(1) URI scheme lookup:</strong> Replaced 5600+ character regex with hash set lookup (~6x faster)</li>
-                <li><strong>Instance caching:</strong> Reuse parser instances instead of repeated instantiation</li>
-                <li><strong>Result caching:</strong> Cache expensive computations (URL resolution, slugger, Twig globals)</li>
-                <li><strong>DI container caching:</strong> Cache compiled Symfony container for faster startup</li>
-                <li><strong>Object identity:</strong> Use identity comparison for cached DocumentEntryNode lookups</li>
-            </ul>
-
-            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
-                <strong>Note:</strong> All PRs target PHP 8.1+ and maintain backwards compatibility. The patches in this repository
-                will be removed once the upstream PRs are merged and released.
             </p>
         </div>
 
