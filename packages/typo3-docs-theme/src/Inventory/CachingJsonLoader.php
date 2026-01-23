@@ -221,7 +221,7 @@ final class CachingJsonLoader extends JsonLoader
 
         // Ensure cache directory exists
         if (!is_dir($cacheDir)) {
-            if (!@mkdir($cacheDir, 0755, true) && !is_dir($cacheDir)) {
+            if (!@mkdir($cacheDir, 0o755, true) && !is_dir($cacheDir)) {
                 $this->logger->warning(sprintf('Failed to create inventory cache directory: %s', $cacheDir));
                 return;
             }
