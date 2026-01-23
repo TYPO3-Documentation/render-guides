@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\Twig;
 
 use phpDocumentor\Guides\RenderContext;
-use phpDocumentor\Guides\Twig\EnvironmentBuilder;
 use phpDocumentor\Guides\Twig\Theme\ThemeManager;
 use Psr\Log\LoggerInterface;
 use Twig\Environment;
@@ -73,7 +72,7 @@ final class CachingEnvironmentBuilder
 
         // Ensure cache directory exists
         if (!is_dir($cacheDir)) {
-            if (!@mkdir($cacheDir, 0755, true) && !is_dir($cacheDir)) {
+            if (!@mkdir($cacheDir, 0o755, true) && !is_dir($cacheDir)) {
                 $this->logger->warning(sprintf('Failed to create Twig cache directory: %s', $cacheDir));
                 // Return false to disable caching if directory creation fails
                 return '';
