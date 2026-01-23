@@ -77,27 +77,27 @@
     "extra": {
         "patches": {
             "phpdocumentor/guides": {
-                "Optimize SluggerAnchorNormalizer with instance and result caching": "patches/slugger-anchor-normalizer.patch",
-                "Cache Twig globals to avoid redundant addGlobal calls per template": "patches/twig-template-renderer-globals.patch",
-                "Cache PreNodeRendererFactory lookups by node class": "patches/pre-node-renderer-factory-cache.patch",
-                "Cache root document entry and use hash lookup for getDocumentEntry": "patches/project-node-cache.patch",
-                "Enable Twig template caching for faster compilation": "patches/twig-environment-cache.patch",
-                "Cache document lookup by file for O(1) getDocumentNodeForEntry": "patches/render-context-document-cache.patch",
-                "Cache URL resolution results in DocumentNameResolver": "patches/document-name-resolver-cache.patch",
-                "Cache URL generator relative path calculations": "patches/url-generator-cache.patch",
-                "Cache ExternalReferenceResolver SUPPORTED_SCHEMAS pattern": "patches/external-reference-resolver-cache.patch"
+                "Add hasDocumentEntry() method for safe entry checking (PR #1287)": "patches/document-node-has-entry.patch",
+                "Optimize SluggerAnchorNormalizer with instance and result caching (PR #1287)": "patches/slugger-anchor-normalizer.patch",
+                "Cache Twig globals to avoid redundant addGlobal calls per template (PR #1287)": "patches/twig-template-renderer-globals.patch",
+                "Cache PreNodeRendererFactory lookups by node class (PR #1287)": "patches/pre-node-renderer-factory-cache.patch",
+                "Enable Twig template caching for faster compilation (PR #1287)": "patches/twig-environment-cache.patch",
+                "Cache document lookup by file for O(1) getDocumentNodeForEntry (PR #1287)": "patches/render-context-document-cache.patch",
+                "Cache URL resolution results in DocumentNameResolver (PR #1287)": "patches/document-name-resolver-cache.patch",
+                "Cache URL generator relative path calculations (PR #1287)": "patches/url-generator-cache.patch",
+                "O(1) scheme lookup for ExternalReferenceResolver (PR #1287/PR #1288)": "patches/external-reference-resolver-cache.patch",
+                "Use file path comparison instead of object identity (PR #1290)": "patches/document-entry-file-comparison.patch",
+                "Cache root document entry and O(1) lookup for getDocumentEntry (PR #1292)": "patches/project-node-cache.patch"
+            },
+            "phpdocumentor/guides-cli": {
+                "Add DI container caching for faster CLI startup (PR #1289)": "patches/guides-cli-container-cache.patch"
             },
             "phpdocumentor/guides-restructured-text": {
-                "Reuse InlineLexer instance to avoid repeated instantiation": "patches/inline-parser-lexer-reuse.patch",
-                "Cache LineChecker regex results to avoid repeated pattern matching": "patches/line-checker-cache.patch",
-                "Cache Buffer unindent to avoid repeated detection loops": "patches/buffer-unindent-cache.patch",
-                "Cache InlineLexer regex patterns including expensive SUPPORTED_SCHEMAS": "patches/inline-lexer-regex-cache.patch",
-                "Cache FieldListRule field pattern": "patches/field-list-regex-cache.patch",
-                "Cache DirectiveRule parsing patterns": "patches/directive-rule-regex-cache.patch",
-                "Cache EnumeratedListRule marker type patterns": "patches/enumerated-list-regex-cache.patch",
-                "Cache LinkRule parsing patterns": "patches/link-rule-regex-cache.patch",
-                "Cache GridTableRule definition patterns": "patches/grid-table-rule-regex-cache.patch",
-                "Cache SimpleTableRule column and colspan patterns": "patches/simple-table-rule-regex-cache.patch"
+                "Reuse InlineLexer instance to avoid repeated instantiation (PR #1288)": "patches/inline-parser-lexer-reuse.patch",
+                "O(1) scheme lookup in InlineLexer (PR #1288)": "patches/inline-lexer-regex-cache.patch",
+                "Cache LineChecker regex results (PR #1288)": "patches/line-checker-cache.patch",
+                "Cache Buffer unindent state (PR #1288)": "patches/buffer-unindent-cache.patch",
+                "Remove InlineLexer import from CachableInlineRule (PR #1288)": "patches/cachable-inline-rule.patch"
             }
         }
     },

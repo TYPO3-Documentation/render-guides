@@ -1,10 +1,20 @@
 {
-    "_hash": "43732434b9b6d1645652d88698d944384d70b524d5921a501f6cb7b09b5f70e7",
+    "_hash": "371457d4fb3abaeb887f0146854a11c51ff3d91ba44c514a159e1ebb907dcf07",
     "patches": {
         "phpdocumentor/guides": [
             {
                 "package": "phpdocumentor/guides",
-                "description": "Optimize SluggerAnchorNormalizer with instance and result caching",
+                "description": "Add hasDocumentEntry() method for safe entry checking (PR #1287)",
+                "url": "patches/document-node-has-entry.patch",
+                "sha256": "1c683101decf00c86f48c55010fc5383076e62934f17720c30bfe46023a9c540",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Optimize SluggerAnchorNormalizer with instance and result caching (PR #1287)",
                 "url": "patches/slugger-anchor-normalizer.patch",
                 "sha256": "f1b5790810442f89f704425eb59a0c45c61e2e25162ab914350668a5c5d95070",
                 "depth": 1,
@@ -14,7 +24,7 @@
             },
             {
                 "package": "phpdocumentor/guides",
-                "description": "Cache Twig globals to avoid redundant addGlobal calls per template",
+                "description": "Cache Twig globals to avoid redundant addGlobal calls per template (PR #1287)",
                 "url": "patches/twig-template-renderer-globals.patch",
                 "sha256": "13af429f0801d7c007abedb45158fcf423d9e3d88c1fbb2142e304f5e6d5bd15",
                 "depth": 1,
@@ -24,9 +34,9 @@
             },
             {
                 "package": "phpdocumentor/guides",
-                "description": "Cache PreNodeRendererFactory lookups by node class",
+                "description": "Cache PreNodeRendererFactory lookups by node class (PR #1287)",
                 "url": "patches/pre-node-renderer-factory-cache.patch",
-                "sha256": "b1af98b8f828ad952622dd4f79e412e965d722cb4ec84c4a8bec0d6040c5efe1",
+                "sha256": "a2fb8dfe96fd798c5ded707be3a01c8a86bf9e9e7d75be8d276dc0088bf42c76",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"
@@ -34,17 +44,7 @@
             },
             {
                 "package": "phpdocumentor/guides",
-                "description": "Cache root document entry and use hash lookup for getDocumentEntry",
-                "url": "patches/project-node-cache.patch",
-                "sha256": "8baa1501fb403450a743b93b356757f00d2c0d0fb9d3d0350ff84cb9f80debab",
-                "depth": 1,
-                "extra": {
-                    "provenance": "root"
-                }
-            },
-            {
-                "package": "phpdocumentor/guides",
-                "description": "Enable Twig template caching for faster compilation",
+                "description": "Enable Twig template caching for faster compilation (PR #1287)",
                 "url": "patches/twig-environment-cache.patch",
                 "sha256": "a8b2da6ff0067c66d3979eb8aafcb296d8b34cad2ce9225b13066287448b8aaf",
                 "depth": 1,
@@ -54,9 +54,9 @@
             },
             {
                 "package": "phpdocumentor/guides",
-                "description": "Cache document lookup by file for O(1) getDocumentNodeForEntry",
+                "description": "Cache document lookup by file for O(1) getDocumentNodeForEntry (PR #1287)",
                 "url": "patches/render-context-document-cache.patch",
-                "sha256": "521c56be056b7a4f7a7ed7aaf0bbeb1307cf7da86787c2e9ffed23d2ec015842",
+                "sha256": "142a44c42097232977b5c6dff1e64dc11994355502cee6257092390448b04321",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"
@@ -64,7 +64,7 @@
             },
             {
                 "package": "phpdocumentor/guides",
-                "description": "Cache URL resolution results in DocumentNameResolver",
+                "description": "Cache URL resolution results in DocumentNameResolver (PR #1287)",
                 "url": "patches/document-name-resolver-cache.patch",
                 "sha256": "ebff7d41ce2e5147f50d40f49593160b88803b2c91fbfe473068e4378a363b55",
                 "depth": 1,
@@ -74,9 +74,103 @@
             },
             {
                 "package": "phpdocumentor/guides",
-                "description": "Cache URL generator relative path calculations",
+                "description": "Cache URL generator relative path calculations (PR #1287)",
                 "url": "patches/url-generator-cache.patch",
                 "sha256": "ad02a9de4a9881138e2f3d0fe856ae86516aea98474d6639aa943c1cb1499cdf",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "O(1) scheme lookup for ExternalReferenceResolver (PR #1287/PR #1288)",
+                "url": "patches/external-reference-resolver-cache.patch",
+                "sha256": "d0fafd5a7de4bb02fb0cfb31f3888085c196c244fc5cf3a305e7b43bf335abe3",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Use file path comparison instead of object identity (PR #1290)",
+                "url": "patches/document-entry-file-comparison.patch",
+                "sha256": "f57f762ba02e6589bf95c248d05fe2af452fe894db39228d470f30def4f55284",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides",
+                "description": "Cache root document entry and O(1) lookup for getDocumentEntry (PR #1292)",
+                "url": "patches/project-node-cache.patch",
+                "sha256": "2cb64d984e6b26871bf0783259059b2ca04b1557e80d5373b54f70ac14514434",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "phpdocumentor/guides-cli": [
+            {
+                "package": "phpdocumentor/guides-cli",
+                "description": "Add DI container caching for faster CLI startup (PR #1289)",
+                "url": "patches/guides-cli-container-cache.patch",
+                "sha256": "b5ef5742fc906533edb80ac85744661d810ccf452bad0b0bccd859dad87cfa67",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "phpdocumentor/guides-restructured-text": [
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Reuse InlineLexer instance to avoid repeated instantiation (PR #1288)",
+                "url": "patches/inline-parser-lexer-reuse.patch",
+                "sha256": "95f9cffd0352ad2d48b63c812c6fbc6c1c7edeededbcc3f6b057c801ff8333e9",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "O(1) scheme lookup in InlineLexer (PR #1288)",
+                "url": "patches/inline-lexer-regex-cache.patch",
+                "sha256": "2c8fe2d18f6c69fff1f7e649cc948f2a0a809ab43ace813de401fc651abe0fcc",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache LineChecker regex results (PR #1288)",
+                "url": "patches/line-checker-cache.patch",
+                "sha256": "bf5a5e6df4723f6bbbb2ee3e0c4aac15e68db7f46fb256500b2d9ded32c73f17",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Cache Buffer unindent state (PR #1288)",
+                "url": "patches/buffer-unindent-cache.patch",
+                "sha256": "51a1c609af43cfc5839c947810a0fb8e515dab1babb69836707c4ea1fbac8fd1",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "phpdocumentor/guides-restructured-text",
+                "description": "Remove InlineLexer import from CachableInlineRule (PR #1288)",
+                "url": "patches/cachable-inline-rule.patch",
+                "sha256": "633e548fdadec4dbf87ead653678861c308637a5e2ba7cbbe36f8200fd336875",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"
