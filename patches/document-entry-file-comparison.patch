@@ -1,0 +1,40 @@
+diff --git a/src/Compiler/Passes/GlobalMenuPass.php b/src/Compiler/Passes/GlobalMenuPass.php
+--- a/src/Compiler/Passes/GlobalMenuPass.php
++++ b/src/Compiler/Passes/GlobalMenuPass.php
+@@ -62,8 +62,9 @@ public function run(array $documents, CompilerContextInterface $compilerContext)
+         }
+
+         $rootDocument = null;
++        $rootFile = $rootDocumentEntry->getFile();
+         foreach ($documents as $document) {
+-            if ($document->getDocumentEntry() === $rootDocumentEntry) {
++            if ($document->getDocumentEntry()->getFile() === $rootFile) {
+                 $rootDocument = $document;
+                 break;
+             }
+diff --git a/src/Compiler/Passes/ToctreeValidationPass.php b/src/Compiler/Passes/ToctreeValidationPass.php
+--- a/src/Compiler/Passes/ToctreeValidationPass.php
++++ b/src/Compiler/Passes/ToctreeValidationPass.php
+@@ -68,6 +68,7 @@ public function run(array $documents, CompilerContextInterface $compilerContext)
+
+     public function isMissingInToctree(DocumentEntryNode $documentEntry, ProjectNode $projectNode): bool
+     {
+-        return $documentEntry->getParent() === null && $documentEntry !== $projectNode->getRootDocumentEntry();
++        return $documentEntry->getParent() === null
++            && $documentEntry->getFile() !== $projectNode->getRootDocumentEntry()->getFile();
+     }
+ }
+diff --git a/src/Renderer/DocumentTreeIterator.php b/src/Renderer/DocumentTreeIterator.php
+--- a/src/Renderer/DocumentTreeIterator.php
++++ b/src/Renderer/DocumentTreeIterator.php
+@@ -41,8 +41,9 @@ public function __construct(
+
+     public function current(): DocumentNode
+     {
++        $file = $this->levelNodes[$this->position]->getFile();
+         foreach ($this->documents as $document) {
+-            if ($document->getDocumentEntry() === $this->levelNodes[$this->position]) {
++            if ($document->getDocumentEntry()->getFile() === $file) {
+                 return $document;
+             }
+         }

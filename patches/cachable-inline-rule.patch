@@ -1,0 +1,14 @@
+diff --git a/src/RestructuredText/Parser/Productions/InlineRules/CachableInlineRule.php b/src/RestructuredText/Parser/Productions/InlineRules/CachableInlineRule.php
+--- a/src/RestructuredText/Parser/Productions/InlineRules/CachableInlineRule.php
++++ b/src/RestructuredText/Parser/Productions/InlineRules/CachableInlineRule.php
+@@ -13,10 +13,7 @@
+
+ namespace phpDocumentor\Guides\RestructuredText\Parser\Productions\InlineRules;
+
+-use phpDocumentor\Guides\RestructuredText\Parser\InlineLexer;
+-
+ interface CachableInlineRule extends InlineRule
+ {
+-    /** @return InlineLexer::* */
+     public function getToken(): int;
+ }
