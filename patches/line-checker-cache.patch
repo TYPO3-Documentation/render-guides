@@ -1,7 +1,7 @@
 diff --git a/src/RestructuredText/Parser/LineChecker.php b/src/RestructuredText/Parser/LineChecker.php
 --- a/src/RestructuredText/Parser/LineChecker.php
 +++ b/src/RestructuredText/Parser/LineChecker.php
-@@ -19,6 +19,15 @@ use function trim;
+@@ -20,6 +20,15 @@ use function trim;
 
  final class LineChecker
  {
@@ -17,9 +17,7 @@ diff --git a/src/RestructuredText/Parser/LineChecker.php b/src/RestructuredText/
      private const HEADER_LETTERS = [
          '!',
          '"',
-@@ -77,18 +86,36 @@ final class LineChecker
-         return $letter;
-     }
+@@ -79,16 +88,38 @@ final class LineChecker
 
      public static function isDirective(string $line): bool
      {
@@ -30,18 +28,21 @@ diff --git a/src/RestructuredText/Parser/LineChecker.php b/src/RestructuredText/
 +
 +        $result = preg_match('/^\.\.\s+(\|(.+)\| |)([^\s]+)::( (.*)|)$/mUsi', $line) > 0;
 +        self::$directiveCache[$line] = $result;
++
 +        return $result;
      }
 
      public static function isLink(string $line): bool
      {
 -        return preg_match('/^\.\.\s+_(.+):.*$/mUsi', trim($line)) > 0;
-+        if (isset(self::$linkCache[$line])) {
-+            return self::$linkCache[$line];
++        $trimmedLine = trim($line);
++        if (isset(self::$linkCache[$trimmedLine])) {
++            return self::$linkCache[$trimmedLine];
 +        }
 +
-+        $result = preg_match('/^\.\.\s+_(.+):.*$/mUsi', trim($line)) > 0;
-+        self::$linkCache[$line] = $result;
++        $result = preg_match('/^\.\.\s+_(.+):.*$/mUsi', $trimmedLine) > 0;
++        self::$linkCache[$trimmedLine] = $result;
++
 +        return $result;
      }
 
@@ -54,6 +55,7 @@ diff --git a/src/RestructuredText/Parser/LineChecker.php b/src/RestructuredText/
 +
 +        $result = preg_match('/^\.\.\s+\[([#a-zA-Z0-9]*)\]\s(.*)$$/mUsi', $line) > 0;
 +        self::$annotationCache[$line] = $result;
++
 +        return $result;
      }
  }

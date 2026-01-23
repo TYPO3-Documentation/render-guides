@@ -1,18 +1,25 @@
 diff --git a/src/DependencyInjection/ContainerFactory.php b/src/DependencyInjection/ContainerFactory.php
+index 866639dd1..630d20851 100644
 --- a/src/DependencyInjection/ContainerFactory.php
 +++ b/src/DependencyInjection/ContainerFactory.php
-@@ -23,6 +23,8 @@ use Symfony\Component\Config\FileLocator;
+@@ -22,20 +22,35 @@
+ use Symfony\Component\Config\FileLocator;
  use Symfony\Component\DependencyInjection\Container;
  use Symfony\Component\DependencyInjection\ContainerBuilder;
 +use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 +use Symfony\Component\DependencyInjection\Exception\RuntimeException as DIRuntimeException;
  use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
-
- use function array_keys;
-@@ -32,11 +34,17 @@ use function file_exists;
+ 
++use function array_keys;
+ use function array_merge;
++use function assert;
+ use function class_exists;
++use function file_exists;
 +use function file_put_contents;
 +use function function_exists;
  use function getcwd;
+ use function implode;
+ use function is_a;
 +use function is_dir;
 +use function md5;
 +use function mkdir;
@@ -22,7 +29,7 @@ diff --git a/src/DependencyInjection/ContainerFactory.php b/src/DependencyInject
  use function sprintf;
  use function strrchr;
  use function substr;
-
+ 
  final class ContainerFactory
  {
 +    private const CACHE_DIR = '/tmp/guides-container-cache';
@@ -30,11 +37,12 @@ diff --git a/src/DependencyInjection/ContainerFactory.php b/src/DependencyInject
 +
      private readonly ContainerBuilder $container;
      private readonly XmlFileLoader $configLoader;
-
-@@ -76,13 +84,70 @@ final class ContainerFactory
-
+ 
+@@ -78,16 +93,72 @@ public function addConfigFile(string $filePath): void
+ 
      public function create(string $vendorDir): Container
      {
+-        $this->processConfig();
 +        $cacheKey = $this->generateCacheKey($vendorDir);
 +        $cacheFile = self::CACHE_DIR . '/' . self::CACHE_CLASS . '_' . $cacheKey . '.php';
 +        $cacheClass = self::CACHE_CLASS . '_' . $cacheKey;
@@ -49,15 +57,14 @@ diff --git a/src/DependencyInjection/ContainerFactory.php b/src/DependencyInject
 +                return $container;
 +            }
 +        }
-+
+ 
 +        // Build container
-         $this->processConfig();
--
++        $this->processConfig();
          $this->container->setParameter('vendor_dir', $vendorDir);
          $this->container->setParameter('working_directory', rtrim(getcwd(), '/'));
 -
          $this->container->compile(true);
-
+ 
 +        // Try to cache the compiled container (may fail if container has object parameters)
 +        try {
 +            $this->cacheContainer($cacheFile, $cacheClass);
@@ -67,7 +74,7 @@ diff --git a/src/DependencyInjection/ContainerFactory.php b/src/DependencyInject
 +
          return $this->container;
      }
-
+ 
 +    private function generateCacheKey(string $vendorDir): string
 +    {
 +        $workingDir = getcwd();
@@ -104,3 +111,5 @@ diff --git a/src/DependencyInjection/ContainerFactory.php b/src/DependencyInject
 +    }
 +
      /** @param array<mixed> $config */
+     private function registerExtension(ExtensionInterface $extension, array $config): void
+     {

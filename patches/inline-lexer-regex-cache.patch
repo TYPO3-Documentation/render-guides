@@ -1,23 +1,7 @@
 diff --git a/src/RestructuredText/Parser/InlineLexer.php b/src/RestructuredText/Parser/InlineLexer.php
 --- a/src/RestructuredText/Parser/InlineLexer.php
 +++ b/src/RestructuredText/Parser/InlineLexer.php
-@@ -16,6 +16,7 @@ namespace phpDocumentor\Guides\RestructuredText\Parser;
-
- use Doctrine\Common\Lexer\AbstractLexer;
- use phpDocumentor\Guides\ReferenceResolvers\ExternalReferenceResolver;
-+use ReflectionClass;
-
- use function array_column;
- use function array_flip;
-@@ -23,6 +24,7 @@ use function ctype_alnum;
- use function ctype_space;
- use function parse_url;
- use function preg_match;
-+use function str_ends_with;
- use function str_replace;
- use function strlen;
- use function substr;
-@@ -158,11 +160,13 @@ final class InlineLexer extends AbstractLexer
+@@ -162,7 +162,9 @@ final class InlineLexer extends AbstractLexer
              return self::LITERAL;
          }
 
@@ -26,10 +10,5 @@ diff --git a/src/RestructuredText/Parser/InlineLexer.php b/src/RestructuredText/
 +        $scheme = parse_url($value, PHP_URL_SCHEME);
 +        if ($scheme !== null && $scheme !== false && ExternalReferenceResolver::isSupportedScheme($scheme)) {
              return self::HYPERLINK;
-         }
-
--        if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/i', $value)) {
-+        if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i', $value)) {
-             return self::EMAIL;
          }
 

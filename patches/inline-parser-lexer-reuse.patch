@@ -1,17 +1,27 @@
 diff --git a/src/RestructuredText/Parser/InlineParser.php b/src/RestructuredText/Parser/InlineParser.php
 --- a/src/RestructuredText/Parser/InlineParser.php
 +++ b/src/RestructuredText/Parser/InlineParser.php
-@@ -32,6 +32,9 @@
-     /** @var array<InlineLexer::*, CachableInlineRule> */
+@@ -29,9 +29,18 @@ class InlineParser
+     /** @var InlineRule[] */
+     private array $rules;
+
+-    /** @var array<InlineLexer::*, CachableInlineRule> */
++    /** @var array<int, CachableInlineRule> */
      private array $cache = [];
 
-+    /** Reusable lexer instance to avoid repeated instantiation */
++    /**
++     * Reusable lexer instance to avoid repeated instantiation.
++     *
++     * Note: This assumes single-threaded parsing. The lexer state is fully
++     * reset via setInput() before each parse, but concurrent parsing would
++     * cause race conditions.
++     */
 +    private InlineLexer $lexer;
 +
      /** @param iterable<InlineRule> $inlineRules */
      public function __construct(iterable $inlineRules)
      {
-@@ -44,12 +47,14 @@
+@@ -44,11 +53,13 @@ class InlineParser
 
              $this->cache[$rule->getToken()] = $rule;
          }
@@ -22,9 +32,7 @@ diff --git a/src/RestructuredText/Parser/InlineParser.php b/src/RestructuredText
      public function parse(string $content, BlockContext $blockContext): InlineCompoundNode
      {
 -        $lexer = new InlineLexer();
--        $lexer->setInput($content);
 +        $lexer = $this->lexer;
-+        $lexer->setInput($content);
+         $lexer->setInput($content);
          $lexer->moveNext();
          $lexer->moveNext();
-         $nodes = [];

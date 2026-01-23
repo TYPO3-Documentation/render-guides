@@ -1,29 +1,33 @@
 diff --git a/src/Nodes/ProjectNode.php b/src/Nodes/ProjectNode.php
+index 7690c434c..2afce43e2 100644
 --- a/src/Nodes/ProjectNode.php
 +++ b/src/Nodes/ProjectNode.php
-@@ -47,6 +47,9 @@ final class ProjectNode extends CompoundNode
+@@ -47,7 +47,10 @@ final class ProjectNode extends CompoundNode
      /** @var array<string, array<string, InternalTarget>> */
      private array $internalLinkTargets = [];
-
+ 
+-    /** @var DocumentEntryNode[] */
 +    /** Cached root document entry for O(1) lookup */
-+    private ?DocumentEntryNode $rootDocumentEntry = null;
++    private DocumentEntryNode|null $rootDocumentEntry = null;
 +
-     /** @var DocumentEntryNode[] */
++    /** @var array<string, DocumentEntryNode> */
      private array $documentEntries = [];
      private DateTimeImmutable $lastRendered;
-@@ -182,6 +185,10 @@ final class ProjectNode extends CompoundNode
-
+ 
+@@ -182,6 +185,11 @@ public function getAllInternalTargets(): array
+ 
      public function addDocumentEntry(DocumentEntryNode $documentEntry): void
      {
-+        // Cache root document entry for O(1) lookup
++        // Cache root for O(1) lookup
 +        if ($documentEntry->isRoot()) {
 +            $this->rootDocumentEntry = $documentEntry;
 +        }
++
          $this->documentEntries[$documentEntry->getFile()] = $documentEntry;
      }
-
-@@ -193,10 +200,8 @@ final class ProjectNode extends CompoundNode
-
+ 
+@@ -193,10 +201,8 @@ public function getAllDocumentEntries(): array
+ 
      public function getRootDocumentEntry(): DocumentEntryNode
      {
 -        foreach ($this->documentEntries as $documentEntry) {
@@ -33,9 +37,9 @@ diff --git a/src/Nodes/ProjectNode.php b/src/Nodes/ProjectNode.php
 +        if ($this->rootDocumentEntry !== null) {
 +            return $this->rootDocumentEntry;
          }
-
+ 
          throw new Exception('No root document entry was found');
-@@ -205,10 +210,8 @@ final class ProjectNode extends CompoundNode
+@@ -205,10 +211,9 @@ public function getRootDocumentEntry(): DocumentEntryNode
      /** @throws DocumentEntryNotFound */
      public function getDocumentEntry(string $file): DocumentEntryNode
      {
@@ -43,24 +47,31 @@ diff --git a/src/Nodes/ProjectNode.php b/src/Nodes/ProjectNode.php
 -            if ($documentEntry->getFile() === $file) {
 -                return $documentEntry;
 -            }
++        // O(1) lookup by file path
 +        if (isset($this->documentEntries[$file])) {
 +            return $this->documentEntries[$file];
          }
-
+ 
          throw new DocumentEntryNotFound('No document Entry found for file ' . $file);
-@@ -218,6 +221,7 @@ final class ProjectNode extends CompoundNode
+@@ -217,7 +222,12 @@ public function getDocumentEntry(string $file): DocumentEntryNode
+     /** @param DocumentEntryNode[] $documentEntries */
      public function setDocumentEntries(array $documentEntries): void
      {
-         $this->documentEntries = $documentEntries;
+-        $this->documentEntries = $documentEntries;
++        $this->documentEntries = [];
 +        $this->rootDocumentEntry = null;
++
++        foreach ($documentEntries as $entry) {
++            $this->addDocumentEntry($entry);
++        }
      }
-
+ 
      public function findDocumentEntry(string $filePath): DocumentEntryNode|null
-@@ -228,6 +232,7 @@ final class ProjectNode extends CompoundNode
+@@ -228,6 +238,7 @@ public function findDocumentEntry(string $filePath): DocumentEntryNode|null
      public function reset(): void
      {
          $this->documentEntries = [];
 +        $this->rootDocumentEntry = null;
      }
-
+ 
      public function getLastRendered(): DateTimeImmutable
