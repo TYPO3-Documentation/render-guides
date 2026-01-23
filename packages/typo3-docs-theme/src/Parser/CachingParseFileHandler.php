@@ -44,8 +44,7 @@ final class CachingParseFileHandler
         private readonly LoggerInterface $logger,
         private readonly string $cacheDir = '',
         private readonly int $ttl = self::DEFAULT_TTL,
-    ) {
-    }
+    ) {}
 
     public function handle(ParseFileCommand $command): DocumentNode|null
     {
@@ -160,7 +159,7 @@ final class CachingParseFileHandler
         $cacheDir = dirname($cacheFile);
 
         if (!is_dir($cacheDir)) {
-            if (!@mkdir($cacheDir, 0755, true) && !is_dir($cacheDir)) {
+            if (!@mkdir($cacheDir, 0o755, true) && !is_dir($cacheDir)) {
                 $this->logger->warning(sprintf('Failed to create AST cache directory: %s', $cacheDir));
                 return;
             }
