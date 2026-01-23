@@ -66,6 +66,21 @@ final class DefaultInventoryUrlBuilderTest extends TestCase
     }
 
     #[Test]
+    public function theme_ext_behaves_like_core_and_uses_preferred(): void
+    {
+        $this->versions->method('getPreferredVersion')->willReturn('13.4');
+        $this->versions->method('resolveCoreVersion')->willReturn('13.4');
+
+        $builder = new DefaultInventoryUrlBuilder($this->versions);
+        $parts   = new InterlinkParts('typo3/theme-camino', 'core', 'typo3', 'theme-camino', null);
+
+        self::assertSame(
+            'https://docs.typo3.org/c/typo3/theme-camino/13.4/en-us/',
+            $builder->buildUrl($parts)
+        );
+    }
+
+    #[Test]
     #[DataProvider('packageVersions')]
     public function third_party_packages_use_p_namespace_and_generic_version_resolution(string $inputVersion, string $resolvedMinor, string $expectedUrl): void
     {
