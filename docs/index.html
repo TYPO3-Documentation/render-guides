@@ -420,8 +420,8 @@
                 <div class="label">TYPO3 Core API Docs (957 files)</div>
             </div>
             <div class="metric-card">
-                <div class="value">14</div>
-                <div class="label">Patches in Upstream PRs</div>
+                <div class="value">24</div>
+                <div class="label">Components in Upstream PRs</div>
             </div>
             <div class="metric-card">
                 <div class="value">15+</div>
@@ -804,7 +804,8 @@
                 Performance patches submitted to <a href="https://github.com/phpDocumentor/guides">phpDocumentor/guides</a> monorepo.
             </p>
 
-            <h3>Submitted Pull Requests (14 patches in 5 PRs)</h3>
+            <h3>Submitted Pull Requests (9 PRs)</h3>
+            <h4 style="margin-top: 1rem; color: var(--text-muted);">Phase 1: Caching &amp; Performance Patches</h4>
             <table class="comparison-table">
                 <thead>
                     <tr>
@@ -868,6 +869,56 @@
                             <em>O(1) document entry lookups in ProjectNode (refactor + perf + test)</em>
                         </td>
                         <td><span class="badge badge-success">Open</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4 style="margin-top: 2rem; color: var(--text-muted);">Phase 2: Infrastructure Components</h4>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>PR</th>
+                        <th>Package</th>
+                        <th>Components</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1294">#1294</a></td>
+                        <td><code>guides</code></td>
+                        <td>
+                            <em>Template caching support for EnvironmentBuilder</em>
+                        </td>
+                        <td><span class="badge badge-success">Open</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1295">#1295</a></td>
+                        <td><code>guides</code></td>
+                        <td>
+                            <em>Inventory caching support for JsonLoader</em>
+                        </td>
+                        <td><span class="badge badge-success">Open</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1296">#1296</a></td>
+                        <td><code>guides</code></td>
+                        <td>
+                            <strong>Incremental Build Infrastructure</strong><br>
+                            DependencyGraph, ContentHasher, ChangeDetector, ChangeDetectionResult, DocumentExports
+                            <strong>(5 classes + tests)</strong>
+                        </td>
+                        <td><span class="badge badge-secondary">Draft</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/phpDocumentor/guides/pull/1297">#1297</a></td>
+                        <td><code>guides</code></td>
+                        <td>
+                            <strong>Parallel Processing Infrastructure</strong><br>
+                            CpuDetector, ProcessManager
+                            <strong>(2 classes + tests)</strong>
+                        </td>
+                        <td><span class="badge badge-secondary">Draft</span></td>
                     </tr>
                 </tbody>
             </table>
