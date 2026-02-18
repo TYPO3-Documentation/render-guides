@@ -33,12 +33,19 @@
         max-width: 100%;
         height: auto;
         &.float-left {
+            float: left;
             margin-right: $spacer;
             margin-bottom: $spacer;
         }
         &.float-right {
+            float: right;
             margin-left: $spacer;
             margin-bottom: $spacer;
+        }
+        &.align-center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
     .plantuml object {
