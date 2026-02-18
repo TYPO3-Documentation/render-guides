@@ -24704,15 +24704,15 @@ dl.command .command-arguments section {
 figure figcaption p:last-child {
   margin-bottom: 0;
 }
-figure.float-left, figure.float-right {
+figure.float-start, figure.float-end, figure.float-left, figure.float-right {
   margin-bottom: 1rem;
   max-width: 50%;
 }
-figure.float-left {
+figure.float-start, figure.float-left {
   float: left;
   margin-right: 1rem;
 }
-figure.float-right {
+figure.float-end, figure.float-right {
   float: right;
   margin-left: 1rem;
 }
@@ -24722,6 +24722,8 @@ figure.align-center {
 }
 
 @media (max-width: 575.98px) {
+  figure.float-start,
+  figure.float-end,
   figure.float-left,
   figure.float-right {
     float: none;
@@ -24825,13 +24827,15 @@ article *:hover > a.headerlink, article *:hover > a.permalink, article *:hover .
   max-width: 100%;
   height: auto;
 }
-.rst-content img.float-left,
+.rst-content img.float-start, .rst-content img.float-left,
+.rst-content object.float-start,
 .rst-content object.float-left {
   float: left;
   margin-right: 1rem;
   margin-bottom: 1rem;
 }
-.rst-content img.float-right,
+.rst-content img.float-end, .rst-content img.float-right,
+.rst-content object.float-end,
 .rst-content object.float-right {
   float: right;
   margin-left: 1rem;
@@ -24844,13 +24848,14 @@ article *:hover > a.headerlink, article *:hover > a.permalink, article *:hover .
   margin-right: auto;
 }
 @media (max-width: 575.98px) {
-  .rst-content img.float-left, .rst-content img.float-right,
-  .rst-content object.float-left,
-  .rst-content object.float-right {
+  .rst-content img.float-start,
+  .rst-content img.float-end,
+  .rst-content img.float-left,
+  .rst-content img.float-right {
     float: none;
+    max-width: 100%;
     margin-left: 0;
     margin-right: 0;
-    max-width: 100%;
   }
 }
 .rst-content .plantuml object {
