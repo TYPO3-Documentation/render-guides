@@ -1,0 +1,7 @@
+app.WARNING: Using `:class: float-left` / `:class: float-right` is deprecated. Use `:align: left` / `:align: right` instead. {"rst-file":"index.rst","currentLineNumber":40} []
+app.WARNING: Using `:class: float-left` / `:class: float-right` is deprecated. Use `:align: left` / `:align: right` instead. {"rst-file":"index.rst","currentLineNumber":49} []
+app.WARNING: Using `:class: float-left` / `:class: float-right` is deprecated. Use `:align: left` / `:align: right` instead, or `float-start` / `float-end` for substitution images. {"rst-file":"index.rst","currentLineNumber":55,"currentLine":""} []
+app.WARNING: Using `:class: float-left` / `:class: float-right` is deprecated. Use `:align: left` / `:align: right` instead, or `float-start` / `float-end` for substitution images. {"rst-file":"index.rst","currentLineNumber":62,"currentLine":""} []
+app.WARNING: Using `:class: float-left` / `:class: float-right` is deprecated. Use `:align: left` / `:align: right` instead. {"rst-file":"index.rst","currentLineNumber":72} []
+app.WARNING: Using `:class: float-left` / `:class: float-right` is deprecated. Use `:align: left` / `:align: right` instead. {"rst-file":"index.rst","currentLineNumber":82} []
+app.WARNING: Using `:class: float-left` / `:class: float-right` is deprecated. Use `:align: left` / `:align: right` instead, or `float-start` / `float-end` for substitution images. {"rst-file":"index.rst","currentLineNumber":118,"currentLine":""} []
