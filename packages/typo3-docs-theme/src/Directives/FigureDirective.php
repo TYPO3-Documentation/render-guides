@@ -21,10 +21,16 @@ use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
+use phpDocumentor\Guides\RestructuredText\Parser\DirectiveOption;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
+use Psr\Log\LoggerInterface;
 
+use function array_filter;
 use function dirname;
+use function explode;
+use function implode;
 use function in_array;
+use function is_string;
 
 /**
  * Renders a figure with optional zoom functionality.
@@ -52,12 +58,15 @@ use function in_array;
  */
 final class FigureDirective extends BaseDirective
 {
+    use RewritesLegacyFloatClasses;
+
     private const VALID_ZOOM_MODES = ['lightbox', 'gallery', 'inline', 'lens'];
 
     /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
         private readonly DocumentNameResolverInterface $documentNameResolver,
         private readonly Rule $startingRule,
+        private readonly LoggerInterface $logger,
     ) {}
 
     public function getName(): string
@@ -82,15 +91,49 @@ final class FigureDirective extends BaseDirective
             dirname($blockContext->getDocumentParserContext()->getContext()->getCurrentAbsolutePath()),
             $directive->getData(),
         ));
+        // Handle float classes on the figure element
+        $figureClass = isset($scalarOptions['class']) && is_string($scalarOptions['class'])
+            ? $scalarOptions['class']
+            : null;
+
+        if ($figureClass !== null) {
+            // Detect and rewrite legacy float-left/float-right to float-start/float-end
+            // See also: figure.html.twig / image.html.twig alignMap for :align: option mapping
+            if ($this->hasLegacyFloatClass($figureClass)) {
+                $this->logger->warning(
+                    'Using `:class: float-left` / `:class: float-right` is deprecated. '
+                    . 'Use `:align: left` / `:align: right` instead.',
+                    $blockContext->getLoggerInformation(),
+                );
+                $figureClass = $this->rewriteLegacyFloatClasses($figureClass);
+                // Update the raw directive option so that DirectiveRule::postProcessNode
+                // uses the rewritten class when calling setClasses() on the node
+                $directive->addOption(new DirectiveOption('class', $figureClass));
+            }
+        }
+
+        // Strip float classes from the inner image — floating should only apply
+        // to the <figure> element to keep the caption below the image.
+        // Non-float classes (e.g. with-shadow) are still propagated to the
+        // inner <img> so they can style the image itself.
+        if ($figureClass !== null) {
+            $imageClasses = array_filter(
+                explode(' ', $figureClass),
+                static fn(string $class): bool => !in_array($class, ['float-start', 'float-end'], true),
+            );
+            $imageClass = $imageClasses !== [] ? implode(' ', $imageClasses) : null;
+        } else {
+            $imageClass = null;
+        }
+
         $image = $image->withOptions([
             'width' => $scalarOptions['width'] ?? null,
             'height' => $scalarOptions['height'] ?? null,
             'alt' => $scalarOptions['alt'] ?? null,
             'scale' => $scalarOptions['scale'] ?? null,
             'target' => $scalarOptions['target'] ?? null,
-            'class' => $scalarOptions['class'] ?? null,
+            'class' => $imageClass,
             'name' => $scalarOptions['name'] ?? null,
-            'align' => $scalarOptions['align'] ?? null,
         ]);
 
         $figureNode = new FigureNode($image, new CollectionNode($collectionNode->getChildren()));
@@ -107,7 +150,8 @@ final class FigureDirective extends BaseDirective
             $filteredOptions['zoom'] = null;
         }
 
-        // Remove options that are already handled by the image node
+        // Remove options that are already handled by the image node or by
+        // DirectiveRule::postProcessNode (class is handled via setClasses())
         unset(
             $filteredOptions['width'],
             $filteredOptions['height'],
@@ -116,7 +160,6 @@ final class FigureDirective extends BaseDirective
             $filteredOptions['target'],
             $filteredOptions['class'],
             $filteredOptions['name'],
-            $filteredOptions['align'],
         );
 
         if (!empty($filteredOptions)) {
