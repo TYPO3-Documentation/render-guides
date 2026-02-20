@@ -1,5 +1,8 @@
+{%- set alignMap = {'left': 'float-left', 'right': 'float-right', 'center': 'align-center'} -%}
+{%- set alignClass = node.hasOption('align') ? alignMap[node.option('align')]|default('') : '' -%}
+{%- set classes = ([node.classesString, alignClass]|join(' '))|trim -%}
 <figure
-    {%- if node.classesString %} class="{{ node.classesString }}"{% endif -%}
+    {%- if classes %} class="{{ classes }}"{% endif -%}
     {%- if node.hasOption('figwidth') %} style="{% if node.hasOption('figwidth') %}width: {{ node.option('figwidth') }};{% endif %}"{% endif -%}
     {%- if node.hasOption('zoom') %} data-zoom="{{ node.option('zoom') }}"{% endif -%}
     {%- if node.hasOption('gallery') %} data-gallery="{{ node.option('gallery') }}"{% endif -%}
