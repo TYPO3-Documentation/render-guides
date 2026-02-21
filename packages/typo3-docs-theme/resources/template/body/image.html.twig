@@ -2,14 +2,16 @@
 {%- if node.hasOption('zoom') -%}
 <span data-zoom="{{ node.option('zoom') }}"{% if node.hasOption('gallery') %} data-gallery="{{ node.option('gallery') }}"{% endif %}{% if node.hasOption('zoom-factor') %} data-zoom-factor="{{ node.option('zoom-factor') }}"{% endif %}{% if node.hasOption('zoom-indicator') %} data-zoom-indicator="{{ node.option('zoom-indicator') }}"{% endif %}>
 {%- endif -%}
+{%- set alignMap = {'left': 'float-left', 'right': 'float-right', 'center': 'align-center'} -%}
+{%- set alignClass = node.hasOption('align') ? alignMap[node.option('align')]|default('') : '' -%}
+{%- set classes = ([node.classesString, alignClass]|join(' '))|trim -%}
 <img
     src="{%- if node.value is external_target -%} {{ node.value }} {%- else -%} {{ asset(node.value) }} {%- endif -%}"
     {% if node.hasOption('width') %}width="{{ node.option('width') }}"{% endif%}
     {% if node.hasOption('height') %}height="{{ node.option('height') }}"{% endif%}
-    {% if node.hasOption('align') %}align="{{ node.option('align') }}"{% endif%}
     {% if node.hasOption('alt') %}alt="{{ node.option('alt') }}"{% endif%}
     {% if node.hasOption('title') %}title="{{ node.option('title') }}"{% endif%}
-    {% if node.classesString %}class="{{ node.classesString }}"{% endif%}
+    {% if classes %}class="{{ classes }}"{% endif%}
 />
 {%- if node.hasOption('zoom') -%}
 </span>
