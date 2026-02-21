@@ -24667,6 +24667,10 @@ dl.command .command-arguments section {
   visibility: visible;
 }
 
+#global-search-results button {
+  z-index: unset;
+}
+
 #indexNav {
   background-color: rgb(242.25, 242.25, 242.25);
   border-radius: 8px;
