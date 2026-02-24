@@ -13,6 +13,7 @@ final class CodeInlineNode extends InlineNode
      */
     public function __construct(string $value, private string $language, private string $helpText = '', private array $info = [])
     {
+        $value = str_replace('\\\\', '\\', $value);
         parent::__construct(self::TYPE, $value);
     }
 

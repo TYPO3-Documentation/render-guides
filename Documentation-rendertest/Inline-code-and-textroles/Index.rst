@@ -239,6 +239,37 @@ Inline `code` :php:`MyCustomException` :ts:`PAGE` in title
 
 
 
+Escape handling in code text roles
+===================================
+
+Double backslash (``\\``) in code text roles should render as a single
+backslash. This applies to all code-type text roles that use ``$rawContent``.
+
+Source::
+
+   :rst:`a\\b`
+   :shell:`path\\to\\file`
+   :typoscript:`config.no\\cache`
+   :yaml:`key\\value`
+
+Result:
+
+*  :rst:`a\\b`
+*  :shell:`path\\to\\file`
+*  :typoscript:`config.no\\cache`
+*  :yaml:`key\\value`
+
+Plain content without escapes should still work:
+
+*  :rst:`rest code`
+*  :shell:`ls -la`
+
+PHP namespace paths use single backslashes and must be preserved:
+
+*  :php:`\TYPO3\CMS\Core\Utility\GeneralUtility`
+*  :code:`TYPO3\CMS\Core\Cache\Frontend\FrontendInterface`
+
+
 Fully qualified names with backslashes
 ======================================
 
