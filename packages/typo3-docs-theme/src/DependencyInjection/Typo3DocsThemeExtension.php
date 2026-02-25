@@ -97,11 +97,26 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
 
     public function prepend(ContainerBuilder $container): void
     {
+        $templates = [];
+
+        // Docker volume mount: highest custom priority
+        if (is_dir('/templates')) {
+            $templates[] = '/templates';
+        }
+
+        // Project-bundled templates: second custom priority
+        if (is_dir('/project/resources/custom-templates')) {
+            $templates[] = '/project/resources/custom-templates';
+        }
+
+        // Built-in theme templates: lowest priority (fallback)
+        $templates[] = dirname(__DIR__, 2) . '/resources/template';
+
         $container->prependExtensionConfig('guides', [
             'themes' => [
                 'typo3docs' => [
                     'extends' => 'bootstrap',
-                    'templates' => [dirname(__DIR__, 2) . '/resources/template'],
+                    'templates' => $templates,
                 ],
             ],
 
