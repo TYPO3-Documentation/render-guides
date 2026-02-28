@@ -12,7 +12,7 @@ return (new PhpCsFixer\Config())
     ->setCacheFile('.cache/.php-cs-fixer.cache')
     ->setRules([
         '@PER-CS1.0' => true,
-        '@PHP81Migration' => true,
+        '@PHP82Migration' => true,
 
         // Already implemented PER-CS2 rules we opt-in explicitly
         // @todo: Can be dropped once we enable @PER-CS2.0
