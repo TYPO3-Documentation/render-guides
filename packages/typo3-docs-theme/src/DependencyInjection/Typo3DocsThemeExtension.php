@@ -32,7 +32,7 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         YoutubeNode::class => 'body/directive/youtube.html.twig',
     ];
 
-    /** @param mixed[] $configs */
+    /** @param array<int, mixed> $configs */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new PhpFileLoader(

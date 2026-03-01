@@ -699,9 +699,8 @@ final class TwigExtension extends AbstractExtension
      */
     public function getSingleHtmlLink(array $context): ?string
     {
-        /** @var RenderContext|null $renderContext */
         $renderContext = $context['env'] ?? null;
-        if (!$renderContext) {
+        if (!$renderContext instanceof RenderContext) {
             return null;
         }
 
@@ -729,9 +728,8 @@ final class TwigExtension extends AbstractExtension
      */
     public function getTopPageLink(array $context): ?PageLinkNode
     {
-        /** @var RenderContext|null $renderContext */
         $renderContext = $context['env'] ?? null;
-        if (!$renderContext) {
+        if (!$renderContext instanceof RenderContext) {
             return null;
         }
 

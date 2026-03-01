@@ -70,7 +70,7 @@ final class XmlValidator
     }
 
     // Custom error handler function within the class
-    private function errorHandler(mixed $errno, string $errstr): void
+    private function errorHandler(int $errno, string $errstr): void
     {
         $this->errors[] = 'xxx' . $errno . ': ' . $errstr;
     }

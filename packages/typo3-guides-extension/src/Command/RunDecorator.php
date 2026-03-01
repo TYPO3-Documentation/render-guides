@@ -249,6 +249,9 @@ final class RunDecorator extends Command
     {
         $localInputDirectives = [];
         foreach ($baseInputDirectives as $baseInputDirectiveKey => $baseInputDirectiveValue) {
+            if (!is_scalar($baseInputDirectiveValue)) {
+                continue;
+            }
             $localInputDirectives[$baseInputDirectiveKey] = $baseInputDirectiveValue . DIRECTORY_SEPARATOR . $availableLocalization;
         }
         $output->writeln(sprintf('<info>Trying to render %s ...</info>', $availableLocalization));
@@ -285,7 +288,7 @@ final class RunDecorator extends Command
         $process = new Process($processArguments);
         $output->writeln(sprintf('<info>SUB-PROCESS:</info> %s', $process->getCommandLine()));
         $hasErrors = false;
-        $result = $process->run(function ($type, $buffer) use ($output, &$hasErrors): void {
+        $result = $process->run(function (string $type, string $buffer) use ($output, &$hasErrors): void {
             if ($type === Process::ERR) {
                 $output->write('<error>' . $buffer . '</error>');
                 $hasErrors = true;

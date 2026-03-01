@@ -47,7 +47,7 @@ class GroupTabDirective extends SubDirective
             $directive->getData(),
             $directive->getDataNode() ?? new InlineCompoundNode(),
             $key,
-            $collectionNode->getChildren(),
+            array_values($collectionNode->getChildren()),
         );
     }
 }

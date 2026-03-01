@@ -255,7 +255,12 @@ final class ConfigureCommand extends Command
             $output->writeln(print_r($input->getOptions(), true));
         }
 
-        $config = $input->getArgument('input') . '/guides.xml';
+        $inputPath = $input->getArgument('input');
+        if (!is_string($inputPath)) {
+            $output->writeln('<error>Input argument must be a string path</error>');
+            return Command::FAILURE;
+        }
+        $config = $inputPath . '/guides.xml';
 
         if ($output->isVeryVerbose()) {
             $output->writeln(sprintf('Config: <info>%s</info>', $config));
@@ -337,6 +342,8 @@ final class ConfigureCommand extends Command
 
     private function operateOnXmlGuides(\SimpleXMLElement $xml, InputInterface $input, OutputInterface $output): bool
     {
+        $guides = $xml->xpath('/ns:guides');
+
         $guidesVariables = [
             'input'                 => $input->getOption('guides-input'),
             'input-file'            => $input->getOption('guides-input-file'),

@@ -32,12 +32,12 @@
         "ergebnis/composer-normalize": "^2.50",
         "friendsofphp/php-cs-fixer": "^3.94",
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^1.12",
-        "phpstan/phpstan-strict-rules": "^1.6",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^10.5",
         "symfony/console": "^6.4",
         "symplify/monorepo-builder": "^11.2.0",
-        "symplify/phpstan-rules": "^13.0"
+        "symplify/phpstan-rules": "^14.9"
     },
     "replace": {
         "symfony/polyfill-php80": "*",

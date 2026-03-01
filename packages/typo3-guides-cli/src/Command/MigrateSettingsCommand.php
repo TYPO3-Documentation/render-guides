@@ -57,8 +57,13 @@ final class MigrateSettingsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $settingsFile = $input->getArgument('input') . '/Settings.cfg';
-        $guidesFile = $input->getArgument('input') . '/guides.xml';
+        $inputPath = $input->getArgument('input');
+        if (!is_string($inputPath)) {
+            $output->writeln('<error>Input argument must be a string path</error>');
+            return Command::FAILURE;
+        }
+        $settingsFile = $inputPath . '/Settings.cfg';
+        $guidesFile = $inputPath . '/guides.xml';
 
         if (file_exists($guidesFile) && !$input->getOption('force')) {
             $output->writeln('<error>Target file already exists in specified directory (' . $guidesFile . ')</error>');

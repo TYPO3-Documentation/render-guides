@@ -46,8 +46,10 @@ final class InitCommand extends Command
     {
         if ($input->getOption('working-dir')) {
             $workdir = $input->getOption('working-dir');
-            assert(is_string($workdir));
-            $workdir = (string) $workdir;
+            if (!is_string($workdir)) {
+                $output->writeln('<error>Working directory must be a string</error>');
+                return Command::INVALID;
+            }
 
             if (chdir($workdir)) {
                 $output->writeln('<info>Changed working directory to ' . getcwd() . '</info>');
@@ -98,7 +100,7 @@ final class InitCommand extends Command
             $composerInfo->getComposerName()
         );
         $projectNameQuestion->setValidator(function ($answer) {
-            if (is_null($answer) || trim($answer) === '') {
+            if (!is_string($answer) || trim($answer) === '') {
                 throw new \RuntimeException('The project title cannot be empty.');
             }
             return $answer;
@@ -125,6 +127,9 @@ final class InitCommand extends Command
             ]
         );
         $repositoryUrl = $helper->ask($input, $output, $question);
+        if (!is_string($repositoryUrl)) {
+            $repositoryUrl = '';
+        }
 
         $question = $this->createValidatedUrlQuestion(
             'Where can users report issues?  <comment>[%s]</comment>',
@@ -149,7 +154,7 @@ final class InitCommand extends Command
 
         $question = new Question('Do you want generate some Documentation? (yes/no) ', 'yes');
         $question->setValidator(function ($answer) {
-            if (!in_array(strtolower($answer), [
+            if (!is_string($answer) || !in_array(strtolower($answer), [
                 'yes',
                 'y',
                 'no',
@@ -173,6 +178,9 @@ final class InitCommand extends Command
         if (is_string($siteSet) && $siteSet !== '') {
             $question = new Question('Enter the path to your site set: ');
             $siteSetPath = $helper->ask($input, $output, $question);
+            if (!is_string($siteSetPath)) {
+                $siteSetPath = '';
+            }
             if (is_file($siteSetPath . '/settings.definitions.yaml')) {
                 $siteSetDefinition = $siteSetPath . '/settings.definitions.yaml';
             }
@@ -192,9 +200,8 @@ final class InitCommand extends Command
             mkdir($outputDir, 0o777, true);
         }
 
-        assert(is_string($repositoryUrl ?? ''));
         $editOnGitHub = null;
-        if (str_starts_with($repositoryUrl ?? '', 'https://github.com/')) {
+        if (str_starts_with($repositoryUrl, 'https://github.com/')) {
             $editOnGitHub = str_replace('https://github.com/', '', $repositoryUrl);
         }
         // Define your data
@@ -275,6 +282,7 @@ final class InitCommand extends Command
             return null;
         }
 
+        /** @var array<string, mixed> $composerJson */
         return $composerJson;
     }
 

@@ -56,7 +56,7 @@ class SettingsMigrator
         // Attach the <guides> element to the root XML
         $this->xmlDocument->appendChild($guides);
 
-        return new MigrationResult($this->xmlDocument, $this->convertedSettings, $messages);
+        return new MigrationResult($this->xmlDocument, $this->convertedSettings, array_values($messages));
     }
 
     private function createRootElement(): \DOMElement
@@ -158,6 +158,7 @@ class SettingsMigrator
         return $inventories;
     }
 
+    /** @return list<string> */
     private function collectUnmigratedLegacySettings(): array
     {
         $messages = [];

@@ -63,6 +63,10 @@ final class SiteSetSettingsDirective extends BaseDirective
             if (!is_array($yamlData) || !is_array($yamlData['settings'] ?? false)) {
                 throw new FileLoadingException(sprintf('The .. typo3:site-set-settings:: source at path %s did not contain any settings ', $directive->getData()));
             }
+            /** @var array<string, array<string, scalar>> $settings */
+            $settings = $yamlData['settings'];
+            /** @var array<string, array<string, string>> $yamlCategories */
+            $yamlCategories = is_array($yamlData['categories'] ?? null) ? $yamlData['categories'] : [];
         } catch (FileLoadingException $exception) {
             $this->logger->warning($exception->getMessage(), $blockContext->getLoggerInformation());
             return $this->getErrorNode();
@@ -85,9 +89,9 @@ final class SiteSetSettingsDirective extends BaseDirective
 
         $labelContents = '';
         // Assume all EXT: references are relative to the rendered PROJECT
-        $labelsFile = $labelsFile ?
-            preg_replace('/^EXT:[^\/]*\//', 'PROJECT:/', $labelsFile) :
-            dirname($setConfigurationFile) . '/labels.xlf';
+        $labelsFile = is_string($labelsFile) && $labelsFile !== ''
+            ? (preg_replace('/^EXT:[^\/]*\//', 'PROJECT:/', $labelsFile) ?? $labelsFile)
+            : dirname($setConfigurationFile) . '/labels.xlf';
         try {
             $labelContents = $this->loadFileFromDocumentation($blockContext, $labelsFile);
         } catch (FileLoadingException $exception) {
@@ -102,7 +106,8 @@ final class SiteSetSettingsDirective extends BaseDirective
             if ($xml->loadXML($labelContents)) {
                 foreach ($xml->getElementsByTagName('trans-unit') as $label) {
                     $id = $label->getAttribute('id');
-                    $value = ($label->getElementsByTagName('source')[0] ?? null)?->textContent ?? '';
+                    $sourceElements = $label->getElementsByTagName('source');
+                    $value = $sourceElements->length > 0 ? ($sourceElements->item(0)->textContent ?? '') : '';
                     if (!$value) {
                         continue;
                     }
@@ -117,7 +122,7 @@ final class SiteSetSettingsDirective extends BaseDirective
             }
         }
 
-        return $this->buildConfvalMenu($directive, $yamlData['settings'], $yamlData['categories'] ?? [], $labels, $descriptions, $categoryLabels);
+        return $this->buildConfvalMenu($directive, $settings, $yamlCategories, $labels, $descriptions, $categoryLabels);
     }
 
     /**
@@ -174,7 +179,7 @@ final class SiteSetSettingsDirective extends BaseDirective
     }
 
     /**
-     * @param array<string, array<string, string>> $settings
+     * @param array<string, array<string, scalar>> $settings
      * @param array<string, array<string, string>> $categories
      * @param array<string, string> $labels
      * @param array<string, string> $descriptions
@@ -187,18 +192,24 @@ final class SiteSetSettingsDirective extends BaseDirective
             $idPrefix = $directive->getOptionString('name') . '-';
         }
         $categoryArray = $this->buildCategoryArray($categories, $categoryLabels);
+        /** @var list<array<string, mixed>> $rootCategories */
         $rootCategories = [];
         foreach ($categoryArray as $key => $category) {
-            if (isset($categoryArray[$category['parent']])) {
-                assert(is_array($categoryArray[$category['parent']]['children']));
-                $categoryArray[$category['parent']]['children'][] = &$categoryArray[$key];
+            $parent = is_string($category['parent'] ?? null) ? $category['parent'] : '';
+            if ($parent !== '' && isset($categoryArray[$parent])) {
+                assert(is_array($categoryArray[$parent]['children']));
+                $categoryArray[$parent]['children'][] = &$categoryArray[$key];
             } else {
                 $rootCategories[] = &$categoryArray[$key];
             }
         }
         foreach ($settings as $key => $setting) {
-            $confval = $this->buildConfval($setting, $idPrefix, $key, $directive, $labels, $descriptions, $categoryArray);
-            $this->assignConfvalsToCategories($setting['category'] ?? '', $categoryArray, $confval, $rootCategories);
+            if (!is_array($setting)) {
+                continue;
+            }
+            $confval = $this->buildConfval($setting, $idPrefix, (string) $key, $directive, $labels, $descriptions, $categoryArray);
+            $settingCategory = is_string($setting['category'] ?? null) ? $setting['category'] : '';
+            $this->assignConfvalsToCategories($settingCategory, $categoryArray, $confval, $rootCategories);
         }
         $confvals = $this->buildCategoryConfvals($rootCategories, $idPrefix, $directive);
         $reservedParameterNames = [
@@ -237,13 +248,14 @@ final class SiteSetSettingsDirective extends BaseDirective
 
 
     /**
-     * @param array<string, scalar|array<string, scalar>> $setting
+     * @param array<string, mixed> $setting
      * @param array<string, string> $labels
      * @param array<string, string> $descriptions
-     * @param array<string, array<string, string>> $categoryArray
+     * @param array<string, array<string, mixed>> $categoryArray
      */
     public function buildConfval(array $setting, string $idPrefix, string $key, Directive $directive, array $labels, array $descriptions, array $categoryArray): ConfvalNode
     {
+        /** @var list<Node> $content */
         $content = [];
         $description = $setting['description'] ?? $descriptions[$key] ?? false;
         if (is_string($description)) {
@@ -315,12 +327,13 @@ final class SiteSetSettingsDirective extends BaseDirective
 
 
     /**
-     * @param array<string, array<string, string>> $categoryArray
+     * @param array<string, array<string, mixed>> $categoryArray
      */
     private function getCategoryRootline(array $categoryArray, string $key): string
     {
-        $label = $categoryArray[$key]['label'] ?? $key;
-        $parent = $categoryArray[$key]['parent'] ?? '';
+        $categoryEntry = $categoryArray[$key] ?? [];
+        $label = is_string($categoryEntry['label'] ?? null) ? $categoryEntry['label'] : $key;
+        $parent = is_string($categoryEntry['parent'] ?? null) ? $categoryEntry['parent'] : '';
         if ($parent === '') {
             return $label;
         }
@@ -331,7 +344,7 @@ final class SiteSetSettingsDirective extends BaseDirective
     }
 
     /**
-     * @param array<string, array<string, mixed>> $categories
+     * @param array<string, array<string, string>> $categories
      * @param array<string, string> $categoryLabels
      * @return array<string, array<string, mixed>>
      */
@@ -352,7 +365,7 @@ final class SiteSetSettingsDirective extends BaseDirective
 
     /**
      * @param array<string, array<string, mixed>> $categoryArray
-     * @param array<array<string, mixed>> $rootCategories
+     * @param list<array<string, mixed>> $rootCategories
      */
     public function assignConfvalsToCategories(string $category, array &$categoryArray, ConfvalNode $confval, array &$rootCategories): void
     {
@@ -371,7 +384,7 @@ final class SiteSetSettingsDirective extends BaseDirective
     }
 
     /**
-     * @param array<array<string, mixed>> $categories
+     * @param list<array<string, mixed>> $categories
      * @return ConfvalNode[]
      */
     private function buildCategoryConfvals(array $categories, string $idPrefix, Directive $directive): array
@@ -382,23 +395,24 @@ final class SiteSetSettingsDirective extends BaseDirective
         $confvals = [];
         foreach ($categories as $category) {
             $children = [];
-            if (is_array($category['children'] ?? false)) {
-                $children = $this->buildCategoryConfvals($category['children'], $idPrefix, $directive);
+            $categoryChildren = $category['children'] ?? [];
+            if (is_array($categoryChildren) && $categoryChildren !== []) {
+                /** @var list<array<string, mixed>> $categoryChildren */
+                $children = $this->buildCategoryConfvals($categoryChildren, $idPrefix, $directive);
             }
-            $key =  $category['key'];
+            $key = is_string($category['key'] ?? null) ? $category['key'] : '';
             if ($key === '') {
                 $key = '_global';
             }
-            assert(is_string($key));
             $additionalFields = [];
             $additionalFields['searchFacet'] = new InlineCompoundNode([new PlainTextInlineNode(self::CATEGORY_FACET)]);
 
-            $label = $category['label'];
+            $label = is_string($category['label'] ?? null) ? $category['label'] : '';
             if ($label !== '') {
-                assert(is_string($label));
                 $additionalFields['Label'] = new InlineCompoundNode([new PlainTextInlineNode($label)]);
             }
-            assert(is_array($category['confvals']));
+            /** @var list<Node> $categoryConfvals */
+            $categoryConfvals = is_array($category['confvals'] ?? null) ? $category['confvals'] : [];
             $confvals[] = new ConfvalNode(
                 $this->anchorNormalizer->reduceAnchor($idPrefix . 'category-' . $key),
                 $key,
@@ -406,7 +420,7 @@ final class SiteSetSettingsDirective extends BaseDirective
                 false,
                 null,
                 $additionalFields,
-                array_merge($children, $category['confvals']),
+                array_values(array_merge($children, $categoryConfvals)),
                 $directive->getOptionBool('noindex'),
             );
         }

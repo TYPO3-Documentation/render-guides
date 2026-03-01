@@ -35,7 +35,7 @@ final class ConfvalMenuNode extends GeneralDirectiveNode implements LinkTargetNo
         private readonly bool $noindex = false,
         private readonly string $facet = 'Option',
     ) {
-        parent::__construct('confval-menu', $plainContent, $content, $value);
+        parent::__construct('confval-menu', $plainContent, $content, array_values($value));
     }
 
     public function getId(): string

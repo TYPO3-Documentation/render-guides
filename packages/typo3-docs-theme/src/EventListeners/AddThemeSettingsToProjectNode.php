@@ -21,7 +21,8 @@ final class AddThemeSettingsToProjectNode
         // Native parsing of argv because we do not have the original ArgvInput
         // available, and neither the InputDefinition. That's ok for the
         // very basic parsing of a global option.
-        if (in_array('--minimal-test', $_SERVER['argv'] ?? [], true)) {
+        $argv = (array) ($_SERVER['argv'] ?? []);
+        if (in_array('--minimal-test', $argv, true)) {
             $settings = $event->getSettings();
 
             // Set up input arguments for our minimal test. Will override

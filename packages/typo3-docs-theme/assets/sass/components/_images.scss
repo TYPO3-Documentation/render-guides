@@ -17,4 +17,31 @@ figure {
     &:not(:first-child) {
         @extend .mt-3;
     }
+    &.float-left,
+    &.float-right {
+        margin-bottom: $spacer;
+        max-width: 50%;
+    }
+    &.float-left {
+        float: left;
+        margin-right: $spacer;
+    }
+    &.float-right {
+        float: right;
+        margin-left: $spacer;
+    }
+    &.align-center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 575.98px) {
+    figure.float-left,
+    figure.float-right {
+        float: none;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }

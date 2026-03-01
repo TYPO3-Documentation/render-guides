@@ -35,7 +35,7 @@ final class RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer imple
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node
     {
         assert($node instanceof CrossReferenceNode);
         if (!$this->themeSettings->hasSettings('interlink_shortcode')) {

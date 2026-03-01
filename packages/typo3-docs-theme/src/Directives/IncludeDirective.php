@@ -159,7 +159,7 @@ final class IncludeDirective extends BaseDirective
         if ($directive->getOptionBool('show-buttons')) {
             $buttons[] = new EditOnGithubIncludeNode($path);
         }
-        return new CollectionNode(array_merge($buttons, $document->getChildren()));
+        return new CollectionNode(array_values(array_merge($buttons, $document->getChildren())));
     }
 
     /**
