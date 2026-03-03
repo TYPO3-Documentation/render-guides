@@ -10,7 +10,7 @@ on: # yamllint disable-line rule:truthy
 name: "Test Dockerfile"
 
 env:
-  DEFAULT_PHP_VERSION: "8.1"
+  DEFAULT_PHP_VERSION: "8.2"
   RUN_ENVIRONMENT: "local"
 
 jobs:

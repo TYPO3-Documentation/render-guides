@@ -7,7 +7,7 @@ on: # yamllint disable-line rule:truthy
       - "main"
 
 env:
-  DEFAULT_PHP_VERSION: "8.1"
+  DEFAULT_PHP_VERSION: "8.2"
   RUN_ENVIRONMENT: "local"
 
 jobs:
@@ -18,7 +18,6 @@ jobs:
       fail-fast: false
       matrix:
         php:
-          - '8.1'
           - '8.2'
           - '8.3'
           - '8.4'
