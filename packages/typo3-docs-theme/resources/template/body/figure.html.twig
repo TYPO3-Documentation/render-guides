@@ -1,6 +1,11 @@
-{%- set alignMap = {'left': 'float-left', 'right': 'float-right', 'center': 'align-center'} -%}
+{# Maps RST :align: values to CSS classes. Duplicated in image.html.twig — keep in sync. #}
+{# See also: FigureDirective.php / ImageDirective.php for :class: float-left/right rewriting #}
+{%- set alignMap = {'left': 'float-start', 'right': 'float-end', 'center': 'align-center'} -%}
 {%- set alignClass = node.hasOption('align') ? alignMap[node.option('align')]|default('') : '' -%}
-{%- set classes = ([node.classesString, alignClass]|join(' '))|trim -%}
+{%- set classes = node.classesString|trim -%}
+{%- if alignClass and alignClass not in (classes ? classes|split(' ') : []) -%}
+    {%- set classes = ([classes, alignClass]|join(' '))|trim -%}
+{%- endif -%}
 <figure
     {%- if classes %} class="{{ classes }}"{% endif -%}
     {%- if node.hasOption('figwidth') %} style="{% if node.hasOption('figwidth') %}width: {{ node.option('figwidth') }};{% endif %}"{% endif -%}
