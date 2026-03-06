@@ -9,6 +9,8 @@ on:
 jobs:
   auto-merge:
     name: Dependabot auto-merge
+    permissions:
+      contents: write
 
     runs-on: ubuntu-latest
 
