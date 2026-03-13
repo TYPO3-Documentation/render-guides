@@ -6,100 +6,58 @@ on: # yamllint disable-line rule:truthy
     branches:
       - "main"
 
-env:
-  DEFAULT_PHP_VERSION: "8.1"
-  RUN_ENVIRONMENT: "local"
+permissions: {}
 
 jobs:
   tests:
-    name : Tests
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php:
-          - '8.1'
-          - '8.2'
-          - '8.3'
-          - '8.4'
-          - '8.5'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-
-      - name: "Install PHP"
-        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1
-        with:
-          coverage: "none"
-          php-version: "${{ matrix.php }}"
-          extensions: 'inotify, pcntl'
-
-      - name: "Install dependencies with Composer"
-        uses: ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520
-        with:
-          dependency-versions: "locked"
-
-      - name: "Run unit tests"
-        run: "make test-unit ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "Run integration tests"
-        run: "make test-integration ENV=${{ env.RUN_ENVIRONMENT }}"
+    uses: TYPO3-Documentation/t3docs-ci-deploy/.github/workflows/reusable-php-tests.yml@main
+    with:
+      php-versions: '["8.2", "8.3", "8.4", "8.5"]'
+      test-unit-command: "make test-unit ENV=local"
+      test-integration-command: "make test-integration ENV=local"
+      php-extensions: "inotify, pcntl"
 
   quality:
-    name: Quality
+    uses: TYPO3-Documentation/t3docs-ci-deploy/.github/workflows/reusable-php-quality.yml@main
+    with:
+      php-version: "8.2"
+      cs-fixer-command: "make test-cs-fixer ENV=local"
+      phpstan-command: "make test-phpstan ENV=local"
+      run-xml-lint: true
+      xml-lint-command: "make test-xml-lint ENV=local"
+      php-extensions: "inotify, pcntl"
+
+  validate-monorepo:
+    name: Validate monorepo structure
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "Install PHP"
-        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1
+      - name: Install PHP
+        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1 # v2
         with:
-          coverage: "none"
-          php-version: "${{ env.DEFAULT_PHP_VERSION }}"
-          extensions: 'inotify, pcntl'
+          coverage: none
+          php-version: "8.2"
+          extensions: "inotify, pcntl"
 
-      - name: "Install dependencies with Composer"
-        uses: ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@cdf6c1fa76f9e2f51c2b456279dbfd8126e1e9b2 # v5.0.3
         with:
-          dependency-versions: "locked"
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: php-8.2-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: php-8.2-composer-
 
-      - name: "Check for normalized composer.json"
-        run: "composer normalize --dry-run"
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
 
-      - name: "CGL"
-        run: "make code-style ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "PHPSTAN"
-        run: "make phpstan ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "Lint guides.xml configurations"
-        run: "make test-xml ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "'Documentation' renders without warning'"
-        run: "make test-docs ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "'Documentation-rendertest' renders without warning'"
-        run: "make test-rendertest ENV=${{ env.RUN_ENVIRONMENT }}"
-
-  monorepo-validate:
-    name: "Validate monorepo structure"
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-
-      - name: "Install PHP"
-        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1
-        with:
-          coverage: "none"
-          php-version: "${{ env.DEFAULT_PHP_VERSION }}"
-          extensions: 'inotify, pcntl'
-
-      - name: "Install dependencies with Composer"
-        uses: ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520
-        with:
-          dependency-versions: "locked"
-
-      - name: "Validate monorepo"
-        run: "make test-monorepo ENV=${{ env.RUN_ENVIRONMENT }}"
+      - name: Validate monorepo
+        run: make test-monorepo
+        env:
+          RUN_ENVIRONMENT: "local"
