@@ -34,10 +34,15 @@ jobs:
           php-version: "${{ matrix.php }}"
           extensions: 'inotify, pcntl'
 
-      - name: "Install dependencies with Composer"
-        uses: ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520
+      - name: "Cache Composer dependencies"
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
         with:
-          dependency-versions: "locked"
+          path: ~/.composer/cache
+          key: php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: php-${{ matrix.php }}-composer-
+
+      - name: "Install dependencies with Composer"
+        run: composer install --no-interaction --no-progress --prefer-dist
 
       - name: "Run unit tests"
         run: "make test-unit ENV=${{ env.RUN_ENVIRONMENT }}"
@@ -59,10 +64,15 @@ jobs:
           php-version: "${{ env.DEFAULT_PHP_VERSION }}"
           extensions: 'inotify, pcntl'
 
-      - name: "Install dependencies with Composer"
-        uses: ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520
+      - name: "Cache Composer dependencies"
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
         with:
-          dependency-versions: "locked"
+          path: ~/.composer/cache
+          key: php-${{ env.DEFAULT_PHP_VERSION }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: php-${{ env.DEFAULT_PHP_VERSION }}-composer-
+
+      - name: "Install dependencies with Composer"
+        run: composer install --no-interaction --no-progress --prefer-dist
 
       - name: "Check for normalized composer.json"
         run: "composer normalize --dry-run"
@@ -96,10 +106,15 @@ jobs:
           php-version: "${{ env.DEFAULT_PHP_VERSION }}"
           extensions: 'inotify, pcntl'
 
-      - name: "Install dependencies with Composer"
-        uses: ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520
+      - name: "Cache Composer dependencies"
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
         with:
-          dependency-versions: "locked"
+          path: ~/.composer/cache
+          key: php-${{ env.DEFAULT_PHP_VERSION }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: php-${{ env.DEFAULT_PHP_VERSION }}-composer-
+
+      - name: "Install dependencies with Composer"
+        run: composer install --no-interaction --no-progress --prefer-dist
 
       - name: "Validate monorepo"
         run: "make test-monorepo ENV=${{ env.RUN_ENVIRONMENT }}"
