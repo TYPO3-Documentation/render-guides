@@ -1,4 +1,4 @@
-FROM php:8.1-cli-alpine AS builder
+FROM php:8.2-cli-alpine AS builder
 
 COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -12,7 +12,7 @@ COPY . /opt/guides
 RUN composer install --no-dev --no-interaction --no-progress  \
     --no-suggest --optimize-autoloader --classmap-authoritative
 
-FROM php:8.1-cli-alpine
+FROM php:8.2-cli-alpine
 
 COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
 RUN apk add --update $PHPIZE_DEPS
