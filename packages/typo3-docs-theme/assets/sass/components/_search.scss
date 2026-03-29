@@ -1,20 +1,13 @@
 .search-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1050;
+    border: none;
+    background-color: unset;
+    margin-top: 0;
+    padding: 0;
+    width: auto;
     display: flex;
-    align-items: flex-start;
     justify-content: center;
 
-    &__overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+    &::backdrop {
         background-color: rgba(0, 0, 0, 0.5);
     }
 

@@ -24667,10 +24667,6 @@ dl.command .command-arguments section {
   visibility: visible;
 }
 
-#global-search-results button {
-  z-index: unset;
-}
-
 #indexNav {
   background-color: rgb(242.25, 242.25, 242.25);
   border-radius: 8px;
@@ -25237,22 +25233,15 @@ figure.uml-diagram {
 }
 
 .search-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1050;
+  border: none;
+  background-color: unset;
+  margin-top: 0;
+  padding: 0;
+  width: auto;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
 }
-.search-modal__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.search-modal::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
 .search-modal__content {
