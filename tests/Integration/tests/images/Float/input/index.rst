@@ -1,97 +1,120 @@
-==============
-Document Title
-==============
+===========
+Float Tests
+===========
 
-Lorem Ipsum Dolor.
+Align Left
+==========
 
-Figure align left
-=================
+.. figure:: /typo3-logo.png
+   :alt: Left figure
+   :align: left
 
-..  figure:: /typo3-logo.png
-    :alt: Left aligned figure
-    :align: left
+   Left aligned figure
 
-    Caption for left-aligned figure
+Align Right
+===========
 
-Figure align right
-==================
+.. figure:: /typo3-logo.png
+   :alt: Right figure
+   :align: right
 
-..  figure:: /typo3-logo.png
-    :alt: Right aligned figure
-    :align: right
+   Right aligned figure
 
-    Caption for right-aligned figure
+Align Center
+============
 
-Figure align center
+.. figure:: /typo3-logo.png
+   :alt: Center figure
+   :align: center
+
+   Center aligned figure
+
+Legacy Figure Class
 ===================
 
-..  figure:: /typo3-logo.png
-    :alt: Center aligned figure
-    :align: center
+.. figure:: /typo3-logo.png
+   :alt: Legacy float-left figure
+   :class: float-left
 
-    Caption for center-aligned figure
+   Should rewrite to float-start
 
-Image align left
-================
+Legacy Figure Right
+====================
 
-..  image:: /typo3-logo.png
-    :alt: Left aligned image
-    :align: left
+.. figure:: /typo3-logo.png
+   :alt: Legacy float-right figure
+   :class: float-right
 
-Image align right
+   Should rewrite to float-end
+
+Legacy Image Left
 =================
 
-..  image:: /typo3-logo.png
-    :alt: Right aligned image
-    :align: right
+.. image:: /typo3-logo.png
+   :alt: Legacy float-left image
+   :class: float-left
 
-Image align center
+Legacy Image Right
 ==================
 
-..  image:: /typo3-logo.png
-    :alt: Center aligned image
-    :align: center
+.. image:: /typo3-logo.png
+   :alt: Legacy float-right image
+   :class: float-right
 
-Figure with float class
-=======================
+Mixed Legacy With Extra Class
+==============================
 
-..  figure:: /typo3-logo.png
-    :alt: Figure with float-left class
-    :class: float-left
+.. figure:: /typo3-logo.png
+   :alt: Mixed class figure
+   :class: float-left with-shadow
 
-    Float class on figure
+   Should rewrite float-left but keep with-shadow
 
-Figure with float-right class
-=============================
+Align Plus Legacy Class
+========================
 
-..  figure:: /typo3-logo.png
-    :alt: Figure with float-right class
-    :class: float-right
+.. figure:: /typo3-logo.png
+   :alt: Both align and legacy class
+   :align: left
+   :class: float-left
 
-    Float-right class on figure
+   Should use align, class gets rewritten to float-start
 
-Figure with float class and extra classes
-=========================================
+Image Align Left
+================
 
-..  figure:: /typo3-logo.png
-    :alt: Figure with float and shadow
-    :class: float-left with-shadow
+.. image:: /typo3-logo.png
+   :alt: Image align left
+   :align: left
 
-    Float class combined with other classes
+Image Align Right
+=================
 
-Image with float class
-======================
+.. image:: /typo3-logo.png
+   :alt: Image align right
+   :align: right
 
-..  image:: /typo3-logo.png
-    :alt: Image with float-right class
-    :class: float-right
+Modern Float Start (No Warning)
+================================
 
-Figure with align and extra class
-=================================
+.. figure:: /typo3-logo.png
+   :alt: Modern float-start figure
+   :class: float-start
 
-..  figure:: /typo3-logo.png
-    :alt: Figure with align and border
-    :align: left
-    :class: with-border
+   Already uses modern class, no rewriting needed
 
-    Align option combined with extra class
+Modern Float End Image (No Warning)
+=====================================
+
+.. image:: /typo3-logo.png
+   :alt: Modern float-end image
+   :class: float-end
+
+Substitution Image Left
+========================
+
+.. |sub-logo| image:: /typo3-logo.png
+   :alt: Substitution logo
+   :class: float-left
+
+Use the |sub-logo| inline text here.
