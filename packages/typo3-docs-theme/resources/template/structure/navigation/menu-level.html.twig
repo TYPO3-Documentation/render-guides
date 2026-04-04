@@ -1,3 +1,4 @@
+{%- if menu.currentPath == entry.url or entry.url in menu.rootlinePaths %}
 <li class="{%- if menu.currentPath == entry.url %} current {%- endif -%}{% if entry.url in menu.rootlinePaths %} active {%- endif -%}" role="menuitem">
     <a href="{{ renderLink(menuEntry.url) }}"
        {%- if menu.currentPath == entry.url %} aria-current="page" {%- endif -%}>
@@ -15,3 +16,22 @@
         </ul>
     {%- endif -%}
 </li>
+{%- else -%}
+    <li role="menuitem">
+        <a href="{{ renderLink(menuEntry.url) }}"
+            {%- if menu.currentPath == entry.url %} aria-current="page" {%- endif -%}>
+            {{ renderPlainText(menuEntry.value) }}
+        </a>
+
+        {%- if menuEntry.children|length and menuEntry.level < 2 %}
+            <ul class="menu-level-{{ menuEntry.level }}">
+                {%- for entry in menuEntry.children -%}
+                    {% include "structure/navigation/menu-level.html.twig" with {
+                        menu: node,
+                        menuEntry:entry
+                    } %}
+                {%- endfor -%}
+            </ul>
+        {%- endif -%}
+    </li>
+{%- endif -%}
