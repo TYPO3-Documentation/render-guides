@@ -14,29 +14,8 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
 
   setupComponent() {
     this.classList.add('all-documentations-menu')
-
     this.tooltip = this.createTooltip();
     this.appendChild(this.tooltip);
-
-    this.popperInstance = null;
-
-    this.mainButton.addEventListener('click', (event) => {
-      event.stopPropagation();
-      this.toggleTooltip();
-    });
-
-    // hide popup on outside click
-    document.addEventListener('click', (event) => {
-      if (!this.tooltip.hasAttribute('data-show')) {
-        return;
-      }
-
-      if (event.target?.closest('.all-documentations-menu-tooltip')) {
-        return
-      }
-
-      this.hideTooltip();
-    })
   }
 
   createClassName(name) {
@@ -51,6 +30,7 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
       'btn', 'btn-light', 'd-lg-flex', 'd-none',
       this.createClassName('button'),
     );
+    element.setAttribute('popovertarget', 'all-docs-tooltip');
     element.innerHTML = text;
 
     const icon = document.createElement('i');
@@ -133,13 +113,9 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
 
   createTooltip() {
     const element = document.createElement('div');
+    element.id = 'all-docs-tooltip';
+    element.setAttribute('popover', '');
     element.classList.add(this.createClassName('tooltip'));
-    element.setAttribute('role', 'tooltip');
-
-    const arrowElement = document.createElement('div');
-    arrowElement.classList.add(this.createClassName('tooltip-arrow'));
-    arrowElement.setAttribute('data-popper-arrow', '')
-    element.appendChild(arrowElement);
 
     const categoriesElement = document.createElement('div');
     categoriesElement.classList.add(this.createClassName('categories'));
@@ -151,34 +127,6 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
     element.appendChild(categoriesElement);
 
     return element;
-  }
-
-  toggleTooltip() {
-    if (this.tooltip.hasAttribute('data-show')) {
-      this.hideTooltip();
-    } else {
-      this.showTooltip();
-    }
-  }
-
-  showTooltip() {
-    this.tooltip.setAttribute('data-show', '');
-
-    this.popperInstance = Popper.createPopper(this.mainButton, this.tooltip, {
-      placement: 'bottom',
-      modifiers: [
-        { name: 'arrow' },
-        { name: 'offset', options: { offset: [0, 10] } }
-      ],
-    });
-  }
-
-  hideTooltip() {
-    this.tooltip.removeAttribute('data-show');
-    if (this.popperInstance) {
-      this.popperInstance.destroy();
-      this.popperInstance = null;
-    }
   }
 }
 
