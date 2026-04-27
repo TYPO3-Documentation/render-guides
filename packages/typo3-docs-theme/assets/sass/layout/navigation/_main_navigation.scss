@@ -1,34 +1,27 @@
 .page-main-navigation {
-
     #toc-collapse {
         display: none;
         @include media-breakpoint-up(lg) {
             display: block;
         }
-
         &.show {
             display: block;
         }
     }
-
     #toc-toggle {
         margin: 0;
     }
-
     .toc-search {
         margin-top: $spacer;
         margin-bottom: ($spacer * 2);
     }
-
     .main_menu {
         margin: $spacer 0;
         display: block;
-
         .caption {
             font-weight: bold;
             margin: 0;
         }
-
         a {
             position: relative;
             display: block;
@@ -37,57 +30,46 @@
             padding: calc(#{$spacer} / 4) 0;
             padding-right: 1.5em;
             text-decoration: none;
-
             &:hover {
                 text-decoration: underline;
             }
         }
-
         ul {
             padding-left: calc(#{$spacer} / 2);
             list-style-type: none;
         }
-
         > ul {
             padding-left: 0;
-
             .active {
                 > ul {
                     display: block !important;
                 }
             }
-
             &:not(:last-child) {
                 padding-bottom: $spacer;
                 border-bottom: 1px solid rgba(0, 0, 0, .15);
             }
-
             > li {
                 &.active {
                     border-left: 1px solid rgba(0, 0, 0, .15);
                     border-radius: 0;
                 }
-
                 ul {
                     display: none;
                 }
             }
         }
-
         li {
             border-radius: $border-radius;
             overflow: hidden;
             padding-left: calc(#{$spacer} / 2);
-
             &.current {
                 border-left: none;
             }
-
             @include media-breakpoint-up(lg) {
                 font-size: 1rem;
             }
         }
-
         .toctree-expand {
             position: absolute;
             display: block;
@@ -98,7 +80,6 @@
             width: 1em;
             background-color: $light;
             border-radius: 50%;
-
             &:after,
             &:before {
                 position: absolute;
@@ -107,23 +88,19 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
             }
-
             &:after {
                 width: 10px;
                 height: 0;
                 border-top: 2px solid;
             }
-
             &:before {
                 width: 0;
                 height: 10px;
                 border-left: 2px solid;
             }
         }
-
         .active > a {
             font-weight: bold;
-
             > .toctree-expand {
                 &:before {
                     display: none;

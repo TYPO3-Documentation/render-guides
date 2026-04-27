@@ -3,25 +3,22 @@
     background-color: $light; // Light background
     border-radius: 8px;
     padding: 8px 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Soft shadow
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .1); // Soft shadow
     .nav-link {
         color: $secondary; // Bootstrap primary color variable
         font-weight: 500;
         margin: 0 4px;
-        transition: color 0.2s ease, transform 0.2s ease;
-
+        transition: color .2s ease, transform .2s ease;
         &:hover {
             color: darken($secondary, 15%); // Darker shade on hover
             transform: scale(1.1); // Slight zoom on hover
         }
-
         &.active {
-            color: #fff;
+            color: #ffffff;
             background-color: $secondary;
             border-radius: 50%;
             padding: 4px 8px;
-            transition: background-color 0.2s ease;
+            transition: background-color .2s ease;
         }
     }
 

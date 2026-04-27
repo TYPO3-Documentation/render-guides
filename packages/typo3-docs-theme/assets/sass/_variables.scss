@@ -32,7 +32,7 @@ $secondary:         #333333;
 $secondary-dark:    shade-color($secondary, 20%);
 $secondary-light:   tint-color($secondary, 20%);
 
-$tertiary:          #005E85;
+$tertiary:          #005e85;
 $tertiary-dark:     shade-color($tertiary, 20%);
 $tertiary-light:    lighten($tertiary, 20%);
 
@@ -74,7 +74,7 @@ $link-alternate-hover-color:   darken($link-alternate-color, 15%);
 
 $yiq-contrasted-threshold: 160;
 
-$btn-primary-color: #fff;
+$btn-primary-color: #ffffff;
 
 //
 // directive .. confval::
@@ -143,12 +143,11 @@ $table-bg:          $white;
 // --------------------------------------------------
 $grid-gutter-width: 40px;
 
-
 //
 // Admonitions
 // --------------------------------------------------
 
-$admonition-border-color-default: #666;
+$admonition-border-color-default: #666666;
 $admonition-border-color-highlighted: $primary;
 
 $admonition-icons:

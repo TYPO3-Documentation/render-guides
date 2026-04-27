@@ -1,5 +1,6 @@
 
 article {
+
     /**
      * Keyboard Shortcuts, text role :kbd:
      */
@@ -14,7 +15,6 @@ article {
         font-size: 75%;
         @include inline-box($info);
     }
-
     a.composer-link {
         text-decoration: underline dotted;
     }
