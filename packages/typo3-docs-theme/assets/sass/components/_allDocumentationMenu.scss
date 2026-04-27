@@ -8,40 +8,48 @@
         display: flex;
         align-items: center;
         gap: 0.4em;
+        anchor-name: --all-docs-button;
     }
 
     &-tooltip {
-        display: none;
+        @media (max-width: 992px) {
+            display: none;
+        }
+
+        margin: 0;
+        padding: 1.5em 2.5em;
+        border: 1px solid #eaeaea;
         border-radius: 0.6em;
         background: white;
         box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
-        padding: 1.5em 2.5em;
-        border: 1px solid #eaeaea;
-        z-index: 50;
+        overflow: visible;
 
-        &[data-show] {
-            display: block;
-        }
+        inset: auto;
+        top: calc(anchor(bottom) + 10px);
+        right: 0;
 
-        &-arrow {
-            width: 1.2em;
-            height: 1.2em;
-            top: -0.2em;
-
-            &:before {
-                display: block;
-                content: '';
-                width: 100%;
-                height: 100%;
-                transform: rotateZ(45deg);
-                background-color: white;
-            }
+        &::before {
+            content: '';
+            position: fixed;
+            position-anchor: --all-docs-button;
+            top: calc(anchor(bottom) + 4px);
+            left: calc(anchor(center) - 0.45em);
+            width: 0.9em;
+            height: 0.9em;
+            background: white;
+            border-top: 1px solid #eaeaea;
+            border-left: 1px solid #eaeaea;
+            transform: rotate(45deg);
         }
 
         @media screen and (max-width: 768px) {
             padding: 1.5em;
             max-height: 70vh;
             overflow-y: auto;
+
+            &::before {
+                display: none;
+            }
         }
     }
 
