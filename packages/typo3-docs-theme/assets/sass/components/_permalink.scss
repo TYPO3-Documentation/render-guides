@@ -1,12 +1,11 @@
 article {
-    a.headerlink, a.permalink {
+    a.headerlink,
+    a.permalink {
         position: relative;
         font-size: .65em;
         visibility: hidden;
         top: -.15em;
         text-decoration: none;
-        &:after {
-      }
     }
     .headerNoindex {
         position: relative;
@@ -16,7 +15,9 @@ article {
         text-decoration: none;
     }
     *:hover {
-        & > a.headerlink, & > a.permalink, .headerNoindex {
+        & > a.headerlink,
+        & > a.permalink,
+        .headerNoindex {
             visibility: visible;
         }
     }

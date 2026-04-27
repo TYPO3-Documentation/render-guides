@@ -11,7 +11,6 @@
         margin-left: calc(#{$spacer} / 2);
     }
 }
-
 .btn-primary,
 .btn-secondary {
     @include button-variant($secondary, $secondary, $white, $gray-200, $secondary, $secondary);
@@ -30,20 +29,19 @@
         @include button-variant($white, $white, $secondary, $white, $secondary, $secondary);
     }
 }
-
 .button-style a {
     @extend .btn;
-    text-decoration: none!important;
+    text-decoration: none !important;
 }
-
-.button-style-primary, .button-style-secondary {
-    --frame-link-color:#{$white};
+.button-style-primary,
+.button-style-secondary {
+    --frame-link-color: #{$white};
     a {
         @extend .btn-secondary;
     }
 }
-
-.button-style-default, .button-style-light {
+.button-style-default,
+.button-style-light {
     --frame-link-color: #{$secondary};
     a {
         @extend .btn-default;

@@ -1,5 +1,6 @@
 
-.toctree-wrapper, .contents-wrapper {
+.toctree-wrapper,
+.contents-wrapper {
     .topic-title {
         @extend .figure-caption;
         @extend .pb-2;
