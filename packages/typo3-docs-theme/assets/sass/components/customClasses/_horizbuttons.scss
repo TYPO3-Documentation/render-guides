@@ -39,7 +39,7 @@ ul[class*="horizbuttons-"] {
     &[class*="-note-"],
     &[class*="-tip-"],
     &[class*="-default-"],
-    &[class*="-light-"]  {
+    &[class*="-light-"] {
         > li {
             color: $black;
             background-color: $gray-200;
