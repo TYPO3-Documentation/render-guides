@@ -89,7 +89,7 @@ module.exports = function (grunt) {
         configFile: '.stylelintrc',
         fix: true,
       },
-      sass: ['sass/**/*.scss']
+      sass: ['assets/sass/**/*.scss']
     },
 
     // sass :: compact, compressed, expanded, nested
