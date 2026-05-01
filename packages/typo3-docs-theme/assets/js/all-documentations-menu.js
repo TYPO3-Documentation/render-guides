@@ -116,6 +116,7 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
     element.id = 'all-docs-tooltip';
     element.setAttribute('popover', '');
     element.classList.add(this.createClassName('tooltip'));
+    element.setAttribute('role', 'tooltip');
 
     const categoriesElement = document.createElement('div');
     categoriesElement.classList.add(this.createClassName('categories'));
