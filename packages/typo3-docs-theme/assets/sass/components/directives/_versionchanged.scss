@@ -9,10 +9,11 @@
         }
         color: $text-color;
         font-weight: bold;
-        margin-bottom: 0.5em;
+        margin-bottom: .5em;
         padding: 0 2px;
     }
 }
+
 /**
  * Version Added, Changed, Deprecated
  */
@@ -25,9 +26,10 @@
 .versionchanged {
     @include version-changed($info);
 }
-
 .admonition {
-    .deprecated, .versionadded, .versionchanged {
+    .deprecated,
+    .versionadded,
+    .versionchanged {
         border: none;
         padding: 0;
     }

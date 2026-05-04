@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
     justify-content: end;
-    gap: 0.4em;
+    gap: .4em;
     height: 100%;
 }
 
@@ -55,7 +55,7 @@
 }
 .page-main-navigation {
     flex-grow: 0;
-    background-color: #fff;
+    background-color: #ffffff;
     z-index: 1;
     margin-left: calc(#{$grid-gutter-width} / 2 * -1);
     margin-right: calc(#{$grid-gutter-width} / 2 * -1);

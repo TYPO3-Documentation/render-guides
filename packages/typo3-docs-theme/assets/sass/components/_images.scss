@@ -1,15 +1,14 @@
-img.with-shadow, figure.with-shadow {
+img.with-shadow,
+figure.with-shadow {
     @extend .shadow;
     @extend .p-3;
     @extend .mb-4;
 }
-
 figure {
     @extend .figure;
     figcaption {
         @extend .pt-2;
         @extend .figure-caption;
-
         p:last-child {
             margin-bottom: 0;
         }
@@ -35,7 +34,6 @@ figure {
         margin-right: auto;
     }
 }
-
 @media (max-width: 575.98px) {
     figure.float-left,
     figure.float-right {

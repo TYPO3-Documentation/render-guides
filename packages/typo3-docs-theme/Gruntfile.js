@@ -65,10 +65,6 @@ module.exports = function (grunt) {
       libs: {
         files: [
           {
-            src: 'node_modules/@popperjs/core/dist/umd/popper.min.js',
-            dest: '<%= paths.output %>js/popper.min.js'
-          },
-          {
             src: 'node_modules/bootstrap/dist/js/bootstrap.min.js',
             dest: '<%= paths.output %>js/bootstrap.min.js'
           }
@@ -93,7 +89,7 @@ module.exports = function (grunt) {
         configFile: '.stylelintrc',
         fix: true,
       },
-      sass: ['sass/**/*.scss']
+      sass: ['assets/sass/**/*.scss']
     },
 
     // sass :: compact, compressed, expanded, nested
@@ -145,8 +141,7 @@ module.exports = function (grunt) {
     removesourcemap: {
       contrib: {
         files: {
-          '<%= paths.output %>js/bootstrap.min.js': '<%= paths.output %>js/bootstrap.min.js',
-          '<%= paths.output %>js/popper.min.js': '<%= paths.output %>js/popper.min.js'
+          '<%= paths.output %>js/bootstrap.min.js': '<%= paths.output %>js/bootstrap.min.js'
         }
       }
     },

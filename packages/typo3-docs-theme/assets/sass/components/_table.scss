@@ -1,5 +1,6 @@
 .table {
-    td, th {
+    td,
+    th {
         word-break: normal;
         line-break: auto;
     }
@@ -13,23 +14,22 @@
         padding-top: 0;
     }
 }
-
-.table.break-none{
-    td, th {
+.table.break-none {
+    td,
+    th {
         word-break: keep-all;
         line-break: strict;
         white-space: nowrap;
         overflow: visible;
     }
 }
-
-.table.break-word{
-    td, th {
+.table.break-word {
+    td,
+    th {
         word-break: break-word;
         line-break: auto;
     }
 }
-
 .table-responsive {
     table.table {
         margin-bottom: 0;
