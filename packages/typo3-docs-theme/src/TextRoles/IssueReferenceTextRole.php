@@ -39,9 +39,9 @@ final class IssueReferenceTextRole extends AbstractReferenceTextRole
         if ((int)$referenceTarget <= 0) {
             $this->logger->warning(sprintf('Expected a positive integer as issue number. Found %s', $referenceTarget));
             $label = $referenceName ?? 'Forge';
-            return new HyperLinkNode($label === '' ? [] : [new PlainTextInlineNode($label)], self::FORGE_URL);
+            return new HyperLinkNode([new PlainTextInlineNode($label)], self::FORGE_URL);
         }
         $label = $referenceName ?? sprintf(self::FORGE_DEFAULT_LABEL, $referenceTarget);
-        return new HyperLinkNode($label === '' ? [] : [new PlainTextInlineNode($label)], sprintf(self::FORGE_ISSUE_URL, $referenceTarget));
+        return new HyperLinkNode([new PlainTextInlineNode($label)], sprintf(self::FORGE_ISSUE_URL, $referenceTarget));
     }
 }

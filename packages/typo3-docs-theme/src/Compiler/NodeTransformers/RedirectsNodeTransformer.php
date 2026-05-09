@@ -16,8 +16,8 @@ namespace T3Docs\Typo3DocsTheme\Compiler\NodeTransformers;
 use phpDocumentor\Guides\Compiler\CompilerContextInterface;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
 use phpDocumentor\Guides\Nodes\Inline\CrossReferenceNode;
-use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
+use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\PrefixedLinkTargetNode;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
@@ -51,9 +51,8 @@ final class RedirectsNodeTransformer implements NodeTransformer
             if ($node instanceof PrefixedLinkTargetNode) {
                 $prefix = $node->getPrefix();
             }
-            assert(is_string($node->getValue()));
-            $value = $node->getValue();
-            return new ReferenceNode('guide-' . $node->getTargetReference(), $value === '' ? [] : [new PlainTextInlineNode($value)], $node->getInterlinkDomain(), $node->getInterlinkGroup(), $prefix);
+            assert($node instanceof InlineCompoundNode);
+            return new ReferenceNode('guide-' . $node->getTargetReference(), $node->getChildren(), $node->getInterlinkDomain(), $node->getInterlinkGroup(), $prefix);
         }
         return $node;
     }

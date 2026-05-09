@@ -16,7 +16,6 @@ namespace T3Docs\Typo3DocsTheme\Compiler\NodeTransformers;
 use phpDocumentor\Guides\Compiler\CompilerContextInterface;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
 use phpDocumentor\Guides\Nodes\Inline\HyperLinkNode;
-use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\Nodes\Node;
 
@@ -39,10 +38,9 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
         if (!str_starts_with($node->getTargetReference(), 'https://docs.typo3.org/permalink/')) {
             return $node;
         }
-        $value = $node->getValue();
-        if ($value === $node->getTargetReference()) {
-            $value = '';
-        }
+        // When the link's visible label equals its URL (auto-linkified plain URL),
+        // drop the children so the resolver fills in the canonical title.
+        $children = $node->toString() === $node->getTargetReference() ? [] : $node->getChildren();
         $url = str_replace('https://docs.typo3.org/permalink/', '', ($node->getTargetReference()));
         $version = null;
         $interlink = null;
@@ -55,7 +53,7 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
         if ($version !== null && $interlink !== null) {
             $interlink = $interlink . '/' . $version;
         }
-        $node = new ReferenceNode($url, $value === '' ? [] : [new PlainTextInlineNode($value)], $interlink ?? '');
+        $node = new ReferenceNode($url, $children, $interlink ?? '');
         return $node;
     }
 

@@ -32,8 +32,7 @@ final class ViewhelperArgumentTextRole extends CustomLinkTextRole
     {
         $id = $this->anchorNormalizer->reduceAnchor($referenceTarget);
 
-        $label = $referenceName ?? '';
-        return new ReferenceNode($id, $label === '' ? [] : [new PlainTextInlineNode($label)], $interlinkDomain, 'typo3:' . $this->getName());
+        return new ReferenceNode($id, $referenceName ? [new PlainTextInlineNode($referenceName)] : [], $interlinkDomain, 'typo3:' . $this->getName());
     }
 
     public function getName(): string

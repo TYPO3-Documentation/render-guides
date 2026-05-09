@@ -56,6 +56,6 @@ final class T3srcTextRole implements TextRole
         }
         $gitHubLink = sprintf('https://github.com/typo3/typo3/blob/%s/%s', $typo3Version, $fileLink);
         $fileName = $referenceName ?? str_replace('typo3/sysext/', 'EXT:', $fileLink) . ' (GitHub)';
-        return new HyperLinkNode($fileName === '' ? [] : [new PlainTextInlineNode($fileName)], $gitHubLink);
+        return new HyperLinkNode([new PlainTextInlineNode($fileName)], $gitHubLink);
     }
 }

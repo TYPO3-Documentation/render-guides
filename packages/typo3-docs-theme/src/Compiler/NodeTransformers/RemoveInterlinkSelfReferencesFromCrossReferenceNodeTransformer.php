@@ -17,7 +17,6 @@ use phpDocumentor\Guides\Compiler\CompilerContextInterface;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
 use phpDocumentor\Guides\Nodes\Inline\CrossReferenceNode;
 use phpDocumentor\Guides\Nodes\Inline\DocReferenceNode;
-use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\Nodes\Node;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
@@ -48,10 +47,9 @@ final class RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer imple
         }
         // Remove interlink references to the own current document
         if ($node instanceof ReferenceNode) {
-            $value = $node->getValue();
             $newRef = new ReferenceNode(
                 $node->getTargetReference(),
-                $value === '' ? [] : [new PlainTextInlineNode($value)],
+                $node->getChildren(),
                 '',
                 $node->getLinkType(),
                 $node->getPrefix()
@@ -61,7 +59,7 @@ final class RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer imple
         if ($node instanceof DocReferenceNode) {
             $newDocRef = new DocReferenceNode(
                 $node->getTargetReference(),
-                $node->getValue(),
+                $node->getChildren(),
             );
             return $newDocRef;
         }

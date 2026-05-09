@@ -47,6 +47,6 @@ final class T3extTextRole implements TextRole
         }
         $terLink = sprintf('https://extensions.typo3.org/extension/%s', $extKey);
         $extName = $referenceName ?? 'EXT:' . $extKey;
-        return new HyperLinkNode($extName === '' ? [] : [new PlainTextInlineNode($extName)], $terLink);
+        return new HyperLinkNode([new PlainTextInlineNode($extName)], $terLink);
     }
 }

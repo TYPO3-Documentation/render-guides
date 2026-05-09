@@ -57,8 +57,7 @@ abstract class CustomLinkTextRole implements TextRole
             $id = $this->anchorReducer->reduceAnchor($referenceTarget);
         }
 
-        $label = $referenceName ?? '';
-        return new ReferenceNode($id, $label === '' ? [] : [new PlainTextInlineNode($label)], $interlinkDomain, 'php:' . $this->getName());
+        return new ReferenceNode($id, $referenceName ? [new PlainTextInlineNode($referenceName)] : [], $interlinkDomain, 'php:' . $this->getName());
     }
 
     /** @return array{text:?string,uri:string} */

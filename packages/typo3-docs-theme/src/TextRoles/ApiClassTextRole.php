@@ -55,7 +55,6 @@ final class ApiClassTextRole extends AbstractReferenceTextRole
             $interlink = 'api';
         }
 
-        $label = $referenceName ?? '';
-        return new ReferenceNode($reference, $label === '' ? [] : [new PlainTextInlineNode($label)], $interlink, self::TYPE, $prefix);
+        return new ReferenceNode($reference, $referenceName ? [new PlainTextInlineNode($referenceName)] : [], $interlink, self::TYPE, $prefix);
     }
 }
