@@ -20,11 +20,11 @@ final class FileTextRole extends CustomLinkTextRole
 
     protected function createNode(DocumentParserContext $documentParserContext, string $referenceTarget, string|null $referenceName, string $role): AbstractLinkInlineNode
     {
-        return $this->createNodeWithInterlink($documentParserContext, $referenceTarget, '', $referenceName);
+        return $this->createNodeWithInterlink($documentParserContext, $referenceTarget, '', $referenceName ?? $referenceTarget);
     }
 
-    private function createNodeWithInterlink(DocumentParserContext $documentParserContext, string $referenceTarget, string $interlinkDomain, string|null $referenceName): AbstractLinkInlineNode
+    private function createNodeWithInterlink(DocumentParserContext $documentParserContext, string $referenceTarget, string $interlinkDomain, string $fileLabel): AbstractLinkInlineNode
     {
-        return new FileInlineNode($referenceTarget, $referenceName ?? $referenceTarget, $interlinkDomain, 'typo3:file');
+        return new FileInlineNode($referenceTarget, $fileLabel, $interlinkDomain, 'typo3:file');
     }
 }

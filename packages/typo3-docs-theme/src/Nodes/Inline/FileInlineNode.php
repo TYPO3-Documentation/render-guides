@@ -18,7 +18,7 @@ final class FileInlineNode extends AbstractLinkInlineNode implements CrossRefere
         private string $interlinkDomain,
         private string $linkType
     ) {
-        parent::__construct(self::TYPE, $fileLink, $fileLabel, [new PlainTextInlineNode($fileLabel)]);
+        parent::__construct(self::TYPE, $fileLink, [new PlainTextInlineNode($fileLabel)]);
     }
 
     public function getFileLink(): string
