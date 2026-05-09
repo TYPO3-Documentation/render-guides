@@ -5,23 +5,27 @@ $bignum-xxl:    1.5rem !default;
 /**
  * Bignums
  */
+
 .bignums {
     padding: 0;
     counter-reset: li-counter;
+
     > li {
         list-style: none;
         position: relative;
         padding: $spacer;
         padding-left: (($bignum-normal * 2.5) + $spacer);
-        padding-top: $spacer + ($bignum-normal * .25);
+        padding-top: $spacer + ($bignum-normal * 0.25);
         border: 1px solid $dark;
         border-radius: $border-radius;
         min-height: (($bignum-normal * 2) + $spacer * 2);
+
         > .first,
         > p:first-child {
             font-weight: $font-weight-bold;
             font-size: $bignum-normal;
         }
+
         &:before {
             font-size: $bignum-normal;
             display: block;
@@ -39,52 +43,65 @@ $bignum-xxl:    1.5rem !default;
             counter-increment: li-counter;
             font-weight: $font-weight-bold;
         }
+
         + li {
             margin-top: $spacer;
         }
     }
 }
+
 .bignums-hint,
 .bignums-note,
 .bignums-info {
     @extend .bignums;
+
     > li {
         border-color: $info;
+
         &:before {
             background-color: $info;
             color: color-contrast($info);
         }
     }
 }
+
 .bignums-caution,
 .bignums-warning,
 .bignums-attention {
     @extend .bignums;
+
     > li {
         border-color: $warning;
+
         &:before {
             background-color: $warning;
             color: color-contrast($warning);
         }
     }
 }
+
 .bignums-important,
 .bignums-seealso,
 .bignums-tip {
     @extend .bignums;
+
     > li {
         border-color: $success;
+
         &:before {
             background-color: $success;
             color: color-contrast($success);
         }
     }
 }
+
 .bignums-danger,
 .bignums-error {
     @extend .bignums;
+
     > li {
         border-color: $danger;
+
         &:before {
             background-color: $danger;
             color: color-contrast($danger);
@@ -95,28 +112,34 @@ $bignum-xxl:    1.5rem !default;
 /**
  * Bignums XXL
  */
+
 .bignums-xxl {
     @extend .bignums;
+
     > li {
         padding: 0;
         padding-left: ($bignum-xxl * 2.5);
-        padding-top: ($bignum-xxl * .25);
+        padding-top: ($bignum-xxl * 0.25);
         background-color: transparent;
         border-style: none;
         min-height: ($bignum-xxl * 2);
+
         > .first,
         > p:first-child {
             font-size: $bignum-xxl;
         }
+
         &:before {
             font-size: $bignum-xxl;
             top: 0;
             left: 0;
         }
+
         + li {
-            border-top: 1px solid rgba(0, 0, 0, .15);
-            margin-top: $spacer + ($bignum-xxl * .25);
-            padding-top: $spacer + ($bignum-xxl * .25);
+            border-top: 1px solid rgba(0, 0, 0, 0.15);
+            margin-top: $spacer + ($bignum-xxl * 0.25);
+            padding-top: $spacer + ($bignum-xxl * 0.25);
+
             &:before {
                 top: $spacer;
             }

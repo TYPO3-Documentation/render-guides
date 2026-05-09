@@ -1,20 +1,25 @@
 .table {
+
     td,
     th {
         word-break: normal;
         line-break: auto;
     }
+
     th :last-child,
     td :last-child {
         margin-bottom: 0;
     }
+
     > caption {
         @extend .figure-caption;
         @extend .pb-2;
         padding-top: 0;
     }
 }
+
 .table.break-none {
+
     td,
     th {
         word-break: keep-all;
@@ -23,14 +28,18 @@
         overflow: visible;
     }
 }
+
 .table.break-word {
+
     td,
     th {
         word-break: break-word;
         line-break: auto;
     }
 }
+
 .table-responsive {
+
     table.table {
         margin-bottom: 0;
     }

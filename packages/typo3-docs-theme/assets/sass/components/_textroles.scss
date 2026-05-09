@@ -4,6 +4,7 @@ article {
     /**
      * Keyboard Shortcuts, text role :kbd:
      */
+
     kbd {
         @include inline-box;
     }
@@ -11,10 +12,12 @@ article {
     /**
      * GUI-Label
      */
+
     .guilabel {
         font-size: 75%;
         @include inline-box($info);
     }
+
     a.composer-link {
         text-decoration: underline dotted;
     }

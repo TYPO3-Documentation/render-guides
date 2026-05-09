@@ -1,14 +1,17 @@
 @import "../../variables";
+
 .admonition {
     border: 4px solid $admonition-border-color-default;
     margin: $spacer 0;
     padding: $spacer;
     border-radius: $border-radius;
     overflow: hidden;
+
     & :last-child {
         margin-bottom: 0;
     }
 }
+
 .admonition-title {
     padding: calc(#{$spacer} / 2) $spacer;
     margin: -$spacer;
@@ -16,6 +19,7 @@
     color: var(--bs-emphasis-color);
     font-weight: bold;
     font-size: 1.25em;
+
     &:before {
         @include fa-icon;
         content: fa-content($fa-var-info-circle);
@@ -25,11 +29,13 @@
     }
 }
 @each $type, $border-color, $icon in $admonition-icons {
+
     .admonition {
         &.#{$type} {
             @if $border-color {
                 border-color: #{$border-color};
             }
+
             .admonition-title:before {
                 content: fa-content(#{$icon});
             }
