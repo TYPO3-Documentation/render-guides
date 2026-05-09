@@ -16,6 +16,7 @@ namespace T3Docs\Typo3DocsTheme\Compiler\NodeTransformers;
 use phpDocumentor\Guides\Compiler\CompilerContextInterface;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
 use phpDocumentor\Guides\Nodes\Inline\HyperLinkNode;
+use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\Nodes\Node;
 
@@ -54,7 +55,7 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
         if ($version !== null && $interlink !== null) {
             $interlink = $interlink . '/' . $version;
         }
-        $node = new ReferenceNode($url, $value, $interlink ?? '');
+        $node = new ReferenceNode($url, $value === '' ? [] : [new PlainTextInlineNode($value)], $interlink ?? '');
         return $node;
     }
 

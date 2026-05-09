@@ -3,6 +3,7 @@
 namespace T3Docs\Typo3DocsTheme\TextRoles;
 
 use phpDocumentor\Guides\Nodes\Inline\HyperLinkNode;
+use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
 use phpDocumentor\Guides\RestructuredText\Parser\References\EmbeddedReferenceParser;
 use phpDocumentor\Guides\RestructuredText\TextRoles\TextRole;
@@ -46,6 +47,6 @@ final class T3extTextRole implements TextRole
         }
         $terLink = sprintf('https://extensions.typo3.org/extension/%s', $extKey);
         $extName = $referenceName ?? 'EXT:' . $extKey;
-        return new HyperLinkNode($extName, $terLink);
+        return new HyperLinkNode($extName === '' ? [] : [new PlainTextInlineNode($extName)], $terLink);
     }
 }

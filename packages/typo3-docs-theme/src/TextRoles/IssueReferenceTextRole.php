@@ -6,6 +6,7 @@ namespace T3Docs\Typo3DocsTheme\TextRoles;
 
 use phpDocumentor\Guides\Nodes\Inline\AbstractLinkInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\HyperLinkNode;
+use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\RestructuredText\TextRoles\AbstractReferenceTextRole;
 use Psr\Log\LoggerInterface;
 
@@ -37,8 +38,10 @@ final class IssueReferenceTextRole extends AbstractReferenceTextRole
     {
         if ((int)$referenceTarget <= 0) {
             $this->logger->warning(sprintf('Expected a positive integer as issue number. Found %s', $referenceTarget));
-            return new HyperLinkNode($referenceName ?? 'Forge', self::FORGE_URL);
+            $label = $referenceName ?? 'Forge';
+            return new HyperLinkNode($label === '' ? [] : [new PlainTextInlineNode($label)], self::FORGE_URL);
         }
-        return new HyperLinkNode($referenceName ?? sprintf(self::FORGE_DEFAULT_LABEL, $referenceTarget), sprintf(self::FORGE_ISSUE_URL, $referenceTarget));
+        $label = $referenceName ?? sprintf(self::FORGE_DEFAULT_LABEL, $referenceTarget);
+        return new HyperLinkNode($label === '' ? [] : [new PlainTextInlineNode($label)], sprintf(self::FORGE_ISSUE_URL, $referenceTarget));
     }
 }

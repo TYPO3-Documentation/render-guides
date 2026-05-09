@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\TextRoles;
 
 use phpDocumentor\Guides\Nodes\Inline\AbstractLinkInlineNode;
+use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
@@ -56,7 +57,8 @@ abstract class CustomLinkTextRole implements TextRole
             $id = $this->anchorReducer->reduceAnchor($referenceTarget);
         }
 
-        return new ReferenceNode($id, $referenceName ?? '', $interlinkDomain, 'php:' . $this->getName());
+        $label = $referenceName ?? '';
+        return new ReferenceNode($id, $label === '' ? [] : [new PlainTextInlineNode($label)], $interlinkDomain, 'php:' . $this->getName());
     }
 
     /** @return array{text:?string,uri:string} */

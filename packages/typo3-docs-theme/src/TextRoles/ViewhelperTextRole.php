@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\TextRoles;
 
+use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
@@ -35,7 +36,8 @@ final class ViewhelperTextRole extends CustomLinkTextRole
     {
         $id = $this->anchorNormalizer->reduceAnchor($referenceTarget);
 
-        return new ReferenceNode($id, $referenceName ?? '', $interlinkDomain, 'typo3:' . $this->getName());
+        $label = $referenceName ?? '';
+        return new ReferenceNode($id, $label === '' ? [] : [new PlainTextInlineNode($label)], $interlinkDomain, 'typo3:' . $this->getName());
     }
 
     public function getName(): string

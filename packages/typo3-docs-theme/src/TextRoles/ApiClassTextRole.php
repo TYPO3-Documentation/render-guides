@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\TextRoles;
 
 use phpDocumentor\Guides\Nodes\Inline\AbstractLinkInlineNode;
+use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
@@ -54,6 +55,7 @@ final class ApiClassTextRole extends AbstractReferenceTextRole
             $interlink = 'api';
         }
 
-        return new ReferenceNode($reference, $referenceName ?? '', $interlink, self::TYPE, $prefix);
+        $label = $referenceName ?? '';
+        return new ReferenceNode($reference, $label === '' ? [] : [new PlainTextInlineNode($label)], $interlink, self::TYPE, $prefix);
     }
 }

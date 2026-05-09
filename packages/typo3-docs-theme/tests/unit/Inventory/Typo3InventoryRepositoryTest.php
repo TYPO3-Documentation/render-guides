@@ -82,7 +82,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
     public function versionInventoryCreatesVersionedUrl(string $inventoryKey, string $expected): void
     {
         $messages = new Messages();
-        $node = new ReferenceNode('someReference', '', $inventoryKey);
+        $node = new ReferenceNode('someReference', [], $inventoryKey);
         self::assertEquals($expected, $this->subject->previewUrl($inventoryKey));
         self::assertCount(0, $messages->getWarnings());
     }

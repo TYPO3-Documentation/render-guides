@@ -3,6 +3,7 @@
 namespace T3Docs\Typo3DocsTheme\TextRoles;
 
 use phpDocumentor\Guides\Nodes\Inline\HyperLinkNode;
+use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
 use phpDocumentor\Guides\RestructuredText\Parser\References\EmbeddedReferenceParser;
 use phpDocumentor\Guides\RestructuredText\TextRoles\TextRole;
@@ -55,6 +56,6 @@ final class T3srcTextRole implements TextRole
         }
         $gitHubLink = sprintf('https://github.com/typo3/typo3/blob/%s/%s', $typo3Version, $fileLink);
         $fileName = $referenceName ?? str_replace('typo3/sysext/', 'EXT:', $fileLink) . ' (GitHub)';
-        return new HyperLinkNode($fileName, $gitHubLink);
+        return new HyperLinkNode($fileName === '' ? [] : [new PlainTextInlineNode($fileName)], $gitHubLink);
     }
 }
