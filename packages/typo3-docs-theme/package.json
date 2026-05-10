@@ -7,8 +7,8 @@
         "@popperjs/core": "^2.11.8",
         "bootstrap": "^5.3.8",
         "lodash.debounce": "^4.0.8",
-        "react": "^19.2.5",
-        "react-dom": "^19.2.5"
+        "react": "^19.2.6",
+        "react-dom": "^19.2.6"
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^6.0.0",
@@ -23,7 +23,7 @@
         "grunt-stylelint": "^0.21.0",
         "sass": "^1.99.0",
         "stylelint": "^16.26.1",
-        "vite": "^8.0.8"
+        "vite": "^8.0.11"
     },
     "scripts": {
         "build": "vite build && grunt build",
