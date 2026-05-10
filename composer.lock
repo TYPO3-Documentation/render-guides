@@ -1687,16 +1687,16 @@
         },
         {
             "name": "phpdocumentor/filesystem",
-            "version": "1.9.0",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/filesystem.git",
-                "reference": "baf81ce5f6ebf450b798bee74f60d107c21e3a8b"
+                "reference": "1234be43d6604bd5ca0951e5d0e8e61e62b872b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/filesystem/zipball/baf81ce5f6ebf450b798bee74f60d107c21e3a8b",
-                "reference": "baf81ce5f6ebf450b798bee74f60d107c21e3a8b",
+                "url": "https://api.github.com/repos/phpDocumentor/filesystem/zipball/1234be43d6604bd5ca0951e5d0e8e61e62b872b0",
+                "reference": "1234be43d6604bd5ca0951e5d0e8e61e62b872b0",
                 "shasum": ""
             },
             "require": {
@@ -1725,9 +1725,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/filesystem/issues",
-                "source": "https://github.com/phpDocumentor/filesystem/tree/1.9.0"
+                "source": "https://github.com/phpDocumentor/filesystem/tree/1.10.0"
             },
-            "time": "2025-09-10T21:23:28+00:00"
+            "time": "2026-04-13T20:20:50+00:00"
         },
         {
             "name": "phpdocumentor/flyfinder",
@@ -1787,16 +1787,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "1.9.6",
+            "version": "1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "3ebb9c4d4ad0c19335a13d0f3932a9d48b461c41"
+                "reference": "f90731c13f0132dac864c21adce866f0f756541a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/3ebb9c4d4ad0c19335a13d0f3932a9d48b461c41",
-                "reference": "3ebb9c4d4ad0c19335a13d0f3932a9d48b461c41",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/f90731c13f0132dac864c21adce866f0f756541a",
+                "reference": "f90731c13f0132dac864c21adce866f0f756541a",
                 "shasum": ""
             },
             "require": {
@@ -1841,9 +1841,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/1.9.6"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/1.10.1"
             },
-            "time": "2026-01-23T12:31:23+00:00"
+            "time": "2026-05-08T14:29:08+00:00"
         },
         {
             "name": "phpdocumentor/guides-cli",
@@ -1995,16 +1995,16 @@
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
-            "version": "1.9.6",
+            "version": "1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-restructured-text.git",
-                "reference": "5b381632eb32b9f255348a938bafdcfe322ab8d0"
+                "reference": "382bb6f6ae20cb289999bbbd5b8d42a50032bb44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/5b381632eb32b9f255348a938bafdcfe322ab8d0",
-                "reference": "5b381632eb32b9f255348a938bafdcfe322ab8d0",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-restructured-text/zipball/382bb6f6ae20cb289999bbbd5b8d42a50032bb44",
+                "reference": "382bb6f6ae20cb289999bbbd5b8d42a50032bb44",
                 "shasum": ""
             },
             "require": {
@@ -2032,28 +2032,29 @@
             "description": "Adds reStructuredText Markup support to the phpDocumentor's Guides library.",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.9.6"
+                "source": "https://github.com/phpDocumentor/guides-restructured-text/tree/1.10.1"
             },
-            "time": "2026-02-27T16:00:14+00:00"
+            "time": "2026-05-05T21:54:11+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-bootstrap",
-            "version": "1.9.6",
+            "version": "1.9.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-theme-bootstrap.git",
-                "reference": "ac4e5f2afc10eb31de916b9d3f6bee2ef90d82ec"
+                "reference": "370ecfadd3be4218922f99baea65f8d66fddd986"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/ac4e5f2afc10eb31de916b9d3f6bee2ef90d82ec",
-                "reference": "ac4e5f2afc10eb31de916b9d3f6bee2ef90d82ec",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-theme-bootstrap/zipball/370ecfadd3be4218922f99baea65f8d66fddd986",
+                "reference": "370ecfadd3be4218922f99baea65f8d66fddd986",
                 "shasum": ""
             },
             "require": {
+                "doctrine/deprecations": "^1.1",
                 "php": "^8.1",
                 "phpdocumentor/guides": "^1.0 || ^2.0",
-                "phpdocumentor/guides-restructured-text": "^1.0 || ^2.0"
+                "phpdocumentor/guides-restructured-text": "^1.10 || ^2.0"
             },
             "type": "library",
             "extra": {
@@ -2073,9 +2074,9 @@
             "description": "A theme for phpdocumentor/guides based on Bootstrap",
             "homepage": "https://www.phpdoc.org",
             "support": {
-                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/1.9.6"
+                "source": "https://github.com/phpDocumentor/guides-theme-bootstrap/tree/1.9.7"
             },
-            "time": "2026-02-23T20:35:06+00:00"
+            "time": "2026-03-18T20:40:56+00:00"
         },
         {
             "name": "phpdocumentor/guides-theme-rst",
