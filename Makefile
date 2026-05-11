@@ -3,7 +3,7 @@ PHP_ARGS ?= -d memory_limit=1024M -d date.timezone=UTC
 
 ## Docker wrapper, for raw php commands (so it's not required on the host)
 ## This container has no runtime for the `guides` project!
-PHP_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.1-cli php $(PHP_ARGS)
+PHP_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/opt/project -w /opt/project php:8.2-cli php $(PHP_ARGS)
 
 ## Docker wrapper to use for a typo3-docs:local container.
 ## This container provides a runtime for the `guides` project
