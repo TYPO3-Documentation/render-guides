@@ -29,6 +29,7 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\Typo3TalkNodeTransformer;
 use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
+use T3Docs\Typo3DocsTheme\Directives\ImageDirective;
 use T3Docs\Typo3DocsTheme\Directives\GlossaryDirective;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 use T3Docs\Typo3DocsTheme\Directives\IncludeDirective;
@@ -203,6 +204,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(DirectoryTreeDirective::class)
         ->set(FigureDirective::class)
         ->arg('$startingRule', service(DirectiveContentRule::class))
+        ->set(ImageDirective::class)
         ->set(GlossaryDirective::class)
         ->set(GroupTabDirective::class)
         ->set(IncludeDirective::class)

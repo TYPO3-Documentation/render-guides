@@ -17,15 +17,20 @@ figure {
     &:not(:first-child) {
         @extend .mt-3;
     }
+    &.float-start,
+    &.float-end,
+    // Deprecated: legacy Bootstrap 4 class names — remove after migration period (see #1179)
     &.float-left,
     &.float-right {
         margin-bottom: $spacer;
         max-width: 50%;
     }
+    &.float-start,
     &.float-left {
         float: left;
         margin-right: $spacer;
     }
+    &.float-end,
     &.float-right {
         float: right;
         margin-left: $spacer;
@@ -37,6 +42,8 @@ figure {
 }
 
 @media (max-width: 575.98px) {
+    figure.float-start,
+    figure.float-end,
     figure.float-left,
     figure.float-right {
         float: none;
