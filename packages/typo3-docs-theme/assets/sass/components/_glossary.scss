@@ -1,4 +1,5 @@
 // SCSS for Glossary Navigation
+
 #indexNav {
     background-color: $light; // Light background
     border-radius: 8px;
@@ -17,7 +18,7 @@
         }
 
         &.active {
-            color: #fff;
+            color: #ffffff;
             background-color: $secondary;
             border-radius: 50%;
             padding: 4px 8px;
@@ -27,6 +28,7 @@
 
     // Responsive adjustments for smaller screens
     @media (max-width: 576px) {
+
         .nav {
             flex-wrap: wrap;
             gap: 4px;

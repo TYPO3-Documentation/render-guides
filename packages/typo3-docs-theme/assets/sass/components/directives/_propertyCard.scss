@@ -1,11 +1,12 @@
 //
 // _propertyCard.scss used to display confvals, commands and php-classes
 //
+
 .property-card {
     background-color: $white;
     border-radius: $border-radius;
     margin-bottom: $spacer * 1.5;
-    padding-bottom: $spacer * .3;
+    padding-bottom: $spacer * 0.3;
     border: solid 3px $light;
     border-top-color: $gray-500;
     word-wrap: anywhere;
@@ -16,8 +17,8 @@
         background-color: $light;
         color: color-contrast($light);
         font-size: $h4-font-size;
-        padding: .25em .5em;
-        margin-bottom: .75em;
+        padding: 0.25em 0.5em;
+        margin-bottom: 0.75em;
 
         code {
             color: color-contrast($light);

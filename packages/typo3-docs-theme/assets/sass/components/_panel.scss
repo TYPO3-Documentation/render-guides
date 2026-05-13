@@ -1,6 +1,7 @@
 //
 // Panel
 // --------------------------------------------------
+
 .panel {
     background: $card-bg;
     box-shadow: $box-shadow-sm;
@@ -8,9 +9,11 @@
     padding: $card-spacer-y $card-spacer-x;
     border: $card-border-width solid $card-border-color;
     overflow: hidden;
+
     > *:last-child {
         margin-bottom: 0;
     }
+
     > h1,
     > h2,
     > h3,

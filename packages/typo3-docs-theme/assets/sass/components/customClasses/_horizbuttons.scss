@@ -1,34 +1,42 @@
 ul[class*="horizbuttons-"] {
     padding: 0;
+
     > li {
         line-height: 2em;
         border-radius: $border-radius;
         display: inline;
         padding: calc(#{$spacer} / 4) calc(#{$spacer} / 2);
+
         a {
             color: inherit;
             font-weight: bold;
             text-decoration: none;
         }
+
         p {
             display: inline;
         }
     }
+
     &[class*="-xxxl"] {
         font-size: $h3-font-size;
     }
+
     &[class*="-xxl"] {
         font-size: $h4-font-size;
     }
+
     &[class*="-attention-"],
     &[class*="-important-"],
     &[class*="-primary-"],
     &[class*="-typo3-"],
     &[class*="-striking-"],
     &[class*="-warning-"] {
+
         > li {
             color: $white;
             background-color: $secondary;
+
             &:hover {
                 color: $secondary;
                 background-color: $gray-200;
@@ -36,13 +44,16 @@ ul[class*="horizbuttons-"] {
             }
         }
     }
+
     &[class*="-note-"],
     &[class*="-tip-"],
     &[class*="-default-"],
-    &[class*="-light-"]  {
+    &[class*="-light-"] {
+
         > li {
             color: $black;
             background-color: $gray-200;
+
             &:hover {
                 color: $secondary;
                 background-color: $gray-200;

@@ -12,6 +12,7 @@
         width: 18rem;
         margin-left: $spacer;
     }
+
     > .sidebar-title {
         font-weight: $font-weight-bold;
         color: $white;
@@ -20,12 +21,14 @@
         margin: -$spacer;
         margin-bottom: $spacer;
     }
+
     img,
     p,
     ul,
     dl {
-        margin-bottom: .5em;
+        margin-bottom: 0.5em;
     }
+
     > *:last-child {
         margin-bottom: 0;
     }

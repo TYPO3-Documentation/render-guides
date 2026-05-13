@@ -1,4 +1,5 @@
-img.with-shadow, figure.with-shadow {
+img.with-shadow,
+figure.with-shadow {
     @extend .shadow;
     @extend .p-3;
     @extend .mb-4;
@@ -6,6 +7,7 @@ img.with-shadow, figure.with-shadow {
 
 figure {
     @extend .figure;
+
     figcaption {
         @extend .pt-2;
         @extend .figure-caption;
@@ -14,29 +16,34 @@ figure {
             margin-bottom: 0;
         }
     }
+
     &:not(:first-child) {
         @extend .mt-3;
     }
+
     &.float-left,
     &.float-right {
         margin-bottom: $spacer;
         max-width: 50%;
     }
+
     &.float-left {
         float: left;
         margin-right: $spacer;
     }
+
     &.float-right {
         float: right;
         margin-left: $spacer;
     }
+
     &.align-center {
         margin-left: auto;
         margin-right: auto;
     }
 }
-
 @media (max-width: 575.98px) {
+
     figure.float-left,
     figure.float-right {
         float: none;
