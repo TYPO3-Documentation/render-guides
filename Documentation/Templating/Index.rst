@@ -58,6 +58,7 @@ For example, if your custom templates are stored in a folder named
 :file:`my-custom-templates` in your current working directory:
 
 ..  code-block:: shell
+    :caption: Render with templates mounted via Docker volume
 
     docker run --rm \
       --pull always \
@@ -81,6 +82,7 @@ Place your custom templates in a directory named
 :file:`resources/custom-templates` **at the root of your repository**:
 
 ..  code-block:: text
+    :caption: Project layout with bundled custom templates
 
     my-project/
     |-- Documentation/
@@ -98,6 +100,7 @@ When you mount your project into the container with
 No extra volume mount is needed:
 
 ..  code-block:: shell
+    :caption: Render with project-bundled templates
 
     docker run --rm \
       --pull always \
@@ -116,12 +119,14 @@ built-in templates you want to override.
 For example, if the original file is located at:
 
 ..  code-block:: text
+    :caption: Original template path inside the theme package
 
     typo3-docs-theme/resources/template/structure/layout.html.twig
 
 then your custom file must be placed at:
 
 ..  code-block:: text
+    :caption: Matching path in your custom templates directory
 
     my-custom-templates/structure/layout.html.twig
 
@@ -140,6 +145,7 @@ from the container image.
 Open a shell inside the container to browse all available templates:
 
 ..  code-block:: shell
+    :caption: Open a shell inside the container
 
     docker run --rm -it \
       --entrypoint=sh \
@@ -152,22 +158,23 @@ Open a shell inside the container to browse all available templates:
     Without it, shell commands like ``cat`` or ``ls`` would be
     interpreted as guides subcommands.
 
-Once inside, the templates are organized as follows:
+Once inside, the templates live under :file:`/opt/guides/`:
 
-..  list-table::
-    :header-rows: 1
-    :widths: 30 70
+TYPO3-specific templates
+    In the ``typo3-docs-theme`` package, at
+    :file:`packages/typo3-docs-theme/resources/template/`
 
-    *   -   **Theme / Purpose**
-        -   **Location in container**
-    *   -   TYPO3-specific templates
-        -   :file:`/opt/guides/packages/typo3-docs-theme/resources/template/`
-    *   -   Bootstrap 5 theme templates
-        -   :file:`/opt/guides/vendor/phpdocumentor/guides-theme-bootstrap/resources/template/`
-    *   -   reStructuredText (reST) templates
-        -   :file:`/opt/guides/vendor/phpdocumentor/guides-restructured-text/resources/template/html/`
-    *   -   Base templates (shared core)
-        -   :file:`/opt/guides/vendor/phpdocumentor/guides/resources/template/html/`
+Bootstrap 5 theme templates
+    In the ``guides-theme-bootstrap`` package, at
+    :file:`vendor/phpdocumentor/guides-theme-bootstrap/resources/template/`
+
+reStructuredText (reST) templates
+    In the ``guides-restructured-text`` package, at
+    :file:`vendor/phpdocumentor/guides-restructured-text/resources/template/html/`
+
+Base templates (shared core)
+    In the ``guides`` package, at
+    :file:`vendor/phpdocumentor/guides/resources/template/html/`
 
 ..  _template-copying:
 
@@ -175,21 +182,22 @@ Copying a template from the container
 -------------------------------------
 
 To copy a specific template to your local machine, use
-``--entrypoint=cat``:
+``--entrypoint=cat``. The examples below set ``TMPL`` to the template's
+relative path so the same value can be reused for the source and target:
 
 ..  code-block:: shell
+    :caption: Copy a theme template out of the container
+
+    TMPL=structure/layout.html.twig
+    SRC=/opt/guides/packages/typo3-docs-theme/resources/template
+
+    mkdir -p "my-custom-templates/$(dirname "$TMPL")"
 
     docker run --rm \
       --entrypoint=cat \
       ghcr.io/typo3-documentation/render-guides:latest \
-      /opt/guides/packages/typo3-docs-theme/resources/template/structure/layout.html.twig \
-      > my-custom-templates/structure/layout.html.twig
-
-Make sure the target directory exists before running the command:
-
-..  code-block:: shell
-
-    mkdir -p my-custom-templates/structure
+      "$SRC/$TMPL" \
+      > "my-custom-templates/$TMPL"
 
 Edit the copied file locally. The next time you run the container with
 your custom templates mounted, your modified version will automatically
@@ -204,14 +212,18 @@ Override the page layout
 ------------------------
 
 ..  code-block:: shell
+    :caption: Override the theme's main page layout
 
-    mkdir -p my-custom-templates/structure
+    TMPL=structure/layout.html.twig
+    SRC=/opt/guides/packages/typo3-docs-theme/resources/template
+
+    mkdir -p "my-custom-templates/$(dirname "$TMPL")"
 
     docker run --rm \
       --entrypoint=cat \
       ghcr.io/typo3-documentation/render-guides:latest \
-      /opt/guides/packages/typo3-docs-theme/resources/template/structure/layout.html.twig \
-      > my-custom-templates/structure/layout.html.twig
+      "$SRC/$TMPL" \
+      > "my-custom-templates/$TMPL"
 
     # Edit my-custom-templates/structure/layout.html.twig to your liking
 
@@ -225,13 +237,17 @@ Override block quote rendering
 ------------------------------
 
 ..  code-block:: shell
+    :caption: Override the core block quote template
 
-    mkdir -p my-custom-templates/body
+    TMPL=body/quote.html.twig
+    SRC=/opt/guides/vendor/phpdocumentor/guides/resources/template/html
+
+    mkdir -p "my-custom-templates/$(dirname "$TMPL")"
 
     docker run --rm \
       --entrypoint=cat \
       ghcr.io/typo3-documentation/render-guides:latest \
-      /opt/guides/vendor/phpdocumentor/guides/resources/template/html/body/quote.html.twig \
-      > my-custom-templates/body/quote.html.twig
+      "$SRC/$TMPL" \
+      > "my-custom-templates/$TMPL"
 
     # Edit and render as above
