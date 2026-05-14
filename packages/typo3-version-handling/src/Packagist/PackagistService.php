@@ -8,12 +8,12 @@ class PackagistService
     private array $cache = [];
     private bool $timeoutOccurred = false;
 
-    public function getComposerInfo(string $composerName): ComposerPackage
+    public function getComposerInfo(string $composerName, bool $dev = false): ComposerPackage
     {
         if (isset($this->cache[$composerName])) {
             return $this->cache[$composerName];
         }
-        $url = sprintf("https://repo.packagist.org/p2/%s.json", $composerName);
+        $url = sprintf("https://repo.packagist.org/p2/%s%s.json", $composerName, $dev ? '~dev' : '');
         $packageResponse = $this->fetchPackageData($url);
         if (!is_string($packageResponse)) {
             $this->cache[$composerName] = new ComposerPackage($composerName, 'composer req ' . $composerName, 'not found');
@@ -22,11 +22,26 @@ class PackagistService
 
         // Decode JSON response
         $packageData = json_decode($packageResponse, true);
-        if (!isset($packageData['packages'][$composerName][0]) || !is_array($packageData['packages'][$composerName][0])) {
+        if (!is_array($packageData)) {
             $this->cache[$composerName] = new ComposerPackage($composerName, 'composer req ' . $composerName, 'not found');
             return $this->cache[$composerName];
         }
-        $packageVersionData = $packageData['packages'][$composerName][0];
+        $packages = $packageData['packages'] ?? null;
+        if (!is_array($packages)) {
+            $this->cache[$composerName] = new ComposerPackage($composerName, 'composer req ' . $composerName, 'not found');
+            return $this->cache[$composerName];
+        }
+        $composerVersions = $packages[$composerName] ?? null;
+        if (!is_array($composerVersions) || !isset($composerVersions[0]) || !is_array($composerVersions[0])) {
+            // Try again with dev versions
+            if (!$dev) {
+                return $this->getComposerInfo($composerName, true);
+            }
+            $this->cache[$composerName] = new ComposerPackage($composerName, 'composer req ' . $composerName, 'not found');
+            return $this->cache[$composerName];
+        }
+        /** @var array<string, mixed> $packageVersionData */
+        $packageVersionData = $composerVersions[0];
 
         $this->cache[$composerName] = $this->getComposerInfoFromJson(
             $packageVersionData,
@@ -99,9 +114,8 @@ class PackagistService
         if ($this->timeoutOccurred) {
             return false;
         }
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
         $errorNumber = curl_errno($ch);

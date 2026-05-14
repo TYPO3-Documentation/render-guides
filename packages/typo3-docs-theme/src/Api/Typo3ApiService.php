@@ -135,6 +135,7 @@ final class Typo3ApiService
             return null;
         }
 
+        /** @var array<string, array<string, string>> $apiData */
         return $apiData;
     }
 

@@ -11,5 +11,3 @@ Redirects
 *   :ref:`mod <t3tsconfig/13.4:pagemod>
 *   :ref:`mod <t3tsconfig/12.4:pagemod>
 
-
-*   :ref:`Create a menu with TypoScript <t3ts45:menu>`

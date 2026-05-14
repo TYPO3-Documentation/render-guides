@@ -35,7 +35,7 @@ final class ConfvalMenuNodeTransformer implements NodeTransformer
         return $node;
     }
 
-    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node|null
+    public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node
     {
         assert($node instanceof ConfvalMenuNode);
         if (count($node->getConfvals()) > 0) {

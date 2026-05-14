@@ -34,6 +34,8 @@ final class DefaultInterlinkParserTest extends TestCase
         // core
         yield 'core no version' => ['typo3/cms-adminpanel', 'core', 'typo3', 'cms-adminpanel', null];
         yield 'core with version' => ['typo3/cms-adminpanel/13.4', 'core', 'typo3', 'cms-adminpanel', '13.4'];
+        yield 'core without cms prefix, no version' => ['typo3/theme-camino', 'core', 'typo3', 'theme-camino', null];
+        yield 'core without cms prefix, with version' => ['typo3/theme-camino/13.4', 'core', 'typo3', 'theme-camino', '13.4'];
 
         // generic package
         yield 'package' => ['georgringer/news', 'package', 'georgringer', 'news', null];

@@ -133,6 +133,7 @@ final class Typo3InventoryRepository implements InventoryRepository
             if ($json === []) {
                 return false;
             }
+            /** @var array<string, mixed> $json */
             $this->loadInventoryFromJson($inventoryUrl, $json, $reducedKey);
             return true;
         } catch (ClientException) {
@@ -141,7 +142,7 @@ final class Typo3InventoryRepository implements InventoryRepository
     }
 
     /**
-     * @param array<mixed> $json
+     * @param array<string, mixed> $json
      */
     private function loadInventoryFromJson(string $inventoryUrl, array $json, string $reducedKey): void
     {

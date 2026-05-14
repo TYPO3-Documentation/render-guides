@@ -18,7 +18,7 @@ final class DirectoryTreeListItemNode extends CompoundNode
         private readonly string $name,
         private readonly array $subLists,
     ) {
-        parent::__construct($items);
+        parent::__construct(array_values($items));
     }
 
     public function getName(): string

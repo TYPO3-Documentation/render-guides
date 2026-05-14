@@ -1,66 +1,31 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
+
+		-
+			message: '#^Binary operation "\." between mixed and string results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 2
-			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
 
 		-
-			message: "#^Cannot call method getValue\\(\\) on phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\|null\\.$#"
+			message: '#^Parameter \#1 \$rawAnchor of method phpDocumentor\\Guides\\ReferenceResolvers\\AnchorNormalizer\:\:reduceAnchor\(\) expects string, mixed given\.$#'
+			identifier: argument.type
 			count: 2
-			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
 
 		-
-			message: "#^Parameter \\$description of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\>, array\\<int\\<0, max\\>, mixed\\> given\\.$#"
-			count: 1
-			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
-
-		-
-			message: "#^Parameter \\$docTags of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<string, string\\>, mixed given\\.$#"
-			count: 1
-			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
-
-		-
-			message: "#^Parameter \\$documentation of class T3Docs\\\\Typo3DocsTheme\\\\Nodes\\\\ViewHelperNode constructor expects array\\<phpDocumentor\\\\Guides\\\\Nodes\\\\Node\\>, mixed given\\.$#"
-			count: 1
-			path: packages/typo3-docs-theme/src/Directives/ViewHelperDirective.php
-
-		-
-			message: "#^Result of && is always false\\.$#"
-			count: 1
-			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
-
-		-
-			message: "#^SimpleXMLElement does not accept string\\.$#"
-			count: 4
-			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
-
-		-
-			message: "#^Undefined variable\\: \\$guides$#"
+			message: '#^Parameter \#3 \$title of class phpDocumentor\\Guides\\Meta\\InternalTarget constructor expects string\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 2
-			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
+			path: packages/typo3-docs-theme/src/Compiler/NodeTransformers/CollectPrefixLinkTargetsTransformer.php
 
 		-
-			message: "#^Variable \\$guides in isset\\(\\) is never defined\\.$#"
-			count: 1
-			path: packages/typo3-guides-cli/src/Command/ConfigureCommand.php
-
-		-
-			message: "#^Method T3Docs\\\\GuidesCli\\\\Migration\\\\SettingsMigrator\\:\\:collectUnmigratedLegacySettings\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: packages/typo3-guides-cli/src/Migration/SettingsMigrator.php
-
-		-
-			message: "#^Cannot access offset 'packages' on mixed\\.$#"
-			count: 1
-			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
-
-		-
-			message: "#^Cannot access offset 0 on mixed\\.$#"
-			count: 1
-			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
-
-		-
-			message: "#^Cannot access offset string on mixed\\.$#"
-			count: 1
-			path: packages/typo3-version-handling/src/Packagist/PackagistService.php
+			message: '#^Parameter \#1 \$configs \(array\<int, mixed\>\) of method T3Docs\\Typo3DocsTheme\\DependencyInjection\\Typo3DocsThemeExtension\:\:load\(\) should be contravariant with parameter \$configs \(array\<array\<mixed\>\>\) of method Symfony\\Component\\DependencyInjection\\Extension\\ExtensionInterface\:\:load\(\)$#'
+			identifier: method.childParameterType
+			count: 2
+			path: packages/typo3-docs-theme/src/DependencyInjection/Typo3DocsThemeExtension.php

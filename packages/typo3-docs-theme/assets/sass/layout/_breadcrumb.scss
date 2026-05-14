@@ -1,25 +1,30 @@
 /**
  * Breadcrumb
  */
+
 .breadcrumb-bar {
     margin-bottom: $spacer;
-    border-bottom: 1px solid rgba(0, 0, 0, .15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+
     .breadcrumb {
         background-color: transparent;
         margin-bottom: $spacer;
         padding: 0;
     }
+
     .breadcrumb-additions {
         margin-bottom: $spacer;
         display: none;
+
         > a.btn-light:hover {
             background: $gray-200;
             outline: 2px solid $secondary;
         }
+
         > a.btn-secondary:hover {
             background: $gray-200;
             color: $secondary;

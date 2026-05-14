@@ -18,7 +18,7 @@ final class GlossaryNode extends GeneralDirectiveNode
         array $value = [],
         protected array $entries = [],
     ) {
-        parent::__construct('glossary', $plainContent, $content, $value);
+        parent::__construct('glossary', $plainContent, $content, array_values($value));
     }
 
     /**

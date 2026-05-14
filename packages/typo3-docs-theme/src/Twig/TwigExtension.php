@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Twig;
 
-use League\Flysystem\Exception;
+use League\Flysystem\FilesystemException;
 use LogicException;
 use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
@@ -617,7 +617,7 @@ final class TwigExtension extends AbstractExtension
                     $renderContext->getLoggerInformation(),
                 );
             }
-        } catch (LogicException|Exception $e) {
+        } catch (LogicException|FilesystemException $e) {
             $this->logger->error(
                 sprintf('Unable to write file "%s", %s', $outputPath, $e->getMessage()),
                 $renderContext->getLoggerInformation(),
@@ -648,12 +648,40 @@ final class TwigExtension extends AbstractExtension
     public function getPagerLinks(array $context): array
     {
         $renderContext = $this->getRenderContext($context);
+
+        // Check if current page is orphan - orphans should not have navigation meta links
         try {
-            $documentEntries = [
-                'prev' => $this->getPrevDocumentEntry($renderContext),
-                'next' => $this->getNextDocumentEntry($renderContext),
-                'top' => $this->getTopDocumentEntry($renderContext),
-            ];
+            $currentEntry = $renderContext->getCurrentDocumentEntry();
+            if ($this->isOrphanDocument($renderContext, $currentEntry)) {
+                // Only return top link for orphan pages
+                $documentEntries = [
+                    'top' => $this->getTopDocumentEntry($renderContext),
+                ];
+                return $this->getPageLinks($documentEntries, $renderContext);
+            }
+        } catch (\Exception) {
+            // Continue with normal flow
+        }
+
+        try {
+            $prevEntry = $this->getPrevDocumentEntry($renderContext);
+            $nextEntry = $this->getNextDocumentEntry($renderContext);
+
+            // Maintain original order: prev, next, top
+            $documentEntries = [];
+
+            // Only include prev link if target is not an orphan
+            if ($prevEntry !== null && !$this->isOrphanDocument($renderContext, $prevEntry)) {
+                $documentEntries['prev'] = $prevEntry;
+            }
+
+            // Only include next link if target is not an orphan
+            if ($nextEntry !== null && !$this->isOrphanDocument($renderContext, $nextEntry)) {
+                $documentEntries['next'] = $nextEntry;
+            }
+
+            $documentEntries['top'] = $this->getTopDocumentEntry($renderContext);
+
             return $this->getPageLinks($documentEntries, $renderContext);
         } catch (\Exception) {
             $documentEntries = [
@@ -671,9 +699,8 @@ final class TwigExtension extends AbstractExtension
      */
     public function getSingleHtmlLink(array $context): ?string
     {
-        /** @var RenderContext|null $renderContext */
         $renderContext = $context['env'] ?? null;
-        if (!$renderContext) {
+        if (!$renderContext instanceof RenderContext) {
             return null;
         }
 
@@ -701,9 +728,8 @@ final class TwigExtension extends AbstractExtension
      */
     public function getTopPageLink(array $context): ?PageLinkNode
     {
-        /** @var RenderContext|null $renderContext */
         $renderContext = $context['env'] ?? null;
-        if (!$renderContext) {
+        if (!$renderContext instanceof RenderContext) {
             return null;
         }
 
@@ -727,11 +753,33 @@ final class TwigExtension extends AbstractExtension
     public function getPrevNextLinks(array $context): array
     {
         $renderContext = $this->getRenderContext($context);
+
+        // Orphan pages should not display prev/next navigation links
         try {
-            $documentEntries = [
-                'prev' => $this->getPrevDocumentEntry($renderContext),
-                'next' => $this->getNextDocumentEntry($renderContext),
-            ];
+            $currentEntry = $renderContext->getCurrentDocumentEntry();
+            if ($this->isOrphanDocument($renderContext, $currentEntry)) {
+                return [];
+            }
+        } catch (\Exception) {
+            // If we can't determine current document, continue with normal flow
+        }
+
+        try {
+            $prevEntry = $this->getPrevDocumentEntry($renderContext);
+            $nextEntry = $this->getNextDocumentEntry($renderContext);
+
+            $documentEntries = [];
+
+            // Only include prev link if target is not an orphan
+            if ($prevEntry !== null && !$this->isOrphanDocument($renderContext, $prevEntry)) {
+                $documentEntries['prev'] = $prevEntry;
+            }
+
+            // Only include next link if target is not an orphan
+            if ($nextEntry !== null && !$this->isOrphanDocument($renderContext, $nextEntry)) {
+                $documentEntries['next'] = $nextEntry;
+            }
+
             return $this->getPageLinks($documentEntries, $renderContext);
         } catch (\Exception) {
             return [];
@@ -751,6 +799,31 @@ final class TwigExtension extends AbstractExtension
     private function getTopDocumentEntry(RenderContext $renderContext): DocumentEntryNode
     {
         return $renderContext->getProjectNode()->getRootDocumentEntry();
+    }
+
+    /**
+     * Check if a document entry corresponds to an orphan page.
+     * Orphan pages are marked with the :orphan: directive and should not
+     * appear in navigation links (prev/next).
+     */
+    private function isOrphanDocument(RenderContext $renderContext, ?DocumentEntryNode $documentEntry): bool
+    {
+        if ($documentEntry === null) {
+            return false;
+        }
+
+        try {
+            $document = $renderContext->getDocumentNodeForEntry($documentEntry);
+            foreach ($document->getHeaderNodes() as $headerNode) {
+                if ($headerNode instanceof OrphanNode) {
+                    return true;
+                }
+            }
+        } catch (\Exception) {
+            return false;
+        }
+
+        return false;
     }
 
     /** @param array{env: RenderContext} $context */

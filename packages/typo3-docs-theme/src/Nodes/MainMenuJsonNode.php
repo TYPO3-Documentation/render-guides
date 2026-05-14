@@ -16,7 +16,7 @@ final class MainMenuJsonNode extends GeneralDirectiveNode
         protected readonly InlineCompoundNode $content,
         array $value = [],
     ) {
-        parent::__construct('main-menu-json', $plainContent, $content, $value);
+        parent::__construct('main-menu-json', $plainContent, $content, array_values($value));
     }
 
 }

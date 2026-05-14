@@ -47,7 +47,7 @@ final class Typo3FileDirective extends SubDirective
         BlockContext $blockContext,
         CollectionNode $collectionNode,
         Directive $directive,
-    ): Node|null {
+    ): Node {
         $filename = $directive->getData();
         $path = $directive->getOptionString('path');
         $language = $directive->getOptionString('language');

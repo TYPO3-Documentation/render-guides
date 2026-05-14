@@ -1,20 +1,13 @@
 .search-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1050;
+    border: none;
+    background-color: unset;
+    margin-top: 0;
+    padding: 0;
+    width: auto;
     display: flex;
-    align-items: flex-start;
     justify-content: center;
 
-    &__overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+    &::backdrop {
         background-color: rgba(0, 0, 0, 0.5);
     }
 
@@ -23,7 +16,7 @@
         width: 100%;
         max-width: 800px;
         margin: 2rem;
-        background-color: #fff;
+        background-color: #ffffff;
         border-radius: 5px;
         overflow: hidden;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -118,7 +111,7 @@
     }
 
     &__section {
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
 
         &:last-child {
             margin-bottom: 0;
@@ -135,7 +128,7 @@
     &__divider {
         height: 1px;
         background-color: #e9ecef;
-        margin: .5rem 1rem;
+        margin: 0.5rem 1rem;
     }
 
     &__loading {
@@ -200,7 +193,9 @@
         min-width: 0;
     }
 
-    &__title, &__scope-name, &__scope-type {
+    &__title,
+    &__scope-name,
+    &__scope-type {
         font-size: 1rem;
         font-weight: 700;
         color: #212529;
@@ -221,13 +216,11 @@
         color: $primary;
     }
 
-
     &__scope-type {
         font-size: 1rem;
         font-weight: 400;
         color: #6c757d;
     }
-
 
     &__description {
         font-size: 1rem;

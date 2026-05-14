@@ -11,6 +11,7 @@ const SearchModal = ({ isOpen, onClose }) => {
     const [activeIndex, setActiveIndex] = useState(-1);
     const suggestionsRef = useRef([]);
     const inputRef = useRef();
+    const dialogRef = useRef();
 
     const {
         fileSuggestions,
@@ -179,28 +180,40 @@ const SearchModal = ({ isOpen, onClose }) => {
     }, [activeIndex]);
 
     useEffect(() => {
-        const handleEscape = (e) => {
-            if (e.key === 'Escape') {
-                onClose();
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+
+        if (isOpen && !dialog.open) {
+            dialog.showModal();
+        } else if (!isOpen && dialog.open) {
+            dialog.close();
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+
+        const handleClose = () => onClose();
+        dialog.addEventListener('close', handleClose);
+
+        // Polyfill closedby="any" for Safari: clicking the ::backdrop
+        // fires a click on the <dialog> itself, not on any child element.
+        const handleBackdropClick = (e) => {
+            if (e.target === dialog) {
+                dialog.close();
             }
         };
-
-        if (isOpen) {
-            document.addEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'hidden';
-        }
+        dialog.addEventListener('click', handleBackdropClick);
 
         return () => {
-            document.removeEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'unset';
+            dialog.removeEventListener('close', handleClose);
+            dialog.removeEventListener('click', handleBackdropClick);
         };
-    }, [isOpen, onClose]);
-
-    if (!isOpen) return null;
+    }, [onClose]);
 
     return (
-        <div className="search-modal">
-            <div className="search-modal__overlay" onClick={onClose}></div>
+        <dialog ref={dialogRef} id="search-modal" className="search-modal" closedby="any">
             <div className="search-modal__content">
                 <div className="search-modal__header">
                     <div className="search-modal__input-wrapper"
@@ -312,7 +325,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                     )}
                 </ul>
             </div>
-        </div>
+        </dialog>
     );
 };
 

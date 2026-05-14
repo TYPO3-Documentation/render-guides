@@ -2,10 +2,12 @@
     border-left: 5px solid $border-color;
     padding-left: 1em;
     margin: 1em 0;
+
     .versionmodified {
+
         .versionicon {
             color: $icon-color;
-            padding-right: .5em;
+            padding-right: 0.5em;
         }
         color: $text-color;
         font-weight: bold;
@@ -13,21 +15,28 @@
         padding: 0 2px;
     }
 }
+
 /**
  * Version Added, Changed, Deprecated
  */
+
 .deprecated {
     @include version-changed($gray-700);
 }
+
 .versionadded {
     @include version-changed($success);
 }
+
 .versionchanged {
     @include version-changed($info);
 }
 
 .admonition {
-    .deprecated, .versionadded, .versionchanged {
+
+    .deprecated,
+    .versionadded,
+    .versionchanged {
         border: none;
         padding: 0;
     }

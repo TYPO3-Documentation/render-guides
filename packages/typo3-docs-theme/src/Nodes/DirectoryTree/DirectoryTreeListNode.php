@@ -12,7 +12,7 @@ final class DirectoryTreeListNode extends CompoundNode
      */
     public function __construct(array $items, private readonly string $name)
     {
-        parent::__construct($items);
+        parent::__construct(array_values($items));
     }
 
     public function getName(): string

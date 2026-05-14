@@ -7,7 +7,6 @@
 
 // Variables
 @import 'variables';
-
 @import '../../node_modules/bootstrap/scss/bootstrap-reboot';
 
 // Dependencies
@@ -48,6 +47,7 @@
 @import 'components/uml';
 @import 'components/allDocumentationMenu';
 @import 'components/search';
+@import 'component_image_zoom';
 
 // Additional classes that can be applied by .. rst-class::
 @import 'components/customClasses/bignums';
@@ -74,4 +74,3 @@
 
 // misc
 @import 'utilities';
-

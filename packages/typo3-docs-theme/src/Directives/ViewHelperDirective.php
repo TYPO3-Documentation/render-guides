@@ -95,12 +95,20 @@ final class ViewHelperDirective extends BaseDirective
 
         $noindex = $directive->getOptionBool('noindex');
 
+        /** @var array<string, mixed> $data */
         $data = $json['viewHelpers'][$directive->getData()];
-        $viewHelperNode = $this->getViewHelperNode($directive, $data, $json['sourceEdit'] ?? [], $blockContext, $noindex);
+        /** @var array<string, array{sourcePrefix: string, editPrefix: string}> $sourceEdit */
+        $sourceEdit = is_array($json['sourceEdit'] ?? null) ? $json['sourceEdit'] : [];
+        $viewHelperNode = $this->getViewHelperNode($directive, $data, $sourceEdit, $blockContext, $noindex);
+        /** @var array<string, ViewHelperArgumentNode> $arguments */
         $arguments = [];
-        foreach ($json['viewHelpers'][$directive->getData()]['argumentDefinitions'] ?? [] as $argumentDefinition) {
-            if (is_array($argumentDefinition)) {
-                $arguments[$this->getString($argumentDefinition, 'name')] = $this->getArgument($argumentDefinition, $viewHelperNode, $noindex);
+        $argumentDefs = $data['argumentDefinitions'] ?? [];
+        if (is_array($argumentDefs)) {
+            foreach ($argumentDefs as $argumentDefinition) {
+                if (is_array($argumentDefinition)) {
+                    /** @var array<string, string> $argumentDefinition */
+                    $arguments[$this->getString($argumentDefinition, 'name')] = $this->getArgument($argumentDefinition, $viewHelperNode, $noindex);
+                }
             }
         }
         if ($sortBy === 'name') {
@@ -155,35 +163,45 @@ final class ViewHelperDirective extends BaseDirective
     private function getViewHelperNode(Directive $directive, array $data, array $sourceEdit, BlockContext $blockContext, bool $noindex): ViewHelperNode
     {
         $rawDocumentation = $this->getString($data, 'documentation');
+        /** @var list<Node> $description */
         $description = [];
+        /** @var list<Node> $sections */
         $sections = [];
+        /** @var list<Node> $examples */
         $examples = [];
         if (str_contains($rawDocumentation, '```')) {
-            $node = $this->markupLanguageParser->parse($blockContext->getDocumentParserContext()->getContext(), $rawDocumentation);
-            $collectionNode = new CollectionNode($node->getValue());
-            foreach ($node->getValue() as $node) {
-                if ($node instanceof ParagraphNode) {
-                    $description[] = $node;
+            $documentNode = $this->markupLanguageParser->parse($blockContext->getDocumentParserContext()->getContext(), $rawDocumentation);
+            $rawValue = $documentNode->getValue();
+            /** @var list<Node> $childNodes */
+            $childNodes = is_array($rawValue) ? array_values($rawValue) : [];
+            $collectionNode = new CollectionNode($childNodes);
+            foreach ($childNodes as $childNode) {
+                if ($childNode instanceof ParagraphNode) {
+                    $description[] = $childNode;
                 }
-                if ($node instanceof CodeNode) {
-                    $examples[] = $node;
+                if ($childNode instanceof CodeNode) {
+                    $examples[] = $childNode;
                 }
             }
         } else {
             $rstContentBlockContext = new BlockContext($blockContext->getDocumentParserContext(), $rawDocumentation, false);
-            $collectionNode = $this->startingRule->apply($rstContentBlockContext);
-            foreach ($collectionNode->getValue() as $node) {
-                if (!$node instanceof SectionNode) {
-                    $description[] = $node;
+            $parsedNode = $this->startingRule->apply($rstContentBlockContext);
+            $rawValue = $parsedNode?->getValue();
+            /** @var list<Node> $collectionChildren */
+            $collectionChildren = is_array($rawValue) ? array_values($rawValue) : [];
+            $collectionNode = new CollectionNode($collectionChildren);
+            foreach ($collectionChildren as $childNode) {
+                if (!$childNode instanceof SectionNode) {
+                    $description[] = $childNode;
                 }
             }
-            foreach ($collectionNode->getValue() as $node) {
-                if ($node instanceof SectionNode) {
-                    $title = $node->getTitle()->toString();
+            foreach ($collectionChildren as $childNode) {
+                if ($childNode instanceof SectionNode) {
+                    $title = $childNode->getTitle()->toString();
                     if (stripos($title, 'example') !== false) { // Case-insensitive check for 'example'
-                        $examples[] = $node;
+                        $examples[] = $childNode;
                     } else {
-                        $sections[] = $node;
+                        $sections[] = $childNode;
                     }
                 }
             }
@@ -201,25 +219,47 @@ final class ViewHelperDirective extends BaseDirective
             $display =  array_map('trim', explode(',', $directive->getOptionString('display')));
         }
         $viewHelperId = $this->anchorNormalizer->reduceAnchor($className);
+        $rawDocs = $collectionNode->getValue();
+        /** @var list<Node> $documentationNodes */
+        $documentationNodes = is_array($rawDocs) ? $rawDocs : [];
         $viewHelperNode = new ViewHelperNode(
             id: $viewHelperId,
             tagName: $this->getString($data, 'tagName'),
             shortClassName: $shortClassName,
             namespace: $nameSpace,
             className: $className,
-            documentation: $collectionNode?->getValue() ?? [],
+            documentation: $documentationNodes,
             description: $description,
             sections: $sections,
             examples: $examples,
             xmlNamespace: $xmlNamespace,
             allowsArbitraryArguments: ($data['allowsArbitraryArguments'] ?? false) === true,
-            docTags: $data['docTags'] ?? [],
+            docTags: $this->extractDocTags($data),
             gitHubLink: $gitHubLink,
             noindex: $noindex,
             display: $display,
             arguments: [],
         );
         return $viewHelperNode;
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     * @return array<string, string>
+     */
+    private function extractDocTags(array $data): array
+    {
+        $docTags = $data['docTags'] ?? [];
+        if (!is_array($docTags)) {
+            return [];
+        }
+        $result = [];
+        foreach ($docTags as $key => $value) {
+            if (is_string($key) && is_scalar($value)) {
+                $result[$key] = (string) $value;
+            }
+        }
+        return $result;
     }
 
     private function getErrorNode(): ParagraphNode

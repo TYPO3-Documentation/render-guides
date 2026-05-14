@@ -3,6 +3,7 @@
     flex-direction: column;
     min-height: 100vh;
 }
+
 .page-topbar {
     position: relative;
     flex-grow: 0;
@@ -12,6 +13,7 @@
 /**
  * Header
  */
+
 .page-header {
     position: relative;
     z-index: 1;
@@ -20,12 +22,14 @@
     background: #ffffff;
     box-shadow: $box-shadow-sm;
 }
+
 .page-header-inner {
     max-width: 100%;
     width: map-get($container-max-widths, 'xl');
     margin: 0 auto;
     padding: 0 calc(#{$grid-gutter-width} / 2);
 }
+
 .menu-search-wrapper {
     display: flex;
     align-items: center;
@@ -37,10 +41,12 @@
 /**
  * Main
  */
+
 .page-main {
     display: flex;
     flex-grow: 1;
 }
+
 .page-main-inner {
     display: flex;
     flex-flow: wrap column;
@@ -53,14 +59,15 @@
         flex-flow: nowrap row;
     }
 }
+
 .page-main-navigation {
     flex-grow: 0;
-    background-color: #fff;
+    background-color: #ffffff;
     z-index: 1;
     margin-left: calc(#{$grid-gutter-width} / 2 * -1);
     margin-right: calc(#{$grid-gutter-width} / 2 * -1);
     padding: calc(#{$grid-gutter-width} / 2);
-    border-bottom: 1px solid rgba(0, 0, 0, .15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     @include media-breakpoint-up(lg) {
         padding: ($spacer * 2) 0;
         flex-shrink: 0;
@@ -70,12 +77,13 @@
         margin-right: $grid-gutter-width;
         padding-right: calc(#{$grid-gutter-width} / 2);
         border-bottom: none;
-        border-right: 1px solid rgba(0, 0, 0, .15);
+        border-right: 1px solid rgba(0, 0, 0, 0.15);
         position: sticky;
         top: 114px;
         overflow: auto;
     }
 }
+
 .page-main-content {
     padding-top: ($spacer * 2);
     padding-bottom: ($spacer * 2);
@@ -87,10 +95,12 @@
 /**
 * Sections
 */
+
 section {
     @include clearfix;
     margin-top: ($spacer * 2.5);
     margin-bottom: ($spacer * 2.5);
+
     &.confval-section {
         margin-top: 0;
         margin-bottom: 0;

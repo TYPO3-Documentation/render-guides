@@ -1,1 +1,1 @@
-app.ERROR: Error while processing "typo3:site-set-settings" directive in "index": Path is outside of the defined root, path: [/../../../tests/Integration/tests/site-set/input/_includes/Sets/FluidStyledContent/settings.definitions.yaml] {"rst-file":"index.rst","currentLineNumber":1} []
+app.ERROR: Error while processing "typo3:site-set-settings" directive in "index": Path traversal detected: /../../../tests/Integration/tests/site-set/input/_includes/Sets/FluidStyledContent/settings.definitions.yaml {"rst-file":"index.rst","currentLineNumber":1} []

@@ -37,6 +37,7 @@ class LegacySettingsRepository
             throw FileException::notParsable($filePath);
         }
 
+        /** @var array<string, array<string, string>> $settings */
         return $settings;
     }
 }

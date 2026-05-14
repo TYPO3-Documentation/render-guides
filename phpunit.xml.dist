@@ -17,6 +17,9 @@
         cacheDirectory=".cache/.phpunit.cache"
         requireCoverageMetadata="false"
 >
+    <php>
+        <ini name="date.timezone" value="UTC"/>
+    </php>
     <testsuites>
         <testsuite name="unit">
             <directory>packages/**/tests/unit/</directory>

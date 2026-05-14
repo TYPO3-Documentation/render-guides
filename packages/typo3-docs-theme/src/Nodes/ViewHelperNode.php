@@ -41,7 +41,7 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
         private readonly array $display = [],
         private array $arguments = [],
     ) {
-        parent::__construct('viewhelper', $tagName, new InlineCompoundNode([new PlainTextInlineNode($tagName)]), $documentation);
+        parent::__construct('viewhelper', $tagName, new InlineCompoundNode([new PlainTextInlineNode($tagName)]), array_values($documentation));
     }
 
     /**
@@ -131,7 +131,7 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
     }
 
     /**
-     * @param ViewHelperArgumentNode[] $arguments
+     * @param array<string, ViewHelperArgumentNode> $arguments
      */
     public function setArguments(array $arguments): void
     {

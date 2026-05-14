@@ -54,9 +54,6 @@ final class IncludeDirective extends BaseDirective
     }
 
 
-    /**
-     * @throws \League\Flysystem\FileNotFoundException
-     */
     public function resolveGlobInclude(BlockContext $blockContext, string $inputPath, Directive $directive): LiteralBlockNode|CollectionNode|CodeNode
     {
         $parserContext = $blockContext->getDocumentParserContext()->getParser()->getParserContext();
@@ -103,9 +100,6 @@ final class IncludeDirective extends BaseDirective
         return new CollectionNode($nodes);
     }
 
-    /**
-     * @throws \League\Flysystem\FileNotFoundException
-     */
     public function resolveBasicInclude(BlockContext $blockContext, string $inputPath, Directive $directive): LiteralBlockNode|CollectionNode|CodeNode
     {
         $parserContext = $blockContext->getDocumentParserContext()->getParser()->getParserContext();
@@ -121,9 +115,6 @@ final class IncludeDirective extends BaseDirective
         return $this->getCollectionFromPath($origin, $path, $directive, $blockContext);
     }
 
-    /**
-     * @throws \League\Flysystem\FileNotFoundException
-     */
     public function getCollectionFromPath(\League\Flysystem\FilesystemInterface|\phpDocumentor\FileSystem\FileSystem $origin, string $path, Directive $directive, BlockContext $blockContext): LiteralBlockNode|CollectionNode|CodeNode
     {
         $contents = $origin->read($path);
@@ -159,7 +150,7 @@ final class IncludeDirective extends BaseDirective
         if ($directive->getOptionBool('show-buttons')) {
             $buttons[] = new EditOnGithubIncludeNode($path);
         }
-        return new CollectionNode(array_merge($buttons, $document->getChildren()));
+        return new CollectionNode(array_values(array_merge($buttons, $document->getChildren())));
     }
 
     /**

@@ -2,6 +2,7 @@ dl.command {
     @extend .property-card;
 
     & > dt {
+
         a:not([class*=headerlink]) {
             float: right;
         }
@@ -13,6 +14,7 @@ dl.command {
 
     .command-options,
     .command-arguments {
+
         section {
             margin-left: calc($spacer * 2);
         }

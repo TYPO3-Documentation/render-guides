@@ -10,8 +10,10 @@
         }
     },
     "require": {
+        "php": "^8.2",
         "ext-dom": "*",
         "ext-libxml": "*",
+        "ext-simplexml": "*",
         "t3docs/typo3-version-handling": "self.version"
     },
     "bin": [
