@@ -8,12 +8,12 @@ class PackagistService
     private array $cache = [];
     private bool $timeoutOccurred = false;
 
-    public function getComposerInfo(string $composerName): ComposerPackage
+    public function getComposerInfo(string $composerName, bool $dev = false): ComposerPackage
     {
         if (isset($this->cache[$composerName])) {
             return $this->cache[$composerName];
         }
-        $url = sprintf("https://repo.packagist.org/p2/%s.json", $composerName);
+        $url = sprintf("https://repo.packagist.org/p2/%s%s.json", $composerName, $dev ? '~dev' : '');
         $packageResponse = $this->fetchPackageData($url);
         if (!is_string($packageResponse)) {
             $this->cache[$composerName] = new ComposerPackage($composerName, 'composer req ' . $composerName, 'not found');
@@ -33,6 +33,10 @@ class PackagistService
         }
         $composerVersions = $packages[$composerName] ?? null;
         if (!is_array($composerVersions) || !isset($composerVersions[0]) || !is_array($composerVersions[0])) {
+            // Try again with dev versions
+            if (!$dev) {
+                return $this->getComposerInfo($composerName, true);
+            }
             $this->cache[$composerName] = new ComposerPackage($composerName, 'composer req ' . $composerName, 'not found');
             return $this->cache[$composerName];
         }
