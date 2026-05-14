@@ -1,7 +1,9 @@
 //
 // Sphinx extension: sphinxcontrib-phpdomain
 //
+
 .rst-content {
+
     dl.php {
         @extend .property-card;
     }

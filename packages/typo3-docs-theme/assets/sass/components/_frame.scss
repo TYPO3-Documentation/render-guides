@@ -3,12 +3,12 @@
 // --------------------------------------------------
 $frame-color:                   inherit !default;
 $frame-background:              transparent !default;
-$frame-embedded-border-radius:  .5rem !default;
+$frame-embedded-border-radius:  0.5rem !default;
 $frame-width-large:             1600px !default;
 $frame-width-medium:            870px !default;
 $frame-width-small:             600px !default;
 $frame-inner-spacing:           1.75rem !default;
-$frame-inner-spacing-small:     .75rem !default;
+$frame-inner-spacing-small:     0.75rem !default;
 $frame-inner-spacing-scaling:   () !default;
 $frame-inner-spacing-scaling:   map-merge(
     (
@@ -123,6 +123,7 @@ $frame-backgrounds: map-merge(
 //
 // CSS Variables
 // --------------------------------------------------
+
 :root {
     --frame-color: #{$frame-color};
     --frame-link-color: #{$link-color};
@@ -148,6 +149,7 @@ $frame-backgrounds: map-merge(
 //
 // Frame
 // --------------------------------------------------
+
 .frame {
     position: relative;
     margin-top: var(--frame-outer-spacing-before);
@@ -156,9 +158,11 @@ $frame-backgrounds: map-merge(
     padding-bottom: var(--frame-spacing);
     color: var(--frame-color);
     background: var(--frame-background);
+
     a[class=""],
     a:not([class]) {
         color: var(--frame-link-color);
+
         &:hover {
             color: var(--frame-link-hover-color);
         }
@@ -169,7 +173,9 @@ $frame-backgrounds: map-merge(
         }
     }
 }
+
 .frame-inner {
+
     > *:last-child {
         margin-bottom: 0;
     }
@@ -178,8 +184,10 @@ $frame-backgrounds: map-merge(
 //
 // Layout
 //
+
 .frame-layout-embedded {
     background: transparent;
+
     .frame-group-container {
         @include make-container();
         @each $breakpoint, $container-max-width in $container-max-widths {
@@ -187,28 +195,35 @@ $frame-backgrounds: map-merge(
                 max-width: $container-max-width;
             }
         }
+
         &-full {
             max-width: 100%;
         }
+
         &-large {
             max-width: var(--frame-width-large);
         }
+
         &-medium {
             max-width: var(--frame-width-medium);
         }
+
         &-small {
             max-width: var(--frame-width-small);
         }
     }
+
     .frame-group-inner {
         position: relative;
         border-radius: var(--frame-embedded-border-radius);
         background: var(--frame-background);
         padding: var(--frame-spacing);
     }
+
     .frame-container {
         padding: 0;
     }
+
     .frame-backgroundimage-container {
         border-radius: var(--frame-embedded-border-radius);
     }
@@ -217,9 +232,11 @@ $frame-backgrounds: map-merge(
 //
 // Container
 // --------------------------------------------------
+
 .frame-container {
     position: relative;
     @include make-container();
+
     &-default {
         @each $breakpoint, $container-max-width in $container-max-widths {
             @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
@@ -227,20 +244,26 @@ $frame-backgrounds: map-merge(
             }
         }
     }
+
     &-full {
         max-width: 100%;
     }
+
     &-large {
         max-width: var(--frame-width-large);
     }
+
     &-medium {
         max-width: var(--frame-width-medium);
     }
+
     &-small {
         max-width: var(--frame-width-small);
     }
 }
+
 .container {
+
     .frame-container,
     .frame-group-container {
         padding-left: 0;
@@ -251,14 +274,18 @@ $frame-backgrounds: map-merge(
 //
 // Frame Styles
 // --------------------------------------------------
+
 .frame-ruler-before {
-    border-top: 1px solid rgba(0, 0, 0, .125);
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
     margin-top: 0;
 }
+
 .frame-ruler-after {
-    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
+
 .frame-indent {
+
     .frame-inner {
         @each $breakpoint in map-keys($grid-breakpoints) {
             $i: index(map-keys($grid-breakpoints), $breakpoint);
@@ -270,7 +297,9 @@ $frame-backgrounds: map-merge(
         }
     }
 }
+
 .frame-indent-left {
+
     .frame-inner {
         @each $breakpoint in map-keys($grid-breakpoints) {
             $i: index(map-keys($grid-breakpoints), $breakpoint);
@@ -281,7 +310,9 @@ $frame-backgrounds: map-merge(
         }
     }
 }
+
 .frame-indent-right {
+
     .frame-inner {
         @each $breakpoint in map-keys($grid-breakpoints) {
             $i: index(map-keys($grid-breakpoints), $breakpoint);
@@ -296,6 +327,7 @@ $frame-backgrounds: map-merge(
 //
 // Size
 // --------------------------------------------------
+
 .frame-size-small {
     @each $breakpoint in map-keys($frame-inner-spacing-scaling) {
         @include media-breakpoint-up($breakpoint) {
@@ -307,29 +339,35 @@ $frame-backgrounds: map-merge(
 //
 // Height
 // --------------------------------------------------
+
 .frame-height-small,
 .frame-height-medium,
 .frame-height-max {
     display: flex;
+
     .frame-group-container,
     .frame-group-inner {
         display: flex;
         flex-grow: 1;
     }
+
     .frame-container {
         display: flex;
         align-items: center;
     }
+
     .frame-inner {
         flex-grow: 1;
     }
 }
+
 .frame-height-small {
     min-height: 300px;
     @include media-breakpoint-up(md) {
         min-height: 400px;
     }
 }
+
 .frame-height-medium {
     min-height: 400px;
     @include media-breakpoint-up(md) {
@@ -340,9 +378,12 @@ $frame-backgrounds: map-merge(
 //
 // Background
 // --------------------------------------------------
+
 .container {
+
     .frame-has-backgroundimage,
     %frame-has-backgroundimage {
+
         &:not(.frame-layout-embedded) {
             padding-left: var(--frame-spacing);
             padding-right: var(--frame-spacing);
@@ -377,6 +418,7 @@ $frame-backgrounds: map-merge(
         @extend %frame-collapsible;
     }
 }
+
 .frame-layout-embedded.frame-space-after-none:not(.frame-ruler-after) + .frame-layout-embedded.frame-space-before-none:not(.frame-ruler-before) {
     @extend %frame-collapsible;
 }
@@ -384,9 +426,11 @@ $frame-backgrounds: map-merge(
 //
 // Background Image
 // --------------------------------------------------
+
 .frame-backgroundimage-container {
     overflow: hidden;
 }
+
 .frame-backgroundimage-container,
 .frame-backgroundimage {
     position: absolute;
@@ -397,9 +441,11 @@ $frame-backgrounds: map-merge(
     background-position: center;
     background-size: cover;
 }
+
 .frame-backgroundimage-fade {
-    opacity: .125;
+    opacity: 0.125;
 }
+
 .frame-backgroundimage-parallax {
     background-attachment: fixed;
     @media (hover: none) {
@@ -407,6 +453,7 @@ $frame-backgrounds: map-merge(
     }
     background-repeat: no-repeat;
 }
+
 .frame-backgroundimage-blur {
     filter: blur(10px);
     width: calc(100% + 40px);
@@ -414,9 +461,11 @@ $frame-backgrounds: map-merge(
     top: -20px;
     left: -20px;
 }
+
 .frame-backgroundimage-grayscale {
     filter: grayscale(1);
 }
+
 .frame-backgroundimage-sepia {
     filter: sepia(1);
 }
@@ -436,27 +485,32 @@ $frame-backgrounds: map-merge(
 //
 // Frame Header
 // --------------------------------------------------
+
 .frame-header {
     margin-bottom: $spacer;
+
     > *:last-child {
         margin-bottom: 0;
     }
 }
+
 .frame-header-permalink {
     position: relative;
     display: inline-flex;
     vertical-align: middle;
     color: inherit;
-    opacity: .25;
-    transition: opacity ease-in-out .3s;
+    opacity: 0.25;
+    transition: opacity ease-in-out 0.3s;
     visibility: hidden;
-    top: -.1em;
+    top: -0.1em;
+
     &:hover {
         color: inherit;
         text-decoration: none;
-        opacity: .75;
+        opacity: 0.75;
     }
 }
+
 *:hover > .frame-header-permalink {
     visibility: visible;
 }

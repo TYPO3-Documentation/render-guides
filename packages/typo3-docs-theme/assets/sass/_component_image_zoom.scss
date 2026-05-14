@@ -10,6 +10,7 @@
 // -----------------------------------------------------------------------------
 // CSS-Only Lightbox (No JavaScript Fallback)
 // -----------------------------------------------------------------------------
+
 .image-zoom-overlay {
     display: none;
     position: fixed;
@@ -62,6 +63,7 @@
 // -----------------------------------------------------------------------------
 // Native Dialog Lightbox
 // -----------------------------------------------------------------------------
+
 .image-lightbox-dialog {
     border: none;
     background: transparent;
@@ -110,6 +112,7 @@
 }
 
 // Trigger image styling
+
 .lightbox-trigger {
     cursor: zoom-in;
     transition: opacity 0.2s ease;
@@ -127,6 +130,7 @@
 // -----------------------------------------------------------------------------
 // Gallery Overlay (PhotoSwipe-style)
 // -----------------------------------------------------------------------------
+
 .image-gallery-overlay {
     display: none;
     position: fixed;
@@ -245,6 +249,7 @@
 // -----------------------------------------------------------------------------
 // Product-Style Inline Zoom
 // -----------------------------------------------------------------------------
+
 .inline-zoom-container {
     position: relative;
     display: inline-block;
@@ -292,6 +297,7 @@
 // -----------------------------------------------------------------------------
 // Magnifier Lens
 // -----------------------------------------------------------------------------
+
 .lens-zoom-container {
     position: relative;
     display: inline-block;
@@ -321,8 +327,8 @@
     position: fixed;  // Use fixed positioning for viewport-aware placement
     width: 300px;
     height: 300px;
-    border: 1px solid #ddd;
-    background-color: #fff;  // Add white background
+    border: 1px solid #dddddd;
+    background-color: #ffffff;  // Add white background
     background-repeat: no-repeat;
     display: none;
     border-radius: 4px;
@@ -334,6 +340,7 @@
 // Reduced Motion
 // -----------------------------------------------------------------------------
 @media (prefers-reduced-motion: reduce) {
+
     .image-lightbox-dialog img,
     .gallery-content img,
     .inline-zoom-container img {
@@ -344,6 +351,7 @@
 // -----------------------------------------------------------------------------
 // Thumbnails
 // -----------------------------------------------------------------------------
+
 .zoom-thumbnail {
     width: 150px;
     height: 100px;
