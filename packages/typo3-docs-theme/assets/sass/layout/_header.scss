@@ -36,21 +36,19 @@ header {
             }
 
             &:hover {
-                text-decoration: .1em underline;
+                text-decoration: 0.1em underline;
             }
         }
 
         .form-select {
-            padding-top: .25rem;
-            padding-bottom: .25rem;
-            padding-left: .5rem;
-            padding-right: 2rem; /* space for dropdown arrow */
-            height: calc(1.5em + .5rem + 2px); /* matches .btn-sm */
+            padding: 0.25rem 2rem 0.25rem 0.5rem; /* space for dropdown arrow */
+            height: calc(1.5em + 0.5rem + 2px); /* matches .btn-sm */
             line-height: 1.5;
-            font-size: .875rem;
+            font-size: 0.875rem;
             width: auto;
         }
     }
+
     #options-panel {
         display: none;
         position: absolute;
@@ -69,7 +67,7 @@ header {
         }
 
         .dropdown-header {
-            padding: 0.25rem 0.75rem 0.25rem;
+            padding: 0.25rem 0.75rem;
             font-size: 0.75rem;
             font-weight: 600;
             color: $body-color; // now consistent with dropdown items

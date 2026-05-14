@@ -3,19 +3,20 @@
 }
 
 article {
+
     a.toggle-section {
         position: relative;
-        font-size: .65em;
-        top: -.15em;
+        font-size: 0.65em;
+        top: -0.15em;
         text-decoration: none;
         color: $gray-700;
         visibility: hidden;
     }
+
     *:hover {
+
         & > a.toggle-section {
             visibility: visible;
         }
     }
-
 }
-

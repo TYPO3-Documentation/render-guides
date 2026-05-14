@@ -1,6 +1,6 @@
 @mixin inline-box($border-color: $light, $background-color: lighten($border-color, 50%), $text-color: color-contrast($background-color)) {
     display: inline-block;
-    padding: .25em .5em;
+    padding: 0.25em 0.5em;
     box-shadow: $box-shadow-sm, inset 0 0 0 2px $white;
     background-color: $background-color;
     color: $text-color;

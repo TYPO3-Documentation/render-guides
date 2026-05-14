@@ -52,6 +52,7 @@
             padding-left: 0;
 
             .active {
+
                 > ul {
                     display: block !important;
                 }
@@ -59,12 +60,13 @@
 
             &:not(:last-child) {
                 padding-bottom: $spacer;
-                border-bottom: 1px solid rgba(0, 0, 0, .15);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.15);
             }
 
             > li {
+
                 &.active {
-                    border-left: 1px solid rgba(0, 0, 0, .15);
+                    border-left: 1px solid rgba(0, 0, 0, 0.15);
                     border-radius: 0;
                 }
 
@@ -82,7 +84,6 @@
             &.current {
                 border-left: none;
             }
-
             @include media-breakpoint-up(lg) {
                 font-size: 1rem;
             }
@@ -125,6 +126,7 @@
             font-weight: bold;
 
             > .toctree-expand {
+
                 &:before {
                     display: none;
                 }

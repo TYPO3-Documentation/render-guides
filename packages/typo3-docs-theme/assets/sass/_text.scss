@@ -25,12 +25,14 @@ span.invalid-link {
 }
 
 li {
+
     p:last-of-type {
         margin-bottom: 0;
     }
 }
 
 article {
+
     a:not([class*="btn"]) {
         @extend .text-break;
         text-decoration: underline;
@@ -43,7 +45,7 @@ article {
     }
 
     li {
-        margin-top: ($spacer * .5);
+        margin-top: ($spacer * 0.5);
 
         &::marker {
             color: $orange;

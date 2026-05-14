@@ -20,7 +20,7 @@
     font-weight: bold;
     font-size: 1.25em;
 
-    &::before {
+    &:before {
         @include fa-icon;
         content: fa-content($fa-var-info-circle);
         font-family: 'Font Awesome 6 Free';
@@ -28,15 +28,15 @@
         margin-right: calc(#{$spacer} / 2);
     }
 }
-
 @each $type, $border-color, $icon in $admonition-icons {
+
     .admonition {
         &.#{$type} {
             @if $border-color {
                 border-color: #{$border-color};
             }
 
-            .admonition-title::before {
+            .admonition-title:before {
                 content: fa-content(#{$icon});
             }
         }
