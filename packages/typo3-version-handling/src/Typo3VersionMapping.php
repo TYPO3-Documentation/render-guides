@@ -7,6 +7,7 @@ enum Typo3VersionMapping: string
     case Dev = 'dev';
     case Stable = 'stable';
     case OldStable = 'oldstable';
+    case V15 = '15';
     case V14 = '14';
     case V13 = '13';
     case V12 = '12';
@@ -24,9 +25,10 @@ enum Typo3VersionMapping: string
             //         also do a PR on https://github.com/TYPO3GmbH/site-intercept/blob/develop/legacy_hook/composer.json
             //         to raise the required composer package version!
             Typo3VersionMapping::Dev => 'main',
-            Typo3VersionMapping::Stable => '13.4',
-            Typo3VersionMapping::OldStable => '12.4',
-            Typo3VersionMapping::V14 => 'main',
+            Typo3VersionMapping::Stable => '14.3',
+            Typo3VersionMapping::OldStable => '13.4',
+            Typo3VersionMapping::V15 => 'main',
+            Typo3VersionMapping::V14 => '14.3',
             Typo3VersionMapping::V13 => '13.4',
             Typo3VersionMapping::V12 => '12.4',
             Typo3VersionMapping::V11 => '11.5',
@@ -44,8 +46,8 @@ enum Typo3VersionMapping: string
     public static function getLtsVersions(): array
     {
         return [
+            Typo3VersionMapping::V14,
             Typo3VersionMapping::V13,
-            Typo3VersionMapping::V12,
         ];
     }
 
@@ -64,6 +66,6 @@ enum Typo3VersionMapping: string
 
     public static function getMajorVersionOfMain(): Typo3VersionMapping
     {
-        return Typo3VersionMapping::V14;
+        return Typo3VersionMapping::V15;
     }
 }

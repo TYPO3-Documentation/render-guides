@@ -91,15 +91,15 @@ final class Typo3InventoryRepositoryTest extends TestCase
     {
         yield "preferred" => [
             'inventoryKey' => 't3coreapi',
-            'expected' => "https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/",
+            'expected' => "https://docs.typo3.org/m/typo3/reference-coreapi/14.3/en-us/",
         ];
         yield "stable" => [
             'inventoryKey' => 't3coreapi/stable',
-            'expected' => "https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/",
+            'expected' => "https://docs.typo3.org/m/typo3/reference-coreapi/14.3/en-us/",
         ];
         yield "oldstable" => [
             'inventoryKey' => 't3coreapi/oldstable',
-            'expected' => "https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/",
+            'expected' => "https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/",
         ];
         yield "dev" => [
             'inventoryKey' => 't3coreapi/dev',
@@ -152,7 +152,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
         ];
         yield "sys-extension" => [
             'inventoryKey' => 'typo3/cms-adminpanel',
-            'expected' => "https://docs.typo3.org/c/typo3/cms-adminpanel/13.4/en-us/",
+            'expected' => "https://docs.typo3.org/c/typo3/cms-adminpanel/14.3/en-us/",
         ];
         yield "sys-extension-major" => [
             'inventoryKey' => 'typo3/cms-adminpanel/11',
@@ -168,11 +168,11 @@ final class Typo3InventoryRepositoryTest extends TestCase
         ];
         yield "sys-extension-stable" => [
             'inventoryKey' => 'typo3/cms-adminpanel/stable',
-            'expected' => "https://docs.typo3.org/c/typo3/cms-adminpanel/13.4/en-us/",
+            'expected' => "https://docs.typo3.org/c/typo3/cms-adminpanel/14.3/en-us/",
         ];
         yield "sys-extension-oldstable" => [
             'inventoryKey' => 'typo3/cms-adminpanel/oldstable',
-            'expected' => "https://docs.typo3.org/c/typo3/cms-adminpanel/12.4/en-us/",
+            'expected' => "https://docs.typo3.org/c/typo3/cms-adminpanel/13.4/en-us/",
         ];
         yield "changelog always main" => [
             'inventoryKey' => 'typo3/cms-core',
@@ -180,7 +180,7 @@ final class Typo3InventoryRepositoryTest extends TestCase
         ];
         yield "system extension legacy format" => [
             'inventoryKey' => 'ext_rte_ckeditor',
-            'expected' => "https://docs.typo3.org/c/typo3/cms-rte-ckeditor/13.4/en-us/",
+            'expected' => "https://docs.typo3.org/c/typo3/cms-rte-ckeditor/14.3/en-us/",
         ];
         yield "system extension v8" => [
             'inventoryKey' => 'typo3/cms-rte-ckeditor/v8',

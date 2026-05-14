@@ -153,8 +153,8 @@ final class SettingsMigratorTest extends TestCase
         yield 'with intersphinx_default_mapping given' => [
             'legacySettings' => [
                 'intersphinx_mapping' => [
-                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/',
-                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/13.4/en-us/',
+                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/14.3/en-us/',
+                    't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/14.3/en-us/',
                     'manual_3' => 'https://example.com/manual-3/',
                 ],
             ],
@@ -184,7 +184,7 @@ final class SettingsMigratorTest extends TestCase
         yield 'with intersphinx default id, conflicting versions given' => [
             'legacySettings' => [
                 'intersphinx_mapping' => [
-                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/',
+                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/14.3/en-us/',
                     't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/12.4/en-us/',
                 ],
             ],
@@ -199,7 +199,7 @@ final class SettingsMigratorTest extends TestCase
             'legacySettings' => [
                 'intersphinx_mapping' => [
                     't3viewhelper' => 'https://docs.typo3.org/other/typo3/view-helper-reference/12.4/en-us/',
-                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/',
+                    't3coreapi' => 'https://docs.typo3.org/m/typo3/reference-coreapi/14.3/en-us/',
                 ],
             ],
             'expected' => <<<EXPECTED
