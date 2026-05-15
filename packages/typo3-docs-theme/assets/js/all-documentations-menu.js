@@ -14,8 +14,8 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
 
   setupComponent() {
     this.classList.add('all-documentations-menu')
-    this.tooltip = this.createTooltip();
-    this.appendChild(this.tooltip);
+    this.panel = this.createPanel();
+    this.appendChild(this.panel);
   }
 
   createClassName(name) {
@@ -30,8 +30,8 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
       'btn', 'btn-light', 'd-lg-flex', 'd-none',
       this.createClassName('button'),
     );
-    element.setAttribute('popovertarget', 'all-docs-tooltip');
-    element.setAttribute('aria-controls', 'all-docs-tooltip');
+    element.setAttribute('popovertarget', 'all-docs-panel');
+    element.setAttribute('aria-controls', 'all-docs-panel');
     element.setAttribute('aria-expanded', 'false');
     element.innerHTML = text;
 
@@ -113,11 +113,11 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
     return section;
   }
 
-  createTooltip() {
+  createPanel() {
     const element = document.createElement('div');
-    element.id = 'all-docs-tooltip';
+    element.id = 'all-docs-panel';
     element.setAttribute('popover', '');
-    element.classList.add(this.createClassName('tooltip'));
+    element.classList.add(this.createClassName('panel'));
 
     const categoriesElement = document.createElement('div');
     categoriesElement.classList.add(this.createClassName('categories'));
