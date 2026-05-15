@@ -26275,6 +26275,11 @@ header .toc-header {
   justify-content: space-between;
   padding-left: calc(1rem / 1.5);
 }
+header .toc-header .toc-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 header .toc-header a.toc-title-project {
   display: block;
   position: relative;

@@ -16,6 +16,12 @@ header {
         justify-content: space-between;
         padding-left: calc(#{$spacer} / 1.5);
 
+        .toc-title {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
         a.toc-title-project {
             display: block;
             position: relative;
