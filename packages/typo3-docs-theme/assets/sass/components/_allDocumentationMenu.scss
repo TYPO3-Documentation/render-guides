@@ -3,6 +3,9 @@
     align-items: center;
     justify-content: center;
     white-space: nowrap;
+    @media (max-width: 992px) {
+        display: none;
+    }
 
     &-button {
         display: flex;
@@ -12,9 +15,6 @@
     }
 
     &-tooltip {
-        @media (max-width: 992px) {
-            display: none;
-        }
         margin: 0;
         padding: 1.5em 2.5em;
         border: 1px solid #eaeaea;

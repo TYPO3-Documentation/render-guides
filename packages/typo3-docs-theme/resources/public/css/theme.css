@@ -25152,16 +25152,16 @@ figure.uml-diagram {
   justify-content: center;
   white-space: nowrap;
 }
+@media (max-width: 992px) {
+  .all-documentations-menu {
+    display: none;
+  }
+}
 .all-documentations-menu-button {
   display: flex;
   align-items: center;
   gap: 0.4em;
   anchor-name: --all-docs-button;
-}
-@media (max-width: 992px) {
-  .all-documentations-menu-tooltip {
-    display: none;
-  }
 }
 .all-documentations-menu-tooltip {
   margin: 0;
