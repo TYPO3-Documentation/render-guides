@@ -6,6 +6,7 @@ header {
     background-color: white; /* Adjust as needed */
 
     .logo-wrapper {
+        display: flex;
         @include media-breakpoint-up(lg) {
             width: 15rem;
         }
