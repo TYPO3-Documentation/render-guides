@@ -14,12 +14,14 @@ header {
     .toc-header {
         display: flex;
         justify-content: space-between;
+        gap: 0.4rem;
         padding-left: calc(#{$spacer} / 1.5);
 
         .toc-title {
             display: flex;
             justify-content: center;
             flex-direction: column;
+            padding-right: 0.6rem;
         }
 
         a.toc-title-project {
