@@ -26313,21 +26313,20 @@ header .toc-header .form-select {
   font-size: 0.875rem;
   width: auto;
 }
+header #options-toggle {
+  anchor-name: --options-toggle;
+}
 header #options-panel {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
+  margin: 0;
   min-width: 200px;
   background-color: rgb(242.25, 242.25, 242.25);
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
-  z-index: 1050;
-  margin-top: 0.25rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-header #options-panel.show {
-  display: block;
+  inset: auto;
+  top: calc(anchor(bottom) + 0.5rem);
+  right: anchor(right);
+  position-anchor: --options-toggle;
 }
 header #options-panel .dropdown-header {
   padding: 0.25rem 0.75rem;
