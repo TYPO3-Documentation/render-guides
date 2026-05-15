@@ -31,6 +31,8 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
       this.createClassName('button'),
     );
     element.setAttribute('popovertarget', 'all-docs-tooltip');
+    element.setAttribute('aria-controls', 'all-docs-tooltip');
+    element.setAttribute('aria-expanded', 'false');
     element.innerHTML = text;
 
     const icon = document.createElement('i');
@@ -116,7 +118,6 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
     element.id = 'all-docs-tooltip';
     element.setAttribute('popover', '');
     element.classList.add(this.createClassName('tooltip'));
-    element.setAttribute('role', 'tooltip');
 
     const categoriesElement = document.createElement('div');
     categoriesElement.classList.add(this.createClassName('categories'));
@@ -126,6 +127,16 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
     }
 
     element.appendChild(categoriesElement);
+
+    element.addEventListener('toggle', (e) => {
+      this.mainButton.setAttribute('aria-expanded', e.newState === 'open');
+    });
+
+    element.addEventListener('focusout', (e) => {
+      if (!element.contains(e.relatedTarget)) {
+        element.hidePopover();
+      }
+    });
 
     return element;
   }
