@@ -5,17 +5,19 @@
   function toggleCurrent(event) {
     event.preventDefault();
 
-    const link = event.currentTarget.parentElement;
-    const element = link.parentElement;
-    const siblings = element.parentElement.parentElement.querySelectorAll('li.active');
+    const button = event.currentTarget;
+    const element = button.parentElement;
 
-    Array.from(siblings).forEach(sibling => {
-      if (sibling !== element) {
-        sibling.classList.remove('active');
+    element.parentElement.parentElement.querySelectorAll('li.active').forEach(active => {
+      if (active !== element) {
+        active.classList.remove('active');
+        const activeButton = active.querySelector(':scope > .toctree-expand');
+        if (activeButton) activeButton.setAttribute('aria-expanded', 'false');
       }
     });
 
     element.classList.toggle('active');
+    button.setAttribute('aria-expanded', element.classList.contains('active'));
   }
 
   // Add toggle icon to a-tags of menu items in .toc navigations
@@ -27,16 +29,12 @@
 
       Array.from(links).forEach(link => {
         if (link.nextSibling) {
-          var expand = document.createElement('span');
+          const expand = document.createElement('button');
           expand.classList.add('toctree-expand');
-          expand.setAttribute('tabindex', '0');
+          expand.setAttribute('aria-expanded', 'false');
+          expand.setAttribute('aria-label', `Toggle ${link.textContent.trim()}`);
           expand.addEventListener('click', toggleCurrent, true);
-          expand.addEventListener('keydown', (e) => {
-            if (e.key === "Enter") {
-              toggleCurrent(e)
-            }
-          }, true);
-          link.prepend(expand);
+          link.after(expand);
         }
       });
     });

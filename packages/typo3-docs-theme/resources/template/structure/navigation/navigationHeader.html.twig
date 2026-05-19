@@ -1,6 +1,6 @@
 
 <div class="toc-header">
-    <div class="toc-title pe-3">
+    <div class="toc-title">
         {% set topPageLink = getTopPageLink() %}
         {% if topPageLink %}
             <a class="toc-title-project" href="{% if has_page_context %}{{ topPageLink.url }}{% else %}../Index.html{% endif %}">{{ topPageLink.title }}</a>

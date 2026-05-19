@@ -27,7 +27,12 @@
     max-width: 100%;
     width: map-get($container-max-widths, 'xl');
     margin: 0 auto;
-    padding: 0 calc(#{$grid-gutter-width} / 2);
+    padding: 1rem calc(#{$grid-gutter-width} / 2);
+    display: flex;
+    flex-wrap: wrap;
+    @media (max-width: 992px) {
+        gap: 1rem;
+    }
 }
 
 .menu-search-wrapper {
