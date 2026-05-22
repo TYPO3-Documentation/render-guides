@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad362250435b1002bb644e46d46d8d69",
+    "content-hash": "c9113bd0d31970a51d5ceb6488ac10ee",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -1541,16 +1541,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "bb3ea637e3d131d72acc033cfc2746ee893349fe"
+                "reference": "7da6c396d7ebe142bc857c20479d5e70a5e1aac7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/bb3ea637e3d131d72acc033cfc2746ee893349fe",
-                "reference": "bb3ea637e3d131d72acc033cfc2746ee893349fe",
+                "url": "https://api.github.com/repos/nette/utils/zipball/7da6c396d7ebe142bc857c20479d5e70a5e1aac7",
+                "reference": "7da6c396d7ebe142bc857c20479d5e70a5e1aac7",
                 "shasum": ""
             },
             "require": {
@@ -1626,9 +1626,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v4.1.3"
+                "source": "https://github.com/nette/utils/tree/v4.1.4"
             },
-            "time": "2026-02-13T03:05:33+00:00"
+            "time": "2026-05-11T20:49:54+00:00"
         },
         {
             "name": "phpdocumentor/dev-server",
@@ -8718,16 +8718,16 @@
         },
         {
             "name": "symplify/phpstan-rules",
-            "version": "14.9.11",
+            "version": "14.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/phpstan-rules.git",
-                "reference": "5ea4bbd9357cba253aada506dd96d37d7069ac3b"
+                "reference": "dc1035ded416b99313d6a14e69923f5e018a6b40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/phpstan-rules/zipball/5ea4bbd9357cba253aada506dd96d37d7069ac3b",
-                "reference": "5ea4bbd9357cba253aada506dd96d37d7069ac3b",
+                "url": "https://api.github.com/repos/symplify/phpstan-rules/zipball/dc1035ded416b99313d6a14e69923f5e018a6b40",
+                "reference": "dc1035ded416b99313d6a14e69923f5e018a6b40",
                 "shasum": ""
             },
             "require": {
@@ -8759,7 +8759,7 @@
             "description": "Set of Symplify rules for PHPStan",
             "support": {
                 "issues": "https://github.com/symplify/phpstan-rules/issues",
-                "source": "https://github.com/symplify/phpstan-rules/tree/14.9.11"
+                "source": "https://github.com/symplify/phpstan-rules/tree/14.10.0"
             },
             "funding": [
                 {
@@ -8771,7 +8771,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-05T13:53:59+00:00"
+            "time": "2026-05-22T09:35:51+00:00"
         },
         {
             "name": "theseer/tokenizer",
