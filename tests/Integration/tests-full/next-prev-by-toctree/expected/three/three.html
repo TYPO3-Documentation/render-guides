@@ -36,50 +36,47 @@
     </div>
     <div class="page-header">
         <div class="page-header-inner">
-            <div class="d-flex flex-wrap">
-                <div class="logo-wrapper">
-                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
-                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
-                    </a>
-                </div>
-                <div class="align-self-center order-lg-2 order-last">
-                    
+            <div class="logo-wrapper">
+                <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                    <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                </a>
+            </div>
+            <div class="align-self-center order-lg-2 order-last">
+                
 <div class="toc-header">
-    <div class="toc-title pe-3">
+    <div class="toc-title">
                             <a class="toc-title-project" href="../index.html">Root index</a>
             </div>
-    </div>                </div>
-                <div class="ms-auto order-lg-3 d-flex">
-                    <div class="menu-search-wrapper">
-                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
-                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
-                        </button>
-                        <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
-                                                <search role="search">
-                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
-                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
-                                <div class="input-group mb-3 mt-sm-3">
-                                    <select class="form-select search__scope" id="searchscope" name="scope">
-                                        <option value="">Search all</option>
-                                    </select>
-                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
-                                </div>
-                            </form>
-                            <div id="global-search-root"></div>
-                        </search>
-                        <div class="position-relative d-inline-block">
-                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
-                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
-                            </button>
+    </div>            </div>
+            <div class="ms-auto order-lg-3 d-flex">
+                <div class="menu-search-wrapper">
+                    <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                        <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                    </button>
+                    <all-documentations-menu data-override-url="../_resources/js/menu-proxy.php"></all-documentations-menu>
+                                        <search role="search">
+                        <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                            <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                            <div class="input-group mb-3 mt-sm-3">
+                                <select class="form-select search__scope" id="searchscope" name="scope">
+                                    <option value="">Search all</option>
+                                </select>
+                                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                            </div>
+                        </form>
+                        <div id="global-search-root"></div>
+                    </search>
+                    <button id="options-toggle" class="btn btn-light d-block" type="button" aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
+                        <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                    </button>
 
-                            <div id="options-panel"
-                                 class="shadow p-3"
-                                 role="menu"
-                                 aria-hidden="true">
-                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+                    <div id="options-panel"
+                         class="shadow p-3"
+                         popover>
+                        <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
 
-                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/three/three.rst.txt" rel="nofollow noopener" target="_blank">
+                                                                                    <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/three/three.rst.txt" rel="nofollow noopener" target="_blank">
         <i class="fas fa-code"></i>
         View source
     </a>
@@ -87,13 +84,11 @@
         <i class="fas fa-info-circle"></i>
         How to edit
     </a>
-                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
-                                            <i class="fas fa-print"></i>
-                                            Full documentation (single file)
-                                        </a>
-                                                                                                </div>
-                        </div>
-                    </div>
+                                                                                        <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                    <i class="fas fa-print"></i>
+                                    Full documentation (single file)
+                                </a>
+                                                                        </div>
                 </div>
             </div>
         </div>

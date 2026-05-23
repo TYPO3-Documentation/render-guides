@@ -58,7 +58,7 @@ class AllDocumentationsMenuMobile extends AllDocumentationsMenuBase {
 
   createDocumentationCategory(category, level = 1) {
     const section = document.createElement('li');
-    section.setAttribute('role', 'menuitem');
+
     const header = this.createDocumentationCategoryHeader(category.name, category.href);
     section.appendChild(header);
 
