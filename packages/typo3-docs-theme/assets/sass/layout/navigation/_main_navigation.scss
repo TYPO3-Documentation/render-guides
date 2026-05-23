@@ -77,6 +77,7 @@
         }
 
         li {
+            position: relative;
             border-radius: $border-radius;
             overflow: hidden;
             padding-left: calc(#{$spacer} / 2);
@@ -90,6 +91,10 @@
         }
 
         .toctree-expand {
+            appearance: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
             position: absolute;
             display: block;
             top: calc((#{$spacer} / 4) + (#{$font-size-base} * 1.25 / 2));
@@ -124,12 +129,12 @@
 
         .active > a {
             font-weight: bold;
+        }
 
-            > .toctree-expand {
+        .active > .toctree-expand {
 
-                &:before {
-                    display: none;
-                }
+            &:before {
+                display: none;
             }
         }
     }

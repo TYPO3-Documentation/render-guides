@@ -3,6 +3,9 @@
     align-items: center;
     justify-content: center;
     white-space: nowrap;
+    @media (max-width: 992px) {
+        display: none;
+    }
 
     &-button {
         display: flex;
@@ -11,10 +14,7 @@
         anchor-name: --all-docs-button;
     }
 
-    &-tooltip {
-        @media (max-width: 992px) {
-            display: none;
-        }
+    &-panel {
         margin: 0;
         padding: 1.5em 2.5em;
         border: 1px solid #eaeaea;
