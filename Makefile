@@ -13,6 +13,9 @@ PHP_PROJECT_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/proje
 ## This container provides a composer-runtime; mounts project on /app
 PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:2
 
+## Docker wrapper for npm, for the typo3-docs-theme JS tests (so node is not required on the host)
+NPM_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -e HOME=/tmp -v${PWD}/packages/typo3-docs-theme:/app -w /app node:20 npm
+
 ## These variables can be overriden by other tasks, i.e. by `make PHP_ARGS=-d memory_limit=2G pre-commit-tests`.
 ## The "--user" argument is required for macOS to pass along ownership of /project
 
@@ -25,6 +28,7 @@ ifdef ENV
 		PHP_BIN = php $(PHP_ARGS)
 		PHP_PROJECT_BIN = php $(PHP_ARGS) ./vendor/bin/guides
 		PHP_COMPOSER_BIN = composer
+		NPM_BIN = npm --prefix packages/typo3-docs-theme
 		ENV_INFO=ENVIRONMENT: Local (also DDEV)
 	else
 		ENV_INFO=ENVIRONMENT: Docker
@@ -56,6 +60,11 @@ assets-debug: ## Builds assets, keeping the sourcemap. It copies the output file
 .PHONE: assets-watch
 assets-watch: ## Watches changes of sass files and build automatically on change
 	ddev npm-watch
+
+.PHONY: test-theme-js
+test-theme-js: ## Runs the typo3-docs-theme JS unit tests (vitest)
+	$(NPM_BIN) ci --no-progress
+	$(NPM_BIN) test
 
 .PHONE: build-phar
 build-phar: ## Creates a guides.phar file (github workflow)
@@ -123,7 +132,7 @@ show-env: ## Shows PHP environment options (buildinfo)
 	@echo ""
 
 .PHONY: test
-test: test-integration test-unit test-xml test-docs test-rendertest ## Runs all test suites with phpunit/phpunit
+test: test-integration test-unit test-xml test-docs test-rendertest test-theme-js ## Runs all test suites (PHP phpunit + theme JS vitest)
 
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
