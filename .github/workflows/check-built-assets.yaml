@@ -1,0 +1,116 @@
+# Contract workflow: fail a PR whose committed theme assets diverge from a
+# fresh build.
+#
+# This is the actual gate — mark it as a required status check in branch
+# protection. It runs on EVERY pull request (no paths filter) so that the
+# required check always reports a status: a required check that is skipped by
+# a paths filter never reports on unrelated PRs, which leaves them blocked
+# forever ("Expected — waiting for status"). PRs that don't touch the theme
+# package short-circuit to success without building.
+#
+# The companion dependabot-rebuild-assets.yaml is the convenience layer that
+# keeps Dependabot PRs from tripping this check.
+
+name: "Check built assets"
+
+on: # yamllint disable-line rule:truthy
+  pull_request:
+
+permissions: {}
+
+jobs:
+  verify:
+    name: "verify"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: "Harden runner"
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: block
+          disable-sudo: true
+          allowed-endpoints: >
+            api.github.com:443
+            github.com:443
+            objects.githubusercontent.com:443
+            release-assets.githubusercontent.com:443
+            registry.npmjs.org:443
+
+      - name: "Checkout"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      # Skip the (relatively expensive) build for PRs that don't touch the
+      # theme package. The job still completes successfully, so the required
+      # "verify" status is reported on every PR.
+      - name: "Detect theme-package changes"
+        id: scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if git diff --name-only "$BASE_SHA" HEAD -- packages/typo3-docs-theme/ | grep -q .; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes under packages/typo3-docs-theme/ — asset check not applicable."
+          fi
+
+      - name: "Install Node"
+        if: steps.scope.outputs.changed == 'true'
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: "packages/typo3-docs-theme/package.json"
+          cache: "npm"
+          cache-dependency-path: "packages/typo3-docs-theme/package-lock.json"
+
+      - name: "Install npm dependencies (no install scripts)"
+        if: steps.scope.outputs.changed == 'true'
+        working-directory: packages/typo3-docs-theme
+        run: "npm ci --ignore-scripts"
+
+      - name: "Build assets"
+        if: steps.scope.outputs.changed == 'true'
+        working-directory: packages/typo3-docs-theme
+        run: "npm run build"
+
+      - name: "Fail if generated assets differ from committed output"
+        if: steps.scope.outputs.changed == 'true'
+        run: |
+          ASSET_PATHS=(
+            packages/typo3-docs-theme/assets
+            packages/typo3-docs-theme/resources/public
+          )
+
+          # Two failure modes to detect:
+          #   1. Tracked files changed (git diff)
+          #   2. New untracked files were generated under the asset trees
+          #      (git diff alone would miss these)
+          modified="$(git diff --name-only -- "${ASSET_PATHS[@]}")"
+          untracked="$(git ls-files --others --exclude-standard -- "${ASSET_PATHS[@]}")"
+
+          if [ -z "$modified" ] && [ -z "$untracked" ]; then
+            exit 0
+          fi
+
+          # Full diagnostics go to the log; the ::error:: annotation is a
+          # single concise line so the PR Files-changed view doesn't get
+          # cluttered with one annotation per echo.
+          echo "Files out of sync with current build:"
+          if [ -n "$modified" ]; then
+            printf '%s\n' "$modified" | sed 's/^/  modified: /'
+          fi
+          if [ -n "$untracked" ]; then
+            printf '%s\n' "$untracked" | sed 's/^/  untracked: /'
+          fi
+          echo ""
+          echo "Reproduce locally:"
+          echo "  cd packages/typo3-docs-theme && npm ci && npm run build"
+          echo "  git add assets resources/public && git commit"
+          echo ""
+          echo "See Documentation/Developer/ThemeCustomization.rst for context."
+          echo "::error::Generated assets are out of date. Run 'npm ci && npm run build' in packages/typo3-docs-theme/ and commit the regenerated assets. See run log for affected files."
+          exit 1
