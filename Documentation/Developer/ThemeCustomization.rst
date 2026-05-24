@@ -70,8 +70,17 @@ Or use the custom ddev commands:
 The generated assets are copied directly into :file:`Documentation-GENERATED-temp/_resources`
 and source maps are not removed. Upon inspection in the browsers web developer
 tools you can therefore see in which source scss file certain styles were
-defined. Before committing you must run :shell:`npm run build` so that you can
-commit the generated asset files into the theme.
+defined. Before committing you must run :shell:`cd packages/typo3-docs-theme && npm ci && npm run build`
+and commit the regenerated asset files in
+:file:`packages/typo3-docs-theme/assets/` and
+:file:`packages/typo3-docs-theme/resources/public/`.
+
+CI enforces this via the ``check-built-assets`` workflow: every pull request
+that touches :file:`packages/typo3-docs-theme/` is rebuilt and fails if the
+committed assets diverge from a fresh build. For Dependabot pull requests the
+``dependabot-rebuild-assets`` workflow performs the rebuild and pushes the
+result back to the Dependabot branch automatically, so no manual rebuild is
+required there.
 
 
 ..  _Bootstrap: https://getbootstrap.com/
