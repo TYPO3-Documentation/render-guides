@@ -1,0 +1,218 @@
+# Convenience workflow: on a Dependabot PR that bumps an npm dependency under
+# packages/typo3-docs-theme/, rebuild the committed assets and commit them
+# back to the Dependabot branch, then enable auto-merge.
+#
+# This is NOT the contract — check-built-assets.yaml is. If this workflow
+# fails, that check still catches the resulting stale assets and blocks the PR.
+#
+# Trigger: pull_request_target matches the local convention in
+# .github/workflows/pr-auto-merge.yaml ("due to permission issues with the
+# pull_request target"). Because pull_request_target runs in the base-repo
+# context, several guards keep it safe:
+#
+#   - if: github.actor == 'dependabot[bot]'
+#   - checkout pinned to the PR head SHA, so if Dependabot force-pushes
+#     between the trigger and the checkout we still build the exact commit
+#     the PR opened with
+#   - lockfile-only diff guard: refuse to build if the PR changed anything
+#     other than package.json / package-lock.json
+#   - npm ci --ignore-scripts; harden-runner egress in block mode
+#   - the App token is minted AFTER the build, so the untrusted build cannot
+#     read it; persist-credentials: false keeps it off disk
+#
+# The rebuilt files are committed via the GitHub API (createCommitOnBranch)
+# with a short-lived GitHub App token, never `git push`. API commits are
+# signed server-side by GitHub (Verified), and an App-token commit re-triggers
+# the asset check on the new commit, so the merged commit is itself checked.
+
+name: "Rebuild assets for Dependabot"
+
+on: # yamllint disable-line rule:truthy
+  pull_request_target:
+    paths:
+      - "packages/typo3-docs-theme/package.json"
+      - "packages/typo3-docs-theme/package-lock.json"
+
+# GITHUB_TOKEN stays read-only — it is used only by dependabot/fetch-metadata.
+# All writes go through the GitHub App token, whose scope comes from the App.
+permissions: {}
+
+jobs:
+  build-and-commit:
+    name: "build-and-commit"
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: "Harden runner"
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: block
+          disable-sudo: true
+          allowed-endpoints: >
+            api.github.com:443
+            github.com:443
+            objects.githubusercontent.com:443
+            release-assets.githubusercontent.com:443
+            registry.npmjs.org:443
+
+      - name: "Checkout Dependabot branch"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: "Verify PR diff is lockfile-only"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          # A legitimate Dependabot npm PR only touches package.json and
+          # package-lock.json. Anything else means the branch was tampered
+          # with — fail closed before we execute vite/grunt config.
+          ALLOWED=(
+            packages/typo3-docs-theme/package.json
+            packages/typo3-docs-theme/package-lock.json
+          )
+
+          changed="$(git diff --name-only "$BASE_SHA"...HEAD)"
+          unexpected=""
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            match=0
+            for a in "${ALLOWED[@]}"; do
+              [ "$f" = "$a" ] && match=1 && break
+            done
+            [ $match -eq 0 ] && unexpected="${unexpected}${f}"$'\n'
+          done <<< "$changed"
+
+          if [ -n "$unexpected" ]; then
+            echo "::error::Dependabot PR touches files outside the npm lockfile set. Refusing to build."
+            printf '%s' "$unexpected"
+            exit 1
+          fi
+
+      - name: "Install Node"
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: "packages/typo3-docs-theme/package.json"
+          cache: "npm"
+          cache-dependency-path: "packages/typo3-docs-theme/package-lock.json"
+
+      - name: "Install npm dependencies (no install scripts)"
+        working-directory: packages/typo3-docs-theme
+        run: "npm ci --ignore-scripts"
+
+      - name: "Build assets"
+        working-directory: packages/typo3-docs-theme
+        run: "npm run build"
+
+      # Inspect the asset trees in shell so git output never crosses into JS.
+      # Reject unexpected new files, then record changed/deleted paths
+      # NUL-delimited (-z, --no-renames) so filenames with odd characters
+      # can't skew parsing.
+      - name: "Prepare commit inputs"
+        id: prepare
+        run: |
+          ASSET_PATHS=(
+            packages/typo3-docs-theme/assets
+            packages/typo3-docs-theme/resources/public
+          )
+
+          untracked="$(git ls-files --others --exclude-standard -- "${ASSET_PATHS[@]}")"
+          if [ -n "$untracked" ]; then
+            echo "::error::Build produced unexpected untracked files in the asset trees. Refusing to commit."
+            printf '%s\n' "$untracked"
+            exit 1
+          fi
+
+          git diff -z --name-only --no-renames --diff-filter=d -- "${ASSET_PATHS[@]}" > "$RUNNER_TEMP/asset-upserts"
+          git diff -z --name-only --no-renames --diff-filter=D -- "${ASSET_PATHS[@]}" > "$RUNNER_TEMP/asset-deletes"
+          echo "head_oid=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      # Mint the App token here — AFTER the untrusted build — so a compromised
+      # build dependency cannot read it. The push as the App (not GITHUB_TOKEN)
+      # is what re-triggers the asset check on the rebuild commit.
+      - name: "Mint App token"
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      # Commit via the GitHub API so the commit is GitHub-signed (Verified).
+      # The commit is authored by the App (the token holder) — GitHub only
+      # signs commits it attributes to the token holder.
+      - name: "Commit rebuilt assets as a verified commit (if changed)"
+        uses: actions/github-script@d746ffe35508b1917358783b479e04febd2b8f71 # v9.0.0
+        env:
+          EXPECTED_HEAD_OID: ${{ steps.prepare.outputs.head_oid }}
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            const fs = require('fs');
+            const readPaths = (name) =>
+              fs.readFileSync(`${process.env.RUNNER_TEMP}/${name}`)
+                .toString('utf8')
+                .split('\0')
+                .filter(Boolean);
+
+            const upserts = readPaths('asset-upserts');   // added or modified
+            const deletes = readPaths('asset-deletes');
+
+            if (upserts.length === 0 && deletes.length === 0) {
+              core.info('No generated asset changes.');
+              return;
+            }
+
+            const fileChanges = {
+              additions: upserts.map((path) => ({
+                path,
+                contents: fs.readFileSync(path).toString('base64'),
+              })),
+            };
+            if (deletes.length) {
+              fileChanges.deletions = deletes.map((path) => ({ path }));
+            }
+
+            const result = await github.graphql(
+              `mutation($input: CreateCommitOnBranchInput!) {
+                 createCommitOnBranch(input: $input) { commit { oid url } }
+               }`,
+              {
+                input: {
+                  branch: {
+                    repositoryNameWithOwner: context.payload.repository.full_name,
+                    branchName: context.payload.pull_request.head.ref,
+                  },
+                  expectedHeadOid: process.env.EXPECTED_HEAD_OID,
+                  message: { headline: '[TASK] Rebuild theme assets after dependency update' },
+                  fileChanges,
+                },
+              }
+            );
+
+            const commit = result.createCommitOnBranch.commit;
+            core.info(`Created verified rebuild commit ${commit.oid}`);
+            core.info(commit.url);
+
+      # Enable auto-merge AFTER the rebuild commit is in place. pr-auto-merge.yaml
+      # excludes these PRs (it would otherwise squash-merge before the rebuild
+      # lands). A broken build or a tripped guard fails an earlier step and never
+      # reaches this, so a bad upgrade stays open for manual review.
+      - name: "Dependabot metadata"
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: "Enable auto-merge for patch/minor updates"
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: gh pr merge --squash --auto "${{ github.event.pull_request.number }}" -R "${{ github.repository }}"

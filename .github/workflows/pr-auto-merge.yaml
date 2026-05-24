@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
@@ -34,16 +34,36 @@ jobs:
       # that restriction.
       - name: Mint App token
         id: app-token
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        if: |
+          (steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+           steps.metadata.outputs.update-type == 'version-update:semver-minor') &&
+          !contains(steps.metadata.outputs.directory, 'typo3-docs-theme')
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
+      # Theme-package PRs are intentionally excluded from auto-merge.
+      # The dependabot-rebuild-assets workflow needs to rebuild and push
+      # regenerated assets to the PR branch before the PR can merge; if
+      # auto-merge fires here at PR-open time it merges BEFORE the
+      # rebuild commit lands, leaving stale assets on main. Theme PRs
+      # require a manual review/merge once the rebuild commit shows up.
+      #
       # No merge method is passed: it is set by the merge queue rule on "main",
       # and gh warns that any --squash/--merge/--rebase given here is ignored.
       - name: Enable auto-merge
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
-        run: gh pr merge -R "${{ github.repository }}" --auto "${{ github.event.pull_request.number }}"
+        if: |
+          (steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+           steps.metadata.outputs.update-type == 'version-update:semver-minor') &&
+          !contains(steps.metadata.outputs.directory, 'typo3-docs-theme')
+        run: gh pr merge -R "$REPOSITORY" --auto "$PR_NUMBER"
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+
+      - name: Note skipped auto-merge for theme PRs
+        if: contains(steps.metadata.outputs.directory, 'typo3-docs-theme')
+        run: |
+          echo "::notice::Auto-merge intentionally skipped for theme PRs. The dependabot-rebuild-assets workflow rebuilds and pushes regenerated assets to this branch; merge manually once that commit lands and all checks are green."
