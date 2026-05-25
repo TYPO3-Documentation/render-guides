@@ -55,7 +55,7 @@
           <label class="form-label" for="composer-path">Path in Composer-based TYPO3 Installations: </label>
           <div class="input-group">
               <textarea class="form-control code" id="composer-path" readonly>${item.dataset.composerpath}${item.dataset.filename}</textarea>
-              <button type="button" class="btn btn-outline-secondary copy-button" data-target="composer-path"><i class="far fa-clone"></i></button>
+              <button type="button" class="btn btn-outline-secondary copy-button" data-target="composer-path"><i class="fa-regular fa-clone"></i></button>
           </div>
           <p>Example: <code>${item.dataset.composerpathprefix}${item.dataset.composerpath}${item.dataset.filename}</code></p>
         </div>
@@ -63,7 +63,7 @@
           <label class="form-label" for="classic-path">Path in Classic TYPO3 Installations: </label>
           <div class="input-group">
               <textarea class="form-control code" id="classic-path" readonly>${item.dataset.classicpath}${item.dataset.filename}</textarea>
-              <button type="button" class="btn btn-outline-secondary copy-button" data-target="classic-path"><i class="far fa-clone"></i></button>
+              <button type="button" class="btn btn-outline-secondary copy-button" data-target="classic-path"><i class="fa-regular fa-clone"></i></button>
           </div>
           <p>Example: <code>${item.dataset.classicpathprefix}${item.dataset.classicpath}${item.dataset.filename}</code></p>
         </div>

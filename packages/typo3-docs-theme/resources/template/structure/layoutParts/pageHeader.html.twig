@@ -19,7 +19,7 @@
             <div class="ms-auto order-lg-3 d-flex">
                 <div class="menu-search-wrapper">
                     <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
-                        <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        <i class="fa-solid fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
                     </button>
                     {% if isRenderedForDeployment() -%}
                         <all-documentations-menu></all-documentations-menu>
@@ -34,13 +34,13 @@
                                     <option value="">Search all</option>
                                 </select>
                                 <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                                <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
                             </div>
                         </form>
                         <div id="global-search-root"></div>
                     </search>
                     <button id="options-toggle" class="btn btn-light d-block" type="button" aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
-                        <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                        <i class="fa-solid fa-gear"></i> <span class="visually-hidden">Options</span>
                     </button>
 
                     <div id="options-panel"
@@ -54,14 +54,14 @@
                             {% set singleHtmlUrl = getSingleHtmlLink() %}
                             {% if singleHtmlUrl %}
                                 <a class="dropdown-item d-flex align-items-center gap-2" href="{{ singleHtmlUrl }}" target="_blank" rel="noopener">
-                                    <i class="fas fa-print"></i>
+                                    <i class="fa-solid fa-print"></i>
                                     Full documentation (single file)
                                 </a>
                             {% endif %}
                         {% else %}
                             {# We're in singlehtml mode → show link back to normal view #}
                             <a class="dropdown-item d-flex align-items-center gap-2" href="../Index.html" rel="noopener">
-                                <i class="fas fa-file-alt"></i>
+                                <i class="fa-solid fa-file-lines"></i>
                                 Switch to regular view
                             </a>
                         {% endif %}

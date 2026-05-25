@@ -218,7 +218,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                 <div className="search-modal__header">
                     <div className="search-modal__input-wrapper"
                         onClick={() => setActiveIndex(-1)}>
-                        <i className="fa fa-search search-modal__icon"></i>
+                        <i className="fa-solid fa-magnifying-glass search-modal__icon"></i>
                         {scopes.map((scope, index) => (
                             <div key={`scope-${index}`} className="search-modal__scope">
                                 <p className="suggest-row__scope-type">{scope.type && `${scope.type}:`}</p>
@@ -247,7 +247,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                                     inputRef.current?.focus();
                                 }}
                             >
-                                <i className="fa fa-circle-xmark"></i>
+                                <i className="fa-solid fa-circle-xmark"></i>
                             </button>
                         )}
                     </div>
@@ -274,7 +274,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                     {isLoading ? (
                         <div className="search-modal__loading">
                             <div className="search-modal__spinner">
-                                <i className="fa fa-spinner fa-spin"></i>
+                                <i className="fa-solid fa-spinner fa-spin"></i>
                             </div>
                             <p>Searching...</p>
                         </div>

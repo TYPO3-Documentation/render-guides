@@ -50,7 +50,7 @@
             <div class="ms-auto order-lg-3 d-flex">
                 <div class="menu-search-wrapper">
                     <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
-                        <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        <i class="fa-solid fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
                     </button>
                     <all-documentations-menu data-override-url="_resources/js/menu-proxy.php"></all-documentations-menu>
                                         <search role="search">
@@ -61,13 +61,13 @@
                                     <option value="">Search all</option>
                                 </select>
                                 <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                                <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
                             </div>
                         </form>
                         <div id="global-search-root"></div>
                     </search>
                     <button id="options-toggle" class="btn btn-light d-block" type="button" aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
-                        <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                        <i class="fa-solid fa-gear"></i> <span class="visually-hidden">Options</span>
                     </button>
 
                     <div id="options-panel"
@@ -76,19 +76,19 @@
                         <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
 
                                                                                     <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/page1.rst.txt" rel="nofollow noopener" target="_blank">
-        <i class="fas fa-code"></i>
+        <i class="fa-solid fa-code"></i>
         View source
     </a>
     <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
-        <i class="fas fa-info-circle"></i>
+        <i class="fa-solid fa-circle-info"></i>
         How to edit
     </a>
     <a class="dropdown-item d-flex align-items-center gap-2" href="https://github.com/TYPO3/typo3/edit/main/typo3/sysext/backend/Classes/ViewHelpers/AvatarViewHelper.php" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
-        <i class="fab fa-github"></i>
+        <i class="fa-brands fa-github"></i>
         Edit on GitHub
     </a>
                                                                                         <a class="dropdown-item d-flex align-items-center gap-2" href="index.html" target="_blank" rel="noopener">
-                                    <i class="fas fa-print"></i>
+                                    <i class="fa-solid fa-print"></i>
                                     Full documentation (single file)
                                 </a>
                                                                         </div>
@@ -126,7 +126,7 @@
                     <li aria-current="page"  class="breadcrumb-item  active">Avatar ViewHelper &lt;be:avatar&gt;</li>
         </ol>
         <div class="breadcrumb-additions">                <a class="btn btn-sm btn-secondary" href="https://github.com/TYPO3/typo3/edit/main/typo3/sysext/backend/Classes/ViewHelpers/AvatarViewHelper.php" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
-                    <span class="btn-icon"><span class="fab fa-github"></span></span>
+                    <span class="btn-icon"><span class="fa-brands fa-github"></span></span>
                     <span class="btn-text">Edit on GitHub</span>
                 </a>
             </div>
@@ -184,14 +184,14 @@
                         <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
                         <div class="input-group">
                             <input class="form-control code" id="permalink-short" readonly>
-                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="fa-regular fa-clone"></i></button>
                         </div>
                         <p><em>Copy and freely share the link</em></p>
                     </div>
                     <label for="permalink-uri" class="col-form-label">URL</label>
                     <div class="input-group">
                         <input class="form-control code" id="permalink-uri" readonly>
-                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="fa-regular fa-clone"></i></button>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -201,7 +201,7 @@
                     <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
                     <div class="input-group">
                         <textarea class="form-control code" id="permalink-rst" readonly></textarea>
-                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="fa-regular fa-clone"></i></button>
                     </div>
                     <p><em>Copy this link into your TYPO3 manual.</em></p>
                 </div>
@@ -209,14 +209,14 @@
                     <label for="permalink-md" class="col-form-label">Link in Markdown</label>
                     <div class="input-group">
                         <textarea class="form-control code" id="permalink-md" readonly></textarea>
-                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="fa-regular fa-clone"></i></button>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="permalink-html" class="col-form-label">Link in HTML</label>
                                         <div class="input-group">
                         <textarea class="form-control code" id="permalink-html" readonly></textarea>
-                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="fa-regular fa-clone"></i></button>
                     </div>
                 </div>
             </div>
