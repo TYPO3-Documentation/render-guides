@@ -45,4 +45,5 @@ to extend the tool.
     Developer/Index
     Redirects/Index
     Migration/Index
+    Templating/Index
     KnownProblems/Index

@@ -101,7 +101,7 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             'themes' => [
                 'typo3docs' => [
                     'extends' => 'bootstrap',
-                    'templates' => [dirname(__DIR__, 2) . '/resources/template'],
+                    'templates' => $this->getTemplates(),
                 ],
             ],
 
@@ -111,6 +111,32 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 template(FileInlineNode::class, 'inline/textroles/file.html.twig'),
             ],
         ]);
+    }
+
+    /**
+     * Build the template search path in priority order:
+     *
+     * 1. Docker volume mount at /templates (highest priority)
+     * 2. Project-bundled templates at /project/resources/custom-templates
+     * 3. Built-in theme templates (fallback)
+     *
+     * @return list<string>
+     */
+    private function getTemplates(): array
+    {
+        $templates = [];
+
+        if (is_dir('/templates') && is_readable('/templates')) {
+            $templates[] = '/templates';
+        }
+
+        if (is_dir('/project/resources/custom-templates') && is_readable('/project/resources/custom-templates')) {
+            $templates[] = '/project/resources/custom-templates';
+        }
+
+        $templates[] = dirname(__DIR__, 2) . '/resources/template';
+
+        return $templates;
     }
 
     /**
