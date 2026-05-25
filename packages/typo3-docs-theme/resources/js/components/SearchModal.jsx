@@ -167,7 +167,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                 }
                 break;
         }
-    }, [decomposedScopes, scopeSuggestions, fileSuggestions, scopes, searchQuery, buildHref]);
+    }, [activeIndex, decomposedScopes, scopeSuggestions, fileSuggestions, scopes, searchQuery, buildHref]);
 
     useEffect(() => {
         if (activeIndex >= 0) {
