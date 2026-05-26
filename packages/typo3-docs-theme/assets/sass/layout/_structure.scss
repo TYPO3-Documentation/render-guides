@@ -36,11 +36,15 @@
     max-width: 100%;
     width: map-get($container-max-widths, 'xl');
     margin: 0 auto;
-    padding: calc(#{$spacer-responsive} * 2) calc(#{$grid-gutter-width} / 2);
+    padding: $spacer-responsive calc(#{$grid-gutter-width} / 2);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     transition: padding 0.2s ease;
+    @include media-breakpoint-up(lg) {
+        padding-top: calc(#{$spacer-responsive} * 2);
+        padding-bottom: calc(#{$spacer-responsive} * 2);
+    }
     @media (max-width: 992px) {
         gap: 1rem;
     }
@@ -117,8 +121,11 @@
     z-index: 1;
     margin-left: calc(#{$grid-gutter-width} / 2 * -1);
     margin-right: calc(#{$grid-gutter-width} / 2 * -1);
-    padding: calc(#{$grid-gutter-width} / 2);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+    &:has(#toc-collapse.show) {
+        padding: calc(#{$grid-gutter-width} / 2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    }
     @include media-breakpoint-up(lg) {
         padding: ($spacer * 2) 0;
         flex-shrink: 0;
