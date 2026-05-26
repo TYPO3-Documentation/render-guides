@@ -8,11 +8,12 @@
     </div>
     <div class="page-header">
         <div class="page-header-inner">
-            <div class="logo-wrapper">
-                <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
-                    <img alt="TYPO3 Logo" class="logo-image" src="{{ getRelativePath('_resources/img/typo3-logo.svg') }}" width="484" height="130">
-                </a>
-            </div>
+            <a class="navbar-brand" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                <span class="navbar-brand-text">
+                    <img src="{{ getRelativePath('_resources/img/typo3-soul.svg') }}" alt="TYPO3" class="navbar-brand-logo" width="29" height="29">
+                    <span class="navbar-brand-name">Documentation</span>
+                </span>
+            </a>
             <div class="align-self-center order-lg-2 order-last">
                 {% include "structure/navigation/navigationHeader.html.twig" %}
             </div>

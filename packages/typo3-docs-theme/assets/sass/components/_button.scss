@@ -4,6 +4,18 @@
     text-align: left;
 }
 
+.btn:not(.btn-link) {
+
+    &:not(.btn-sm):not(.btn-lg) {
+        min-height: $input-height;
+    }
+
+    &:hover,
+    &:focus {
+        box-shadow: $btn-hover-shadow;
+    }
+}
+
 .btn-icon {
 
     &:first-child {

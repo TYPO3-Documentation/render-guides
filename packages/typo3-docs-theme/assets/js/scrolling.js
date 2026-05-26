@@ -1,36 +1,48 @@
 document.addEventListener("DOMContentLoaded", function () {
-  function adjustScrollMargin() {
-    const header = document.querySelector("header");
-    const headerHeight = header ? header.offsetHeight : 80; // Default fallback
+  const pageHeader = document.querySelector('.page-header');
+  let isScrolled = false;
+  function updateHeaderShadow() {
+    const scrolled = window.scrollY > 0;
+    if (scrolled !== isScrolled) {
+      isScrolled = scrolled;
+      pageHeader?.classList.toggle('scrolled', scrolled);
+    }
+  }
+  updateHeaderShadow();
+  window.addEventListener('scroll', updateHeaderShadow, { passive: true });
 
-    document.querySelectorAll("[id]").forEach(el => {
-      el.style.scrollMarginTop = `${headerHeight + 10}px`;
+  const header = document.querySelector("header");
+  const scrollTargets = document.querySelectorAll("[id]");
+  function adjustScrollMargin() {
+    const headerHeight = header ? header.offsetHeight : 80;
+    const value = `${headerHeight + 10}px`;
+    scrollTargets.forEach(el => {
+      el.style.scrollMarginTop = value;
     });
   }
 
   function scrollToAnchor() {
-    const hash = window.location.hash.substring(1); // Get anchor without #
+    const hash = window.location.hash.substring(1);
     if (!hash || hash === "top") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-
     const target = document.getElementById(hash);
     if (target) {
       setTimeout(() => {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 50); // Delay ensures styles apply
+      }, 50);
     }
   }
 
   adjustScrollMargin();
-  setTimeout(scrollToAnchor, 100); // Slight delay for rendering
+  setTimeout(scrollToAnchor, 100);
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
       const targetId = this.getAttribute("href").substring(1);
-      history.pushState(null, null, `#${targetId}`); // Update URL without reload
+      history.pushState(null, null, `#${targetId}`);
       scrollToAnchor();
     });
   });
@@ -38,16 +50,16 @@ document.addEventListener("DOMContentLoaded", function () {
   function scrollActiveMenuItemIntoView() {
     const menuContainer = document.querySelector(".page-main-navigation nav");
     const activeItem = menuContainer?.querySelector(".main_menu .active");
-
     if (activeItem && typeof activeItem.scrollIntoView === "function") {
-      activeItem.scrollIntoView({
-        behavior: "auto",    // or "smooth" if you prefer
-        block: "center",     // or "nearest" if you want minimal scrolling
-        inline: "nearest"
-      });
+      activeItem.scrollIntoView({ behavior: "auto", block: "center", inline: "nearest" });
     }
   }
 
   scrollActiveMenuItemIntoView();
-  window.addEventListener("resize", adjustScrollMargin);
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(adjustScrollMargin, 100);
+  }, { passive: true });
 });
