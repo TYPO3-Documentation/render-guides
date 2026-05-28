@@ -2,56 +2,39 @@ header {
     position: sticky;
     top: 0;
     width: 100%;
-    z-index: 1000; /* Ensures it's above other content */
-    background-color: white; /* Adjust as needed */
-
-    .logo-wrapper {
-        display: flex;
-        @include media-breakpoint-up(lg) {
-            width: 15rem;
-        }
-    }
+    z-index: 1000;
+    background-color: white;
 
     .toc-header {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
         gap: 0.4rem;
-        padding-left: calc(#{$spacer} / 1.5);
+        margin-left: calc(#{$spacer-responsive} * 2);
 
         .toc-title {
             display: flex;
-            justify-content: center;
-            flex-direction: column;
-            padding-right: 0.6rem;
+            align-items: center;
         }
 
         a.toc-title-project {
-            display: block;
-            position: relative;
-            font-size: 1.2em;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            line-height: 1.2;
+            font-size: 16px;
             font-weight: 700;
-            line-height: 1.25;
-            color: $secondary;
+            color: $black;
             text-decoration: none;
 
-            &:before {
-                content: '';
-                width: 0.2em;
-                height: 100%;
-                background: $primary;
-                position: absolute;
-                top: 0;
-                left: -0.6em;
-            }
-
             &:hover {
-                text-decoration: 0.1em underline;
+                color: $black;
+                text-decoration: underline;
             }
         }
 
         .form-select {
-            padding: 0.25rem 2rem 0.25rem 0.5rem; /* space for dropdown arrow */
-            height: calc(1.5em + 0.5rem + 2px); /* matches .btn-sm */
+            padding: 0.25rem 2rem 0.25rem 0.5rem;
+            height: calc(1.5em + 0.5rem + 2px);
             line-height: 1.5;
             font-size: 0.875rem;
             width: auto;

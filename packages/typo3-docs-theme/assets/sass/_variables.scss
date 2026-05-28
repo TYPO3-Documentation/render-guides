@@ -76,6 +76,8 @@ $yiq-contrasted-threshold: 160;
 
 $btn-primary-color: #ffffff;
 
+$input-btn-border-width: 0.125rem;
+
 //
 // directive .. confval::
 //
@@ -142,6 +144,33 @@ $table-bg:          $white;
 // Grid
 // --------------------------------------------------
 $grid-gutter-width: 40px;
+$spacer-responsive: clamp(0.75rem, calc(0.75rem + 0.625vw), 1.5625rem);
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1600px
+);
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1440px
+);
+
+//
+// Buttons
+// --------------------------------------------------
+$btn-hover-shadow:
+    0 25px 10px rgba(0, 0, 0, 0.01),
+    0 14px 8px rgba(0, 0, 0, 0.05),
+    0 6px 6px rgba(0, 0, 0, 0.09),
+    0 2px 3px rgba(0, 0, 0, 0.1);
 
 //
 // Admonitions

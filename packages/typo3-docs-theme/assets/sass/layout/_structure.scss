@@ -20,19 +20,66 @@
     flex-grow: 0;
     flex-shrink: 0;
     background: #ffffff;
-    box-shadow: $box-shadow-sm;
+    transition: box-shadow 0.2s ease;
+
+    &.scrolled {
+        box-shadow: $box-shadow-sm;
+
+        .page-header-inner {
+            padding-top: $spacer-responsive;
+            padding-bottom: $spacer-responsive;
+        }
+    }
 }
 
 .page-header-inner {
     max-width: 100%;
     width: map-get($container-max-widths, 'xl');
     margin: 0 auto;
-    padding: 1rem calc(#{$grid-gutter-width} / 2);
+    padding: $spacer-responsive calc(#{$grid-gutter-width} / 2);
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    transition: padding 0.2s ease;
+    @include media-breakpoint-up(lg) {
+        padding-top: calc(#{$spacer-responsive} * 2);
+        padding-bottom: calc(#{$spacer-responsive} * 2);
+    }
     @media (max-width: 992px) {
         gap: 1rem;
     }
+    @include media-breakpoint-up(xxl) {
+        width: map-get($container-max-widths, 'xxl');
+    }
+}
+
+.navbar-brand {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-top: -18px;
+    text-decoration: none;
+}
+
+.navbar-brand-text {
+    gap: 0.4rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+.navbar-brand-logo {
+    display: block;
+    width: 29px;
+    height: 29px;
+}
+
+.navbar-brand-name {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: -4px;
+    color: $secondary;
 }
 
 .menu-search-wrapper {
@@ -63,6 +110,9 @@
     @include media-breakpoint-up(lg) {
         flex-flow: nowrap row;
     }
+    @include media-breakpoint-up(xxl) {
+        width: map-get($container-max-widths, 'xxl');
+    }
 }
 
 .page-main-navigation {
@@ -71,8 +121,11 @@
     z-index: 1;
     margin-left: calc(#{$grid-gutter-width} / 2 * -1);
     margin-right: calc(#{$grid-gutter-width} / 2 * -1);
-    padding: calc(#{$grid-gutter-width} / 2);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+    &:has(#toc-collapse.show) {
+        padding: calc(#{$grid-gutter-width} / 2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    }
     @include media-breakpoint-up(lg) {
         padding: ($spacer * 2) 0;
         flex-shrink: 0;
