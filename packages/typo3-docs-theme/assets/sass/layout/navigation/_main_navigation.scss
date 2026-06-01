@@ -138,4 +138,25 @@
             }
         }
     }
+
+    .toc-options {
+        margin: $spacer 0;
+        padding-top: $spacer;
+        border-top: 1px solid rgba(0, 0, 0, 0.15);
+
+        .caption {
+            font-weight: bold;
+            margin: 0 0 calc(#{$spacer} / 2);
+        }
+
+        .dropdown-item {
+            padding: calc(#{$spacer} / 4) 0;
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }

@@ -8,16 +8,20 @@ header {
     .toc-header {
         display: flex;
         align-items: center;
+        flex: 1 1 auto;
+        flex-wrap: wrap;
         gap: 0.4rem;
         margin-left: calc(#{$spacer-responsive} * 2);
+        min-width: 0;
 
         .toc-title {
             display: flex;
             align-items: center;
+            max-width: 100%;
+            min-width: 0;
         }
 
         a.toc-title-project {
-            white-space: nowrap;
             display: flex;
             align-items: center;
             line-height: 1.2;
@@ -25,6 +29,7 @@ header {
             font-weight: 700;
             color: $black;
             text-decoration: none;
+            overflow-wrap: anywhere;
 
             &:hover {
                 color: $black;
@@ -37,12 +42,24 @@ header {
             height: calc(1.5em + 0.5rem + 2px);
             line-height: 1.5;
             font-size: 0.875rem;
+            max-width: 100%;
             width: auto;
+        }
+        @include media-breakpoint-down(lg) {
+            flex-basis: 100%;
+            margin-left: 0;
+
+            .toc-title {
+                flex: 1 1 100%;
+            }
         }
     }
 
     #options-toggle {
         anchor-name: --options-toggle;
+        @include media-breakpoint-down(lg) {
+            display: none !important;
+        }
     }
 
     #options-panel {
@@ -56,6 +73,9 @@ header {
         top: calc(anchor(bottom) + 0.5rem);
         right: anchor(right);
         position-anchor: --options-toggle;
+        @include media-breakpoint-down(lg) {
+            display: none !important;
+        }
 
         .dropdown-header {
             padding: 0.25rem 0.75rem;
