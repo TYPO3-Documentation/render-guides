@@ -24,7 +24,9 @@
 
     &.scrolled {
         box-shadow: $box-shadow-sm;
+    }
 
+    &.compact {
         .page-header-inner {
             padding-top: $spacer-responsive;
             padding-bottom: $spacer-responsive;

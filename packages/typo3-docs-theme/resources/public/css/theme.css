@@ -26781,7 +26781,7 @@ header #options-panel .dropdown-item:hover i, header #options-panel .dropdown-it
 .page-header.scrolled {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
-.page-header.scrolled .page-header-inner {
+.page-header.compact .page-header-inner {
   padding-top: clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem);
   padding-bottom: clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem);
 }
