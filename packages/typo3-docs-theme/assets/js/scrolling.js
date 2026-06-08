@@ -1,13 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
   const pageHeader = document.querySelector('.page-header');
-  let isScrolled = false;
+  const compactHeaderThreshold = 80;
+  let hasShadow = false;
+  let isCompact = false;
   function updateHeaderShadow() {
     const scrolled = window.scrollY > 0;
+    const compact = isCompact ? window.scrollY > 0 : window.scrollY > compactHeaderThreshold;
+
     // Only write to the DOM when the state actually changes to avoid
     // triggering unnecessary style recalculations on every scroll tick
-    if (scrolled !== isScrolled) {
-      isScrolled = scrolled;
+    if (scrolled !== hasShadow) {
+      hasShadow = scrolled;
       pageHeader?.classList.toggle('scrolled', scrolled);
+    }
+    if (compact !== isCompact) {
+      isCompact = compact;
+      pageHeader?.classList.toggle('compact', compact);
     }
   }
   updateHeaderShadow();
@@ -25,22 +33,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function scrollToAnchor() {
+  function scrollToAnchor(behavior = "smooth") {
     const hash = window.location.hash.substring(1); // Get anchor without #
-    if (!hash || hash === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    if (!hash) {
+      return;
+    }
+    if (hash === "top") {
+      window.scrollTo({ top: 0, behavior });
       return;
     }
     const target = document.getElementById(hash);
     if (target) {
       setTimeout(() => {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.scrollIntoView({ behavior, block: "start" });
       }, 50); // Slight delay ensures styles apply
     }
   }
 
   adjustScrollMargin();
-  setTimeout(scrollToAnchor, 100); // Slight delay for rendering
+  setTimeout(() => scrollToAnchor("auto"), 100); // Slight delay for rendering
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
@@ -54,12 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function scrollActiveMenuItemIntoView() {
     const menuContainer = document.querySelector(".page-main-navigation nav");
     const activeItem = menuContainer?.querySelector(".main_menu .active");
-    if (activeItem && typeof activeItem.scrollIntoView === "function") {
-      activeItem.scrollIntoView({
-        behavior: "auto",    // or "smooth" if you prefer
-        block: "center",     // or "nearest" if you want minimal scrolling
-        inline: "nearest"
-      });
+    if (menuContainer && activeItem) {
+      menuContainer.scrollTop = activeItem.offsetTop - menuContainer.clientHeight / 2 + activeItem.clientHeight / 2;
     }
   }
 

@@ -8,16 +8,20 @@ header {
     .toc-header {
         display: flex;
         align-items: center;
+        flex: 1 1 auto;
+        flex-wrap: wrap;
         gap: 0.4rem;
         margin-left: calc(#{$spacer-responsive} * 2);
+        min-width: 0;
 
         .toc-title {
             display: flex;
             align-items: center;
+            max-width: 100%;
+            min-width: 0;
         }
 
         a.toc-title-project {
-            white-space: nowrap;
             display: flex;
             align-items: center;
             line-height: 1.2;
@@ -25,6 +29,7 @@ header {
             font-weight: 700;
             color: $black;
             text-decoration: none;
+            overflow-wrap: anywhere;
 
             &:hover {
                 color: $black;
@@ -37,12 +42,47 @@ header {
             height: calc(1.5em + 0.5rem + 2px);
             line-height: 1.5;
             font-size: 0.875rem;
+            max-width: 100%;
             width: auto;
+        }
+        @include media-breakpoint-down(lg) {
+            flex-basis: 100%;
+            margin-left: 0;
+
+            .toc-title {
+                flex: 1 1 100%;
+            }
+        }
+    }
+
+    .header-search {
+        @include media-breakpoint-down(lg) {
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            z-index: 200;
+            background: white;
+            padding: $spacer-responsive calc(#{$grid-gutter-width} / 2);
+            border-top: 1px solid rgba($black, 0.12);
+            box-shadow: 0 4px 12px rgba($black, 0.1);
+
+            .input-group {
+                margin: 0;
+            }
+
+            &.show {
+                display: block;
+            }
         }
     }
 
     #options-toggle {
         anchor-name: --options-toggle;
+        @include media-breakpoint-down(lg) {
+            display: none !important;
+        }
     }
 
     #options-panel {
@@ -56,12 +96,15 @@ header {
         top: calc(anchor(bottom) + 0.5rem);
         right: anchor(right);
         position-anchor: --options-toggle;
+        @include media-breakpoint-down(lg) {
+            display: none !important;
+        }
 
         .dropdown-header {
             padding: 0.25rem 0.75rem;
             font-size: 0.75rem;
             font-weight: 600;
-            color: $body-color; // now consistent with dropdown items
+            color: $body-color;
             border-bottom: 1px solid rgba($black, 0.05);
             margin-bottom: 0.5rem;
         }
@@ -71,7 +114,7 @@ header {
             font-size: 0.875rem;
             white-space: nowrap;
             line-height: 1.4;
-            color: $body-color; // now matches button/body text
+            color: $body-color;
             background-color: transparent;
             border-radius: 0.25rem;
             transition: background-color 0.15s ease, color 0.15s ease;
@@ -80,7 +123,7 @@ header {
             i {
                 width: 1rem;
                 text-align: center;
-                color: $body-color; // ensure icons match too
+                color: $body-color;
                 transition: color 0.15s ease;
             }
 

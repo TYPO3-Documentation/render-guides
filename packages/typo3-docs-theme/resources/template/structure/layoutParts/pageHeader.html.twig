@@ -14,59 +14,47 @@
                     <span class="navbar-brand-name">Documentation</span>
                 </span>
             </a>
-            <div class="align-self-center order-lg-2 order-last">
+            <div class="header-nav">
                 {% include "structure/navigation/navigationHeader.html.twig" %}
             </div>
-            <div class="ms-auto order-lg-3 d-flex">
-                <div class="menu-search-wrapper">
-                    <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
-                        <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
-                    </button>
-                    {% if isRenderedForDeployment() -%}
-                        <all-documentations-menu></all-documentations-menu>
-                    {%- else -%}
-                        <all-documentations-menu data-override-url="{{ getRelativePath('_resources/js/menu-proxy.php')}}"></all-documentations-menu>
-                    {% endif %}
-                    <search role="search">
-                        <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
-                            <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
-                            <div class="input-group mb-3 mt-sm-3">
-                                <select class="form-select search__scope" id="searchscope" name="scope">
-                                    <option value="">Search all</option>
-                                </select>
-                                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                                <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
-                            </div>
-                        </form>
-                        <div id="global-search-root"></div>
-                    </search>
-                    <button id="options-toggle" class="btn btn-light d-block" type="button" aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
-                        <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
-                    </button>
-
-                    <div id="options-panel"
-                         class="shadow p-3"
-                         popover>
-                        <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
-
-                        {% if has_page_context %}
-                            {# We're in multi-page mode #}
-                            {% include "structure/layoutParts/editOnGithubButtons.html.twig" %}
-                            {% set singleHtmlUrl = getSingleHtmlLink() %}
-                            {% if singleHtmlUrl %}
-                                <a class="dropdown-item d-flex align-items-center gap-2" href="{{ singleHtmlUrl }}" target="_blank" rel="noopener">
-                                    <i class="fas fa-print"></i>
-                                    Full documentation (single file)
-                                </a>
-                            {% endif %}
-                        {% else %}
-                            {# We're in singlehtml mode → show link back to normal view #}
-                            <a class="dropdown-item d-flex align-items-center gap-2" href="../Index.html" rel="noopener">
-                                <i class="fas fa-file-alt"></i>
-                                Switch to regular view
-                            </a>
-                        {% endif %}
-                    </div>
+            <div class="header-actions">
+                <button id="search-toggle" class="btn btn-light d-lg-none" type="button"
+                        aria-label="Search" aria-expanded="false" aria-controls="header-search-expand">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+                <button id="toc-toggle" class="btn btn-light d-lg-none" type="button"
+                        aria-label="Menu" aria-expanded="false" aria-controls="toc-collapse">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                {% if isRenderedForDeployment() -%}
+                    <all-documentations-menu></all-documentations-menu>
+                {%- else -%}
+                    <all-documentations-menu data-override-url="{{ getRelativePath('_resources/js/menu-proxy.php')}}"></all-documentations-menu>
+                {% endif %}
+                <search id="header-search-expand" class="header-search" role="search" aria-label="Site search">
+                    <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                        <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                        <div class="input-group">
+                            <select class="form-select search__scope" id="searchscope" name="scope">
+                                <option value="">Search all</option>
+                            </select>
+                            <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                            <button class="btn btn-light" type="submit" aria-label="Search">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                <span>Search</span>
+                            </button>
+                        </div>
+                    </form>
+                    <div id="global-search-root"></div>
+                </search>
+                <button id="options-toggle" class="btn btn-light" type="button"
+                        aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
+                    <i class="fas fa-cog" aria-hidden="true"></i>
+                    <span class="visually-hidden">Options</span>
+                </button>
+                <div id="options-panel" class="shadow p-3" popover>
+                    <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+                    {% include "structure/layoutParts/optionsMenu.html.twig" %}
                 </div>
             </div>
         </div>

@@ -42,42 +42,47 @@
                     <span class="navbar-brand-name">Documentation</span>
                 </span>
             </a>
-            <div class="align-self-center order-lg-2 order-last">
+            <div class="header-nav">
                 
 <div class="toc-header">
     <div class="toc-title">
                             <a class="toc-title-project" href="index.html">Document Title</a>
             </div>
     </div>            </div>
-            <div class="ms-auto order-lg-3 d-flex">
-                <div class="menu-search-wrapper">
-                    <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
-                        <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
-                    </button>
-                    <all-documentations-menu data-override-url="_resources/js/menu-proxy.php"></all-documentations-menu>
-                                        <search role="search">
-                        <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
-                            <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
-                            <div class="input-group mb-3 mt-sm-3">
-                                <select class="form-select search__scope" id="searchscope" name="scope">
-                                    <option value="">Search all</option>
-                                </select>
-                                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                                <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
-                            </div>
-                        </form>
-                        <div id="global-search-root"></div>
-                    </search>
-                    <button id="options-toggle" class="btn btn-light d-block" type="button" aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
-                        <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
-                    </button>
-
-                    <div id="options-panel"
-                         class="shadow p-3"
-                         popover>
-                        <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
-
-                                                                                    <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/page.rst.txt" rel="nofollow noopener" target="_blank">
+            <div class="header-actions">
+                <button id="search-toggle" class="btn btn-light d-lg-none" type="button"
+                        aria-label="Search" aria-expanded="false" aria-controls="header-search-expand">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+                <button id="toc-toggle" class="btn btn-light d-lg-none" type="button"
+                        aria-label="Menu" aria-expanded="false" aria-controls="toc-collapse">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <all-documentations-menu data-override-url="_resources/js/menu-proxy.php"></all-documentations-menu>
+                                <search id="header-search-expand" class="header-search" role="search" aria-label="Site search">
+                    <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                        <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                        <div class="input-group">
+                            <select class="form-select search__scope" id="searchscope" name="scope">
+                                <option value="">Search all</option>
+                            </select>
+                            <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                            <button class="btn btn-light" type="submit" aria-label="Search">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                <span>Search</span>
+                            </button>
+                        </div>
+                    </form>
+                    <div id="global-search-root"></div>
+                </search>
+                <button id="options-toggle" class="btn btn-light" type="button"
+                        aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
+                    <i class="fas fa-cog" aria-hidden="true"></i>
+                    <span class="visually-hidden">Options</span>
+                </button>
+                <div id="options-panel" class="shadow p-3" popover>
+                    <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/page.rst.txt" rel="nofollow noopener" target="_blank">
         <i class="fas fa-code"></i>
         View source
     </a>
@@ -85,12 +90,11 @@
         <i class="fas fa-info-circle"></i>
         How to edit
     </a>
-                                                                                        <a class="dropdown-item d-flex align-items-center gap-2" href="index.html" target="_blank" rel="noopener">
-                                    <i class="fas fa-print"></i>
-                                    Full documentation (single file)
-                                </a>
-                                                                        </div>
-                </div>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="index.html" target="_blank" rel="noopener">
+            <i class="fas fa-print"></i>
+            Full documentation (single file)
+        </a>
+                    </div>
             </div>
         </div>
     </div>
@@ -116,6 +120,21 @@
     </a></li>    </ul>
     </div>
                         </div>
+                        <div class="toc-options d-lg-none">
+                            <p class="caption">Options</p>
+                                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/page.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="index.html" target="_blank" rel="noopener">
+            <i class="fas fa-print"></i>
+            Full documentation (single file)
+        </a>
+                            </div>
                     </div>
                 </nav>
             </div>
@@ -126,6 +145,7 @@
     <li class="breadcrumb-item"><a href="index.html">Document Title</a></li>
                     <li aria-current="page"  class="breadcrumb-item  active">Page</li>
         </ol>
+
         <div class="breadcrumb-additions"></div>
     </nav>
                     
