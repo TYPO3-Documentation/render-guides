@@ -2,64 +2,87 @@ header {
     position: sticky;
     top: 0;
     width: 100%;
-    z-index: 1000; /* Ensures it's above other content */
-    background-color: white; /* Adjust as needed */
-
-    .logo-wrapper {
-        display: flex;
-        @include media-breakpoint-up(lg) {
-            width: 15rem;
-        }
-    }
+    z-index: 1000;
+    background-color: white;
 
     .toc-header {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        flex: 1 1 auto;
+        flex-wrap: wrap;
         gap: 0.4rem;
-        padding-left: calc(#{$spacer} / 1.5);
+        margin-left: calc(#{$spacer-responsive} * 2);
+        min-width: 0;
 
         .toc-title {
             display: flex;
-            justify-content: center;
-            flex-direction: column;
-            padding-right: 0.6rem;
+            align-items: center;
+            max-width: 100%;
+            min-width: 0;
         }
 
         a.toc-title-project {
-            display: block;
-            position: relative;
-            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            line-height: 1.2;
+            font-size: 16px;
             font-weight: 700;
-            line-height: 1.25;
-            color: $secondary;
+            color: $black;
             text-decoration: none;
-
-            &:before {
-                content: '';
-                width: 0.2em;
-                height: 100%;
-                background: $primary;
-                position: absolute;
-                top: 0;
-                left: -0.6em;
-            }
+            overflow-wrap: anywhere;
 
             &:hover {
-                text-decoration: 0.1em underline;
+                color: $black;
+                text-decoration: underline;
             }
         }
 
         .form-select {
-            padding: 0.25rem 2rem 0.25rem 0.5rem; /* space for dropdown arrow */
-            height: calc(1.5em + 0.5rem + 2px); /* matches .btn-sm */
+            padding: 0.25rem 2rem 0.25rem 0.5rem;
+            height: calc(1.5em + 0.5rem + 2px);
             line-height: 1.5;
             font-size: 0.875rem;
+            max-width: 100%;
             width: auto;
+        }
+        @include media-breakpoint-down(lg) {
+            flex-basis: 100%;
+            margin-left: 0;
+
+            .toc-title {
+                flex: 1 1 100%;
+            }
+        }
+    }
+
+    .header-search {
+        @include media-breakpoint-down(lg) {
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            z-index: 200;
+            background: white;
+            padding: $spacer-responsive calc(#{$grid-gutter-width} / 2);
+            border-top: 1px solid rgba($black, 0.12);
+            box-shadow: 0 4px 12px rgba($black, 0.1);
+
+            .input-group {
+                margin: 0;
+            }
+
+            &.show {
+                display: block;
+            }
         }
     }
 
     #options-toggle {
         anchor-name: --options-toggle;
+        @include media-breakpoint-down(lg) {
+            display: none !important;
+        }
     }
 
     #options-panel {
@@ -73,12 +96,15 @@ header {
         top: calc(anchor(bottom) + 0.5rem);
         right: anchor(right);
         position-anchor: --options-toggle;
+        @include media-breakpoint-down(lg) {
+            display: none !important;
+        }
 
         .dropdown-header {
             padding: 0.25rem 0.75rem;
             font-size: 0.75rem;
             font-weight: 600;
-            color: $body-color; // now consistent with dropdown items
+            color: $body-color;
             border-bottom: 1px solid rgba($black, 0.05);
             margin-bottom: 0.5rem;
         }
@@ -88,7 +114,7 @@ header {
             font-size: 0.875rem;
             white-space: nowrap;
             line-height: 1.4;
-            color: $body-color; // now matches button/body text
+            color: $body-color;
             background-color: transparent;
             border-radius: 0.25rem;
             transition: background-color 0.15s ease, color 0.15s ease;
@@ -97,7 +123,7 @@ header {
             i {
                 width: 1rem;
                 text-align: center;
-                color: $body-color; // ensure icons match too
+                color: $body-color;
                 transition: color 0.15s ease;
             }
 

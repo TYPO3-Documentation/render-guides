@@ -1,4 +1,5 @@
 
+{% if rootline|filter(e => not e.current and e.value is not null)|length > 0 %}
 <ol class="breadcrumb">
     {% for entry in rootline -%}
         {%- if entry.current %}
@@ -8,3 +9,4 @@
         {% endif -%}
     {% endfor %}
 </ol>
+{% endif %}
