@@ -25178,9 +25178,19 @@ figure.uml-diagram {
   background: white;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
   overflow: visible;
+  width: 1140px;
+  max-width: calc(100% - 40px);
+  position-anchor: --all-docs-button;
   inset: auto;
   top: calc(anchor(bottom) + 10px);
+  left: 0;
   right: 0;
+  margin-inline: auto;
+}
+@media (min-width: 1600px) {
+  .all-documentations-menu-panel {
+    width: 1440px;
+  }
 }
 .all-documentations-menu-panel:before {
   content: "";
