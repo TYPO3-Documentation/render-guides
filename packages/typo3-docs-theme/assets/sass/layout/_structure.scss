@@ -142,9 +142,10 @@
     @include media-breakpoint-up(lg) {
         padding: ($spacer * 2) 0;
         flex-shrink: 0;
+        align-self: flex-start;
         width: 15rem;
         margin: 0;
-        height: calc(100vh - 114px);
+        max-height: calc(100vh - 114px);
         margin-right: $grid-gutter-width;
         padding-right: calc(#{$grid-gutter-width} / 2);
         border-bottom: none;

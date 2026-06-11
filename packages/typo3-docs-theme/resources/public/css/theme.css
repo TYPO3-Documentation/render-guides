@@ -26915,9 +26915,10 @@ header #options-panel .dropdown-item:hover i, header #options-panel .dropdown-it
   .page-main-navigation {
     padding: 2rem 0;
     flex-shrink: 0;
+    align-self: flex-start;
     width: 15rem;
     margin: 0;
-    height: calc(100vh - 114px);
+    max-height: calc(100vh - 114px);
     margin-right: 40px;
     padding-right: calc(40px / 2);
     border-bottom: none;
