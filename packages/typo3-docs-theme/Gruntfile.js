@@ -67,6 +67,10 @@ module.exports = function (grunt) {
           {
             src: 'node_modules/bootstrap/dist/js/bootstrap.min.js',
             dest: '<%= paths.output %>js/bootstrap.min.js'
+          },
+          {
+            src: 'node_modules/scroll-timeline-polyfill/dist/scroll-timeline.js',
+            dest: '<%= paths.output %>js/scroll-timeline.js'
           }
         ]
       },

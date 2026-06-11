@@ -24695,10 +24695,14 @@ dl.command .command-arguments section {
 }
 
 #indexNav {
+  top: 164px;
   background-color: rgb(242.25, 242.25, 242.25);
   border-radius: 8px;
   padding: 8px 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#indexNav li {
+  margin-top: 0;
 }
 #indexNav .nav-link {
   color: #333333;
@@ -25178,9 +25182,19 @@ figure.uml-diagram {
   background: white;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
   overflow: visible;
+  width: 1140px;
+  max-width: calc(100% - 40px);
+  position-anchor: --all-docs-button;
   inset: auto;
   top: calc(anchor(bottom) + 10px);
+  left: 0;
   right: 0;
+  margin-inline: auto;
+}
+@media (min-width: 1600px) {
+  .all-documentations-menu-panel {
+    width: 1440px;
+  }
 }
 .all-documentations-menu-panel:before {
   content: "";
@@ -26755,6 +26769,18 @@ header #options-panel .dropdown-item:hover i, header #options-panel .dropdown-it
   flex: 0.4 !important;
 }
 
+:root {
+  --page-header-topbar-height: 44px;
+  --page-header-height: calc(var(--page-header-topbar-height) + 88.75px);
+  --page-header-padding-base: clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem);
+  --page-header-padding-compact: clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem);
+}
+@media (min-width: 992px) {
+  :root {
+    --page-header-padding-base: calc(clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem) * 2);
+  }
+}
+
 .page {
   display: flex;
   flex-direction: column;
@@ -26776,31 +26802,23 @@ header #options-panel .dropdown-item:hover i, header #options-panel .dropdown-it
   flex-grow: 0;
   flex-shrink: 0;
   background: #ffffff;
-  transition: box-shadow 0.2s ease;
+  box-shadow: 0 0 0 transparent;
 }
-.page-header.scrolled {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-}
-.page-header.compact .page-header-inner {
-  padding-top: clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem);
-  padding-bottom: clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem);
+@media (max-width: 991.98px) {
+  .page-header {
+    gap: 0.75rem;
+  }
 }
 
 .page-header-inner {
   max-width: 100%;
   width: 1140px;
   margin: 0 auto;
-  padding: clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem) calc(40px / 2);
+  padding-block: var(--page-header-padding-base);
+  padding-inline: calc(40px / 2);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  transition: padding 0.2s ease;
-}
-@media (min-width: 992px) {
-  .page-header-inner {
-    padding-top: calc(clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem) * 2);
-    padding-bottom: calc(clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem) * 2);
-  }
 }
 @media (max-width: 991.98px) {
   .page-header-inner {
@@ -26905,15 +26923,16 @@ header #options-panel .dropdown-item:hover i, header #options-panel .dropdown-it
   .page-main-navigation {
     padding: 2rem 0;
     flex-shrink: 0;
+    align-self: flex-start;
     width: 15rem;
     margin: 0;
-    height: calc(100vh - 114px);
+    max-height: calc(100vh - var(--page-header-height));
     margin-right: 40px;
     padding-right: calc(40px / 2);
     border-bottom: none;
     border-right: 1px solid rgba(0, 0, 0, 0.15);
     position: sticky;
-    top: 114px;
+    top: var(--page-header-height);
     overflow: auto;
   }
 }
@@ -26943,6 +26962,51 @@ section.confval-section {
   margin-bottom: 0;
 }
 
+/**
+ * Animations
+ */
+.page-header {
+  animation: page-header-shadow-animation linear both;
+  animation-timeline: scroll(root);
+  animation-range: 0 80px;
+}
+
+@keyframes page-header-shadow-animation {
+  from {
+    box-shadow: 0 0 0 transparent;
+  }
+  to {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+.page-header-inner {
+  animation: page-header-inner-compacting-animation linear both;
+  animation-timeline: scroll(root);
+  animation-range: 0 80px;
+}
+
+@keyframes page-header-inner-compacting-animation {
+  from {
+    padding-block: var(--page-header-padding-base);
+  }
+  to {
+    padding-block: var(--page-header-padding-compact);
+  }
+}
+.page-main {
+  animation: page-main-counter-compacting-animation linear both;
+  animation-timeline: scroll(root);
+  animation-range: 0 80px;
+}
+
+@keyframes page-main-counter-compacting-animation {
+  from {
+    margin-top: 0;
+  }
+  to {
+    margin-top: calc(var(--page-header-padding-base) - var(--page-header-padding-compact));
+  }
+}
 .no-focus {
   outline: none !important;
 }
