@@ -1,26 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const pageHeader = document.querySelector('.page-header');
-  const compactHeaderThreshold = 80;
-  let hasShadow = false;
-  let isCompact = false;
-  function updateHeaderShadow() {
-    const scrolled = window.scrollY > 0;
-    const compact = isCompact ? window.scrollY > 0 : window.scrollY > compactHeaderThreshold;
-
-    // Only write to the DOM when the state actually changes to avoid
-    // triggering unnecessary style recalculations on every scroll tick
-    if (scrolled !== hasShadow) {
-      hasShadow = scrolled;
-      pageHeader?.classList.toggle('scrolled', scrolled);
-    }
-    if (compact !== isCompact) {
-      isCompact = compact;
-      pageHeader?.classList.toggle('compact', compact);
-    }
-  }
-  updateHeaderShadow();
-  window.addEventListener('scroll', updateHeaderShadow, { passive: true });
-
   // Cache header and scroll targets once — querying the DOM on every
   // resize event would be expensive on pages with many elements
   const header = document.querySelector("header");

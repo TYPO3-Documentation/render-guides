@@ -285,6 +285,13 @@
 </footer></div>
 
 
+<script>
+    if (!(window.CSS && CSS.supports("animation-timeline", "scroll()"))) {
+        var scrollTimelinePolyfill = document.createElement("script");
+        scrollTimelinePolyfill.src = "_resources/js/scroll-timeline.js";
+        document.head.appendChild(scrollTimelinePolyfill);
+    }
+</script>
 <script src="_resources/js/bootstrap.min.js"></script>
 <script src="_resources/js/theme.min.js"></script>
 
