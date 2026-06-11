@@ -24695,10 +24695,14 @@ dl.command .command-arguments section {
 }
 
 #indexNav {
+  top: 164px;
   background-color: rgb(242.25, 242.25, 242.25);
   border-radius: 8px;
   padding: 8px 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#indexNav li {
+  margin-top: 0;
 }
 #indexNav .nav-link {
   color: #333333;

@@ -1,10 +1,15 @@
 // SCSS for Glossary Navigation
 
 #indexNav {
+    top: 164px;
     background-color: $light; // Light background
     border-radius: 8px;
     padding: 8px 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Soft shadow
+
+    li {
+        margin-top: 0;
+    }
 
     .nav-link {
         color: $secondary; // Bootstrap primary color variable
