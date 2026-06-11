@@ -27,6 +27,7 @@
     }
 
     &.compact {
+
         .page-header-inner {
             padding-top: $spacer-responsive;
             padding-bottom: $spacer-responsive;
@@ -59,7 +60,6 @@
     flex: 1 1 auto;
     align-self: center;
     min-width: 0;
-
     @include media-breakpoint-down(lg) {
         flex: 0 0 100%;
         order: 3;

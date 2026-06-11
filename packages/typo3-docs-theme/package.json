@@ -37,6 +37,6 @@
         "watch": "vite build --watch & grunt watch"
     },
     "engines": {
-        "node": ">=20.19.0 <21.0.0"
+        "node": ">=24.16.0 <25.0.0"
     }
 }
