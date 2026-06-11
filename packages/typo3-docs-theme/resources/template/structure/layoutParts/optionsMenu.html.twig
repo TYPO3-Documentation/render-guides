@@ -4,14 +4,14 @@
     {% set singleHtmlUrl = getSingleHtmlLink() %}
     {% if singleHtmlUrl %}
         <a class="dropdown-item d-flex align-items-center gap-2" href="{{ singleHtmlUrl }}" target="_blank" rel="noopener">
-            <i class="fas fa-print"></i>
+            <i class="fa-solid fa-print"></i>
             Full documentation (single file)
         </a>
     {% endif %}
 {% else %}
     {# We're in singlehtml mode -> show link back to normal view #}
     <a class="dropdown-item d-flex align-items-center gap-2" href="../Index.html" rel="noopener">
-        <i class="fas fa-file-alt"></i>
+        <i class="fa-solid fa-file-lines"></i>
         Switch to regular view
     </a>
 {% endif %}
