@@ -14,7 +14,7 @@ PHP_PROJECT_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/proje
 PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:2
 
 ## Docker wrapper for npm, for the typo3-docs-theme JS tests (so node is not required on the host)
-NPM_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -e HOME=/tmp -v${PWD}/packages/typo3-docs-theme:/app -w /app node:20 npm
+NPM_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -e HOME=/tmp -v${PWD}/packages/typo3-docs-theme:/app -w /app node:24 npm
 
 ## These variables can be overriden by other tasks, i.e. by `make PHP_ARGS=-d memory_limit=2G pre-commit-tests`.
 ## The "--user" argument is required for macOS to pass along ownership of /project

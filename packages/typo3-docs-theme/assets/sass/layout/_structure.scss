@@ -1,3 +1,13 @@
+:root {
+    --page-header-topbar-height: 44px;
+    --page-header-height: calc(var(--page-header-topbar-height) + 88.75px);
+    --page-header-padding-base: #{$spacer-responsive};
+    --page-header-padding-compact: #{$spacer-responsive};
+    @include media-breakpoint-up(lg) {
+        --page-header-padding-base: calc(#{$spacer-responsive} * 2);
+    }
+}
+
 .page {
     display: flex;
     flex-direction: column;
@@ -20,17 +30,9 @@
     flex-grow: 0;
     flex-shrink: 0;
     background: #ffffff;
-    transition: box-shadow 0.2s ease;
-
-    &.scrolled {
-        box-shadow: $box-shadow-sm;
-    }
-
-    &.compact {
-        .page-header-inner {
-            padding-top: $spacer-responsive;
-            padding-bottom: $spacer-responsive;
-        }
+    box-shadow: 0 0 0 transparent;
+    @include media-breakpoint-down(lg) {
+        gap: 0.75rem;
     }
 }
 
@@ -38,15 +40,11 @@
     max-width: 100%;
     width: map-get($container-max-widths, 'xl');
     margin: 0 auto;
-    padding: $spacer-responsive calc(#{$grid-gutter-width} / 2);
+    padding-block: var(--page-header-padding-base);
+    padding-inline: calc(#{$grid-gutter-width} / 2);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    transition: padding 0.2s ease;
-    @include media-breakpoint-up(lg) {
-        padding-top: calc(#{$spacer-responsive} * 2);
-        padding-bottom: calc(#{$spacer-responsive} * 2);
-    }
     @include media-breakpoint-down(lg) {
         gap: 0.75rem;
     }
@@ -59,7 +57,6 @@
     flex: 1 1 auto;
     align-self: center;
     min-width: 0;
-
     @include media-breakpoint-down(lg) {
         flex: 0 0 100%;
         order: 3;
@@ -142,15 +139,16 @@
     @include media-breakpoint-up(lg) {
         padding: ($spacer * 2) 0;
         flex-shrink: 0;
+        align-self: flex-start;
         width: 15rem;
         margin: 0;
-        height: calc(100vh - 114px);
+        max-height: calc(100vh - var(--page-header-height));
         margin-right: $grid-gutter-width;
         padding-right: calc(#{$grid-gutter-width} / 2);
         border-bottom: none;
         border-right: 1px solid rgba(0, 0, 0, 0.15);
         position: sticky;
-        top: 114px;
+        top: var(--page-header-height);
         overflow: auto;
     }
 }
@@ -175,5 +173,58 @@ section {
     &.confval-section {
         margin-top: 0;
         margin-bottom: 0;
+    }
+}
+
+/**
+ * Animations
+ */
+$page-header-animation-range: 80px;
+
+.page-header {
+    animation: page-header-shadow-animation linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 #{$page-header-animation-range};
+}
+@keyframes page-header-shadow-animation {
+
+    from {
+        box-shadow: 0 0 0 transparent;
+    }
+
+    to {
+        box-shadow: $box-shadow-sm;
+    }
+}
+
+.page-header-inner {
+    animation: page-header-inner-compacting-animation linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 #{$page-header-animation-range};
+}
+@keyframes page-header-inner-compacting-animation {
+
+    from {
+        padding-block: var(--page-header-padding-base);
+    }
+
+    to {
+        padding-block: var(--page-header-padding-compact);
+    }
+}
+
+.page-main {
+    animation: page-main-counter-compacting-animation linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 #{$page-header-animation-range};
+}
+@keyframes page-main-counter-compacting-animation {
+
+    from {
+        margin-top: 0;
+    }
+
+    to {
+        margin-top: calc(var(--page-header-padding-base) - var(--page-header-padding-compact));
     }
 }
