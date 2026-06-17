@@ -22,6 +22,7 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextR
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\LintDiscouragedPhrasesTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RedirectsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ReplacePermalinksNodeTransformer;
@@ -115,6 +116,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(Typo3TalkNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(LintDiscouragedPhrasesTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(TwigExtension::class)
         ->tag('twig.extension')
