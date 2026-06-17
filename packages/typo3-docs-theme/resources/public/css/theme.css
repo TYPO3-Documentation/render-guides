@@ -26546,6 +26546,22 @@ dl.field-list > dt:after {
     margin: 0;
   }
 }
+.rst-content dl.php.property > dd:empty,
+.rst-content dl.php.const > dd:empty,
+.rst-content dl.php.case > dd:empty {
+  display: none;
+}
+.rst-content dl.php.property:has(> dd:empty),
+.rst-content dl.php.const:has(> dd:empty),
+.rst-content dl.php.case:has(> dd:empty) {
+  padding-bottom: 0;
+}
+.rst-content dl.php.property:has(> dd:empty) > dt,
+.rst-content dl.php.const:has(> dd:empty) > dt,
+.rst-content dl.php.case:has(> dd:empty) > dt {
+  margin-bottom: 0;
+}
+
 .sidebar {
   margin: 0;
   margin-bottom: 1rem;
