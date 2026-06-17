@@ -71,6 +71,8 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                         'typo3_core_preferred' => $this->getConfigValue($configs, 'typo3_core_preferred', ''),
                         'confval_default' => $this->getConfigValue($configs, 'confval_default', 'Option'),
                         'disable_version_switch' => $this->getConfigValue($configs, 'disable_version_switch', ''),
+                        'lint' => $this->getConfigValue($configs, 'lint', 'false'),
+                        'lint_discouraged_phrases' => $this->getConfigValue($configs, 'lint_discouraged_phrases', ''),
                     ],
                 ],
             );
