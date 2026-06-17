@@ -4,6 +4,41 @@ module.exports = function (grunt) {
   const sass = require('sass');
 
   /**
+   * Resolve relative url()s to absolute in the scroll-timeline polyfill.
+   *
+   * In Firefox the polyfill re-serves same-origin stylesheets from a `blob:`
+   * URL, which has no path context, so theme.css's relative webfont url()s
+   * break and icons render as tofu. Absolutizing them first keeps them working.
+   * (Cross-origin/CDN sheets are skipped by the polyfill, so this is a no-op
+   * there.)
+   */
+  grunt.registerTask('patch-scroll-timeline', 'Make the scroll-timeline polyfill resolve relative url()s to absolute', function () {
+    const file = grunt.config('paths.output') + 'js/scroll-timeline.js';
+    if (!grunt.file.exists(file)) {
+      grunt.log.warn('scroll-timeline.js not found at ' + file + ' - skipping patch.');
+      return;
+    }
+    let content = grunt.file.read(file);
+    if (content.indexOf('__stpResolveUrls') !== -1) {
+      grunt.log.ok('scroll-timeline.js already patched.');
+      return;
+    }
+    // Only relative urls; data:, http(s):, blob:, //, / and # are skipped.
+    const helper ='function __stpResolveUrls(css,base){return css.replace(/url\\(\\s*([\'"]?)\\s*((?![\'"]?(?:data:|https?:|blob:|\\/\\/|\\/|#))[^\'")]+?)\\s*\\1\\s*\\)/gi,function(m,q,u){try{return "url("+q+new URL(u,base).href+q+")"}catch(e){return m}})}\n';
+    // Captures the minified link/css var names so it survives renames.
+    const re =/(fetch\((\w+)\.getAttribute\("href"\)\)\.then\(\(async \w+=>\{const \w+=await \w+\.text\(\);let \w+=\w+\.transpileStyleSheet\([^;]+;if\((\w+)=\w+\.transpileStyleSheet\([^)]*\),\3!=\w+\)\{)/;
+    if (!re.test(content)) {
+      grunt.fail.warn('Could not find the scroll-timeline blob-rewrite site. The polyfill may have changed - update patch-scroll-timeline in the Gruntfile.');
+      return;
+    }
+    content = helper + content.replace(re, function (full, head, linkVar, cssVar) {
+      return head + cssVar + '=__stpResolveUrls(' + cssVar + ',' + linkVar + '.href);';
+    });
+    grunt.file.write(file, content);
+    grunt.log.ok('Patched scroll-timeline.js to absolutize relative url()s.');
+  });
+
+  /**
    * Grunt task to remove source map comment
    */
   grunt.registerMultiTask('removesourcemap', 'Grunt task to remove sourcemp comment from files', function () {
@@ -145,7 +180,8 @@ module.exports = function (grunt) {
     removesourcemap: {
       contrib: {
         files: {
-          '<%= paths.output %>js/bootstrap.min.js': '<%= paths.output %>js/bootstrap.min.js'
+          '<%= paths.output %>js/bootstrap.min.js': '<%= paths.output %>js/bootstrap.min.js',
+          '<%= paths.output %>js/scroll-timeline.js': '<%= paths.output %>js/scroll-timeline.js'
         }
       }
     },
@@ -195,8 +231,8 @@ module.exports = function (grunt) {
    */
   grunt.registerTask('update', ['copy']);
   grunt.registerTask('js', ['uglify']);
-  grunt.registerTask('default', ['clean', 'update', 'stylelint', 'sass', 'js', 'removesourcemap']);
+  grunt.registerTask('default', ['clean', 'update', 'stylelint', 'sass', 'js', 'removesourcemap', 'patch-scroll-timeline']);
   grunt.registerTask('build', ['default']);
   grunt.registerTask('render', ['clean:build']);
-  grunt.registerTask('debug', ['clean', 'update', 'stylelint', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
+  grunt.registerTask('debug', ['clean', 'update', 'stylelint', 'sass:debug', 'js', 'copy:debug', 'removesourcemap', 'patch-scroll-timeline']);
 };
