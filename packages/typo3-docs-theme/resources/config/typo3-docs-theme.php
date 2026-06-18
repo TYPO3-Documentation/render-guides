@@ -7,6 +7,7 @@ use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
 use phpDocumentor\Guides\Event\PostParseDocument;
 use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
+use phpDocumentor\Guides\Event\PreParseDocument;
 use phpDocumentor\Guides\Event\PreParseProcess;
 use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
 use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
@@ -23,7 +24,9 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransforme
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\LintDiscouragedPhrasesTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\MissingAnchorHeadingLintTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RedirectsNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\SentenceCaseHeadingLintTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ReplacePermalinksNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\Typo3TalkNodeTransformer;
@@ -46,7 +49,9 @@ use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\OriginalFileNameSetter;
+use T3Docs\Typo3DocsTheme\EventListeners\SourceLintListener;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
+use T3Docs\Typo3DocsTheme\Lint\SkippedHeadingLevelSourceRule;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInterlinkParser;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInventoryUrlBuilder;
 use T3Docs\Typo3DocsTheme\Inventory\InterlinkParserInterface;
@@ -118,6 +123,10 @@ return static function (ContainerConfigurator $container): void {
         ->set(Typo3TalkNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(LintDiscouragedPhrasesTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(SentenceCaseHeadingLintTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(MissingAnchorHeadingLintTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(TwigExtension::class)
         ->tag('twig.extension')
@@ -255,5 +264,15 @@ return static function (ContainerConfigurator $container): void {
         ->tag('event_listener', ['event' => PreParseProcess::class])
 
         ->set(OriginalFileNameSetter::class)
-        ->tag('event_listener', ['event' => PostParseDocument::class]);
+        ->tag('event_listener', ['event' => PostParseDocument::class])
+
+        // Source-level lint rules (#1157) and the listener that runs them.
+        // (Pure source-hygiene checks — tabs, trailing whitespace, line length —
+        // are intentionally NOT done here; they belong to .editorconfig /
+        // editorconfig-checker. Only RST-semantic source checks live here.)
+        ->set(SkippedHeadingLevelSourceRule::class)
+        ->tag('typo3docs.lint.source_rule')
+        ->set(SourceLintListener::class)
+        ->arg('$rules', tagged_iterator('typo3docs.lint.source_rule'))
+        ->tag('event_listener', ['event' => PreParseDocument::class]);
 };

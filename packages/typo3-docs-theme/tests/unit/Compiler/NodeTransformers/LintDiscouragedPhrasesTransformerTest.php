@@ -11,7 +11,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\AbstractLogger;
-use Stringable;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\LintDiscouragedPhrasesTransformer;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
