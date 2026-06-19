@@ -7,4 +7,29 @@
     dl.php {
         @extend .property-card;
     }
+
+    // A public property, class constant or enum case is often just a signature
+    // with no body, which otherwise renders as an empty Bootstrap-style panel
+    // below the header (see #1078). When the body is empty, hide it (dd:empty)
+    // and collapse the card to a single header bar (:has) by also removing the
+    // header margin and card padding. Members that do have a body keep their
+    // normal spacing, and so does the gap between members. The two rules are
+    // kept separate so a browser without :has() still hides the empty body.
+
+    dl.php.property,
+    dl.php.const,
+    dl.php.case {
+
+        & > dd:empty {
+            display: none;
+        }
+
+        &:has(> dd:empty) {
+            padding-bottom: 0;
+
+            & > dt {
+                margin-bottom: 0;
+            }
+        }
+    }
 }
