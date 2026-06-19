@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 const Icon = ({ type }) => {
     switch (type) {
-        case 'search': return <i className="fa fa-search" />;
+        case 'search': return <i className="fa-solid fa-magnifying-glass" />;
         case 'file': return <i className="fa-regular fa-file-code" />;
         default: return null;
     }

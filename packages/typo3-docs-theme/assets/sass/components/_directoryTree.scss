@@ -22,14 +22,13 @@
                         text-decoration: none;
 
                         .icon:before {
-                            font-family: 'Font Awesome 6 Free';
-                            content: "\f146";
+                            @include fa-regular-pseudo($fa-icon-square-minus);
                         }
 
                         &.collapsed {
 
                             .icon:before {
-                                content: "\f0fe";
+                                content: $fa-icon-square-plus;
                             }
                         }
                     }
@@ -54,17 +53,16 @@
                         padding: 0;
 
                         &:before {
+                            @include fa-regular-pseudo($fa-icon-file);
                             width: 1.5em;
-                            font-family: 'Font Awesome 6 Free';
                             display: inline-block;
-                            content: "\f15b";
                         }
                     }
 
                     code.path {
 
                         &:before {
-                            content: "\f07b";
+                            content: $fa-icon-folder;
                         }
                     }
 

@@ -21,10 +21,7 @@
     font-size: 1.25em;
 
     &:before {
-        @include fa-icon;
-        content: fa-content($fa-var-info-circle);
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
+        @include fa-solid-pseudo($fa-icon-circle-info);
         margin-right: calc(#{$spacer} / 2);
     }
 }
@@ -37,7 +34,7 @@
             }
 
             .admonition-title:before {
-                content: fa-content(#{$icon});
+                content: $icon;
             }
         }
     }

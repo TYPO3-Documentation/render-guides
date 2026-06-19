@@ -33,9 +33,9 @@ const GlobalSearch = ({ displayInput = false }) => {
             />}
             {displayInput ? <div class="input-group mb-3 mt-sm-3" onClick={handleButtonClick}>
                 <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value={searchQuery}></input>
-                <button class="btn btn-light"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                <button class="btn btn-light"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
             </div> :
-                <button onClick={handleButtonClick} class="btn btn-light"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>}
+                <button onClick={handleButtonClick} class="btn btn-light"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>}
         </>
     );
 };

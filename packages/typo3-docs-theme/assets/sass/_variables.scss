@@ -180,14 +180,14 @@ $admonition-border-color-default: #666666;
 $admonition-border-color-highlighted: $primary;
 
 $admonition-icons:
-    attention $admonition-border-color-highlighted #{$fa-var-bell},
-    caution $admonition-border-color-highlighted #{$fa-var-exclamation-triangle},
-    danger $admonition-border-color-highlighted #{$fa-var-exclamation-triangle},
-    error $admonition-border-color-highlighted #{$fa-var-times-circle},
-    important "" #{$fa-var-bell},
-    hint "" #{$fa-var-lightbulb},
-    note "" #{$fa-var-info-circle},
-    seealso "" #{$fa-var-share},
-    tip "" #{$fa-var-lightbulb},
-    warning $admonition-border-color-highlighted #{$fa-var-exclamation-triangle},
+    attention $admonition-border-color-highlighted $fa-icon-bell,
+    caution   $admonition-border-color-highlighted $fa-icon-triangle-exclamation,
+    danger    $admonition-border-color-highlighted $fa-icon-triangle-exclamation,
+    error     $admonition-border-color-highlighted $fa-icon-circle-xmark,
+    important "" $fa-icon-bell,
+    hint      "" $fa-icon-lightbulb,
+    note      "" $fa-icon-circle-info,
+    seealso   "" $fa-icon-share,
+    tip       "" $fa-icon-lightbulb,
+    warning   $admonition-border-color-highlighted $fa-icon-triangle-exclamation,
 ;

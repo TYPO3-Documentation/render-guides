@@ -77,7 +77,7 @@
 
         var indicator = createElement('span', 'zoom-indicator');
         indicator.setAttribute('aria-hidden', 'true');
-        indicator.innerHTML = '<i class="fa ' + (iconClass || 'fa-search-plus') + '"></i>';
+        indicator.innerHTML = '<i class="fa-solid ' + (iconClass || 'fa-magnifying-glass-plus') + '"></i>';
         // Keep pointer-events enabled for hover/tooltip, but forward clicks/scrolls to image
         var cursorStyle = cursor || 'zoom-in';
         indicator.style.cssText = 'position:absolute;font-size:14px;opacity:0.7;z-index:10;color:#333;text-shadow:0 0 3px #fff, 0 0 5px #fff, 0 0 7px #fff;cursor:' + cursorStyle + ';';
@@ -182,7 +182,7 @@
             wrapper.style.cssText = 'display:inline-block;position:relative;line-height:0;';
             img.parentNode.insertBefore(wrapper, img);
             wrapper.appendChild(img);
-            addZoomIndicator(wrapper, img, 'fa-search-plus', 'Click to enlarge', trigger);
+            addZoomIndicator(wrapper, img, 'fa-magnifying-glass-plus', 'Click to enlarge', trigger);
 
             img.addEventListener('dragstart', function(e) { e.preventDefault(); });
 
@@ -277,7 +277,7 @@
             wrapper.style.cssText = 'display:inline-block;position:relative;line-height:0;';
             img.parentNode.insertBefore(wrapper, img);
             wrapper.appendChild(img);
-            addZoomIndicator(wrapper, img, 'fa-search-plus', 'Click to enlarge', trigger);
+            addZoomIndicator(wrapper, img, 'fa-magnifying-glass-plus', 'Click to enlarge', trigger);
 
             img.addEventListener('dragstart', function(e) { e.preventDefault(); });
 
@@ -943,7 +943,7 @@
             imgWrapper.style.cssText = 'display:inline-block;position:relative;line-height:0;';
             img.parentNode.insertBefore(imgWrapper, img);
             imgWrapper.appendChild(img);
-            addZoomIndicator(imgWrapper, img, 'fa-search', null, container, 'crosshair');  // No tooltip - lens activates on hover
+            addZoomIndicator(imgWrapper, img, 'fa-magnifying-glass', null, container, 'crosshair');  // No tooltip - lens activates on hover
 
             // Lens and result panel are appended to the imgWrapper (not container)
             // so they position relative to the image

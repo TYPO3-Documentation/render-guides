@@ -56,7 +56,7 @@
           <label class="form-label" for="code-snippet">Code Snippet: </label>
           <div class="input-group">
               <textarea class="form-control code" id="code-snippet" readonly>${item.dataset.code}</textarea>
-              <button type="button" class="btn btn-outline-secondary copy-button" data-target="code-snippet"><i class="far fa-clone"></i></button>
+              <button type="button" class="btn btn-outline-secondary copy-button" data-target="code-snippet"><i class="fa-regular fa-clone"></i></button>
           </div>
         </div>
       `;
@@ -68,7 +68,7 @@
             <label class="form-label" for="fqn-snippet">Fully Qualified Name (FQN): </label>
             <div class="input-group">
                 <textarea class="form-control code" id="fqn-snippet" readonly>${item.dataset.fqn}</textarea>
-                <button type="button" class="btn btn-outline-secondary copy-button" data-target="fqn-snippet"><i class="far fa-clone"></i></button>
+                <button type="button" class="btn btn-outline-secondary copy-button" data-target="fqn-snippet"><i class="fa-regular fa-clone"></i></button>
             </div>
           </div>
         `;
@@ -79,7 +79,7 @@
             <label class="form-label" for="use-statement">PHP Use Statement: </label>
             <div class="input-group">
                 <textarea class="form-control code" id="use-statement" readonly>use ${item.dataset.fqn};</textarea>
-                <button type="button" class="btn btn-outline-secondary copy-button" data-target="use-statement"><i class="far fa-clone"></i></button>
+                <button type="button" class="btn btn-outline-secondary copy-button" data-target="use-statement"><i class="fa-regular fa-clone"></i></button>
             </div>
           </div>
         `;

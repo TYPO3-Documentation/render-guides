@@ -48,7 +48,7 @@
         <p>Install the package using Composer: </p>
         <div class="input-group">
             <textarea class="form-control code" id="composer-command" readonly>${item.dataset.composercommand}</textarea>
-            <button type="button" class="btn btn-outline-secondary copy-button" data-target="composer-command"><i class="far fa-clone"></i></button>
+            <button type="button" class="btn btn-outline-secondary copy-button" data-target="composer-command"><i class="fa-regular fa-clone"></i></button>
         </div>
   `;
       var links = '';

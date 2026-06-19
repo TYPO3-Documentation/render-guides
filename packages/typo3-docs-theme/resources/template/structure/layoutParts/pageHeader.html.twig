@@ -20,11 +20,11 @@
             <div class="header-actions">
                 <button id="search-toggle" class="btn btn-light d-lg-none" type="button"
                         aria-label="Search" aria-expanded="false" aria-controls="header-search-expand">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                 </button>
                 <button id="toc-toggle" class="btn btn-light d-lg-none" type="button"
                         aria-label="Menu" aria-expanded="false" aria-controls="toc-collapse">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
                 </button>
                 {% if isRenderedForDeployment() -%}
                     <all-documentations-menu></all-documentations-menu>
@@ -40,7 +40,7 @@
                             </select>
                             <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
                             <button class="btn btn-light" type="submit" aria-label="Search">
-                                <i class="fa fa-search" aria-hidden="true"></i>
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                                 <span>Search</span>
                             </button>
                         </div>
@@ -49,7 +49,7 @@
                 </search>
                 <button id="options-toggle" class="btn btn-light" type="button"
                         aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
-                    <i class="fas fa-cog" aria-hidden="true"></i>
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
                     <span class="visually-hidden">Options</span>
                 </button>
                 <div id="options-panel" class="shadow p-3" popover>
