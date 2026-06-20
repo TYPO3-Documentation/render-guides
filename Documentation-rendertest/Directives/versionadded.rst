@@ -35,6 +35,29 @@ deprecated
 
    .. deprecated:: 2.7
 
+Linking to a changelog entry
+============================
+
+The ``:changelog:`` option adds a link to the related TYPO3 changelog entry.
+The value is a changelog entry identifier; a fully qualified interlink target
+(``changelog:...``) is accepted as well.
+
+..  versionchanged:: 14.0
+    :changelog: feature-107628-1729026000
+
+    Most modules have been moved from :guilabel:`System` to
+    :guilabel:`Administration`.
+
+..  versionadded:: 14.0
+    :changelog: feature-101010-1700000000
+
+    A brand new module has been introduced.
+
+..  deprecated:: 14.0
+    :changelog: deprecation-202020-1700000000
+
+    This feature is deprecated, see the changelog for the replacement.
+
 The following seealso should be re-styled to a more reduced visual appearance:
 
 .. seealso::
