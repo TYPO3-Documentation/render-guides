@@ -19,6 +19,7 @@ use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
+use T3Docs\Typo3DocsTheme\Nodes\Typo3VersionChangeNode;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
@@ -30,6 +31,7 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
 {
     private const HTML = [
         YoutubeNode::class => 'body/directive/youtube.html.twig',
+        Typo3VersionChangeNode::class => 'body/version-change.html.twig',
     ];
 
     /** @param array<int, mixed> $configs */
