@@ -221,6 +221,9 @@ return static function (ContainerConfigurator $container): void {
         ->set(T3FieldListTableDirective::class)
         ->set(IndexEntriesDirective::class)
         ->set(Typo3TalkDirective::class)
+        // Intentionally override phpDocumentor's versionadded/versionchanged/deprecated
+        // directives by name (these have the same getName()); the theme directive wins
+        // because it is registered last in the "phpdoc.guides.directive" iterator.
         ->set(Typo3VersionAddedDirective::class)
         ->set(Typo3VersionChangedDirective::class)
         ->set(Typo3DeprecatedDirective::class)
