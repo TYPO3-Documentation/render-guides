@@ -10,6 +10,7 @@ use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
+use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3VersionChangeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
@@ -25,12 +26,13 @@ use function trim;
  * TYPO3 specific version of phpDocumentor's version change directives
  * (versionadded, versionchanged, deprecated).
  *
- * In addition to the default behaviour they support a ":changelog:" option that
- * renders a link to the related changelog entry via the docs.typo3.org
- * permalink service.
+ * All three directives support a ":changelog:" option that renders a link to
+ * the related changelog entry, built as a docs.typo3.org permalink. The value
+ * is not validated against an inventory, so a typo produces a link that 404s
+ * when clicked.
  *
- * For a TYPO3 core change, pass the changelog entry identifier (resolved against
- * the "changelog" inventory):
+ * For a TYPO3 core change, pass the changelog entry identifier; it becomes a
+ * "https://docs.typo3.org/permalink/changelog:<id>" link:
  *
  * ..  versionchanged:: 14.0
  *     :changelog: feature-107628-1729026000
@@ -50,12 +52,17 @@ use function trim;
  *
  * When linking the changelog of the current manual itself, use the short
  * "#anchor" form. The manual's own "interlink-shortcode" (from guides.xml) is
- * used automatically, so it does not have to be repeated:
+ * used automatically, so it does not have to be repeated (no link is rendered,
+ * and a warning is logged, if that setting is missing):
  *
  * ..  versionchanged:: 2.0
  *     :changelog: #changes-2-0-0
  *
- *     ...
+ *     A configuration option was renamed; see the changelog for the migration.
+ *
+ * Note: the shortcode normalization cannot round-trip a vendor or package name
+ * that itself contains a hyphen (a permalink-service limitation, see
+ * https://github.com/TYPO3GmbH/site-intercept/issues/283).
  */
 abstract class AbstractTypo3VersionChangeDirective extends SubDirective
 {
@@ -68,6 +75,7 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
         private readonly string $type,
         private readonly string $label,
         private readonly Typo3DocsThemeSettings $themeSettings,
+        private readonly LoggerInterface $logger,
     ) {
         parent::__construct($startingRule);
     }
@@ -87,11 +95,11 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
             $this->label,
             $directive->getData(),
             array_values($collectionNode->getChildren()),
-            $this->buildChangelogUrl($directive->getOptionString('changelog')),
+            $this->buildChangelogUrl($directive->getOptionString('changelog'), $blockContext),
         );
     }
 
-    private function buildChangelogUrl(string $changelog): string|null
+    private function buildChangelogUrl(string $changelog, BlockContext $blockContext): string|null
     {
         $changelog = trim($changelog);
         if ($changelog === '') {
@@ -103,21 +111,38 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
             // interlink-shortcode (from guides.xml) so it need not be repeated.
             $shortcode = $this->themeSettings->getSettings('interlink_shortcode');
             if ($shortcode === '') {
+                $this->logger->warning(
+                    'The ":changelog: #..." form requires "interlink-shortcode" to be set in the guides.xml. ',
+                    $blockContext->getLoggerInformation(),
+                );
+
                 return null;
             }
 
-            $target = str_replace('/', '-', $shortcode) . ':' . substr($changelog, 1);
+            $prefix = str_replace('/', '-', $shortcode) . ':';
+            $anchor = substr($changelog, 1);
         } elseif (str_contains($changelog, ':')) {
             // Explicit "<shortcode>:<anchor>". Normalize the shortcode to the
             // dash form the permalink service expects (vendor/package ->
             // vendor-package), exactly like the "copy permalink" button.
             $parts = explode(':', $changelog, 2);
-            $target = str_replace('/', '-', $parts[0]) . ':' . ($parts[1] ?? '');
+            $prefix = str_replace('/', '-', $parts[0]) . ':';
+            $anchor = $parts[1] ?? '';
         } else {
             // Bare value: a TYPO3 core changelog entry identifier.
-            $target = self::CHANGELOG_INVENTORY . ':' . $changelog;
+            $prefix = self::CHANGELOG_INVENTORY . ':';
+            $anchor = $changelog;
         }
 
-        return self::PERMALINK_BASE . $target;
+        if (trim($anchor) === '') {
+            $this->logger->warning(
+                'The ":changelog:" option has an empty changelog entry anchor. ',
+                $blockContext->getLoggerInformation(),
+            );
+
+            return null;
+        }
+
+        return self::PERMALINK_BASE . $prefix . $anchor;
     }
 }
