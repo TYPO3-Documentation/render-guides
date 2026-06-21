@@ -18,10 +18,17 @@ Version changes with changelog
 
     This module is deprecated.
 
-..  versionchanged:: 13.4
-    :changelog: changelog:breaking-303030-1700000000
+..  versionchanged:: 2.0
+    :changelog: acme/acme-blog:changes-2-0-0
 
-    Fully qualified interlink target is accepted too.
+    Extension change: the shortcode "acme/acme-blog" is normalized to
+    "acme-acme-blog" for the permalink.
+
+..  versionchanged:: 2.1
+    :changelog: #changes-2-1-0
+
+    Local form: "#anchor" uses this manual's own interlink-shortcode
+    (acme/acme-blog) automatically.
 
 ..  versionchanged:: 12.4
 
