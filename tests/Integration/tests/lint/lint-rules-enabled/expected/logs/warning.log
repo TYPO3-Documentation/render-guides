@@ -1,0 +1,2 @@
+app.WARNING: Heading "Unanchored Sub Heading" looks like Title Case; TYPO3 documentation uses sentence case. {"rst-file":"index.rst"} []
+app.WARNING: Heading "Unanchored Sub Heading" has no anchor; add a `.. _a-label:` before it so it can be referenced. {"rst-file":"index.rst"} []
