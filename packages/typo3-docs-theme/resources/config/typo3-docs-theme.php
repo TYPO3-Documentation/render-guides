@@ -37,8 +37,11 @@ use T3Docs\Typo3DocsTheme\Directives\MainMenuJsonDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
+use T3Docs\Typo3DocsTheme\Directives\Typo3DeprecatedDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3FileDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3TalkDirective;
+use T3Docs\Typo3DocsTheme\Directives\Typo3VersionAddedDirective;
+use T3Docs\Typo3DocsTheme\Directives\Typo3VersionChangedDirective;
 use T3Docs\Typo3DocsTheme\Directives\ViewHelperDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
@@ -213,6 +216,12 @@ return static function (ContainerConfigurator $container): void {
         ->set(Typo3FileDirective::class)
         ->set(T3FieldListTableDirective::class)
         ->set(Typo3TalkDirective::class)
+        // Intentionally override phpDocumentor's versionadded/versionchanged/deprecated
+        // directives by name (these have the same getName()); the theme directive wins
+        // because it is registered last in the "phpdoc.guides.directive" iterator.
+        ->set(Typo3VersionAddedDirective::class)
+        ->set(Typo3VersionChangedDirective::class)
+        ->set(Typo3DeprecatedDirective::class)
         ->set(ViewHelperDirective::class)
         ->arg('$startingRule', service(DocumentRule::class))
         ->set(YoutubeDirective::class)
