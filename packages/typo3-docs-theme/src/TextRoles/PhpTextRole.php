@@ -46,7 +46,8 @@ final class PhpTextRole implements TextRole
             $apiInfo = $this->typo3ApiService->getClassInfo($rawContent);
             $name = $rawContent;
             if ($role === 'php-short') {
-                $name = $fqn[2] ?? $rawContent;
+                $shortName = $fqn[2] ?? '';
+                $name = ltrim($shortName !== '' ? $shortName : $rawContent, '\\');
             }
             return $this->getClassCodeNode($rawContent, $apiInfo, $role, $name, $type);
         }
