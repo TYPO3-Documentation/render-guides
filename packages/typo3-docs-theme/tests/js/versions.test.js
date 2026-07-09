@@ -87,6 +87,16 @@ describe('version switcher', () => {
     expect(options.find(option => option.selected).textContent).toBe('0.12');
   });
 
+  it('orders TYPO3 LTS versions numerically (12.4 > 11.5 > 10.4 > 9.5 > 8.7)', async () => {
+    const versions = versionList(['8.7', '9.5', '10.4', '11.5', '12.4', 'main']);
+    const count = setup(
+      'https://docs.typo3.org/p/netresearch/pkg/12.4/en-us/Index.html', '12.4', versions);
+    const order = (await runAndWait(count)).map(option => option.textContent);
+
+    // Lexicographic comparison would yield "9.5" > "10.4"; numeric must not.
+    expect(order).toEqual(['main', '12.4', '11.5', '10.4', '9.5', '8.7']);
+  });
+
   it('orders versions with a differing number of components (13.4.21 > 13.4 > 13.3)', async () => {
     const versions = versionList(['13.3', '13.4', '13.4.21', '14.0', 'main']);
     const count = setup(
