@@ -24385,9 +24385,20 @@ a.code-block-edit .fa-check:before {
   font-family: "Source Code Pro", monospace;
   border-radius: 0.375rem;
   border: 2px solid #ffffff;
-  background: rgb(247.35, 247.35, 247.35);
+  background-color: rgb(247.35, 247.35, 247.35);
   padding: 0.25em 0.5em;
   line-height: 27px;
+}
+.code-inline:has(button) {
+  padding-right: 0;
+}
+.code-inline button {
+  background-color: rgb(247.35, 247.35, 247.35);
+  border-color: rgb(247.35, 247.35, 247.35);
+  margin-top: -0.2em;
+  padding: 0.2em;
+  min-height: unset !important;
+  box-shadow: unset !important;
 }
 
 /** uses "popover" for all code roles that have tooltips **/
