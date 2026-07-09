@@ -97,6 +97,25 @@ describe('version switcher', () => {
     expect(order).toEqual(['main', '12.4', '11.5', '10.4', '9.5', '8.7']);
   });
 
+  it('sorts non-numeric labels like "draft" below all numbered releases (real reference-coreapi list)', async () => {
+    // Actual version set served by versionsJson.php for m/typo3/reference-coreapi.
+    const versions = versionList(
+      ['draft', '13.4', '6.2', 'main', '14.3', '8.7', '12.4', '7.6', '9.5', '10.4', '11.5']);
+    const count = setup(
+      'https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/Index.html', '13.4', versions);
+    const order = (await runAndWait(count)).map(option => option.textContent);
+
+    expect(order).toEqual(
+      ['main', '14.3', '13.4', '12.4', '11.5', '10.4', '9.5', '8.7', '7.6', '6.2', 'draft']);
+  });
+
+  it('falls back to data-current-version when the URL contains no version segment', async () => {
+    const count = setup('https://example.org/some/preview/page.html', '0.9', NR_VAULT_VERSIONS);
+    const selected = (await runAndWait(count)).find(option => option.selected);
+
+    expect(selected.textContent).toBe('0.9');
+  });
+
   it('orders versions with a differing number of components (13.4.21 > 13.4 > 13.3)', async () => {
     const versions = versionList(['13.3', '13.4', '13.4.21', '14.0', 'main']);
     const count = setup(
