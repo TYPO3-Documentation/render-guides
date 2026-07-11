@@ -38,11 +38,27 @@ deprecated
 Linking to a changelog entry
 ============================
 
+..  Maintainer note: the live example below must use a REAL, published core
+    changelog entry, otherwise it warns and fails the "renders without warning"
+    gate. The extension and "#anchor" forms are shown as ``code-block`` (not live
+    directives) on purpose: their fictional shortcodes cannot resolve here and
+    would trip the same gate.
+
 The ``:changelog:`` option adds a link to the related changelog entry. The
 value is resolved against the changelog inventory, so an entry that does not
 exist produces a build warning and no link (instead of a dead link).
 
 For a TYPO3 core change, pass the changelog entry identifier:
+
+..  code-block:: rst
+
+    ..  versionchanged:: 14.0
+        :changelog: feature-107628-1729026000
+
+        Most modules have been moved from :guilabel:`System` to
+        :guilabel:`Administration`.
+
+which renders as:
 
 ..  versionchanged:: 14.0
     :changelog: feature-107628-1729026000
@@ -50,8 +66,8 @@ For a TYPO3 core change, pass the changelog entry identifier:
     Most modules have been moved from :guilabel:`System` to
     :guilabel:`Administration`.
 
-For an extension change, pass the extension's interlink shortcode plus the
-changelog entry anchor (``vendor/package`` is normalized to ``vendor-package``):
+For an extension change, pass the extension's interlink shortcode
+(``vendor/package``) plus the changelog entry anchor:
 
 ..  code-block:: rst
 
@@ -61,8 +77,9 @@ changelog entry anchor (``vendor/package`` is normalized to ``vendor-package``):
         The teaser field was renamed; see the changelog entry for the migration.
 
 When linking the changelog of the current manual itself, use the short
-``#anchor`` form (the manual's own ``interlink-shortcode`` is used
-automatically):
+``#anchor`` form. It resolves against this manual's own labels and requires
+``interlink-shortcode`` to be set in the ``guides.xml`` (otherwise a warning is
+logged and no link is rendered):
 
 ..  code-block:: rst
 
