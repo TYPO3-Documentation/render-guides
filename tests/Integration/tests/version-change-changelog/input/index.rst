@@ -22,7 +22,7 @@ Version changes with changelog
     :changelog: acme/acme-blog:changes-2-0-0
 
     Extension change: the shortcode "acme/acme-blog" is normalized to
-    "acme-acme-blog" for the permalink.
+    "acme-acme-blog" for the inventory key.
 
 ..  versionchanged:: 2.1
     :changelog: #changes-2-1-0

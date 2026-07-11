@@ -10,7 +10,11 @@
         {%- endif -%}
         </span>
         {{ node.versionLabel }}
-        {%- if node.changelogUrl is defined and node.changelogUrl %} <a class="versionchange-changelog" href="{{ node.changelogUrl }}">See changelog entry</a>{% endif -%}
+        {%- if node.changelogReference -%}
+            {#- Rendering resolves the interlink (and warns if the entry does not exist). Emit the link only when it resolved to a URL. -#}
+            {%- set changelogResolved = renderNode(node.changelogReference) -%}
+            {%- if node.changelogReference.url %} <a class="versionchange-changelog" href="{{ node.changelogReference.url }}">See changelog entry</a>{% endif -%}
+        {%- endif -%}
         </p>
     <article>
         {{ renderNode(node.value) }}

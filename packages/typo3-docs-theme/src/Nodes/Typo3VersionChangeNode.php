@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\Nodes;
 
 use phpDocumentor\Guides\Nodes\CompoundNode;
+use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\Nodes\Node;
 
 use function sprintf;
 
 /**
  * Variant of phpDocumentor's VersionChangeNode that can additionally carry a
- * link to a TYPO3 changelog entry, set via the ":changelog:" option of the
- * versionadded, versionchanged and deprecated directives.
+ * reference to a TYPO3 changelog entry, set via the ":changelog:" option of the
+ * versionadded, versionchanged and deprecated directives. The reference is
+ * resolved against the changelog inventory during rendering.
  *
  * @extends CompoundNode<Node>
  */
@@ -26,7 +28,7 @@ final class Typo3VersionChangeNode extends CompoundNode
         string $versionLabel,
         private readonly string $versionModified,
         array $value,
-        private readonly string|null $changelogUrl = null,
+        private readonly ReferenceNode|null $changelogReference = null,
     ) {
         parent::__construct($value);
 
@@ -48,8 +50,8 @@ final class Typo3VersionChangeNode extends CompoundNode
         return $this->versionModified;
     }
 
-    public function getChangelogUrl(): string|null
+    public function getChangelogReference(): ReferenceNode|null
     {
-        return $this->changelogUrl;
+        return $this->changelogReference;
     }
 }
