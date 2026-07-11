@@ -160,7 +160,7 @@
     <article>
         
     <p>Most modules have been moved from <span class="guilabel">System</span> to
-<span class="guilabel">Administration</span>.</p>
+<span class="guilabel">Administration</span>. This core entry resolves to a real URL.</p>
 
     </article>
 </div>
@@ -170,7 +170,7 @@
         New in version 14.0</p>
     <article>
         
-    <p>A brand new module has been introduced.</p>
+    <p>A non-existent core entry: a warning is logged and no link is rendered.</p>
 
     </article>
 </div>
@@ -180,7 +180,7 @@
         Deprecated since version 14.0</p>
     <article>
         
-    <p>This module is deprecated.</p>
+    <p>Another non-existent core entry: warning, no link.</p>
 
     </article>
 </div>
@@ -190,19 +190,32 @@
         Changed in version 2.0</p>
     <article>
         
-    <p>Extension change: the shortcode &quot;acme/acme-blog&quot; is normalized to
-&quot;acme-acme-blog&quot; for the inventory key.</p>
+    <p>Extension form &quot;&lt;vendor&gt;/&lt;package&gt;:&lt;anchor&gt;&quot;. The external inventory is
+not available here, so this warns and renders no link.</p>
+
+    </article>
+</div>
+            <section class="section" id="local-changelog-target-1" data-rst-anchor="local-changelog-target">
+            <a id="local-changelog-target"></a>
+            <h2>Local changelog target<a class="headerlink" href="#local-changelog-target-1" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <div class="versionchange versionchanged">
+    <p class="versionmodified">
+        <span class="versionicon"><i class="fa-solid fa-arrows-rotate"></i></span>
+        Changed in version 2.1 <a class="versionchange-changelog" href="#local-changelog-target">See changelog entry</a></p>
+    <article>
+        
+    <p>Local form: &quot;#anchor&quot; resolves against this manual&#039;s own labels.</p>
 
     </article>
 </div>
             <div class="versionchange versionchanged">
     <p class="versionmodified">
         <span class="versionicon"><i class="fa-solid fa-arrows-rotate"></i></span>
-        Changed in version 2.1</p>
+        Changed in version 2.2 <a class="versionchange-changelog" href="#local-changelog-target">See changelog entry</a></p>
     <article>
         
-    <p>Local form: &quot;#anchor&quot; uses this manual&#039;s own interlink-shortcode
-(acme/acme-blog) automatically.</p>
+    <p>Explicit reference to the manual&#039;s own interlink-shortcode
+(&quot;acme/acme-blog&quot;) resolves as a local reference, like the &quot;#&quot; form.</p>
 
     </article>
 </div>
@@ -216,6 +229,7 @@
 
     </article>
 </div>
+    </section>
     </section>
         <!-- content end -->
     </div>
