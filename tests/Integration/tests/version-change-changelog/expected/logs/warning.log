@@ -1,4 +1,3 @@
 app.WARNING: Inventory link with key "changelog:feature-101010-1700000000" (feature-101010-1700000000) not found.
 app.WARNING: Inventory link with key "changelog:deprecation-202020-1700000000" (deprecation-202020-1700000000) not found.
-app.WARNING: Inventory with key acme/acme-blog not found.
-app.WARNING: Reference changes-2-1-0 could not be resolved in index
+app.WARNING: Inventory with key other-vendor/other-ext not found.
