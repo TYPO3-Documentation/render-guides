@@ -12,7 +12,7 @@
         {{ node.versionLabel }}
         {%- if node.changelogReference -%}
             {#- Rendering resolves the interlink (and warns if the entry does not exist). Emit the link only when it resolved to a URL. -#}
-            {%- set changelogResolved = renderNode(node.changelogReference) -%}
+            {%- do renderNode(node.changelogReference) -%}
             {%- if node.changelogReference.url %} <a class="versionchange-changelog" href="{{ node.changelogReference.url }}">See changelog entry</a>{% endif -%}
         {%- endif -%}
         </p>

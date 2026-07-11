@@ -107,14 +107,15 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
             return null;
         }
 
+        $ownShortcode = $this->themeSettings->getSettings('interlink_shortcode');
+
         if (str_starts_with($changelog, '#')) {
             // "#anchor": the changelog of the current manual itself. Emit a local
             // reference (empty interlink domain) so it resolves against this
             // manual's own labels. The "interlink-shortcode" setting must be
             // present so the intent (a self-reference) is explicit and matches
             // the other forms; without it, warn and render no link.
-            $shortcode = $this->themeSettings->getSettings('interlink_shortcode');
-            if ($shortcode === '') {
+            if ($ownShortcode === '') {
                 $this->logger->warning(
                     'The ":changelog: #..." form requires "interlink-shortcode" to be set in the guides.xml. ',
                     $blockContext->getLoggerInformation(),
@@ -124,19 +125,34 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
             }
 
             $interlinkDomain = '';
-            $anchor = substr($changelog, 1);
+            $anchor = trim(substr($changelog, 1));
         } elseif (str_contains($changelog, ':')) {
             // Explicit "<shortcode>:<anchor>", e.g. "vendor/package:anchor".
             $parts = explode(':', $changelog, 2);
-            $interlinkDomain = $parts[0];
-            $anchor = $parts[1] ?? '';
+            $interlinkDomain = trim($parts[0]);
+            $anchor = trim($parts[1] ?? '');
+
+            if ($interlinkDomain === '') {
+                $this->logger->warning(
+                    'The ":changelog:" option is malformed (no shortcode before the colon). ',
+                    $blockContext->getLoggerInformation(),
+                );
+
+                return null;
+            }
+
+            // A reference to the manual's own shortcode is a self-reference;
+            // emit it as a local reference, like the "#anchor" form.
+            if ($interlinkDomain === $ownShortcode) {
+                $interlinkDomain = '';
+            }
         } else {
             // Bare value: a TYPO3 core changelog entry identifier.
             $interlinkDomain = self::CHANGELOG_INVENTORY;
             $anchor = $changelog;
         }
 
-        if (trim($anchor) === '') {
+        if ($anchor === '') {
             $this->logger->warning(
                 'The ":changelog:" option has an empty changelog entry anchor. ',
                 $blockContext->getLoggerInformation(),
