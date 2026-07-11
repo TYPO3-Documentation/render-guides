@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\Directives;
 
 use phpDocumentor\Guides\Nodes\CollectionNode;
+use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
+use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
@@ -17,7 +19,6 @@ use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use function array_values;
 use function explode;
 use function str_contains;
-use function str_replace;
 use function str_starts_with;
 use function substr;
 use function trim;
@@ -27,12 +28,12 @@ use function trim;
  * (versionadded, versionchanged, deprecated).
  *
  * All three directives support a ":changelog:" option that renders a link to
- * the related changelog entry, built as a docs.typo3.org permalink. The value
- * is not validated against an inventory, so a typo produces a link that 404s
- * when clicked.
+ * the related changelog entry. The value is resolved against the changelog
+ * inventory (interlink), so an entry that does not exist produces a warning and
+ * no link instead of a link that 404s when clicked.
  *
- * For a TYPO3 core change, pass the changelog entry identifier; it becomes a
- * "https://docs.typo3.org/permalink/changelog:<id>" link:
+ * For a TYPO3 core change, pass the changelog entry identifier; it is resolved
+ * against the "changelog" inventory:
  *
  * ..  versionchanged:: 14.0
  *     :changelog: feature-107628-1729026000
@@ -40,10 +41,9 @@ use function trim;
  *     This module has been moved from :guilabel:`System` to
  *     :guilabel:`Administration`.
  *
- * For an extension change, pass the extension's permalink shortcode followed by
- * the changelog entry anchor. The shortcode is normalized to the dash form the
- * permalink service expects ("vendor/package" -> "vendor-package"), just like
- * the "copy permalink" button on docs.typo3.org:
+ * For an extension change, pass the extension's interlink shortcode
+ * ("vendor/package") followed by the changelog entry anchor. It is resolved
+ * against that extension's inventory:
  *
  * ..  versionchanged:: 2.0
  *     :changelog: acme/acme-blog:changes-2-0-0
@@ -59,15 +59,11 @@ use function trim;
  *     :changelog: #changes-2-0-0
  *
  *     A configuration option was renamed; see the changelog for the migration.
- *
- * Note: the shortcode normalization cannot round-trip a vendor or package name
- * that itself contains a hyphen (a permalink-service limitation, see
- * https://github.com/TYPO3GmbH/site-intercept/issues/283).
  */
 abstract class AbstractTypo3VersionChangeDirective extends SubDirective
 {
-    private const PERMALINK_BASE = 'https://docs.typo3.org/permalink/';
     private const CHANGELOG_INVENTORY = 'changelog';
+    private const CHANGELOG_LINK_TEXT = 'See changelog entry';
 
     /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
@@ -95,11 +91,16 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
             $this->label,
             $directive->getData(),
             array_values($collectionNode->getChildren()),
-            $this->buildChangelogUrl($directive->getOptionString('changelog'), $blockContext),
+            $this->buildChangelogReference($directive->getOptionString('changelog'), $blockContext),
         );
     }
 
-    private function buildChangelogUrl(string $changelog, BlockContext $blockContext): string|null
+    /**
+     * Turn the ":changelog:" option into an interlink reference that resolves
+     * against the changelog inventory during rendering. Returns null when the
+     * option is empty or malformed (a warning is logged in the latter case).
+     */
+    private function buildChangelogReference(string $changelog, BlockContext $blockContext): ReferenceNode|null
     {
         $changelog = trim($changelog);
         if ($changelog === '') {
@@ -107,8 +108,11 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
         }
 
         if (str_starts_with($changelog, '#')) {
-            // "#anchor": the changelog of the current manual itself. Use its own
-            // interlink-shortcode (from guides.xml) so it need not be repeated.
+            // "#anchor": the changelog of the current manual itself. Emit a local
+            // reference (empty interlink domain) so it resolves against this
+            // manual's own labels. The "interlink-shortcode" setting must be
+            // present so the intent (a self-reference) is explicit and matches
+            // the other forms; without it, warn and render no link.
             $shortcode = $this->themeSettings->getSettings('interlink_shortcode');
             if ($shortcode === '') {
                 $this->logger->warning(
@@ -119,18 +123,16 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
                 return null;
             }
 
-            $prefix = str_replace('/', '-', $shortcode) . ':';
+            $interlinkDomain = '';
             $anchor = substr($changelog, 1);
         } elseif (str_contains($changelog, ':')) {
-            // Explicit "<shortcode>:<anchor>". Normalize the shortcode to the
-            // dash form the permalink service expects (vendor/package ->
-            // vendor-package), exactly like the "copy permalink" button.
+            // Explicit "<shortcode>:<anchor>", e.g. "vendor/package:anchor".
             $parts = explode(':', $changelog, 2);
-            $prefix = str_replace('/', '-', $parts[0]) . ':';
+            $interlinkDomain = $parts[0];
             $anchor = $parts[1] ?? '';
         } else {
             // Bare value: a TYPO3 core changelog entry identifier.
-            $prefix = self::CHANGELOG_INVENTORY . ':';
+            $interlinkDomain = self::CHANGELOG_INVENTORY;
             $anchor = $changelog;
         }
 
@@ -143,6 +145,10 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
             return null;
         }
 
-        return self::PERMALINK_BASE . $prefix . $anchor;
+        return new ReferenceNode(
+            $anchor,
+            [new PlainTextInlineNode(self::CHANGELOG_LINK_TEXT)],
+            $interlinkDomain,
+        );
     }
 }
