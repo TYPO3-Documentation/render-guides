@@ -51,9 +51,9 @@ use function trim;
  *     The teaser field was renamed; see the changelog entry for the migration.
  *
  * When linking the changelog of the current manual itself, use the short
- * "#anchor" form. The manual's own "interlink-shortcode" (from guides.xml) is
- * used automatically, so it does not have to be repeated (no link is rendered,
- * and a warning is logged, if that setting is missing):
+ * "#anchor" form. It resolves against this manual's own labels and requires
+ * "interlink-shortcode" (from guides.xml) to be set (no link is rendered, and a
+ * warning is logged, if that setting is missing):
  *
  * ..  versionchanged:: 2.0
  *     :changelog: #changes-2-0-0
