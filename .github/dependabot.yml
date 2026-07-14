@@ -32,3 +32,14 @@ updates:
     labels:
       - "dependencies"
       - "npm"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "16:00"
+      timezone: "Europe/Berlin"
+    commit-message:
+      prefix: "[TASK]"
+    labels:
+      - "dependencies"
+      - "github-actions"
