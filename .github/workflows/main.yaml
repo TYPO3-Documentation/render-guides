@@ -5,11 +5,18 @@ on: # yamllint disable-line rule:truthy
   push:
     branches:
       - "main"
+  # Required for the merge queue on "main": without this trigger, queued
+  # merges never receive their required status checks and time out.
+  merge_group: null
 
 env:
   DEFAULT_PHP_VERSION: "8.2"
   RUN_ENVIRONMENT: "local"
 
+# The job names below ("Tests (8.x)", "Quality", ...) are configured as
+# required status checks for the merge queue on "main". Renaming a job or
+# changing how its checks are reported requires updating the branch ruleset
+# in the same change, or the merge queue will block all merges.
 jobs:
   tests:
     name : Tests
