@@ -19,12 +19,26 @@ jobs:
     steps:
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@d7267f607e9d3fb96fc2fbe83e0af444713e90b7
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
+      # Theme-package PRs are intentionally excluded from auto-merge.
+      # The dependabot-rebuild-assets workflow needs to rebuild and push
+      # regenerated assets to the PR branch before the PR can merge; if
+      # auto-merge fires here at PR-open time it squashes BEFORE the
+      # rebuild commit lands, leaving stale assets on main. Theme PRs
+      # require a manual review/merge once the rebuild commit shows up.
       - name: Enable auto-merge
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        if: |
+          (steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+           steps.metadata.outputs.update-type == 'version-update:semver-minor') &&
+          !contains(steps.metadata.outputs.directory, 'typo3-docs-theme')
         run: gh pr merge -R "${{ github.repository }}" --squash --auto "${{ github.event.pull_request.number }}"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Note skipped auto-merge for theme PRs
+        if: contains(steps.metadata.outputs.directory, 'typo3-docs-theme')
+        run: |
+          echo "::notice::Auto-merge intentionally skipped for theme PRs. The dependabot-rebuild-assets workflow rebuilds and pushes regenerated assets to this branch; merge manually once that commit lands and all checks are green."
