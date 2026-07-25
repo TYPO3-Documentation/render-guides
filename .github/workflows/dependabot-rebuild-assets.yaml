@@ -16,9 +16,14 @@
 #     the PR opened with
 #   - lockfile-only diff guard: refuse to build if the PR changed anything
 #     other than package.json / package-lock.json
-#   - npm ci --ignore-scripts; harden-runner egress in block mode
+#   - npm ci --ignore-scripts
 #   - the App token is minted AFTER the build, so the untrusted build cannot
 #     read it; persist-credentials: false keeps it off disk
+#
+# Egress filtering via step-security/harden-runner is not available here: the
+# repository restricts workflows to an allowlist of actions and harden-runner
+# is not on it. Adding it there would let both workflows in this branch pin
+# their network access.
 #
 # The rebuilt files are committed via the GitHub API (createCommitOnBranch)
 # with a short-lived GitHub App token, never `git push`. API commits are
@@ -46,18 +51,6 @@ jobs:
       contents: read
 
     steps:
-      - name: "Harden runner"
-        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
-        with:
-          egress-policy: block
-          disable-sudo: true
-          allowed-endpoints: >
-            api.github.com:443
-            github.com:443
-            objects.githubusercontent.com:443
-            release-assets.githubusercontent.com:443
-            registry.npmjs.org:443
-
       - name: "Checkout Dependabot branch"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
