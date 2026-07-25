@@ -8,6 +8,15 @@
 # forever ("Expected — waiting for status"). PRs that don't touch the theme
 # package short-circuit to success without building.
 #
+# The push trigger is not redundant with the pull_request one: security
+# advisory fixes are merged out of a temporary private fork and arrive on
+# "main" as direct commits without ever being a pull request here, so the
+# pull_request trigger alone cannot see them. That is how the 0.40.0 assets
+# came to be published without the fixes they were tagged for.
+#
+# merge_group is required because "main" uses a merge queue: without it,
+# queued merges never receive this required status check and time out.
+#
 # The companion dependabot-rebuild-assets.yaml is the convenience layer that
 # keeps Dependabot PRs from tripping this check.
 
@@ -15,6 +24,10 @@ name: "Check built assets"
 
 on: # yamllint disable-line rule:truthy
   pull_request:
+  push:
+    branches:
+      - "main"
+  merge_group:
 
 permissions: {}
 
@@ -44,15 +57,27 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      # Skip the (relatively expensive) build for PRs that don't touch the
-      # theme package. The job still completes successfully, so the required
-      # "verify" status is reported on every PR.
+      # Skip the (relatively expensive) build when the theme package was not
+      # touched. The job still completes successfully, so the required
+      # "verify" status is reported on every pull request and every queued
+      # merge.
+      #
+      # A push to "main" is always verified in full: it is the trigger that
+      # catches commits which never were a pull request here, and a fork
+      # merge leaves no reliable base to diff against.
+      #
+      # The base sha is read from the event payload rather than interpolated
+      # into the script.
       - name: "Detect theme-package changes"
         id: scope
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          if git diff --name-only "$BASE_SHA" HEAD -- packages/typo3-docs-theme/ | grep -q .; then
+          filter='.pull_request.base.sha // .merge_group.base_sha // ""'
+          base="$(jq -r "$filter" "$GITHUB_EVENT_PATH")"
+
+          if [ -z "$base" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Event '$GITHUB_EVENT_NAME' has no base — full verify."
+          elif git diff --name-only "$base" HEAD -- packages/typo3-docs-theme/ | grep -q .; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
