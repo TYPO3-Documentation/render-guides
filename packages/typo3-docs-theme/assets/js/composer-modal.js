@@ -26,10 +26,33 @@
     }
   }
 
+  // Escape a value for HTML element / RCDATA (<textarea>) content.
   function htmlEscape(text) {
     const div = document.createElement('div');
-    div.textContent = text;
+    div.textContent = text ?? '';
     return div.innerHTML;
+  }
+
+  // Escape a value for a double-quoted HTML attribute (also encodes quotes).
+  function attrEscape(text) {
+    return String(text ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  // Only accept http(s) URLs; returns a URL object or null (blocks
+  // javascript:/data:). The href is still attribute-escaped at the
+  // interpolation site, because new URL() does NOT encode quotes in the host.
+  function safeUrl(value) {
+    try {
+      const url = new URL(value, window.location.origin);
+      return (url.protocol === 'http:' || url.protocol === 'https:') ? url : null;
+    } catch {
+      return null;
+    }
   }
 
   const generalModal = document.querySelector(SELECTOR_MODAL);
@@ -44,27 +67,32 @@
       generalModalLabel.innerText = item.dataset.composername;
       handleCopyButtons(generalModal);
       content.innerHTML = `
-        <p>${item.dataset.description}</p>
+        <p>${htmlEscape(item.dataset.description)}</p>
         <p>Install the package using Composer: </p>
         <div class="input-group">
-            <textarea class="form-control code" id="composer-command" readonly>${item.dataset.composercommand}</textarea>
+            <textarea class="form-control code" id="composer-command" readonly>${htmlEscape(item.dataset.composercommand)}</textarea>
             <button type="button" class="btn btn-outline-secondary copy-button" data-target="composer-command"><i class="fa-regular fa-clone"></i></button>
         </div>
   `;
       var links = '';
       if (item.dataset.source) {
-        const url = new URL(item.dataset.source);
-        var srcString = 'Source';
-        if (url.hostname === 'github.com') {
-          srcString = 'GitHub';
+        const url = safeUrl(item.dataset.source);
+        if (url) {
+          var srcString = 'Source';
+          if (url.hostname === 'github.com') {
+            srcString = 'GitHub';
+          }
+          if (url.hostname === 'gitlab.com') {
+            srcString = 'GitLab';
+          }
+          links += `<a class="btn btn-light" href="${attrEscape(url.href)}">${srcString}</a>`;
         }
-        if (url.hostname === 'gitlab.com') {
-          srcString = 'GitLab';
-        }
-        links += `<a class="btn btn-light" href="${item.dataset.source}">${srcString}</a>`;
       }
       if (item.dataset.issues) {
-        links += `<a class="btn btn-light" href="${item.dataset.issues}">Report issue</a>`;
+        const url = safeUrl(item.dataset.issues);
+        if (url) {
+          links += `<a class="btn btn-light" href="${attrEscape(url.href)}">Report issue</a>`;
+        }
       }
       if (links) {
         content.innerHTML += `<div class="btn-group mt-2" role="group" aria-label="Links to GitHub / GitLab">${links}</div>`;
@@ -72,27 +100,32 @@
       const generalModalCustomButtons = generalModal.querySelector('#generalModalCustomButtons');
 
       // Add more buttons to the modal footer
+      const packagistHref = item.href ? safeUrl(item.href) : null;
       generalModalCustomButtons.innerHTML = `
-          <a href="${item.href}" class="btn btn-default"><i class="fa-solid fa-arrow-right"></i>&nbsp;Packagist</a>
+          <a href="${packagistHref ? attrEscape(packagistHref.href) : '#'}" class="btn btn-default"><i class="fa-solid fa-arrow-right"></i>&nbsp;Packagist</a>
       `;
       if (item.dataset.documentation) {
-        const url = new URL(item.dataset.documentation);
-        const isExternal = url.hostname !== 'docs.typo3.org';
-        generalModalCustomButtons.innerHTML += `
-            <a href="${item.dataset.documentation}" class="btn btn-default">
+        const url = safeUrl(item.dataset.documentation);
+        if (url) {
+          const isExternal = url.hostname !== 'docs.typo3.org';
+          generalModalCustomButtons.innerHTML += `
+            <a href="${attrEscape(url.href)}" class="btn btn-default">
                 <i class="fa-solid fa-book"></i>&nbsp;Documentation ${isExternal ? '(external)' : ''}
             </a>
         `;
+        }
       }
       if (item.dataset.homepage) {
-        const url = new URL(item.dataset.homepage);
-        const isTER = url.hostname === 'extensions.typo3.org';
-        if (isTER) {
-          generalModalCustomButtons.innerHTML += `
-            <a href="${item.dataset.homepage}" class="btn btn-default">
+        const url = safeUrl(item.dataset.homepage);
+        if (url) {
+          const isTER = url.hostname === 'extensions.typo3.org';
+          if (isTER) {
+            generalModalCustomButtons.innerHTML += `
+            <a href="${attrEscape(url.href)}" class="btn btn-default">
                 <i class="fa-brands fa-typo3"></i>&nbsp;TER
             </a>
         `;
+          }
         }
       }
       handleCopyButtons(generalModal);

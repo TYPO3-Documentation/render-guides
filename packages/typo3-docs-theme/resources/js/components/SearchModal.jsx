@@ -311,6 +311,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                                                 key={`file-${index}`}
                                                 title={title}
                                                 packageName={packageName}
+                                                titleIsHtml
                                                 isActive={activeIndex === (index + decomposedScopes.length + scopeSuggestions.length)}
                                                 href={href}
                                                 ref={el => suggestionsRef.current[index + decomposedScopes.length + scopeSuggestions.length] = el}
