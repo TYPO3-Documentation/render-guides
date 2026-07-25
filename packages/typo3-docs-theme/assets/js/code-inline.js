@@ -71,8 +71,23 @@
       if (item.dataset.shortdescription) {
         content.innerHTML += `<p><strong>Language info:</strong> ${htmlEscape(item.dataset.shortdescription)}</p>`;
       }
+      // Every markup fragment below is written here, never taken from a data-*
+      // value: the values are plain text and are escaped exactly once.
+      const detailParts = [];
+      if (item.dataset.signature) {
+        detailParts.push(`<code>${htmlEscape(item.dataset.signature)}</code>`);
+      }
+      if (item.dataset.flags) {
+        detailParts.push(htmlEscape(item.dataset.flags));
+      }
+      if (item.dataset.summary) {
+        detailParts.push(`<em>${htmlEscape(item.dataset.summary)}</em>`);
+      }
       if (item.dataset.details) {
-        content.innerHTML += `<p>${htmlEscape(item.dataset.details)}</p>`;
+        detailParts.push(htmlEscape(item.dataset.details));
+      }
+      if (detailParts.length) {
+        content.innerHTML += `<p>${detailParts.join('<br>')}</p>`;
       }
       content.innerHTML += `
         <div class="mb-3">
