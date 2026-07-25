@@ -26,10 +26,33 @@
     }
   }
 
+  // Escape a value for HTML element / RCDATA (<textarea>) content.
   function htmlEscape(text) {
     const div = document.createElement('div');
-    div.textContent = text;
+    div.textContent = text ?? '';
     return div.innerHTML;
+  }
+
+  // Escape a value for a double-quoted HTML attribute (also encodes quotes).
+  function attrEscape(text) {
+    return String(text ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  // Only accept http(s) URLs; returns a URL object or null (blocks
+  // javascript:/data:). The href is still attribute-escaped at the
+  // interpolation site, because new URL() does NOT encode quotes in the host.
+  function safeUrl(value) {
+    try {
+      const url = new URL(value, window.location.origin);
+      return (url.protocol === 'http:' || url.protocol === 'https:') ? url : null;
+    } catch {
+      return null;
+    }
   }
 
   const generalModal = document.querySelector(SELECTOR_MODAL);
@@ -46,16 +69,16 @@
       handleCopyButtons(generalModal);
       content.innerHTML = '';
       if (item.dataset.shortdescription) {
-        content.innerHTML += `<p><strong>Language info:</strong> ${item.dataset.shortdescription}</p>`;
+        content.innerHTML += `<p><strong>Language info:</strong> ${htmlEscape(item.dataset.shortdescription)}</p>`;
       }
       if (item.dataset.details) {
-        content.innerHTML += `<p>${item.dataset.details}</p>`;
+        content.innerHTML += `<p>${htmlEscape(item.dataset.details)}</p>`;
       }
       content.innerHTML += `
         <div class="mb-3">
           <label class="form-label" for="code-snippet">Code Snippet: </label>
           <div class="input-group">
-              <textarea class="form-control code" id="code-snippet" readonly>${item.dataset.code}</textarea>
+              <textarea class="form-control code" id="code-snippet" readonly>${htmlEscape(item.dataset.code)}</textarea>
               <button type="button" class="btn btn-outline-secondary copy-button" data-target="code-snippet"><i class="fa-regular fa-clone"></i></button>
           </div>
         </div>
@@ -67,7 +90,7 @@
           <div class="mb-3">
             <label class="form-label" for="fqn-snippet">Fully Qualified Name (FQN): </label>
             <div class="input-group">
-                <textarea class="form-control code" id="fqn-snippet" readonly>${item.dataset.fqn}</textarea>
+                <textarea class="form-control code" id="fqn-snippet" readonly>${htmlEscape(item.dataset.fqn)}</textarea>
                 <button type="button" class="btn btn-outline-secondary copy-button" data-target="fqn-snippet"><i class="fa-regular fa-clone"></i></button>
             </div>
           </div>
@@ -78,7 +101,7 @@
           <div class="mb-3">
             <label class="form-label" for="use-statement">PHP Use Statement: </label>
             <div class="input-group">
-                <textarea class="form-control code" id="use-statement" readonly>use ${item.dataset.fqn};</textarea>
+                <textarea class="form-control code" id="use-statement" readonly>use ${htmlEscape(item.dataset.fqn)};</textarea>
                 <button type="button" class="btn btn-outline-secondary copy-button" data-target="use-statement"><i class="fa-regular fa-clone"></i></button>
             </div>
           </div>
@@ -87,7 +110,10 @@
 
       let links = '';
       if (item.dataset.morelink) {
-        links += `<a class="btn btn-light" href="${item.dataset.morelink}" target="_blank">More Info</a>`;
+        const url = safeUrl(item.dataset.morelink);
+        if (url) {
+          links += `<a class="btn btn-light" href="${attrEscape(url.href)}" target="_blank">More Info</a>`;
+        }
       }
       if (links) {
         content.innerHTML += `<div class="btn-group mt-2" role="group">${links}</div>`;

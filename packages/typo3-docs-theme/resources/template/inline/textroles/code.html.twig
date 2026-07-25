@@ -8,8 +8,8 @@
                 data-bs-toggle="modal"
                 data-bs-target="#generalModal"
                 data-code="{{ node.value }}"
-                data-shortdescription="{{ node.language|raw }}"
-                data-details="{{ node.helpText|raw }}"
+                data-shortdescription="{{ node.language }}"
+                data-details="{{ node.helpText }}"
                 {%- if node.info.url %}
                     data-morelink="{{  node.info.url }}"
                 {%- endif -%}
