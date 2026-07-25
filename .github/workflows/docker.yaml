@@ -63,7 +63,7 @@ jobs:
         id: build
         env:
           TYPO3AZUREEDGEURIVERSION: ${{ env.DOCKER_METADATA_OUTPUT_VERSION }}
-        uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
