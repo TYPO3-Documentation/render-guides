@@ -10,6 +10,15 @@
                 data-code="{{ node.value }}"
                 data-shortdescription="{{ node.language }}"
                 data-details="{{ node.helpText }}"
+                {%- if node.info.signature %}
+                    data-signature="{{ node.info.signature }}"
+                {%- endif -%}
+                {%- if node.info.flags %}
+                    data-flags="{{ node.info.flags }}"
+                {%- endif -%}
+                {%- if node.info.summary %}
+                    data-summary="{{ node.info.summary }}"
+                {%- endif -%}
                 {%- if node.info.url %}
                     data-morelink="{{  node.info.url }}"
                 {%- endif -%}
