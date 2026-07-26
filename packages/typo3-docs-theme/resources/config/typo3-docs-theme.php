@@ -25,6 +25,7 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RedirectsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ReplacePermalinksNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\SortMenuEntriesByToctreeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\Typo3TalkNodeTransformer;
 use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
@@ -111,6 +112,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(CollectFileObjectsTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(ConfvalMenuNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(SortMenuEntriesByToctreeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
