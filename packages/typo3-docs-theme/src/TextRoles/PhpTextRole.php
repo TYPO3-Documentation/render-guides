@@ -46,7 +46,8 @@ final class PhpTextRole implements TextRole
             $apiInfo = $this->typo3ApiService->getClassInfo($rawContent);
             $name = $rawContent;
             if ($role === 'php-short') {
-                $name = $fqn[2] ?? $rawContent;
+                $shortName = $fqn[2] ?? '';
+                $name = ltrim($shortName !== '' ? $shortName : $rawContent, '\\');
             }
             return $this->getClassCodeNode($rawContent, $apiInfo, $role, $name, $type);
         }
@@ -137,25 +138,20 @@ final class PhpTextRole implements TextRole
                 $modifiers[] = 'readonly';
             }
             $modifiers[] = $apiInfo['type'];
-            $infoArray = [];
-            $infoArray[] = '<code>' . implode(' ', $modifiers) . ' ' . $apiInfo['short'] . '</code>';
-
-            if ($role === 'php-short') {
-                $infoArray[] =  '<code>' . $apiInfo['fqn'] . '</code>';
-            }
+            $flags = [];
             if ($apiInfo['internal']) {
-                $infoArray[] = 'internal!';
+                $flags[] = 'internal!';
             }
             if ($apiInfo['deprecated']) {
-                $infoArray[] = 'deprecated!';
+                $flags[] = 'deprecated!';
             }
-            if ($apiInfo['summary']) {
-                $infoArray[] = '<em>' . $apiInfo['summary'] . '</em>';
-            }
+            $apiInfo['signature'] = implode(' ', $modifiers) . ' ' . $apiInfo['short'];
+            $apiInfo['flags'] = implode(' ', $flags);
+            // The API ships summaries with HTML entities already applied. Decode
+            // once so plain text is what travels through the data-* attribute.
+            $apiInfo['summary'] = html_entity_decode($apiInfo['summary'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
             $apiInfo['fqn'] = $fqn;
-            $info = implode('<br>', $infoArray);
-            $info = str_replace('\\', '&#8203;\\', $info);
-            return new CodeInlineNode($name, 'PHP ' . $type, $info, $apiInfo);
+            return new CodeInlineNode($name, 'PHP ' . $type, '', $apiInfo);
         } elseif (str_starts_with($fqn, '\\TYPO3Fluid')) {
             $info = 'This PHP class or interface belongs to Fluid. ';
             return new CodeInlineNode(

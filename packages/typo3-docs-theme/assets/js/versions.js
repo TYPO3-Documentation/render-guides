@@ -82,16 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
     versionSelect.innerHTML = '';
     const seen = new Set();
 
-    const currentVersion = versionSelect.getAttribute('data-current-version');
+    // The current page URL is the authoritative source of the active version
+    // (e.g. ".../0.10/en-us/..."). Prefer it over the rendered
+    // data-current-version attribute, which can be wrong for versions like
+    // "0.10" (server-side numeric coercion turns it into "0.1").
+    const currentVersion = getVersionFromUrl(currentURL)
+      || versionSelect.getAttribute('data-current-version');
 
-    const sortedData = versionData.sort((a, b) => {
-      const priority = (v) => {
-        if (v === 'main') return Infinity;
-        const num = parseFloat(v);
-        return isNaN(num) ? -1 : num;
-      };
-      return priority(b.version) - priority(a.version);
-    });
+    const sortedData = [...versionData].sort((a, b) => compareVersionsDescending(a.version, b.version));
 
     sortedData.forEach(item => {
       if (!seen.has(item.version)) {
@@ -129,6 +127,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const langRegex = /\/([a-z]{2}-[a-z]{2})\//i;
     const match = url.match(langRegex);
     return match ? match[1].toLowerCase() : '';
+  }
+
+  // The version is the path segment right before the language code,
+  // e.g. "/p/vendor/pkg/0.10/en-us/Index.html" -> "0.10".
+  function getVersionFromUrl(url) {
+    const match = url.match(/\/([^/]+)\/[a-z]{2}-[a-z]{2}(?:\/|$)/i);
+    return match ? match[1] : '';
+  }
+
+  // Compares two version strings for descending order ("main" first, then
+  // highest version). Each dotted component is compared numerically so that
+  // "0.10" correctly sorts above "0.9" (parseFloat would treat both as 0.1/0.9).
+  // A missing or non-numeric component counts as 0, and equal numeric versions
+  // fall back to a single string tie-break, so the comparator is a consistent
+  // total order for any input.
+  function compareVersionsDescending(a, b) {
+    if (a === 'main' || b === 'main') {
+      return a === b ? 0 : (a === 'main' ? -1 : 1);
+    }
+
+    const partsA = a.split('.');
+    const partsB = b.split('.');
+    const length = Math.max(partsA.length, partsB.length);
+
+    for (let i = 0; i < length; i++) {
+      const numA = parseInt(partsA[i], 10);
+      const numB = parseInt(partsB[i], 10);
+      const valueA = Number.isNaN(numA) ? 0 : numA;
+      const valueB = Number.isNaN(numB) ? 0 : numB;
+
+      if (valueA !== valueB) {
+        return valueB - valueA;
+      }
+    }
+
+    return b.localeCompare(a);
   }
 
   function toAbsoluteUrl(url) {

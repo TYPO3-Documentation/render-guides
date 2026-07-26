@@ -115,9 +115,22 @@ a.code-block-edit {
     font-family: $font-family-monospace;
     border-radius: $border-radius;
     border: 2px solid $white;
-    background: $gray-100;
+    background-color: $gray-100;
     padding: 0.25em 0.5em;
     line-height: 27px;
+
+    &:has(button) {
+        padding-right: 0;
+    }
+
+    button {
+        background-color: $gray-100;
+        border-color: $gray-100;
+        margin-top: -0.2em;
+        padding: 0.2em;
+        min-height: unset !important;
+        box-shadow: unset !important;
+    }
 }
 
 .code-inline-long {

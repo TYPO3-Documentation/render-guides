@@ -57,7 +57,9 @@
 
   function updateInputsAndTextareas(linkReferenceModal, header, headerText, uri, rstLink, shortUri) {
     if (header) {
-      linkReferenceModal.querySelector('h5').innerHTML = header;
+      // `header` is the headerlink's title attribute (a heading label); render
+      // it as text so doc-author content cannot inject markup.
+      linkReferenceModal.querySelector('h5').textContent = header;
     }
     if (uri === null) {
       // this can happen when opening a local file

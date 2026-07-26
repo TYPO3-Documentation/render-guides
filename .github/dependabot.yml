@@ -1,6 +1,7 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
+
 updates:
   - package-ecosystem: "composer"
     directory: "/"
@@ -10,16 +11,17 @@ updates:
       timezone: "Europe/Berlin"
     allow:
       - dependency-type: "development"
+    ignore:
+      - dependency-name: "phpunit/phpunit"
+        versions:
+          - "11.*" # Ignore PHPUnit 11.x versions
     versioning-strategy: "increase"
     commit-message:
       prefix: "[TASK]"
     labels:
       - "dependencies"
       - "composer"
-    ignored-updates:
-      - match:
-          dependency-name: "phpunit/phpunit"
-          versions: ["11.*"] # Ignore PHPUnit 11.x versions
+
   - package-ecosystem: "npm"
     directory: "/packages/typo3-docs-theme/"
     schedule:
@@ -32,3 +34,15 @@ updates:
     labels:
       - "dependencies"
       - "npm"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "16:00"
+      timezone: "Europe/Berlin"
+    commit-message:
+      prefix: "[TASK]"
+    labels:
+      - "dependencies"
+      - "github-actions"

@@ -1,24 +1,20 @@
 module.exports = function (grunt) {
 
-  const path = require('path');
   const sass = require('sass');
 
   /**
    * Grunt task to remove source map comment
    */
   grunt.registerMultiTask('removesourcemap', 'Grunt task to remove sourcemp comment from files', function () {
-    var done = this.async(),
-      files = this.filesSrc.filter(function (file) {
-        return grunt.file.isFile(file);
-      }),
-      counter = 0;
+    const done = this.async();
+    let counter = 0;
     this.files.forEach(function (file) {
-      file.src.filter(function (filepath) {
-        var content = grunt.file.read(filepath).replace(/\/\/# sourceMappingURL=\S+/, '');
+      file.src.forEach(function (filepath) {
+        const content = grunt.file.read(filepath).replace(/\/\/# sourceMappingURL=\S+/, '');
         grunt.file.write(file.dest, content);
         grunt.log.success('Source file "' + filepath + '" was processed.');
         counter++;
-        if (counter >= files.length) done(true);
+        if (counter >= file.src.length) done(true);
       });
     });
   });
@@ -27,7 +23,6 @@ module.exports = function (grunt) {
    * Project configuration.
    */
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
     paths: {
       source: 'assets/',
       output: 'resources/public/',
@@ -36,16 +31,6 @@ module.exports = function (grunt) {
 
     // copy
     copy: {
-      css: {
-        files: [
-          {
-            expand: true,
-            cwd: 'css',
-            src: ['**/*'],
-            dest: '<%= paths.output %>css'
-          }
-        ]
-      },
       fonts: {
         files: [
           {
@@ -101,10 +86,7 @@ module.exports = function (grunt) {
       },
       build: {
         files: {
-          '<%= paths.output %>css/codeblock.css': '<%= paths.source %>sass/codeblock.scss',
-          '<%= paths.output %>css/fontawesome.css': '<%= paths.source %>sass/fontawesome.scss',
           '<%= paths.output %>css/theme.css': '<%= paths.source %>sass/theme.scss',
-          '<%= paths.output %>css/webfonts.css': '<%= paths.source %>sass/webfonts.scss'
         }
       },
 
@@ -113,10 +95,7 @@ module.exports = function (grunt) {
           sourceMap: true, // Enable sourcemaps for debugging
         },
         files: {
-          '<%= paths.debugDestination %>css/codeblock.css': '<%= paths.source %>sass/codeblock.scss',
-          '<%= paths.debugDestination %>css/fontawesome.css': '<%= paths.source %>sass/fontawesome.scss',
           '<%= paths.debugDestination %>css/theme.css': '<%= paths.source %>sass/theme.scss',
-          '<%= paths.debugDestination %>css/webfonts.css': '<%= paths.source %>sass/webfonts.scss'
         }
       }
     },
@@ -189,10 +168,9 @@ module.exports = function (grunt) {
   /**
    * Register tasks
    */
-  grunt.registerTask('update', ['copy']);
   grunt.registerTask('js', ['uglify']);
-  grunt.registerTask('default', ['clean', 'update', 'stylelint', 'sass', 'js', 'removesourcemap']);
+  grunt.registerTask('default', ['clean', 'copy', 'stylelint', 'sass', 'js', 'removesourcemap']);
   grunt.registerTask('build', ['default']);
   grunt.registerTask('render', ['clean:build']);
-  grunt.registerTask('debug', ['clean', 'update', 'stylelint', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
+  grunt.registerTask('debug', ['clean', 'copy', 'stylelint', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
 };
