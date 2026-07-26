@@ -9,8 +9,21 @@
     padding-bottom: $spacer * 0.3;
     border: solid 3px $light;
     border-top-color: $gray-500;
-    word-wrap: anywhere;
+    overflow-wrap: anywhere;
     white-space: normal;
+
+    // Long, unbreakable inline code (e.g. "LLL:" references or fully qualified
+    // class names) must be allowed to break at any point. Bootstrap Reboot sets
+    // "code { overflow-wrap: break-word }", which lets the token wrap but keeps
+    // its full length as the intrinsic min-content width. Within the flex page
+    // layout that min-content forces the content column – and the whole page –
+    // to overflow horizontally on medium viewports. "anywhere" additionally
+    // shrinks the min-content size, which prevents the overflow.
+    // See https://github.com/TYPO3-Documentation/render-guides/issues/1227
+
+    code {
+        overflow-wrap: anywhere;
+    }
 
     & > dt {
         display: block;
@@ -22,8 +35,6 @@
 
         code {
             color: color-contrast($light);
-            word-wrap: anywhere;
-            white-space: normal;
         }
     }
 

@@ -25922,8 +25922,11 @@ ul[class*=horizbuttons-][class*=-note-] > li:hover, ul[class*=horizbuttons-][cla
   padding-bottom: 0.3rem;
   border: solid 3px rgb(242.25, 242.25, 242.25);
   border-top-color: rgb(178.5, 178.5, 178.5);
-  word-wrap: anywhere;
+  overflow-wrap: anywhere;
   white-space: normal;
+}
+.property-card code, .rst-content dl.php code, dl.confval code, dl.command code {
+  overflow-wrap: anywhere;
 }
 .property-card > dt, .rst-content dl.php > dt, dl.confval > dt, dl.command > dt {
   display: block;
@@ -25935,8 +25938,6 @@ ul[class*=horizbuttons-][class*=-note-] > li:hover, ul[class*=horizbuttons-][cla
 }
 .property-card > dt code, .rst-content dl.php > dt code, dl.confval > dt code, dl.command > dt code {
   color: #000000;
-  word-wrap: anywhere;
-  white-space: normal;
 }
 .property-card > dd, .rst-content dl.php > dd, dl.confval > dd, dl.command > dd {
   margin-right: 1rem;
