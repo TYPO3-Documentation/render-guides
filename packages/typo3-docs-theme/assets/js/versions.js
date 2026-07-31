@@ -2,6 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const languageSelect = document.getElementById('languageSelect');
   const versionSelect = document.getElementById('versionSelect');
 
+  // The version/language switcher only exists on manual pages. On pages without
+  // it (e.g. the search results page) bail out early, otherwise the getAttribute/
+  // addEventListener calls below dereference null and throw, aborting page scripts.
+  if (!versionSelect || !languageSelect) {
+    return;
+  }
+
   const DEFAULT_URL = 'https://docs.typo3.org/services/versionsJson.php?url=';
 
   let currentURL = document.URL;
