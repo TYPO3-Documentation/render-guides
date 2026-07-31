@@ -124,4 +124,12 @@ describe('version switcher', () => {
 
     expect(order).toEqual(['main', '14.0', '13.4.21', '13.4', '13.3']);
   });
+
+  it('does not throw on pages without the version switcher (e.g. search results)', () => {
+    // No #versionSelect / #languageSelect present. Before the guard, the first
+    // versionSelect.getAttribute() call threw "Cannot read properties of null".
+    document.body.replaceChildren();
+
+    expect(() => document.dispatchEvent(new Event('DOMContentLoaded'))).not.toThrow();
+  });
 });
