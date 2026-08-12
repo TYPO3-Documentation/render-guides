@@ -5,7 +5,7 @@ dl.field-list {
     }
 
     & > dt:after {
-        content: ":";
+        content: ':' / '';
     }
 }
 @include media-breakpoint-up(md) {
