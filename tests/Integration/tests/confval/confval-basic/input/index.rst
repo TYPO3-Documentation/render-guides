@@ -14,6 +14,9 @@ Permalink to confval: `demo  <https://docs.typo3.org/permalink/test:confval-demo
 See also :confval:`demo` or :ref:`demo <confval-demo>`.
 
 
+demo
+====
+
 ..  confval:: demo
     :name: Some_Other_Demo
     :type: string
