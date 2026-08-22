@@ -58,6 +58,9 @@ Confvals
     Some Text
 
 
+demo 2
+------
+
 ..  confval:: demo 2
     :type: string
     :default: ``"Hello World"``
@@ -99,6 +102,9 @@ Confvals
 
         Some Text
 
+demo 3
+------
+
 ..  confval:: demo 3
     :type: string
     :default: ``"Hello World"``
@@ -107,6 +113,9 @@ Confvals
 
     Some Text
 
+demo 4
+------
+
 ..  confval:: demo 4
     :type: string
     :default: ``"Hello World"``
@@ -114,6 +123,9 @@ Confvals
     :Level: 1
 
     Some Text
+
+exclude in table
+----------------
 
 ..  confval:: exclude in table
     :type: string

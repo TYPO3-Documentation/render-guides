@@ -48,6 +48,9 @@ Source:
 
 Result:
 
+mr_pommeroy
+-----------
+
 ..  confval:: mr_pommeroy
     :type: shy
     :required: false
@@ -112,7 +115,6 @@ Adapted from the TypoScript Reference Manual:
                 dummy.enable = 0    # false, preferred notation
                 dummy.enable = 1    # true,  preferred notation
                 dummy.enable =      #
-
 
 
     ..  confval:: case
