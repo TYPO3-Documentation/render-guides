@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: "0"
           persist-credentials: "false"
-      - uses: frankdejonge/use-github-token@15e6289d07c12b3b1603268a628bb74f2e9765f4
+      - uses: frankdejonge/use-github-token@ae451b947d7d5975ca9aaadf04655bbd75dfbd85
         with:
           authentication: "typo3-documentation-team:${{ secrets.BOT_TOKEN }}"
           user_name: "TYPO3 Documentation Team"
