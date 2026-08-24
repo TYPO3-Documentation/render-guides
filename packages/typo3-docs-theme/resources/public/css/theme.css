@@ -25215,35 +25215,6 @@ span[id*=MathJax-Span] {
   color: inherit;
 }
 
-.panel {
-  background: var(--bs-body-bg);
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  border-radius: var(--bs-border-radius);
-  padding: 1.25rem 1.25rem;
-  border: var(--bs-border-width) solid var(--bs-border-color-translucent);
-  overflow: hidden;
-}
-.panel > *:last-child {
-  margin-bottom: 0;
-}
-.panel > h1, .panel > .h1,
-.panel > h2,
-.panel > .h2,
-.panel > h3,
-.panel > .h3,
-.panel > h4,
-.panel > .h4,
-.panel > h5,
-.panel > .h5,
-.panel > h6,
-.panel > .h6 {
-  font-size: 1.15rem;
-  padding: 1.25rem 1.25rem;
-  margin: -1.25rem -1.25rem;
-  margin-bottom: 1.25rem;
-  background-color: rgba(var(--bs-body-color-rgb), 0.03);
-}
-
 article a.headerlink,
 article a.permalink {
   position: relative;
