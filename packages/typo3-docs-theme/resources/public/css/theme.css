@@ -24475,6 +24475,9 @@ dl.command .command-arguments section {
   margin-left: 2rem;
 }
 
+.directory-tree {
+  margin-bottom: 1rem;
+}
 .directory-tree ul {
   margin-bottom: 0;
   padding-left: 0;
@@ -26530,7 +26533,7 @@ dl.field-list > dt:after {
   content: ":"/"";
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   dl.field-list {
     display: grid;
     grid-template-columns: fit-content(30%) auto;
@@ -27438,4 +27441,31 @@ section.confval-section {
 
 .rubric {
   font-weight: 700;
+}
+
+/**
+ * Print
+ *
+ * Removes the page chrome (sticky header, navigation, footer, interactive
+ * controls) and lets the content span the full page width.
+ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+  .page-topbar,
+  .page-header,
+  .pagination,
+  .page-footer,
+  .headerlink,
+  .contents-wrapper {
+    display: none;
+  }
+  .page-main-content {
+    padding: 0;
+  }
+  .rst-content section:first-child {
+    margin-top: 0;
+  }
 }
