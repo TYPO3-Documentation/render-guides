@@ -1,0 +1,22 @@
+//
+// A property card nested inside another one (a confval below a confval, a
+// method below its class). The depth is carried by an indent plus a vertical
+// rule instead of a second frame, so nesting does not stack up into
+// concentric borders.
+//
+// Apply to whichever element wraps the nested card - the custom properties
+// inherit down to the card itself.
+//
+@mixin property-card-nested {
+    --property-card-bg: transparent;
+    --property-card-border-width: 0;
+    --property-card-border-radius: 0;
+    --property-card-accent-width: 0;
+    --property-card-header-border-radius: 0;
+    --property-card-header-padding-x: var(--property-card-nested-padding-x);
+    --property-card-body-padding-x: var(--property-card-nested-padding-x);
+    border-left: var(--property-card-nested-rule-width) solid var(--property-card-nested-rule-color);
+    margin-bottom: var(--property-card-spacing-y);
+    margin-top: var(--property-card-spacing-y);
+    padding-left: var(--property-card-nested-indent);
+}

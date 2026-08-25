@@ -8,15 +8,17 @@ dl.command {
         }
     }
 
+    // The card body already provides the leading gap.
+
     .command-description {
-        margin-block: $spacer;
+        margin-block: 0 var(--property-card-spacing-y);
     }
 
     .command-options,
     .command-arguments {
 
         section {
-            margin-left: calc($spacer * 2);
+            margin-left: calc(var(--property-card-nested-indent) * 2);
         }
     }
 }

@@ -24425,6 +24425,45 @@ a.code-block-edit .fa-check:before {
   box-shadow: unset !important;
 }
 
+/**
+ * Inside a headline the inline code is the headline, not a chip inside a
+ * sentence. It drops the box and the fixed line height - the latter is sized
+ * for body copy and clips at heading sizes - and keeps only the monospace
+ * face. The 85% of the global "code" rule keeps it optically level with the
+ * surrounding heading.
+ */
+h1 .code-inline,
+h2 .code-inline,
+h3 .code-inline,
+h4 .code-inline,
+h5 .code-inline,
+h6 .code-inline,
+.h1 .code-inline,
+.h2 .code-inline,
+.h3 .code-inline,
+.h4 .code-inline,
+.h5 .code-inline,
+.h6 .code-inline {
+  background-color: transparent;
+  border: 0;
+  line-height: inherit;
+  padding: 0;
+}
+h1 .code-inline button,
+h2 .code-inline button,
+h3 .code-inline button,
+h4 .code-inline button,
+h5 .code-inline button,
+h6 .code-inline button,
+.h1 .code-inline button,
+.h2 .code-inline button,
+.h3 .code-inline button,
+.h4 .code-inline button,
+.h5 .code-inline button,
+.h6 .code-inline button {
+  line-height: 1;
+}
+
 /** uses "popover" for all code roles that have tooltips **/
 .code-inline[aria-description] a {
   text-decoration: none;
@@ -24468,11 +24507,11 @@ dl.command > dt a:not([class*=headerlink]) {
   float: right;
 }
 dl.command .command-description {
-  margin-block: 1rem;
+  margin-block: 0 var(--property-card-spacing-y);
 }
 dl.command .command-options section,
 dl.command .command-arguments section {
-  margin-left: 2rem;
+  margin-left: calc(var(--property-card-nested-indent) * 2);
 }
 
 .directory-tree {
@@ -26498,13 +26537,52 @@ ul[class*=horizbuttons-][class*=-note-] > li:hover, ul[class*=horizbuttons-][cla
   content: "\f071";
 }
 
+body {
+  --property-card-bg: #ffffff;
+  --property-card-border-color: rgb(90%, 90%, 90%);
+  --property-card-border-width: 1px;
+  --property-card-border-radius: 0.375rem;
+  --property-card-accent-color: rgb(70%, 70%, 70%);
+  --property-card-accent-width: 3px;
+  --property-card-spacing-y: 1rem;
+  --property-card-header-bg: rgb(97%, 97%, 97%);
+  --property-card-header-color: #333333;
+  --property-card-header-font-size: 1.1rem;
+  --property-card-header-font-weight: 400;
+  --property-card-header-padding-y: 0.6rem;
+  --property-card-header-padding-x: 1.25rem;
+  --property-card-header-gap: 0.75rem;
+  --property-card-header-border-radius: var(--property-card-border-radius) var(--property-card-border-radius) 0 0;
+  --property-card-name-font-family: Source Code Pro, monospace;
+  --property-card-name-font-size: 0.9375rem;
+  --property-card-name-font-weight: 600;
+  --property-card-body-padding-y: 1.25rem;
+  --property-card-body-padding-x: 1.25rem;
+  --property-card-meta-color: rgb(50%, 50%, 50%);
+  --property-card-meta-font-size: 1.1rem;
+  --property-card-meta-font-weight: 400;
+  --property-card-action-color: #999999;
+  --property-card-action-hover-color: #000000;
+  --property-card-nested-indent: 1rem;
+  --property-card-nested-padding-x: 0.75rem;
+  --property-card-nested-rule-color: rgb(70%, 70%, 70%);
+  --property-card-nested-rule-width: 4px;
+}
+
+@media (max-width: 575.98px) {
+  body {
+    --property-card-header-padding-x: 0.75rem;
+    --property-card-body-padding-x: 0.75rem;
+    --property-card-nested-indent: 0.5rem;
+  }
+}
 .property-card, .rst-content dl.php, dl.confval, dl.command {
-  background-color: #ffffff;
-  border-radius: 0.375rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.3rem;
-  border: solid 3px rgb(95%, 95%, 95%);
-  border-top-color: rgb(70%, 70%, 70%);
+  background-color: var(--property-card-bg);
+  border: var(--property-card-border-width) solid var(--property-card-border-color);
+  border-radius: var(--property-card-border-radius);
+  border-top-color: var(--property-card-accent-color);
+  border-top-width: var(--property-card-accent-width);
+  margin-bottom: var(--property-card-spacing-y);
   overflow-wrap: anywhere;
   white-space: normal;
 }
@@ -26512,18 +26590,120 @@ ul[class*=horizbuttons-][class*=-note-] > li:hover, ul[class*=horizbuttons-][cla
   overflow-wrap: anywhere;
 }
 .property-card > dt, .rst-content dl.php > dt, dl.confval > dt, dl.command > dt {
-  display: block;
-  background-color: rgb(95%, 95%, 95%);
-  color: #000000;
-  font-size: 1.25em;
-  padding: 0.25em 0.5em;
-  margin-bottom: 0.75em;
+  align-items: center;
+  background-color: var(--property-card-header-bg);
+  border-bottom: var(--property-card-border-width) solid var(--property-card-border-color);
+  border-radius: var(--property-card-header-border-radius);
+  color: var(--property-card-header-color);
+  column-gap: var(--property-card-header-gap);
+  font-size: var(--property-card-header-font-size);
+  font-weight: var(--property-card-header-font-weight);
+  margin-bottom: 0;
+  padding: var(--property-card-header-padding-y) var(--property-card-header-padding-x);
 }
-.property-card > dt code, .rst-content dl.php > dt code, dl.confval > dt code, dl.command > dt code {
-  color: #000000;
+.property-card > dt .sig-name, .rst-content dl.php > dt .sig-name, dl.confval > dt .sig-name, dl.command > dt .sig-name {
+  color: inherit;
+  font-family: var(--property-card-name-font-family);
+  font-size: var(--property-card-name-font-size);
+  font-weight: var(--property-card-name-font-weight);
 }
 .property-card > dd, .rst-content dl.php > dd, dl.confval > dd, dl.command > dd {
-  margin-right: 1rem;
+  margin: 0;
+  padding: var(--property-card-body-padding-y) var(--property-card-body-padding-x) 0;
+}
+.property-card > dd > :last-child, .rst-content dl.php > dd > :last-child, dl.confval > dd > :last-child, dl.command > dd > :last-child {
+  margin-bottom: var(--property-card-body-padding-y);
+}
+.property-card > dd > dl.field-list, .rst-content dl.php > dd > dl.field-list, dl.confval > dd > dl.field-list, dl.command > dd > dl.field-list {
+  margin-bottom: var(--property-card-body-padding-y);
+}
+.property-card > dd > dl.field-list > dt, .rst-content dl.php > dd > dl.field-list > dt, dl.confval > dd > dl.field-list > dt, dl.command > dd > dl.field-list > dt {
+  color: var(--property-card-meta-color);
+  font-size: var(--property-card-meta-font-size);
+  font-weight: var(--property-card-meta-font-weight);
+}
+
+body {
+  --confval-menu-indent: 1.25rem;
+  --confval-menu-max-level: 6;
+  --confval-menu-guide-color: var(--property-card-border-color);
+  --confval-caption-font-weight: 600;
+}
+
+.confval-header {
+  min-width: 0;
+}
+
+.confval-back-to-top a {
+  color: var(--property-card-action-color);
+  text-decoration: none;
+}
+.confval-back-to-top a:hover, .confval-back-to-top a:focus {
+  color: var(--property-card-action-hover-color);
+}
+
+.confval-description > :last-child {
+  margin-bottom: 0;
+}
+
+.confval-description > .confval-section {
+  --property-card-bg: transparent;
+  --property-card-border-width: 0;
+  --property-card-border-radius: 0;
+  --property-card-accent-width: 0;
+  --property-card-header-border-radius: 0;
+  --property-card-header-padding-x: var(--property-card-nested-padding-x);
+  --property-card-body-padding-x: var(--property-card-nested-padding-x);
+  border-left: var(--property-card-nested-rule-width) solid var(--property-card-nested-rule-color);
+  margin-bottom: var(--property-card-spacing-y);
+  margin-top: var(--property-card-spacing-y);
+  padding-left: var(--property-card-nested-indent);
+}
+.confval-description > .confval-section > dl.confval {
+  margin-bottom: 0;
+}
+
+.confval-table .confval-label {
+  --confval-level: 0;
+  --confval-level-capped: min(var(--confval-level), var(--confval-menu-max-level));
+  font-family: var(--property-card-name-font-family);
+  font-size: var(--property-card-name-font-size);
+  padding-left: calc(var(--confval-level-capped) * var(--confval-menu-indent));
+  position: relative;
+}
+.confval-table .confval-label:before {
+  background-color: var(--confval-menu-guide-color);
+  bottom: 0;
+  content: "";
+  left: calc((var(--confval-level-capped) - 0.5) * var(--confval-menu-indent));
+  opacity: min(var(--confval-level), 1);
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.confval-menu-list > .caption,
+.confval-menu-tree > .caption {
+  font-weight: var(--confval-caption-font-weight);
+  margin-bottom: var(--property-card-spacing-y);
+}
+.confval-menu-list .label > a,
+.confval-menu-tree .label > a {
+  font-family: var(--property-card-name-font-family);
+  font-size: var(--property-card-name-font-size);
+}
+.confval-menu-list .confval-menu-meta,
+.confval-menu-tree .confval-menu-meta {
+  color: var(--property-card-meta-color);
+}
+
+.confval-menu-list ul {
+  list-style: none;
+  padding-left: 0;
+}
+.confval-menu-list ul ul {
+  border-left: var(--property-card-nested-rule-width) solid var(--property-card-nested-rule-color);
+  padding-left: var(--property-card-nested-indent);
 }
 
 dl.field-list dt {
@@ -26556,20 +26736,36 @@ dl.field-list > dt:after {
     margin: 0;
   }
 }
+.rst-content dl.php > dt {
+  font-family: var(--property-card-name-font-family);
+  font-size: var(--property-card-name-font-size);
+}
+.rst-content dl.php > dt em {
+  font-style: normal;
+}
+.rst-content dl.php > dd > dl.php {
+  --property-card-bg: transparent;
+  --property-card-border-width: 0;
+  --property-card-border-radius: 0;
+  --property-card-accent-width: 0;
+  --property-card-header-border-radius: 0;
+  --property-card-header-padding-x: var(--property-card-nested-padding-x);
+  --property-card-body-padding-x: var(--property-card-nested-padding-x);
+  border-left: var(--property-card-nested-rule-width) solid var(--property-card-nested-rule-color);
+  margin-bottom: var(--property-card-spacing-y);
+  margin-top: var(--property-card-spacing-y);
+  padding-left: var(--property-card-nested-indent);
+}
 .rst-content dl.php.property > dd:empty,
 .rst-content dl.php.const > dd:empty,
 .rst-content dl.php.case > dd:empty {
   display: none;
 }
-.rst-content dl.php.property:has(> dd:empty),
-.rst-content dl.php.const:has(> dd:empty),
-.rst-content dl.php.case:has(> dd:empty) {
-  padding-bottom: 0;
-}
 .rst-content dl.php.property:has(> dd:empty) > dt,
 .rst-content dl.php.const:has(> dd:empty) > dt,
 .rst-content dl.php.case:has(> dd:empty) > dt {
-  margin-bottom: 0;
+  border-bottom: 0;
+  border-radius: var(--property-card-border-radius);
 }
 
 .sidebar {
