@@ -40,6 +40,18 @@ Local changelog target
     Explicit reference to the manual's own interlink-shortcode
     ("acme/acme-blog") resolves as a local reference, like the "#" form.
 
+..  versionchanged:: 2.3
+    :changelog: :changes-2-3-0
+
+    Malformed: nothing usable before the colon. A warning is logged and no link
+    is rendered, rather than a reference to a label named ":changes-2-3-0".
+
+..  versionchanged:: 2.4
+    :changelog: other vendor:changes-2-4-0
+
+    Malformed: an interlink shortcode cannot contain a space. Treated the same
+    way as the empty one, not as a shortcode named "other vendor".
+
 ..  versionchanged:: 12.4
 
     Without the changelog option the block renders exactly as before.
