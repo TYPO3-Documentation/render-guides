@@ -11,13 +11,13 @@ use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
+use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3VersionChangeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 use function array_values;
-use function explode;
 use function str_contains;
 use function str_starts_with;
 use function substr;
@@ -72,6 +72,7 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
         private readonly string $label,
         private readonly Typo3DocsThemeSettings $themeSettings,
         private readonly LoggerInterface $logger,
+        private readonly InterlinkParser $interlinkParser,
     ) {
         parent::__construct($startingRule);
     }
@@ -126,30 +127,35 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
 
             $interlinkDomain = '';
             $anchor = trim(substr($changelog, 1));
-        } elseif (str_contains($changelog, ':')) {
-            // Explicit "<shortcode>:<anchor>", e.g. "vendor/package:anchor".
-            $parts = explode(':', $changelog, 2);
-            $interlinkDomain = trim($parts[0]);
-            $anchor = trim($parts[1] ?? '');
+        } else {
+            // "<shortcode>:<anchor>" is the same syntax every other cross-reference uses, so the
+            // canonical parser splits it. It returns an empty interlink for anything that is not a
+            // valid "<domain>:", which is either the bare form or a malformed one.
+            $interlink = $this->interlinkParser->extractInterlink($changelog);
 
-            if ($interlinkDomain === '') {
+            if ($interlink->interlink !== '') {
+                $interlinkDomain = $interlink->interlink;
+                $anchor = trim($interlink->reference);
+
+                // A reference to the manual's own shortcode is a self-reference;
+                // emit it as a local reference, like the "#anchor" form.
+                if ($interlinkDomain === $ownShortcode) {
+                    $interlinkDomain = '';
+                }
+            } elseif (str_contains($changelog, ':')) {
+                // A colon the parser would not accept as a domain separator: the shortcode is
+                // missing or carries characters an interlink domain cannot have.
                 $this->logger->warning(
-                    'The ":changelog:" option is malformed (no shortcode before the colon). ',
+                    'The ":changelog:" option is malformed (no usable shortcode before the colon). ',
                     $blockContext->getLoggerInformation(),
                 );
 
                 return null;
+            } else {
+                // Bare value: a TYPO3 core changelog entry identifier.
+                $interlinkDomain = self::CHANGELOG_INVENTORY;
+                $anchor = $changelog;
             }
-
-            // A reference to the manual's own shortcode is a self-reference;
-            // emit it as a local reference, like the "#anchor" form.
-            if ($interlinkDomain === $ownShortcode) {
-                $interlinkDomain = '';
-            }
-        } else {
-            // Bare value: a TYPO3 core changelog entry identifier.
-            $interlinkDomain = self::CHANGELOG_INVENTORY;
-            $anchor = $changelog;
         }
 
         if ($anchor === '') {

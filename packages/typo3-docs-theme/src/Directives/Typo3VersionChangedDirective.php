@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\Directives;
 
 use phpDocumentor\Guides\Nodes\CollectionNode;
+use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
@@ -12,8 +13,12 @@ use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 final class Typo3VersionChangedDirective extends AbstractTypo3VersionChangeDirective
 {
     /** @param Rule<CollectionNode> $startingRule */
-    public function __construct(Rule $startingRule, Typo3DocsThemeSettings $themeSettings, LoggerInterface $logger)
-    {
-        parent::__construct($startingRule, 'versionchanged', 'Changed in version %s', $themeSettings, $logger);
+    public function __construct(
+        Rule $startingRule,
+        Typo3DocsThemeSettings $themeSettings,
+        LoggerInterface $logger,
+        InterlinkParser $interlinkParser,
+    ) {
+        parent::__construct($startingRule, 'versionchanged', 'Changed in version %s', $themeSettings, $logger, $interlinkParser);
     }
 }
