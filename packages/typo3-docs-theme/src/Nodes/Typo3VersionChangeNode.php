@@ -20,6 +20,9 @@ use function sprintf;
  */
 final class Typo3VersionChangeNode extends CompoundNode
 {
+    /** Shown as the link text, and as the reference's value in a warning when the entry is missing. */
+    public const CHANGELOG_LINK_TEXT = 'See changelog entry';
+
     private readonly string $versionLabel;
 
     /** @param list<Node> $value */
@@ -53,5 +56,10 @@ final class Typo3VersionChangeNode extends CompoundNode
     public function getChangelogReference(): ReferenceNode|null
     {
         return $this->changelogReference;
+    }
+
+    public function getChangelogLinkText(): string
+    {
+        return self::CHANGELOG_LINK_TEXT;
     }
 }

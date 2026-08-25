@@ -63,7 +63,6 @@ use function trim;
 abstract class AbstractTypo3VersionChangeDirective extends SubDirective
 {
     private const CHANGELOG_INVENTORY = 'changelog';
-    private const CHANGELOG_LINK_TEXT = 'See changelog entry';
 
     /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
@@ -169,7 +168,7 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
 
         return new ReferenceNode(
             $anchor,
-            [new PlainTextInlineNode(self::CHANGELOG_LINK_TEXT)],
+            [new PlainTextInlineNode(Typo3VersionChangeNode::CHANGELOG_LINK_TEXT)],
             $interlinkDomain,
         );
     }
