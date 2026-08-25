@@ -52,6 +52,17 @@ Local changelog target
     Malformed: an interlink shortcode cannot contain a space. Treated the same
     way as the empty one, not as a shortcode named "other vendor".
 
+..  versionchanged:: 2.5
+    :changelog: other-vendor/other-ext:
+
+    A shortcode with nothing after the colon: the anchor is empty, so a warning
+    is logged and no link is rendered.
+
+..  versionchanged:: 2.6
+    :changelog: #
+
+    The local form with an empty anchor, warned about the same way.
+
 ..  versionchanged:: 12.4
 
     Without the changelog option the block renders exactly as before.
