@@ -27,7 +27,7 @@
         "sass": "^1.102.0",
         "stylelint": "^17.14.1",
         "vite": "^8.1.5",
-        "vitest": "^4.1.10"
+        "vitest": "^4.1.11"
     },
     "scripts": {
         "build": "vite build && grunt build",
