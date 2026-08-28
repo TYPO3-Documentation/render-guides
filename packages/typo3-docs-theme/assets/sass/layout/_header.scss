@@ -55,29 +55,6 @@ header {
         }
     }
 
-    .header-search {
-        @include media-breakpoint-down(lg) {
-            display: none;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 100%;
-            z-index: 200;
-            background: white;
-            padding: $spacer-responsive calc(#{$grid-gutter-width} / 2);
-            border-top: 1px solid rgba($black, 0.12);
-            box-shadow: 0 4px 12px rgba($black, 0.1);
-
-            .input-group {
-                margin: 0;
-            }
-
-            &.show {
-                display: block;
-            }
-        }
-    }
-
     #options-toggle {
         anchor-name: --options-toggle;
         @include media-breakpoint-down(lg) {
