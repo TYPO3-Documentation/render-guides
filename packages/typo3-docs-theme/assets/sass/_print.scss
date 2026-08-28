@@ -1,0 +1,29 @@
+/**
+ * Print
+ *
+ * Removes the page chrome (sticky header, navigation, footer, interactive
+ * controls) and lets the content span the full page width.
+ */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 10mm;
+    }
+
+    .page-topbar,
+    .page-header,
+    .pagination,
+    .page-footer,
+    .headerlink,
+    .contents-wrapper {
+        display: none;
+    }
+
+    .page-main-content {
+        padding: 0;
+    }
+
+    .rst-content section:first-child {
+        margin-top: 0;
+    }
+}

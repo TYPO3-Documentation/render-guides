@@ -6,15 +6,36 @@
 
     dl.php {
         @extend .property-card;
+
+        // Unlike a confval or a command, a php "dt" holds a whole signature -
+        // modifiers, parentheses, parameters and the bare text nodes between
+        // them. Those cannot be reached individually, so the monospace
+        // treatment sits on the "dt".
+
+        & > dt {
+            font-family: var(--property-card-name-font-family);
+            font-size: var(--property-card-name-font-size);
+
+            em {
+                font-style: normal;
+            }
+        }
+    }
+
+    // Methods, properties, constants and enum cases live inside the body of
+    // their class. They get the nested treatment instead of a second frame.
+
+    dl.php > dd > dl.php {
+        @include property-card-nested;
     }
 
     // A public property, class constant or enum case is often just a signature
     // with no body, which otherwise renders as an empty Bootstrap-style panel
     // below the header (see #1078). When the body is empty, hide it (dd:empty)
-    // and collapse the card to a single header bar (:has) by also removing the
-    // header margin and card padding. Members that do have a body keep their
-    // normal spacing, and so does the gap between members. The two rules are
-    // kept separate so a browser without :has() still hides the empty body.
+    // and let the header round off on its own (:has), so no stray separator
+    // line is left behind. Members that do have a body keep their normal
+    // spacing. The two rules are kept separate so a browser without :has()
+    // still hides the empty body.
 
     dl.php.property,
     dl.php.const,
@@ -25,10 +46,10 @@
         }
 
         &:has(> dd:empty) {
-            padding-bottom: 0;
 
             & > dt {
-                margin-bottom: 0;
+                border-bottom: 0;
+                border-radius: var(--property-card-border-radius);
             }
         }
     }
