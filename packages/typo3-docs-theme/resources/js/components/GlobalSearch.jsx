@@ -18,13 +18,6 @@ const GlobalSearch = ({ displayInput = false }) => {
         setIsModalOpen(true);
     };
 
-    useEffect(() => {
-        const form = document.getElementById('global-search-form');
-        if (form) {
-            form.hidden = true;
-        }
-    }, []);
-
     return (
         <>
             {isModalOpen && <SearchModal

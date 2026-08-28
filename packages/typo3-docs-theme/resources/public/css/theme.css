@@ -27165,10 +27165,6 @@ header #options-panel .dropdown-item:hover i, header #options-panel .dropdown-it
   border-bottom-color: inherit;
 }
 
-.search__scope {
-  flex: 0.4 !important;
-}
-
 :root {
   --page-header-topbar-height: 44px;
   --page-header-height: calc(var(--page-header-topbar-height) + 88.75px);
