@@ -18,13 +18,6 @@ const GlobalSearch = ({ displayInput = false }) => {
         setIsModalOpen(true);
     };
 
-    useEffect(() => {
-        const form = document.getElementById('global-search-form');
-        if (form) {
-            form.hidden = true;
-        }
-    }, []);
-
     return (
         <>
             {isModalOpen && <SearchModal
@@ -35,7 +28,7 @@ const GlobalSearch = ({ displayInput = false }) => {
                 <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value={searchQuery}></input>
                 <button class="btn btn-light"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
             </div> :
-                <button onClick={handleButtonClick} class="btn btn-light"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>}
+                <button onClick={handleButtonClick} class="btn btn-light d-none d-lg-inline-flex"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>}
         </>
     );
 };

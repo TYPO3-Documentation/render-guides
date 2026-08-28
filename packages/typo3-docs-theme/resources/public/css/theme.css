@@ -26752,26 +26752,6 @@ header .toc-header .form-select {
     flex: 1 1 100%;
   }
 }
-@media (max-width: 991.98px) {
-  header .header-search {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    z-index: 200;
-    background: white;
-    padding: clamp(0.75rem, 0.75rem + 0.625vw, 1.5625rem) calc(40px / 2);
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  header .header-search .input-group {
-    margin: 0;
-  }
-  header .header-search.show {
-    display: block;
-  }
-}
 header #options-toggle {
   anchor-name: --options-toggle;
 }
@@ -27183,10 +27163,6 @@ header #options-panel .dropdown-item:hover i, header #options-panel .dropdown-it
   border: 0.25em solid transparent;
   border-top: none;
   border-bottom-color: inherit;
-}
-
-.search__scope {
-  flex: 0.4 !important;
 }
 
 :root {

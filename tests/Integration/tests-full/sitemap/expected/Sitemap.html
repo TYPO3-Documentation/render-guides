@@ -52,7 +52,7 @@
     </div>            </div>
             <div class="header-actions">
                 <button id="search-toggle" class="btn btn-light d-lg-none" type="button"
-                        aria-label="Search" aria-expanded="false" aria-controls="header-search-expand">
+                        aria-label="Search">
                     <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                 </button>
                 <button id="toc-toggle" class="btn btn-light d-lg-none" type="button"
@@ -60,20 +60,10 @@
                     <i class="fa-solid fa-bars" aria-hidden="true"></i>
                 </button>
                 <all-documentations-menu data-override-url="_resources/js/menu-proxy.php"></all-documentations-menu>
-                                <search id="header-search-expand" class="header-search" role="search" aria-label="Site search">
-                    <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
-                        <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
-                        <div class="input-group">
-                            <select class="form-select search__scope" id="searchscope" name="scope">
-                                <option value="">Search all</option>
-                            </select>
-                            <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                            <button class="btn btn-light" type="submit" aria-label="Search">
-                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                                <span>Search</span>
-                            </button>
-                        </div>
-                    </form>
+                                <search role="search" aria-label="Site search">
+                                        <select id="searchscope" hidden aria-hidden="true">
+                        <option value="">Search all</option>
+                    </select>
                     <div id="global-search-root"></div>
                 </search>
                 <button id="options-toggle" class="btn btn-light" type="button"
