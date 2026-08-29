@@ -2,6 +2,9 @@
 
 namespace T3Docs\Typo3DocsTheme\Settings;
 
+use function in_array;
+use function strtolower;
+
 final class Typo3DocsThemeSettings
 {
     /**
@@ -30,5 +33,15 @@ final class Typo3DocsThemeSettings
     public function getAllSettings(): array
     {
         return $this->settings;
+    }
+
+    /**
+     * Interpret a string setting as a boolean flag. Accepts the common truthy
+     * tokens and treats everything else (including an unset key) as false, so
+     * an unrecognised value fails safe to "off".
+     */
+    public function isEnabled(string $key): bool
+    {
+        return in_array(strtolower($this->getSettings($key, 'false')), ['1', 'true', 'yes', 'on'], true);
     }
 }
