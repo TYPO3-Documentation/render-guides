@@ -1,0 +1,7 @@
+app.WARNING: The ":changelog:" option is malformed (no usable shortcode before the colon).
+app.WARNING: The ":changelog:" option is malformed (no usable shortcode before the colon).
+app.WARNING: Inventory link with key "changelog:feature-101010-1700000000" (feature-101010-1700000000) not found.
+app.WARNING: Inventory link with key "changelog:deprecation-202020-1700000000" (deprecation-202020-1700000000) not found.
+app.WARNING: Inventory with key other-vendor/other-ext not found.
+app.WARNING: The ":changelog:" option has an empty changelog entry anchor.
+app.WARNING: The ":changelog:" option has an empty changelog entry anchor.
