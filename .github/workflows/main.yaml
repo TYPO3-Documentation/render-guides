@@ -9,102 +9,67 @@ on: # yamllint disable-line rule:truthy
   # merges never receive their required status checks and time out.
   merge_group: null
 
-env:
-  DEFAULT_PHP_VERSION: "8.2"
-  RUN_ENVIRONMENT: "local"
+permissions:
+  contents: read
 
-# The job names below ("Tests (8.x)", "Quality", ...) are configured as
-# required status checks for the merge queue on "main". Renaming a job or
-# changing how its checks are reported requires updating the branch ruleset
-# in the same change, or the merge queue will block all merges.
+# The PHP jobs below call the shared workflows of TYPO3-Documentation/.github.
+# A called workflow reports its checks as "<job name> / <inner job name>", so
+# the context names differ from an inline job and are listed in the branch
+# ruleset for "main" in that form. Renaming a job here, or moving one back
+# inline, requires updating the ruleset in the same change, or the merge queue
+# will block all merges.
 jobs:
   tests:
-    name : Tests
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php:
-          - '8.2'
-          - '8.3'
-          - '8.4'
-          - '8.5'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-
-      - name: "Install PHP"
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
-        with:
-          coverage: "none"
-          php-version: "${{ matrix.php }}"
-          extensions: 'inotify, pcntl'
-
-      - name: "Get Composer cache directory"
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
-
-      - name: "Cache Composer dependencies"
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: php-${{ matrix.php }}-composer-
-
-      - name: "Install dependencies with Composer"
-        run: composer install --no-interaction --no-progress --prefer-dist
-
-      - name: "Run unit tests"
-        run: "make test-unit ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "Run integration tests"
-        run: "make test-integration ENV=${{ env.RUN_ENVIRONMENT }}"
+    name: "Tests"
+    uses: TYPO3-Documentation/.github/.github/workflows/reusable-php-tests.yml@main
+    with:
+      php-versions: '["8.2", "8.3", "8.4", "8.5"]'
+      test-unit-command: "make test-unit ENV=local"
+      test-integration-command: "make test-integration ENV=local"
+      php-extensions: "inotify, pcntl"
 
   quality:
-    name: Quality
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+    name: "Quality"
+    uses: TYPO3-Documentation/.github/.github/workflows/reusable-php-quality.yml@main
+    with:
+      php-version: "8.2"
+      cs-fixer-command: "make code-style ENV=local"
+      phpstan-command: "make phpstan ENV=local"
+      run-xml-lint: true
+      xml-lint-command: "make test-xml ENV=local"
+      php-extensions: "inotify, pcntl"
 
-      - name: "Install PHP"
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
-        with:
-          coverage: "none"
-          php-version: "${{ env.DEFAULT_PHP_VERSION }}"
-          extensions: 'inotify, pcntl'
+  composer-normalize:
+    name: "Composer normalize"
+    uses: TYPO3-Documentation/.github/.github/workflows/reusable-php-command.yml@main
+    with:
+      php-version: "8.2"
+      command: "composer normalize --dry-run"
+      php-extensions: "inotify, pcntl"
 
-      - name: "Get Composer cache directory"
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+  test-docs:
+    name: "Documentation renders without warning"
+    uses: TYPO3-Documentation/.github/.github/workflows/reusable-php-command.yml@main
+    with:
+      php-version: "8.2"
+      command: "make test-docs ENV=local"
+      php-extensions: "inotify, pcntl"
 
-      - name: "Cache Composer dependencies"
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: php-${{ env.DEFAULT_PHP_VERSION }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: php-${{ env.DEFAULT_PHP_VERSION }}-composer-
+  test-rendertest:
+    name: "Documentation-rendertest renders without warning"
+    uses: TYPO3-Documentation/.github/.github/workflows/reusable-php-command.yml@main
+    with:
+      php-version: "8.2"
+      command: "make test-rendertest ENV=local"
+      php-extensions: "inotify, pcntl"
 
-      - name: "Install dependencies with Composer"
-        run: composer install --no-interaction --no-progress --prefer-dist
-
-      - name: "Check for normalized composer.json"
-        run: "composer normalize --dry-run"
-
-      - name: "CGL"
-        run: "make code-style ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "PHPSTAN"
-        run: "make phpstan ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "Lint guides.xml configurations"
-        run: "make test-xml ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "'Documentation' renders without warning'"
-        run: "make test-docs ENV=${{ env.RUN_ENVIRONMENT }}"
-
-      - name: "'Documentation-rendertest' renders without warning'"
-        run: "make test-rendertest ENV=${{ env.RUN_ENVIRONMENT }}"
+  validate-monorepo:
+    name: "Validate monorepo structure"
+    uses: TYPO3-Documentation/.github/.github/workflows/reusable-php-command.yml@main
+    with:
+      php-version: "8.2"
+      command: "make test-monorepo ENV=local"
+      php-extensions: "inotify, pcntl"
 
   theme-js-tests:
     name: "typo3-docs-theme JS tests"
@@ -128,34 +93,3 @@ jobs:
 
       - name: "Run JS unit tests"
         run: npm test
-
-  monorepo-validate:
-    name: "Validate monorepo structure"
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-
-      - name: "Install PHP"
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
-        with:
-          coverage: "none"
-          php-version: "${{ env.DEFAULT_PHP_VERSION }}"
-          extensions: 'inotify, pcntl'
-
-      - name: "Get Composer cache directory"
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
-
-      - name: "Cache Composer dependencies"
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: php-${{ env.DEFAULT_PHP_VERSION }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: php-${{ env.DEFAULT_PHP_VERSION }}-composer-
-
-      - name: "Install dependencies with Composer"
-        run: composer install --no-interaction --no-progress --prefer-dist
-
-      - name: "Validate monorepo"
-        run: "make test-monorepo ENV=${{ env.RUN_ENVIRONMENT }}"
