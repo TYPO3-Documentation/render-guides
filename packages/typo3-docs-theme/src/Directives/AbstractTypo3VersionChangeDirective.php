@@ -133,11 +133,13 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
         // line and prepends a space to one written on a following line, so leading whitespace
         // is the only thing telling the two apart; trimming first would let an invisible
         // trailing space after ":changelog:" decide whether a link is rendered at all.
-        // Checked before the Unicode patterns below, which return false rather than 0 on a
+        // Checked before the whitespace pattern below, which returns false rather than 0 on a
         // malformed subject: "=== 1" would then read that as "no whitespace", and the value
-        // would travel on to the anchor normalizer, where it throws and takes the whole render
-        // down - every page lost, and the message naming a template rather than the file the
-        // author has to fix. The value is kept out of the message, it cannot be logged as is.
+        // would travel on to the anchor normalizer, where UnicodeString throws and takes the
+        // whole render down - every page lost, and the message naming a template rather than
+        // the file the author has to fix. Invalid UTF-8 is that constructor's only throw
+        // condition, so excluding it here is what makes the rest of this method total. The
+        // value is kept out of the message, it is the one thing that cannot be logged as is.
         if (preg_match(self::VALID_UTF8, $changelog) !== 1) {
             $this->logger->warning(
                 'The ":changelog:" option value is not valid UTF-8. ',
