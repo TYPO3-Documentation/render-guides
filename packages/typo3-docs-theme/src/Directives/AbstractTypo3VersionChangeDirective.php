@@ -18,6 +18,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Typo3VersionChangeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 use function array_values;
+use function sprintf;
 use function str_contains;
 use function str_starts_with;
 use function substr;
@@ -139,7 +140,7 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
                 // A colon the parser would not accept as a domain separator: the shortcode is
                 // missing or carries characters an interlink domain cannot have.
                 $this->logger->warning(
-                    'The ":changelog:" option is malformed (no usable shortcode before the colon). ',
+                    sprintf('The ":changelog: %s" option is malformed (no usable shortcode before the colon). ', $changelog),
                     $blockContext->getLoggerInformation(),
                 );
 
@@ -153,7 +154,7 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
 
         if ($anchor === '') {
             $this->logger->warning(
-                'The ":changelog:" option has an empty changelog entry anchor. ',
+                sprintf('The ":changelog: %s" option has an empty changelog entry anchor. ', $changelog),
                 $blockContext->getLoggerInformation(),
             );
 
