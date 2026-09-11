@@ -96,7 +96,7 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
             $this->label,
             $directive->getData(),
             array_values($collectionNode->getChildren()),
-            $this->buildChangelogReference($directive->getOptionString('changelog'), $blockContext),
+            $this->buildChangelogReference($directive, $blockContext),
         );
     }
 
@@ -104,12 +104,26 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
      * Turn the ":changelog:" option into a reference that is resolved during
      * rendering: against the core changelog inventory, against another manual's
      * inventory, or against this manual's own labels. Returns null when the
-     * option is empty or malformed (a warning is logged in the latter case).
+     * option is absent, valueless or malformed (a warning is logged in the
+     * latter two cases).
      */
-    private function buildChangelogReference(string $changelog, BlockContext $blockContext): ReferenceNode|null
+    private function buildChangelogReference(Directive $directive, BlockContext $blockContext): ReferenceNode|null
     {
-        $changelog = trim($changelog);
+        if (!$directive->hasOption('changelog')) {
+            return null;
+        }
+
+        // ":changelog:" with nothing behind it is parsed as the flag "true", which
+        // strval()s to "1" and would otherwise be taken for a changelog entry id.
+        $value = $directive->getOption('changelog')->getValue();
+        $changelog = $value === true ? '' : trim((string) $value);
+
         if ($changelog === '') {
+            $this->logger->warning(
+                'The ":changelog:" option was given without a changelog entry. ',
+                $blockContext->getLoggerInformation(),
+            );
+
             return null;
         }
 
@@ -123,7 +137,9 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
             $anchor = trim(substr($changelog, 1));
         } else {
             // "<shortcode>:<anchor>" is the same syntax every other cross-reference uses, so the
-            // canonical parser splits it. It returns an empty interlink for anything that is not a
+            // canonical parser splits it. Note that the "vendor/package" form only parses because
+            // this package rebinds InterlinkParser to ExtendedInterlinkParser, whose domain
+            // pattern allows "/"; upstream's DefaultInterlinkParser does not. It returns an empty interlink for anything that is not a
             // valid "<domain>:", which is either the bare form or a malformed one.
             $interlink = $this->interlinkParser->extractInterlink($changelog);
 

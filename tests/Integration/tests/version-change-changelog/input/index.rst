@@ -70,6 +70,12 @@ Local changelog target
 
     The local form with an empty anchor, warned about the same way.
 
+..  versionadded:: 1.0
+    :changelog:
+
+    The option without a value: warned about, and not taken for the changelog
+    entry id "1" that the flag would otherwise stringify to.
+
 ..  versionchanged:: 12.4
 
     Without the changelog option the block renders exactly as before.
