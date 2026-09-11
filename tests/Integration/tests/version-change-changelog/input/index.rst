@@ -56,8 +56,8 @@ Local changelog target
 ..  versionchanged:: 2.4
     :changelog: other vendor:changes-2-4-0
 
-    Malformed: an interlink shortcode cannot contain a space. Treated the same
-    way as the empty one, not as a shortcode named "other vendor".
+    A space inside the value: rejected as whitespace before the shortcode is
+    even looked at, rather than taken for a shortcode named "other vendor".
 
 ..  versionchanged:: 2.5
     :changelog: other-vendor/other-ext:
@@ -75,6 +75,21 @@ Local changelog target
 
     The option without a value: warned about, and not taken for the changelog
     entry id "1" that the flag would otherwise stringify to.
+
+..  versionchanged:: 14.0
+    :changelog:
+        feature-107628-1729026000
+
+    The value written on the following line. The parser appends it to the flag
+    the valueless option produced, so the value arrives as "1 feature-...";
+    it is rejected as a value containing whitespace rather than resolved as one.
+
+..  versionchanged:: 2.8
+    :changelog: other+vendor:changes-2-8-0
+
+    A shortcode character an interlink domain cannot carry, with no whitespace
+    to reject it first: only the canonical parser refuses this, a hand-rolled
+    split on ":" would accept "other+vendor" as the domain.
 
 ..  versionchanged:: 12.4
 

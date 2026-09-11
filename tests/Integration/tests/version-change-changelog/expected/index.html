@@ -248,8 +248,8 @@ is rendered, rather than a reference to a label named &quot;:changes-2-3-0&quot;
         Changed in version 2.4</p>
     <article>
         
-    <p>Malformed: an interlink shortcode cannot contain a space. Treated the same
-way as the empty one, not as a shortcode named &quot;other vendor&quot;.</p>
+    <p>A space inside the value: rejected as whitespace before the shortcode is
+even looked at, rather than taken for a shortcode named &quot;other vendor&quot;.</p>
 
     </article>
 </div>
@@ -282,6 +282,30 @@ is logged and no link is rendered.</p>
         
     <p>The option without a value: warned about, and not taken for the changelog
 entry id &quot;1&quot; that the flag would otherwise stringify to.</p>
+
+    </article>
+</div>
+            <div class="versionchange versionchanged">
+    <p class="versionmodified">
+        <span class="versionicon"><i class="fa-solid fa-arrows-rotate"></i></span>
+        Changed in version 14.0</p>
+    <article>
+        
+    <p>The value written on the following line. The parser appends it to the flag
+the valueless option produced, so the value arrives as &quot;1 feature-...&quot;;
+it is rejected as a value containing whitespace rather than resolved as one.</p>
+
+    </article>
+</div>
+            <div class="versionchange versionchanged">
+    <p class="versionmodified">
+        <span class="versionicon"><i class="fa-solid fa-arrows-rotate"></i></span>
+        Changed in version 2.8</p>
+    <article>
+        
+    <p>A shortcode character an interlink domain cannot carry, with no whitespace
+to reject it first: only the canonical parser refuses this, a hand-rolled
+split on &quot;:&quot; would accept &quot;other+vendor&quot; as the domain.</p>
 
     </article>
 </div>

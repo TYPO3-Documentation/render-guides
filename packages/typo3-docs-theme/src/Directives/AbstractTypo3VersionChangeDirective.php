@@ -18,6 +18,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Typo3VersionChangeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 use function array_values;
+use function preg_match;
 use function sprintf;
 use function str_contains;
 use function str_starts_with;
@@ -121,6 +122,21 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
         if ($changelog === '') {
             $this->logger->warning(
                 'The ":changelog:" option was given without a changelog entry. ',
+                $blockContext->getLoggerInformation(),
+            );
+
+            return null;
+        }
+
+        // Every form of the value is a single token. Whitespace means the value is not one -
+        // most often because it was written on the following line, which the parser appends
+        // to the flag the empty option produced, yielding a leading "1".
+        if (preg_match('/\s/', $changelog) === 1) {
+            $this->logger->warning(
+                sprintf(
+                    'The ":changelog: %s" option contains whitespace; the changelog entry must be a single token on the same line as the option. ',
+                    $changelog,
+                ),
                 $blockContext->getLoggerInformation(),
             );
 
