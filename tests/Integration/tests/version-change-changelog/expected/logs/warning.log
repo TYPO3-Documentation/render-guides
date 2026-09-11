@@ -2,6 +2,7 @@ app.WARNING: The ":changelog: :changes-2-3-0" option is malformed (no usable sho
 app.WARNING: The ":changelog: other vendor:changes-2-4-0" option is malformed (no usable shortcode before the colon).
 app.WARNING: The ":changelog: other-vendor/other-ext:" option has an empty changelog entry anchor.
 app.WARNING: The ":changelog: #" option has an empty changelog entry anchor.
+app.WARNING: The ":changelog:" option was given without a changelog entry.
 app.WARNING: Inventory link with key "changelog:feature-101010-1700000000" (feature-101010-1700000000) not found.
 app.WARNING: Inventory link with key "changelog:deprecation-202020-1700000000" (deprecation-202020-1700000000) not found.
 app.WARNING: Inventory with key other-vendor/other-ext not found.
