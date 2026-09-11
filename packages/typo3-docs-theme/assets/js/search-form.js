@@ -8,6 +8,15 @@
 
     if (manualPath) {
       const searchScopeSelectList = document.getElementById(SELECTOR_SEARCH_SCOPE_SELECT_LIST);
+
+      // The scope select lives in the theme's page header. A project that
+      // overrides that template can match the manual URL pattern without
+      // rendering it, and the add() below would then dereference null and
+      // abort the remaining page scripts.
+      if (!searchScopeSelectList) {
+        return;
+      }
+
       const newOption = document.createElement('option');
       newOption.value = manualPath;
       newOption.text = 'Search current';

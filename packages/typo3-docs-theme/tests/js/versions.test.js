@@ -130,6 +130,22 @@ describe('version switcher', () => {
     // versionSelect.getAttribute() call threw "Cannot read properties of null".
     document.body.replaceChildren();
 
-    expect(() => document.dispatchEvent(new Event('DOMContentLoaded'))).not.toThrow();
+    // Errors thrown inside an event listener do not propagate to the
+    // dispatchEvent caller — the DOM reports them instead — so asserting on
+    // dispatchEvent not throwing would pass even without the guard.
+    const errors = [];
+    const onError = (event) => {
+      event.preventDefault();
+      errors.push(event.error ?? event.message);
+    };
+    window.addEventListener('error', onError);
+
+    try {
+      document.dispatchEvent(new Event('DOMContentLoaded'));
+    } finally {
+      window.removeEventListener('error', onError);
+    }
+
+    expect(errors).toEqual([]);
   });
 });
