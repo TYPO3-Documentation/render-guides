@@ -41,12 +41,13 @@ Linking to a changelog entry
 ..  Maintainer note: the live example below must use a REAL, published core
     changelog entry, otherwise it warns and fails the "renders without warning"
     gate. The extension and "#anchor" forms are shown as ``code-block`` (not live
-    directives) on purpose: their fictional shortcodes cannot resolve here and
-    would trip the same gate.
+    directives) on purpose: their fictional targets cannot resolve here and would
+    trip the same gate.
 
 The ``:changelog:`` option adds a link to the related changelog entry. The
 value is resolved against the changelog inventory, so an entry that does not
-exist produces a build warning and no link (instead of a dead link).
+exist produces a build warning and is marked unresolved, like any other
+unresolvable cross-reference, instead of becoming a dead link.
 
 For a TYPO3 core change, pass the changelog entry identifier:
 

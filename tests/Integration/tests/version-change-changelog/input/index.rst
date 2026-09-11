@@ -11,18 +11,19 @@ Version changes with changelog
 ..  versionadded:: 14.0
     :changelog: feature-101010-1700000000
 
-    A non-existent core entry: a warning is logged and no link is rendered.
+    A non-existent core entry: a warning is logged and the unresolved marker is
+    rendered instead of a link.
 
 ..  deprecated:: 14.0
     :changelog: deprecation-202020-1700000000
 
-    Another non-existent core entry: warning, no link.
+    Another non-existent core entry: warning, unresolved marker.
 
 ..  versionchanged:: 2.0
     :changelog: other-vendor/other-ext:changes-2-0-0
 
     Extension form "<vendor>/<package>:<anchor>". The external inventory is
-    not available here, so this warns and renders no link.
+    not available here, so this warns and renders the unresolved marker.
 
 .. _local-changelog-target:
 
