@@ -41,6 +41,12 @@ Local changelog target
     Explicit reference to the manual's own interlink-shortcode
     ("acme/acme-blog") resolves as a local reference, like the "#" form.
 
+..  versionchanged:: 2.7
+    :changelog: #no-such-local-label
+
+    The local form is validated: a "#anchor" nothing declares warns and is marked
+    unresolved, rather than passing through as a silent dead fragment link.
+
 ..  versionchanged:: 2.3
     :changelog: :changes-2-3-0
 
