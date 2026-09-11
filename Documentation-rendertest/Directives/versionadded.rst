@@ -35,6 +35,23 @@ deprecated
 
    .. deprecated:: 2.7
 
+The following seealso should be re-styled to a more reduced visual appearance:
+
+.. seealso::
+
+   Something of interest
+      Visit https://typo3.org first.
+
+   There's a company as well
+      TYPO3 — the Professional, Flexible Content Management Solution
+
+      https://typo3.com
+
+
+There’s also a “short form” allowed that looks like this:
+
+.. seealso:: https://typo3.org, https://typo3.com
+
 Linking to a changelog entry
 ============================
 
@@ -45,9 +62,11 @@ Linking to a changelog entry
     trip the same gate.
 
 The ``:changelog:`` option adds a link to the related changelog entry. The
-value is resolved against the changelog inventory, so an entry that does not
-exist produces a build warning and is marked unresolved, like any other
-unresolvable cross-reference, instead of becoming a dead link.
+value is resolved as a cross-reference — a bare identifier against the core
+changelog inventory, ``vendor/package:anchor`` against that manual's inventory,
+``#anchor`` against this manual's own labels — so a target that does not exist
+produces a build warning and is marked unresolved, like any other unresolvable
+cross-reference, instead of becoming a dead link.
 
 For a TYPO3 core change, pass the changelog entry identifier:
 
@@ -86,22 +105,3 @@ When linking the changelog of the current manual itself, use the short
         :changelog: #changes-2-1-0
 
         A local changelog reference, without repeating the shortcode.
-
-The following seealso should be re-styled to a more reduced visual appearance:
-
-.. seealso::
-
-   Something of interest
-      Visit https://typo3.org first.
-
-   There's a company as well
-      TYPO3 — the Professional, Flexible Content Management Solution
-
-      https://typo3.com
-
-
-There’s also a “short form” allowed that looks like this:
-
-.. seealso:: https://typo3.org, https://typo3.com
-
-

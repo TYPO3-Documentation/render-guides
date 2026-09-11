@@ -14,7 +14,7 @@ use function sprintf;
  * Variant of phpDocumentor's VersionChangeNode that can additionally carry a
  * reference to a TYPO3 changelog entry, set via the ":changelog:" option of the
  * versionadded, versionchanged and deprecated directives. The reference is
- * resolved against the changelog inventory during rendering.
+ * resolved during rendering.
  *
  * @extends CompoundNode<Node>
  */
