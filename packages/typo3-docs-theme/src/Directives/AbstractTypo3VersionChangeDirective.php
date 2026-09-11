@@ -72,6 +72,9 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
      * the reference and render an unresolvable target nobody can see.
      */
     private const WHITESPACE = '/[\s\p{Z}\p{Cf}]/u';
+
+    /** An empty pattern with /u matches any valid UTF-8 subject and fails on a malformed one. */
+    private const VALID_UTF8 = '//u';
     private const CHANGELOG_LINK_CLASS = 'versionchange-changelog';
 
     /** Shown as the link text, and as the reference's value in a warning when the entry is missing. */
@@ -130,6 +133,20 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
         // line and prepends a space to one written on a following line, so leading whitespace
         // is the only thing telling the two apart; trimming first would let an invisible
         // trailing space after ":changelog:" decide whether a link is rendered at all.
+        // Checked before the Unicode patterns below, which return false rather than 0 on a
+        // malformed subject: "=== 1" would then read that as "no whitespace", and the value
+        // would travel on to the anchor normalizer, where it throws and takes the whole render
+        // down - every page lost, and the message naming a template rather than the file the
+        // author has to fix. The value is kept out of the message, it cannot be logged as is.
+        if (preg_match(self::VALID_UTF8, $changelog) !== 1) {
+            $this->logger->warning(
+                'The ":changelog:" option value is not valid UTF-8. ',
+                $blockContext->getLoggerInformation(),
+            );
+
+            return null;
+        }
+
         if (preg_match(self::WHITESPACE, $changelog) === 1) {
             $this->logger->warning(
                 sprintf(
