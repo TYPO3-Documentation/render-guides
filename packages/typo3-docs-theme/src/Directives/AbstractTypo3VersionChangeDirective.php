@@ -28,9 +28,11 @@ use function trim;
  * (versionadded, versionchanged, deprecated).
  *
  * All three directives support a ":changelog:" option that renders a link to
- * the related changelog entry. The value is resolved against the changelog
- * inventory (interlink), so an entry that does not exist produces a warning and
- * the theme's unresolved-reference marker, not a link that 404s when clicked.
+ * the related changelog entry. The value is resolved as a cross-reference -
+ * against the core changelog inventory, against another manual's inventory, or
+ * against this manual's own labels, depending on the form - so a target that
+ * does not exist produces a warning and the theme's unresolved-reference
+ * marker, not a link that 404s when clicked.
  *
  * For a TYPO3 core change, pass the changelog entry identifier; it is resolved
  * against the "changelog" inventory:
@@ -98,8 +100,9 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
     }
 
     /**
-     * Turn the ":changelog:" option into an interlink reference that resolves
-     * against the changelog inventory during rendering. Returns null when the
+     * Turn the ":changelog:" option into a reference that is resolved during
+     * rendering: against the core changelog inventory, against another manual's
+     * inventory, or against this manual's own labels. Returns null when the
      * option is empty or malformed (a warning is logged in the latter case).
      */
     private function buildChangelogReference(string $changelog, BlockContext $blockContext): ReferenceNode|null
