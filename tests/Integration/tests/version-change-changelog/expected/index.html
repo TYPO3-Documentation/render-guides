@@ -327,6 +327,20 @@ split on &quot;:&quot; would accept &quot;other+vendor&quot; as the domain.</p>
             <div class="versionchange versionchanged">
     <p class="versionmodified">
         <span class="versionicon"><i class="fa-solid fa-arrows-rotate"></i></span>
+        Changed in version 3.1</p>
+    <article>
+        
+    <p>Maintainer note: the value above carries a deliberate lone 0xC3 byte, so
+this file is NOT valid UTF-8 and an editor that re-encodes it will turn the
+byte into U+FFFD and break this case. It is kept as a fixture anyway because
+without the guard this input aborts the whole render - no pages at all, and
+an error naming the Twig template rather than this file.</p>
+
+    </article>
+</div>
+            <div class="versionchange versionchanged">
+    <p class="versionmodified">
+        <span class="versionicon"><i class="fa-solid fa-arrows-rotate"></i></span>
         Changed in version 12.4</p>
     <article>
         

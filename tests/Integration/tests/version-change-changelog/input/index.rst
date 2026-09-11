@@ -101,6 +101,15 @@ Local changelog target
     to reject it first: only the canonical parser refuses this, a hand-rolled
     split on ":" would accept "other+vendor" as the domain.
 
+..  versionchanged:: 3.1
+    :changelog: feat√ure-1
+
+    Maintainer note: the value above carries a deliberate lone 0xC3 byte, so
+    this file is NOT valid UTF-8 and an editor that re-encodes it will turn the
+    byte into U+FFFD and break this case. It is kept as a fixture anyway because
+    without the guard this input aborts the whole render - no pages at all, and
+    an error naming the Twig template rather than this file.
+
 ..  versionchanged:: 12.4
 
     Without the changelog option the block renders exactly as before.
