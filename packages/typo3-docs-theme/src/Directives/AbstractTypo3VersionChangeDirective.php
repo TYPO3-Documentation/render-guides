@@ -30,7 +30,7 @@ use function trim;
  * All three directives support a ":changelog:" option that renders a link to
  * the related changelog entry. The value is resolved against the changelog
  * inventory (interlink), so an entry that does not exist produces a warning and
- * no link instead of a link that 404s when clicked.
+ * the theme's unresolved-reference marker, not a link that 404s when clicked.
  *
  * For a TYPO3 core change, pass the changelog entry identifier; it is resolved
  * against the "changelog" inventory:
@@ -63,6 +63,10 @@ use function trim;
 abstract class AbstractTypo3VersionChangeDirective extends SubDirective
 {
     private const CHANGELOG_INVENTORY = 'changelog';
+    private const CHANGELOG_LINK_CLASS = 'versionchange-changelog';
+
+    /** Shown as the link text, and as the reference's value in a warning when the entry is missing. */
+    private const CHANGELOG_LINK_TEXT = 'See changelog entry';
 
     /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
@@ -166,10 +170,14 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
             return null;
         }
 
-        return new ReferenceNode(
+        $reference = new ReferenceNode(
             $anchor,
-            [new PlainTextInlineNode(Typo3VersionChangeNode::CHANGELOG_LINK_TEXT)],
+            [new PlainTextInlineNode(self::CHANGELOG_LINK_TEXT)],
             $interlinkDomain,
         );
+        // The template renders the node as-is, so the class has to travel with it.
+        $reference->setClasses([self::CHANGELOG_LINK_CLASS]);
+
+        return $reference;
     }
 }
