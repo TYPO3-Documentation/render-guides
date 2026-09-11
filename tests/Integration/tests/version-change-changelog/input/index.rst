@@ -82,7 +82,17 @@ Local changelog target
 
     The value written on the following line. The parser appends it to the flag
     the valueless option produced, so the value arrives as "1 feature-...";
-    it is rejected as a value containing whitespace rather than resolved as one.
+    it is rejected as a value that is not a single token, rather than resolved as
+    one. The value is therefore read before it is trimmed: written with a trailing
+    space after ":changelog:" the same shape arrives with a leading space instead
+    of the "1", and that shape cannot be a case here because this repository's
+    .editorconfig strips trailing whitespace from .rst files.
+
+..  versionchanged:: 3.0
+    :changelog: feature　107628
+
+    An ideographic space: whitespace the ASCII character class does not see, which
+    would otherwise travel into the reference as an invisible, unresolvable target.
 
 ..  versionchanged:: 2.8
     :changelog: other+vendor:changes-2-8-0
