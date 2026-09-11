@@ -293,7 +293,22 @@ entry id &quot;1&quot; that the flag would otherwise stringify to.</p>
         
     <p>The value written on the following line. The parser appends it to the flag
 the valueless option produced, so the value arrives as &quot;1 feature-...&quot;;
-it is rejected as a value containing whitespace rather than resolved as one.</p>
+it is rejected as a value that is not a single token, rather than resolved as
+one. The value is therefore read before it is trimmed: written with a trailing
+space after &quot;:changelog:&quot; the same shape arrives with a leading space instead
+of the &quot;1&quot;, and that shape cannot be a case here because this repository&#039;s
+.editorconfig strips trailing whitespace from .rst files.</p>
+
+    </article>
+</div>
+            <div class="versionchange versionchanged">
+    <p class="versionmodified">
+        <span class="versionicon"><i class="fa-solid fa-arrows-rotate"></i></span>
+        Changed in version 3.0</p>
+    <article>
+        
+    <p>An ideographic space: whitespace the ASCII character class does not see, which
+would otherwise travel into the reference as an invisible, unresolvable target.</p>
 
     </article>
 </div>

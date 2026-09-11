@@ -65,6 +65,13 @@ use function trim;
 abstract class AbstractTypo3VersionChangeDirective extends SubDirective
 {
     private const CHANGELOG_INVENTORY = 'changelog';
+
+    /**
+     * Unicode-aware, because the ASCII class misses the separators an editor inserts by
+     * accident - an ideographic space or a zero-width space would otherwise travel into
+     * the reference and render an unresolvable target nobody can see.
+     */
+    private const WHITESPACE = '/[\s\p{Z}\p{Cf}]/u';
     private const CHANGELOG_LINK_CLASS = 'versionchange-changelog';
 
     /** Shown as the link text, and as the reference's value in a warning when the entry is missing. */
@@ -117,26 +124,27 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
         // ":changelog:" with nothing behind it is parsed as the flag "true", which
         // strval()s to "1" and would otherwise be taken for a changelog entry id.
         $value = $directive->getOption('changelog')->getValue();
-        $changelog = $value === true ? '' : trim((string) $value);
+        $changelog = $value === true ? '' : (string) $value;
 
-        if ($changelog === '') {
+        // Read untrimmed on purpose. The parser trims a value written on the directive's own
+        // line and prepends a space to one written on a following line, so leading whitespace
+        // is the only thing telling the two apart; trimming first would let an invisible
+        // trailing space after ":changelog:" decide whether a link is rendered at all.
+        if (preg_match(self::WHITESPACE, $changelog) === 1) {
             $this->logger->warning(
-                'The ":changelog:" option was given without a changelog entry. ',
+                sprintf(
+                    'The ":changelog: %s" option value is not a single token; a changelog entry carries no whitespace and stands on the same line as the option. ',
+                    trim($changelog),
+                ),
                 $blockContext->getLoggerInformation(),
             );
 
             return null;
         }
 
-        // Every form of the value is a single token. Whitespace means the value is not one -
-        // most often because it was written on the following line, which the parser appends
-        // to the flag the empty option produced, yielding a leading "1".
-        if (preg_match('/\s/', $changelog) === 1) {
+        if ($changelog === '') {
             $this->logger->warning(
-                sprintf(
-                    'The ":changelog: %s" option contains whitespace; the changelog entry must be a single token on the same line as the option. ',
-                    $changelog,
-                ),
+                'The ":changelog:" option was given without a changelog entry. ',
                 $blockContext->getLoggerInformation(),
             );
 
