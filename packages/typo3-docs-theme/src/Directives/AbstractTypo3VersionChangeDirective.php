@@ -51,9 +51,7 @@ use function trim;
  *     The teaser field was renamed; see the changelog entry for the migration.
  *
  * When linking the changelog of the current manual itself, use the short
- * "#anchor" form. It resolves against this manual's own labels and requires
- * "interlink-shortcode" (from guides.xml) to be set (no link is rendered, and a
- * warning is logged, if that setting is missing):
+ * "#anchor" form. It resolves against this manual's own labels:
  *
  * ..  versionchanged:: 2.0
  *     :changelog: #changes-2-0-0
@@ -116,18 +114,7 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
         if (str_starts_with($changelog, '#')) {
             // "#anchor": the changelog of the current manual itself. Emit a local
             // reference (empty interlink domain) so it resolves against this
-            // manual's own labels. The "interlink-shortcode" setting must be
-            // present so the intent (a self-reference) is explicit and matches
-            // the other forms; without it, warn and render no link.
-            if ($ownShortcode === '') {
-                $this->logger->warning(
-                    'The ":changelog: #..." form requires "interlink-shortcode" to be set in the guides.xml. ',
-                    $blockContext->getLoggerInformation(),
-                );
-
-                return null;
-            }
-
+            // manual's own labels.
             $interlinkDomain = '';
             $anchor = trim(substr($changelog, 1));
         } else {

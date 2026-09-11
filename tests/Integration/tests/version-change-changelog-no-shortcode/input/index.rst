@@ -12,9 +12,8 @@ Local changelog target
 ..  versionchanged:: 2.1
     :changelog: #local-changelog-target
 
-    The "#anchor" form is documented as requiring ``interlink-shortcode``. It is
-    not set here, so a warning is logged and no link is rendered, even though the
-    label it points at exists.
+    The "#anchor" form resolves against this manual's own labels and does not
+    depend on ``interlink-shortcode``, which is unset here.
 
 ..  versionchanged:: 14.0
     :changelog: feature-107628-1729026000

@@ -78,9 +78,7 @@ For an extension change, pass the extension's interlink shortcode
         The teaser field was renamed; see the changelog entry for the migration.
 
 When linking the changelog of the current manual itself, use the short
-``#anchor`` form. It resolves against this manual's own labels and requires
-``interlink-shortcode`` to be set in the ``guides.xml`` (otherwise a warning is
-logged and no link is rendered):
+``#anchor`` form. It resolves against this manual's own labels:
 
 ..  code-block:: rst
 
