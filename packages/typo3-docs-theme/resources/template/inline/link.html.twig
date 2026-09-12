@@ -6,8 +6,7 @@
     {{- node.value -}}
     </a>
 {%- else -%}
-    <span class="invalid-link" title="This link cannot be resolved anymore">
+    <span class="invalid-link" title="This link cannot be resolved">
         {%- if node.interlinkDomain -%}{{ node.interlinkDomain }}:{%- endif -%}{{- node.targetReference -}}
-        <span class="visually-hidden"> (this link cannot be resolved anymore)</span>{#- -#}
     </span>
 {%- endif -%}
