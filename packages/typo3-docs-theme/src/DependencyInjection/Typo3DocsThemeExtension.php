@@ -28,6 +28,8 @@ use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 use function dirname;
 use function in_array;
+use function strtolower;
+use function trim;
 use function phpDocumentor\Guides\DependencyInjection\template;
 
 class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface, CompilerPassInterface
@@ -72,6 +74,14 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                         'edit_on_github_directory' => $this->getConfigValue($configs, 'edit_on_github_directory', 'Documentation'),
                         'how_to_edit' => $this->getConfigValue($configs, 'how_to_edit', 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html'),
                         'interlink_shortcode' => $this->getConfigValue($configs, 'interlink_shortcode', ''),
+                        // Markdown is rendered beside the HTML unless a project
+                        // opts out with render-markdown="false".
+                        'render_markdown' => $this->getConfigValue($configs, 'render_markdown', 'true'),
+                        // Still on: tools read the published reStructuredText
+                        // today, and the Markdown that replaces it has only just
+                        // appeared. Switching this off ends the transition -- the
+                        // "view source" entry then points at the repository
+                        // instead, which is where the source lives anyway.
                         'copy_sources' => $this->getConfigValue($configs, 'copy_sources', 'true'),
                         'project_home' => $this->getConfigValue($configs, 'project_home', ''),
                         'project_contact' => $this->getConfigValue($configs, 'project_contact', ''),
@@ -139,6 +149,39 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
     }
 
     /**
+     * Whether this project wants Markdown beside its HTML. On unless it says
+     * otherwise, so an author who cares can switch it off with
+     * render-markdown="false".
+     *
+     * The value is read back from the settings definition built in load(),
+     * which is the only place the guides.xml attributes are available. Note
+     * that "false" is a non-empty string and therefore truthy in PHP, so the
+     * off values are matched explicitly rather than by truthiness -- the same
+     * trap the Twig templates carry for their own flags.
+     */
+    private function markdownRequested(ContainerBuilder $container): bool
+    {
+        if (!$container->hasDefinition(Typo3DocsThemeSettings::class)) {
+            return true;
+        }
+
+        $arguments = $container->getDefinition(Typo3DocsThemeSettings::class)->getArguments();
+        $settings = $arguments['$settings'] ?? [];
+        if (!is_array($settings)) {
+            return true;
+        }
+
+        $value = $settings['render_markdown'] ?? 'true';
+        if (!is_scalar($value)) {
+            return true;
+        }
+
+        $value = strtolower(trim((string) $value));
+
+        return !in_array($value, ['', 'false', '0', 'off', 'no'], true);
+    }
+
+    /**
      * Build the template search path in priority order:
      *
      * 1. Docker volume mount at /templates (highest priority)
@@ -176,7 +219,10 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         }
 
         $this->alwaysRenderMarkdown($container);
-        $this->markdownExtension()->markUnsupportedNodes($container);
+
+        if ($this->markdownRequested($container)) {
+            $this->markdownExtension()->markUnsupportedNodes($container);
+        }
     }
 
     /**
@@ -194,7 +240,7 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
      */
     private function alwaysRenderMarkdown(ContainerBuilder $container): void
     {
-        if (!$container->hasDefinition(SettingsManager::class)) {
+        if (!$this->markdownRequested($container) || !$container->hasDefinition(SettingsManager::class)) {
             return;
         }
 

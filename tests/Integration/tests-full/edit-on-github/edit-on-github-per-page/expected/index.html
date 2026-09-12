@@ -72,9 +72,13 @@
                 </button>
                 <div id="options-panel" class="shadow p-3" popover>
                     <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
-                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" rel="nofollow noopener" target="_blank">
+                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-code"></i>
         View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="index.md" id="btnViewMarkdown" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        View as Markdown
     </a>
     <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-circle-info"></i>
@@ -113,9 +117,13 @@
                         </div>
                         <div class="toc-options d-lg-none">
                             <p class="caption">Options</p>
-                                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" rel="nofollow noopener" target="_blank">
+                                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-code"></i>
         View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="index.md" id="btnViewMarkdown" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        View as Markdown
     </a>
     <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-circle-info"></i>
@@ -137,7 +145,11 @@
                 <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
         
 
-        <div class="breadcrumb-additions">                <a class="btn btn-sm btn-secondary" href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/index.rst" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
+        <div class="breadcrumb-additions">                <a class="btn btn-sm btn-light" href="index.md" id="btnDownloadMarkdown" rel="nofollow noopener" download>
+                    <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
+                    <span class="btn-text">Markdown</span>
+                </a>
+                            <a class="btn btn-sm btn-secondary" href="https://github.com/TYPO3-Documentation/TYPO3CMS-Reference-CoreApi/edit/documentation-draft/Documentation/index.rst" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
                     <span class="btn-icon"><span class="fa-brands fa-github"></span></span>
                     <span class="btn-text">Edit on GitHub</span>
                 </a>

@@ -97,7 +97,9 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getCurrentFilename', $this->getCurrentFilename(...), ['needs_context' => true]),
             new TwigFunction('sourceFilename', $this->getSourceFilename(...), ['needs_context' => true]),
             new TwigFunction('markdownAlternate', $this->getMarkdownAlternate(...), ['needs_context' => true]),
+            new TwigFunction('markdownDownloadName', $this->getMarkdownDownloadName(...), ['needs_context' => true]),
             new TwigFunction('markdownLinkUrl', $this->getMarkdownLinkUrl(...), ['needs_context' => true]),
+            new TwigFunction('getViewSourceLink', $this->getViewSourceLink(...), ['needs_context' => true]),
             new TwigFunction('getRelativePath', $this->getRelativePath(...), ['needs_context' => true]),
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getPrevNextLinks', $this->getPrevNextLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
@@ -351,6 +353,48 @@ final class TwigExtension extends AbstractExtension
 
         $githubDirectory = trim($this->themeSettings->getSettings('edit_on_github_directory', 'Documentation'), '/');
         return $gitHubPerPageLink ?? sprintf("https://github.com/%s/edit/%s/%s/%s", $githubButton, $githubBranch, $githubDirectory, $sourceFile);
+    }
+
+    /**
+     * The page's source file on the forge it is maintained in.
+     *
+     * The rendered output no longer ships the reStructuredText itself -- it
+     * lives in the project's repository, which is where a reader following
+     * "view source" wants to end up anyway, with history and blame attached.
+     *
+     * Returns an empty string when no repository is configured, in which case
+     * the menu entry is left out rather than pointing nowhere.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getViewSourceLink(array $context): string
+    {
+        $sourceFile = $this->getSourceFilename($context);
+        if ($sourceFile === '') {
+            return '';
+        }
+
+        $branch = $this->themeSettings->getSettings('edit_on_github_branch', 'main');
+        $directory = trim($this->themeSettings->getSettings('edit_on_github_directory', 'Documentation'), '/');
+
+        $github = $this->themeSettings->getSettings('edit_on_github');
+        if ($github !== '') {
+            return sprintf('https://github.com/%s/blob/%s/%s/%s', $github, $branch, $directory, $sourceFile);
+        }
+
+        // No GitHub setting exists for GitLab, but "project_repository" already
+        // carries the repository URL and is validated for the same hosts as the
+        // issue links.
+        $repository = rtrim($this->themeSettings->getSettings('project_repository'), '/');
+        if (str_starts_with($repository, 'https://gitlab.com/')) {
+            return sprintf('%s/-/blob/%s/%s/%s', $repository, $branch, $directory, $sourceFile);
+        }
+
+        if (str_starts_with($repository, 'https://github.com/')) {
+            return sprintf('%s/blob/%s/%s/%s', $repository, $branch, $directory, $sourceFile);
+        }
+
+        return '';
     }
 
     private function getEditOnGitHubLinkPerPage(RenderContext $renderContext): string|null
@@ -669,15 +713,98 @@ final class TwigExtension extends AbstractExtension
             return '';
         }
 
-        $id = $entry?->getTitle()->getId() ?? '';
-        if ($id === '') {
+        return $entry === null ? '' : $this->documentAnchor($renderContext, $entry);
+    }
+
+    /**
+     * The anchor that identifies one document, taken from its own label.
+     *
+     * Not the title's id: titles repeat, and the pipeline exempts "std:title"
+     * from its duplicate-anchor check for exactly that reason, so only one of
+     * several pages sharing a title ends up registered under it. The TYPO3
+     * changelog shows what that costs -- the same entry backported to three
+     * versions carries three distinct labels ("breaking-84843",
+     * "breaking-84843-1668719172", "breaking-84843-1668719171") but a single
+     * title anchor, which resolves to whichever of the three won. Building a
+     * permalink from the title would silently point at the wrong version.
+     *
+     * Falls back to the title id when a document declares no label of its own,
+     * which is the best available identifier in that case.
+     */
+    private function documentAnchor(RenderContext $renderContext, DocumentEntryNode $entry): string
+    {
+        try {
+            $document = $renderContext->getDocumentNodeForEntry($entry);
+        } catch (Throwable) {
+            $document = null;
+        }
+
+        foreach ($document?->getChildren() ?? [] as $child) {
+            if (!$child instanceof SectionNode) {
+                continue;
+            }
+
+            foreach ($child->getChildren() as $sectionChild) {
+                if ($sectionChild instanceof AnchorNode) {
+                    return $this->anchorNormalizer->reduceAnchor($sectionChild->toString());
+                }
+            }
+
+            break;
+        }
+
+        $id = $entry->getTitle()->getId();
+
+        return $id === '' ? '' : $this->anchorNormalizer->reduceAnchor($id);
+    }
+
+    /**
+     * The Markdown rendering of the current page, which is written next to the
+     * HTML file with the same base name.
+     *
+     * Machine consumers want the content without the surrounding HTML; the
+     * Markdown has includes, substitutions and interlinks resolved, which the
+     * reStructuredText source does not.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    /**
+     * The name the Markdown of this page is saved under.
+     *
+     * Built from the same two parts as its permalink, the manual's
+     * "interlink_shortcode" and the page's anchor, so a file picked out of a
+     * download folder still says which page of which manual it is -- and files
+     * collected from several manuals cannot collide, where every overview page
+     * would otherwise arrive as "index.md" and overwrite the last.
+     *
+     * Returns an empty string when either part is missing, which leaves the
+     * browser to name the file from the URL as before.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getMarkdownDownloadName(array $context): string
+    {
+        if ($this->getMarkdownAlternate($context) === '') {
             return '';
         }
 
-        // A document entry's title id keeps the casing of the file it came from,
-        // while the inventory registers the target lowercased. Normalising here
-        // is what makes the permalink resolvable.
-        return $this->anchorNormalizer->reduceAnchor($id);
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+        $renderContext = $this->getRenderContext($context);
+        $entry = $renderContext->getCurrentDocumentEntry();
+        $anchor = $entry === null ? '' : $this->documentAnchor($renderContext, $entry);
+        if ($interlink === '' || $anchor === '') {
+            return '';
+        }
+
+        $prefix = $this->anchorNormalizer->reduceAnchor($interlink);
+
+        // Changelog anchors already carry the manual's own name; repeating it
+        // would read as "changelog-changelog-feature-...".
+        if ($anchor === $prefix || str_starts_with($anchor, $prefix . '-')) {
+            return $anchor . '.md';
+        }
+
+        return $prefix . '-' . $anchor . '.md';
     }
 
     /**
@@ -692,6 +819,13 @@ final class TwigExtension extends AbstractExtension
      */
     public function getMarkdownAlternate(array $context): string
     {
+        // No Markdown is written when the project opted out, so neither the
+        // head link nor the menu entry may promise one.
+        $renderMarkdown = strtolower(trim($this->themeSettings->getSettings('render_markdown', 'true')));
+        if (in_array($renderMarkdown, ['', 'false', '0', 'off', 'no'], true)) {
+            return '';
+        }
+
         $renderContext = $this->getRenderContext($context);
         if (!$renderContext->hasCurrentFileName()) {
             return '';
