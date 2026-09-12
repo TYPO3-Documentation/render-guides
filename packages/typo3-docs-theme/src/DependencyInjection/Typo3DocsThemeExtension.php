@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\DependencyInjection;
 
+use phpDocumentor\Guides\Graphs\Nodes\UmlNode;
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
 use phpDocumentor\Guides\RestructuredText\Directives\FigureDirective as BaseFigureDirective;
 use phpDocumentor\Guides\TemplateRenderer;
@@ -132,6 +133,8 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 template(CodeInlineNode::class, 'inline/textroles/code.md.twig', 'md'),
                 template(ComposerInlineNode::class, 'inline/textroles/composer.md.twig', 'md'),
                 template(FileInlineNode::class, 'inline/textroles/file.md.twig', 'md'),
+                template(YoutubeNode::class, 'body/directive/youtube.md.twig', 'md'),
+                template(UmlNode::class, 'body/uml.md.twig', 'md'),
             ],
         ]);
 

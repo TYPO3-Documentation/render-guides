@@ -1,0 +1,3 @@
+{#- The columns are the layout; the list is the content. Markdown has no way to
+    lay a list out sideways, so it stays a plain list. -#}
+{%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}

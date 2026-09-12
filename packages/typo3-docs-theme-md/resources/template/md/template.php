@@ -17,6 +17,7 @@ use phpDocumentor\Guides\Nodes\FieldListNode;
 use phpDocumentor\Guides\Nodes\FigureNode;
 use phpDocumentor\Guides\Nodes\FootnoteNode;
 use phpDocumentor\Guides\Nodes\ImageNode;
+use phpDocumentor\Guides\Nodes\MathNode;
 use phpDocumentor\Guides\Nodes\Inline\AbbreviationInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\CitationInlineNode;
 use phpDocumentor\Guides\Nodes\Inline\DocReferenceNode;
@@ -77,6 +78,7 @@ return [
     SectionNode::class => 'structure/section.md.twig',
     DocumentNode::class => 'structure/document.md.twig',
     ImageNode::class => 'body/image.md.twig',
+    MathNode::class => 'body/math.md.twig',
     CodeNode::class => 'body/code.md.twig',
     CollectionNode::class => 'body/collection.md.twig',
     ContainerNode::class => 'body/container.md.twig',

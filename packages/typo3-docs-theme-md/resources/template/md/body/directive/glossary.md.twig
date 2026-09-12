@@ -1,0 +1,5 @@
+{#- A glossary is its entries. The A-Z bar and the letter headings the HTML
+    template builds are navigation for a long page; in a file you search rather
+    than scroll, they are scaffolding around the terms, so only the terms
+    remain. -#}
+{%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}
