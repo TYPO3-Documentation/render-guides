@@ -1,16 +1,16 @@
 {
     "name": "t3docs/typo3-docs-theme-md",
     "description": "Markdown output format for TYPO3 Documentation",
-    "type": "library",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "T3Docs\\Typo3DocsThemeMd\\": "src/"
-        }
-    },
+    "type": "library",
     "require": {
         "php": "^8.2",
         "phpdocumentor/guides": "^1.9",
         "twig/twig": "^3.20"
+    },
+    "autoload": {
+        "psr-4": {
+            "T3Docs\\Typo3DocsThemeMd\\": "src/"
+        }
     }
 }
