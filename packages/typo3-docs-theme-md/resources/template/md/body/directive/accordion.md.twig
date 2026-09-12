@@ -1,0 +1,5 @@
+{#- An accordion is a stack of collapsed panels. Collapsing is presentation;
+    the titles and the content are not, so they are written out in order. -#}
+{%- for item in node.value -%}
+{{- renderNode(item) -}}
+{%- endfor -%}

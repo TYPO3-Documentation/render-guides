@@ -1,0 +1,15 @@
+{#- Document metadata: a short label and its value. The value goes on the same
+    line when it is one line, and below it when it is not - a field can hold a
+    whole block, and collapsing that would run it together. -#}
+{%- set body -%}
+{%- for definition in node.children -%}{{- renderNode(definition) -}}{%- endfor -%}
+{%- endset -%}
+{%- set cleaned = body|clean_content|trim -%}
+{%- if cleaned matches '/\\n/' -%}
+-   *{{ node.term|md_escape|raw }}:*
+{{ "\n" }}
+{{ renderMdIndent(cleaned, 2)|raw }}
+{{ "\n" }}
+{%- else -%}
+-   *{{ node.term|md_escape|raw }}:* {{ cleaned|raw }}{{ "\n" }}
+{%- endif -%}

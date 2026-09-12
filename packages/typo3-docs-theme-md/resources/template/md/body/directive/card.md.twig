@@ -1,0 +1,29 @@
+{#- A card is a box with an optional image, header, title, body and footer. The
+    box is presentation; everything inside it is content, written out in the
+    order the card shows it.
+
+    Header and footer carry their text in "content" when the directive was
+    given an argument and in "value" when it was given a block, which is the
+    same pair the HTML template checks. A footer given a block can hold a whole
+    list, so it is written out as blocks; collapsing it onto one line turned a
+    list of version links into a single run-on line. -#}
+{%- set title = node.title ? renderNode(node.title.value)|inline_text : '' -%}
+{%- set header -%}
+{%- if node.cardHeader -%}{{- renderNode(node.cardHeader.content) -}}{{- renderNode(node.cardHeader.value) -}}{%- endif -%}
+{%- endset -%}
+{%- set footer -%}
+{%- if node.cardFooter -%}{{- renderNode(node.cardFooter.content) -}}{{- renderNode(node.cardFooter.value) -}}{%- endif -%}
+{%- endset -%}
+{%- if node.cardImage %}![{{ node.cardImage.alt|md_escape|raw }}]({{ node.cardImage.plainContent|raw }})
+{{ "\n" }}
+{% endif -%}
+{%- if header|trim %}**{{ header|inline_text|raw }}**
+{{ "\n" }}
+{% endif -%}
+{%- if title %}**{{ title|raw }}**
+{{ "\n" }}
+{% endif -%}
+{{- renderNode(node.value) -}}
+{%- if footer|trim %}
+{{ footer|clean_content|raw }}
+{% endif -%}

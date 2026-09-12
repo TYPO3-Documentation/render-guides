@@ -1,0 +1,6 @@
+{#- A collection is what "rst-class" leaves behind once it has applied its CSS
+    classes to the nodes inside it: the classes are presentation, the nodes are
+    the content. Without this the children are dropped, and because a
+    collection is structural the fallback marker was suppressed too, so the
+    loss was silent. -#}
+{%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}

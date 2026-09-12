@@ -1,3 +1,2 @@
-{% for child in node.children -%}
-{{- renderNode(child)|raw -}}
-{% endfor -%}
+{%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}
+{{ "\n" }}

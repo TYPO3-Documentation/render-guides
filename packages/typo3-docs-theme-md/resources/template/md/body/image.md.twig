@@ -1,2 +1,13 @@
-![{{ node.alt|default('')|raw }}]({{ node.value|raw }})
+{#- Alt text, title and target live in the directive's options, the same ones
+    the HTML template reads. Without them an image renders as "![]()", which a
+    reader sees as an empty link rather than a picture. -#}
+{%- set src = node.value is external_target ? node.value : asset(node.value) -%}
+{%- set alt = node.hasOption('alt') ? node.option('alt')|md_escape : '' -%}
+{%- set title = node.hasOption('title') ? ' "' ~ node.option('title')|replace({'"': '\\"'}) ~ '"' : '' -%}
+{%- set image = '![' ~ alt ~ '](' ~ src ~ title ~ ')' -%}
+{%- if node.target -%}
+[{{ image|raw }}]({{ node.target.url|raw }})
+{%- else -%}
+{{ image|raw }}
+{%- endif %}
 {{ "\n" }}

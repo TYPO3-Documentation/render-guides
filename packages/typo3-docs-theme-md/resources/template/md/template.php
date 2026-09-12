@@ -6,9 +6,12 @@ use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\AnnotationListNode;
 use phpDocumentor\Guides\Nodes\CitationNode;
 use phpDocumentor\Guides\Nodes\CodeNode;
+use phpDocumentor\Guides\Nodes\CollectionNode;
 use phpDocumentor\Guides\RestructuredText\Nodes\ContainerNode;
 use phpDocumentor\Guides\Nodes\DefinitionListNode;
+use phpDocumentor\Guides\Nodes\DefinitionLists\DefinitionListItemNode;
 use phpDocumentor\Guides\Nodes\DefinitionLists\DefinitionNode;
+use phpDocumentor\Guides\Nodes\FieldLists\FieldListItemNode;
 use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\FieldListNode;
 use phpDocumentor\Guides\Nodes\FigureNode;
@@ -75,10 +78,13 @@ return [
     DocumentNode::class => 'structure/document.md.twig',
     ImageNode::class => 'body/image.md.twig',
     CodeNode::class => 'body/code.md.twig',
+    CollectionNode::class => 'body/collection.md.twig',
     ContainerNode::class => 'body/container.md.twig',
     DefinitionListNode::class => 'body/definition-list.md.twig',
     DefinitionNode::class => 'body/definition.md.twig',
     FieldListNode::class => 'body/field-list.md.twig',
+    FieldListItemNode::class => 'body/field-list-item.md.twig',
+    DefinitionListItemNode::class => 'body/definition-list-item.md.twig',
     ListNode::class => 'body/list/list.md.twig',
     ListItemNode::class => 'body/list/list-item.md.twig',
     LiteralBlockNode::class => 'body/literal-block.md.twig',

@@ -32,14 +32,9 @@ The navigation below is built but not shown:
 
     hidden-child
 
-A directive without a Markdown template yet leaves a marker:
+A directive without a Markdown template leaves a marker naming it, and its
+content is still rendered, so a gap is visible rather than silent:
 
-..  tabs::
+..  not-a-real-directive::
 
-    ..  group-tab:: One
-
-        First tab.
-
-    ..  group-tab:: Two
-
-        Second tab.
+    The content of an unhandled directive is kept.

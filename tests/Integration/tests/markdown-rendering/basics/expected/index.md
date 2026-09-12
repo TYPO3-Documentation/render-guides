@@ -21,14 +21,9 @@ There are the following subpages:
 
 The navigation below is built but not shown:
 
-A directive without a Markdown template yet leaves a marker:
+A directive without a Markdown template leaves a marker naming it, and its
+content is still rendered, so a gap is visible rather than silent:
 
-<!-- TODO: no Markdown rendering for "tabs" -->
+<!-- TODO: no Markdown rendering for "not-a-real-directive" -->
 
-<!-- TODO: no Markdown rendering for "group-tab" -->
-
-First tab.
-
-<!-- TODO: no Markdown rendering for "group-tab" -->
-
-Second tab.
+The content of an unhandled directive is kept.
