@@ -15,15 +15,19 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
+use phpDocumentor\Guides\Settings\ProjectSettings;
+use phpDocumentor\Guides\Settings\SettingsManager;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
+use T3Docs\Typo3DocsThemeMd\DependencyInjection\Typo3DocsThemeMdExtension;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 use function dirname;
+use function in_array;
 use function phpDocumentor\Guides\DependencyInjection\template;
 
 class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface, CompilerPassInterface
@@ -40,6 +44,12 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             new FileLocator(dirname(__DIR__, 2) . '/resources/config'),
         );
         $loader->load('typo3-docs-theme.php');
+
+        // The Markdown output format ships with the theme: a project enables it
+        // with "<output-format>md</output-format>" alone, without having to know
+        // that a second extension exists.
+        $this->markdownExtension()->load($configs, $container);
+
         foreach (self::HTML as $node => $template) {
             $definition = new Definition(
                 TemplateNodeRenderer::class,
@@ -109,8 +119,23 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 template(CodeInlineNode::class, 'inline/textroles/code.html.twig'),
                 template(ComposerInlineNode::class, 'inline/textroles/composer.html.twig'),
                 template(FileInlineNode::class, 'inline/textroles/file.html.twig'),
+                template(CodeInlineNode::class, 'inline/textroles/code.md.twig', 'md'),
+                template(ComposerInlineNode::class, 'inline/textroles/composer.md.twig', 'md'),
+                template(FileInlineNode::class, 'inline/textroles/file.md.twig', 'md'),
             ],
         ]);
+
+        $this->markdownExtension()->prepend($container);
+    }
+
+    /**
+     * The Markdown output format is part of the theme rather than a separate
+     * opt-in extension. It registers its own template paths and renderer, and
+     * stays inert until a project asks for the "md" output format.
+     */
+    private function markdownExtension(): Typo3DocsThemeMdExtension
+    {
+        return new Typo3DocsThemeMdExtension();
     }
 
     /**
@@ -148,6 +173,57 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         // Remove the base library's FigureDirective to let our custom one take over
         if ($container->hasDefinition(BaseFigureDirective::class)) {
             $container->removeDefinition(BaseFigureDirective::class);
+        }
+
+        $this->alwaysRenderMarkdown($container);
+        $this->markdownExtension()->markUnsupportedNodes($container);
+    }
+
+    /**
+     * Add "md" to whatever output formats the project configured.
+     *
+     * This cannot be done by prepending "output_format" to the guides
+     * configuration: any explicitly provided value replaces the default
+     * ["html", "interlink"] rather than extending it, so a project that
+     * configures nothing would end up rendering Markdown and no HTML.
+     *
+     * By the time the container is compiled the settings object carries the
+     * final list, so appending to it leaves every other format untouched --
+     * a project rendering only "singlepage" or only "rst" keeps doing that,
+     * and gains Markdown beside it.
+     */
+    private function alwaysRenderMarkdown(ContainerBuilder $container): void
+    {
+        if (!$container->hasDefinition(SettingsManager::class)) {
+            return;
+        }
+
+        $definition = $container->getDefinition(SettingsManager::class);
+        $methodCalls = $definition->getMethodCalls();
+
+        foreach ($methodCalls as $index => $call) {
+            if (!is_array($call) || ($call[0] ?? null) !== 'setProjectSettings') {
+                continue;
+            }
+
+            $arguments = $call[1] ?? null;
+            $projectSettings = is_array($arguments) ? ($arguments[0] ?? null) : null;
+            if (!$projectSettings instanceof ProjectSettings) {
+                continue;
+            }
+
+            $outputFormats = $projectSettings->getOutputFormats();
+            if (in_array('md', $outputFormats, true)) {
+                return;
+            }
+
+            $outputFormats[] = 'md';
+            $projectSettings->setOutputFormats($outputFormats);
+
+            $methodCalls[$index] = ['setProjectSettings', [$projectSettings]];
+            $definition->setMethodCalls($methodCalls);
+
+            return;
         }
     }
 }

@@ -1,0 +1,5 @@
+{%- if node.url -%}
+    [{{ node|plaintext|raw }}]({{ markdownLinkUrl(node.url) }})
+{%- else -%}
+    {{- node|plaintext|raw -}}
+{%- endif -%}

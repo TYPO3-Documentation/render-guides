@@ -1,0 +1,7 @@
+**{{ renderNode(node.term)|plaintext|default(renderNode(node.term))|trim|raw }}**
+{{ "\n" }}
+{%- set body -%}
+{%- for definition in node.definitions -%}{{- renderNode(definition) -}}{%- endfor -%}
+{%- endset -%}
+{{ renderMdIndent(body|clean_content, 1)|raw }}
+{{ "\n" }}

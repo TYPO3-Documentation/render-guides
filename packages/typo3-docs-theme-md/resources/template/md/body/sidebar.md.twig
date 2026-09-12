@@ -1,0 +1,8 @@
+{#- A sidebar is a box floated beside the text: the box is presentation, the
+    title and the content are not. Markdown has no box, so the content flows
+    into the document and the title is kept as a lead-in. -#}
+{%- if node.title %}**{{ renderNode(node.title)|trim|raw }}**
+{{ "\n" }}
+{% endif -%}
+{%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}
+{{ "\n" }}

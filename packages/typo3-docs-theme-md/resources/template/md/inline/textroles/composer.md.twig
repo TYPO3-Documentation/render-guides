@@ -1,0 +1,5 @@
+{%- if node.package.packagistLink -%}
+    [`{{ node.composerName|raw }}`]({{ node.package.packagistLink }})
+{%- else -%}
+    `{{- node.composerName|raw -}}`
+{%- endif -%}

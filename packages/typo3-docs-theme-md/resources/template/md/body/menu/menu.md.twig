@@ -1,0 +1,7 @@
+{%- if node.caption %}**{{ renderNode(node.caption)|trim|raw }}**
+{{ "\n" }}
+{%- elseif node.options['caption'] %}**{{ node.options['caption']|raw }}**
+{{ "\n" }}
+{%- endif %}
+{%- include "body/menu/menu-level.md.twig" -%}
+{{ "\n" }}

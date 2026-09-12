@@ -1,0 +1,15 @@
+{#- A version change is an info box in HTML, icon and all. Markdown keeps the
+    box as a GFM alert and the version label as its heading; a deprecation is a
+    warning rather than a note, matching what the icon conveys. -#}
+{%- set alert = node.type == 'deprecated' ? 'WARNING' : 'NOTE' -%}
+{%- set body -%}
+{{- renderNode(node.value) -}}
+{%- endset -%}
+{%- set inner -%}[!{{ alert }}]
+**{{ node.versionLabel|raw }}**
+
+{{ body|clean_content|raw }}
+{%- endset -%}
+{{ renderMdPrefix(inner|clean_content, "> ")|raw }}
+{{ "\n" }}
+{{ "\n" }}

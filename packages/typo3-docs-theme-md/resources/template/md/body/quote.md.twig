@@ -1,0 +1,6 @@
+{%- set inner -%}
+    {%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}
+{%- endset -%}
+{{ renderMdPrefix(inner|clean_content, "> ")|raw }}
+{{ "\n" }}
+{{ "\n" }}

@@ -21,6 +21,7 @@ use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use Throwable;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
@@ -56,6 +57,14 @@ final class TwigExtension extends AbstractExtension
 
     private string $typo3AzureEdgeURI = '';
 
+    /**
+     * Documents already reported for a missing "interlink-shortcode", so the
+     * configuration problem is stated once and not once per link.
+     *
+     * @var array<string, true>
+     */
+    private array $reportedMissingShortcode = [];
+
     public function __construct(
         private readonly LoggerInterface               $logger,
         private readonly UrlGeneratorInterface         $urlGenerator,
@@ -87,6 +96,8 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getReportIssueLink', $this->getReportIssueLink(...), ['needs_context' => true]),
             new TwigFunction('getCurrentFilename', $this->getCurrentFilename(...), ['needs_context' => true]),
             new TwigFunction('sourceFilename', $this->getSourceFilename(...), ['needs_context' => true]),
+            new TwigFunction('markdownAlternate', $this->getMarkdownAlternate(...), ['needs_context' => true]),
+            new TwigFunction('markdownLinkUrl', $this->getMarkdownLinkUrl(...), ['needs_context' => true]),
             new TwigFunction('getRelativePath', $this->getRelativePath(...), ['needs_context' => true]),
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getPrevNextLinks', $this->getPrevNextLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
@@ -533,6 +544,160 @@ final class TwigExtension extends AbstractExtension
         } catch (\Exception) {
             return '';
         }
+    }
+
+    /**
+     * Turn a link in the Markdown output into a permalink.
+     *
+     * A Markdown file is meant to be downloaded and read away from the site it
+     * came from, so a relative link would be dead on arrival. Every internal
+     * target carries an anchor, which is exactly what the permalink service
+     * resolves, so "interlink_shortcode" plus that anchor is enough to build a
+     * URL that keeps working -- and keeps working across versions, which a
+     * hard-coded manual URL would not.
+     *
+     * Left alone: anything with a scheme (external links, mailto:) and links
+     * without an anchor, which in practice are images. Without
+     * "interlink_shortcode" no permalink can be built, so those fall back to
+     * the relative HTML page.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getMarkdownLinkUrl(array $context, string $url): string
+    {
+        if ($url === '' || preg_match('#^[a-z][a-z0-9+.-]*:#i', $url) === 1) {
+            return $url;
+        }
+
+        $anchorPosition = strpos($url, '#');
+        $anchor = $anchorPosition === false ? '' : substr($url, $anchorPosition + 1);
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+
+        if ($anchor === '') {
+            // "#" is a reference to the page being rendered. That is fine in a
+            // browser, but a downloaded file should still point somewhere, so
+            // it becomes the permalink of this very page.
+            $anchor = $url === '#'
+                ? ($this->getRenderContext($context)->getCurrentDocumentEntry()?->getTitle()->getId() ?? '')
+                : $this->anchorOfLinkedDocument($context, $url);
+        }
+
+        // The fragment of a rendered URL keeps the casing of the element id it
+        // points at, which HTML resolves fine. The permalink service looks the
+        // target up in the inventory, where it is registered normalised, so the
+        // anchor has to be reduced the same way getPermalink() does it.
+        if ($anchor !== '') {
+            $anchor = $this->anchorNormalizer->reduceAnchor($anchor);
+        }
+
+        if ($anchor === '' || $interlink === '') {
+            $this->logUnresolvedMarkdownLink($context, $url, $interlink === '');
+
+            // The URL generator appended the current output format, so an
+            // internal link reads "Feature.md" here; the HTML page is the one
+            // worth pointing at.
+            return preg_replace('/\.md(?=$|#)/', '.html', $url) ?? $url;
+        }
+
+        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchor;
+    }
+
+    /**
+     * A link left relative in the Markdown output is dead once the file is
+     * downloaded, so it is worth reporting rather than shipping quietly.
+     *
+     * A missing "interlink_shortcode" affects every link on the page alike, so
+     * it is reported once per document instead of once per link; an
+     * unresolvable target is specific to that link and is reported each time.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    private function logUnresolvedMarkdownLink(array $context, string $url, bool $missingShortcode): void
+    {
+        $renderContext = $this->getRenderContext($context);
+
+        if ($missingShortcode) {
+            $document = $renderContext->hasCurrentFileName() ? $renderContext->getCurrentFileName() : '';
+            if (isset($this->reportedMissingShortcode[$document])) {
+                return;
+            }
+
+            $this->reportedMissingShortcode[$document] = true;
+
+            // Not a warning: a manual without "interlink-shortcode" cannot have
+            // permalinks at all, so this describes how the project is set up
+            // rather than something broken in the page. Warning per document
+            // would drown the links that genuinely failed to resolve.
+            $this->logger->info(
+                'Links in the Markdown output stay relative because "interlink-shortcode" is not set in the guides.xml. ',
+                $renderContext->getLoggerInformation(),
+            );
+
+            return;
+        }
+
+        $this->logger->warning(
+            sprintf('The Markdown link to "%s" could not be resolved to a permalink and stays relative. ', $url),
+            $renderContext->getLoggerInformation(),
+        );
+    }
+
+    /**
+     * The anchor of a page linked without one, so it too can become a permalink.
+     *
+     * A ":doc:" reference points at a page rather than a label, so the
+     * generated URL carries no fragment. The target is in this same manual,
+     * though, so its document entry is known and its title carries the anchor.
+     *
+     * Returns an empty string for anything that is not a document of this
+     * manual -- an image, most commonly.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    private function anchorOfLinkedDocument(array $context, string $url): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        $path = preg_replace('/\.[A-Za-z0-9]+$/', '', $url);
+        if ($path === null || $path === '') {
+            return '';
+        }
+
+        try {
+            $canonical = $this->documentNameResolver->canonicalUrl($renderContext->getDirName(), $path);
+            $entry = $renderContext->getProjectNode()->findDocumentEntry($canonical);
+        } catch (Throwable) {
+            return '';
+        }
+
+        $id = $entry?->getTitle()->getId() ?? '';
+        if ($id === '') {
+            return '';
+        }
+
+        // A document entry's title id keeps the casing of the file it came from,
+        // while the inventory registers the target lowercased. Normalising here
+        // is what makes the permalink resolvable.
+        return $this->anchorNormalizer->reduceAnchor($id);
+    }
+
+    /**
+     * The Markdown rendering of the current page, which is written next to the
+     * HTML file with the same base name.
+     *
+     * Machine consumers want the content without the surrounding HTML; the
+     * Markdown has includes, substitutions and interlinks resolved, which the
+     * reStructuredText source does not.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getMarkdownAlternate(array $context): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        if (!$renderContext->hasCurrentFileName()) {
+            return '';
+        }
+
+        return basename($renderContext->getCurrentFileName()) . '.md';
     }
 
     /**
