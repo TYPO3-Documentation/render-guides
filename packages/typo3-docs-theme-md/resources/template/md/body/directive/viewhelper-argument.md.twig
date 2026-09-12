@@ -1,0 +1,24 @@
+{#- An argument of a ViewHelper. Same shape as a confval, which is what the
+    HTML template builds it as too: the name, the properties that constrain it,
+    then what it does.
+
+    "Required" is a boolean and prints as "1" in HTML; here it reads as "true",
+    the way a confval states it. -#}
+{%- set properties = [{'label': 'Type', 'value': node.type|md_escape}] -%}
+{%- if node.defaultValue != null -%}
+    {%- set properties = properties|merge([{'label': 'Default', 'value': node.defaultValue|md_escape}]) -%}
+{%- endif -%}
+{%- if node.required -%}
+    {%- set properties = properties|merge([{'label': 'Required', 'value': 'true'}]) -%}
+{%- endif -%}
+{%- set body -%}
+{%- for property in properties -%}
+-   *{{ property.label }}:* {{ property.value|raw }}{{ "\n" }}
+{%- endfor -%}
+{{ "\n" }}
+{{- node.description|md_escape|raw -}}
+{%- endset -%}
+-   **{{ node.plainContent|md_escape|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

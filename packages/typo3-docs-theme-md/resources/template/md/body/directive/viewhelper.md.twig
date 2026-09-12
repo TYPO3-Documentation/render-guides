@@ -1,0 +1,82 @@
+{#- A ViewHelper: its doc tags, prose, source link and arguments.
+
+    The parts and their order come from the directive's "display" option, the
+    same as in HTML, so a page that asks for arguments only gets arguments only.
+
+    "Arguments" is bold rather than a heading. The HTML template makes it an
+    <h2>, but a section can hold several ViewHelpers -- the rendertest has two
+    in one section -- and a real heading would leave the outline claiming the
+    arguments of the first one end where the second one starts. -#}
+{%- set out -%}
+{%- for display in node.display -%}
+    {%- if display == 'tags' and node.docTags -%}
+        {%- for key, docTag in node.docTags -%}
+            {%- if key == '@deprecated' -%}
+                {%- set alert -%}
+[!WARNING]
+**Deprecated**
+
+{{ docTag|md_escape|raw }}
+                {%- endset -%}
+{{ renderMdPrefix(alert|clean_content, "> ")|raw }}
+{{ "\n\n" }}
+            {%- elseif key == '@internal' -%}
+                {%- set alert -%}
+[!WARNING]
+**Internal**
+
+This ViewHelper is marked as internal. It is subject to be changed without notice. Use at your own risk.
+                {%- endset -%}
+{{ renderMdPrefix(alert|clean_content, "> ")|raw }}
+{{ "\n\n" }}
+            {%- elseif key not in ['@see', '@api', '@todo'] -%}
+{{ key|md_escape|raw }}: {{ docTag|md_escape|raw }}
+{{ "\n\n" }}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endif -%}
+    {%- if display == 'description' -%}
+{{- renderNode(node.description)|raw -}}
+{{ "\n\n" }}
+    {%- endif -%}
+    {%- if display == 'sections' -%}
+{{- renderNode(node.sections)|raw -}}
+{{ "\n\n" }}
+    {%- endif -%}
+    {%- if display == 'examples' -%}
+{{- renderNode(node.examples)|raw -}}
+{{ "\n\n" }}
+    {%- endif -%}
+    {%- if display == 'documentation' -%}
+{{- renderNode(node.documentation)|raw -}}
+{{ "\n\n" }}
+    {%- endif -%}
+    {%- if display == 'gitHubLink' and node.gitHubLink -%}
+Go to the source code of this ViewHelper: [{{ node.shortClassName|md_escape|raw }}.php (GitHub)]({{ node.gitHubLink }}).
+{{ "\n\n" }}
+    {%- endif -%}
+    {%- if display in ['arguments', 'arguments-only'] and (node.arguments or node.allowsArbitraryArguments) -%}
+        {%- if display == 'arguments' -%}
+**Arguments**
+{{ "\n\n" }}
+            {%- if node.allowsArbitraryArguments -%}
+                {%- set alert -%}
+[!NOTE]
+**Allows arbitrary arguments**
+
+This ViewHelper allows you to pass arbitrary arguments not defined below directly to the HTML tag created. This includes custom `data-` arguments.
+                {%- endset -%}
+{{ renderMdPrefix(alert|clean_content, "> ")|raw }}
+{{ "\n\n" }}
+            {%- endif -%}
+The following arguments are available for the {{ node.tagName|md_escape|raw }} ViewHelper:
+{{ "\n\n" }}
+        {%- endif -%}
+        {%- for argument in node.arguments -%}
+{{- renderNode(argument)|raw -}}
+        {%- endfor -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- endset -%}
+{{ out|clean_content|raw }}
+{{ "\n" }}

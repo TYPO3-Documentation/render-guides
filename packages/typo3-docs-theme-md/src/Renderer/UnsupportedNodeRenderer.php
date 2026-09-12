@@ -55,15 +55,17 @@ final class UnsupportedNodeRenderer implements NodeRenderer, NodeRendererFactory
     }
 
     /**
-     * Structural nodes that only hold children. The default renderer walks
-     * into them and loses nothing, so marking them would bury the real gaps:
-     * they account for the bulk of the fallbacks in a typical manual.
+     * Nodes the default renderer already handles without losing anything:
+     * structural ones that only hold children, and "Null", which the Markdown
+     * parser emits where there is nothing to render at all. Marking these would
+     * bury the real gaps and claim content was dropped where none exists.
      */
     private const TRANSPARENT = [
         'Collection',
         'Container',
         'DefinitionListItem',
         'FieldListItem',
+        'Null',
     ];
 
     public function render(Node $node, RenderContext $renderContext): string
