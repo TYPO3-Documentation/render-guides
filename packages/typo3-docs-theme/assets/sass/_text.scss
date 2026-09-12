@@ -21,7 +21,9 @@ a {
 
 span.invalid-link {
     background: $light;
-    text-decoration: dotted;
+    // "dotted" alone sets only the style; without a line value the shorthand resolves the
+    // line to "none" and nothing is drawn, which left the background as the only cue.
+    text-decoration: underline dotted;
 }
 
 li {

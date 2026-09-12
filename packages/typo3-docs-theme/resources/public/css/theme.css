@@ -23995,7 +23995,7 @@ a:hover {
 
 span.invalid-link {
   background: rgb(95%, 95%, 95%);
-  text-decoration: dotted;
+  text-decoration: underline dotted;
 }
 
 li p:last-of-type {
