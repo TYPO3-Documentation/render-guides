@@ -1,0 +1,57 @@
+{#- A console command: what it is called, what it does, and the arguments and
+    options it takes.
+
+    Written as a list item for the same reason a confval is: it gives the
+    definition an end, and the arguments and options nest visibly inside the
+    command they belong to rather than running on after it.
+
+    The signature is bold and nothing else -- bold around a code span is valid
+    CommonMark, but not every renderer parses emphasis around code, and the name
+    is what has to stand out. The group labels below it are italic, so the
+    command outweighs the words that only introduce its parts. -#}
+{%- set body -%}
+{{- node.description|md_escape|raw -}}
+{{ "\n\n" }}
+{%- if node.usage -%}
+*Usage*
+{{ "\n\n" }}
+{%- for item in node.usage -%}
+{{- renderNode(item)|raw -}}
+{{ "\n" }}
+{%- endfor -%}
+{{ "\n" }}
+{%- endif -%}
+{%- if node.argumentList -%}
+*Arguments*
+{{ "\n\n" }}
+{%- for item in node.argumentList -%}
+{{- renderNode(item)|raw -}}
+{%- endfor -%}
+{{ "\n" }}
+{%- endif -%}
+{%- if node.optionList -%}
+*Options*
+{{ "\n\n" }}
+{%- for item in node.optionList -%}
+{{- renderNode(item)|raw -}}
+{%- endfor -%}
+{{ "\n" }}
+{%- endif -%}
+{#- A command whose help text is empty still carries a help node, so the label
+    has to follow the rendered text rather than the node. -#}
+{%- set help = node.help ? renderNode(node.help)|trim : '' -%}
+{%- if help -%}
+*Help*
+{{ "\n\n" }}
+{{- help|raw -}}
+{{ "\n" }}
+{%- endif -%}
+{%- if node.value -%}
+{{ "\n" }}
+{{- renderNode(node.value)|raw -}}
+{%- endif -%}
+{%- endset -%}
+-   **{{ node.plainContent|md_escape|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}
