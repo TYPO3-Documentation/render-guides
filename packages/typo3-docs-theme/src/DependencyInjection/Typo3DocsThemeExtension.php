@@ -118,6 +118,14 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
 
     public function prepend(ContainerBuilder $container): void
     {
+        // Before this extension's own templates, not after: prependExtensionConfig
+        // puts the last caller first, and a node renderer registered from a
+        // template wins by is_a(), so the first match decides. The Markdown
+        // package maps InlineCompoundNode, which every link node extends --
+        // FileInlineNode among them. Registered the other way round, the generic
+        // map would swallow the file text role and it would lose its backticks.
+        $this->markdownExtension()->prepend($container);
+
         $container->prependExtensionConfig('guides', [
             'themes' => [
                 'typo3docs' => [
@@ -137,8 +145,6 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 template(UmlNode::class, 'body/uml.md.twig', 'md'),
             ],
         ]);
-
-        $this->markdownExtension()->prepend($container);
     }
 
     /**
