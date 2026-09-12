@@ -1,5 +1,6 @@
+{#- The link text is prose and gets escaped; the URL must stay verbatim. -#}
 {%- if node.url -%}
-    [{{ node|plaintext|raw }}]({{ markdownLinkUrl(node.url) }})
+    [{{ node|plaintext|md_escape|raw }}]({{ markdownLinkUrl(node.url) }})
 {%- else -%}
-    {{- node|plaintext|raw -}}
+    {{- node|plaintext|md_escape|raw -}}
 {%- endif -%}

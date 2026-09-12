@@ -6,6 +6,7 @@ use phpDocumentor\Guides\Nodes\AnchorNode;
 use phpDocumentor\Guides\Nodes\AnnotationListNode;
 use phpDocumentor\Guides\Nodes\CitationNode;
 use phpDocumentor\Guides\Nodes\CodeNode;
+use phpDocumentor\Guides\RestructuredText\Nodes\ContainerNode;
 use phpDocumentor\Guides\Nodes\DefinitionListNode;
 use phpDocumentor\Guides\Nodes\DefinitionLists\DefinitionNode;
 use phpDocumentor\Guides\Nodes\DocumentNode;
@@ -53,6 +54,8 @@ use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\Nodes\SeparatorNode;
 use phpDocumentor\Guides\Nodes\TableNode;
 use phpDocumentor\Guides\Nodes\TitleNode;
+use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
+use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 use phpDocumentor\Guides\RestructuredText\Nodes\SidebarNode;
 use phpDocumentor\Guides\RestructuredText\Nodes\VersionChangeNode;
 
@@ -62,6 +65,8 @@ return [
     MetaNode::class => 'structure/header/blank.md.twig',
     ParagraphNode::class => 'body/paragraph.md.twig',
     QuoteNode::class => 'body/quote.md.twig',
+    ConfvalNode::class => 'body/directive/confval.md.twig',
+    ConfvalMenuNode::class => 'body/directive/confval-menu.md.twig',
     SidebarNode::class => 'body/sidebar.md.twig',
     VersionChangeNode::class => 'body/version-change.md.twig',
     SeparatorNode::class => 'body/separator.md.twig',
@@ -70,6 +75,7 @@ return [
     DocumentNode::class => 'structure/document.md.twig',
     ImageNode::class => 'body/image.md.twig',
     CodeNode::class => 'body/code.md.twig',
+    ContainerNode::class => 'body/container.md.twig',
     DefinitionListNode::class => 'body/definition-list.md.twig',
     DefinitionNode::class => 'body/definition.md.twig',
     FieldListNode::class => 'body/field-list.md.twig',

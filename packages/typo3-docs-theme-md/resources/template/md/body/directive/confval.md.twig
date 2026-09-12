@@ -1,0 +1,46 @@
+{#- A configuration value: its name, the properties that constrain it and what
+    it does.
+
+    Written as a list item so that the definition has an end. Markdown has no
+    definition lists, in GFM or otherwise, and indenting under a bare paragraph
+    does not express containment -- four spaces after a blank line is an
+    indented code block. Inside a list item the same indentation is a
+    continuation, which is what makes a nested confval nest and the next one
+    start somewhere visible.
+
+    The name is bold and the property labels are italic, so the term being
+    explained outweighs the labels that describe it.
+
+    The name is bold and nothing else. Bold around a code span is valid
+    CommonMark and GitHub renders it, but not every renderer parses emphasis
+    around a code span -- PhpStorm drops the bold silently -- and the term being
+    explained has to stand out, which is what bold does everywhere.
+
+    Properties that are not set are left out: "Default: N/A" is noise a reader
+    has to skip. -#}
+{%- set properties = [] -%}
+{%- if node.type != null -%}
+    {%- set properties = properties|merge([{'label': 'Type', 'value': renderNode(node.type)}]) -%}
+{%- endif -%}
+{%- if node.required -%}
+    {%- set properties = properties|merge([{'label': 'Required', 'value': 'true'}]) -%}
+{%- endif -%}
+{%- if node.default != null -%}
+    {%- set properties = properties|merge([{'label': 'Default', 'value': renderNode(node.default)}]) -%}
+{%- endif -%}
+{%- for key, option in node.additionalOptions -%}
+    {%- if not (key in ['searchFacet', 'searchKeywords']) -%}
+        {%- set properties = properties|merge([{'label': key, 'value': renderNode(option)}]) -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- set body -%}
+{%- for property in properties -%}
+-   *{{ property.label|md_escape|raw }}:* {{ property.value|inline_text|raw }}{{ "\n" }}
+{%- endfor -%}
+{{ "\n" }}
+{{- renderNode(node.value) -}}
+{%- endset -%}
+-   **{{ node.plainContent|md_escape|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

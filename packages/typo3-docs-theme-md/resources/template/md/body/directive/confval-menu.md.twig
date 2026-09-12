@@ -1,0 +1,14 @@
+{#- The confval menu is an overview of the values that follow it, offered as a
+    list, a tree or a table. In HTML that is a navigational aid: it lets a
+    reader scan the available options and jump to one. Markdown has no jumping
+    and no collapsed tree, so the overview would only repeat, in shorter form,
+    what the full entries say directly below it.
+
+    The caption is kept: it names the group of values, which the author wrote
+    as content rather than as decoration. -#}
+{%- if node.caption %}**{{ node.caption|raw }}**
+{{ "\n" }}
+{% endif -%}
+{%- for child in node.children -%}
+{{- renderNode(child) -}}
+{%- endfor -%}

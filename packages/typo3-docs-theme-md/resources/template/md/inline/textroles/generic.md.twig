@@ -1,1 +1,6 @@
-{{- node|plaintext|raw -}}
+{#- Dispatch by role name, the way the HTML theme does, so a role with a
+    Markdown form of its own gets it and everything else falls back. -#}
+{%- include [
+    ('inline/textroles/' ~ node.type ~ '.md.twig'),
+    'inline/textroles/unknown.md.twig'
+] -%}

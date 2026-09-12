@@ -25,4 +25,10 @@ A directive without a Markdown template yet leaves a marker:
 
 <!-- TODO: no Markdown rendering for "tabs" -->
 
-First tab.Second tab.
+<!-- TODO: no Markdown rendering for "group-tab" -->
+
+First tab.
+
+<!-- TODO: no Markdown rendering for "group-tab" -->
+
+Second tab.
