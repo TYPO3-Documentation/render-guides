@@ -1,0 +1,9 @@
+{#- The reStructuredText "option" directive, which TYPO3 manuals use as an
+    alias for a configuration value. Shaped like a confval for that reason. -#}
+{%- set body -%}
+{{- renderNode(node.value)|raw -}}
+{%- endset -%}
+-   **{{ node.plainContent|md_escape|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

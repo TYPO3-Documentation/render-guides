@@ -1,0 +1,5 @@
+{#- The languages the syntax highlighter knows, as a plain list. -#}
+{%- for language in codehighlight_languages() -%}
+-   {{ language|md_escape|raw }}{{ "\n" }}
+{%- endfor -%}
+{{ "\n" }}

@@ -45,3 +45,20 @@ A code block keeps its caption, which says where the snippet belongs.
     :caption: EXT:my_extension/ext_localconf.php
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching'] = [];
+
+The "option" directive is how the manuals write a configuration value; it is
+shaped like a confval.
+
+..  option:: errorFluidTemplate
+
+    The path to the Fluid template file.
+
+A TYPO3 file definition carries both of its paths.
+
+..  typo3:file:: ext_localconf.php
+    :scope: extension
+    :composer-path: my_extension/
+    :classic-path: typo3conf/ext/my_extension/
+
+    Included on every request.
+

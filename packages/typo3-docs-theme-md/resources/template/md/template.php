@@ -59,6 +59,7 @@ use phpDocumentor\Guides\Nodes\SeparatorNode;
 use phpDocumentor\Guides\Nodes\TableNode;
 use phpDocumentor\Guides\Nodes\TitleNode;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
+use phpDocumentor\Guides\RestructuredText\Nodes\OptionNode;
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 use phpDocumentor\Guides\RestructuredText\Nodes\SidebarNode;
 use phpDocumentor\Guides\RestructuredText\Nodes\VersionChangeNode;
@@ -70,6 +71,7 @@ return [
     ParagraphNode::class => 'body/paragraph.md.twig',
     QuoteNode::class => 'body/quote.md.twig',
     ConfvalNode::class => 'body/directive/confval.md.twig',
+    OptionNode::class => 'body/directive/option.md.twig',
     ConfvalMenuNode::class => 'body/directive/confval-menu.md.twig',
     SidebarNode::class => 'body/sidebar.md.twig',
     VersionChangeNode::class => 'body/version-change.md.twig',

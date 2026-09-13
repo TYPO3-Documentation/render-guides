@@ -41,3 +41,20 @@ A code block keeps its caption, which says where the snippet belongs.
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching'] = [];
 ```
+
+The "option" directive is how the manuals write a configuration value; it is
+shaped like a confval.
+
+-   **errorFluidTemplate**
+
+    The path to the Fluid template file.
+
+A TYPO3 file definition carries both of its paths.
+
+-   **ext_localconf.php**
+
+    -   *Scope:* extension
+    -   *Path (Composer):* packages/my_extension/ext_localconf.php
+    -   *Path (Classic):* typo3conf/ext/my_extension/ext_localconf.php
+
+    Included on every request.
