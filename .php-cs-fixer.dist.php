@@ -3,9 +3,18 @@
 $finder = (new PhpCsFixer\Finder())
     ->in(__DIR__.'/packages')
     ->in(__DIR__.'/tests')
+    // Whatever is generated is ignored by git, and nothing generated is ours to
+    // format. Reading the rules instead of listing the directories keeps this
+    // right when the next generated directory appears: "make test-theme-js"
+    // installs a PHP file below node_modules, and the rendered output of the
+    // integration tests lands in their temp directories.
+    ->ignoreVCSIgnored(true)
+    // Also excluded, because exclude() prunes the directory rather than
+    // filtering its files one by one.
     ->exclude([
         'docs',
         'fixtures-local',
+        'node_modules',
     ]);
 
 return (new PhpCsFixer\Config())
