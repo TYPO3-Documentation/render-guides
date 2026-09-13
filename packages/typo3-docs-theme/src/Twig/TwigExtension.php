@@ -65,6 +65,13 @@ final class TwigExtension extends AbstractExtension
      */
     private array $reportedMissingShortcode = [];
 
+    /**
+     * Documents already reported for an unusable project version.
+     *
+     * @var array<string, true>
+     */
+    private array $reportedMissingVersion = [];
+
     public function __construct(
         private readonly LoggerInterface               $logger,
         private readonly UrlGeneratorInterface         $urlGenerator,
@@ -643,7 +650,73 @@ final class TwigExtension extends AbstractExtension
             return preg_replace('/\.md(?=$|#)/', '.html', $url) ?? $url;
         }
 
-        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchor;
+        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchor
+            . $this->permalinkVersionSuffix($this->getRenderContext($context));
+    }
+
+    /**
+     * The "@version" a permalink has to carry, or "" when it must not carry one.
+     *
+     * A permalink without a version resolves to the latest stable release. A
+     * Markdown file is a snapshot of one version, so without the suffix every
+     * link in it would send its reader into whatever manual is current later --
+     * the opposite of what permalinks are here for.
+     *
+     * Manuals that exist only once carry no version at all; DefaultInventories
+     * knows which those are. What it does not know is a third-party manual,
+     * and those are versioned.
+     */
+    private function permalinkVersionSuffix(RenderContext $renderContext): string
+    {
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+        if ($interlink === '') {
+            return '';
+        }
+
+        $inventory = DefaultInventories::tryFrom($interlink);
+        if ($inventory !== null && !$inventory->isVersioned()) {
+            return '';
+        }
+
+        // A checkout names itself "main (development)"; the URL wants "main".
+        $version = explode(' ', trim((string) $renderContext->getProjectNode()->getVersion()))[0];
+
+        // A project that names no version is left alone: that is a choice we
+        // cannot second-guess, and the theme treats the version as optional
+        // everywhere else too.
+        if ($version === '') {
+            return '';
+        }
+
+        if (preg_match('/^[A-Za-z0-9][A-Za-z0-9._-]*$/', $version) !== 1) {
+            $this->reportUnusablePermalinkVersion($renderContext, $version);
+
+            return '';
+        }
+
+        return '@' . $version;
+    }
+
+    /**
+     * Reported once per document: the version is a property of the project, so
+     * every link on the page is missing it for the same reason.
+     */
+    private function reportUnusablePermalinkVersion(RenderContext $renderContext, string $version): void
+    {
+        $document = $renderContext->hasCurrentFileName() ? $renderContext->getCurrentFileName() : '';
+        if (isset($this->reportedMissingVersion[$document])) {
+            return;
+        }
+
+        $this->reportedMissingVersion[$document] = true;
+        $this->logger->warning(
+            sprintf(
+                'The version "%s" from the guides.xml cannot go into a URL, so the Markdown permalinks of this '
+                . 'manual resolve to its latest stable release instead of to this version. ',
+                $version,
+            ),
+            $renderContext->getLoggerInformation(),
+        );
     }
 
     /**
