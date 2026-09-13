@@ -33,3 +33,11 @@ Bob --> Alice: Hi
 ```math
 a^2 + b^2 = c^2
 ```
+
+A code block keeps its caption, which says where the snippet belongs.
+
+**EXT:my_extension/ext_localconf.php**
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching'] = [];
+```

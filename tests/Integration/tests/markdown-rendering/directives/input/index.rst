@@ -38,3 +38,10 @@ Markdown shows the source, tagged for the renderers that know it.
 ..  math::
 
     a^2 + b^2 = c^2
+
+A code block keeps its caption, which says where the snippet belongs.
+
+..  code-block:: php
+    :caption: EXT:my_extension/ext_localconf.php
+
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching'] = [];
