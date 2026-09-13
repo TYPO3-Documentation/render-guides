@@ -20,7 +20,7 @@ Image float left
 
 .. |example-teaser-left| image:: ../images/q150_cccccc.png
    :alt: Left floating image
-   :class: float-left with-shadow
+   :class: float-start with-shadow
 
 |example-teaser-left|
 Typesetting is the composition of text by means of arranging physical
@@ -41,7 +41,7 @@ Image float right
 
 .. |example-teaser-right| image:: ../images/q150_cccccc.png
    :alt: Right floating image
-   :class: float-right with-shadow
+   :class: float-end with-shadow
 
 |example-teaser-right|
 Typesetting is the composition of text by means of arranging physical
@@ -62,7 +62,8 @@ Figure float left
 
 .. figure:: ../images/q150_cccccc.png
    :alt: Left floating figure
-   :class: float-left with-shadow
+   :align: left
+   :class: with-shadow
 
    A figure floated to the left
 
@@ -85,7 +86,8 @@ Figure float right
 
 .. figure:: ../images/q150_cccccc.png
    :alt: Right floating figure
-   :class: float-right with-shadow
+   :align: right
+   :class: with-shadow
 
    A figure floated to the right
 
