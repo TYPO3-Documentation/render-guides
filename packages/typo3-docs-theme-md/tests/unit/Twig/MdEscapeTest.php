@@ -82,6 +82,36 @@ final class MdEscapeTest extends TestCase
         ];
     }
 
+    /** @return array<string, array{string, string}> */
+    public static function frontMatterValuesAreQuoted(): array
+    {
+        return [
+            // Always quoted: unquoted, a parser would hand these back as a
+            // number, a mapping, a boolean or a list.
+            'plain text is quoted' => ['Accordion', '"Accordion"'],
+            'a colon would start a mapping' => ['Feature: 12345', '"Feature: 12345"'],
+            'a number stays a string' => ['13.4', '"13.4"'],
+            'yes stays a string' => ['yes', '"yes"'],
+            'a leading dash would start a list' => ['- not a list', '"- not a list"'],
+
+            // Inside the quotes only two characters can end them early.
+            'a quote is escaped' => ['The "big" one', '"The \\"big\\" one"'],
+            'a backslash is escaped' => ['C:\\temp', '"C:\\\\temp"'],
+
+            // A value is one line; a newline would end it.
+            'a newline becomes a space' => ["two\nlines", '"two lines"'],
+
+            'empty stays empty' => ['', '""'],
+        ];
+    }
+
+    #[Test]
+    #[DataProvider('frontMatterValuesAreQuoted')]
+    public function frontMatterValueIsQuotedForYaml(string $input, string $expected): void
+    {
+        self::assertSame($expected, $this->subject->yamlString($input));
+    }
+
     #[Test]
     #[DataProvider('emphasisKeepsSpacesOutside')]
     public function emphasisKeepsSurroundingSpacesOutsideTheMarker(

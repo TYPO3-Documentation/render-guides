@@ -1,3 +1,11 @@
+---
+title: "Markdown escaping of text"
+permalink: "https://docs.typo3.org/permalink/mdescape:markdown-escaping-of-text"
+source: "index.rst"
+start: true
+modified: "2023-01-01T12:00:00+00:00"
+---
+
 # Markdown escaping of text
 
 Source prose is not Markdown, so characters that would start a Markdown

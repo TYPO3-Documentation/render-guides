@@ -1,3 +1,11 @@
+---
+title: "Markdown rendering"
+permalink: "https://docs.typo3.org/permalink/mdtest:markdown-rendering"
+source: "index.rst"
+start: true
+modified: "2023-01-01T12:00:00+00:00"
+---
+
 # Markdown rendering
 
 A paragraph with **strong**, *emphasis* and `literal` text, plus a
@@ -18,6 +26,7 @@ $greeting = 'hello';
 There are the following subpages:
 
 -   [Visible child](https://docs.typo3.org/permalink/mdtest:visible-child)
+-   [A nested page](https://docs.typo3.org/permalink/mdtest:a-nested-page)
 
 The navigation below is built but not shown:
 

@@ -24,6 +24,7 @@ There are the following subpages:
 ..  toctree::
 
     visible-child
+    sub/nested
 
 The navigation below is built but not shown:
 

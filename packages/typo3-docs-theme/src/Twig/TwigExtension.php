@@ -106,6 +106,9 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('markdownAlternate', $this->getMarkdownAlternate(...), ['needs_context' => true]),
             new TwigFunction('markdownDownloadName', $this->getMarkdownDownloadName(...), ['needs_context' => true]),
             new TwigFunction('markdownLinkUrl', $this->getMarkdownLinkUrl(...), ['needs_context' => true]),
+            new TwigFunction('markdownPermalink', $this->getMarkdownPermalink(...), ['needs_context' => true]),
+            new TwigFunction('markdownVersion', $this->getMarkdownVersion(...), ['needs_context' => true]),
+            new TwigFunction('markdownIsStartPage', $this->isMarkdownStartPage(...), ['needs_context' => true]),
             new TwigFunction('getViewSourceLink', $this->getViewSourceLink(...), ['needs_context' => true]),
             new TwigFunction('getRelativePath', $this->getRelativePath(...), ['needs_context' => true]),
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
@@ -678,12 +681,25 @@ final class TwigExtension extends AbstractExtension
             return '';
         }
 
-        // A checkout names itself "main (development)"; the URL wants "main".
-        $version = explode(' ', trim((string) $renderContext->getProjectNode()->getVersion()))[0];
+        $version = $this->normalizedProjectVersion($renderContext);
+        if ($version === '') {
+            return '';
+        }
 
-        // A project that names no version is left alone: that is a choice we
-        // cannot second-guess, and the theme treats the version as optional
-        // everywhere else too.
+        return '@' . $version;
+    }
+
+    /**
+     * The project version in the form a URL and a metadata field can carry, or
+     * "" when there is none.
+     *
+     * A checkout names itself "main (development)"; both want the bare "main".
+     * A project that names no version at all is left alone -- the theme treats
+     * the version as optional everywhere else too.
+     */
+    private function normalizedProjectVersion(RenderContext $renderContext): string
+    {
+        $version = explode(' ', trim((string) $renderContext->getProjectNode()->getVersion()))[0];
         if ($version === '') {
             return '';
         }
@@ -694,7 +710,58 @@ final class TwigExtension extends AbstractExtension
             return '';
         }
 
-        return '@' . $version;
+        return $version;
+    }
+
+    /**
+     * The permalink of the document being rendered, for the Markdown front
+     * matter: the one URL that names this page no matter where the file ends
+     * up, and the way back to the HTML it was rendered from.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getMarkdownPermalink(array $context): string
+    {
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+        $renderContext = $this->getRenderContext($context);
+        $entry = $renderContext->getCurrentDocumentEntry();
+        $anchor = $entry === null ? '' : $this->documentAnchor($renderContext, $entry);
+        if ($interlink === '' || $anchor === '') {
+            return '';
+        }
+
+        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchor
+            . $this->permalinkVersionSuffix($renderContext);
+    }
+
+    /** @param array{env: RenderContext} $context */
+    public function getMarkdownVersion(array $context): string
+    {
+        return $this->normalizedProjectVersion($this->getRenderContext($context));
+    }
+
+    /**
+     * Whether the document being rendered is the manual's start page.
+     *
+     * Worth stating rather than leaving to be guessed: once the files lie
+     * flat in a directory, the entry point is no longer the one at the top,
+     * and "Index.rst" is a name several documents in a manual share.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function isMarkdownStartPage(array $context): bool
+    {
+        $renderContext = $this->getRenderContext($context);
+        $entry = $renderContext->getCurrentDocumentEntry();
+        if ($entry === null) {
+            return false;
+        }
+
+        try {
+            return $entry->getFile() === $renderContext->getProjectNode()->getRootDocumentEntry()->getFile();
+        } catch (Throwable) {
+            return false;
+        }
     }
 
     /**

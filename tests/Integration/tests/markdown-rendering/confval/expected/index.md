@@ -1,3 +1,11 @@
+---
+title: "Configuration values in md"
+permalink: "https://docs.typo3.org/permalink/mdconfval:configuration-values-in-md"
+source: "index.rst"
+start: true
+modified: "2023-01-01T12:00:00+00:00"
+---
+
 # Configuration values in md
 
 A confval is written as a list item so that the definition has an end:

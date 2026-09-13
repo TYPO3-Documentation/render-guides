@@ -1,3 +1,11 @@
+---
+title: "Console commands"
+permalink: "https://docs.typo3.org/permalink/mdconsole:console-commands"
+source: "index.rst"
+start: true
+modified: "2023-01-01T12:00:00+00:00"
+---
+
 # Console commands
 
 The overview lists every command and renders each one below the table. A

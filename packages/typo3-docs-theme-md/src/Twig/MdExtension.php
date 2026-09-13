@@ -58,6 +58,7 @@ final class MdExtension extends AbstractExtension
             new TwigFilter('inline_text', $this->inlineText(...)),
             new TwigFilter('md_escape', $this->escape(...)),
             new TwigFilter('md_wrap', $this->wrap(...)),
+            new TwigFilter('md_yaml', $this->yamlString(...)),
         ];
     }
 
@@ -228,6 +229,18 @@ final class MdExtension extends AbstractExtension
         // is defused at its dot rather than at its digits: "\1." would leave
         // the backslash visible to the reader.
         return (string) preg_replace('/^(\s*)(\d+)([.)])(?=\s)/m', '$1$2\\\\$3', $text);
+    }
+
+    /**
+     * A scalar as a double-quoted YAML string, for the front matter.
+     *
+     * Always quoted rather than only when needed: a title that begins with a
+     * digit, holds a colon or reads as "yes" would otherwise come back out of
+     * a parser as a number, a mapping or a boolean.
+     */
+    public function yamlString(string $value): string
+    {
+        return '"' . str_replace(['\\', '"', "\n"], ['\\\\', '\\"', ' '], $value) . '"';
     }
 
     /** Collapse a rendered block onto one line, for places that cannot hold one. */
