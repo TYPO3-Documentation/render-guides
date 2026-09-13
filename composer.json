@@ -45,6 +45,7 @@
         "symfony/polyfill-php82": "*",
         "t3docs/typo3-api": "self.version",
         "t3docs/typo3-docs-theme": "self.version",
+        "t3docs/typo3-docs-theme-md": "self.version",
         "t3docs/typo3-guides-cli": "self.version",
         "t3docs/typo3-guides-extension": "self.version",
         "t3docs/typo3-version-handling": "self.version"

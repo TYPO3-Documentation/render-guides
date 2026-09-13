@@ -18,6 +18,6 @@
         "phpdocumentor/guides-theme-bootstrap": "^1.7",
         "t3docs/guides-php-domain": "^1.0",
         "t3docs/typo3-version-handling": "self.version",
-        "t3docs/typo3-docs-theme-md": "@dev"
+        "t3docs/typo3-docs-theme-md": "self.version"
     }
 }
