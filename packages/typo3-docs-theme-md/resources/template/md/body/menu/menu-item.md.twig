@@ -1,5 +1,5 @@
 {%- set children -%}
 {%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}
 {%- endset -%}
--   [{{ node.value.toString|raw }}]({{ markdownLinkUrl(url) }})
+-   [{{ node.value.toString|raw }}]({{ markdownLinkUrl(url)|raw }})
 {% if children|trim %}{{ renderMdIndent(children|clean_content, 2)|raw }}{% endif %}

@@ -11,7 +11,7 @@
 {{- '| --- | --- |' -}}{%- if node.showHidden %} --- |{% endif -%}{{- "\n" -}}
 {%- for namespaceName, namespace in node.commandsByNamespace -%}
     {%- if namespaceCount > 1 -%}
-        {{- '| **' ~ (namespaceName is empty ? 'global' : namespaceName|md_escape) ~ '** |  |' -}}
+        {{- ('| **' ~ (namespaceName is empty ? 'global' : namespaceName|md_escape) ~ '** |  |')|raw -}}
         {%- if node.showHidden %}  |{% endif -%}{{- "\n" -}}
     {%- endif -%}
     {%- for command in namespace -%}
@@ -21,7 +21,7 @@
         {%- else -%}
             {%- set cell = '[' ~ label ~ '](' ~ markdownLinkUrl('#' ~ command.anchor) ~ ')' -%}
         {%- endif -%}
-        {{- '| ' ~ cell ~ ' | ' ~ command.description|md_escape|inline_cell ~ ' |' -}}
+        {{- ('| ' ~ cell ~ ' | ' ~ command.description|md_escape|inline_cell ~ ' |')|raw -}}
         {%- if node.showHidden %} {{ command.hidden ? 'True' : '' }} |{% endif -%}
         {{- "\n" -}}
     {%- endfor -%}

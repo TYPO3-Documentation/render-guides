@@ -1,0 +1,22 @@
+{#- A method: its signature, what it does, and what it gives back.
+
+    "Returns" follows the description rather than preceding it: unlike a type or
+    a default it is a block of prose, and a block above the description would
+    push the description out of sight. -#}
+{%- set signature -%}
+    {%- for modifier in node.modifiers -%}{{ renderNode(modifier)|raw }} {% endfor -%}
+    {%- for modifier in node.methodName.modifiers -%}{{ renderNode(modifier)|raw }} {% endfor -%}
+    {{- node.methodName.name|raw -}}({{ node.methodName.params|join(', ')|raw }})
+    {%- if node.methodName.return %} : {{ node.methodName.return|raw }}{% endif -%}
+{%- endset -%}
+{%- set body -%}
+    {{- renderNode(node.value)|raw -}}
+    {%- if node.returnsDescription -%}
+{{ "\n\n" }}
+*Returns:* {{ renderNode(node.returnsDescription)|inline_text|raw }}
+    {%- endif -%}
+{%- endset -%}
+-   **{{ signature|inline_text|md_escape|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

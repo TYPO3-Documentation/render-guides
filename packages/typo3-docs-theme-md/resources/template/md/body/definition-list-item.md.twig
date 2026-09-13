@@ -3,8 +3,8 @@
     continuation, which is what ties the definition to its term; under a bare
     paragraph it would be an indented code block. -#}
 {%- set term -%}
-{{- renderNode(node.term)|inline_text -}}
-{%- for classifier in node.classifiers %} : {{ renderNode(classifier)|inline_text }}{% endfor -%}
+{{- renderNode(node.term)|inline_text|raw -}}
+{%- for classifier in node.classifiers %} : {{ renderNode(classifier)|inline_text|raw }}{% endfor -%}
 {%- endset -%}
 {%- set body -%}
 {%- for definition in node.children -%}{{- renderNode(definition) -}}{%- endfor -%}

@@ -1,0 +1,11 @@
+{%- set signature -%}
+    case {{ renderNode(node.memberName)|raw }}
+    {%- if node.backedValue %} : {{ node.backedValue|raw }}{% endif -%}
+{%- endset -%}
+{%- set body -%}
+{{- renderNode(node.value)|raw -}}
+{%- endset -%}
+-   **{{ signature|inline_text|md_escape|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

@@ -18,6 +18,15 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use phpDocumentor\Guides\Settings\ProjectSettings;
 use phpDocumentor\Guides\Settings\SettingsManager;
+use T3Docs\GuidesPhpDomain\Nodes\MemberNameNode;
+use T3Docs\GuidesPhpDomain\Nodes\PhpCaseNode;
+use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
+use T3Docs\GuidesPhpDomain\Nodes\PhpConstNode;
+use T3Docs\GuidesPhpDomain\Nodes\PhpGlobalNode;
+use T3Docs\GuidesPhpDomain\Nodes\PhpMethodNode;
+use T3Docs\GuidesPhpDomain\Nodes\PhpModifierNode;
+use T3Docs\GuidesPhpDomain\Nodes\PhpNamespaceNode;
+use T3Docs\GuidesPhpDomain\Nodes\PhpPropertyNode;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
@@ -143,6 +152,15 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 template(FileInlineNode::class, 'inline/textroles/file.md.twig', 'md'),
                 template(YoutubeNode::class, 'body/directive/youtube.md.twig', 'md'),
                 template(UmlNode::class, 'body/uml.md.twig', 'md'),
+                template(PhpComponentNode::class, 'body/directive/php/component.md.twig', 'md'),
+                template(PhpMethodNode::class, 'body/directive/php/method.md.twig', 'md'),
+                template(PhpPropertyNode::class, 'body/directive/php/property.md.twig', 'md'),
+                template(PhpConstNode::class, 'body/directive/php/const.md.twig', 'md'),
+                template(PhpCaseNode::class, 'body/directive/php/case.md.twig', 'md'),
+                template(PhpGlobalNode::class, 'body/directive/php/global.md.twig', 'md'),
+                template(PhpNamespaceNode::class, 'body/directive/php/namespace.md.twig', 'md'),
+                template(PhpModifierNode::class, 'body/directive/php/modifier.md.twig', 'md'),
+                template(MemberNameNode::class, 'body/directive/php/memberName.md.twig', 'md'),
             ],
         ]);
     }
