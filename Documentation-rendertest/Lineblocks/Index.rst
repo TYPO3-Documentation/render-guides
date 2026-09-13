@@ -9,7 +9,7 @@ Line blocks
 
 This example is taken from `Docutils: Line Blocks`__.
 
-__ http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#line-blocks>`__
+__ http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#line-blocks
 
    Doctree elements: line_block, line.  (New in Docutils 0.3.5.)
 
