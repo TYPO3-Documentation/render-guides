@@ -79,14 +79,6 @@ $btn-primary-color: #ffffff;
 $input-btn-border-width: 0.125rem;
 
 //
-// directive .. confval::
-//
-
-$confval-bg: hsl(0, 0%, 96%);
-$confval-dt-bg: hsl(0, 0%, 90%);
-$confval-dt-border: #666666;
-
-//
 // Code Colors
 // --------------------------------------------------
 $code-color:        hsl(350, 100%, 40%);
@@ -123,6 +115,68 @@ $h6-font-size: 0.85em;
 $headings-font-weight: $font-weight-bold;
 $headings-margin-bottom: 0.3em;
 $headings-line-height: 1.4;
+
+//
+// Property cards (.. confval::, console commands, php-domain definitions)
+//
+// Seed values for the "--property-card-*" custom properties declared in
+// components/directives/_propertyCard.scss.
+//
+
+$property-card-bg:                   $white;
+$property-card-border-color:         $gray-300;
+$property-card-border-width:         1px;
+$property-card-border-radius:        0.375rem;
+$property-card-accent-color:         $gray-500;
+$property-card-accent-width:         3px;
+$property-card-spacing-y:            1rem;
+
+// Every text level in the card carries an explicit size, so nothing is left to
+// a percentage compounding through the surrounding context.
+$property-card-header-bg:            $gray-100;
+$property-card-header-color:         $gray-900;
+$property-card-header-font-size:     1.1rem;
+$property-card-header-font-weight:   400;
+$property-card-header-padding-y:     0.6rem;
+$property-card-header-padding-x:     1.25rem;
+$property-card-header-gap:           0.75rem;
+
+// The signature - a confval name, a command, a php method. Monospace carries
+// more mass than the surrounding copy, so it runs a step below the header size
+// to sit optically level with it.
+$property-card-name-font-family:     $font-family-monospace;
+$property-card-name-font-size:       0.9375rem;
+$property-card-name-font-weight:     $font-weight-bold;
+
+$property-card-body-padding-y:       1.25rem;
+$property-card-body-padding-x:       1.25rem;
+$property-card-padding-x-narrow:     0.75rem;
+
+$property-card-meta-color:           $gray-700;
+$property-card-meta-font-size:       1.1rem;
+$property-card-meta-font-weight:     400;
+
+$property-card-action-color:         $gray-600;
+$property-card-action-hover-color:   $black;
+
+$property-card-nested-indent:        1rem;
+$property-card-nested-indent-narrow: 0.5rem;
+$property-card-nested-padding-x:     0.75rem;
+// The nesting rule picks up the card's accent colour, so the top edge of a
+// card and the rule of its children read as the same mark.
+$property-card-nested-rule-color:    $property-card-accent-color;
+$property-card-nested-rule-width:    4px;
+
+//
+// directive .. confval::
+//
+
+$confval-caption-font-weight:        $font-weight-bold;
+
+// Indentation per nesting level in the ".. confval-menu::" table and the
+// deepest level that still gets its own indentation step.
+$confval-menu-indent:                1.25rem;
+$confval-menu-max-level:             6;
 
 //
 // Components

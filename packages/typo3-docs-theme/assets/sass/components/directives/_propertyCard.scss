@@ -2,13 +2,62 @@
 // _propertyCard.scss used to display confvals, commands and php-classes
 //
 
+//
+// CSS Variables
+// --------------------------------------------------
+
+body {
+    --property-card-bg: #{$property-card-bg};
+    --property-card-border-color: #{$property-card-border-color};
+    --property-card-border-width: #{$property-card-border-width};
+    --property-card-border-radius: #{$property-card-border-radius};
+    --property-card-accent-color: #{$property-card-accent-color};
+    --property-card-accent-width: #{$property-card-accent-width};
+    --property-card-spacing-y: #{$property-card-spacing-y};
+    --property-card-header-bg: #{$property-card-header-bg};
+    --property-card-header-color: #{$property-card-header-color};
+    --property-card-header-font-size: #{$property-card-header-font-size};
+    --property-card-header-font-weight: #{$property-card-header-font-weight};
+    --property-card-header-padding-y: #{$property-card-header-padding-y};
+    --property-card-header-padding-x: #{$property-card-header-padding-x};
+    --property-card-header-gap: #{$property-card-header-gap};
+    --property-card-header-border-radius: var(--property-card-border-radius) var(--property-card-border-radius) 0 0;
+    --property-card-name-font-family: #{$property-card-name-font-family};
+    --property-card-name-font-size: #{$property-card-name-font-size};
+    --property-card-name-font-weight: #{$property-card-name-font-weight};
+    --property-card-body-padding-y: #{$property-card-body-padding-y};
+    --property-card-body-padding-x: #{$property-card-body-padding-x};
+    --property-card-meta-color: #{$property-card-meta-color};
+    --property-card-meta-font-size: #{$property-card-meta-font-size};
+    --property-card-meta-font-weight: #{$property-card-meta-font-weight};
+    --property-card-action-color: #{$property-card-action-color};
+    --property-card-action-hover-color: #{$property-card-action-hover-color};
+    --property-card-nested-indent: #{$property-card-nested-indent};
+    --property-card-nested-padding-x: #{$property-card-nested-padding-x};
+    --property-card-nested-rule-color: #{$property-card-nested-rule-color};
+    --property-card-nested-rule-width: #{$property-card-nested-rule-width};
+}
+@include media-breakpoint-down(sm) {
+
+    body {
+        --property-card-header-padding-x: #{$property-card-padding-x-narrow};
+        --property-card-body-padding-x: #{$property-card-padding-x-narrow};
+        --property-card-nested-indent: #{$property-card-nested-indent-narrow};
+    }
+}
+
+//
+// The card keeps a hairline frame plus a coloured top edge as its only chrome,
+// so that nested cards do not stack up into concentric heavy borders.
+//
+
 .property-card {
-    background-color: $white;
-    border-radius: $border-radius;
-    margin-bottom: $spacer * 1.5;
-    padding-bottom: $spacer * 0.3;
-    border: solid 3px $light;
-    border-top-color: $gray-500;
+    background-color: var(--property-card-bg);
+    border: var(--property-card-border-width) solid var(--property-card-border-color);
+    border-radius: var(--property-card-border-radius);
+    border-top-color: var(--property-card-accent-color);
+    border-top-width: var(--property-card-accent-width);
+    margin-bottom: var(--property-card-spacing-y);
     overflow-wrap: anywhere;
     white-space: normal;
 
@@ -26,19 +75,47 @@
     }
 
     & > dt {
-        display: block;
-        background-color: $light;
-        color: color-contrast($light);
-        font-size: $h4-font-size;
-        padding: 0.25em 0.5em;
-        margin-bottom: 0.75em;
+        align-items: center;
+        background-color: var(--property-card-header-bg);
+        border-bottom: var(--property-card-border-width) solid var(--property-card-border-color);
+        border-radius: var(--property-card-header-border-radius);
+        color: var(--property-card-header-color);
+        column-gap: var(--property-card-header-gap);
+        font-size: var(--property-card-header-font-size);
+        font-weight: var(--property-card-header-font-weight);
+        margin-bottom: 0;
+        padding: var(--property-card-header-padding-y) var(--property-card-header-padding-x);
 
-        code {
-            color: color-contrast($light);
+        // The definition name. Confvals, commands and php definitions all
+        // mark it up as ".sig-name", so the card styles it in one place.
+
+        .sig-name {
+            color: inherit;
+            font-family: var(--property-card-name-font-family);
+            font-size: var(--property-card-name-font-size);
+            font-weight: var(--property-card-name-font-weight);
         }
     }
 
     & > dd {
-        margin-right: 1rem;
+        margin: 0;
+        padding: var(--property-card-body-padding-y) var(--property-card-body-padding-x) 0;
+
+        & > :last-child {
+            margin-bottom: var(--property-card-body-padding-y);
+        }
+    }
+
+    // Type / Default / Required, method parameters and friends. Kept as a
+    // definition list, but tighter and visually subordinate to the description.
+
+    & > dd > dl.field-list {
+        margin-bottom: var(--property-card-body-padding-y);
+
+        & > dt {
+            color: var(--property-card-meta-color);
+            font-size: var(--property-card-meta-font-size);
+            font-weight: var(--property-card-meta-font-weight);
+        }
     }
 }

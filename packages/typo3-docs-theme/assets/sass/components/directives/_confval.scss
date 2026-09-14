@@ -1,4 +1,120 @@
+//
+// _confval.scss used to display the ".. confval::" and ".. confval-menu::" directives
+//
+
+//
+// CSS Variables
+// --------------------------------------------------
+
+body {
+    --confval-menu-indent: #{$confval-menu-indent};
+    --confval-menu-max-level: #{$confval-menu-max-level};
+    --confval-menu-guide-color: var(--property-card-border-color);
+    --confval-caption-font-weight: #{$confval-caption-font-weight};
+}
+
+//
+// A single configuration value, rendered as a property card.
+//
 
 dl.confval {
     @extend .property-card;
+}
+
+.confval-header {
+    min-width: 0;
+}
+
+.confval-back-to-top {
+
+    a {
+        color: var(--property-card-action-color);
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: var(--property-card-action-hover-color);
+        }
+    }
+}
+
+.confval-description > :last-child {
+    margin-bottom: 0;
+}
+
+//
+// Nested confvals
+//
+
+.confval-description > .confval-section {
+    @include property-card-nested;
+
+    & > dl.confval {
+        margin-bottom: 0;
+    }
+}
+
+//
+// ".. confval-menu:: :display: table"
+//
+
+.confval-table {
+
+    .confval-label {
+        --confval-level: 0;
+        --confval-level-capped: min(var(--confval-level), var(--confval-menu-max-level));
+        font-family: var(--property-card-name-font-family);
+        font-size: var(--property-card-name-font-size);
+        padding-left: calc(var(--confval-level-capped) * var(--confval-menu-indent));
+        position: relative;
+
+        // Guide line marking the nesting depth of the entry. Collapses to
+        // nothing on the top level, where "--confval-level" is 0.
+
+        &:before {
+            background-color: var(--confval-menu-guide-color);
+            bottom: 0;
+            content: '';
+            left: calc((var(--confval-level-capped) - 0.5) * var(--confval-menu-indent));
+            opacity: min(var(--confval-level), 1);
+            position: absolute;
+            top: 0;
+            width: 1px;
+        }
+    }
+}
+
+//
+// ".. confval-menu:: :display: list" and ":display: tree"
+//
+
+.confval-menu-list,
+.confval-menu-tree {
+
+    & > .caption {
+        font-weight: var(--confval-caption-font-weight);
+        margin-bottom: var(--property-card-spacing-y);
+    }
+
+    .label > a {
+        font-family: var(--property-card-name-font-family);
+        font-size: var(--property-card-name-font-size);
+    }
+
+    .confval-menu-meta {
+        color: var(--property-card-meta-color);
+    }
+}
+
+.confval-menu-list {
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+
+        ul {
+            border-left: var(--property-card-nested-rule-width) solid var(--property-card-nested-rule-color);
+            padding-left: var(--property-card-nested-indent);
+        }
+    }
 }

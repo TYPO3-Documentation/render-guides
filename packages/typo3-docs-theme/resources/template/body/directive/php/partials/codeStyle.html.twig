@@ -1,1 +1,3 @@
-<span class="pre">{{ replaceLineBreakOpportunityTags(code) }}</span>
+{%- apply spaceless -%}
+    <code class="code-inline" translate="no">{{ replaceLineBreakOpportunityTags(code) }}</code>
+{%- endapply -%}

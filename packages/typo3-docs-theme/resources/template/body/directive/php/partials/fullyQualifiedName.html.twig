@@ -1,0 +1,4 @@
+{#- Overrides t3docs/guides-php-domain to mark the class name up as code,
+    matching the confval and console-command property cards. -#}
+<code class="sig-name descname"><span class="pre fqn"
+    {%- if fqn %} data-fqn="{{ fqn }}" title="{{ fqn }}"{% endif %}>{{- className.name -}}</span></code>

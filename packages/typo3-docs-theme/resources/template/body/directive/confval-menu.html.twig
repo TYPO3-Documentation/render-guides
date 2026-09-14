@@ -9,6 +9,7 @@
         {% endfor %}
         <div class="label">
             <a href="#{{ entry.anchor }}">{{ replaceLineBreakOpportunityTags(entry.plainContent) }}</a>
+            {% if node.fields %}<span class="confval-menu-meta">
             {% for fieldName, field in node.fields %}
                 {% if fieldName=='type' %}
                     , Type: {{ renderNode(entry.type) }}
@@ -26,6 +27,7 @@
                     {% endfor -%}
                 {% endif %}
             {% endfor %}
+            </span>{% endif %}
         </div>
 
         {% if relevant_children %}
@@ -65,6 +67,7 @@
             {% endif %}
             <div class="label">
                 <a href="#{{ entry.anchor }}">{{ replaceLineBreakOpportunityTags(entry.plainContent) }}</a>
+                {% if node.fields %}<span class="confval-menu-meta">
                 {% for fieldName, field in node.fields %}
                     {% if fieldName=='type' %}
                         , Type: {{ renderNode(entry.type) }}
@@ -82,6 +85,7 @@
                         {% endfor -%}
                     {% endif %}
                 {% endfor %}
+                </span>{% endif %}
             </div>
         </div>
 
@@ -97,7 +101,7 @@
 
 {% macro renderConfvalRow(entry, node, level) %}
     <tr>
-        <td><div class="confval-label ps-{{ level * 2 }}"><a href="#{{ entry.anchor }}">{{ replaceLineBreakOpportunityTags(entry.plainContent) }}</a></div></td>
+        <td><div class="confval-label" style="--confval-level: {{ level }}"><a href="#{{ entry.anchor }}">{{ replaceLineBreakOpportunityTags(entry.plainContent) }}</a></div></td>
         {% for fieldName, field in node.fields %}
             <td>
             {% if fieldName=='type' %}
@@ -157,7 +161,7 @@
 <a id="{{ node.anchor }}"></a>
 {% import _self as macros %}
 {% if node.display=='list' %}
-<div class="mb-4">
+<div class="confval-menu-list mb-4">
     {{ macros.renderCaption(node) }}
     <ul>
         {% for entry in node.confvals %}
@@ -166,7 +170,7 @@
     </ul>
 </div>
 {% elseif node.display=='tree' %}
-    <div class="directory-tree mb-4">
+    <div class="directory-tree confval-menu-tree mb-4">
         {{ macros.renderCaption(node) }}
         <ul>
         {% for entry in node.confvals %}
