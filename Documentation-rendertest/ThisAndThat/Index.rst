@@ -36,7 +36,7 @@ Rubric
    table of contents node.
 
    -- `sphinx-doc.org
-      <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=rubric#directive-rubric>`__
+   <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=rubric#directive-rubric>`__
 
 .. rubric:: Rubric 001
 
@@ -73,7 +73,7 @@ Hlist
    option that specifies the number of columns; it defaults to 2. Example:
 
    -- `sphinx-doc.org
-      <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=rubric#directive-hlist>`__
+   <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=rubric#directive-hlist>`__
 
 .. hlist::
    :columns: 3

@@ -9,11 +9,11 @@ Phpdomain
 ..  seealso::
 
     *  Find the original Sphinx extension at PyPi, the Python Package Index:
-        `sphinxcontrib-phpdomain
-        <https://pypi.org/project/sphinxcontrib-phpdomain/>`__.
+       `sphinxcontrib-phpdomain
+       <https://pypi.org/project/sphinxcontrib-phpdomain/>`__.
 
     *  We are using a fork and the branch `develop-for-typo3
-        <https://github.com/TYPO3-Documentation/sphinxcontrib-phpdomain/tree/develop-for-typo3>`__
+       <https://github.com/TYPO3-Documentation/sphinxcontrib-phpdomain/tree/develop-for-typo3>`__
 
 
 ..  contents:: This page
