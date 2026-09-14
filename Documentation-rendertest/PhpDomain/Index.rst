@@ -536,3 +536,71 @@ Instance of this interface is returned by.
     :throws: `Imagine\Exception\RuntimeException`
 
     :returns: `Imagine\Draw\DrawerInterface`
+
+
+Enums, cases, globals and properties
+------------------------------------
+
+The remaining PHP domain directives: `php:enum` with nested `php:case`,
+`php:global`, and `php:property` under its canonical name (the rest of this
+page uses its alias `php:attr`).
+
+..  php:namespace:: TYPO3\CMS\Core\Type
+
+..  php:enum:: ContextualFeedbackSeverity
+
+    Severity of a message shown to the editor.
+
+    ..  php:case:: NOTICE
+
+        A notice, the least severe level.
+
+    ..  php:case:: INFO
+
+        Informational message.
+
+    ..  php:case:: OK
+
+        A success message.
+
+    ..  php:case:: WARNING
+
+        Something needs attention.
+
+    ..  php:case:: ERROR
+
+        Something went wrong.
+
+..  php:enum:: DocType
+
+    A backed enum. Backed cases carry a value.
+
+    ..  php:case:: html5
+
+        The HTML5 doctype.
+
+    ..  php:case:: xhtml1Strict
+
+        The strict XHTML 1 doctype.
+
+..  php:class:: TypoScriptFrontendController
+
+    ..  php:property:: id
+
+        The page id, documented with the canonical `php:property` name.
+
+    ..  php:property:: public array $config
+
+        A property with visibility and a type.
+
+    ..  php:property:: protected readonly string $hash
+
+        A property carrying several modifiers.
+
+..  php:global:: $GLOBALS['TYPO3_CONF_VARS']
+
+    The global TYPO3 configuration array.
+
+..  php:global:: $GLOBALS['TCA']
+
+    The global Table Configuration Array.
