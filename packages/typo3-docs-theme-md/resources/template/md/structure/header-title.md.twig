@@ -1,0 +1,3 @@
+{#- Twig autoescapes for HTML here, so every helper result has to be marked
+    raw explicitly: an escaped entity in a Markdown file is simply wrong. -#}
+{{ renderMdTitle(node, renderNode(node.value))|raw }}

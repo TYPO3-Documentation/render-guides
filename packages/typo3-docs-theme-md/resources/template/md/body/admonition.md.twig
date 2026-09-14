@@ -1,0 +1,48 @@
+{#- GFM alerts cover five kinds; the RST set is wider, so each admonition maps
+    to the closest alert and keeps its own wording as the first line when the
+    two do not coincide. A titled generic admonition has no alert at all and
+    renders as a blockquote with a bold title. -#}
+{%- set alertMap = {
+    'note': 'NOTE',
+    'seealso': 'NOTE',
+    'tip': 'TIP',
+    'hint': 'TIP',
+    'important': 'IMPORTANT',
+    'warning': 'WARNING',
+    'attention': 'WARNING',
+    'caution': 'WARNING',
+    'danger': 'CAUTION',
+    'error': 'CAUTION'
+} -%}
+{%- set labelMap = {
+    'note': 'Note',
+    'seealso': 'See also',
+    'tip': 'Tip',
+    'hint': 'Hint',
+    'important': 'Important',
+    'warning': 'Warning',
+    'attention': 'Attention',
+    'caution': 'Caution',
+    'danger': 'Danger',
+    'error': 'Error'
+} -%}
+{%- set alert = alertMap[name]|default(null) -%}
+{%- set label = labelMap[name]|default(null) -%}
+{%- set body -%}
+{{- renderNode(node) -}}
+{%- endset -%}
+{%- set inner -%}
+{%- if alert %}[!{{ alert }}]
+{% if label and label|lower != alert|lower %}**{{ label }}**
+
+{% endif %}
+{%- elseif isTitled and title %}**{{ renderNode(title)|trim|raw }}**
+
+{% elseif label %}**{{ label }}**
+
+{% endif %}
+{{- body|clean_content|raw -}}
+{%- endset -%}
+{{ renderMdPrefix(inner|clean_content, "> ")|raw }}
+{{ "\n" }}
+{{ "\n" }}

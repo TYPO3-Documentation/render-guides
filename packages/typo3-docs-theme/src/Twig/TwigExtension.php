@@ -21,6 +21,7 @@ use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use Throwable;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
@@ -56,6 +57,21 @@ final class TwigExtension extends AbstractExtension
 
     private string $typo3AzureEdgeURI = '';
 
+    /**
+     * Documents already reported for a missing "interlink-shortcode", so the
+     * configuration problem is stated once and not once per link.
+     *
+     * @var array<string, true>
+     */
+    private array $reportedMissingShortcode = [];
+
+    /**
+     * Documents already reported for an unusable project version.
+     *
+     * @var array<string, true>
+     */
+    private array $reportedMissingVersion = [];
+
     public function __construct(
         private readonly LoggerInterface               $logger,
         private readonly UrlGeneratorInterface         $urlGenerator,
@@ -87,6 +103,13 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getReportIssueLink', $this->getReportIssueLink(...), ['needs_context' => true]),
             new TwigFunction('getCurrentFilename', $this->getCurrentFilename(...), ['needs_context' => true]),
             new TwigFunction('sourceFilename', $this->getSourceFilename(...), ['needs_context' => true]),
+            new TwigFunction('markdownAlternate', $this->getMarkdownAlternate(...), ['needs_context' => true]),
+            new TwigFunction('markdownDownloadName', $this->getMarkdownDownloadName(...), ['needs_context' => true]),
+            new TwigFunction('markdownLinkUrl', $this->getMarkdownLinkUrl(...), ['needs_context' => true]),
+            new TwigFunction('markdownPermalink', $this->getMarkdownPermalink(...), ['needs_context' => true]),
+            new TwigFunction('markdownVersion', $this->getMarkdownVersion(...), ['needs_context' => true]),
+            new TwigFunction('markdownIsStartPage', $this->isMarkdownStartPage(...), ['needs_context' => true]),
+            new TwigFunction('getViewSourceLink', $this->getViewSourceLink(...), ['needs_context' => true]),
             new TwigFunction('getRelativePath', $this->getRelativePath(...), ['needs_context' => true]),
             new TwigFunction('getPagerLinks', $this->getPagerLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getPrevNextLinks', $this->getPrevNextLinks(...), ['is_safe' => ['html'], 'needs_context' => true]),
@@ -342,6 +365,48 @@ final class TwigExtension extends AbstractExtension
         return $gitHubPerPageLink ?? sprintf("https://github.com/%s/edit/%s/%s/%s", $githubButton, $githubBranch, $githubDirectory, $sourceFile);
     }
 
+    /**
+     * The page's source file on the forge it is maintained in.
+     *
+     * The rendered output no longer ships the reStructuredText itself -- it
+     * lives in the project's repository, which is where a reader following
+     * "view source" wants to end up anyway, with history and blame attached.
+     *
+     * Returns an empty string when no repository is configured, in which case
+     * the menu entry is left out rather than pointing nowhere.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getViewSourceLink(array $context): string
+    {
+        $sourceFile = $this->getSourceFilename($context);
+        if ($sourceFile === '') {
+            return '';
+        }
+
+        $branch = $this->themeSettings->getSettings('edit_on_github_branch', 'main');
+        $directory = trim($this->themeSettings->getSettings('edit_on_github_directory', 'Documentation'), '/');
+
+        $github = $this->themeSettings->getSettings('edit_on_github');
+        if ($github !== '') {
+            return sprintf('https://github.com/%s/blob/%s/%s/%s', $github, $branch, $directory, $sourceFile);
+        }
+
+        // No GitHub setting exists for GitLab, but "project_repository" already
+        // carries the repository URL and is validated for the same hosts as the
+        // issue links.
+        $repository = rtrim($this->themeSettings->getSettings('project_repository'), '/');
+        if (str_starts_with($repository, 'https://gitlab.com/')) {
+            return sprintf('%s/-/blob/%s/%s/%s', $repository, $branch, $directory, $sourceFile);
+        }
+
+        if (str_starts_with($repository, 'https://github.com/')) {
+            return sprintf('%s/blob/%s/%s/%s', $repository, $branch, $directory, $sourceFile);
+        }
+
+        return '';
+    }
+
     private function getEditOnGitHubLinkPerPage(RenderContext $renderContext): string|null
     {
         try {
@@ -533,6 +598,380 @@ final class TwigExtension extends AbstractExtension
         } catch (\Exception) {
             return '';
         }
+    }
+
+    /**
+     * Turn a link in the Markdown output into a permalink.
+     *
+     * A Markdown file is meant to be downloaded and read away from the site it
+     * came from, so a relative link would be dead on arrival. Every internal
+     * target carries an anchor, which is exactly what the permalink service
+     * resolves, so "interlink_shortcode" plus that anchor is enough to build a
+     * URL that keeps working -- and keeps working across versions, which a
+     * hard-coded manual URL would not.
+     *
+     * Left alone: anything with a scheme (external links, mailto:) and links
+     * without an anchor, which in practice are images. Without
+     * "interlink_shortcode" no permalink can be built, so those fall back to
+     * the relative HTML page.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getMarkdownLinkUrl(array $context, string $url): string
+    {
+        if ($url === '' || preg_match('#^[a-z][a-z0-9+.-]*:#i', $url) === 1) {
+            return $url;
+        }
+
+        $anchorPosition = strpos($url, '#');
+        $anchor = $anchorPosition === false ? '' : substr($url, $anchorPosition + 1);
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+
+        if ($anchor === '') {
+            // "#" is a reference to the page being rendered. That is fine in a
+            // browser, but a downloaded file should still point somewhere, so
+            // it becomes the permalink of this very page.
+            $anchor = $url === '#'
+                ? ($this->getRenderContext($context)->getCurrentDocumentEntry()?->getTitle()->getId() ?? '')
+                : $this->anchorOfLinkedDocument($context, $url);
+        }
+
+        // The fragment of a rendered URL keeps the casing of the element id it
+        // points at, which HTML resolves fine. The permalink service looks the
+        // target up in the inventory, where it is registered normalised, so the
+        // anchor has to be reduced the same way getPermalink() does it.
+        if ($anchor !== '') {
+            $anchor = $this->anchorNormalizer->reduceAnchor($anchor);
+        }
+
+        if ($anchor === '' || $interlink === '') {
+            $this->logUnresolvedMarkdownLink($context, $url, $interlink === '');
+
+            // The URL generator appended the current output format, so an
+            // internal link reads "Feature.md" here; the HTML page is the one
+            // worth pointing at.
+            return preg_replace('/\.md(?=$|#)/', '.html', $url) ?? $url;
+        }
+
+        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchor
+            . $this->permalinkVersionSuffix($this->getRenderContext($context));
+    }
+
+    /**
+     * The "@version" a permalink has to carry, or "" when it must not carry one.
+     *
+     * A permalink without a version resolves to the latest stable release. A
+     * Markdown file is a snapshot of one version, so without the suffix every
+     * link in it would send its reader into whatever manual is current later --
+     * the opposite of what permalinks are here for.
+     *
+     * Manuals that exist only once carry no version at all; DefaultInventories
+     * knows which those are. What it does not know is a third-party manual,
+     * and those are versioned.
+     */
+    private function permalinkVersionSuffix(RenderContext $renderContext): string
+    {
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+        if ($interlink === '') {
+            return '';
+        }
+
+        $inventory = DefaultInventories::tryFrom($interlink);
+        if ($inventory !== null && !$inventory->isVersioned()) {
+            return '';
+        }
+
+        $version = $this->normalizedProjectVersion($renderContext);
+        if ($version === '') {
+            return '';
+        }
+
+        return '@' . $version;
+    }
+
+    /**
+     * The project version in the form a URL and a metadata field can carry, or
+     * "" when there is none.
+     *
+     * A checkout names itself "main (development)"; both want the bare "main".
+     * A project that names no version at all is left alone -- the theme treats
+     * the version as optional everywhere else too.
+     */
+    private function normalizedProjectVersion(RenderContext $renderContext): string
+    {
+        $version = explode(' ', trim((string) $renderContext->getProjectNode()->getVersion()))[0];
+        if ($version === '') {
+            return '';
+        }
+
+        if (preg_match('/^[A-Za-z0-9][A-Za-z0-9._-]*$/', $version) !== 1) {
+            $this->reportUnusablePermalinkVersion($renderContext, $version);
+
+            return '';
+        }
+
+        return $version;
+    }
+
+    /**
+     * The permalink of the document being rendered, for the Markdown front
+     * matter: the one URL that names this page no matter where the file ends
+     * up, and the way back to the HTML it was rendered from.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getMarkdownPermalink(array $context): string
+    {
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+        $renderContext = $this->getRenderContext($context);
+        $entry = $renderContext->getCurrentDocumentEntry();
+        $anchor = $entry === null ? '' : $this->documentAnchor($renderContext, $entry);
+        if ($interlink === '' || $anchor === '') {
+            return '';
+        }
+
+        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchor
+            . $this->permalinkVersionSuffix($renderContext);
+    }
+
+    /** @param array{env: RenderContext} $context */
+    public function getMarkdownVersion(array $context): string
+    {
+        return $this->normalizedProjectVersion($this->getRenderContext($context));
+    }
+
+    /**
+     * Whether the document being rendered is the manual's start page.
+     *
+     * Worth stating rather than leaving to be guessed: once the files lie
+     * flat in a directory, the entry point is no longer the one at the top,
+     * and "Index.rst" is a name several documents in a manual share.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function isMarkdownStartPage(array $context): bool
+    {
+        $renderContext = $this->getRenderContext($context);
+        $entry = $renderContext->getCurrentDocumentEntry();
+        if ($entry === null) {
+            return false;
+        }
+
+        try {
+            return $entry->getFile() === $renderContext->getProjectNode()->getRootDocumentEntry()->getFile();
+        } catch (Throwable) {
+            return false;
+        }
+    }
+
+    /**
+     * Reported once per document: the version is a property of the project, so
+     * every link on the page is missing it for the same reason.
+     */
+    private function reportUnusablePermalinkVersion(RenderContext $renderContext, string $version): void
+    {
+        $document = $renderContext->hasCurrentFileName() ? $renderContext->getCurrentFileName() : '';
+        if (isset($this->reportedMissingVersion[$document])) {
+            return;
+        }
+
+        $this->reportedMissingVersion[$document] = true;
+        $this->logger->warning(
+            sprintf(
+                'The version "%s" from the guides.xml cannot go into a URL, so the Markdown permalinks of this '
+                . 'manual resolve to its latest stable release instead of to this version. ',
+                $version,
+            ),
+            $renderContext->getLoggerInformation(),
+        );
+    }
+
+    /**
+     * A link left relative in the Markdown output is dead once the file is
+     * downloaded, so it is worth reporting rather than shipping quietly.
+     *
+     * A missing "interlink_shortcode" affects every link on the page alike, so
+     * it is reported once per document instead of once per link; an
+     * unresolvable target is specific to that link and is reported each time.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    private function logUnresolvedMarkdownLink(array $context, string $url, bool $missingShortcode): void
+    {
+        $renderContext = $this->getRenderContext($context);
+
+        if ($missingShortcode) {
+            $document = $renderContext->hasCurrentFileName() ? $renderContext->getCurrentFileName() : '';
+            if (isset($this->reportedMissingShortcode[$document])) {
+                return;
+            }
+
+            $this->reportedMissingShortcode[$document] = true;
+
+            // Not a warning: a manual without "interlink-shortcode" cannot have
+            // permalinks at all, so this describes how the project is set up
+            // rather than something broken in the page. Warning per document
+            // would drown the links that genuinely failed to resolve.
+            $this->logger->info(
+                'Links in the Markdown output stay relative because "interlink-shortcode" is not set in the guides.xml. ',
+                $renderContext->getLoggerInformation(),
+            );
+
+            return;
+        }
+
+        $this->logger->warning(
+            sprintf('The Markdown link to "%s" could not be resolved to a permalink and stays relative. ', $url),
+            $renderContext->getLoggerInformation(),
+        );
+    }
+
+    /**
+     * The anchor of a page linked without one, so it too can become a permalink.
+     *
+     * A ":doc:" reference points at a page rather than a label, so the
+     * generated URL carries no fragment. The target is in this same manual,
+     * though, so its document entry is known and its title carries the anchor.
+     *
+     * Returns an empty string for anything that is not a document of this
+     * manual -- an image, most commonly.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    private function anchorOfLinkedDocument(array $context, string $url): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        $path = preg_replace('/\.[A-Za-z0-9]+$/', '', $url);
+        if ($path === null || $path === '') {
+            return '';
+        }
+
+        try {
+            $canonical = $this->documentNameResolver->canonicalUrl($renderContext->getDirName(), $path);
+            $entry = $renderContext->getProjectNode()->findDocumentEntry($canonical);
+        } catch (Throwable) {
+            return '';
+        }
+
+        return $entry === null ? '' : $this->documentAnchor($renderContext, $entry);
+    }
+
+    /**
+     * The anchor that identifies one document, taken from its own label.
+     *
+     * Not the title's id: titles repeat, and the pipeline exempts "std:title"
+     * from its duplicate-anchor check for exactly that reason, so only one of
+     * several pages sharing a title ends up registered under it. The TYPO3
+     * changelog shows what that costs -- the same entry backported to three
+     * versions carries three distinct labels ("breaking-84843",
+     * "breaking-84843-1668719172", "breaking-84843-1668719171") but a single
+     * title anchor, which resolves to whichever of the three won. Building a
+     * permalink from the title would silently point at the wrong version.
+     *
+     * Falls back to the title id when a document declares no label of its own,
+     * which is the best available identifier in that case.
+     */
+    private function documentAnchor(RenderContext $renderContext, DocumentEntryNode $entry): string
+    {
+        try {
+            $document = $renderContext->getDocumentNodeForEntry($entry);
+        } catch (Throwable) {
+            $document = null;
+        }
+
+        foreach ($document?->getChildren() ?? [] as $child) {
+            if (!$child instanceof SectionNode) {
+                continue;
+            }
+
+            foreach ($child->getChildren() as $sectionChild) {
+                if ($sectionChild instanceof AnchorNode) {
+                    return $this->anchorNormalizer->reduceAnchor($sectionChild->toString());
+                }
+            }
+
+            break;
+        }
+
+        $id = $entry->getTitle()->getId();
+
+        return $id === '' ? '' : $this->anchorNormalizer->reduceAnchor($id);
+    }
+
+    /**
+     * The Markdown rendering of the current page, which is written next to the
+     * HTML file with the same base name.
+     *
+     * Machine consumers want the content without the surrounding HTML; the
+     * Markdown has includes, substitutions and interlinks resolved, which the
+     * reStructuredText source does not.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    /**
+     * The name the Markdown of this page is saved under.
+     *
+     * Built from the same two parts as its permalink, the manual's
+     * "interlink_shortcode" and the page's anchor, so a file picked out of a
+     * download folder still says which page of which manual it is -- and files
+     * collected from several manuals cannot collide, where every overview page
+     * would otherwise arrive as "index.md" and overwrite the last.
+     *
+     * Returns an empty string when either part is missing, which leaves the
+     * browser to name the file from the URL as before.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getMarkdownDownloadName(array $context): string
+    {
+        if ($this->getMarkdownAlternate($context) === '') {
+            return '';
+        }
+
+        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
+        $renderContext = $this->getRenderContext($context);
+        $entry = $renderContext->getCurrentDocumentEntry();
+        $anchor = $entry === null ? '' : $this->documentAnchor($renderContext, $entry);
+        if ($interlink === '' || $anchor === '') {
+            return '';
+        }
+
+        $prefix = $this->anchorNormalizer->reduceAnchor($interlink);
+
+        // Changelog anchors already carry the manual's own name; repeating it
+        // would read as "changelog-changelog-feature-...".
+        if ($anchor === $prefix || str_starts_with($anchor, $prefix . '-')) {
+            return $anchor . '.md';
+        }
+
+        return $prefix . '-' . $anchor . '.md';
+    }
+
+    /**
+     * The Markdown rendering of the current page, which is written next to the
+     * HTML file with the same base name.
+     *
+     * Machine consumers want the content without the surrounding HTML; the
+     * Markdown has includes, substitutions and interlinks resolved, which the
+     * reStructuredText source does not.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getMarkdownAlternate(array $context): string
+    {
+        // No Markdown is written when the project opted out, so neither the
+        // head link nor the menu entry may promise one.
+        $renderMarkdown = strtolower(trim($this->themeSettings->getSettings('render_markdown', 'true')));
+        if (in_array($renderMarkdown, ['', 'false', '0', 'off', 'no'], true)) {
+            return '';
+        }
+
+        $renderContext = $this->getRenderContext($context);
+        if (!$renderContext->hasCurrentFileName()) {
+            return '';
+        }
+
+        return basename($renderContext->getCurrentFileName()) . '.md';
     }
 
     /**

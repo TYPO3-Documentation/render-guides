@@ -1,0 +1,7 @@
+{#- Markdown cannot embed a player, and the node carries nothing but the video
+    id, so the video becomes a link to itself. The watch URL rather than the
+    nocookie embed one: the privacy gain of youtube-nocookie.com is about
+    loading the player on our page, which a link does not do, and the watch
+    page is what a reader following the link expects. -#}
+[Watch this video on YouTube](https://www.youtube.com/watch?v={{ node.youtubeId }})
+{{ "\n" }}

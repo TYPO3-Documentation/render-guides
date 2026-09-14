@@ -1,0 +1,31 @@
+{#- A TYPO3 file definition: the file name and where it lives. Same shape as a
+    confval, which is what the HTML template builds it as too. -#}
+{%- set properties = [] -%}
+{%- if node.scope -%}
+    {%- set properties = properties|merge([{'label': 'Scope', 'value': node.scope|md_escape}]) -%}
+{%- endif -%}
+{%- if node.composerPathPrefix or node.composerPath -%}
+    {%- set properties = properties|merge([{'label': 'Path (Composer)', 'value': (node.composerPathPrefix ~ node.composerPath ~ node.plainContent)|md_escape}]) -%}
+{%- endif -%}
+{%- if node.classicPathPrefix or node.classicPath -%}
+    {%- set properties = properties|merge([{'label': 'Path (Classic)', 'value': (node.classicPathPrefix ~ node.classicPath ~ node.plainContent)|md_escape}]) -%}
+{%- endif -%}
+{%- if node.configuration -%}
+    {%- set properties = properties|merge([{'label': 'Configuration', 'value': renderNode(node.configuration)|inline_text}]) -%}
+{%- endif -%}
+{%- if node.command -%}
+    {%- set properties = properties|merge([{'label': 'Command', 'value': renderNode(node.command)|inline_text}]) -%}
+{%- endif -%}
+{%- set body -%}
+{%- for property in properties -%}
+-   *{{ property.label }}:* {{ property.value|raw }}{{ "\n" }}
+{%- endfor -%}
+{{ "\n" }}
+{%- if node.description -%}
+{{- renderNode(node.description)|raw -}}
+{%- endif -%}
+{%- endset -%}
+-   **{{ node.plainContent|md_escape|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

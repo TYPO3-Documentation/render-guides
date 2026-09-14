@@ -1,0 +1,11 @@
+{#- A UML diagram is PlantUML source that HTML turns into a picture. Markdown
+    has no renderer, so the source is shown as it is, tagged as plantuml for the
+    renderers that do know it. -#}
+```plantuml
+{{ node.value|trim|raw }}
+```
+{%- if node.caption %}
+{{ "\n" }}
+{{ node.caption|md_escape|raw }}
+{%- endif %}
+{{ "\n" }}

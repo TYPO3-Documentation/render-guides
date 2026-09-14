@@ -1,0 +1,10 @@
+{% if node.isOrdered -%}
+    {%- for item in node.value -%}
+1.  {{ renderMdIndent(renderNode(item.value)|clean_content, 2)|trim|raw }}{{ "\n" }}
+    {%- endfor -%}
+{%- else -%}
+    {%- for item in node.value -%}
+-   {{ renderMdIndent(renderNode(item.value)|clean_content, 2)|trim|raw }}{{ "\n" }}
+    {%- endfor -%}
+{%- endif %}
+{{ "\n" }}

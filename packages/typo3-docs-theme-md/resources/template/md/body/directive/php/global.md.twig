@@ -1,0 +1,7 @@
+{%- set body -%}
+{{- renderNode(node.value)|raw -}}
+{%- endset -%}
+-   **{{ ('global ' ~ node.name)|md_escape|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

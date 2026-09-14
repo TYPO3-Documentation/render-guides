@@ -1,0 +1,25 @@
+{#- A class, interface, trait, enum or exception.
+
+    Shaped like a confval, the way every named definition in this theme is: the
+    signature bold as a list item, so the definition has an end and its members
+    nest inside it rather than running on after it.
+
+    Short properties come before the description and blocks come after it. A
+    fully qualified name is one line of text, so it goes first. -#}
+{%- set fqn = node.name.namespaceNode ? '\\' ~ node.name.namespaceNode.name ~ '\\' ~ node.name.name : '' -%}
+{%- set signature -%}
+    {%- for modifier in node.modifiers -%}{{ renderNode(modifier)|raw }} {% endfor -%}
+    {{- node.type|raw }} {{ node.name.name|raw -}}
+    {%- if node.type == 'enum' and node.phpType %} : {{ node.phpType|raw }}{% endif -%}
+{%- endset -%}
+{%- set body -%}
+    {%- if fqn -%}
+-   *Fully qualified name:* `{{ fqn|raw }}`
+{{ "\n\n" }}
+    {%- endif -%}
+    {{- renderNode(node.value)|raw -}}
+{%- endset -%}
+-   **{{ signature|inline_text|md_escape|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

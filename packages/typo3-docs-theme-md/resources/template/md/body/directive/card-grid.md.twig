@@ -1,0 +1,2 @@
+{#- The grid is the layout; the cards are the content. -#}
+{%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}

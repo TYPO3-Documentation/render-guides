@@ -1,0 +1,15 @@
+{#- Markdown has no definition list, so the term becomes a list item and its
+    definitions the item's body. Inside a list item indentation is
+    continuation, which is what ties the definition to its term; under a bare
+    paragraph it would be an indented code block. -#}
+{%- set term -%}
+{{- renderNode(node.term)|inline_text|raw -}}
+{%- for classifier in node.classifiers %} : {{ renderNode(classifier)|inline_text|raw }}{% endfor -%}
+{%- endset -%}
+{%- set body -%}
+{%- for definition in node.children -%}{{- renderNode(definition) -}}{%- endfor -%}
+{%- endset -%}
+-   **{{ term|raw }}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

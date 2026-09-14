@@ -1,0 +1,35 @@
+{#- A directory tree is a nested list that HTML gives folder icons and collapse
+    toggles. Markdown keeps the nesting and drops the rest.
+
+    The items are not ordinary list nodes -- an item holds its label in its
+    children and its sub-trees in "subLists" -- so the structure is walked the
+    same way the HTML template walks it. Passing the node through would run
+    every name together on one line.
+
+    Each item emits exactly one newline: a blank line between them would make
+    the list loose, and a renderer then wraps every name in its own paragraph. -#}
+{%- macro item(node) -%}
+    {%- set label -%}
+        {%- for part in node.children -%}
+            {%- if not part.isList -%}{{ renderNode(part)|raw }}{%- endif -%}
+        {%- endfor -%}
+    {%- endset -%}
+    {%- set children -%}
+        {%- for list in node.subLists -%}
+            {%- for child in list.children -%}
+                {{- _self.item(child) -}}
+            {%- endfor -%}
+        {%- endfor -%}
+    {%- endset -%}
+    {{- ('-   ' ~ label|inline_text)|raw -}}{{- "\n" -}}
+    {%- if children|trim -%}
+        {{- renderMdIndent(children|clean_content, 2)|raw -}}
+    {%- endif -%}
+{%- endmacro -%}
+{%- import _self as tree -%}
+{%- for list in node.children -%}
+    {%- for entry in list.children -%}
+        {{- tree.item(entry) -}}
+    {%- endfor -%}
+{%- endfor -%}
+{{ "\n" }}

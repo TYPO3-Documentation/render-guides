@@ -1,0 +1,39 @@
+{#- YAML front matter: what a tool needs to know about the file that the file
+    itself cannot say. Not CommonMark, but what every tool that reads Markdown
+    expects, and this output exists to be read by tools.
+
+    A key whose value is unknown is left out rather than written empty: a
+    permalink with nothing behind it is worse than no permalink. -#}
+{%- set permalink = markdownPermalink() -%}
+{%- set version = markdownVersion() -%}
+{%- set source = sourceFilename() -%}
+{%- set frontMatter -%}
+{%- if node.title %}title: {{ node.title.toString()|md_yaml|raw }}
+{% endif -%}
+{%- if env.projectNode.title %}manual: {{ env.projectNode.title|md_yaml|raw }}
+{% endif -%}
+{%- if version %}version: {{ version|md_yaml|raw }}
+{% endif -%}
+{%- if permalink %}permalink: {{ permalink|md_yaml|raw }}
+{% endif -%}
+{%- if source %}source: {{ source|md_yaml|raw }}
+{% endif -%}
+{%- if markdownIsStartPage() %}start: true
+{% endif -%}
+{%- if env.projectNode.lastRendered %}modified: {{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP")|md_yaml|raw }}
+{% endif -%}
+{%- if isNoSearch() %}noindex: true
+{% endif -%}
+{%- endset -%}
+{%- set renderedContent -%}
+    {%- for child in node.children -%}
+        {{- renderNode(child) -}}
+    {%- endfor -%}
+{%- endset -%}
+{%- if frontMatter|trim -%}
+---
+{{ frontMatter|trim|raw }}
+---
+{{ "\n" }}{% endif -%}
+{{- renderedContent | clean_content | trim | raw -}}
+{{ "\n" }}

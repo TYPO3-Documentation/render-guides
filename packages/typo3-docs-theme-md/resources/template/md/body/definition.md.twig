@@ -1,0 +1,3 @@
+{#- The body of one definition; its term is written by the list item that
+    holds it. -#}
+{%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}

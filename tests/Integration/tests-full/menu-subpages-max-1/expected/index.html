@@ -18,6 +18,7 @@
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
 <link href="_resources/css/theme.css" rel="stylesheet">
 <link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<link href="index.md" rel="alternate" title="Markdown" type="text/markdown">
 <script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
 <script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
                         <link href="someDirectory/index.html" rel="next" title="Some Page"/>
@@ -83,9 +84,13 @@
                 </button>
                 <div id="options-panel" class="shadow p-3" popover>
                     <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
-                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" rel="nofollow noopener" target="_blank">
+                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-code"></i>
         View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="index.md" id="btnViewMarkdown" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        View as Markdown
     </a>
     <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-circle-info"></i>
@@ -120,9 +125,13 @@
                         </div>
                         <div class="toc-options d-lg-none">
                             <p class="caption">Options</p>
-                                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" rel="nofollow noopener" target="_blank">
+                                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-code"></i>
         View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="index.md" id="btnViewMarkdown" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        View as Markdown
     </a>
     <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-circle-info"></i>
@@ -140,7 +149,11 @@
                 <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
         
 
-        <div class="breadcrumb-additions"></div>
+        <div class="breadcrumb-additions">                <a class="btn btn-sm btn-light" href="index.md" id="btnDownloadMarkdown" rel="nofollow noopener" download>
+                    <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
+                    <span class="btn-text">Markdown</span>
+                </a>
+            </div>
     </nav>
                     
 <article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">

@@ -1,0 +1,5 @@
+{%- set title = node.title ? renderNode(node.title.value)|inline_text : '' -%}
+{%- if title %}**{{ title|raw }}**
+{{ "\n" }}
+{% endif -%}
+{{- renderNode(node.value) -}}

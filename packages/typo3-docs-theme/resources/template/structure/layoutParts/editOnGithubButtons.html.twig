@@ -6,11 +6,34 @@
     </a>
 {% endif -%}
 
+{#- While "copy_sources" is on, the reStructuredText is published beside the
+    HTML and the entry links to it -- rendering this link is also what writes
+    the file. Once it is switched off the source is only in the repository, so
+    the entry points there instead, and is left out when no repository is
+    configured. -#}
 {%- set copySources = getSettings('copy_sources') -%}
 {%- if (copySources) %}
-    <a class="dropdown-item d-flex align-items-center gap-2" href="{{ copyDownload(sourceFilename(), '_sources/' ~ sourceFilename() ~ '.txt') }}" rel="nofollow noopener" target="_blank">
+    <a class="dropdown-item d-flex align-items-center gap-2" href="{{ copyDownload(sourceFilename(), '_sources/' ~ sourceFilename() ~ '.txt') }}" id="btnViewSource" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-code"></i>
         View source
+    </a>
+{% else -%}
+{%- set viewSourceLink = getViewSourceLink() -%}
+{%- if (viewSourceLink) %}
+    <a class="dropdown-item d-flex align-items-center gap-2" href="{{ viewSourceLink }}" id="btnViewSource" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-code"></i>
+        View source
+    </a>
+{% endif -%}
+{% endif -%}
+
+{#- The same page as Markdown, for reading in the browser. Downloading it is
+    a button of its own next to the breadcrumb. -#}
+{%- set markdownLink = markdownAlternate() -%}
+{%- if (markdownLink) %}
+    <a class="dropdown-item d-flex align-items-center gap-2" href="{{ markdownLink }}" id="btnViewMarkdown" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        View as Markdown
     </a>
 {% endif -%}
 

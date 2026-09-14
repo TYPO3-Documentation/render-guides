@@ -24,6 +24,11 @@
             "name": "t3docs-typo3-api",
             "directory": "packages/typo3-api",
             "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-api.git"
+        },
+        {
+            "name": "t3docs-typo3-docs-theme-md",
+            "directory": "packages/typo3-docs-theme-md",
+            "target": "git@github.com:TYPO3-Documentation/t3docs-typo3-docs-theme-md.git"
         }
     ]
 }

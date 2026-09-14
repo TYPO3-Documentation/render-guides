@@ -1,0 +1,5 @@
+{{ renderNode(node.image)|raw }}
+{%- if node.caption %}
+{{ renderNode(node.caption)|raw }}
+{% endif -%}
+{{ "\n" }}

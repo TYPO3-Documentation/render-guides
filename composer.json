@@ -45,6 +45,7 @@
         "symfony/polyfill-php82": "*",
         "t3docs/typo3-api": "self.version",
         "t3docs/typo3-docs-theme": "self.version",
+        "t3docs/typo3-docs-theme-md": "self.version",
         "t3docs/typo3-guides-cli": "self.version",
         "t3docs/typo3-guides-extension": "self.version",
         "t3docs/typo3-version-handling": "self.version"
@@ -53,6 +54,7 @@
         "psr-4": {
             "T3Docs\\GuidesCli\\": "packages/typo3-guides-cli/src/",
             "T3Docs\\GuidesExtension\\": "packages/typo3-guides-extension/src/",
+            "T3Docs\\Typo3DocsThemeMd\\": "packages/typo3-docs-theme-md/src/",
             "T3Docs\\Typo3DocsTheme\\": "packages/typo3-docs-theme/src/",
             "T3Docs\\VersionHandling\\": "packages/typo3-version-handling/src/"
         }

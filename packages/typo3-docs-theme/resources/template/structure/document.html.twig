@@ -45,6 +45,15 @@
                     <span class="btn-text">Give feedback</span>
                 </a>
             {% endif -%}
+            {#- The page as Markdown, for handing to a tool rather than reading.
+                Absent when the project renders no Markdown. -#}
+            {%- set markdownLink = markdownAlternate() -%}
+            {%- if (markdownLink)  %}
+                <a class="btn btn-sm btn-light" href="{{ markdownLink }}" id="btnDownloadMarkdown" rel="nofollow noopener" download{% set downloadName = markdownDownloadName() %}{% if downloadName %}="{{ downloadName }}"{% endif %}>
+                    <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
+                    <span class="btn-text">Markdown</span>
+                </a>
+            {% endif -%}
             {%- set gitHubLink = getEditOnGitHubLink() -%}
             {%- if (gitHubLink)  %}
                 <a class="btn btn-sm btn-secondary" href="{{ gitHubLink }}" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">

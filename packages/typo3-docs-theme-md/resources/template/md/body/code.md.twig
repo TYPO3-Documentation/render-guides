@@ -1,0 +1,12 @@
+{#- A caption says which file the snippet belongs in, or whether it is the
+    before or the after of a migration. Dropping it leaves consecutive blocks
+    in the same language indistinguishable, so it is carried as a bold line
+    above the fence, where HTML puts it too. -#}
+{%- if node.caption -%}
+**{{ renderNode(node.caption)|inline_text|raw }}**
+{{ "\n" }}
+{% endif -%}
+```{{ node.language|default('')|raw }}
+{{ node.value|raw }}
+```
+{{ "\n" }}

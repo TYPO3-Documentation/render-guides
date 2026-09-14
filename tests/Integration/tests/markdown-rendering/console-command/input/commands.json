@@ -1,0 +1,95 @@
+{
+    "application": {
+        "name": "TYPO3 CMS",
+        "version": "14.0.0-dev"
+    },
+    "commands": [
+        {
+            "name": "cache:flush",
+            "description": "Flush TYPO3 caches.",
+            "usage": [
+                "cache:flush [-g|--group [GROUP]]"
+            ],
+            "help": "Flushes the caches of the given group.",
+            "definition": {
+                "arguments": [],
+                "options": {
+                    "group": {
+                        "name": "--group",
+                        "shortcut": "-g",
+                        "accept_value": true,
+                        "is_value_required": false,
+                        "is_multiple": false,
+                        "description": "The cache group to flush (system, pages, di or all)",
+                        "default": "all"
+                    }
+                }
+            },
+            "hidden": false
+        },
+        {
+            "name": "language:update",
+            "description": "Update the language files of all activated extensions",
+            "usage": [
+                "language:update [--skip-extension SKIP-EXTENSION] [--] [<locales>...]"
+            ],
+            "help": "",
+            "definition": {
+                "arguments": {
+                    "locales": {
+                        "name": "locales",
+                        "is_required": false,
+                        "is_array": true,
+                        "description": "Provide iso codes separated by space to update only selected language packs.",
+                        "default": []
+                    }
+                },
+                "options": {
+                    "skip-extension": {
+                        "name": "--skip-extension",
+                        "shortcut": "",
+                        "accept_value": true,
+                        "is_value_required": true,
+                        "is_multiple": true,
+                        "description": "Skip extension, for example one that has no language packs.",
+                        "default": []
+                    }
+                }
+            },
+            "hidden": false
+        },
+        {
+            "name": "_complete",
+            "description": "Internal command to provide shell completion suggestions",
+            "usage": [
+                "_complete"
+            ],
+            "help": "",
+            "definition": {
+                "arguments": [],
+                "options": {}
+            },
+            "hidden": true
+        }
+    ],
+    "namespaces": [
+        {
+            "id": "_global",
+            "commands": [
+                "_complete"
+            ]
+        },
+        {
+            "id": "cache",
+            "commands": [
+                "cache:flush"
+            ]
+        },
+        {
+            "id": "language",
+            "commands": [
+                "language:update"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{#- An option of a console command. Same shape as a confval: the name, the
+    properties that constrain it, then what it does. -#}
+{%- if node.isValueRequired -%}
+    {%- set accepts = 'Required' -%}
+{%- elseif node.acceptValue -%}
+    {%- set accepts = 'Optional' -%}
+{%- else -%}
+    {%- set accepts = 'None allowed' -%}
+{%- endif -%}
+{%- if node.isMultipe -%}
+    {%- set accepts = accepts ~ ' (multiple)' -%}
+{%- endif -%}
+{%- set properties = [{'label': 'Value', 'value': accepts}] -%}
+{%- if node.default != null -%}
+    {%- set properties = properties|merge([{'label': 'Default value', 'value': node.default|md_escape}]) -%}
+{%- endif -%}
+{%- set body -%}
+{%- for property in properties -%}
+-   *{{ property.label }}:* {{ property.value|raw }}{{ "\n" }}
+{%- endfor -%}
+{{ "\n" }}
+{{- node.description|md_escape|raw -}}
+{%- if node.value -%}
+{{ "\n\n" }}
+{{- renderNode(node.value)|raw -}}
+{%- endif -%}
+{%- endset -%}
+-   **{{ node.plainContent|md_escape|raw }}{% if node.shortcut %} / {{ node.shortcut|md_escape|raw }}{% endif %}**
+{{ "\n" }}
+{{ renderMdIndent(body|clean_content, 2)|raw }}
+{{ "\n" }}

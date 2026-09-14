@@ -1,0 +1,4 @@
+{#- The HTML theme renders an unmapped text role as <code>, and most roles that
+    reach here mark up something meant to be read literally - a command, a key,
+    a file. Backticks say the same in Markdown. -#}
+`{{- node.value|raw -}}`

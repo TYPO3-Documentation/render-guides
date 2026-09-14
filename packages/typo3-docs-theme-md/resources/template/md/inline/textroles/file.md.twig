@@ -1,0 +1,7 @@
+{%- if node.fileObject and node.url -%}
+    [`{{ node.fileLabel|raw }}`]({{ node.url }})
+{%- elseif node.fileObject -%}
+    `{{- node.fileLabel|raw -}}`
+{%- else -%}
+    `{{- node.value|raw -}}`
+{%- endif -%}

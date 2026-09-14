@@ -1,0 +1,11 @@
+{#- Tabs show one panel at a time and hide the rest behind a click. Markdown
+    has no panels, so each tab becomes a bold lead-in with its content below
+    it, one after another - which is what a reader of the page would get by
+    clicking through them all. -#}
+{%- for tab in node.tabs -%}
+{%- set title = renderNode(tab.content)|inline_text -%}
+{%- if title %}**{{ title|raw }}**
+{{ "\n" }}
+{% endif -%}
+{{- renderNode(tab.value) -}}
+{%- endfor -%}

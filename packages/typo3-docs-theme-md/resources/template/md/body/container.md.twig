@@ -1,0 +1,22 @@
+{#- A container carries its meaning in its classes. A line block is a run of
+    lines whose breaks are part of the text - an address, a verse - and the
+    parser marks each one with the "line" class rather than a newline node, so
+    without this they run together.
+
+    The break is written as a trailing backslash, not two trailing spaces: the
+    output is right-trimmed per line, which would silently remove the spaces
+    and the break with them. -#}
+{%- set classes = node.classes -%}
+{%- if 'line' in classes -%}
+{%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}
+{%- elseif 'line-block' in classes -%}
+{%- set lines = [] -%}
+{%- for child in node.children -%}
+    {%- set lines = lines|merge([renderNode(child)|inline_text]) -%}
+{%- endfor -%}
+{{ lines|join("\\\n")|raw }}
+{{ "\n" }}
+{{ "\n" }}
+{%- else -%}
+{%- for child in node.children -%}{{- renderNode(child) -}}{%- endfor -%}
+{%- endif -%}

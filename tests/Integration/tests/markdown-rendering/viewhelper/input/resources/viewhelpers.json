@@ -1,0 +1,78 @@
+{
+    "namespace": "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers",
+    "viewHelpers": {
+        "demo": {
+            "className": "TYPO3Fluid\\Fluid\\ViewHelpers\\DemoViewHelper",
+            "namespace": "TYPO3Fluid\\Fluid\\ViewHelpers",
+            "name": "DemoViewHelper",
+            "tagName": "demo",
+            "documentation": "Splits a string, and shows what an argument list looks like.",
+            "xmlNamespace": "http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers",
+            "docTags": [],
+            "argumentDefinitions": {
+                "value": {
+                    "name": "value",
+                    "type": "string",
+                    "description": "The string to split",
+                    "required": true,
+                    "defaultValue": null,
+                    "escape": null
+                },
+                "limit": {
+                    "name": "limit",
+                    "type": "int",
+                    "description": "How many items to return at most.",
+                    "required": false,
+                    "defaultValue": 9223372036854775807,
+                    "escape": null
+                }
+            },
+            "allowsArbitraryArguments": false,
+            "nameWithoutSuffix": "Demo",
+            "namespaceWithoutSuffix": "TYPO3Fluid\\Fluid",
+            "uri": "Global/Demo"
+        },
+        "arbitrary": {
+            "className": "TYPO3Fluid\\Fluid\\ViewHelpers\\ArbitraryViewHelper",
+            "namespace": "TYPO3Fluid\\Fluid\\ViewHelpers",
+            "name": "ArbitraryViewHelper",
+            "tagName": "arbitrary",
+            "documentation": "Passes anything it is given on to the tag it creates.",
+            "xmlNamespace": "http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers",
+            "docTags": [],
+            "argumentDefinitions": {
+                "data": {
+                    "name": "data",
+                    "type": "array",
+                    "description": "Additional data-* attributes.",
+                    "required": false,
+                    "defaultValue": null,
+                    "escape": null
+                }
+            },
+            "allowsArbitraryArguments": true,
+            "nameWithoutSuffix": "Arbitrary",
+            "namespaceWithoutSuffix": "TYPO3Fluid\\Fluid",
+            "uri": "Global/Arbitrary"
+        },
+        "retired": {
+            "className": "TYPO3Fluid\\Fluid\\ViewHelpers\\RetiredViewHelper",
+            "namespace": "TYPO3Fluid\\Fluid\\ViewHelpers",
+            "name": "RetiredViewHelper",
+            "tagName": "retired",
+            "documentation": "Kept for one more major version.",
+            "xmlNamespace": "http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers",
+            "docTags": {
+                "@deprecated": "since v13, will be removed in v14",
+                "@internal": "",
+                "@see": "Something that is dropped on purpose",
+                "Scope": "backend"
+            },
+            "argumentDefinitions": {},
+            "allowsArbitraryArguments": false,
+            "nameWithoutSuffix": "Retired",
+            "namespaceWithoutSuffix": "TYPO3Fluid\\Fluid",
+            "uri": "Global/Retired"
+        }
+    }
+}

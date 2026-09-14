@@ -16,6 +16,8 @@
         "brotkrueml/twig-codehighlight": "^1.0",
         "phpdocumentor/guides-graphs": "^1.0",
         "phpdocumentor/guides-theme-bootstrap": "^1.7",
-        "t3docs/typo3-version-handling": "self.version"
+        "t3docs/guides-php-domain": "^1.0",
+        "t3docs/typo3-version-handling": "self.version",
+        "t3docs/typo3-docs-theme-md": "self.version"
     }
 }
