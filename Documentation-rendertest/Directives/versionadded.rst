@@ -52,4 +52,56 @@ There’s also a “short form” allowed that looks like this:
 
 .. seealso:: https://typo3.org, https://typo3.com
 
+Linking to a changelog entry
+============================
 
+..  Maintainer note: the live example below must use a REAL, published core
+    changelog entry, otherwise it warns and fails the "renders without warning"
+    gate. The extension and "#anchor" forms are shown as ``code-block`` (not live
+    directives) on purpose: their fictional targets cannot resolve here and would
+    trip the same gate.
+
+The ``:changelog:`` option adds a link to the related changelog entry. The
+value is resolved as a cross-reference — a bare identifier against the core
+changelog inventory, ``vendor/package:anchor`` against that manual's inventory,
+``#anchor`` against this manual's own labels — so a target that does not exist
+produces a build warning and is marked unresolved, like any other unresolvable
+cross-reference, instead of becoming a dead link.
+
+For a TYPO3 core change, pass the changelog entry identifier:
+
+..  code-block:: rst
+
+    ..  versionchanged:: 14.0
+        :changelog: feature-107628-1729026000
+
+        Most modules have been moved from :guilabel:`System` to
+        :guilabel:`Administration`.
+
+which renders as:
+
+..  versionchanged:: 14.0
+    :changelog: feature-107628-1729026000
+
+    Most modules have been moved from :guilabel:`System` to
+    :guilabel:`Administration`.
+
+For an extension change, pass the extension's interlink shortcode
+(``vendor/package``) plus the changelog entry anchor:
+
+..  code-block:: rst
+
+    ..  versionchanged:: 2.0
+        :changelog: acme/acme-blog:changes-2-0-0
+
+        The teaser field was renamed; see the changelog entry for the migration.
+
+When linking the changelog of the current manual itself, use the short
+``#anchor`` form. It resolves against this manual's own labels:
+
+..  code-block:: rst
+
+    ..  versionchanged:: 2.1
+        :changelog: #changes-2-1-0
+
+        A local changelog reference, without repeating the shortcode.
