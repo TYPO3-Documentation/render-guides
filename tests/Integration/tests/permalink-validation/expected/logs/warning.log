@@ -1,0 +1,3 @@
+The permalink "https://docs.typo3.org/permalink/permalink_validation" names no manual and resolves to 404. Write "permalinktest:permalink-validation".
+The permalink "https://docs.typo3.org/permalink/permalinktest:permalink_validation" uses the anchor "permalink_validation", which is published as "permalink-validation".
+The permalink "https://docs.typo3.org/permalink/friendsoftypo3/content-blocks:field-types" uses the interlink key "friendsoftypo3/content-blocks", which the route reads as the manual "friendsoftypo3/content/blocks". Write "friendsoftypo3-content-blocks".
