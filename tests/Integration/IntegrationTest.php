@@ -96,6 +96,8 @@ final class IntegrationTest extends ApplicationTestCase
                 $outputFile = str_replace($expectedPath, $outputPath, $compareFile);
                 if (str_ends_with($compareFile, '.log')) {
                     self::assertFileContainsLines($compareFile, $outputFile);
+                } elseif (str_ends_with($compareFile, '.md')) {
+                    self::assertMarkdownFileEquals($compareFile, $outputFile, 'Expected file path: ' . $compareFile);
                 } elseif ($htmlOnlyBetweenMarkers && str_ends_with($compareFile, '.html')) {
                     self::assertFileEqualsTrimmedBetweenMarkers(
                         $compareFile,
@@ -207,6 +209,46 @@ final class IntegrationTest extends ApplicationTestCase
         self::assertFileExists($actual, $message);
 
         self::assertEquals(self::getTrimmedFileContent(file_get_contents($expected)), self::getTrimmedFileContent(file_get_contents($actual)), $message);
+    }
+
+    /**
+     * Asserts that two Markdown files are equal, blank lines included.
+     *
+     * Markdown may not be compared the way HTML is. In HTML a blank line is
+     * whitespace between tags and means nothing; in Markdown it is syntax. It
+     * separates paragraphs, ends a list, and closes a fenced code block --
+     * remove it and the document says something else. assertFileEqualsTrimmed()
+     * drops every blank line before comparing, so it would accept output that
+     * renders as one run-on paragraph.
+     *
+     * Trailing whitespace per line is still normalised: it is invisible in the
+     * source, no Markdown renderer cares about it, and an editor that strips it
+     * would otherwise break the fixtures.
+     *
+     * @throws ExpectationFailedException
+     */
+    private static function assertMarkdownFileEquals(string $expected, string $actual, string $message = ''): void
+    {
+        self::assertFileExists($expected, $message);
+        self::assertFileExists($actual, $message);
+
+        self::assertEquals(
+            self::normalizeMarkdown(file_get_contents($expected)),
+            self::normalizeMarkdown(file_get_contents($actual)),
+            $message,
+        );
+    }
+
+    private static function normalizeMarkdown(string $content): string
+    {
+        $content = str_replace(["\r\n", "\r"], "\n", $content);
+
+        $lines = explode("\n", $content);
+        array_walk($lines, static function (&$line): void {
+            $line = rtrim($line);
+        });
+
+        return trim(implode("\n", $lines), "\n");
     }
 
     private static function getTrimmedFileContent(string $content): string

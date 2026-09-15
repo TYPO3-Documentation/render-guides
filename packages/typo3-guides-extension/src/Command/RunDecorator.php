@@ -107,6 +107,14 @@ final class RunDecorator extends Command
             'Apply preset for minimal testing (format=singlepage)',
         );
 
+        // Also evaluated in AddThemeSettingsToProjectNode.
+        $this->addOption(
+            'single-markdown',
+            null,
+            InputOption::VALUE_NONE,
+            'Render the whole project into one Markdown file (singlemd/Index.md) and nothing else',
+        );
+
         $this->addOption(
             'watch',
             null,

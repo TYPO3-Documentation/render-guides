@@ -1,3 +1,16 @@
+{#- Only the single-file output needs anchors: there, a link to another page of
+    the manual stays inside the document and has to land somewhere. The per-page
+    Markdown links to permalinks instead, and would carry the markup for
+    nothing.
+
+    Markdown cannot give a heading an id, so an empty HTML anchor goes before
+    it. Several ids for one heading are possible -- an explicit label and the
+    title -- and they sit on consecutive lines so the block stays one thing. -#}
+{%- set anchorIds = env.outputFormat == 'singlemd' ? markdownSectionAnchors(node) : [] -%}
+{%- if anchorIds is not empty -%}
+{% for anchorId in anchorIds %}<a id="{{ anchorId }}"></a>
+{% endfor %}
+{% endif -%}
 {% for childNode in node.children -%}
     {{- renderNode(childNode) }}
 
