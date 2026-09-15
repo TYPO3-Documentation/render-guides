@@ -4,7 +4,7 @@ version: "13.4"
 permalink: "https://docs.typo3.org/permalink/mdversion:versioned-manual@13.4"
 source: "index.rst"
 start: true
-modified: "2023-01-01T12:00:00+00:00"
+rendered: "2023-01-01T12:00:00+00:00"
 ---
 
 # Versioned manual {#versioned-manual}

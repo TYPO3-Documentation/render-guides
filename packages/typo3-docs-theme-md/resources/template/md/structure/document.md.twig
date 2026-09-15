@@ -20,7 +20,29 @@
 {% endif -%}
 {%- if markdownIsStartPage() %}start: true
 {% endif -%}
-{%- if env.projectNode.lastRendered %}modified: {{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP")|md_yaml|raw }}
+{#- The Core Changelog only. Its entries carry three things the generic keys
+    above cannot express: the release the change went into (the document
+    version is always "main"), the Forge issue, and the ".. index::" terms
+    that are its only categorisation. Empty for every other manual. -#}
+{%- set changelog = changelogMetadata() -%}
+{%- if changelog['typo3-version'] is defined %}typo3-version: {{ changelog['typo3-version']|md_yaml|raw }}
+{% endif -%}
+{%- if changelog['typo3-major'] is defined %}typo3-major: {{ changelog['typo3-major'] }}
+{% endif -%}
+{%- if changelog.type is defined %}type: {{ changelog.type|md_yaml|raw }}
+{% endif -%}
+{%- if changelog.issue is defined %}issue: {{ changelog.issue }}
+{% endif -%}
+{%- if changelog.forge is defined %}forge: {{ changelog.forge|md_yaml|raw }}
+{% endif -%}
+{%- if changelog.tags is defined %}tags: [{% for tag in changelog.tags %}{{ tag|md_yaml|raw }}{% if not loop.last %}, {% endif %}{% endfor %}]
+{% endif -%}
+{#- "rendered", not "modified": this is when the manual was built, the same
+    value on every one of its pages. A changelog entry hardly ever changes
+    after publication while the manual is rebuilt constantly, so calling it a
+    modification date would mark all 3402 entries as freshly changed on every
+    run. -#}
+{%- if env.projectNode.lastRendered %}rendered: {{ env.projectNode.lastRendered|date("Y-m-d\\TH:i:sP")|md_yaml|raw }}
 {% endif -%}
 {%- if isNoSearch() %}noindex: true
 {% endif -%}

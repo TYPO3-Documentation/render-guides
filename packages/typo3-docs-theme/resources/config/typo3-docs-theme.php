@@ -31,6 +31,7 @@ use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Directives\GlossaryDirective;
+use T3Docs\Typo3DocsTheme\Directives\IndexEntriesDirective;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 use T3Docs\Typo3DocsTheme\Directives\IncludeDirective;
 use T3Docs\Typo3DocsTheme\Directives\LiteralincludeDirective;
@@ -215,6 +216,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(SiteSetSettingsDirective::class)
         ->set(Typo3FileDirective::class)
         ->set(T3FieldListTableDirective::class)
+        ->set(IndexEntriesDirective::class)
         ->set(Typo3TalkDirective::class)
         ->set(ViewHelperDirective::class)
         ->arg('$startingRule', service(DocumentRule::class))
