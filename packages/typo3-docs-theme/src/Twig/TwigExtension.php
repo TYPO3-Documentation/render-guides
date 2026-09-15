@@ -7,6 +7,7 @@ namespace T3Docs\Typo3DocsTheme\Twig;
 use League\Flysystem\FilesystemException;
 use LogicException;
 use phpDocumentor\Guides\Nodes\AnchorNode;
+use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\LinkTargetNode;
 use phpDocumentor\Guides\Nodes\Metadata\NoSearchNode;
@@ -33,6 +34,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperArgumentNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
+use T3Docs\Typo3DocsThemeMd\Anchors\AddressableAnchors;
 use T3Docs\VersionHandling\DefaultInventories;
 use T3Docs\VersionHandling\Typo3VersionMapping;
 use Twig\Extension\AbstractExtension;
@@ -106,6 +108,8 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('markdownAlternate', $this->getMarkdownAlternate(...), ['needs_context' => true]),
             new TwigFunction('markdownDownloadName', $this->getMarkdownDownloadName(...), ['needs_context' => true]),
             new TwigFunction('markdownLinkUrl', $this->getMarkdownLinkUrl(...), ['needs_context' => true]),
+            new TwigFunction('markdownSectionAnchors', $this->getMarkdownSectionAnchors(...), ['needs_context' => true]),
+            new TwigFunction('isSitemap', $this->isSitemap(...)),
             new TwigFunction('markdownPermalink', $this->getMarkdownPermalink(...), ['needs_context' => true]),
             new TwigFunction('markdownVersion', $this->getMarkdownVersion(...), ['needs_context' => true]),
             new TwigFunction('markdownIsStartPage', $this->isMarkdownStartPage(...), ['needs_context' => true]),
@@ -297,6 +301,84 @@ final class TwigExtension extends AbstractExtension
             }
         }
         return '';
+    }
+
+    /**
+     * The ids a link inside the single Markdown file may point at for this
+     * section.
+     *
+     * Markdown has no way to give a heading an id, so the single-file output
+     * writes an empty HTML anchor before each one. Which id a link carries
+     * depends on how it was written -- an explicit label, or the heading it
+     * points at -- so both are offered, and a section may end up with two.
+     *
+     * Both have to be registered as a "std:label" to be written, which is the
+     * same question getMarkdownLinkUrl() asks before it turns a link inward.
+     * ProjectNode::addInternalTarget() refuses a second "std:label" of the same
+     * name with an exception and waves "std:title" through, so a registered
+     * label is unique across the manual while a bare heading id is not: the
+     * TYPO3 Core API manual has "Configuration" as a heading often enough that
+     * anchors built from it would have collided nineteen times.
+     *
+     * Asking the same question on both sides is what keeps the two in step. An
+     * id that fails it is written by neither: no anchor here, and a permalink
+     * rather than a "#" over there.
+     *
+     * @param array{env: RenderContext} $context
+     * @return list<string>
+     */
+    public function getMarkdownSectionAnchors(array $context, SectionNode $sectionNode): array
+    {
+        $projectNode = $this->getRenderContext($context)->getProjectNode();
+
+        $candidates = [];
+        foreach ($sectionNode->getChildren() as $childNode) {
+            if ($childNode instanceof AnchorNode) {
+                $candidates[] = $childNode->toString();
+            }
+        }
+
+        $candidates[] = $sectionNode->getTitle()->getId();
+
+        $anchors = [];
+        foreach ($candidates as $candidate) {
+            if ($candidate === '') {
+                continue;
+            }
+
+            $anchor = $this->anchorNormalizer->reduceAnchor($candidate);
+            if (!AddressableAnchors::isAddressable($projectNode, $anchor)) {
+                continue;
+            }
+
+            $anchors[] = $anchor;
+        }
+
+        return array_values(array_unique($anchors));
+    }
+
+    /**
+     * Whether this document is the sitemap of the manual.
+     *
+     * A sitemap holds nothing but its title in the source; the page tree below
+     * it is assembled by "sitemap.html". Markdown does not use that template,
+     * so the page would contribute a heading with nothing under it -- and a
+     * list of every page is what the single Markdown file already is.
+     *
+     * Recognised by ":template: sitemap.html", the same marker isNoSearch()
+     * uses to keep sitemaps out of the search index. Deliberately this one
+     * template rather than any ":template:": another such page may well carry
+     * content worth having.
+     */
+    public function isSitemap(DocumentNode $document): bool
+    {
+        foreach ($document->getHeaderNodes() as $headerNode) {
+            if ($headerNode instanceof TemplateNode && $headerNode->getValue() === 'sitemap.html') {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -644,13 +726,32 @@ final class TwigExtension extends AbstractExtension
             $anchor = $this->anchorNormalizer->reduceAnchor($anchor);
         }
 
+        // In the single file every page of this manual is present, so a link to
+        // one of them belongs inside the document rather than out on the web.
+        //
+        // Only if the target is a registered label, though. A label is unique
+        // across the manual -- addInternalTarget() refuses a second one -- so
+        // the anchor written for it is unambiguous. Anything else, a heading id
+        // in particular, may occur in a dozen documents, and an anchor built
+        // from it would silently resolve to the first of them. Those keep the
+        // permalink, which at least lands where it says.
+        $renderContext = $this->getRenderContext($context);
+        if (
+            $anchor !== ''
+            && $renderContext->getOutputFormat() === 'singlemd'
+            && AddressableAnchors::isAddressable($renderContext->getProjectNode(), $anchor)
+        ) {
+            return '#' . $anchor;
+        }
+
         if ($anchor === '' || $interlink === '') {
             $this->logUnresolvedMarkdownLink($context, $url, $interlink === '');
 
             // The URL generator appended the current output format, so an
-            // internal link reads "Feature.md" here; the HTML page is the one
-            // worth pointing at.
-            return preg_replace('/\.md(?=$|#)/', '.html', $url) ?? $url;
+            // internal link reads "Feature.md" here -- or "Feature.singlemd"
+            // when the whole project is rendered into one file; the HTML page
+            // is the one worth pointing at in either case.
+            return preg_replace('/\.(?:single)?md(?=$|#)/', '.html', $url) ?? $url;
         }
 
         return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchor

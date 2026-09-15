@@ -1,0 +1,8 @@
+{#- One document inside the single Markdown file: the body only, no front
+    matter. See SingleMarkdownDocumentRenderer for why. -#}
+{%- set renderedContent -%}
+    {%- for child in node.children -%}
+        {{- renderNode(child) -}}
+    {%- endfor -%}
+{%- endset -%}
+{{- renderedContent | clean_content | trim | raw -}}

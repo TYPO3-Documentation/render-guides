@@ -1,0 +1,46 @@
+{#- The whole manual as one Markdown file.
+
+    One front matter block for the project rather than one per document: front
+    matter is only front matter at the top of a file, and a reader that splits
+    on "---" would otherwise cut the content into pieces at every heading.
+
+    Documents are separated by a horizontal rule so that a tool which chunks the
+    file has a boundary to cut on, and so that a human scrolling through it can
+    see where one page ends. -#}
+{%- set frontMatter -%}
+{%- if project.title %}title: {{ project.title|md_yaml|raw }}
+{% endif -%}
+{%- if project.version %}version: {{ project.version|md_yaml|raw }}
+{% endif -%}
+{%- if project.release %}release: {{ project.release|md_yaml|raw }}
+{% endif -%}
+{%- if project.copyright %}copyright: {{ project.copyright|md_yaml|raw }}
+{% endif -%}
+{%- if project.lastRendered %}modified: {{ project.lastRendered|date("Y-m-d\\TH:i:sP")|md_yaml|raw }}
+{% endif -%}
+single-file: true
+{%- endset -%}
+{%- if frontMatter|trim -%}
+---
+{{ frontMatter|trim|raw }}
+---
+{{ "\n" }}{% endif -%}
+{#- The sitemap is left out: its page tree is assembled by "sitemap.html",
+    which Markdown does not use, so it would contribute a heading with nothing
+    under it -- and a list of every page is what this file already is.
+
+    "written" rather than "loop.first" decides where a separator goes: the
+    first document may be one of the skipped ones, and the file must not open
+    with a horizontal rule. -#}
+{%- set written = false -%}
+{%- for document in documents -%}
+{%- if not isSitemap(document) -%}
+{%- set body = renderNode(document)|trim -%}
+{%- if body -%}
+{%- if written %}{{ "\n" }}---{{ "\n\n" }}{% endif -%}
+{{- body|raw -}}
+{{ "\n" }}
+{%- set written = true -%}
+{%- endif -%}
+{%- endif -%}
+{%- endfor -%}

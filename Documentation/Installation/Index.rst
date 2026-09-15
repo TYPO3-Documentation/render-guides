@@ -89,6 +89,46 @@ The provided image allows you to also perform a few other actions:
       --project-release="2023" \
       --project-copyright="2000-2023" ./Documentation
 
+..  _installation-single-markdown:
+
+The whole manual as one Markdown file
+=====================================
+
+Every page is rendered to Markdown beside its HTML, which is what tools reading
+a single page want. A tool that wants to read the *whole* manual at once --
+a local language model being the obvious case -- is better served by one file.
+
+Pass :bash:`--single-markdown` to get it:
+
+..  code-block:: shell
+
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest \
+      --single-markdown ./Documentation
+
+The result is a single :file:`Documentation-GENERATED-temp/singlemd/Index.md`
+containing every page, in the order of the table of contents, separated by
+horizontal rules, under one YAML front matter block describing the project.
+
+A link to another page of the same manual points inside the file, because that
+page is in it. Markdown cannot give a heading an id, so the file writes an empty
+HTML anchor before each target. Only anchors that identify one place are
+written: a heading such as "Configuration" occurs in many pages of a large
+manual, and a link to it would land on whichever came first. Those links, and
+every link to another manual, stay permalinks to :samp:`docs.typo3.org` and keep
+working wherever the file is copied.
+
+..  note::
+
+    The option renders *only* that file: no HTML, and no per-page Markdown.
+    That is what makes it quick enough to re-run whenever the documentation
+    changes. Images the manual references are copied next to it, because the
+    Markdown points at them and would otherwise point at nothing.
+
+This is deliberately a local tool. Nothing publishes the file, and
+:samp:`docs.typo3.org` does not carry it -- the published manuals offer the
+per-page Markdown instead, which is linked from every page as
+:html:`<link rel="alternate" type="text/markdown">`.
+
 In case of errors you can increase verbose output by prefixing any command with the argument
 :bash:`verbose`:
 
