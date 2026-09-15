@@ -1,3 +1,8 @@
 {#- Twig autoescapes for HTML here, so every helper result has to be marked
-    raw explicitly: an escaped entity in a Markdown file is simply wrong. -#}
-{{ renderMdTitle(node, renderNode(node.value))|raw }}
+    raw explicitly: an escaped entity in a Markdown file is simply wrong.
+
+    The per-page output carries the heading's id, so a "#anchor" URL resolves
+    against the Markdown. The single file does not: it writes anchors of its
+    own, for the targets that are unique across the whole manual, and a heading
+    id repeated in a hundred entries is exactly what must not become one. -#}
+{{ renderMdTitle(node, renderNode(node.value), env.outputFormat == 'md' ? node.id : '')|raw }}

@@ -6,12 +6,12 @@ start: true
 modified: "2023-01-01T12:00:00+00:00"
 ---
 
-# Markdown rendering
+# Markdown rendering {#markdown-rendering}
 
 A paragraph with **strong**, *emphasis* and `literal` text, plus a
 [link to the TYPO3 website](https://typo3.org).
 
-## A section
+## A section {#a-section}
 
 -   first bullet
 -   second bullet

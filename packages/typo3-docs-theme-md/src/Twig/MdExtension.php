@@ -108,10 +108,28 @@ final class MdExtension extends AbstractExtension
         return implode("\n", $lines);
     }
 
-    /** ATX headings only: they survive indentation and need no underline width. */
-    public function renderMdTitle(TitleNode $node, string $content): string
+    /**
+     * ATX headings only: they survive indentation and need no underline width.
+     *
+     * An anchor is appended as "{#id}", the heading-attribute syntax Pandoc and
+     * kramdown read. It is what the HTML gives the same heading, so a URL
+     * ending in "#description" can be resolved against the Markdown instead of
+     * having to fall back to the rendered page.
+     *
+     * Note this is not GitHub Flavored Markdown: GitHub and CommonMark have no
+     * heading attributes and show the braces as text. The alternative, an empty
+     * "<a id>" before the heading, renders everywhere but puts a line of HTML
+     * above every heading.
+     */
+    public function renderMdTitle(TitleNode $node, string $content, string $anchor = ''): string
     {
-        return str_repeat('#', min($node->getLevel(), 6)) . ' ' . trim($content) . "\n";
+        $heading = str_repeat('#', min($node->getLevel(), 6)) . ' ' . trim($content);
+
+        if ($anchor !== '') {
+            $heading .= ' {#' . $anchor . '}';
+        }
+
+        return $heading . "\n";
     }
 
     /**
