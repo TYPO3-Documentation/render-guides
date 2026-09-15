@@ -3,7 +3,7 @@ title: "Markdown rendering"
 permalink: "https://docs.typo3.org/permalink/mdtest:markdown-rendering"
 source: "index.rst"
 start: true
-modified: "2023-01-01T12:00:00+00:00"
+rendered: "2023-01-01T12:00:00+00:00"
 ---
 
 # Markdown rendering {#markdown-rendering}

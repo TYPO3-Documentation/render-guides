@@ -2,7 +2,7 @@
 title: "A single command"
 permalink: "https://docs.typo3.org/permalink/mdconsole:a-single-command"
 source: "single.rst"
-modified: "2023-01-01T12:00:00+00:00"
+rendered: "2023-01-01T12:00:00+00:00"
 ---
 
 # A single command {#a-single-command}

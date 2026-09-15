@@ -7,6 +7,7 @@ namespace T3Docs\Typo3DocsTheme\DependencyInjection;
 use phpDocumentor\Guides\Graphs\Nodes\UmlNode;
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
 use phpDocumentor\Guides\RestructuredText\Directives\FigureDirective as BaseFigureDirective;
+use phpDocumentor\Guides\RestructuredText\Directives\IndexDirective as BaseIndexDirective;
 use phpDocumentor\Guides\TemplateRenderer;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -243,6 +244,12 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         // Remove the base library's FigureDirective to let our custom one take over
         if ($container->hasDefinition(BaseFigureDirective::class)) {
             $container->removeDefinition(BaseFigureDirective::class);
+        }
+
+        // Same for the index directive: the base one parses ".. index::" and
+        // returns null, so the terms are lost. Ours keeps them.
+        if ($container->hasDefinition(BaseIndexDirective::class)) {
+            $container->removeDefinition(BaseIndexDirective::class);
         }
 
         $this->alwaysRenderMarkdown($container);
