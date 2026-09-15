@@ -5,7 +5,7 @@ source: "single.rst"
 modified: "2023-01-01T12:00:00+00:00"
 ---
 
-# A single command
+# A single command {#a-single-command}
 
 A command declared on its own, with the script that invokes it in front of its
 name. It repeats a command from the overview, so it is not indexed again.

@@ -6,7 +6,7 @@ start: true
 modified: "2023-01-01T12:00:00+00:00"
 ---
 
-# Console commands
+# Console commands {#console-commands}
 
 The overview lists every command and renders each one below the table. A
 hidden command is shown because "show-hidden" is set.

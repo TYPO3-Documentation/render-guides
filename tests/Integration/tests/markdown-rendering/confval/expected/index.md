@@ -6,13 +6,13 @@ start: true
 modified: "2023-01-01T12:00:00+00:00"
 ---
 
-# Configuration values in md
+# Configuration values in md {#configuration-values-in-md}
 
 A confval is written as a list item so that the definition has an end:
 everything indented under it belongs to it, and the next one starts where
 the indentation does.
 
-## Nested values
+## Nested values {#nested-values}
 
 -   **mail**
 
@@ -41,14 +41,14 @@ the indentation does.
 
     Settings for the cache.
 
-## Without properties
+## Without properties {#without-properties}
 
 -   **bare**
 
     A value with no type, no default and not required lists no properties
     at all, rather than saying "N/A" three times.
 
-## Description with its own blocks
+## Description with its own blocks {#description-with-its-own-blocks}
 
 -   **complex**
 

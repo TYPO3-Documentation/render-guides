@@ -6,7 +6,7 @@ start: true
 modified: "2023-01-01T12:00:00+00:00"
 ---
 
-# Directives
+# Directives {#directives}
 
 A horizontal list keeps its items but loses the columns, which Markdown
 cannot lay out sideways.
