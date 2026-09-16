@@ -9,6 +9,19 @@
             color: $icon-color;
             padding-right: 0.5em;
         }
+
+        // The changelog link carries the title of the entry it leads to, which runs to
+        // 139 characters in the core changelog. On the version label's line it pushes
+        // that label around; on its own it reads as what it replaces, the permalink
+        // authors write into the body today - which is neither inline nor bold.
+        // The rule hangs on the wrapper rather than on the link's own class, because an
+        // entry that does not resolve renders as the theme's "invalid-link" marker,
+        // which carries no class of the reference node and would otherwise stay inline.
+
+        .versionchange-changelog-line {
+            display: block;
+            font-weight: normal;
+        }
         color: $text-color;
         font-weight: bold;
         margin-bottom: 0.5em;

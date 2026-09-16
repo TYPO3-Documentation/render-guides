@@ -10,7 +10,7 @@
         {%- endif -%}
         </span>
         {{ node.versionLabel }}
-        {%- if node.changelogReference %} {{ renderNode(node.changelogReference) }}{% endif -%}
+        {%- if node.changelogReference %} <span class="versionchange-changelog-line">{{ renderNode(node.changelogReference) }}</span>{% endif -%}
         </p>
     <article>
         {{ renderNode(node.value) }}
