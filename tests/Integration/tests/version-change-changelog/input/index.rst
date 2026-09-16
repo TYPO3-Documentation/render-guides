@@ -110,6 +110,35 @@ Local changelog target
     without the guard this input aborts the whole render - no pages at all, and
     an error naming the Twig template rather than this file.
 
+..  versionchanged:: 4.0
+    :changelog: How the teaser field was renamed <feature-107628-1729026000>
+
+    The embedded form: the text before the brackets becomes the link text, so an
+    author can say what the entry is where its own title does not.
+
+..  versionchanged:: 4.1
+    :changelog: The local changelog <#local-changelog-target>
+
+    The embedded form over the local "#anchor" form.
+
+..  versionchanged:: 4.2
+    :changelog: <feature-107628-1729026000>
+
+    Brackets with nothing before them: no text is supplied, so the link reads as
+    the entry's own title, like the bare form.
+
+..  versionchanged:: 4.3
+    :changelog: Two words <feature 107628>
+
+    Whitespace inside the brackets: the entry is still a single token, and the
+    text being allowed to carry spaces does not extend to the entry.
+
+..  versionchanged:: 4.4
+    :changelog: A text and nothing else <>
+
+    Empty brackets: the parser does not read this as an embedded reference, so
+    the whole value stands as the entry and is rejected for its whitespace.
+
 ..  versionchanged:: 12.4
 
     Without the changelog option the block renders exactly as before.

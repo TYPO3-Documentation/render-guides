@@ -105,3 +105,22 @@ When linking the changelog of the current manual itself, use the short
         :changelog: #changes-2-1-0
 
         A local changelog reference, without repeating the shortcode.
+
+The link text is the title of the entry the reference resolves to, so each link
+says which change it leads to. Where that title does not describe the change —
+an extension whose whole changelog carries a single label, for instance — give
+the text explicitly, in the embedded form every other reference uses:
+
+..  code-block:: rst
+
+    ..  versionchanged:: 2.0
+        :changelog: Renaming the teaser field <acme/acme-blog:changelog>
+
+        The teaser field was renamed; see the changelog entry for the migration.
+
+which renders, against a real core entry, as:
+
+..  versionchanged:: 14.0
+    :changelog: How backend modules were renamed <feature-107628-1729026000>
+
+    The same entry as above, linked under a text of the author's choosing.

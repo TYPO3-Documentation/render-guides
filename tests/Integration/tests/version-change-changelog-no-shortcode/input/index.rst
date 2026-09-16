@@ -22,6 +22,13 @@ Local changelog target
     The "#anchor" form resolves against this manual's own labels and does not
     depend on ``interlink-shortcode``, which is unset here.
 
+..  versionchanged:: 2.2
+    :changelog: Where the option was renamed <#local-changelog-target>
+
+    The embedded form over the same local target: the author's text replaces the
+    title the reference would otherwise be filled with. Resolved offline, so this
+    case cannot be tripped by a failed inventory fetch either.
+
 ..  versionchanged:: 12.4
 
     Without the option nothing is rendered beside the label and, because this

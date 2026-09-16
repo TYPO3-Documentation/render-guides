@@ -18,6 +18,7 @@
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
 <link href="_resources/css/theme.css" rel="stylesheet">
 <link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<link href="index.md" rel="alternate" title="Markdown" type="text/markdown">
 <script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
 <script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
                         <link href="#" rel="top" title="Changelog links without a shortcode"/>
@@ -61,7 +62,7 @@
     </div>            </div>
             <div class="header-actions">
                 <button id="search-toggle" class="btn btn-light d-lg-none" type="button"
-                        aria-label="Search" aria-expanded="false" aria-controls="header-search-expand">
+                        aria-label="Search">
                     <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                 </button>
                 <button id="toc-toggle" class="btn btn-light d-lg-none" type="button"
@@ -69,20 +70,10 @@
                     <i class="fa-solid fa-bars" aria-hidden="true"></i>
                 </button>
                 <all-documentations-menu data-override-url="_resources/js/menu-proxy.php"></all-documentations-menu>
-                                <search id="header-search-expand" class="header-search" role="search" aria-label="Site search">
-                    <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
-                        <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
-                        <div class="input-group">
-                            <select class="form-select search__scope" id="searchscope" name="scope">
-                                <option value="">Search all</option>
-                            </select>
-                            <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                            <button class="btn btn-light" type="submit" aria-label="Search">
-                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                                <span>Search</span>
-                            </button>
-                        </div>
-                    </form>
+                                <search role="search" aria-label="Site search">
+                                        <select id="searchscope" hidden aria-hidden="true">
+                        <option value="">Search all</option>
+                    </select>
                     <div id="global-search-root"></div>
                 </search>
                 <button id="options-toggle" class="btn btn-light" type="button"
@@ -92,9 +83,13 @@
                 </button>
                 <div id="options-panel" class="shadow p-3" popover>
                     <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
-                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" rel="nofollow noopener" target="_blank">
+                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-code"></i>
         View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="index.md" id="btnViewMarkdown" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        View as Markdown
     </a>
     <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-circle-info"></i>
@@ -125,9 +120,13 @@
                         </div>
                         <div class="toc-options d-lg-none">
                             <p class="caption">Options</p>
-                                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" rel="nofollow noopener" target="_blank">
+                                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-code"></i>
         View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="index.md" id="btnViewMarkdown" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        View as Markdown
     </a>
     <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-circle-info"></i>
@@ -145,7 +144,11 @@
                 <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
         
 
-        <div class="breadcrumb-additions"></div>
+        <div class="breadcrumb-additions">                <a class="btn btn-sm btn-light" href="index.md" id="btnDownloadMarkdown" rel="nofollow noopener" download>
+                    <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
+                    <span class="btn-text">Markdown</span>
+                </a>
+            </div>
     </nav>
                     
 <article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
@@ -162,11 +165,23 @@
             <div class="versionchange versionchanged">
     <p class="versionmodified">
         <span class="versionicon"><i class="fa-solid fa-arrows-rotate"></i></span>
-        Changed in version 2.1 <a href="#local-changelog-target" class="versionchange-changelog">See changelog entry</a></p>
+        Changed in version 2.1 <a href="#local-changelog-target" class="versionchange-changelog">Local changelog target</a></p>
     <article>
         
     <p>The &quot;#anchor&quot; form resolves against this manual&#039;s own labels and does not
 depend on <code>interlink-shortcode</code>, which is unset here.</p>
+
+    </article>
+</div>
+            <div class="versionchange versionchanged">
+    <p class="versionmodified">
+        <span class="versionicon"><i class="fa-solid fa-arrows-rotate"></i></span>
+        Changed in version 2.2 <a href="#local-changelog-target" class="versionchange-changelog">Where the option was renamed</a></p>
+    <article>
+        
+    <p>The embedded form over the same local target: the author&#039;s text replaces the
+title the reference would otherwise be filled with. Resolved offline, so this
+case cannot be tripped by a failed inventory fetch either.</p>
 
     </article>
 </div>

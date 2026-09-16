@@ -1,13 +1,16 @@
 app.WARNING: The ":changelog: :changes-2-3-0" option is malformed (no usable shortcode before the colon).
-app.WARNING: The ":changelog: other vendor:changes-2-4-0" option value is not a single token; a changelog entry carries no whitespace and stands on the same line as the option.
+app.WARNING: The ":changelog: other vendor:changes-2-4-0" changelog entry is not a single token; an entry carries no whitespace.
 app.WARNING: The ":changelog: other-vendor/other-ext:" option has an empty changelog entry anchor.
 app.WARNING: The ":changelog: #" option has an empty changelog entry anchor.
 app.WARNING: The ":changelog:" option was given without a changelog entry.
-app.WARNING: The ":changelog:" option value is not valid UTF-8.
-app.WARNING: The ":changelog: 1 feature-107628-1729026000" option value is not a single token; a changelog entry carries no whitespace and stands on the same line as the option.
-app.WARNING: The ":changelog: feature　107628" option value is not a single token; a changelog entry carries no whitespace and stands on the same line as the option.
+app.WARNING: The ":changelog: 1 feature-107628-1729026000" changelog entry is not a single token; an entry carries no whitespace.
+app.WARNING: The ":changelog: feature　107628" changelog entry is not a single token; an entry carries no whitespace.
 app.WARNING: The ":changelog: other+vendor:changes-2-8-0" option is malformed (no usable shortcode before the colon).
+app.WARNING: The ":changelog:" option value is not valid UTF-8.
+app.WARNING: The ":changelog: Two words <feature 107628>" changelog entry is not a single token; an entry carries no whitespace.
+app.WARNING: The ":changelog: A text and nothing else <>" changelog entry is not a single token; an entry carries no whitespace.
 app.WARNING: Inventory link with key "changelog:feature-101010-1700000000" (feature-101010-1700000000) not found.
 app.WARNING: Inventory link with key "changelog:deprecation-202020-1700000000" (deprecation-202020-1700000000) not found.
+app.WARNING: Interlink inventory for manual other-vendor/other-ext not found. [] []
 app.WARNING: Inventory with key other-vendor/other-ext not found.
 app.WARNING: Reference no-such-local-label could not be resolved in index
