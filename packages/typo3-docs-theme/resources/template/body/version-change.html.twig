@@ -9,7 +9,9 @@
             <i class="fa-solid fa-arrows-rotate"></i>
         {%- endif -%}
         </span>
-        {{ node.versionLabel }}</p>
+        {{ node.versionLabel }}
+        {%- if node.changelogReference %} <span class="versionchange-changelog-line">{{ renderNode(node.changelogReference) }}</span>{% endif -%}
+        </p>
     <article>
         {{ renderNode(node.value) }}
     </article>

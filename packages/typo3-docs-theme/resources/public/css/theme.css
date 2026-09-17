@@ -26815,6 +26815,10 @@ dl.field-list > dt:after {
   color: rgb(35%, 35%, 35%);
   padding-right: 0.5em;
 }
+.deprecated .versionmodified .versionchange-changelog-line {
+  display: block;
+  font-weight: normal;
+}
 .deprecated .versionmodified {
   color: #000000;
   font-weight: bold;
@@ -26831,6 +26835,10 @@ dl.field-list > dt:after {
   color: rgb(23.7380593263%, 54.4972347914%, 23.7380593263%);
   padding-right: 0.5em;
 }
+.versionadded .versionmodified .versionchange-changelog-line {
+  display: block;
+  font-weight: normal;
+}
 .versionadded .versionmodified {
   color: #000000;
   font-weight: bold;
@@ -26846,6 +26854,10 @@ dl.field-list > dt:after {
 .versionchanged .versionmodified .versionicon {
   color: rgb(13.1161012123%, 42.5604100561%, 51.3937027093%);
   padding-right: 0.5em;
+}
+.versionchanged .versionmodified .versionchange-changelog-line {
+  display: block;
+  font-weight: normal;
 }
 .versionchanged .versionmodified {
   color: #000000;
