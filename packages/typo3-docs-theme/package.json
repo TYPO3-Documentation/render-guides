@@ -14,9 +14,6 @@
         "@testing-library/jest-dom": "^7.0.1",
         "@testing-library/react": "^16.3.3",
         "@vitejs/plugin-react": "^6.1.2",
-        "grunt": "^1.6.3",
-        "grunt-cli": "^1.5.0",
-        "grunt-contrib-copy": "1.0.0",
         "jsdom": "^30.1.2",
         "postcss-scss": "^4.0.9",
         "sass": "^1.105.1",
@@ -31,12 +28,13 @@
         "build:css": "sass --no-source-map --style=expanded assets/sass/theme.scss resources/public/css/theme.css",
         "build:css:debug": "sass --style=expanded assets/sass/theme.scss ../../Documentation-GENERATED-temp/_resources/css/theme.css",
         "build": "npm run clean && vite build && npm run copy && npm run build:css && npm run build:js",
-        "debug": "npm run clean && npm run copy && npm run build:css:debug && npm run build:js && grunt debug",
+        "debug": "npm run clean && npm run copy && npm run build:css:debug && npm run build:js && npm run copy:debug",
         "lint:css": "stylelint \"assets/sass/**/*.scss\"",
         "lint:css:fix": "stylelint \"assets/sass/**/*.scss\" --fix",
         "test": "vitest run",
         "watch": "vite build --watch & npm run build:css -- --watch & node watch-js.mjs",
-        "build:js": "uglifyjs assets/js/*.js -c -m -o resources/public/js/theme.min.js"
+        "build:js": "uglifyjs assets/js/*.js -c -m -o resources/public/js/theme.min.js",
+        "copy:debug": "mkdir -p ../../Documentation-GENERATED-temp/_resources && cp -R assets/. ../../Documentation-GENERATED-temp/_resources/"
     },
     "engines": {
         "node": ">=24.16.0 <25.0.0"
