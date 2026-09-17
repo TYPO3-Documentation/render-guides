@@ -34,6 +34,7 @@ use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperArgumentNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperNode;
+use T3Docs\Typo3DocsTheme\Permalinks\Permalinks;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use T3Docs\Typo3DocsThemeMd\Anchors\AddressableAnchors;
 use T3Docs\VersionHandling\DefaultInventories;
@@ -89,6 +90,7 @@ final class TwigExtension extends AbstractExtension
         private readonly Typo3VersionService           $typo3VersionService,
         private readonly AnchorNormalizer              $anchorNormalizer,
         private readonly ChangelogEntry                $changelogEntry,
+        private readonly Permalinks                    $permalinks,
     ) {
         if (strlen((string)getenv('GITHUB_ACTIONS')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
@@ -831,64 +833,28 @@ final class TwigExtension extends AbstractExtension
             return preg_replace('/\.(?:single)?md(?=$|#)/', '.html', $url) ?? $url;
         }
 
-        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchor
-            . $this->permalinkVersionSuffix($this->getRenderContext($context));
+        return $this->permalinks->forAnchor($anchor, $this->rawProjectVersion($this->getRenderContext($context)));
     }
 
     /**
-     * The "@version" a permalink has to carry, or "" when it must not carry one.
-     *
-     * A permalink without a version resolves to the latest stable release. A
-     * Markdown file is a snapshot of one version, so without the suffix every
-     * link in it would send its reader into whatever manual is current later --
-     * the opposite of what permalinks are here for.
-     *
-     * Manuals that exist only once carry no version at all; DefaultInventories
-     * knows which those are. What it does not know is a third-party manual,
-     * and those are versioned.
-     */
-    private function permalinkVersionSuffix(RenderContext $renderContext): string
-    {
-        $interlink = $this->themeSettings->getSettings('interlink_shortcode');
-        if ($interlink === '') {
-            return '';
-        }
-
-        $inventory = DefaultInventories::tryFrom($interlink);
-        if ($inventory !== null && !$inventory->isVersioned()) {
-            return '';
-        }
-
-        $version = $this->normalizedProjectVersion($renderContext);
-        if ($version === '') {
-            return '';
-        }
-
-        return '@' . $version;
-    }
-
-    /**
-     * The project version in the form a URL and a metadata field can carry, or
-     * "" when there is none.
-     *
-     * A checkout names itself "main (development)"; both want the bare "main".
-     * A project that names no version at all is left alone -- the theme treats
-     * the version as optional everywhere else too.
+     * The project version a permalink and a metadata field can carry, or "" when
+     * there is none. Spelled by Permalinks; reported here, because only a page
+     * being rendered can say which file the unusable version was found in.
      */
     private function normalizedProjectVersion(RenderContext $renderContext): string
     {
-        $version = explode(' ', trim((string) $renderContext->getProjectNode()->getVersion()))[0];
-        if ($version === '') {
-            return '';
-        }
-
-        if (preg_match('/^[A-Za-z0-9][A-Za-z0-9._-]*$/', $version) !== 1) {
-            $this->reportUnusablePermalinkVersion($renderContext, $version);
-
-            return '';
+        $raw = $this->rawProjectVersion($renderContext);
+        $version = $this->permalinks->normalizeVersion($raw);
+        if ($version === '' && trim((string) $raw) !== '') {
+            $this->reportUnusablePermalinkVersion($renderContext, explode(' ', trim((string) $raw))[0]);
         }
 
         return $version;
+    }
+
+    private function rawProjectVersion(RenderContext $renderContext): string|null
+    {
+        return $renderContext->getProjectNode()->getVersion();
     }
 
     /**
@@ -908,8 +874,7 @@ final class TwigExtension extends AbstractExtension
             return '';
         }
 
-        return 'https://docs.typo3.org/permalink/' . $interlink . ':' . $anchor
-            . $this->permalinkVersionSuffix($renderContext);
+        return $this->permalinks->forAnchor($anchor, $this->rawProjectVersion($renderContext));
     }
 
     /** @param array{env: RenderContext} $context */
