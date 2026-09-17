@@ -11,6 +11,6 @@ rendered: "2023-01-01T12:00:00+00:00"
 
 A manual that exists only once carries no version in its permalinks.
 
-## The target {#the-target-1}
+## The target {#the-target}
 
 Linked from [above](https://docs.typo3.org/permalink/h2document:the-target).

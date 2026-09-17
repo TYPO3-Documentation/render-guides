@@ -7,6 +7,7 @@ namespace T3Docs\Typo3DocsTheme\Twig;
 use League\Flysystem\FilesystemException;
 use LogicException;
 use phpDocumentor\Guides\Nodes\AnchorNode;
+use phpDocumentor\Guides\Nodes\CompoundNode;
 use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\DocumentTree\DocumentEntryNode;
 use phpDocumentor\Guides\Nodes\LinkTargetNode;
@@ -15,6 +16,7 @@ use phpDocumentor\Guides\Nodes\Metadata\OrphanNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\PrefixedLinkTargetNode;
 use phpDocumentor\Guides\Nodes\SectionNode;
+use phpDocumentor\Guides\Nodes\TitleNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RenderContext;
@@ -119,6 +121,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('markdownDownloadName', $this->getMarkdownDownloadName(...), ['needs_context' => true]),
             new TwigFunction('markdownLinkUrl', $this->getMarkdownLinkUrl(...), ['needs_context' => true]),
             new TwigFunction('markdownSectionAnchors', $this->getMarkdownSectionAnchors(...), ['needs_context' => true]),
+            new TwigFunction('markdownHeadingId', $this->getMarkdownHeadingId(...), ['needs_context' => true]),
             new TwigFunction('isSitemap', $this->isSitemap(...)),
             new TwigFunction('changelogMetadata', $this->getChangelogMetadata(...), ['needs_context' => true]),
             new TwigFunction('pagePermalink', $this->getPagePermalink(...), ['needs_context' => true]),
@@ -366,6 +369,69 @@ final class TwigExtension extends AbstractExtension
         }
 
         return array_values(array_unique($anchors));
+    }
+
+    /**
+     * The id a heading carries in the per-page Markdown.
+     *
+     * The explicit label of the section where it has one, and the id derived
+     * from the heading otherwise. The label is what a permalink resolves
+     * against, and it is what the author wrote down; the derived id is
+     * generated, and generated second -- a section labelled ".. _session-data:"
+     * under the heading "Session data" yields the id "session-data-1", because
+     * the label already holds "session-data". Writing that into the Markdown
+     * named the page by its accident rather than by its name.
+     *
+     * The HTML keeps both -- the id on the section, the label beside it as
+     * "data-rst-anchor" -- because a page there can carry two. A Markdown
+     * heading carries one, so it carries the one that means something.
+     *
+     * Safe to change: the per-page Markdown links by permalink and writes no
+     * "#" of its own, so no link in it points at the id this replaces.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getMarkdownHeadingId(array $context, TitleNode $titleNode): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        $document = $this->currentDocument($renderContext);
+        $section = $document === null ? null : $this->sectionOf($document, $titleNode);
+        if ($section !== null) {
+            $label = $this->getAnchorIdOfSection($context, $section);
+            if ($label !== '') {
+                return $label;
+            }
+        }
+
+        return $titleNode->getId();
+    }
+
+    /**
+     * The section a heading belongs to, found by identity.
+     *
+     * The template that renders a heading is handed the title alone, and a
+     * title does not know its section. Walking the document to find it again
+     * keeps this stateless, which matters more here than the cost: a page has
+     * tens of sections, not thousands.
+     *
+     * @param CompoundNode<Node> $node
+     */
+    private function sectionOf(CompoundNode $node, TitleNode $titleNode): SectionNode|null
+    {
+        foreach ($node->getChildren() as $child) {
+            if ($child instanceof SectionNode) {
+                if ($child->getTitle() === $titleNode) {
+                    return $child;
+                }
+
+                $found = $this->sectionOf($child, $titleNode);
+                if ($found !== null) {
+                    return $found;
+                }
+            }
+        }
+
+        return null;
     }
 
     /**

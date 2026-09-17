@@ -13,7 +13,7 @@ tags: ["Frontend", "PHP-API", "TypoScript", "ext:frontend"]
 rendered: "2023-01-01T12:00:00+00:00"
 ---
 
-# Feature: #105638 - Modify fetched page content {#feature-105638-modify-fetched-page-content}
+# Feature: #105638 - Modify fetched page content {#feature-105638-1732034075}
 
 A changelog entry: the version comes from the path, the issue number from the
 anchor, and the terms from the index directive below.

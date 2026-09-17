@@ -13,7 +13,7 @@ tags: ["PHP-API", "Backend"]
 rendered: "2023-01-01T12:00:00+00:00"
 ---
 
-# Breaking: #66431 - New login screen {#breaking-66431-new-login-screen}
+# Breaking: #66431 - New login screen {#breaking-66431}
 
 An older entry: its anchor carries no timestamp, so the issue number ends the
 anchor instead of being followed by one.
