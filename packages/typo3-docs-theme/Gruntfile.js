@@ -68,15 +68,6 @@ module.exports = function (grunt) {
       },
     },
 
-    // stylelint
-    stylelint: {
-      options: {
-        configFile: '.stylelintrc',
-        fix: true,
-      },
-      sass: ['assets/sass/**/*.scss']
-    },
-
     // sass :: compact, compressed, expanded, nested
     sass: {
       options: {
@@ -163,14 +154,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-stylelint');
 
   /**
    * Register tasks
    */
   grunt.registerTask('js', ['uglify']);
-  grunt.registerTask('default', ['clean', 'copy', 'stylelint', 'sass', 'js', 'removesourcemap']);
+  grunt.registerTask('default', ['clean', 'copy', 'sass', 'js', 'removesourcemap']);
   grunt.registerTask('build', ['default']);
   grunt.registerTask('render', ['clean:build']);
-  grunt.registerTask('debug', ['clean', 'copy', 'stylelint', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
+  grunt.registerTask('debug', ['clean', 'copy', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
 };

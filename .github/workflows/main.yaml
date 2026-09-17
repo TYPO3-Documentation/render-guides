@@ -129,6 +129,9 @@ jobs:
       - name: "Run JS unit tests"
         run: npm test
 
+      - name: "Lint the SCSS sources"
+        run: npm run lint:css
+
   monorepo-validate:
     name: "Validate monorepo structure"
     runs-on: "ubuntu-latest"
