@@ -18,6 +18,7 @@ use Twig\TwigFunction;
 use function array_fill;
 use function array_map;
 use function array_pad;
+use function array_slice;
 use function count;
 use function explode;
 use function implode;
@@ -172,6 +173,13 @@ final class MdExtension extends AbstractExtension
         // row would drop content. It is padded to the width of the table.
         $out = '| ' . implode(' | ', array_pad($rows[0], $columnCount, '')) . " |\n";
         $out .= '| ' . implode(' | ', array_fill(0, $columnCount, '---')) . " |\n";
+
+        // GFM knows exactly one header row. The further ones a grid table or
+        // a "list-table" with ":header-rows: 2" produces are written as body
+        // rows: they carry content, and there is nowhere else to put it.
+        foreach (array_slice($rows, 1) as $row) {
+            $out .= '| ' . implode(' | ', $row) . " |\n";
+        }
 
         foreach ($data as $row) {
             $out .= '| ' . implode(' | ', $this->renderRow($row->getColumns(), $context['env'])) . " |\n";

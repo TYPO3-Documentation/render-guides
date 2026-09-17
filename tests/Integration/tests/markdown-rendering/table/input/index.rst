@@ -34,6 +34,27 @@ header has no column for, so the table would lose "one" without it.
     -   :Header1:   1
         :Header2:   one
 
+GFM knows one header row, so a table with two of them writes the second as a
+body row rather than dropping it.
+
+..  table::
+
+    +-----------+-----------+
+    | Head A1   | Head B1   |
+    +-----------+-----------+
+    | Head A2   | Head B2   |
+    +===========+===========+
+    | 1         | one       |
+    +-----------+-----------+
+
+A list item that is not a field list is reported by name.
+
+..  t3-field-list-table::
+
+    -   Just a paragraph, not a field list
+
+    -   :Header1:   1
+
 A directive whose content is missing -- the sections below it were never
 indented into it -- leaves a table with no cell at all. GFM cannot spell one,
 so nothing is written.

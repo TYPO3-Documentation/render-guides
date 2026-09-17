@@ -59,7 +59,7 @@ class T3FieldListTableDirective extends SubDirective
                     $header = new TableRow();
                     foreach ($listItem->getChildren() as $fieldlist) {
                         if (!$fieldlist instanceof FieldListNode) {
-                            $this->logger->warning(sprintf('Only field lists are allowed in each list item a t3-field list. Node of type %s found.', $list::class), $blockContext->getLoggerInformation());
+                            $this->logger->warning(sprintf('Only field lists are allowed in each list item a t3-field list. Node of type %s found.', $fieldlist::class), $blockContext->getLoggerInformation());
                             continue;
                         }
                         foreach ($fieldlist->getChildren() as $fieldlistItem) {
@@ -74,7 +74,7 @@ class T3FieldListTableDirective extends SubDirective
                 $row = new TableRow();
                 foreach ($listItem->getChildren() as $fieldlist) {
                     if (!$fieldlist instanceof FieldListNode) {
-                        $this->logger->warning(sprintf('Only field lists are allowed in each list item a t3-field list. Node of type %s found.', $list::class), $blockContext->getLoggerInformation());
+                        $this->logger->warning(sprintf('Only field lists are allowed in each list item a t3-field list. Node of type %s found.', $fieldlist::class), $blockContext->getLoggerInformation());
                         continue;
                     }
                     foreach ($fieldlist->getChildren() as $fieldlistItem) {
