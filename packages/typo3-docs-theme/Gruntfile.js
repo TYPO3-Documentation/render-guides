@@ -116,17 +116,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // build
-    clean: {
-      build: {
-        src: [
-          '<%= paths.output %>css',
-          '<%= paths.output %>fonts',
-          '<%= paths.output %>js',
-        ]
-      }
-    },
-
     // watch
     watch: {
       /* Compile sass changes into theme directory */
@@ -149,7 +138,6 @@ module.exports = function (grunt) {
   /**
    * Load tasks
    */
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -159,8 +147,7 @@ module.exports = function (grunt) {
    * Register tasks
    */
   grunt.registerTask('js', ['uglify']);
-  grunt.registerTask('default', ['clean', 'copy', 'sass', 'js', 'removesourcemap']);
+  grunt.registerTask('default', ['copy', 'sass', 'js', 'removesourcemap']);
   grunt.registerTask('build', ['default']);
-  grunt.registerTask('render', ['clean:build']);
-  grunt.registerTask('debug', ['clean', 'copy', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
+  grunt.registerTask('debug', ['copy', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
 };
