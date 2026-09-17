@@ -4,14 +4,19 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
     plugins: [react()],
     build: {
-        outDir: 'assets',
+        // The theme's only JavaScript artifact, loaded by
+        // resources/template/structure/layoutParts/footerAssets.html.twig as a
+        // classic script, so the bundle has to be an IIFE rather than a module.
+        outDir: 'resources/public/js',
+        // `npm run clean` empties this directory, and `npm run copy` puts
+        // bootstrap.min.js in it, so vite must leave what it finds alone.
         emptyOutDir: false,
         rolldownOptions: {
-            input: 'resources/js/search.jsx',
+            input: 'assets/js/theme.js',
             output: {
-                entryFileNames: 'js/search.js',
-                chunkFileNames: 'js/[name].[hash].js',
-                assetFileNames: 'assets/[name].[hash][extname]'
+                format: 'iife',
+                entryFileNames: 'theme.min.js',
+                assetFileNames: '[name][extname]'
             }
         }
     }

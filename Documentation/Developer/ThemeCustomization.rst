@@ -76,9 +76,9 @@ The generated assets are copied directly into :file:`Documentation-GENERATED-tem
 and source maps are not removed. Upon inspection in the browsers web developer
 tools you can therefore see in which source SCSS file certain styles were
 defined. Before committing you must run :shell:`cd packages/typo3-docs-theme && npm ci && npm run build`
-and commit the regenerated asset files in
-:file:`packages/typo3-docs-theme/assets/` and
-:file:`packages/typo3-docs-theme/resources/public/`.
+and commit the rebuilt files in :file:`packages/typo3-docs-theme/resources/public/`:
+the compiled CSS and JavaScript, and the fonts copied there from
+:file:`packages/typo3-docs-theme/assets/fonts/` and Font Awesome.
 
 CI enforces this via the ``check-built-assets`` workflow: every pull request
 that touches :file:`packages/typo3-docs-theme/` is rebuilt and fails if the
