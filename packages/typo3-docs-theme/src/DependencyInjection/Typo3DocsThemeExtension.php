@@ -255,6 +255,7 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         }
 
         $this->alwaysRenderMarkdown($container);
+        $this->alwaysIndexTheChangelog($container);
 
         if ($this->markdownRequested($container)) {
             $this->markdownExtension()->markUnsupportedNodes($container);
@@ -300,6 +301,56 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             }
 
             $outputFormats[] = 'md';
+            $projectSettings->setOutputFormats($outputFormats);
+
+            $methodCalls[$index] = ['setProjectSettings', [$projectSettings]];
+            $definition->setMethodCalls($methodCalls);
+
+            return;
+        }
+    }
+
+    /**
+     * Add "changelogjson" for the Core Changelog, and only for it.
+     *
+     * The index it writes belongs to that manual alone, and the manual cannot
+     * ask for it: its guides.xml lives in typo3/cms-core, so requiring the
+     * format to be configured there would make a Core patch the price of a
+     * documentation artifact. Recognised by the interlink shortcode, the same
+     * marker the rest of the theme uses for changelog-specific behaviour.
+     */
+    private function alwaysIndexTheChangelog(ContainerBuilder $container): void
+    {
+        if (!$container->hasDefinition(Typo3DocsThemeSettings::class) || !$container->hasDefinition(SettingsManager::class)) {
+            return;
+        }
+
+        $arguments = $container->getDefinition(Typo3DocsThemeSettings::class)->getArguments();
+        $settings = $arguments['$settings'] ?? [];
+        if (!is_array($settings) || ($settings['interlink_shortcode'] ?? '') !== 'changelog') {
+            return;
+        }
+
+        $definition = $container->getDefinition(SettingsManager::class);
+        $methodCalls = $definition->getMethodCalls();
+
+        foreach ($methodCalls as $index => $call) {
+            if (!is_array($call) || ($call[0] ?? null) !== 'setProjectSettings') {
+                continue;
+            }
+
+            $arguments = $call[1] ?? null;
+            $projectSettings = is_array($arguments) ? ($arguments[0] ?? null) : null;
+            if (!$projectSettings instanceof ProjectSettings) {
+                continue;
+            }
+
+            $outputFormats = $projectSettings->getOutputFormats();
+            if (in_array('changelogjson', $outputFormats, true)) {
+                return;
+            }
+
+            $outputFormats[] = 'changelogjson';
             $projectSettings->setOutputFormats($outputFormats);
 
             $methodCalls[$index] = ['setProjectSettings', [$projectSettings]];

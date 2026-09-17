@@ -32,6 +32,7 @@ use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Directives\GlossaryDirective;
+use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Directives\IndexEntriesDirective;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 use T3Docs\Typo3DocsTheme\Directives\IncludeDirective;
@@ -65,6 +66,7 @@ use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\FileReferenceResolver;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\ChangelogJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
@@ -128,6 +130,16 @@ return static function (ContainerConfigurator $container): void {
         ->set(TwigExtension::class)
         ->tag('twig.extension')
         ->autowire()
+
+        ->set(ChangelogEntry::class)
+        ->set(ChangelogJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'changelogjson',
+            ],
+        )
 
         ->set(MainMenuJsonRenderer::class)
         ->tag(

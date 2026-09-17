@@ -25,10 +25,10 @@ use RuntimeException;
 use Throwable;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
+use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode;
-use T3Docs\Typo3DocsTheme\Nodes\Metadata\IndexEntriesNode;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
 use T3Docs\Typo3DocsTheme\Nodes\PageLinkNode;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
@@ -59,15 +59,10 @@ final class TwigExtension extends AbstractExtension
     public const BRACKETS_BREAK_REGEX = '/(?<!^)([\[\(\{\<\|])/';
 
     /**
-     * The kind and the Forge issue of a changelog entry. @see changelogEntry()
-     */
-    /**
      * Where a Forge issue lives. Spelled out as data rather than left for the
      * reader to assemble from "issue".
      */
     private const FORGE_ISSUE_URL = 'https://forge.typo3.org/issues/';
-
-    private const CHANGELOG_ENTRY_REGEX = '#(?:^|-)(feature|breaking|deprecation|important)-(\d+)(?:-|$)#i';
 
     private string $typo3AzureEdgeURI = '';
 
@@ -93,6 +88,7 @@ final class TwigExtension extends AbstractExtension
         private readonly DocumentNameResolverInterface $documentNameResolver,
         private readonly Typo3VersionService           $typo3VersionService,
         private readonly AnchorNormalizer              $anchorNormalizer,
+        private readonly ChangelogEntry                $changelogEntry,
     ) {
         if (strlen((string)getenv('GITHUB_ACTIONS')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
@@ -395,33 +391,20 @@ final class TwigExtension extends AbstractExtension
     }
 
     /**
-     * What a TYPO3 Core Changelog entry says about itself beyond its title.
+     * What a TYPO3 Core Changelog entry says about itself beyond its title, for
+     * the front matter of its Markdown. Returns [] for every other manual.
      *
-     * Returns [] for every other manual. A changelog entry carries three things
-     * no other page does, and all three are lost on the way into Markdown:
+     * An entry carries things no other page does, and every one of them is lost
+     * on the way into Markdown: the release the change went into, which is the
+     * first thing anybody asks of a changelog entry, and its major on its own as
+     * a number, so that filtering for everything that landed in TYPO3 13 does
+     * not mean matching a string prefix against "13.0" through "13.4.x"; the
+     * kind of change -- breaking, feature, deprecation, important -- which is
+     * what a reader filters on first, with the Forge issue and its URL; and the
+     * tags the entry is categorised by.
      *
-     * "typo3-version" is the release the change went into, which is the first
-     * thing anybody asks of a changelog entry, and "typo3-major" is its major
-     * on its own, as a number: filtering for everything that landed in TYPO3 13
-     * should not mean matching a string prefix against "13.0" through "13.4.x". It cannot come from the document
-     * version -- the Changelog is only ever deployed as "main", so every entry
-     * claims "main" -- but it is in the path: "Changelog/13.4.x/…". The
-     * directory name is taken as it stands, ".x" included: "13.4.x" means a
-     * patch release of 13.4 rather than 13.4.0, and normalising it away would
-     * drop that.
-     *
-     * "type", "issue" and "forge" are the kind of change -- breaking, feature,
-     * deprecation, important -- the Forge issue and its URL. The kind is what a reader
-     * filters on first. Both are read from the anchor rather than the title,
-     * because the anchor is what permalinks resolve against.
-     *
-     * "tags" are the terms of the ".. index::" directive: "PHP-API",
-     * "FullyScanned", "ext:lowlevel". Called tags rather than index because
-     * that is what they are here -- the scanner status and the extension a
-     * change touches, not terms to look a subject up by. They are the only
-     * categorisation an entry has, they never appear in the rendered page, and
-     * the Changelog marks all 3402 of its entries with them. See
-     * IndexEntriesDirective.
+     * Read by ChangelogEntry, which the JSON index reads as well, so the front
+     * matter of an entry and the line about it in the index cannot disagree.
      *
      * @param array{env: RenderContext} $context
      * @return array<string, string|int|list<string>>
@@ -432,23 +415,27 @@ final class TwigExtension extends AbstractExtension
             return [];
         }
 
-        $renderContext = $this->getRenderContext($context);
+        $document = $this->currentDocument($this->getRenderContext($context));
+        if ($document === null) {
+            return [];
+        }
+
         $metadata = [];
 
-        $version = $this->changelogVersionFromPath($renderContext->getCurrentFileName());
+        $version = $this->changelogEntry->version($document);
         if ($version !== '') {
             $metadata['typo3-version'] = $version;
             $metadata['typo3-major'] = (int) $version;
         }
 
-        $entry = $this->changelogEntry($renderContext);
-        if ($entry !== null) {
-            $metadata['type'] = $entry['type'];
-            $metadata['issue'] = $entry['issue'];
-            $metadata['forge'] = self::FORGE_ISSUE_URL . $entry['issue'];
+        $kind = $this->changelogEntry->kind($document);
+        if ($kind !== null) {
+            $metadata['type'] = $kind['type'];
+            $metadata['issue'] = $kind['issue'];
+            $metadata['forge'] = self::FORGE_ISSUE_URL . $kind['issue'];
         }
 
-        $tags = $this->indexTerms($renderContext);
+        $tags = $this->changelogEntry->tags($document);
         if ($tags !== []) {
             $metadata['tags'] = $tags;
         }
@@ -456,37 +443,8 @@ final class TwigExtension extends AbstractExtension
         return $metadata;
     }
 
-    /**
-     * "Changelog/13.4.x/Feature-105638-…" -> "13.4.x".
-     *
-     * Anything that is not a version directory under "Changelog/" yields "":
-     * the Changelog's own index pages and its "Howto" live there too.
-     */
-    private function changelogVersionFromPath(string $fileName): string
-    {
-        if (preg_match('#(?:^|/)Changelog/(\d+\.\d+(?:\.x)?)/#', $fileName, $matches) !== 1) {
-            return '';
-        }
-
-        return $matches[1];
-    }
-
-    /**
-     * The kind of change and its Forge issue, from the entry's anchor.
-     *
-     * Both sit in the same place: "feature-105638-1732034075" is a feature for
-     * issue 105638, the trailing number being a timestamp that distinguishes
-     * the same issue backported to several versions.
-     *
-     * Three anchor shapes occur across the 3402 entries and all three are
-     * matched: that one, the older "breaking-66431" with no timestamp, and
-     * "changelog-Feature-91008-..." with the manual's name in front. Naming the
-     * four kinds rather than accepting any word keeps the pattern from reading
-     * a number out of an unrelated anchor.
-     *
-     * @return array{type: string, issue: int}|null
-     */
-    private function changelogEntry(RenderContext $renderContext): array|null
+    /** The document being rendered, or null when it cannot be had. */
+    private function currentDocument(RenderContext $renderContext): DocumentNode|null
     {
         $entry = $renderContext->getCurrentDocumentEntry();
         if ($entry === null) {
@@ -494,70 +452,10 @@ final class TwigExtension extends AbstractExtension
         }
 
         try {
-            $document = $renderContext->getDocumentNodeForEntry($entry);
+            return $renderContext->getDocumentNodeForEntry($entry);
         } catch (Throwable) {
-            $document = null;
-        }
-
-        foreach ($document?->getChildren() ?? [] as $child) {
-            if (!$child instanceof SectionNode) {
-                continue;
-            }
-
-            foreach ($child->getChildren() as $sectionChild) {
-                if (!$sectionChild instanceof AnchorNode) {
-                    continue;
-                }
-
-                $matched = $this->matchChangelogEntry($sectionChild->toString());
-                if ($matched !== null) {
-                    return $matched;
-                }
-            }
-
-            break;
-        }
-
-        // A handful of anchors name the subject instead of the issue --
-        // "breaking-PageTsBackendLayoutDataProvider-1687440947". The file name
-        // carries both in every one of those cases.
-        return $this->matchChangelogEntry(basename($renderContext->getCurrentFileName()));
-    }
-
-    /** @return array{type: string, issue: int}|null */
-    private function matchChangelogEntry(string $subject): array|null
-    {
-        if (preg_match(self::CHANGELOG_ENTRY_REGEX, $subject, $matches) !== 1) {
             return null;
         }
-
-        return ['type' => strtolower($matches[1]), 'issue' => (int) $matches[2]];
-    }
-
-    /** @return list<string> */
-    private function indexTerms(RenderContext $renderContext): array
-    {
-        $entry = $renderContext->getCurrentDocumentEntry();
-        if ($entry === null) {
-            return [];
-        }
-
-        try {
-            $document = $renderContext->getDocumentNodeForEntry($entry);
-        } catch (Throwable) {
-            return [];
-        }
-
-        $terms = [];
-        foreach ($document->getHeaderNodes() as $headerNode) {
-            if ($headerNode instanceof IndexEntriesNode) {
-                foreach ($headerNode->getTerms() as $term) {
-                    $terms[] = $term;
-                }
-            }
-        }
-
-        return array_values(array_unique($terms));
     }
 
     /**
