@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
+use phpDocumentor\Guides\Event\ModifyDocumentEntryAdditionalData;
 use phpDocumentor\Guides\Event\PostParseDocument;
 use phpDocumentor\Guides\Event\PostProjectNodeCreated;
 use phpDocumentor\Guides\Event\PostRenderProcess;
@@ -49,6 +50,7 @@ use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
+use T3Docs\Typo3DocsTheme\EventListeners\NavigationTitleAnchorSetter;
 use T3Docs\Typo3DocsTheme\EventListeners\OriginalFileNameSetter;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInterlinkParser;
@@ -266,5 +268,8 @@ return static function (ContainerConfigurator $container): void {
         ->tag('event_listener', ['event' => PreParseProcess::class])
 
         ->set(OriginalFileNameSetter::class)
-        ->tag('event_listener', ['event' => PostParseDocument::class]);
+        ->tag('event_listener', ['event' => PostParseDocument::class])
+
+        ->set(NavigationTitleAnchorSetter::class)
+        ->tag('event_listener', ['event' => ModifyDocumentEntryAdditionalData::class]);
 };
