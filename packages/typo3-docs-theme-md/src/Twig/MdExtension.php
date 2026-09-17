@@ -155,7 +155,14 @@ final class MdExtension extends AbstractExtension
             $columnCount = max($columnCount, count($row->getColumns()));
         }
 
-        if ($rows === [] && $columnCount > 0) {
+        // A table without a single cell -- an empty "t3-field-list-table" or
+        // an empty "csv-table" -- has nothing GFM can spell, not even the
+        // delimiter row, so it is left out of the document.
+        if ($columnCount === 0) {
+            return '';
+        }
+
+        if ($rows === []) {
             $rows[] = array_fill(0, $columnCount, '');
         }
 
