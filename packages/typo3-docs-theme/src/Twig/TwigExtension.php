@@ -123,7 +123,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('markdownSectionAnchors', $this->getMarkdownSectionAnchors(...), ['needs_context' => true]),
             new TwigFunction('isSitemap', $this->isSitemap(...)),
             new TwigFunction('changelogMetadata', $this->getChangelogMetadata(...), ['needs_context' => true]),
-            new TwigFunction('markdownPermalink', $this->getMarkdownPermalink(...), ['needs_context' => true]),
+            new TwigFunction('pagePermalink', $this->getPagePermalink(...), ['needs_context' => true]),
             new TwigFunction('markdownVersion', $this->getMarkdownVersion(...), ['needs_context' => true]),
             new TwigFunction('markdownIsStartPage', $this->isMarkdownStartPage(...), ['needs_context' => true]),
             new TwigFunction('getViewSourceLink', $this->getViewSourceLink(...), ['needs_context' => true]),
@@ -994,16 +994,28 @@ final class TwigExtension extends AbstractExtension
     }
 
     /**
-     * The permalink of the document being rendered, for the Markdown front
-     * matter: the one URL that names this page no matter where the file ends
-     * up, and the way back to the HTML it was rendered from.
+     * The permalink of the document being rendered: the one URL that names this
+     * page no matter where its file ends up or what the page is later renamed
+     * to. "" when the manual declares no interlink shortcode, or the page has
+     * no anchor to be named by.
+     *
+     * Written into the Markdown front matter, and into the HTML head as the
+     * canonical URL of the page.
      *
      * @param array{env: RenderContext} $context
      */
-    public function getMarkdownPermalink(array $context): string
+    public function getPagePermalink(array $context): string
     {
         $interlink = $this->themeSettings->getSettings('interlink_shortcode');
         $renderContext = $this->getRenderContext($context);
+
+        // The head is rendered for things that are not a document too -- the
+        // sitemap and the main menu among them -- and a page is what a permalink
+        // names. Asking for the current entry there throws.
+        if (!$renderContext->hasCurrentFileName()) {
+            return '';
+        }
+
         $entry = $renderContext->getCurrentDocumentEntry();
         $anchor = $entry === null ? '' : $this->documentAnchor($renderContext, $entry);
         if ($interlink === '' || $anchor === '') {

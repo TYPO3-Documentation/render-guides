@@ -4,7 +4,7 @@
 
     A key whose value is unknown is left out rather than written empty: a
     permalink with nothing behind it is worse than no permalink. -#}
-{%- set permalink = markdownPermalink() -%}
+{%- set permalink = pagePermalink() -%}
 {%- set version = markdownVersion() -%}
 {%- set source = sourceFilename() -%}
 {%- set frontMatter -%}
