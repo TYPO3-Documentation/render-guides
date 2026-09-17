@@ -168,9 +168,10 @@ final class MdExtension extends AbstractExtension
             $rows[] = array_fill(0, $columnCount, '');
         }
 
-        // The header row decides how wide the table is: GFM ignores every cell
-        // a body row has beyond it, so a header narrower than the widest body
-        // row would drop content. It is padded to the width of the table.
+        // Every row is written at the width of the table. GFM ignores the
+        // cells a row has beyond the header -- a narrow header would drop
+        // content -- and fills in the ones it lacks, but a reader that does
+        // not (Python-Markdown's "tables" among them) shows a ragged table.
         $out = '| ' . implode(' | ', array_pad($rows[0], $columnCount, '')) . " |\n";
         $out .= '| ' . implode(' | ', array_fill(0, $columnCount, '---')) . " |\n";
 
@@ -178,11 +179,12 @@ final class MdExtension extends AbstractExtension
         // a "list-table" with ":header-rows: 2" produces are written as body
         // rows: they carry content, and there is nowhere else to put it.
         foreach (array_slice($rows, 1) as $row) {
-            $out .= '| ' . implode(' | ', $row) . " |\n";
+            $out .= '| ' . implode(' | ', array_pad($row, $columnCount, '')) . " |\n";
         }
 
         foreach ($data as $row) {
-            $out .= '| ' . implode(' | ', $this->renderRow($row->getColumns(), $context['env'])) . " |\n";
+            $cells = $this->renderRow($row->getColumns(), $context['env']);
+            $out .= '| ' . implode(' | ', array_pad($cells, $columnCount, '')) . " |\n";
         }
 
         return $out;

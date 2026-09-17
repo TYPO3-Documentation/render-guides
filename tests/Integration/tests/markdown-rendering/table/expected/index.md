@@ -27,6 +27,14 @@ header has no column for, so the table would lose "one" without it.
 | --- | --- |
 | 1 | one |
 
+A body row with fewer cells than the table is filled up, so the row keeps its
+place under the right column even in a reader that does not fill cells in
+itself.
+
+| Header1 | Header2 |
+| --- | --- |
+| only one cell |  |
+
 GFM knows one header row, so a table with two of them writes the second as a
 body row rather than dropping it.
 

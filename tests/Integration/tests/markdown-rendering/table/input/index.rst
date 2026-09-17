@@ -34,6 +34,18 @@ header has no column for, so the table would lose "one" without it.
     -   :Header1:   1
         :Header2:   one
 
+A body row with fewer cells than the table is filled up, so the row keeps its
+place under the right column even in a reader that does not fill cells in
+itself.
+
+..  t3-field-list-table::
+    :header-rows: 1
+
+    -   :Header1:   Header1
+        :Header2:   Header2
+
+    -   :Header1:   only one cell
+
 GFM knows one header row, so a table with two of them writes the second as a
 body row rather than dropping it.
 
