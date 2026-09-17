@@ -13,7 +13,7 @@ tags: ["TCA"]
 rendered: "2023-01-01T12:00:00+00:00"
 ---
 
-# Feature: #91008 - Item grouping {#feature-91008-item-grouping}
+# Feature: #91008 - Item grouping {#changelog-feature-91008-itemgrouping}
 
 An entry whose anchor is prefixed with the manual name and spells the type in
 CamelCase.
