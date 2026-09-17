@@ -31,31 +31,6 @@ module.exports = function (grunt) {
 
     // copy
     copy: {
-      fonts: {
-        files: [
-          {
-            expand: true,
-            cwd: 'node_modules/@fortawesome/fontawesome-free/webfonts',
-            src: ['**/*'],
-            dest: '<%= paths.output %>fonts'
-          },
-          {
-            expand: true,
-            cwd: '<%= paths.source %>fonts',
-            src: ['**/*', '!**/*.txt'],
-            dest: '<%= paths.output %>fonts'
-          }
-        ]
-      },
-      libs: {
-        files: [
-          {
-            src: 'node_modules/bootstrap/dist/js/bootstrap.min.js',
-            dest: '<%= paths.output %>js/bootstrap.min.js'
-          }
-        ]
-      },
-
       debug: {
         files: [
           {
@@ -147,7 +122,7 @@ module.exports = function (grunt) {
    * Register tasks
    */
   grunt.registerTask('js', ['uglify']);
-  grunt.registerTask('default', ['copy', 'sass', 'js', 'removesourcemap']);
+  grunt.registerTask('default', ['sass', 'js', 'removesourcemap']);
   grunt.registerTask('build', ['default']);
-  grunt.registerTask('debug', ['copy', 'sass:debug', 'js', 'copy:debug', 'removesourcemap']);
+  grunt.registerTask('debug', ['sass:debug', 'js', 'copy:debug', 'removesourcemap']);
 };

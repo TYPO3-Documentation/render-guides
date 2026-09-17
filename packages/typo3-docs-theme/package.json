@@ -30,8 +30,9 @@
     },
     "scripts": {
         "clean": "rm -rf resources/public/css resources/public/fonts resources/public/js",
-        "build": "npm run clean && vite build && grunt build",
-        "debug": "npm run clean && grunt debug",
+        "copy": "mkdir -p resources/public/fonts resources/public/js && cp -R node_modules/@fortawesome/fontawesome-free/webfonts/. resources/public/fonts/ && cp -R assets/fonts/. resources/public/fonts/ && find resources/public/fonts -name '*.txt' -delete && cp node_modules/bootstrap/dist/js/bootstrap.min.js resources/public/js/bootstrap.min.js",
+        "build": "npm run clean && vite build && npm run copy && grunt build",
+        "debug": "npm run clean && npm run copy && grunt debug",
         "lint:css": "stylelint \"assets/sass/**/*.scss\"",
         "lint:css:fix": "stylelint \"assets/sass/**/*.scss\" --fix",
         "test": "vitest run",
