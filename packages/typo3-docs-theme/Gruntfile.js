@@ -1,7 +1,5 @@
 module.exports = function (grunt) {
 
-  const sass = require('sass');
-
   /**
    * Grunt task to remove source map comment
    */
@@ -43,29 +41,6 @@ module.exports = function (grunt) {
       },
     },
 
-    // sass :: compact, compressed, expanded, nested
-    sass: {
-      options: {
-        implementation: sass,
-        outputStyle: 'expanded',
-        sourceMap: false
-      },
-      build: {
-        files: {
-          '<%= paths.output %>css/theme.css': '<%= paths.source %>sass/theme.scss',
-        }
-      },
-
-      debug: {
-        options: {
-          sourceMap: true, // Enable sourcemaps for debugging
-        },
-        files: {
-          '<%= paths.debugDestination %>css/theme.css': '<%= paths.source %>sass/theme.scss',
-        }
-      }
-    },
-
     // uglify
     uglify: {
       options: {
@@ -93,18 +68,11 @@ module.exports = function (grunt) {
 
     // watch
     watch: {
-      /* Compile sass changes into theme directory */
       js: {
         files: [
           '<%= paths.source %>js/**/*.js'
         ],
         tasks: ['uglify']
-      },
-      sass: {
-        files: [
-          '<%= paths.source %>sass/**/*.scss'
-        ],
-        tasks: ['sass']
       }
     }
 
@@ -116,13 +84,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-sass');
 
   /**
    * Register tasks
    */
   grunt.registerTask('js', ['uglify']);
-  grunt.registerTask('default', ['sass', 'js', 'removesourcemap']);
+  grunt.registerTask('default', ['js', 'removesourcemap']);
   grunt.registerTask('build', ['default']);
-  grunt.registerTask('debug', ['sass:debug', 'js', 'copy:debug', 'removesourcemap']);
+  grunt.registerTask('debug', ['js', 'copy:debug', 'removesourcemap']);
 };
