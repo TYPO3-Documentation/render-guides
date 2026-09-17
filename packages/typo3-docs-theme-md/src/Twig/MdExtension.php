@@ -150,8 +150,7 @@ final class MdExtension extends AbstractExtension
             $rows[] = $this->renderRow($row->getColumns(), $context['env']);
         }
 
-        // GFM has no table without a header row; an empty one keeps the table
-        // valid when the source table has only body rows.
+        // The width of the table is the widest row it has, header or body.
         $columnCount = 0;
         foreach ([...$headers, ...$data] as $row) {
             $columnCount = max($columnCount, count($row->getColumns()));
@@ -164,6 +163,8 @@ final class MdExtension extends AbstractExtension
             return '';
         }
 
+        // GFM has no table without a header row; an empty one keeps the table
+        // valid when the source table has only body rows.
         if ($rows === []) {
             $rows[] = array_fill(0, $columnCount, '');
         }
