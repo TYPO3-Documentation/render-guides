@@ -1,0 +1,34 @@
+{
+    "project": {
+        "title": "Table of contents",
+        "version": "13.4",
+        "permalink": "https://docs.typo3.org/permalink/t3coreapi:{anchor}@13.4"
+    },
+    "pages": [
+        {
+            "path": "index",
+            "title": "Table of contents",
+            "anchor": "toc-start",
+            "pages": [
+                {
+                    "path": "Chapter/Index",
+                    "title": "Chapter",
+                    "anchor": "toc-chapter",
+                    "pages": [
+                        {
+                            "path": "Chapter/Page",
+                            "title": "A page with no label",
+                            "anchor": "a-page-with-no-label"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "orphan": true,
+            "path": "Orphan",
+            "title": "Orphan",
+            "anchor": "toc-orphan"
+        }
+    ]
+}

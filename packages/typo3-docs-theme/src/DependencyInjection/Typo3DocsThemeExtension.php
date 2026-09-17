@@ -254,7 +254,17 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             $container->removeDefinition(BaseIndexDirective::class);
         }
 
-        $this->alwaysRenderMarkdown($container);
+        if ($this->markdownRequested($container)) {
+            $this->appendOutputFormat($container, 'md');
+        }
+
+        // Every manual gets a table of contents, and the Core Changelog gets
+        // an index of its entries on top. @see TocJsonRenderer,
+        // ChangelogJsonRenderer
+        $this->appendOutputFormat($container, 'tocjson');
+        if ($this->isChangelog($container)) {
+            $this->appendOutputFormat($container, 'changelogjson');
+        }
 
         if ($this->markdownRequested($container)) {
             $this->markdownExtension()->markUnsupportedNodes($container);
@@ -262,21 +272,21 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
     }
 
     /**
-     * Add "md" to whatever output formats the project configured.
+     * Add an output format to whatever the project configured.
      *
      * This cannot be done by prepending "output_format" to the guides
      * configuration: any explicitly provided value replaces the default
      * ["html", "interlink"] rather than extending it, so a project that
-     * configures nothing would end up rendering Markdown and no HTML.
+     * configures nothing would end up rendering the added format and no HTML.
      *
      * By the time the container is compiled the settings object carries the
      * final list, so appending to it leaves every other format untouched --
      * a project rendering only "singlepage" or only "rst" keeps doing that,
-     * and gains Markdown beside it.
+     * and gains the added one beside it.
      */
-    private function alwaysRenderMarkdown(ContainerBuilder $container): void
+    private function appendOutputFormat(ContainerBuilder $container, string $format): void
     {
-        if (!$this->markdownRequested($container) || !$container->hasDefinition(SettingsManager::class)) {
+        if (!$container->hasDefinition(SettingsManager::class)) {
             return;
         }
 
@@ -295,11 +305,11 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             }
 
             $outputFormats = $projectSettings->getOutputFormats();
-            if (in_array('md', $outputFormats, true)) {
+            if (in_array($format, $outputFormats, true)) {
                 return;
             }
 
-            $outputFormats[] = 'md';
+            $outputFormats[] = $format;
             $projectSettings->setOutputFormats($outputFormats);
 
             $methodCalls[$index] = ['setProjectSettings', [$projectSettings]];
@@ -307,5 +317,27 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
 
             return;
         }
+    }
+
+    /**
+     * Whether this is the TYPO3 Core Changelog, which is rendered with an index
+     * of its entries that no other manual gets.
+     *
+     * Recognised by its interlink shortcode, the same marker the rest of the
+     * theme uses for changelog-specific behaviour. The manual cannot ask for
+     * the index itself: its guides.xml lives in typo3/cms-core, and requiring
+     * the format to be configured there would make a Core patch the price of a
+     * documentation artifact.
+     */
+    private function isChangelog(ContainerBuilder $container): bool
+    {
+        if (!$container->hasDefinition(Typo3DocsThemeSettings::class)) {
+            return false;
+        }
+
+        $arguments = $container->getDefinition(Typo3DocsThemeSettings::class)->getArguments();
+        $settings = $arguments['$settings'] ?? [];
+
+        return is_array($settings) && ($settings['interlink_shortcode'] ?? '') === 'changelog';
     }
 }

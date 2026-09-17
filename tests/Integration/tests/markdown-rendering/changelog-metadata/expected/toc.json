@@ -1,0 +1,36 @@
+{
+    "project": {
+        "title": "TYPO3 Core Changelog",
+        "version": "main",
+        "permalink": "https://docs.typo3.org/permalink/changelog:{anchor}"
+    },
+    "pages": [
+        {
+            "path": "index",
+            "title": "Changelog entries",
+            "anchor": "changelog-metadata-start",
+            "pages": [
+                {
+                    "path": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent",
+                    "title": "Feature: #105638 - Modify fetched page content",
+                    "anchor": "feature-105638-1732034075"
+                },
+                {
+                    "path": "Changelog/7.2/Breaking-66431-NewLoginScreen",
+                    "title": "Breaking: #66431 - New login screen",
+                    "anchor": "breaking-66431"
+                },
+                {
+                    "path": "Changelog/7.2/Feature-91008-ItemGrouping",
+                    "title": "Feature: #91008 - Item grouping",
+                    "anchor": "changelog-feature-91008-itemgrouping"
+                },
+                {
+                    "path": "Changelog/7.2/Breaking-101149-NamedAnchor",
+                    "title": "Breaking: #101149 - Anchor without an issue",
+                    "anchor": "breaking-pagetsbackendlayoutdataprovider-1687440947"
+                }
+            ]
+        }
+    ]
+}

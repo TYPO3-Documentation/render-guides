@@ -3,22 +3,9 @@
 declare(strict_types=1);
 
 use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
-use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
-use phpDocumentor\Guides\Event\ModifyDocumentEntryAdditionalData;
-use phpDocumentor\Guides\Event\PostParseDocument;
-use phpDocumentor\Guides\Event\PostProjectNodeCreated;
-use phpDocumentor\Guides\Event\PostRenderProcess;
-use phpDocumentor\Guides\Event\PreParseProcess;
-use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
-use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
-use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
-use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
-use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
-use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
-use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
-use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
+use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
@@ -32,9 +19,9 @@ use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Directives\GlossaryDirective;
-use T3Docs\Typo3DocsTheme\Directives\IndexEntriesDirective;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
 use T3Docs\Typo3DocsTheme\Directives\IncludeDirective;
+use T3Docs\Typo3DocsTheme\Directives\IndexEntriesDirective;
 use T3Docs\Typo3DocsTheme\Directives\LiteralincludeDirective;
 use T3Docs\Typo3DocsTheme\Directives\MainMenuJsonDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
@@ -62,11 +49,14 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
+use T3Docs\Typo3DocsTheme\Permalinks\Permalinks;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\FileReferenceResolver;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
+use T3Docs\Typo3DocsTheme\Renderer\ChangelogJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\CssTextRole;
@@ -93,6 +83,20 @@ use T3Docs\Typo3DocsTheme\TextRoles\XmlTextTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\YamlTextTextRole;
 use T3Docs\Typo3DocsTheme\Twig\TwigExtension;
 use T3Docs\VersionHandling\Packagist\PackagistService;
+use phpDocumentor\Guides\Event\ModifyDocumentEntryAdditionalData;
+use phpDocumentor\Guides\Event\PostCollectFilesForParsingEvent;
+use phpDocumentor\Guides\Event\PostParseDocument;
+use phpDocumentor\Guides\Event\PostProjectNodeCreated;
+use phpDocumentor\Guides\Event\PostRenderProcess;
+use phpDocumentor\Guides\Event\PreParseProcess;
+use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
+use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
+use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
+use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
+use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
+use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
+use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
@@ -128,6 +132,26 @@ return static function (ContainerConfigurator $container): void {
         ->set(TwigExtension::class)
         ->tag('twig.extension')
         ->autowire()
+
+        ->set(Permalinks::class)
+        ->set(ChangelogEntry::class)
+        ->set(ChangelogJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'changelogjson',
+            ],
+        )
+
+        ->set(TocJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'tocjson',
+            ],
+        )
 
         ->set(MainMenuJsonRenderer::class)
         ->tag(
