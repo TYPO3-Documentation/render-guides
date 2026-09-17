@@ -17,6 +17,7 @@ module.exports = function (grunt) {
     });
   });
 
+
   /**
    * Project configuration.
    */
@@ -41,38 +42,12 @@ module.exports = function (grunt) {
       },
     },
 
-    // uglify
-    uglify: {
-      options: {
-        output: {
-          comments: false
-        }
-      },
-      target: {
-        files: {
-          '<%= paths.output %>js/theme.min.js': [
-            '<%= paths.source %>js/*.js',
-          ]
-        }
-      }
-    },
-
     // remove sourcemaps from dist files
     removesourcemap: {
       contrib: {
         files: {
           '<%= paths.output %>js/bootstrap.min.js': '<%= paths.output %>js/bootstrap.min.js'
         }
-      }
-    },
-
-    // watch
-    watch: {
-      js: {
-        files: [
-          '<%= paths.source %>js/**/*.js'
-        ],
-        tasks: ['uglify']
       }
     }
 
@@ -82,14 +57,11 @@ module.exports = function (grunt) {
    * Load tasks
    */
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
 
   /**
    * Register tasks
    */
-  grunt.registerTask('js', ['uglify']);
-  grunt.registerTask('default', ['js', 'removesourcemap']);
+  grunt.registerTask('default', ['removesourcemap']);
   grunt.registerTask('build', ['default']);
-  grunt.registerTask('debug', ['js', 'copy:debug', 'removesourcemap']);
+  grunt.registerTask('debug', ['copy:debug', 'removesourcemap']);
 };

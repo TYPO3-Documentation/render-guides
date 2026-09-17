@@ -17,12 +17,11 @@
         "grunt": "^1.6.3",
         "grunt-cli": "^1.5.0",
         "grunt-contrib-copy": "1.0.0",
-        "grunt-contrib-uglify": "^5.2.2",
-        "grunt-contrib-watch": "^1.1.0",
         "jsdom": "^30.1.2",
         "postcss-scss": "^4.0.9",
         "sass": "^1.105.1",
         "stylelint": "^17.16.0",
+        "uglify-js": "^3.17.4",
         "vite": "^8.3.3",
         "vitest": "^5.0.3"
     },
@@ -31,12 +30,13 @@
         "copy": "mkdir -p resources/public/fonts resources/public/js && cp -R node_modules/@fortawesome/fontawesome-free/webfonts/. resources/public/fonts/ && cp -R assets/fonts/. resources/public/fonts/ && find resources/public/fonts -name '*.txt' -delete && cp node_modules/bootstrap/dist/js/bootstrap.min.js resources/public/js/bootstrap.min.js",
         "build:css": "sass --no-source-map --style=expanded assets/sass/theme.scss resources/public/css/theme.css",
         "build:css:debug": "sass --style=expanded assets/sass/theme.scss ../../Documentation-GENERATED-temp/_resources/css/theme.css",
-        "build": "npm run clean && vite build && npm run copy && npm run build:css && grunt build",
-        "debug": "npm run clean && npm run copy && npm run build:css:debug && grunt debug",
+        "build": "npm run clean && vite build && npm run copy && npm run build:css && npm run build:js && grunt build",
+        "debug": "npm run clean && npm run copy && npm run build:css:debug && npm run build:js && grunt debug",
         "lint:css": "stylelint \"assets/sass/**/*.scss\"",
         "lint:css:fix": "stylelint \"assets/sass/**/*.scss\" --fix",
         "test": "vitest run",
-        "watch": "vite build --watch & npm run build:css -- --watch & grunt watch"
+        "watch": "vite build --watch & npm run build:css -- --watch & node watch-js.mjs",
+        "build:js": "uglifyjs assets/js/*.js -c -m -o resources/public/js/theme.min.js"
     },
     "engines": {
         "node": ">=24.16.0 <25.0.0"
