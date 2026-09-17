@@ -17,6 +17,7 @@ use Twig\TwigFunction;
 
 use function array_fill;
 use function array_map;
+use function array_pad;
 use function count;
 use function explode;
 use function implode;
@@ -166,8 +167,11 @@ final class MdExtension extends AbstractExtension
             $rows[] = array_fill(0, $columnCount, '');
         }
 
-        $out = '| ' . implode(' | ', $rows[0]) . " |\n";
-        $out .= '| ' . implode(' | ', array_fill(0, count($rows[0]), '---')) . " |\n";
+        // The header row decides how wide the table is: GFM ignores every cell
+        // a body row has beyond it, so a header narrower than the widest body
+        // row would drop content. It is padded to the width of the table.
+        $out = '| ' . implode(' | ', array_pad($rows[0], $columnCount, '')) . " |\n";
+        $out .= '| ' . implode(' | ', array_fill(0, $columnCount, '---')) . " |\n";
 
         foreach ($data as $row) {
             $out .= '| ' . implode(' | ', $this->renderRow($row->getColumns(), $context['env'])) . " |\n";

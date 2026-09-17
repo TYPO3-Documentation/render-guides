@@ -86,6 +86,13 @@ class T3FieldListTableDirective extends SubDirective
                 $i++;
             }
         }
+        if ($rows === [] && $headers === []) {
+            // Nothing was indented under the directive, so it says nothing: the
+            // HTML shows an empty table and the Markdown shows nothing at all.
+            // Rather than let that pass unremarked, the author is told where.
+            $this->logger->warning('The t3-field-list-table directive has no content. It must contain a list of field lists.', $blockContext->getLoggerInformation());
+        }
+
         $tableNode = new TableNode($rows, $headers);
         return $tableNode;
     }

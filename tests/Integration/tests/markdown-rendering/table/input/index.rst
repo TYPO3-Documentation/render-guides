@@ -23,6 +23,17 @@ A grid table keeps its header row too.
     | 1         | one       |
     +-----------+-----------+
 
+A header row narrower than the body is widened: GFM ignores a body cell the
+header has no column for, so the table would lose "one" without it.
+
+..  t3-field-list-table::
+    :header-rows: 1
+
+    -   :Header1:   Only one header
+
+    -   :Header1:   1
+        :Header2:   one
+
 A directive whose content is missing -- the sections below it were never
 indented into it -- leaves a table with no cell at all. GFM cannot spell one,
 so nothing is written.
