@@ -24,7 +24,7 @@
     },
     "scripts": {
         "clean": "rm -rf resources/public/css resources/public/fonts resources/public/js",
-        "copy": "mkdir -p resources/public/fonts resources/public/js && cp -R node_modules/@fortawesome/fontawesome-free/webfonts/. resources/public/fonts/ && cp -R assets/fonts/. resources/public/fonts/ && cp node_modules/bootstrap/dist/js/bootstrap.min.js resources/public/js/bootstrap.min.js && perl -0pi -e 's{//# sourceMappingURL=\\S+}{}' resources/public/js/bootstrap.min.js",
+        "copy": "mkdir -p resources/public/fonts resources/public/js && cp -R node_modules/@fortawesome/fontawesome-free/webfonts/. resources/public/fonts/ && cp -R assets/fonts/. resources/public/fonts/ && sed '/# sourceMappingURL=/d' node_modules/bootstrap/dist/js/bootstrap.min.js > resources/public/js/bootstrap.min.js",
         "build:css": "sass --no-source-map --style=expanded --load-path=node_modules --quiet-deps assets/sass/theme.scss resources/public/css/theme.css",
         "build:css:debug": "sass --style=expanded --load-path=node_modules --quiet-deps assets/sass/theme.scss ../../Documentation-GENERATED-temp/_resources/css/theme.css",
         "build": "npm run clean && vite build && npm run copy && npm run build:css && npm run build:js",
