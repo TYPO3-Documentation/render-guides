@@ -3,13 +3,13 @@
 @import 'fonts/webfonts';
 
 // Functions
-@import '../../node_modules/bootstrap/scss/functions';
+@import 'bootstrap/scss/functions';
 
 // Variables
 @import 'variables';
 
 // Dependencies
-@import '../../node_modules/bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 // Mixings
 @import 'mixins/container';
