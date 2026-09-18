@@ -1,7 +1,17 @@
+{#- A section is named by its label where it has one: that is what the author
+    wrote, what a permalink resolves against, and where the permalink route
+    lands. Without a label the id derived from the heading has to do.
+
+    "data-rst-anchor" keeps carrying the label on its own, because the permalink
+    dialog reads it to tell a section that can be linked from one that cannot.
+
+    The id derived from the heading stays reachable as an empty anchor: menu
+    entries and references are built from it, and moving the section's name must
+    not take a name off the page. -#}
 {%- set anchorId = getAnchorIdOfSection(node) -%}
-<section class="section{% if node.classes %} {{ node.classesString }}{% endif %}" id="{{ node.title.id }}"
+<section class="section{% if node.classes %} {{ node.classesString }}{% endif %}" id="{{ anchorId ?: node.title.id }}"
          {%- if anchorId %} data-rst-anchor="{{ anchorId }}"{% endif %}
->
+>{{ (anchorId and anchorId != node.title.id ? '<a id="' ~ node.title.id ~ '"></a>' : '')|raw }}
     {% for childNode in node.children %}
         {{ renderNode(childNode) }}
     {% endfor %}

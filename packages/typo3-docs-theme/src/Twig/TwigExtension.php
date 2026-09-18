@@ -121,7 +121,8 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('markdownDownloadName', $this->getMarkdownDownloadName(...), ['needs_context' => true]),
             new TwigFunction('markdownLinkUrl', $this->getMarkdownLinkUrl(...), ['needs_context' => true]),
             new TwigFunction('markdownSectionAnchors', $this->getMarkdownSectionAnchors(...), ['needs_context' => true]),
-            new TwigFunction('markdownHeadingId', $this->getMarkdownHeadingId(...), ['needs_context' => true]),
+            new TwigFunction('headingId', $this->getHeadingId(...), ['needs_context' => true]),
+            new TwigFunction('sectionIdOfAnchor', $this->getSectionIdOfAnchor(...), ['needs_context' => true]),
             new TwigFunction('isSitemap', $this->isSitemap(...)),
             new TwigFunction('changelogMetadata', $this->getChangelogMetadata(...), ['needs_context' => true]),
             new TwigFunction('pagePermalink', $this->getPagePermalink(...), ['needs_context' => true]),
@@ -372,7 +373,8 @@ final class TwigExtension extends AbstractExtension
     }
 
     /**
-     * The id a heading carries in the per-page Markdown.
+     * The id a heading carries: in the HTML section it sits in, in the
+     * "#" its permalink button offers, and in the per-page Markdown.
      *
      * The explicit label of the section where it has one, and the id derived
      * from the heading otherwise. The label is what a permalink resolves
@@ -391,7 +393,7 @@ final class TwigExtension extends AbstractExtension
      *
      * @param array{env: RenderContext} $context
      */
-    public function getMarkdownHeadingId(array $context, TitleNode $titleNode): string
+    public function getHeadingId(array $context, TitleNode $titleNode): string
     {
         $renderContext = $this->getRenderContext($context);
         $document = $this->currentDocument($renderContext);
@@ -404,6 +406,65 @@ final class TwigExtension extends AbstractExtension
         }
 
         return $titleNode->getId();
+    }
+
+    /**
+     * The id of the section this anchor gave its name to, or "" when it gave it
+     * to none.
+     *
+     * A section with a label is written with that label as its id, so the empty
+     * anchor element the library renders for the same label would repeat it --
+     * and an id may occur once in a document. The template asks this before
+     * writing the anchor, and leaves it out when the section already carries
+     * the very same id.
+     *
+     * The comparison is on the id, not on the anchor being first: a label is
+     * normalised on its way into the section id, so an anchor whose spelling
+     * survives that differently still has to be written, or the name it defines
+     * would be gone from the page.
+     *
+     * @param array{env: RenderContext} $context
+     */
+    public function getSectionIdOfAnchor(array $context, AnchorNode $anchorNode): string
+    {
+        $renderContext = $this->getRenderContext($context);
+        $document = $this->currentDocument($renderContext);
+        $section = $document === null ? null : $this->sectionOfAnchor($document, $anchorNode);
+        if ($section === null) {
+            return '';
+        }
+
+        return $this->getAnchorIdOfSection($context, $section);
+    }
+
+    /**
+     * The section holding this anchor as a direct child, or null.
+     *
+     * Only a direct child names a section; an anchor further down the page
+     * belongs to whatever follows it and keeps its element.
+     *
+     * @param CompoundNode<Node> $node
+     */
+    private function sectionOfAnchor(CompoundNode $node, AnchorNode $anchorNode): SectionNode|null
+    {
+        foreach ($node->getChildren() as $child) {
+            if (!$child instanceof SectionNode) {
+                continue;
+            }
+
+            foreach ($child->getChildren() as $sectionChild) {
+                if ($sectionChild === $anchorNode) {
+                    return $child;
+                }
+            }
+
+            $found = $this->sectionOfAnchor($child, $anchorNode);
+            if ($found !== null) {
+                return $found;
+            }
+        }
+
+        return null;
     }
 
     /**

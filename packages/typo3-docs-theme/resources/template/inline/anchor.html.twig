@@ -1,0 +1,5 @@
+{#- The library writes an empty anchor element for every label. Where the label
+    named its section, the section already carries it as its id, and writing it
+    again would put the same id on the page twice. Kept to one line, and to the
+    same line breaks the library uses, so that leaving it out moves nothing. -#}
+{{ (sectionIdOfAnchor(node) != node.value ? '<a id="' ~ node.value ~ '"></a>' : '')|raw }}
