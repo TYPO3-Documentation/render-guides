@@ -18,11 +18,15 @@
 #     other than package.json / package-lock.json
 #   - npm ci --ignore-scripts
 #   - the build and the App token live in SEPARATE JOBS: the build job holds
-#     no secret at all, and the commit job never checks out or executes
-#     repository code. Minting the token after the build within one job would
-#     not be enough — a build step can write $GITHUB_ENV or $GITHUB_PATH,
-#     which GitHub applies to the steps that follow, so NODE_OPTIONS or a
-#     hijacked PATH would reach the token-holding steps on the same runner.
+#     no secret — its checkout keeps the read-only GITHUB_TOKEN off disk with
+#     persist-credentials: false — and the commit job never checks out or
+#     executes repository code. Minting the token after the build within one
+#     job would not be enough: a build step can write $GITHUB_ENV or
+#     $GITHUB_PATH, which the runner applies to the steps that follow, so a
+#     prepended PATH entry intercepts the gh that the last step calls with
+#     GH_TOKEN exported. (NODE_OPTIONS itself is on the runner's block list
+#     for $GITHUB_ENV — _setEnvBlockList in FileCommandManager.cs — so that
+#     one route is closed; $GITHUB_PATH is not.)
 #
 # Egress filtering via step-security/harden-runner is not available here: the
 # repository restricts workflows to an allowlist of actions and harden-runner
