@@ -202,7 +202,7 @@ jobs:
       # the SHA the build job saw, so a force-push in between fails the
       # mutation instead of being overwritten by it.
       - name: "Commit rebuilt assets as a verified commit"
-        uses: actions/github-script@d746ffe35508b1917358783b479e04febd2b8f71 # v9.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           EXPECTED_HEAD_OID: ${{ needs.build.outputs.head_oid }}
         with:
