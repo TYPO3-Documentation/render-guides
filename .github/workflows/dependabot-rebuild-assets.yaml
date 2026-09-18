@@ -17,8 +17,12 @@
 #   - lockfile-only diff guard: refuse to build if the PR changed anything
 #     other than package.json / package-lock.json
 #   - npm ci --ignore-scripts
-#   - the App token is minted AFTER the build, so the untrusted build cannot
-#     read it; persist-credentials: false keeps it off disk
+#   - the build and the App token live in SEPARATE JOBS: the build job holds
+#     no secret at all, and the commit job never checks out or executes
+#     repository code. Minting the token after the build within one job would
+#     not be enough — a build step can write $GITHUB_ENV or $GITHUB_PATH,
+#     which GitHub applies to the steps that follow, so NODE_OPTIONS or a
+#     hijacked PATH would reach the token-holding steps on the same runner.
 #
 # Egress filtering via step-security/harden-runner is not available here: the
 # repository restricts workflows to an allowlist of actions and harden-runner
@@ -43,12 +47,15 @@ on: # yamllint disable-line rule:truthy
 permissions: {}
 
 jobs:
-  build-and-commit:
-    name: "build-and-commit"
+  build:
+    name: "build"
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    outputs:
+      head_oid: ${{ steps.prepare.outputs.head_oid }}
+      has_changes: ${{ steps.prepare.outputs.has_changes }}
 
     steps:
       - name: "Checkout Dependabot branch"
@@ -88,10 +95,14 @@ jobs:
             exit 1
           fi
 
+      # Pinned to .nvmrc, the file main.yaml reads, rather than to the engines
+      # range in package.json: this workflow produces output that is then
+      # byte-compared, so it has to run the toolchain a contributor gets
+      # locally, not whatever 24.x is newest on the runner that day.
       - name: "Install Node"
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version-file: "packages/typo3-docs-theme/package.json"
+          node-version-file: "packages/typo3-docs-theme/.nvmrc"
           cache: "npm"
           cache-dependency-path: "packages/typo3-docs-theme/package-lock.json"
 
@@ -104,9 +115,10 @@ jobs:
         run: "npm run build"
 
       # Inspect the asset trees in shell so git output never crosses into JS.
-      # Reject unexpected new files, then record changed/deleted paths
-      # NUL-delimited (-z, --no-renames) so filenames with odd characters
-      # can't skew parsing.
+      # Both what the build changed and what it newly created are committed:
+      # a hashed chunk filename (vite's chunkFileNames) arrives as an untracked
+      # file the first time code splitting produces one, and refusing to commit
+      # it would strand the PR. A change ANYWHERE ELSE still fails the job.
       - name: "Prepare commit inputs"
         id: prepare
         run: |
@@ -115,20 +127,64 @@ jobs:
             packages/typo3-docs-theme/resources/public
           )
 
-          untracked="$(git ls-files --others --exclude-standard -- "${ASSET_PATHS[@]}")"
-          if [ -n "$untracked" ]; then
-            echo "::error::Build produced unexpected untracked files in the asset trees. Refusing to commit."
-            printf '%s\n' "$untracked"
+          outside="$(git status --porcelain -z -- . \
+            ':(exclude)packages/typo3-docs-theme/assets' \
+            ':(exclude)packages/typo3-docs-theme/resources/public' | tr '\0' '\n')"
+          if [ -n "$outside" ]; then
+            echo "::error::Build touched files outside the asset trees. Refusing to commit."
+            printf '%s\n' "$outside"
             exit 1
           fi
 
-          git diff -z --name-only --no-renames --diff-filter=d -- "${ASSET_PATHS[@]}" > "$RUNNER_TEMP/asset-upserts"
-          git diff -z --name-only --no-renames --diff-filter=D -- "${ASSET_PATHS[@]}" > "$RUNNER_TEMP/asset-deletes"
+          mkdir -p asset-commit-inputs
+          # Modified and newly created files in one list, deletions in the
+          # other, NUL-delimited (-z, --no-renames) so filenames with odd
+          # characters cannot skew parsing.
+          {
+            git diff -z --name-only --no-renames --diff-filter=d -- "${ASSET_PATHS[@]}"
+            git ls-files -z --others --exclude-standard -- "${ASSET_PATHS[@]}"
+          } > asset-commit-inputs/upserts
+          git diff -z --name-only --no-renames --diff-filter=D -- "${ASSET_PATHS[@]}" > asset-commit-inputs/deletes
+
+          if [ -s asset-commit-inputs/upserts ] || [ -s asset-commit-inputs/deletes ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
           echo "head_oid=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      # Mint the App token here — AFTER the untrusted build — so a compromised
-      # build dependency cannot read it. The push as the App (not GITHUB_TOKEN)
-      # is what re-triggers the asset check on the rebuild commit.
+      # The artifact carries the rebuilt trees and the two path lists. It is
+      # the only thing that crosses into the job holding the token, and it is
+      # read there as data, never executed.
+      - name: "Upload rebuilt assets"
+        if: steps.prepare.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: "rebuilt-assets"
+          path: |
+            packages/typo3-docs-theme/assets
+            packages/typo3-docs-theme/resources/public
+            asset-commit-inputs
+          retention-days: 1
+          if-no-files-found: "error"
+
+  commit:
+    name: "commit"
+    needs: build
+    if: needs.build.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    # No checkout and no npm: this job never runs repository code, which is
+    # what keeps the App token out of reach of an upgraded build dependency.
+    # pull-requests: read is what dependabot/fetch-metadata reads with.
+    permissions:
+      pull-requests: read
+
+    steps:
+      - name: "Download rebuilt assets"
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: "rebuilt-assets"
+
       - name: "Mint App token"
         id: app-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
@@ -138,23 +194,25 @@ jobs:
 
       # Commit via the GitHub API so the commit is GitHub-signed (Verified).
       # The commit is authored by the App (the token holder) — GitHub only
-      # signs commits it attributes to the token holder.
-      - name: "Commit rebuilt assets as a verified commit (if changed)"
+      # signs commits it attributes to the token holder. expectedHeadOid is
+      # the SHA the build job saw, so a force-push in between fails the
+      # mutation instead of being overwritten by it.
+      - name: "Commit rebuilt assets as a verified commit"
         uses: actions/github-script@d746ffe35508b1917358783b479e04febd2b8f71 # v9.0.0
         env:
-          EXPECTED_HEAD_OID: ${{ steps.prepare.outputs.head_oid }}
+          EXPECTED_HEAD_OID: ${{ needs.build.outputs.head_oid }}
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           script: |
             const fs = require('fs');
             const readPaths = (name) =>
-              fs.readFileSync(`${process.env.RUNNER_TEMP}/${name}`)
+              fs.readFileSync(`asset-commit-inputs/${name}`)
                 .toString('utf8')
                 .split('\0')
                 .filter(Boolean);
 
-            const upserts = readPaths('asset-upserts');   // added or modified
-            const deletes = readPaths('asset-deletes');
+            const upserts = readPaths('upserts');   // modified or newly created
+            const deletes = readPaths('deletes');
 
             if (upserts.length === 0 && deletes.length === 0) {
               core.info('No generated asset changes.');
@@ -193,9 +251,14 @@ jobs:
             core.info(commit.url);
 
       # Enable auto-merge AFTER the rebuild commit is in place. pr-auto-merge.yaml
-      # excludes these PRs (it would otherwise squash-merge before the rebuild
-      # lands). A broken build or a tripped guard fails an earlier step and never
-      # reaches this, so a bad upgrade stays open for manual review.
+      # excludes these PRs: it runs at PR-open time, when the committed assets
+      # are still stale, and "check-built-assets" is not in the repository's
+      # required-check set, so nothing would hold the queue back until the
+      # rebuild lands. A broken build or a tripped guard fails an earlier step
+      # and never reaches this, so a bad upgrade stays open for manual review.
+      #
+      # No merge method is passed: it comes from the merge queue rule on "main",
+      # and gh warns that a --squash/--merge/--rebase given here is ignored.
       - name: "Dependabot metadata"
         id: metadata
         uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
@@ -208,4 +271,6 @@ jobs:
           steps.metadata.outputs.update-type == 'version-update:semver-minor'
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
-        run: gh pr merge --squash --auto "${{ github.event.pull_request.number }}" -R "${{ github.repository }}"
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPOSITORY: ${{ github.repository }}
+        run: gh pr merge --auto "$PR_NUMBER" -R "$REPOSITORY"
