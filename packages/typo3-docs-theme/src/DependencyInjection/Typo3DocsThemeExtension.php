@@ -7,6 +7,7 @@ namespace T3Docs\Typo3DocsTheme\DependencyInjection;
 use phpDocumentor\Guides\Graphs\Nodes\UmlNode;
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
 use phpDocumentor\Guides\RestructuredText\Directives\FigureDirective as BaseFigureDirective;
+use phpDocumentor\Guides\RestructuredText\Directives\ImageDirective as BaseImageDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\IndexDirective as BaseIndexDirective;
 use phpDocumentor\Guides\TemplateRenderer;
 use Symfony\Component\Config\FileLocator;
@@ -238,14 +239,21 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
     }
 
     /**
-     * Remove the base library's FigureDirective in favor of our custom implementation
-     * that supports zoom functionality.
+     * Remove the base library's directives in favor of our custom implementations.
+     *
+     * - FigureDirective: supports zoom functionality and float class deprecation
+     * - ImageDirective: uses composition to add float class deprecation handling
      */
     public function process(ContainerBuilder $container): void
     {
-        // Remove the base library's FigureDirective to let our custom one take over
         if ($container->hasDefinition(BaseFigureDirective::class)) {
             $container->removeDefinition(BaseFigureDirective::class);
+        }
+
+        // The base image directive knows nothing of the float classes this
+        // theme deprecates; ours wraps it. @see ImageDirective
+        if ($container->hasDefinition(BaseImageDirective::class)) {
+            $container->removeDefinition(BaseImageDirective::class);
         }
 
         // Same for the index directive: the base one parses ".. index::" and
