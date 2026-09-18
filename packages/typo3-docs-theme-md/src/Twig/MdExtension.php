@@ -17,6 +17,8 @@ use Twig\TwigFunction;
 
 use function array_fill;
 use function array_map;
+use function array_pad;
+use function array_slice;
 use function count;
 use function explode;
 use function implode;
@@ -148,22 +150,42 @@ final class MdExtension extends AbstractExtension
             $rows[] = $this->renderRow($row->getColumns(), $context['env']);
         }
 
-        // GFM has no table without a header row; an empty one keeps the table
-        // valid when the source table has only body rows.
+        // The width of the table is the widest row it has, header or body.
         $columnCount = 0;
         foreach ([...$headers, ...$data] as $row) {
             $columnCount = max($columnCount, count($row->getColumns()));
         }
 
-        if ($rows === [] && $columnCount > 0) {
+        // A table without a single cell -- an empty "t3-field-list-table" or
+        // an empty "csv-table" -- has nothing GFM can spell, not even the
+        // delimiter row, so it is left out of the document.
+        if ($columnCount === 0) {
+            return '';
+        }
+
+        // GFM has no table without a header row; an empty one keeps the table
+        // valid when the source table has only body rows.
+        if ($rows === []) {
             $rows[] = array_fill(0, $columnCount, '');
         }
 
-        $out = '| ' . implode(' | ', $rows[0]) . " |\n";
-        $out .= '| ' . implode(' | ', array_fill(0, count($rows[0]), '---')) . " |\n";
+        // Every row is written at the width of the table. GFM ignores the
+        // cells a row has beyond the header -- a narrow header would drop
+        // content -- and fills in the ones it lacks, but a reader that does
+        // not (Python-Markdown's "tables" among them) shows a ragged table.
+        $out = '| ' . implode(' | ', array_pad($rows[0], $columnCount, '')) . " |\n";
+        $out .= '| ' . implode(' | ', array_fill(0, $columnCount, '---')) . " |\n";
+
+        // GFM knows exactly one header row. The further ones a grid table or
+        // a "list-table" with ":header-rows: 2" produces are written as body
+        // rows: they carry content, and there is nowhere else to put it.
+        foreach (array_slice($rows, 1) as $row) {
+            $out .= '| ' . implode(' | ', array_pad($row, $columnCount, '')) . " |\n";
+        }
 
         foreach ($data as $row) {
-            $out .= '| ' . implode(' | ', $this->renderRow($row->getColumns(), $context['env'])) . " |\n";
+            $cells = $this->renderRow($row->getColumns(), $context['env']);
+            $out .= '| ' . implode(' | ', array_pad($cells, $columnCount, '')) . " |\n";
         }
 
         return $out;
