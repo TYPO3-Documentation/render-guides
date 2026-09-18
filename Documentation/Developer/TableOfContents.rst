@@ -21,11 +21,15 @@ them.
         "pages": [
             {
                 "path": "Index",
+                "html": "Index.html",
+                "md": "Index.md",
                 "title": "TYPO3 Explained",
                 "anchor": "api-overview",
                 "pages": [
                     {
                         "path": "Introduction/Index",
+                        "html": "Introduction/Index.html",
+                        "md": "Introduction/Index.md",
                         "title": "Introduction",
                         "anchor": "introduction"
                     }
@@ -34,6 +38,8 @@ them.
             {
                 "orphan": true,
                 "path": "404",
+                "html": "404.html",
+                "md": "404.md",
                 "title": "Content was removed",
                 "anchor": "not-found"
             }
@@ -60,10 +66,18 @@ Each page carries only what is its own:
 ..  rst-class:: dl-parameters
 
 path
-    The page within the manual, relative to this file and without an extension,
-    because the same page exists as :samp:`.html` and as :samp:`.md` and a
-    reader wants to choose. Works in a local render and under
-    :samp:`docs.typo3.org` alike.
+    The page within the manual, relative to this file and without an extension:
+    the name the page has in both of its forms. Works in a local render and
+    under :samp:`docs.typo3.org` alike, as do the two links below.
+
+html
+    The page's HTML, relative to this file: :samp:`path` with :samp:`.html`.
+    Left out when the manual was not rendered to HTML page by page.
+
+md
+    The page's Markdown, relative to this file: :samp:`path` with :samp:`.md`,
+    and what an agent reading the manual should follow. Left out when the
+    manual was not rendered to Markdown page by page.
 
 title
     The title of the page.
@@ -91,8 +105,8 @@ which repeats the project title and version in every one of its entries and
 knows only :samp:`.html` addresses.
 
 Saying those things once is most of the difference in size. For TYPO3 Explained,
-982 pages, :file:`objects.inv.json` is 4.2 MB and :file:`toc.json` is 348 KB --
-27 KB against 343 KB once the server has compressed them.
+982 pages, :file:`objects.inv.json` is 4.2 MB and :file:`toc.json` is 553 KB --
+36 KB against 335 KB once compressed.
 
 ..  note::
 

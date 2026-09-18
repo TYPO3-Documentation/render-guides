@@ -4,6 +4,8 @@
         {
             "permalink": "https://docs.typo3.org/permalink/changelog:breaking-pagetsbackendlayoutdataprovider-1687440947",
             "path": "Changelog/7.2/Breaking-101149-NamedAnchor",
+            "html": "Changelog/7.2/Breaking-101149-NamedAnchor.html",
+            "md": "Changelog/7.2/Breaking-101149-NamedAnchor.md",
             "title": "Breaking: #101149 - Anchor without an issue",
             "anchor": "breaking-pagetsbackendlayoutdataprovider-1687440947",
             "type": "breaking",
@@ -17,6 +19,8 @@
         {
             "permalink": "https://docs.typo3.org/permalink/changelog:changelog-feature-91008-itemgrouping",
             "path": "Changelog/7.2/Feature-91008-ItemGrouping",
+            "html": "Changelog/7.2/Feature-91008-ItemGrouping.html",
+            "md": "Changelog/7.2/Feature-91008-ItemGrouping.md",
             "title": "Feature: #91008 - Item grouping",
             "anchor": "changelog-feature-91008-itemgrouping",
             "type": "feature",
@@ -30,6 +34,8 @@
         {
             "permalink": "https://docs.typo3.org/permalink/changelog:breaking-66431",
             "path": "Changelog/7.2/Breaking-66431-NewLoginScreen",
+            "html": "Changelog/7.2/Breaking-66431-NewLoginScreen.html",
+            "md": "Changelog/7.2/Breaking-66431-NewLoginScreen.md",
             "title": "Breaking: #66431 - New login screen",
             "anchor": "breaking-66431",
             "type": "breaking",

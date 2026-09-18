@@ -7,16 +7,22 @@
     "pages": [
         {
             "path": "index",
+            "html": "index.html",
+            "md": "index.md",
             "title": "Table of contents",
             "anchor": "toc-start",
             "pages": [
                 {
                     "path": "Chapter/Index",
+                    "html": "Chapter/Index.html",
+                    "md": "Chapter/Index.md",
                     "title": "Chapter",
                     "anchor": "toc-chapter",
                     "pages": [
                         {
                             "path": "Chapter/Page",
+                            "html": "Chapter/Page.html",
+                            "md": "Chapter/Page.md",
                             "title": "A page with no label",
                             "anchor": "a-page-with-no-label"
                         }
@@ -27,6 +33,8 @@
         {
             "orphan": true,
             "path": "Orphan",
+            "html": "Orphan.html",
+            "md": "Orphan.md",
             "title": "Orphan",
             "anchor": "toc-orphan"
         }

@@ -4,6 +4,8 @@
         {
             "permalink": "https://docs.typo3.org/permalink/changelog:feature-105638-1732034075",
             "path": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent",
+            "html": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.html",
+            "md": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.md",
             "title": "Feature: #105638 - Modify fetched page content",
             "anchor": "feature-105638-1732034075",
             "type": "feature",
