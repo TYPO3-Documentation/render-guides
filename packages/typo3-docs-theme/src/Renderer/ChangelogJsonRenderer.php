@@ -42,6 +42,7 @@ final class ChangelogJsonRenderer implements TypeRenderer
     public function __construct(
         private readonly ChangelogEntry $changelogEntry,
         private readonly Typo3DocsThemeSettings $themeSettings,
+        private readonly PageFiles $pageFiles,
     ) {}
 
     public function render(RenderCommand $renderCommand): void
@@ -65,7 +66,14 @@ final class ChangelogJsonRenderer implements TypeRenderer
                 ? ''
                 : self::PERMALINK_BASE . $shortcode . ':' . $entry['anchor'];
 
-            $byMajor[$entry['typo3-major']][] = ['permalink' => $permalink, ...$entry];
+            // The entry's files next to its path: the permalink leads to the
+            // HTML, and a reader after the Markdown should find a link to it.
+            $byMajor[$entry['typo3-major']][] = [
+                'permalink' => $permalink,
+                'path' => $entry['path'],
+                ...$this->pageFiles->of($entry['path']),
+                ...$entry,
+            ];
         }
 
         ksort($byMajor);

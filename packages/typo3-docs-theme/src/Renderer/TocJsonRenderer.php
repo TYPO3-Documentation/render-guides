@@ -34,9 +34,9 @@ use const JSON_UNESCAPED_UNICODE;
  * knows only ".html" addresses. This file states those once, at the top, and
  * leaves each page with what belongs to the page alone.
  *
- * Paths carry no extension because the same page exists twice, as ".html" and
- * as ".md", and a reader wants to choose. They are relative to this file, which
- * sits where the manual starts, so they work in a local render and under
+ * Each page names the files it was rendered to, "html" and "md", beside its
+ * extension-less "path". @see PageFiles. All of them are relative to this file,
+ * which sits where the manual starts, so they work in a local render and under
  * docs.typo3.org alike.
  */
 final class TocJsonRenderer implements TypeRenderer
@@ -44,6 +44,7 @@ final class TocJsonRenderer implements TypeRenderer
     public function __construct(
         private readonly AnchorNormalizer $anchorNormalizer,
         private readonly Permalinks $permalinks,
+        private readonly PageFiles $pageFiles,
     ) {}
 
     public function render(RenderCommand $renderCommand): void
@@ -91,6 +92,7 @@ final class TocJsonRenderer implements TypeRenderer
     {
         $page = [
             'path' => $entry->getFile(),
+            ...$this->pageFiles->of($entry->getFile()),
             'title' => $entry->getTitle()->toString(),
             'anchor' => $this->anchor($entry, $documents),
         ];

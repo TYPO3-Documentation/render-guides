@@ -56,6 +56,7 @@ use T3Docs\Typo3DocsTheme\Renderer\ChangelogJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\PageFiles;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
@@ -134,6 +135,7 @@ return static function (ContainerConfigurator $container): void {
         ->autowire()
 
         ->set(Permalinks::class)
+        ->set(PageFiles::class)
         ->set(ChangelogEntry::class)
         ->set(ChangelogJsonRenderer::class)
         ->tag(

@@ -22,6 +22,8 @@ major release, written beside the overview page it belongs to.
             {
                 "permalink": "https://docs.typo3.org/permalink/changelog:feature-105638-1732034075",
                 "path": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent",
+                "html": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.html",
+                "md": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.md",
                 "title": "Feature: #105638 - Modify fetched page content",
                 "anchor": "feature-105638-1732034075",
                 "type": "feature",
@@ -36,8 +38,15 @@ major release, written beside the overview page it belongs to.
 ..  rst-class:: dl-parameters
 
 path
-    The entry's file within the manual, without an extension. Append
-    :samp:`.html` for the page or :samp:`.md` for its Markdown.
+    The entry's file within the manual, without an extension.
+
+html
+    The entry's page, relative to this file: :samp:`path` with :samp:`.html`.
+    Left out when the Changelog was not rendered to HTML page by page.
+
+md
+    The entry's Markdown, relative to this file: :samp:`path` with :samp:`.md`.
+    Left out when the Changelog was not rendered to Markdown page by page.
 
 permalink
     The URL that names the entry wherever its file ends up. The Changelog is
