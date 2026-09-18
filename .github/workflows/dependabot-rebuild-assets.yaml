@@ -1,0 +1,280 @@
+# Convenience workflow: on a Dependabot PR that bumps an npm dependency under
+# packages/typo3-docs-theme/, rebuild the committed assets and commit them
+# back to the Dependabot branch, then enable auto-merge.
+#
+# This is NOT the contract — check-built-assets.yaml is. If this workflow
+# fails, that check still catches the resulting stale assets and blocks the PR.
+#
+# Trigger: pull_request_target matches the local convention in
+# .github/workflows/pr-auto-merge.yaml ("due to permission issues with the
+# pull_request target"). Because pull_request_target runs in the base-repo
+# context, several guards keep it safe:
+#
+#   - if: github.actor == 'dependabot[bot]'
+#   - checkout pinned to the PR head SHA, so if Dependabot force-pushes
+#     between the trigger and the checkout we still build the exact commit
+#     the PR opened with
+#   - lockfile-only diff guard: refuse to build if the PR changed anything
+#     other than package.json / package-lock.json
+#   - npm ci --ignore-scripts
+#   - the build and the App token live in SEPARATE JOBS: the build job holds
+#     no secret — its checkout keeps the read-only GITHUB_TOKEN off disk with
+#     persist-credentials: false — and the commit job never checks out or
+#     executes repository code. Minting the token after the build within one
+#     job would not be enough: a build step can write $GITHUB_ENV or
+#     $GITHUB_PATH, which the runner applies to the steps that follow, so a
+#     prepended PATH entry intercepts the gh that the last step calls with
+#     GH_TOKEN exported. (NODE_OPTIONS itself is on the runner's block list
+#     for $GITHUB_ENV — _setEnvBlockList in FileCommandManager.cs — so that
+#     one route is closed; $GITHUB_PATH is not.)
+#
+# Egress filtering via step-security/harden-runner is not available here: the
+# repository restricts workflows to an allowlist of actions and harden-runner
+# is not on it. Adding it there would let both workflows in this branch pin
+# their network access.
+#
+# The rebuilt files are committed via the GitHub API (createCommitOnBranch)
+# with a short-lived GitHub App token, never `git push`. API commits are
+# signed server-side by GitHub (Verified), and an App-token commit re-triggers
+# the asset check on the new commit, so the merged commit is itself checked.
+
+name: "Rebuild assets for Dependabot"
+
+on: # yamllint disable-line rule:truthy
+  pull_request_target:
+    paths:
+      - "packages/typo3-docs-theme/package.json"
+      - "packages/typo3-docs-theme/package-lock.json"
+
+# GITHUB_TOKEN stays read-only — it is used only by dependabot/fetch-metadata.
+# All writes go through the GitHub App token, whose scope comes from the App.
+permissions: {}
+
+jobs:
+  build:
+    name: "build"
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      head_oid: ${{ steps.prepare.outputs.head_oid }}
+      has_changes: ${{ steps.prepare.outputs.has_changes }}
+
+    steps:
+      - name: "Checkout Dependabot branch"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: "Verify PR diff is lockfile-only"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          # A legitimate Dependabot npm PR only touches package.json and
+          # package-lock.json. Anything else means the branch was tampered
+          # with — fail closed before we execute vite/grunt config.
+          ALLOWED=(
+            packages/typo3-docs-theme/package.json
+            packages/typo3-docs-theme/package-lock.json
+          )
+
+          changed="$(git diff --name-only "$BASE_SHA"...HEAD)"
+          unexpected=""
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            match=0
+            for a in "${ALLOWED[@]}"; do
+              [ "$f" = "$a" ] && match=1 && break
+            done
+            [ $match -eq 0 ] && unexpected="${unexpected}${f}"$'\n'
+          done <<< "$changed"
+
+          if [ -n "$unexpected" ]; then
+            echo "::error::Dependabot PR touches files outside the npm lockfile set. Refusing to build."
+            printf '%s' "$unexpected"
+            exit 1
+          fi
+
+      # Pinned to .nvmrc, the file main.yaml reads, rather than to the engines
+      # range in package.json: this workflow produces output that is then
+      # byte-compared, so it has to run the toolchain a contributor gets
+      # locally, not whatever 24.x is newest on the runner that day.
+      - name: "Install Node"
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: "packages/typo3-docs-theme/.nvmrc"
+          cache: "npm"
+          cache-dependency-path: "packages/typo3-docs-theme/package-lock.json"
+
+      - name: "Install npm dependencies (no install scripts)"
+        working-directory: packages/typo3-docs-theme
+        run: "npm ci --ignore-scripts"
+
+      - name: "Build assets"
+        working-directory: packages/typo3-docs-theme
+        run: "npm run build"
+
+      # Inspect the asset trees in shell so git output never crosses into JS.
+      # Both what the build changed and what it newly created are committed:
+      # a hashed chunk filename (vite's chunkFileNames) arrives as an untracked
+      # file the first time code splitting produces one, and refusing to commit
+      # it would strand the PR. A change ANYWHERE ELSE still fails the job.
+      - name: "Prepare commit inputs"
+        id: prepare
+        run: |
+          ASSET_PATHS=(
+            packages/typo3-docs-theme/assets
+            packages/typo3-docs-theme/resources/public
+          )
+
+          outside="$(git status --porcelain -z -- . \
+            ':(exclude)packages/typo3-docs-theme/assets' \
+            ':(exclude)packages/typo3-docs-theme/resources/public' | tr '\0' '\n')"
+          if [ -n "$outside" ]; then
+            echo "::error::Build touched files outside the asset trees. Refusing to commit."
+            printf '%s\n' "$outside"
+            exit 1
+          fi
+
+          mkdir -p asset-commit-inputs
+          # Modified and newly created files in one list, deletions in the
+          # other, NUL-delimited (-z, --no-renames) so filenames with odd
+          # characters cannot skew parsing.
+          {
+            git diff -z --name-only --no-renames --diff-filter=d -- "${ASSET_PATHS[@]}"
+            git ls-files -z --others --exclude-standard -- "${ASSET_PATHS[@]}"
+          } > asset-commit-inputs/upserts
+          git diff -z --name-only --no-renames --diff-filter=D -- "${ASSET_PATHS[@]}" > asset-commit-inputs/deletes
+
+          if [ -s asset-commit-inputs/upserts ] || [ -s asset-commit-inputs/deletes ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "head_oid=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      # The artifact carries the rebuilt trees and the two path lists. It is
+      # the only thing that crosses into the job holding the token, and it is
+      # read there as data, never executed.
+      - name: "Upload rebuilt assets"
+        if: steps.prepare.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: "rebuilt-assets"
+          path: |
+            packages/typo3-docs-theme/assets
+            packages/typo3-docs-theme/resources/public
+            asset-commit-inputs
+          retention-days: 1
+          if-no-files-found: "error"
+
+  commit:
+    name: "commit"
+    needs: build
+    if: needs.build.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    # No checkout and no npm: this job never runs repository code, which is
+    # what keeps the App token out of reach of an upgraded build dependency.
+    # pull-requests: read is what dependabot/fetch-metadata reads with.
+    permissions:
+      pull-requests: read
+
+    steps:
+      - name: "Download rebuilt assets"
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: "rebuilt-assets"
+
+      - name: "Mint App token"
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      # Commit via the GitHub API so the commit is GitHub-signed (Verified).
+      # The commit is authored by the App (the token holder) — GitHub only
+      # signs commits it attributes to the token holder. expectedHeadOid is
+      # the SHA the build job saw, so a force-push in between fails the
+      # mutation instead of being overwritten by it.
+      - name: "Commit rebuilt assets as a verified commit"
+        uses: actions/github-script@d746ffe35508b1917358783b479e04febd2b8f71 # v9.0.0
+        env:
+          EXPECTED_HEAD_OID: ${{ needs.build.outputs.head_oid }}
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            const fs = require('fs');
+            const readPaths = (name) =>
+              fs.readFileSync(`asset-commit-inputs/${name}`)
+                .toString('utf8')
+                .split('\0')
+                .filter(Boolean);
+
+            const upserts = readPaths('upserts');   // modified or newly created
+            const deletes = readPaths('deletes');
+
+            if (upserts.length === 0 && deletes.length === 0) {
+              core.info('No generated asset changes.');
+              return;
+            }
+
+            const fileChanges = {
+              additions: upserts.map((path) => ({
+                path,
+                contents: fs.readFileSync(path).toString('base64'),
+              })),
+            };
+            if (deletes.length) {
+              fileChanges.deletions = deletes.map((path) => ({ path }));
+            }
+
+            const result = await github.graphql(
+              `mutation($input: CreateCommitOnBranchInput!) {
+                 createCommitOnBranch(input: $input) { commit { oid url } }
+               }`,
+              {
+                input: {
+                  branch: {
+                    repositoryNameWithOwner: context.payload.repository.full_name,
+                    branchName: context.payload.pull_request.head.ref,
+                  },
+                  expectedHeadOid: process.env.EXPECTED_HEAD_OID,
+                  message: { headline: '[TASK] Rebuild theme assets after dependency update' },
+                  fileChanges,
+                },
+              }
+            );
+
+            const commit = result.createCommitOnBranch.commit;
+            core.info(`Created verified rebuild commit ${commit.oid}`);
+            core.info(commit.url);
+
+      # Enable auto-merge AFTER the rebuild commit is in place. pr-auto-merge.yaml
+      # excludes these PRs: it runs at PR-open time, when the committed assets
+      # are still stale, and "check-built-assets" is not in the repository's
+      # required-check set, so nothing would hold the queue back until the
+      # rebuild lands. A broken build or a tripped guard fails an earlier step
+      # and never reaches this, so a bad upgrade stays open for manual review.
+      #
+      # No merge method is passed: it comes from the merge queue rule on "main",
+      # and gh warns that a --squash/--merge/--rebase given here is ignored.
+      - name: "Dependabot metadata"
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: "Enable auto-merge for patch/minor updates"
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPOSITORY: ${{ github.repository }}
+        run: gh pr merge --auto "$PR_NUMBER" -R "$REPOSITORY"
