@@ -1,1 +1,5 @@
-<h{{ node.level }}>{{ renderNode(node.value) }}<a class="headerlink" href="#{{ headingId(node) }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h{{ node.level }}>
+{#- A card title is not a heading anybody can link to: the card carries no
+    anchor of its own, and the id the library gives such a title is the name of
+    the directive -- "card", the same on every card of every page. Offering the
+    permalink button there pointed all of them at "#card", which exists nowhere. -#}
+<h{{ node.level }}>{{ renderNode(node.value) }}{% if 'card-title' not in node.classes %}<a class="headerlink" href="#{{ headingId(node) }}" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a>{% endif %}</h{{ node.level }}>
