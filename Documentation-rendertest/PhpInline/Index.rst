@@ -41,6 +41,18 @@ In short:
 *   :php-short:`\MyVendor\MyExtension\FooBar`
 *   :php-short:`\Foo\Bar\Something`
 
+With a method, property, constant or enum case:
+
+*   :php:`\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance()`
+*   :php-short:`\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance()`
+*   :php-short:`\TYPO3\CMS\Core\Http\ServerRequest->getAttribute('site')`
+*   :php-short:`\TYPO3\CMS\Core\Context\Context::$aspects`
+*   :php-short:`\TYPO3\CMS\Core\Database\Connection::PARAM_INT`
+*   :php-short:`\TYPO3\CMS\Core\Resource\FileType::IMAGE`
+*   :php-short:`\TYPO3\CMS\Core\Http\Dispatcher::class`
+*   :php-short:`\Psr\Log\LoggerInterface->warning()`
+*   :php-short:`\MyVendor\MyExtension\FooBar::CONSTANT`
+
 A new PSR-14 event :php:`TYPO3\CMS\Backend\RecordList\Event\BeforeRecordDownloadIsExecutedEvent`
 has been introduced to modify the result of a download / export initiated via
 the :guilabel:`Web > List` module.
