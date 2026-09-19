@@ -59,6 +59,37 @@ describe('code info modal details', () => {
         expect(content.textContent).toContain('internal!');
     });
 
+    it('lets a class name in the title break between its parts', async () => {
+        await openModal({ code: '\\TYPO3\\CMS\\Core\\Utility\\GeneralUtility::makeInstance()' });
+        const full = document.querySelector('#generalModalLabel .d-sm-inline');
+
+        expect(full.textContent).toBe('\\TYPO3\\CMS\\Core\\Utility\\GeneralUtility::makeInstance()');
+        expect(full.querySelectorAll('wbr')).toHaveLength(6);
+        expect(full.innerHTML).toContain('GeneralUtility<wbr>::makeInstance()');
+    });
+
+    it('shows the class name without its namespace on a small screen', async () => {
+        await openModal({ code: 'TYPO3\\CMS\\Core\\Http\\ServerRequest->getAttribute(\'site\')' });
+
+        expect(document.querySelector('#generalModalLabel .d-sm-none').textContent)
+            .toBe("ServerRequest->getAttribute('site')");
+    });
+
+    it('keeps a title that does not start with a class name whole', async () => {
+        await openModal({ code: "$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\\CMS\\Core\\Foo']" });
+        const label = document.getElementById('generalModalLabel');
+
+        expect(label.querySelector('span')).toBeNull();
+        expect(label.textContent).toBe("$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\\CMS\\Core\\Foo']");
+    });
+
+    it('keeps markup in the title as text', async () => {
+        await openModal({ code: '<img src=x onerror="window.__xss=1">' });
+
+        expect(document.getElementById('generalModalLabel').querySelector('img')).toBeNull();
+        expect(window.__xss).toBeUndefined();
+    });
+
     it('renders a quote in the summary as a quote', async () => {
         const content = await openModal({
             code: '\\TYPO3\\CMS\\Backend\\Authentication\\Event\\SwitchUserEvent',
