@@ -1,0 +1,61 @@
+{#- The members of each class, interface, trait and enum, for the popups of the
+    :php: text role. It is a file of its own because api-info.json may only
+    hold one level of scalar values: renderers that read it reject anything
+    nested, and would lose the classes as well.
+
+    Keys are the member as it is written after "::" or "->": a method or
+    constant by its name, a property with its "$". -#}
+{%- set flags = constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE') -%}
+{
+{%- set elements = documentationSet.indexes.classes|merge(documentationSet.indexes.interfaces)|merge(documentationSet.indexes.traits)|merge(documentationSet.indexes.enums) -%}
+{%- for element in elements %}
+{{ (element.fullyQualifiedStructuralElementName ~ '')|json_encode(flags)|raw }}: {
+{%- set members = [] -%}
+{%- for method in methods(element) -%}
+    {%- set arguments = [] -%}
+    {%- for argument in method.arguments -%}
+        {%- set arguments = arguments|merge([
+            (argument.type ? argument.type ~ ' ' : '')
+            ~ (argument.isVariadic ? '...' : '')
+            ~ (argument.byReference ? '&' : '')
+            ~ '$' ~ argument.name
+            ~ (argument.default is not null ? ' = ' ~ argument.default : '')
+        ]) -%}
+    {%- endfor -%}
+    {%- set members = members|merge([_self.member(method.name, 'method', method,
+        [method.visibility, method.abstract ? 'abstract', method.final ? 'final', method.static ? 'static']|filter(v => v)|join(' ')
+        ~ ' ' ~ method.name ~ '(' ~ arguments|join(', ') ~ ')'
+        ~ (method.response.type ? ': ' ~ method.response.type : ''),
+        flags)]) -%}
+{%- endfor -%}
+{%- for property in properties(element) -%}
+    {%- set members = members|merge([_self.member('$' ~ property.name, 'property', property,
+        [property.visibility, property.static ? 'static', property.type ? property.type ~ '' : 'mixed']|filter(v => v)|join(' ')
+        ~ ' $' ~ property.name,
+        flags)]) -%}
+{%- endfor -%}
+{%- for constant in constants(element) -%}
+    {%- set members = members|merge([_self.member(constant.name, 'constant', constant,
+        [constant.visibility, constant.final ? 'final']|filter(v => v)|join(' ')
+        ~ ' ' ~ constant.name ~ ' = ' ~ constant.value,
+        flags)]) -%}
+{%- endfor -%}
+{%- if element is enum -%}
+    {%- for case in element.cases -%}
+        {%- set members = members|merge([_self.member(case.name, 'enumcase', case,
+            'case ' ~ case.name ~ (case.value is not null ? ' = ' ~ case.value : ''),
+            flags)]) -%}
+    {%- endfor -%}
+{%- endif -%}
+{{ members|join(',')|raw }}
+}{% if not loop.last %},{% endif %}
+{%- endfor %}
+}
+{%- macro member(key, kind, node, signature, flags) %}
+    {{ key|json_encode(flags)|raw }}: {"kind": {{ kind|json_encode(flags)|raw -}}
+    , "signature": {{ signature|trim|json_encode(flags)|raw -}}
+    , "summary": {{ (node.summary ~ '')|json_encode(flags)|raw -}}
+    , "deprecated": {{ (node.deprecated ? '1' : '')|json_encode|raw -}}
+    , "internal": {{ (node.tags.internal is defined and node.tags.internal|length > 0 ? '1' : '')|json_encode|raw -}}
+    }
+{%- endmacro %}
