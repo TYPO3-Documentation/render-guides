@@ -158,21 +158,21 @@ final class PhpTextRole implements TextRole
                 $name,
                 'PHP ' . $type,
                 $info,
-                ['url' => 'https://docs.typo3.org/m/typo3/reference-coreapi/' . $this->typo3VersionService->getPreferredVersion() . '/en-us/ApiOverview/Fluid/Index.html']
+                ['url' => 'https://docs.typo3.org/m/typo3/reference-coreapi/' . $this->typo3VersionService->getPreferredVersion() . '/en-us/ApiOverview/Fluid/Index.html', 'fqn' => $fqn]
             );
         } elseif (str_starts_with($fqn, '\\Psr')) {
             return new CodeInlineNode(
                 $name,
                 'PHP ' . $type,
                 'This PHP class or interface belongs to the PHP Standards Recommendations (PSR). ',
-                ['url' => 'https://www.php-fig.org/psr/']
+                ['url' => 'https://www.php-fig.org/psr/', 'fqn' => $fqn]
             );
         } elseif (str_starts_with($fqn, '\\MyVendor') or str_starts_with($fqn, '\\Vendor')) {
             return new CodeInlineNode(
                 $name,
                 'PHP ' . $type,
                 'PHP classes in this namespace are commonly used as examples. Replace with your own vendor and namespace on implementation. ',
-                []
+                ['fqn' => $fqn]
             );
         }
         return new CodeInlineNode(
@@ -180,7 +180,7 @@ final class PhpTextRole implements TextRole
             'PHP ' . $type,
             'This is a fully-qualified class or interface name,
             try searching for ' . $fqn . ' in the internet.',
-            []
+            ['fqn' => $fqn]
         );
     }
     /**
