@@ -46,8 +46,6 @@ class T3FieldListTableDirective extends SubDirective
         CollectionNode $collectionNode,
         Directive $directive,
     ): Node|null {
-        $i = 0;
-        $headers = [];
         $rows = [];
         foreach ($collectionNode->getChildren() as $list) {
             if (!$list instanceof ListNode) {
@@ -55,22 +53,6 @@ class T3FieldListTableDirective extends SubDirective
                 continue;
             }
             foreach ($list->getChildren() as $listItem) {
-                if ($i === 0) {
-                    $header = new TableRow();
-                    foreach ($listItem->getChildren() as $fieldlist) {
-                        if (!$fieldlist instanceof FieldListNode) {
-                            $this->logger->warning(sprintf('Only field lists are allowed in each list item a t3-field list. Node of type %s found.', $fieldlist::class), $blockContext->getLoggerInformation());
-                            continue;
-                        }
-                        foreach ($fieldlist->getChildren() as $fieldlistItem) {
-                            $columnNode = new TableColumn($fieldlistItem->getTerm(), 1, $fieldlistItem->getChildren());
-                            $header->addColumn($columnNode);
-                        }
-                    }
-                    $headers[] = $header;
-                    $i++;
-                    continue;
-                }
                 $row = new TableRow();
                 foreach ($listItem->getChildren() as $fieldlist) {
                     if (!$fieldlist instanceof FieldListNode) {
@@ -83,9 +65,9 @@ class T3FieldListTableDirective extends SubDirective
                     }
                 }
                 $rows[] = $row;
-                $i++;
             }
         }
+        $headers = array_splice($rows, 0, $this->headerRows($blockContext, $directive));
         if ($collectionNode->getChildren() === []) {
             // Nothing was indented under the directive, so it says nothing: the
             // HTML shows an empty table and the Markdown shows nothing at all.
@@ -97,5 +79,26 @@ class T3FieldListTableDirective extends SubDirective
 
         $tableNode = new TableNode($rows, $headers);
         return $tableNode;
+    }
+
+    /**
+     * How many of the first items make the header: as many as ":header-rows:"
+     * says, and one without it -- the first item was always the header, and
+     * a table written without the option relies on that.
+     */
+    private function headerRows(BlockContext $blockContext, Directive $directive): int
+    {
+        if (!$directive->hasOption('header-rows')) {
+            return 1;
+        }
+        $value = trim((string) $directive->getOption('header-rows')->getValue());
+        if (preg_match('/^\d+$/', $value) !== 1) {
+            $this->logger->warning(
+                sprintf('The t3-field-list-table option :header-rows: must be a number of rows, "%s" given. The first row is used as header.', $value),
+                $blockContext->getLoggerInformation(),
+            );
+            return 1;
+        }
+        return (int) $value;
     }
 }
