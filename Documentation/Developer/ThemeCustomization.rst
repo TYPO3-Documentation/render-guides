@@ -79,9 +79,9 @@ CI enforces this via the ``check-built-assets`` workflow: every pull request
 that touches :file:`packages/typo3-docs-theme/` is rebuilt and fails if the
 committed assets diverge from a fresh build. For Dependabot pull requests the
 ``dependabot-rebuild-assets`` workflow performs the rebuild, commits the result
-to the Dependabot branch and then enables auto-merge for a patch or minor bump,
-so no manual rebuild is required there. A rebuild that fails leaves the pull
-request open without auto-merge.
+to the Dependabot branch if it changed anything, and then enables auto-merge for
+a patch or minor bump, so no manual rebuild is required there. A rebuild that
+fails leaves the pull request open without auto-merge.
 
 
 ..  _Bootstrap: https://getbootstrap.com/
