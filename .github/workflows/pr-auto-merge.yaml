@@ -23,15 +23,8 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-      # "main" is gated by a merge queue, so enabling auto-merge does not merge
-      # the pull request — it enqueues it, and the merge group must first report
-      # the required status checks of the "Main" workflow (merge_group trigger).
-      #
-      # Events created with the GITHUB_TOKEN never trigger a workflow run, so
-      # enqueuing with it produces a merge group that "Main" never runs on: the
-      # required checks stay pending until the queue's check_response_timeout
-      # elapses and the entry is dropped again. The App token is not subject to
-      # that restriction.
+      # An App token, not GITHUB_TOKEN: a merge group enqueued with
+      # GITHUB_TOKEN never runs "Main", so its required checks time out.
       - name: Mint App token
         id: app-token
         if: |
@@ -43,18 +36,12 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
-      # Theme-package PRs are intentionally excluded here. This step runs at
-      # PR-open time, when the committed assets are still the stale ones, and
-      # "check-built-assets" is not among the checks the branch ruleset
-      # requires -- so nothing would keep the queue from merging the PR before
-      # dependabot-rebuild-assets.yaml has committed the rebuild. That
-      # workflow enables auto-merge itself once the rebuild commit is in
-      # place. Should the asset check ever be added to the required set, this
-      # exclusion and the notice below can go: the queue would then hold the
-      # PR until the rebuilt commit reports green.
+      # Theme PRs are left to dependabot-rebuild-assets.yaml, which enables
+      # auto-merge after the rebuild: "check-built-assets" is not a required
+      # check, so the queue would otherwise merge the stale assets. Once it is
+      # required, this exclusion and the notice below can go.
       #
-      # No merge method is passed: it is set by the merge queue rule on "main",
-      # and gh warns that any --squash/--merge/--rebase given here is ignored.
+      # No merge method: the merge queue rule on "main" sets it.
       - name: Enable auto-merge
         if: |
           (steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
@@ -69,4 +56,4 @@ jobs:
       - name: Note skipped auto-merge for theme PRs
         if: contains(steps.metadata.outputs.directory, 'typo3-docs-theme')
         run: |
-          echo "::notice::Auto-merge is not enabled here for theme PRs. The dependabot-rebuild-assets workflow rebuilds the assets, commits them to this branch and enables auto-merge itself for a patch or minor bump; a failed build leaves the pull request open for manual review."
+          echo "::notice::Auto-merge is not enabled here for theme PRs. The dependabot-rebuild-assets workflow rebuilds the assets, commits them to this branch if they changed and enables auto-merge itself for a patch or minor bump; a failed build leaves the pull request open for manual review."
