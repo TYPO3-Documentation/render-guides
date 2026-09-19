@@ -63,6 +63,7 @@ code {
 }
 
 .code-block-copy,
+.code-block-unfold,
 a.code-block-edit {
     background: none;
     border: none;
@@ -104,6 +105,56 @@ a.code-block-edit {
 
 .code-block-hide {
     display: none;
+}
+
+/*
+ * Folded lines of a code block. Folding is switched on by code-fold.js, so
+ * without JavaScript every line shows, and each placeholder stands on a line
+ * of its own.
+ */
+
+.code-fold-toggle {
+    display: none;
+}
+
+.code-block-folded {
+    // Full width, so every placeholder is as wide as the block rather than
+    // as its longest line.
+
+    .code-block {
+        flex-grow: 1;
+        min-width: 0;
+    }
+
+    .code-fold:not(.is-open) {
+        display: none;
+    }
+
+    .code-fold-toggle:not(.is-open) {
+        background: $gray-200;
+        border: none;
+        border-radius: 0.2rem;
+        color: $gray-700;
+        cursor: pointer;
+        display: block;
+        font-family: $font-family-sans-serif;
+        font-size: 85%;
+        line-height: 1.6;
+        margin: 0.1rem 0;
+        padding: 0 0.5rem;
+        text-align: left;
+        width: 100%;
+
+        &:before {
+            content: "\22EF\00A0" attr(data-fold-label);
+        }
+
+        &:hover,
+        &:focus-visible {
+            background: $gray-300;
+            color: $gray-900;
+        }
+    }
 }
 
 /**

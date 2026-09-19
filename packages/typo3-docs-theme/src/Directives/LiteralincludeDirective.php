@@ -30,6 +30,7 @@ final class LiteralincludeDirective extends BaseDirective
     public function __construct(
         private readonly CodeNodeOptionMapper $codeNodeOptionMapper,
         private readonly LoggerInterface      $logger,
+        private readonly VisibleLinesOption   $visibleLines,
     ) {}
 
     public function getName(): string
@@ -112,6 +113,8 @@ final class LiteralincludeDirective extends BaseDirective
             'path' => $path,
         ]);
 
-        return $codeNode;
+        return $codeNode instanceof CodeNode
+            ? $this->visibleLines->apply($codeNode, $directive, $blockContext)
+            : $codeNode;
     }
 }

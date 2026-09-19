@@ -24359,6 +24359,7 @@ code {
 }
 
 .code-block-copy,
+.code-block-unfold,
 a.code-block-edit {
   background: none;
   border: none;
@@ -24367,15 +24368,18 @@ a.code-block-edit {
   height: min-content;
 }
 .code-block-copy .icon,
+.code-block-unfold .icon,
 a.code-block-edit .icon {
   opacity: 0.5;
   transition: opacity 0.3s;
 }
 .code-block-copy .icon:hover,
+.code-block-unfold .icon:hover,
 a.code-block-edit .icon:hover {
   opacity: 1;
 }
 .code-block-copy .fa-check:before,
+.code-block-unfold .fa-check:before,
 a.code-block-edit .fa-check:before {
   color: rgb(34.5098039216%, 56.1568627451%, 24.1568627451%);
 }
@@ -24399,6 +24403,45 @@ a.code-block-edit .fa-check:before {
 
 .code-block-hide {
   display: none;
+}
+
+/*
+ * Folded lines of a code block. Folding is switched on by code-fold.js, so
+ * without JavaScript every line shows, and each placeholder stands on a line
+ * of its own.
+ */
+.code-fold-toggle {
+  display: none;
+}
+
+.code-block-folded .code-block {
+  flex-grow: 1;
+  min-width: 0;
+}
+.code-block-folded .code-fold:not(.is-open) {
+  display: none;
+}
+.code-block-folded .code-fold-toggle:not(.is-open) {
+  background: rgb(95%, 95%, 95%);
+  border: none;
+  border-radius: 0.2rem;
+  color: rgb(50%, 50%, 50%);
+  cursor: pointer;
+  display: block;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 85%;
+  line-height: 1.6;
+  margin: 0.1rem 0;
+  padding: 0 0.5rem;
+  text-align: left;
+  width: 100%;
+}
+.code-block-folded .code-fold-toggle:not(.is-open):before {
+  content: "⋯ " attr(data-fold-label);
+}
+.code-block-folded .code-fold-toggle:not(.is-open):hover, .code-block-folded .code-fold-toggle:not(.is-open):focus-visible {
+  background: rgb(90%, 90%, 90%);
+  color: #333333;
 }
 
 /**
@@ -27651,5 +27694,12 @@ section.confval-section {
   }
   .rst-content section:first-child {
     margin-top: 0;
+  }
+  .code-block-folded .code-fold:not(.is-open) {
+    display: inline;
+  }
+  .code-block-folded .code-fold-toggle,
+  .code-block-unfold {
+    display: none !important;
   }
 }

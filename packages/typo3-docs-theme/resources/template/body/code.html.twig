@@ -3,7 +3,8 @@
         <span class="caption-text">{{ renderNode(node.caption) }}</span>
     </div>
 {%- endif -%}
-<div class="code-block-wrapper" translate="no">
+{%- set foldedLines = foldedLines(node) -%}
+<div class="code-block-wrapper{% if foldedLines %} code-block-foldable{% endif %}" translate="no">
     {% set showLineNumbers = false %}
     {% set startWithLineNumber = 1 %}
     {% if node.startingLineNumber %}
@@ -11,8 +12,13 @@
         {% set startWithLineNumber = node.startingLineNumber %}
     {% endif %}
 
-    {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber, emphasizeLines=node.emphasizeLines, classes=node.classesString)}}
+    {{ node.value | codehighlight(language=node.language, showLineNumbers=showLineNumbers, startWithLineNumber=startWithLineNumber, emphasizeLines=node.emphasizeLines, classes=node.classesString) | fold_lines(foldedLines) }}
     <div class="code-block-actions">
+        {%- if foldedLines %}
+            <button type="button" class="code-block-unfold" title="Show all lines" aria-pressed="false" hidden>
+                <i class="icon fa-solid fa-up-right-and-down-left-from-center"></i>
+            </button>
+        {%- endif %}
 
         {%- set gitHubLink = getEditOnGitHubLinkFromPath(node.options.path) -%}
         {%- if (gitHubLink)  %}
