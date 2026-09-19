@@ -1,4 +1,5 @@
 {#- The HTML rendering wraps this in a modal trigger carrying signature, flags
     and a help text. None of that survives as Markdown, and the code itself is
-    what a reader needs. -#}
-`{{- node.value|raw -}}`
+    what a reader needs. A class shown by its short name in HTML is written
+    with its fully qualified name, as the modal tells it. -#}
+`{{- (node.info.fqn ?? node.value)|raw -}}`
