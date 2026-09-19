@@ -20,9 +20,14 @@ use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Directives\GlossaryDirective;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
+use T3Docs\Typo3DocsTheme\Directives\CodeBlockDirective;
 use T3Docs\Typo3DocsTheme\Directives\IncludeDirective;
 use T3Docs\Typo3DocsTheme\Directives\IndexEntriesDirective;
 use T3Docs\Typo3DocsTheme\Directives\LiteralincludeDirective;
+use T3Docs\Typo3DocsTheme\Directives\VisibleLinesOption;
+use T3Docs\Typo3DocsTheme\CodeFolding\FoldedLines;
+use T3Docs\Typo3DocsTheme\CodeFolding\HtmlLineFolder;
+use T3Docs\Typo3DocsTheme\Twig\CodeFoldingExtension;
 use T3Docs\Typo3DocsTheme\Directives\MainMenuJsonDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
@@ -94,6 +99,7 @@ use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
 use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
+use phpDocumentor\Guides\RestructuredText\Directives\CodeBlockDirective as GuidesCodeBlockDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
@@ -242,6 +248,13 @@ return static function (ContainerConfigurator $container): void {
         ->set(GroupTabDirective::class)
         ->set(IncludeDirective::class)
         ->set(LiteralincludeDirective::class)
+        ->set(CodeBlockDirective::class)
+        ->arg('$inner', service(GuidesCodeBlockDirective::class))
+        ->set(VisibleLinesOption::class)
+        ->set(FoldedLines::class)
+        ->set(HtmlLineFolder::class)
+        ->set(CodeFoldingExtension::class)
+        ->tag('twig.extension')
         ->set(MainMenuJsonDirective::class)
         ->set(RawDirective::class)
         ->set(SiteSetSettingsDirective::class)
