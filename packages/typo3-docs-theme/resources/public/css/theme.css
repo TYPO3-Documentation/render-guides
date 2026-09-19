@@ -24469,6 +24469,16 @@ h6 .code-inline button,
   text-decoration: none;
 }
 
+/**
+ * The title of the code popup is a class, file or package name. Where it has
+ * no break opportunity of its own it breaks anywhere rather than leave the
+ * screen.
+ */
+#generalModal .modal-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 /** popover styling **/
 .popover {
   display: flex;
