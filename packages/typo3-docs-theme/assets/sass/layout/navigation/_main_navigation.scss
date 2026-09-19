@@ -35,12 +35,18 @@
             color: inherit;
             line-height: 1.25;
             padding: calc(#{$spacer} / 4) 0;
-            padding-right: 1.5em;
             text-decoration: none;
 
             &:hover {
                 text-decoration: underline;
             }
+        }
+
+        // Room for the toggle button, which only an entry with sub-entries
+        // has. A long name in any other entry may use the full width.
+
+        li:has(> ul) > a {
+            padding-right: 1.5em;
         }
 
         ul {

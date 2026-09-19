@@ -27199,11 +27199,13 @@ header #options-panel .dropdown-item:hover i, header #options-panel .dropdown-it
   color: inherit;
   line-height: 1.25;
   padding: calc(1rem / 4) 0;
-  padding-right: 1.5em;
   text-decoration: none;
 }
 .page-main-navigation .main_menu a:hover {
   text-decoration: underline;
+}
+.page-main-navigation .main_menu li:has(> ul) > a {
+  padding-right: 1.5em;
 }
 .page-main-navigation .main_menu ul {
   padding-left: calc(1rem / 2);
