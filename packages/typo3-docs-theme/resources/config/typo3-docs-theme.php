@@ -35,6 +35,7 @@ use T3Docs\Typo3DocsTheme\Directives\Typo3VersionChangedDirective;
 use T3Docs\Typo3DocsTheme\Directives\ViewHelperDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
+use T3Docs\Typo3DocsTheme\Deployment\DeploymentMode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\NavigationTitleAnchorSetter;
@@ -283,6 +284,8 @@ return static function (ContainerConfigurator $container): void {
         // Register Event Listeners
         ->set(AddThemeSettingsToProjectNode::class)
         ->tag('event_listener', ['event' => PostProjectNodeCreated::class])
+
+        ->set(DeploymentMode::class)
 
         ->set(CopyResources::class)
         ->tag('event_listener', ['event' => PostRenderProcess::class])

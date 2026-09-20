@@ -1,12 +1,14 @@
 <?php
 
-# This is a Proxy file to request a URL from docs.typo.org
-# and pass the result along to the local development.
-# It is used for debugging the "all documentations menu"
-# endpoint.
-# Since no active PHP files are part of the local DDEV instance by default,
-# you need to manually put that file into the document root:
-# $> ln -s ../packages/typo3-docs-theme/assets/js/menu-proxy.php Documentation-GENERATED-temp/menu-proxy.php
+# A proxy for the mainmenu.json of docs.typo3.org, for a
+# page that is not served from docs.typo3.org: the browser refuses to fetch
+# it from a foreign origin, so the page asks its own server to pass the
+# request on.
+#
+# Every render but the one deployed to docs.typo3.org writes this file to
+# "_resources/js/" beside its assets, which is where the page looks for it.
+# It needs a server that runs PHP, such as the DDEV integration of this
+# project.
 
 $proxyUrl = 'https://docs.typo3.org/h/typo3/docs-homepage/main/en-us/mainmenu.json';
 
