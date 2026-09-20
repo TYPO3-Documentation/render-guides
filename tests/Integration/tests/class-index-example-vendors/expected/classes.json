@@ -1,0 +1,23 @@
+{
+    "project": {
+        "title": "Example vendors",
+        "version": "13.4",
+        "permalink": "https://docs.typo3.org/permalink/t3coreapi:{anchor}@13.4"
+    },
+    "classes": {
+        "\\MyVendor\\MyExtension\\FooBar": {
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "example-vendors",
+                    "kind": "role"
+                },
+                {
+                    "path": "index",
+                    "anchor": "example-vendors",
+                    "kind": "use"
+                }
+            ]
+        }
+    }
+}

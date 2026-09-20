@@ -57,6 +57,9 @@ use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\PageFiles;
+use T3Docs\Typo3DocsTheme\ClassIndex\ClassIndex;
+use T3Docs\Typo3DocsTheme\ClassIndex\UseStatements;
+use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
@@ -143,6 +146,19 @@ return static function (ContainerConfigurator $container): void {
             [
                 'noderender_tag' => 'phpdoc.guides.noderenderer.html',
                 'format' => 'changelogjson',
+            ],
+        )
+
+        ->set(ClassIndex::class)
+
+        ->set(UseStatements::class)
+
+        ->set(ClassIndexJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'classindex',
             ],
         )
 

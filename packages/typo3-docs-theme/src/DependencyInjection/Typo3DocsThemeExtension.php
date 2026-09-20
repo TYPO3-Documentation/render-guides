@@ -87,6 +87,13 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                         'edit_on_github_directory' => $this->getConfigValue($configs, 'edit_on_github_directory', 'Documentation'),
                         'how_to_edit' => $this->getConfigValue($configs, 'how_to_edit', 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html'),
                         'interlink_shortcode' => $this->getConfigValue($configs, 'interlink_shortcode', ''),
+                        // The namespaces an example invents for the reader to
+                        // replace with their own. A class below them exists
+                        // nowhere, so the class index passes it over.
+                        'example_vendors' => $this->getConfigValue($configs, 'example_vendors', 'Vendor, MyVendor, Foo, OriginalVendor'),
+                        // The namespaces the class index keeps, empty for all
+                        // of them but the examples above.
+                        'indexed_namespaces' => $this->getConfigValue($configs, 'indexed_namespaces', ''),
                         // Markdown is rendered beside the HTML unless a project
                         // opts out with render-markdown="false".
                         'render_markdown' => $this->getConfigValue($configs, 'render_markdown', 'true'),
@@ -262,6 +269,7 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         // an index of its entries on top. @see TocJsonRenderer,
         // ChangelogJsonRenderer
         $this->appendOutputFormat($container, 'tocjson');
+        $this->appendOutputFormat($container, 'classindex');
         if ($this->isChangelog($container)) {
             $this->appendOutputFormat($container, 'changelogjson');
         }

@@ -1,0 +1,73 @@
+{
+    "project": {
+        "title": "Class index",
+        "version": "13.4",
+        "permalink": "https://docs.typo3.org/permalink/t3coreapi:{anchor}@13.4"
+    },
+    "classes": {
+        "\\Acme\\Shop\\Service\\Greeter": {
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "acme-shop-service-greeter",
+                    "kind": "definition"
+                }
+            ]
+        },
+        "\\Psr\\Log\\LoggerInterface": {
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "class-index-example",
+                    "kind": "use"
+                }
+            ]
+        },
+        "\\TYPO3\\CMS\\Core\\Http\\ServerRequest": {
+            "type": "class",
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "class-index",
+                    "kind": "role"
+                },
+                {
+                    "path": "index",
+                    "anchor": "class-index-example",
+                    "kind": "use"
+                }
+            ]
+        },
+        "\\TYPO3\\CMS\\Core\\Utility\\GeneralUtility": {
+            "type": "class",
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "class-index",
+                    "kind": "role",
+                    "member": "::makeInstance()"
+                },
+                {
+                    "path": "index",
+                    "anchor": "class-index-example",
+                    "kind": "role"
+                },
+                {
+                    "path": "index",
+                    "anchor": "class-index-example",
+                    "kind": "use"
+                }
+            ]
+        },
+        "\\TYPO3\\CMS\\Core\\Utility\\PathUtility": {
+            "type": "class",
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "class-index-example",
+                    "kind": "use"
+                }
+            ]
+        }
+    }
+}
