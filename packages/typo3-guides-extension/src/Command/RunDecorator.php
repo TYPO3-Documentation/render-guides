@@ -161,8 +161,7 @@ final class RunDecorator extends Command
                 return Command::FAILURE;
             }
 
-            $input->setArgument('input', $guessedInput['input']);
-            $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
+            $this->useGuessedInput($input, $guessedInput);
         } elseif ($arguments['input'] === null) {
             $guessedInput = $this->guessInput(self::DEFAULT_INPUT_DIRECTORY, $output, false);
             if ($guessedInput === []) {
@@ -171,8 +170,7 @@ final class RunDecorator extends Command
                 return Command::FAILURE;
             }
 
-            $input->setArgument('input', $guessedInput['input']);
-            $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
+            $this->useGuessedInput($input, $guessedInput);
         }
 
         if (!isset($options['--output'])) {
@@ -353,6 +351,30 @@ final class RunDecorator extends Command
     }
 
     /** @return array<string, string> */
+    /**
+     * Render what was found: the directory, and the file within it when the
+     * entry is a README beside the project rather than an index of its own.
+     * Without the file, the render looks for an index that is not there.
+     *
+     * @param array<string, string> $guessedInput
+     */
+    private function useGuessedInput(InputInterface $input, array $guessedInput): void
+    {
+        $input->setArgument('input', $guessedInput['input']);
+        $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
+        if (!isset($guessedInput['--input-file'])) {
+            return;
+        }
+
+        $input->setOption('input-file', $guessedInput['--input-file']);
+    }
+
+    /**
+     * The directory to render, the format, and the entry file when it is not
+     * an index of its own -- empty when there is nothing to render.
+     *
+     * @return array<string, string>
+     */
     private function guessInput(string $inputBaseDirectory, OutputInterface $output, bool $isAbsoluteDirectory = false): array
     {
         $currentDirectory = getcwd();
