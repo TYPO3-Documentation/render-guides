@@ -38,6 +38,8 @@
                     </select>
                     <div id="global-search-root"></div>
                 </search>
+                {# The options concern a page; the single page of the whole manual has none. #}
+                {% if has_page_context %}
                 <button id="options-toggle" class="btn btn-light" type="button"
                         aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
                     <i class="fa-solid fa-gear" aria-hidden="true"></i>
@@ -47,6 +49,7 @@
                     <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
                     {% include "structure/layoutParts/optionsMenu.html.twig" %}
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

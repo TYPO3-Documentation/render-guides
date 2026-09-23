@@ -17,6 +17,7 @@ use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
 use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\UrlGenerator\AbstractUrlGenerator;
 use phpDocumentor\Guides\Renderer\UrlGenerator\RelativeUrlGenerator;
+use T3Docs\GuidesExtension\Renderer\SinglePageRenderer;
 
 final class SingleHtmlUrlGenerator extends AbstractUrlGenerator
 {
@@ -42,8 +43,14 @@ final class SingleHtmlUrlGenerator extends AbstractUrlGenerator
         }
         $filename = $fileInfo['filename'] ?? '';
         if ($renderContext->getProjectNode()->findDocumentEntry($dirname . $filename) === null) {
-            // this is not a link to a rendered document, therefore to an asset
-            return $this->relativeUrlGenerator->generateInternalPathFromRelativeUrl($renderContext, $canonicalUrl);
+            // this is not a link to a rendered document, therefore to an asset.
+            // The render context is that of the page, which is written into
+            // the single page rather than to where it would be on its own, so
+            // the path has to be relative to the single page.
+            return $this->relativeUrlGenerator->generateInternalPathFromRelativeUrl(
+                $renderContext->withOutputFilePath(SinglePageRenderer::OUTPUT_FILE),
+                $canonicalUrl,
+            );
         }
         return '#' . $anchor;
     }

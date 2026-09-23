@@ -129,6 +129,28 @@ This is deliberately a local tool. Nothing publishes the file, and
 per-page Markdown instead, which is linked from every page as
 :html:`<link rel="alternate" type="text/markdown">`.
 
+..  _installation-single-html:
+
+The whole manual as one HTML page
+=================================
+
+For reading or printing a manual in one piece, pass :bash:`--single-html`:
+
+..  code-block:: shell
+
+    docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest \
+      --single-html ./Documentation
+
+The result is :file:`Documentation-GENERATED-temp/singlehtml/Index.html`,
+every page of the manual in the order of the table of contents, styled like
+the rendered manual.
+
+Like :bash:`--single-markdown`, the option renders *only* that file. Passing
+both renders both files in one run.
+
+:samp:`docs.typo3.org` does not carry this page either: it is no longer rendered
+with every manual, and the rendered pages no longer link to it.
+
 In case of errors you can increase verbose output by prefixing any command with the argument
 :bash:`verbose`:
 

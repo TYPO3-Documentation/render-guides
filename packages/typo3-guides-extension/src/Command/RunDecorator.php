@@ -115,6 +115,14 @@ final class RunDecorator extends Command
             'Render the whole project into one Markdown file (singlemd/Index.md) and nothing else',
         );
 
+        // Also evaluated in AddThemeSettingsToProjectNode.
+        $this->addOption(
+            'single-html',
+            null,
+            InputOption::VALUE_NONE,
+            'Render the whole project into one HTML file (singlehtml/Index.html) and nothing else',
+        );
+
         $this->addOption(
             'watch',
             null,

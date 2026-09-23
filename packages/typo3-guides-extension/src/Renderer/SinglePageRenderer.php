@@ -9,6 +9,8 @@ use phpDocumentor\Guides\TemplateRenderer;
 
 final class SinglePageRenderer implements TypeRenderer
 {
+    public const OUTPUT_FILE = 'singlehtml/Index.html';
+
     public function __construct(private readonly TemplateRenderer $renderer) {}
 
     public function render(RenderCommand $renderCommand): void
@@ -23,10 +25,10 @@ final class SinglePageRenderer implements TypeRenderer
             $renderCommand->getDestinationPath(),
             'singlepage',
         )->withIterator($renderCommand->getDocumentIterator())
-        ->withOutputFilePath('singlehtml/Index.html');
+        ->withOutputFilePath(self::OUTPUT_FILE);
 
         $context->getDestination()->put(
-            $renderCommand->getDestinationPath() . '/singlehtml/Index.html',
+            $renderCommand->getDestinationPath() . '/' . self::OUTPUT_FILE,
             $this->renderer->renderTemplate(
                 $context,
                 'structure/singlepage.html.twig',
