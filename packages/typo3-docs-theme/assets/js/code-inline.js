@@ -3,6 +3,36 @@
   const SELECTOR_COPY_BUTTON = '.copy-button';
   const SELECTOR_ALERT_SUCCESS = '#general-alert-success';
 
+  // A class name has no spaces to break at, and would run off a narrow
+  // screen: let it break after a namespace separator and before a member.
+  // The title stays text -- each break is an element of its own.
+  function appendBreakable(element, text) {
+    text.split(/(?<=\\)|(?=::|->)/).forEach((part, index) => {
+      if (index > 0) {
+        element.appendChild(document.createElement('wbr'));
+      }
+      element.appendChild(document.createTextNode(part));
+    });
+  }
+
+  // On a small screen the title drops the namespace of a class name: the
+  // fully qualified name is right below it, in the code snippet.
+  function setTitle(element, code) {
+    element.replaceChildren();
+    const match = code.match(/^\\?(?:[A-Za-z_][A-Za-z0-9_]*\\)+([A-Za-z_][A-Za-z0-9_]*[^]*)$/);
+    if (!match) {
+      appendBreakable(element, code);
+      return;
+    }
+    const full = document.createElement('span');
+    full.className = 'd-none d-sm-inline';
+    appendBreakable(full, code);
+    const short = document.createElement('span');
+    short.className = 'd-sm-none';
+    appendBreakable(short, match[1]);
+    element.append(full, short);
+  }
+
   function handleCopyButtons(generalModal) {
     const alertSuccessDiv = generalModal.querySelector(SELECTOR_ALERT_SUCCESS);
     const copyButtons = generalModal.querySelectorAll(SELECTOR_COPY_BUTTON);
@@ -64,7 +94,7 @@
       }
       const generalModalLabel = generalModal.querySelector('#generalModalLabel');
       const content = generalModal.querySelector('#generalModalContent');
-      generalModalLabel.innerText = item.dataset.code;
+      setTitle(generalModalLabel, item.dataset.code);
 
       handleCopyButtons(generalModal);
       content.innerHTML = '';

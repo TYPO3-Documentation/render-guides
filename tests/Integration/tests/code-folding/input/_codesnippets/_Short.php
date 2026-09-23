@@ -1,0 +1,3 @@
+<?php
+
+return ['key' => 'value'];

@@ -1,0 +1,29 @@
+{
+    "project": {
+        "title": "Indexed namespaces",
+        "version": "13.4",
+        "permalink": "https://docs.typo3.org/permalink/t3coreapi:{anchor}@13.4"
+    },
+    "classes": {
+        "\\TYPO3\\CMS\\Core\\Http\\ServerRequest": {
+            "type": "class",
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "indexed-namespaces",
+                    "kind": "use"
+                }
+            ]
+        },
+        "\\TYPO3\\CMS\\Core\\Utility\\GeneralUtility": {
+            "type": "class",
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "indexed-namespaces",
+                    "kind": "role"
+                }
+            ]
+        }
+    }
+}

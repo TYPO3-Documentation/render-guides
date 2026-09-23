@@ -21,9 +21,14 @@ use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Directives\GlossaryDirective;
 use T3Docs\Typo3DocsTheme\Directives\GroupTabDirective;
+use T3Docs\Typo3DocsTheme\Directives\CodeBlockDirective;
 use T3Docs\Typo3DocsTheme\Directives\IncludeDirective;
 use T3Docs\Typo3DocsTheme\Directives\IndexEntriesDirective;
 use T3Docs\Typo3DocsTheme\Directives\LiteralincludeDirective;
+use T3Docs\Typo3DocsTheme\Directives\VisibleLinesOption;
+use T3Docs\Typo3DocsTheme\CodeFolding\FoldedLines;
+use T3Docs\Typo3DocsTheme\CodeFolding\HtmlLineFolder;
+use T3Docs\Typo3DocsTheme\Twig\CodeFoldingExtension;
 use T3Docs\Typo3DocsTheme\Directives\MainMenuJsonDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
@@ -60,6 +65,9 @@ use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\PageFiles;
+use T3Docs\Typo3DocsTheme\ClassIndex\ClassIndex;
+use T3Docs\Typo3DocsTheme\ClassIndex\UseStatements;
+use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
@@ -97,6 +105,7 @@ use phpDocumentor\Guides\Graphs\Renderer\PlantumlServerRenderer;
 use phpDocumentor\Guides\ReferenceResolvers\DelegatingReferenceResolver;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
+use phpDocumentor\Guides\RestructuredText\Directives\CodeBlockDirective as GuidesCodeBlockDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\SubDirective;
 use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
@@ -148,6 +157,19 @@ return static function (ContainerConfigurator $container): void {
             [
                 'noderender_tag' => 'phpdoc.guides.noderenderer.html',
                 'format' => 'changelogjson',
+            ],
+        )
+
+        ->set(ClassIndex::class)
+
+        ->set(UseStatements::class)
+
+        ->set(ClassIndexJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'classindex',
             ],
         )
 
@@ -249,6 +271,13 @@ return static function (ContainerConfigurator $container): void {
         ->set(GroupTabDirective::class)
         ->set(IncludeDirective::class)
         ->set(LiteralincludeDirective::class)
+        ->set(CodeBlockDirective::class)
+        ->arg('$inner', service(GuidesCodeBlockDirective::class))
+        ->set(VisibleLinesOption::class)
+        ->set(FoldedLines::class)
+        ->set(HtmlLineFolder::class)
+        ->set(CodeFoldingExtension::class)
+        ->tag('twig.extension')
         ->set(MainMenuJsonDirective::class)
         ->set(RawDirective::class)
         ->set(SiteSetSettingsDirective::class)
