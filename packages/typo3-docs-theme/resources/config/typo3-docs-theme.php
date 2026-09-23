@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckLinkTextNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
@@ -35,6 +36,7 @@ use T3Docs\Typo3DocsTheme\Directives\Typo3VersionChangedDirective;
 use T3Docs\Typo3DocsTheme\Directives\ViewHelperDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
+use T3Docs\Typo3DocsTheme\Deployment\DeploymentMode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
 use T3Docs\Typo3DocsTheme\EventListeners\NavigationTitleAnchorSetter;
@@ -47,6 +49,7 @@ use T3Docs\Typo3DocsTheme\Inventory\InventoryUrlBuilderInterface;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
+use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\CheckLinkTextFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Permalinks\Permalinks;
@@ -132,6 +135,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(RemoveInterlinkSelfReferencesFromCrossReferenceNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(Typo3TalkNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(CheckLinkTextNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(TwigExtension::class)
         ->tag('twig.extension')
@@ -242,6 +247,8 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.parser.rst.fieldlist')
         ->set(EditOnGitHubFieldListItemRule::class)
         ->tag('phpdoc.guides.parser.rst.fieldlist')
+        ->set(CheckLinkTextFieldListItemRule::class)
+        ->tag('phpdoc.guides.parser.rst.fieldlist')
 
         ->set(DelegatingReferenceResolver::class)
         ->arg('$resolvers', tagged_iterator('phpdoc.guides.reference_resolver', defaultPriorityMethod: 'getPriority'))
@@ -299,6 +306,8 @@ return static function (ContainerConfigurator $container): void {
         // Register Event Listeners
         ->set(AddThemeSettingsToProjectNode::class)
         ->tag('event_listener', ['event' => PostProjectNodeCreated::class])
+
+        ->set(DeploymentMode::class)
 
         ->set(CopyResources::class)
         ->tag('event_listener', ['event' => PostRenderProcess::class])

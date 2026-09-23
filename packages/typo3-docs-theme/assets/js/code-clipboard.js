@@ -9,7 +9,7 @@
 
   const COPIED_TIMEOUT_MILLISECONDS = 3000;
 
-  if (!navigator.clipboard && !navigator.clipboard.writeText) {
+  if (!navigator.clipboard || !navigator.clipboard.writeText) {
     console.info('"navigator.clipboard.writeText" is not available. Update to a modern browser to copy code to the system\'s clipboard');
     return;
   }
