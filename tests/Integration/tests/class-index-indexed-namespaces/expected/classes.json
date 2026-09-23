@@ -11,7 +11,7 @@
                 {
                     "path": "index",
                     "anchor": "indexed-namespaces",
-                    "kind": "use"
+                    "kind": "code"
                 }
             ]
         },
@@ -21,7 +21,7 @@
                 {
                     "path": "index",
                     "anchor": "indexed-namespaces",
-                    "kind": "role"
+                    "kind": "inline"
                 }
             ]
         }

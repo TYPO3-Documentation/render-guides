@@ -20,17 +20,25 @@ major release, written beside the overview page it belongs to.
         "major": 13,
         "entries": [
             {
-                "permalink": "https://docs.typo3.org/permalink/changelog:feature-105638-1732034075",
-                "path": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent",
-                "html": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.html",
-                "md": "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.md",
-                "title": "Feature: #105638 - Modify fetched page content",
-                "anchor": "feature-105638-1732034075",
-                "type": "feature",
-                "issue": 105638,
-                "typo3-version": "13.4.x",
+                "permalink": "https://docs.typo3.org/permalink/changelog:deprecation-104764-1724851918",
+                "path": "Changelog/13.3/Deprecation-104764-FluidTemplatePaths-fillDefaultsByPackageName",
+                "html": "Changelog/13.3/Deprecation-104764-FluidTemplatePaths-fillDefaultsByPackageName.html",
+                "md": "Changelog/13.3/Deprecation-104764-FluidTemplatePaths-fillDefaultsByPackageName.md",
+                "title": "Deprecation: #104764 - Fluid TemplatePaths->fillDefaultsByPackageName",
+                "anchor": "deprecation-104764-1724851918",
+                "type": "deprecation",
+                "issue": 104764,
+                "typo3-version": "13.3",
                 "typo3-major": 13,
-                "tags": ["Frontend", "PHP-API", "TypoScript", "ext:frontend"]
+                "tags": ["PHP-API", "FullyScanned", "ext:fluid"],
+                "classes": {
+                    "\\TYPO3\\CMS\\Core\\View\\ViewFactoryInterface": [
+                        { "section": "migration", "kind": "inline" }
+                    ],
+                    "\\TYPO3\\CMS\\Fluid\\View\\TemplatePaths": [
+                        { "section": "description", "kind": "inline", "members": ["->fillDefaultsByPackageName()"] }
+                    ]
+                }
             }
         ]
     }
@@ -79,6 +87,16 @@ typo3-major
 tags
     The terms of the entry's :rst:`.. index::` directive, such as
     :samp:`Frontend` or :samp:`ext:core`.
+
+classes
+    The PHP classes the entry speaks of, by their fully qualified name, each
+    with the places in the entry: the :samp:`section`, :samp:`kind` and
+    :samp:`members` of the :ref:`class index <ClassIndexJson>`, which says the
+    same by class. A class under :samp:`migration` is often what replaces
+    the one under :samp:`description` or :samp:`impact`. The page and release
+    are the entry's; a place names an :samp:`anchor` only where it lies below
+    a label of its own inside the entry. Left out for an entry that names no
+    class.
 
 Entries are ordered newest release first, matching the overview page, and
 within a release by issue, so the file does not change between two renders of

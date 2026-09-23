@@ -12,14 +12,18 @@ use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
+use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
+use function array_values;
 use function explode;
+use function implode;
 use function in_array;
 use function ksort;
 use function ltrim;
+use function sort;
 use function str_starts_with;
 use function trim;
 use function usort;
@@ -32,13 +36,19 @@ use function usort;
  * manual documents the class itself. The last is a definition rather than a
  * mention, and says so.
  *
- * Each place names the page and the anchor of the section it stands in, so a
- * consumer can link to the passage rather than to the top of the page.
+ * Each place names the page and the nearest label above it, which the
+ * project's permalink resolves, and the section it stands in where that
+ * section has no label of its own -- the "Migration" of a Changelog entry, say.
+ * What a section names several members of is one place listing them.
  *
  * A class the TYPO3 API knows carries what it is -- class, interface, trait or
  * enum. A name below "TYPO3" without one is a namespace, a typo or an
  * invention, and none of those can be told from the writing alone: a "use"
  * statement imports a namespace and a class alike.
+ *
+ * @phpstan-type Position array{path: string, typo3-version?: string, anchor: string, section?: string}
+ * @phpstan-type Place array{path: string, typo3-version?: string, anchor: string, section?: string, kind: string, members?: list<string>}
+ * @phpstan-type IndexedClass array{type?: string, places: list<Place>}
  */
 final class ClassIndex
 {
@@ -59,16 +69,24 @@ final class ClassIndex
      */
     private readonly array $indexedNamespaces;
 
+    /**
+     * Whether this is the Changelog, whose places carry the release of their
+     * entry. Another manual may have a "Changelog/" directory of its own.
+     */
+    private readonly bool $isChangelog;
+
     public function __construct(
         private readonly AnchorNormalizer $anchorNormalizer,
         private readonly UseStatements $useStatements,
         private readonly Typo3ApiService $typo3ApiService,
+        private readonly ChangelogEntry $changelogEntry,
         Typo3DocsThemeSettings $themeSettings,
     ) {
         $vendors = $this->names($themeSettings->getSettings('example_vendors'));
 
         $this->exampleVendors = $vendors;
         $this->indexedNamespaces = $this->names($themeSettings->getSettings('indexed_namespaces'));
+        $this->isChangelog = $themeSettings->getSettings('interlink_shortcode') === 'changelog';
     }
 
     /**
@@ -93,21 +111,29 @@ final class ClassIndex
 
     /**
      * @param iterable<DocumentNode> $documents
-     * @return array<string, array<string, mixed>> what each class is and where it is spoken of, by its fully qualified name
+     * @return array<string, IndexedClass> what each class is and where it is spoken of, by its fully qualified name
      */
     public function of(iterable $documents): array
     {
         $classes = [];
         foreach ($documents as $document) {
-            $this->walk($document, $document->getFilePath(), $this->anchorOf($document), $classes);
+            $place = ['path' => $document->getFilePath()];
+            $version = $this->isChangelog ? $this->changelogEntry->version($document) : '';
+            if ($version !== '') {
+                $place['typo3-version'] = $version;
+            }
+
+            $place['anchor'] = $this->labelOf($document);
+            $this->walk($document, $place, $classes);
         }
 
         ksort($classes);
 
         $index = [];
         foreach ($classes as $name => $places) {
-            usort($places, static fn(array $a, array $b): int => [$a['path'], $a['anchor'], $a['kind'], $a['member'] ?? '']
-                <=> [$b['path'], $b['anchor'], $b['kind'], $b['member'] ?? '']);
+            $places = array_values($places);
+            usort($places, static fn(array $a, array $b): int => [$a['path'], $a['anchor'], $a['section'] ?? '', $a['kind']]
+                <=> [$b['path'], $b['anchor'], $b['section'] ?? '', $b['kind']]);
 
             $type = $this->typo3ApiService->getClassInfo($name)['type'] ?? '';
             $index[$name] = ($type === '' ? [] : ['type' => $type]) + ['places' => $places];
@@ -117,36 +143,45 @@ final class ClassIndex
     }
 
     /**
-     * @param array<string, list<array<string, string>>> $classes
+     * @param Position $place where the node stands: path, release, anchor and section
+     * @param array<string, array<string, Place>> $classes
      */
-    private function walk(Node $node, string $path, string $anchor, array &$classes): void
+    private function walk(Node $node, array $place, array &$classes): void
     {
         if ($node instanceof SectionNode) {
-            $anchor = $this->anchorOf($node);
+            // A section with a label of its own is where a link lands. One
+            // without is named beside the nearest label, which a permalink
+            // resolves and its id does not.
+            $label = $this->labelOf($node);
+            unset($place['section']);
+            if ($label !== '') {
+                $place['anchor'] = $label;
+            } elseif ($node->getId() !== '') {
+                $place['section'] = $this->anchorNormalizer->reduceAnchor($node->getId());
+            }
         }
 
-        $this->record($node, $path, $anchor, $classes);
+        $this->record($node, $place, $classes);
 
         if (!$node instanceof CompoundNode) {
             return;
         }
 
         foreach ($node->getChildren() as $child) {
-            $this->walk($child, $path, $anchor, $classes);
+            $this->walk($child, $place, $classes);
         }
     }
 
     /**
-     * @param array<string, list<array<string, string>>> $classes
+     * @param Position $place
+     * @param array<string, array<string, Place>> $classes
      */
-    private function record(Node $node, string $path, string $anchor, array &$classes): void
+    private function record(Node $node, array $place, array &$classes): void
     {
         if ($node instanceof CodeInlineNode) {
             $fqn = $node->getInfo()['fqn'] ?? '';
             if ($fqn !== '') {
-                $member = $node->getInfo()['member'] ?? '';
-                $this->add($classes, $fqn, ['path' => $path, 'anchor' => $anchor, 'kind' => 'role']
-                    + ($member === '' ? [] : ['member' => $member]));
+                $this->add($classes, $fqn, $place + ['kind' => 'inline'], $node->getInfo()['member'] ?? '');
             }
 
             return;
@@ -154,7 +189,7 @@ final class ClassIndex
 
         if ($node instanceof CodeNode) {
             foreach ($this->useStatements->of($node) as $fqn) {
-                $this->add($classes, $fqn, ['path' => $path, 'anchor' => $anchor, 'kind' => 'use']);
+                $this->add($classes, $fqn, $place + ['kind' => 'code']);
             }
 
             return;
@@ -164,20 +199,18 @@ final class ClassIndex
             return;
         }
 
-        $this->add($classes, $node->toString(), [
-            'path' => $path,
-            // The class has an anchor of its own, which is where a reader of
-            // the index wants to land, not at the section that holds it.
-            'anchor' => $this->anchorNormalizer->reduceAnchor($node->getId()),
-            'kind' => 'definition',
-        ]);
+        // The class has an anchor of its own, which is where a reader of the
+        // index wants to land, not at the section that holds it.
+        unset($place['section']);
+        $place['anchor'] = $this->anchorNormalizer->reduceAnchor($node->getId());
+        $this->add($classes, $node->toString(), $place + ['kind' => 'definition']);
     }
 
     /**
-     * @param array<string, list<array<string, string>>> $classes
-     * @param array<string, string> $place
+     * @param array<string, array<string, Place>> $classes
+     * @param Place $place
      */
-    private function add(array &$classes, string $fqn, array $place): void
+    private function add(array &$classes, string $fqn, array $place, string $member = ''): void
     {
         $name = '\\' . ltrim($fqn, '\\');
         if (in_array(explode('\\', $name)[1] ?? '', $this->exampleVendors, true)) {
@@ -188,17 +221,22 @@ final class ClassIndex
             return;
         }
 
-        if (!isset($classes[$name])) {
-            $classes[$name] = [];
-        }
-
         // The same class named twice in one section is one place, however
-        // often an author repeats it.
-        if (in_array($place, $classes[$name], true)) {
+        // often an author repeats it, and so is a section naming several of
+        // its members: the place lists them.
+        $key = implode("\0", [$place['path'], $place['anchor'], $place['section'] ?? '', $place['kind']]);
+        $classes[$name][$key] ??= $place;
+        if ($member === '') {
             return;
         }
 
-        $classes[$name][] = $place;
+        $members = $classes[$name][$key]['members'] ?? [];
+        if (!in_array($member, $members, true)) {
+            $members[] = $member;
+            sort($members);
+        }
+
+        $classes[$name][$key]['members'] = $members;
     }
 
     /** Whether the class is below one of the namespaces the index keeps. */
@@ -214,12 +252,11 @@ final class ClassIndex
     }
 
     /**
-     * The anchor a link to this section or document uses: its explicit label
-     * where it has one, and otherwise the id derived from its title.
+     * The label of this section or document, or "" where it has none.
      *
      * @param CompoundNode<Node> $node
      */
-    private function anchorOf(CompoundNode $node): string
+    private function labelOf(CompoundNode $node): string
     {
         foreach ($node->getChildren() as $child) {
             if ($child instanceof AnchorNode) {
@@ -236,12 +273,6 @@ final class ClassIndex
 
                 break;
             }
-        }
-
-        if ($node instanceof SectionNode) {
-            $id = $node->getId();
-
-            return $id === '' ? '' : $this->anchorNormalizer->reduceAnchor($id);
         }
 
         return '';

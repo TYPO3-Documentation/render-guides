@@ -1,0 +1,177 @@
+{
+    "major": 12,
+    "entries": [
+        {
+            "permalink": "https://docs.typo3.org/permalink/changelog:deprecation-98168-1660890228",
+            "path": "Changelog/12.0/Deprecation-98168-BindingContextMenuItemToThis",
+            "html": "Changelog/12.0/Deprecation-98168-BindingContextMenuItemToThis.html",
+            "md": "Changelog/12.0/Deprecation-98168-BindingContextMenuItemToThis.md",
+            "title": "Deprecation: #98168 - Binding context menu item to this",
+            "anchor": "deprecation-98168-1660890228",
+            "type": "deprecation",
+            "issue": 98168,
+            "typo3-version": "12.0",
+            "typo3-major": 12,
+            "tags": [
+                "Backend",
+                "JavaScript",
+                "NotScanned",
+                "ext:backend"
+            ]
+        },
+        {
+            "permalink": "https://docs.typo3.org/permalink/changelog:deprecation-97866-1657185866",
+            "path": "Changelog/12.0/Deprecation-97866-VariousPublicTSFEProperties",
+            "html": "Changelog/12.0/Deprecation-97866-VariousPublicTSFEProperties.html",
+            "md": "Changelog/12.0/Deprecation-97866-VariousPublicTSFEProperties.md",
+            "title": "Deprecation: #97866 - Various public TSFE properties",
+            "anchor": "deprecation-97866-1657185866",
+            "type": "deprecation",
+            "issue": 97866,
+            "typo3-version": "12.0",
+            "typo3-major": 12,
+            "tags": [
+                "Frontend",
+                "TypoScript",
+                "PartiallyScanned",
+                "ext:frontend"
+            ]
+        },
+        {
+            "permalink": "https://docs.typo3.org/permalink/changelog:important-94951-1655368666",
+            "path": "Changelog/12.0/Important-94951-RestrictExportFunctionalityToAllowedUsers",
+            "html": "Changelog/12.0/Important-94951-RestrictExportFunctionalityToAllowedUsers.html",
+            "md": "Changelog/12.0/Important-94951-RestrictExportFunctionalityToAllowedUsers.md",
+            "title": "Important: #94951 - Restrict export functionality to allowed users",
+            "anchor": "important-94951-1655368666",
+            "type": "important",
+            "issue": 94951,
+            "typo3-version": "12.0",
+            "typo3-major": 12,
+            "tags": [
+                "Backend",
+                "TSConfig",
+                "NotScanned",
+                "ext:impexp"
+            ]
+        },
+        {
+            "permalink": "https://docs.typo3.org/permalink/changelog:important-92020",
+            "path": "Changelog/12.0/Important-92020-NewAPIEntryPointAvailableAtHttpsgettypo3orgapi",
+            "html": "Changelog/12.0/Important-92020-NewAPIEntryPointAvailableAtHttpsgettypo3orgapi.html",
+            "md": "Changelog/12.0/Important-92020-NewAPIEntryPointAvailableAtHttpsgettypo3orgapi.md",
+            "title": "Important: #92020 - New API entry point available at https://get.typo3.org/api/",
+            "anchor": "important-92020",
+            "type": "important",
+            "issue": 92020,
+            "typo3-version": "12.0",
+            "typo3-major": 12,
+            "tags": [
+                "ext:install"
+            ]
+        },
+        {
+            "permalink": "https://docs.typo3.org/permalink/changelog:feature-91077",
+            "path": "Changelog/12.0/Feature-91077-ElementBrowserEntryPointsForTCATypeGroup",
+            "html": "Changelog/12.0/Feature-91077-ElementBrowserEntryPointsForTCATypeGroup.html",
+            "md": "Changelog/12.0/Feature-91077-ElementBrowserEntryPointsForTCATypeGroup.md",
+            "title": "Feature: #91077 - Element browser entry points for TCA types \"group\" and \"folder\"",
+            "anchor": "feature-91077",
+            "type": "feature",
+            "issue": 91077,
+            "typo3-version": "12.0",
+            "typo3-major": 12,
+            "tags": [
+                "TCA",
+                "ext:backend"
+            ]
+        },
+        {
+            "permalink": "https://docs.typo3.org/permalink/changelog:feature-90994",
+            "path": "Changelog/12.0/Feature-90994-MarkCurrentPageInFluid_styled_contentMenuContentElements",
+            "html": "Changelog/12.0/Feature-90994-MarkCurrentPageInFluid_styled_contentMenuContentElements.html",
+            "md": "Changelog/12.0/Feature-90994-MarkCurrentPageInFluid_styled_contentMenuContentElements.md",
+            "title": "Feature: #90994 - Mark current page in fluid_styled_content menu content elements",
+            "anchor": "feature-90994",
+            "type": "feature",
+            "issue": 90994,
+            "typo3-version": "12.0",
+            "typo3-major": 12,
+            "tags": [
+                "Frontend",
+                "ext:fluid_styled_content"
+            ]
+        },
+        {
+            "permalink": "https://docs.typo3.org/permalink/changelog:breaking-90044",
+            "path": "Changelog/12.0/Breaking-90044-ConfigspamProtectEmailAddressesWithOptionAsciiRemoved",
+            "html": "Changelog/12.0/Breaking-90044-ConfigspamProtectEmailAddressesWithOptionAsciiRemoved.html",
+            "md": "Changelog/12.0/Breaking-90044-ConfigspamProtectEmailAddressesWithOptionAsciiRemoved.md",
+            "title": "Breaking: #90044 - config.spamProtectEmailAddresses with option \"ascii\" removed",
+            "anchor": "breaking-90044",
+            "type": "breaking",
+            "issue": 90044,
+            "typo3-version": "12.0",
+            "typo3-major": 12,
+            "tags": [
+                "Frontend",
+                "TypoScript",
+                "NotScanned",
+                "ext:frontend"
+            ]
+        },
+        {
+            "permalink": "https://docs.typo3.org/permalink/changelog:breaking-87616",
+            "path": "Changelog/12.0/Breaking-87616-RemovedHookForAlteringPageLinks",
+            "html": "Changelog/12.0/Breaking-87616-RemovedHookForAlteringPageLinks.html",
+            "md": "Changelog/12.0/Breaking-87616-RemovedHookForAlteringPageLinks.md",
+            "title": "Breaking: #87616 - Removed hook for altering page links",
+            "anchor": "breaking-87616",
+            "type": "breaking",
+            "issue": 87616,
+            "typo3-version": "12.0",
+            "typo3-major": 12,
+            "tags": [
+                "Frontend",
+                "FullyScanned",
+                "ext:frontend"
+            ],
+            "classes": {
+                "\\TYPO3\\CMS\\Frontend\\Event\\ModifyPageLinkConfigurationEvent": [
+                    {
+                        "section": "description",
+                        "kind": "inline"
+                    }
+                ]
+            }
+        },
+        {
+            "permalink": "https://docs.typo3.org/permalink/changelog:feature-87616",
+            "path": "Changelog/12.0/Feature-87616-PSR-14EventForModifyingPageLinkGeneration",
+            "html": "Changelog/12.0/Feature-87616-PSR-14EventForModifyingPageLinkGeneration.html",
+            "md": "Changelog/12.0/Feature-87616-PSR-14EventForModifyingPageLinkGeneration.md",
+            "title": "Feature: #87616 - PSR-14 event for modifying Page Link Generation",
+            "anchor": "feature-87616",
+            "type": "feature",
+            "issue": 87616,
+            "typo3-version": "12.0",
+            "typo3-major": 12,
+            "tags": [
+                "Frontend",
+                "ext:frontend"
+            ],
+            "classes": {
+                "\\TYPO3\\CMS\\Frontend\\Event\\ModifyPageLinkConfigurationEvent": [
+                    {
+                        "section": "description",
+                        "kind": "inline"
+                    },
+                    {
+                        "section": "example",
+                        "kind": "code"
+                    }
+                ]
+            }
+        }
+    ]
+}

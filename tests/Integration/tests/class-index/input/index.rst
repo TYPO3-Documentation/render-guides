@@ -28,6 +28,14 @@ An example
         use SomeTraitOfTheExample;
     }
 
+A section without a label
+=========================
+
+A section without a label of its own is named beside the nearest label above
+it. Naming two members of a class here, :php:`\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance()`
+and :php:`\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName()`, makes one place
+that lists both.
+
 A class this manual documents
 =============================
 
