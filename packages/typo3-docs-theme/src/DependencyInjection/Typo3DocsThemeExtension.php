@@ -104,6 +104,10 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                         'typo3_core_preferred' => $this->getConfigValue($configs, 'typo3_core_preferred', ''),
                         'confval_default' => $this->getConfigValue($configs, 'confval_default', 'Option'),
                         'disable_version_switch' => $this->getConfigValue($configs, 'disable_version_switch', ''),
+                        // Off unless a project opts in with check-link-text="true":
+                        // the warning fails --minimal-test, and most manuals
+                        // still have references without a link text of their own.
+                        'check_link_text' => $this->getConfigValue($configs, 'check_link_text', ''),
                     ],
                 ],
             );
