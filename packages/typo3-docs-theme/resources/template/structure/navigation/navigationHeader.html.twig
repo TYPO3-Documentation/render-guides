@@ -3,7 +3,7 @@
     <div class="toc-title">
         {% set topPageLink = getTopPageLink() %}
         {% if topPageLink %}
-            <a class="toc-title-project" href="{% if has_page_context %}{{ topPageLink.url }}{% else %}../Index.html{% endif %}">{{ topPageLink.title }}</a>
+            <a class="toc-title-project" href="{% if has_page_context %}{{ topPageLink.url }}{% else %}#{% endif %}">{{ topPageLink.title }}</a>
         {% endif %}
     </div>
     {% if env.projectNode.version and not getSettings('disable_version_switch') -%}

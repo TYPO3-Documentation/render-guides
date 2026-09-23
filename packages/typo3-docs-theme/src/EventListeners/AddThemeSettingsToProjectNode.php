@@ -33,15 +33,23 @@ final class AddThemeSettingsToProjectNode
         }
 
         // Replaces the output formats rather than adding to them: somebody
-        // asking for the single Markdown file wants that file, and rendering
-        // the HTML beside it is the slow part of the run. The published output
-        // is unaffected -- this only happens when the option is passed, and
-        // nothing passes it but a person rendering locally.
+        // asking for a single file wants that file, and rendering the pages
+        // beside it is the slow part of the run. The published output is
+        // unaffected -- this only happens when an option is passed, and
+        // nothing passes one but a person rendering locally. Both options
+        // together render both files.
         //
         // This runs after the container is compiled, so it also overrides the
         // "md" format that Typo3DocsThemeExtension appends by default.
+        $singleFileFormats = [];
+        if (in_array('--single-html', $argv, true)) {
+            $singleFileFormats[] = 'singlepage';
+        }
         if (in_array('--single-markdown', $argv, true)) {
-            $event->getSettings()->setOutputFormats(['singlemd']);
+            $singleFileFormats[] = 'singlemd';
+        }
+        if ($singleFileFormats !== []) {
+            $event->getSettings()->setOutputFormats($singleFileFormats);
         }
 
         foreach ($this->themeSettings->getAllSettings() as $key => $setting) {

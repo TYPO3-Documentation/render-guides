@@ -49,6 +49,26 @@ final class AddThemeSettingsToProjectNodeTest extends TestCase
         self::assertSame(['singlemd'], $settings->getOutputFormats());
     }
 
+    public function testSingleHtmlOptionRendersNothingButTheSingleFile(): void
+    {
+        $settings = $this->dispatchWith(
+            ['bin/guides', '--single-html', 'Documentation'],
+            ['html', 'md', 'interlink'],
+        );
+
+        self::assertSame(['singlepage'], $settings->getOutputFormats());
+    }
+
+    public function testBothSingleFileOptionsRenderBothFiles(): void
+    {
+        $settings = $this->dispatchWith(
+            ['bin/guides', '--single-markdown', '--single-html', 'Documentation'],
+            ['html', 'md', 'interlink'],
+        );
+
+        self::assertSame(['singlepage', 'singlemd'], $settings->getOutputFormats());
+    }
+
     public function testFormatsAreUntouchedWithoutTheOption(): void
     {
         $settings = $this->dispatchWith(['bin/guides', 'Documentation'], ['html', 'md']);
@@ -64,6 +84,13 @@ final class AddThemeSettingsToProjectNodeTest extends TestCase
     {
         $settings = $this->dispatchWith(
             ['bin/guides', '--single-markdown-please', 'Documentation'],
+            ['html'],
+        );
+
+        self::assertSame(['html'], $settings->getOutputFormats());
+
+        $settings = $this->dispatchWith(
+            ['bin/guides', '--single-html-please', 'Documentation'],
             ['html'],
         );
 

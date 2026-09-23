@@ -12,6 +12,8 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Finder\Finder;
 use T3Docs\Typo3DocsTheme\Deployment\DeploymentMode;
 
+use function in_array;
+
 final class CopyResources
 {
     private const SOURCE_PATH = '../../resources/public';
@@ -35,7 +37,10 @@ final class CopyResources
 
     public function __invoke(PostRenderProcess $event): void
     {
-        if ($event->getCommand()->getOutputFormat() !== 'html') {
+        // The single page uses the same stylesheet and scripts, and is
+        // rendered without the HTML pages by --single-html. A render of both
+        // copies the same files twice, which does no harm.
+        if (!in_array($event->getCommand()->getOutputFormat(), ['html', 'singlepage'], true)) {
             return;
         }
 

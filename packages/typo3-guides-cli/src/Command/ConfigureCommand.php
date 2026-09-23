@@ -61,7 +61,6 @@ final class ConfigureCommand extends Command
                 --extension-value="https://www.typo3.org" \
                 \
                 --output-format=html \
-                --output-format=singlepage \
                 --output-format=interlink \
                 \
                 --guides-links-are-relative="true" \

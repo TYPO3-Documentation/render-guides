@@ -16,6 +16,5 @@
     <extension class="\T3Docs\GuidesPhpDomain\DependencyInjection\GuidesPhpDomainExtension"/>
     <extension class="\T3Docs\ConsoleCommand\DependencyInjection\ConsoleCommandExtension"/>
     <output-format>html</output-format>
-    <output-format>singlepage</output-format>
     <output-format>interlink</output-format>
 </guides>
