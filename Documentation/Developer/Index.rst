@@ -94,6 +94,7 @@ and the GitHub pipelines, while internally only using :file:`Makefile` syntax.
     InterlinkInventories
     TableOfContents
     ChangelogIndex
+    LinkTextCheck
     AjaxVersions
 
 

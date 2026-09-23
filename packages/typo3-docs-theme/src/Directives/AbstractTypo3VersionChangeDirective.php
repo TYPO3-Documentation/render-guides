@@ -91,7 +91,7 @@ abstract class AbstractTypo3VersionChangeDirective extends SubDirective
 
     /** An empty pattern with /u matches any valid UTF-8 subject and fails on a malformed one. */
     private const VALID_UTF8 = '//u';
-    private const CHANGELOG_LINK_CLASS = 'versionchange-changelog';
+    public const CHANGELOG_LINK_CLASS = 'versionchange-changelog';
 
     /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
