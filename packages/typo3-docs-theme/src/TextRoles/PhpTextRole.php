@@ -16,6 +16,13 @@ final class PhpTextRole implements TextRole
      */
     final public const CLASS_NAME_PATTERN_REGEX = '/^(\\\\)?[A-Za-z_][A-Za-z0-9_]*(\\\\[A-Za-z_][A-Za-z0-9_]*)*$/';
 
+    /**
+     * A namespaced class followed by "::" or "->" and a member of it -- a
+     * method, property, constant or enum case. What follows the operator is
+     * taken as written, arguments and all.
+     */
+    private const MEMBER_PATTERN_REGEX = '/^(\\\\?[A-Za-z_][A-Za-z0-9_]*(?:\\\\[A-Za-z_][A-Za-z0-9_]*)+)((?:::|->).+)$/s';
+
 
     public function __construct(
         private readonly Typo3ApiService $typo3ApiService,
@@ -38,18 +45,23 @@ final class PhpTextRole implements TextRole
     {
         $fqn = [];
         $rawContent = trim($rawContent);
-        if (str_contains($rawContent, '\\') && $this->isClassName($rawContent, $fqn)) {
-            if (!str_starts_with($rawContent, '\\')) {
-                $rawContent = '\\' . $rawContent;
+        $className = $rawContent;
+        $member = '';
+        if (preg_match(self::MEMBER_PATTERN_REGEX, $rawContent, $matches) === 1) {
+            [, $className, $member] = $matches;
+        }
+        if (str_contains($className, '\\') && $this->isClassName($className, $fqn)) {
+            if (!str_starts_with($className, '\\')) {
+                $className = '\\' . $className;
             }
             $type = 'class or interface';
-            $apiInfo = $this->typo3ApiService->getClassInfo($rawContent);
-            $name = $rawContent;
+            $apiInfo = $this->typo3ApiService->getClassInfo($className);
+            $name = $className;
             if ($role === 'php-short') {
                 $shortName = $fqn[2] ?? '';
-                $name = ltrim($shortName !== '' ? $shortName : $rawContent, '\\');
+                $name = ltrim($shortName !== '' ? $shortName : $className, '\\');
             }
-            return $this->getClassCodeNode($rawContent, $apiInfo, $role, $name, $type);
+            return $this->getClassCodeNode($className, $apiInfo, $role, $name . $member, $type, $member);
         }
         if (str_starts_with($rawContent, '$GLOBALS[\'TYPO3_CONF_VARS\']')) {
             return $this->getTypo3ConfVarCodeNode($rawContent);
@@ -120,11 +132,13 @@ final class PhpTextRole implements TextRole
     /**
      * @param array<string, string> $apiInfo
      */
-    private function getClassCodeNode(string $fqn, array $apiInfo, string $role, string $name, string $type): CodeInlineNode
+    private function getClassCodeNode(string $fqn, array $apiInfo, string $role, string $name, string $type, string $member): CodeInlineNode
     {
+        // Markdown has no modal to tell the class, so it writes both in full.
+        $names = $member === '' ? ['fqn' => $fqn] : ['fqn' => $fqn, 'member' => $member];
         if ($apiInfo !== []) {
             if ($role === 'php-short') {
-                $name = $apiInfo['short'];
+                $name = $apiInfo['short'] . $member;
             }
             $type = $apiInfo['type'];
             $modifiers = [];
@@ -150,39 +164,95 @@ final class PhpTextRole implements TextRole
             // The API ships summaries with HTML entities already applied. Decode
             // once so plain text is what travels through the data-* attribute.
             $apiInfo['summary'] = html_entity_decode($apiInfo['summary'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
-            $apiInfo['fqn'] = $fqn;
-            return new CodeInlineNode($name, 'PHP ' . $type, '', $apiInfo);
+            if ($member !== '') {
+                $apiInfo['url'] .= $this->memberAnchor($type, $member);
+            }
+            $apiInfo = [...$apiInfo, ...$names];
+            return new CodeInlineNode($name, $this->language($type, $member), '', $apiInfo);
         } elseif (str_starts_with($fqn, '\\TYPO3Fluid')) {
             $info = 'This PHP class or interface belongs to Fluid. ';
             return new CodeInlineNode(
                 $name,
-                'PHP ' . $type,
+                $this->language($type, $member),
                 $info,
-                ['url' => 'https://docs.typo3.org/m/typo3/reference-coreapi/' . $this->typo3VersionService->getPreferredVersion() . '/en-us/ApiOverview/Fluid/Index.html']
+                ['url' => 'https://docs.typo3.org/m/typo3/reference-coreapi/' . $this->typo3VersionService->getPreferredVersion() . '/en-us/ApiOverview/Fluid/Index.html', ...$names]
             );
         } elseif (str_starts_with($fqn, '\\Psr')) {
             return new CodeInlineNode(
                 $name,
-                'PHP ' . $type,
+                $this->language($type, $member),
                 'This PHP class or interface belongs to the PHP Standards Recommendations (PSR). ',
-                ['url' => 'https://www.php-fig.org/psr/']
+                ['url' => 'https://www.php-fig.org/psr/', ...$names]
             );
         } elseif (str_starts_with($fqn, '\\MyVendor') or str_starts_with($fqn, '\\Vendor')) {
             return new CodeInlineNode(
                 $name,
-                'PHP ' . $type,
+                $this->language($type, $member),
                 'PHP classes in this namespace are commonly used as examples. Replace with your own vendor and namespace on implementation. ',
-                []
+                $names
             );
         }
         return new CodeInlineNode(
             $name,
-            'PHP ' . $type,
+            $this->language($type, $member),
             'This is a fully-qualified class or interface name,
             try searching for ' . $fqn . ' in the internet.',
-            []
+            $names
         );
     }
+    /**
+     * What the popup names the code: the class, or the member of it that is
+     * written. The member's kind is told from how it is written, and an enum
+     * case from a constant only when the API knows the class is an enum.
+     */
+    private function language(string $type, string $member): string
+    {
+        return 'PHP ' . ($member === '' ? $type : $this->memberKind($type, $member));
+    }
+
+    private function memberKind(string $type, string $member): string
+    {
+        $name = substr($member, 2);
+        if (preg_match('/^[A-Za-z_][A-Za-z0-9_]*\s*\(/', $name) === 1) {
+            return 'function';
+        }
+        if (str_starts_with($member, '->') || str_starts_with($name, '$')) {
+            return 'property';
+        }
+        if (strtolower($name) === 'class') {
+            return 'class name';
+        }
+        // A static property needs its "$", so a lowercase name is a function
+        // written without its parentheses.
+        if (preg_match('/^[a-z]/', $name) === 1) {
+            return 'function';
+        }
+        return match ($type) {
+            'enum' => 'enum case',
+            'class or interface' => 'constant or enum case',
+            default => 'constant',
+        };
+    }
+
+    /**
+     * The anchor of the member on its class's page of the API documentation,
+     * or an empty string for a member that has none, like "::class".
+     */
+    private function memberAnchor(string $type, string $member): string
+    {
+        $prefix = match ($this->memberKind($type, $member)) {
+            'function' => 'method_',
+            'property' => 'property_',
+            'enum case' => 'enumcase_',
+            'constant' => 'constant_',
+            default => '',
+        };
+        if ($prefix === '' || preg_match('/^\$?([A-Za-z_][A-Za-z0-9_]*)/', substr($member, 2), $matches) !== 1) {
+            return '';
+        }
+        return '#' . $prefix . $matches[1];
+    }
+
     /**
      * @param list<string> $matches
      */

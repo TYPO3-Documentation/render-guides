@@ -22,12 +22,12 @@
         "grunt-contrib-watch": "^1.1.0",
         "grunt-sass": "^4.1.0",
         "grunt-stylelint": "^0.21.0",
-        "jsdom": "^30.0.1",
+        "jsdom": "^30.1.0",
         "postcss-scss": "^4.0.9",
         "sass": "^1.104.1",
         "stylelint": "^17.15.0",
         "vite": "^8.3.0",
-        "vitest": "^4.1.11"
+        "vitest": "^5.0.1"
     },
     "scripts": {
         "build": "vite build && grunt build",
