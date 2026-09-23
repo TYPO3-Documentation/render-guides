@@ -128,6 +128,15 @@ class AllDocumentationsMenu extends AllDocumentationsMenuBase {
 
     element.appendChild(categoriesElement);
 
+    // An empty panel says nothing about why it is empty, and the reason is
+    // one the reader can do something about.
+    if (!this.data.length && this.unavailableMessage) {
+      const note = document.createElement('p');
+      note.classList.add(this.createClassName('note'));
+      note.textContent = this.unavailableMessage;
+      element.appendChild(note);
+    }
+
     element.addEventListener('toggle', (e) => {
       this.mainButton.setAttribute('aria-expanded', e.newState === 'open');
     });

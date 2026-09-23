@@ -20,7 +20,9 @@
     button.setAttribute('aria-expanded', element.classList.contains('active'));
   }
 
-  // Add toggle icon to a-tags of menu items in .toc navigations
+  // Add toggle icon to a-tags of menu items in .toc navigations. It runs once
+  // for the page's own menu and again when the "All documentation" menu has
+  // been loaded, so an entry that has its toggle already is left alone.
   function makeMenuExpandable() {
     const mainMenues = document.getElementsByClassName('main_menu');
 
@@ -28,7 +30,7 @@
       const links = tocEntry.getElementsByTagName('a');
 
       Array.from(links).forEach(link => {
-        if (link.nextSibling) {
+        if (link.nextSibling && !link.nextElementSibling?.classList.contains('toctree-expand')) {
           const expand = document.createElement('button');
           expand.classList.add('toctree-expand');
           expand.setAttribute('aria-expanded', 'false');
@@ -63,6 +65,9 @@
 
   makeTocMenuExpandable();
   makeSearchToggle();
+  // Not only once the "All documentation" menu is loaded: a local render
+  // cannot load it, and its own menu would have no toggles at all.
+  makeMenuExpandable();
 
   window.addEventListener('all-documentation-menu-loaded', () => {
     makeMenuExpandable();
