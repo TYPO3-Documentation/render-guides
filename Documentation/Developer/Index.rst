@@ -93,7 +93,9 @@ and the GitHub pipelines, while internally only using :file:`Makefile` syntax.
     ThemeCustomization
     InterlinkInventories
     TableOfContents
+    ClassIndex
     ChangelogIndex
+    LinkTextCheck
     AjaxVersions
 
 

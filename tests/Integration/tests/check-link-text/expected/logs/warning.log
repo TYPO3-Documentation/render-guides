@@ -1,0 +1,3 @@
+The reference to "check-link-text-label" has no link text, so it shows the title of its target. Give it its own: :ref:`Link text <check-link-text-label>`.
+The reference to "Target" has no link text, so it shows the title of its target. Give it its own: :doc:`Link text <Target>`.
+The reference to "check-link-text-permalink" has no link text, so it shows the title of its target. Give it its own: :ref:`Link text <check-link-text-permalink>`.

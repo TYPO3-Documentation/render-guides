@@ -1,0 +1,1 @@
+The reference to "check-link-text-page-label" has no link text, so it shows the title of its target. Give it its own: :ref:`Link text <check-link-text-page-label>`.

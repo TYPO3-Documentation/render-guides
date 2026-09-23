@@ -32,24 +32,24 @@ For them, navigation can be proxied and simulated.
 Making the proxy available
 ==========================
 
-When using the DDEV integration to view the documentation, the DocumentRoot of the
-DDEV webserver is set to `Documentation-GENERATED-temp`. This does not
-contain active PHP files by default.
+A render that does not go to docs.typo3.org writes two proxies beside its
+assets, :file:`_resources/js/versions-proxy.php` and
+:file:`_resources/js/menu-proxy.php`, and points the version switch and the
+"All documentation" menu at them. They are the same files that live in
+:file:`packages/typo3-docs-theme/assets/js/` in the repository of this project
+(`<https://github.com/TYPO3-Documentation/render-guides>`).
 
-The file :file:`packages/typo3-docs-theme/assets/js/versions-proxy.php` in the
-repository of this project (`<https://github.com/TYPO3-Documentation/render-guides>`)
-can act as a simple proxy. You can copy or symlink that file into your `Documentation-GENERATED-temp`
-directory, so that it is callable with a URL like:
+The proxy passes the URL parameter `url` on to the actual `docs.typo3.org` API
+endpoint, and returns its output locally, so that a page may read it: the
+browser refuses to fetch it from the page itself, which is a foreign origin to
+`docs.typo3.org`.
 
-..  code::
+It is PHP, so the server showing the documentation has to run PHP -- the DDEV
+integration of this project does, a server that only hands out files does not.
+Without it the version switch and the menu stay empty, and the browser console
+says so.
 
-    https://render-guides.ddev.site/versions-proxy.php?url=https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html
-
-The PHP proxy passes the URL parameter `url` on to the actual `docs.typo3.org` API endpoint,
-and returns its output locally.
-
-Once the proxy PHP file is in place, the default values of the rendering will take effect
-already. See :ref:`AjaxVersions-data-attributes` on how to fine-tune this.
+See :ref:`AjaxVersions-data-attributes` on how to fine-tune this.
 
 Details on how the version switcher is implemented
 ==================================================
