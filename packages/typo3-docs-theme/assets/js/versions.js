@@ -74,6 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
     .catch(error => {
+      if (proxyUrl) {
+        // Only docs.typo3.org may ask itself for the versions of a manual, so
+        // a local page asks its own server to pass the question on. That
+        // proxy is PHP: a server that only serves files cannot answer it.
+        console.info('Versions are listed by docs.typo3.org. A local render needs a server that runs PHP to reach them through _resources/js/versions-proxy.php.');
+        versionSelect.innerHTML = '<option disabled>Versions of a local render are not available</option>';
+        return;
+      }
       console.error(error);
       versionSelect.innerHTML = '<option disabled>Error loading versions</option>';
     });

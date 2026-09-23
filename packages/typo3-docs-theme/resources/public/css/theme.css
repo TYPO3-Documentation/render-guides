@@ -25738,6 +25738,14 @@ figure.uml-diagram {
   background-color: #ffe7cc;
 }
 
+.all-documentations-menu-note {
+  color: rgb(50%, 50%, 50%);
+  margin: 0;
+  max-width: 30em;
+  padding: 1rem;
+  white-space: normal;
+}
+
 .search-modal {
   border: none;
   background-color: unset;

@@ -28,6 +28,7 @@ use Throwable;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
+use T3Docs\Typo3DocsTheme\Deployment\DeploymentMode;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode;
@@ -93,17 +94,9 @@ final class TwigExtension extends AbstractExtension
         private readonly AnchorNormalizer              $anchorNormalizer,
         private readonly ChangelogEntry                $changelogEntry,
         private readonly Permalinks                    $permalinks,
+        private readonly DeploymentMode                $deploymentMode,
     ) {
-        if (strlen((string)getenv('GITHUB_ACTIONS')) > 0 && strlen((string)getenv('TYPO3AZUREEDGEURIVERSION')) > 0 && !isset($_ENV['CI_PHPUNIT'])) {
-            // CI gets special treatment, then we use a fixed URI for assets.
-            // The environment variable 'TYPO3AZUREEDGEURIVERSION' is set during
-            // the creation of our Docker image, and holds the last pushed version
-            // number. This version number will then only be utilized in CI GitHub Action
-            // executions, and sets links to resources/assets to a public CDN.
-            // Outside CI (and for local development) all Assets are linked locally.
-            // This is prevented when being run within PHPUnit.
-            $this->typo3AzureEdgeURI = 'https://cdn.typo3.com/typo3documentation/theme/typo3-docs-theme/' . getenv('TYPO3AZUREEDGEURIVERSION') . '/';
-        }
+        $this->typo3AzureEdgeURI = $deploymentMode->azureEdgeUri();
     }
 
     /** @return TwigFunction[] */
@@ -1580,11 +1573,7 @@ final class TwigExtension extends AbstractExtension
 
     public function isRenderedForDeployment(): bool
     {
-        if ($this->typo3AzureEdgeURI !== '') {
-            return true;
-        }
-
-        return false;
+        return $this->deploymentMode->isForDeployment();
     }
     /**
      * @param array{env: RenderContext} $context
