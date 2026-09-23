@@ -96,6 +96,7 @@ and the GitHub pipelines, while internally only using :file:`Makefile` syntax.
     ClassIndex
     ChangelogIndex
     LinkTextCheck
+    HeadlineAnchorCheck
     AjaxVersions
 
 
