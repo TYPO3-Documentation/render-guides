@@ -26,4 +26,15 @@
     .rst-content section:first-child {
         margin-top: 0;
     }
+
+    // Paper cannot unfold: print every line of a folded code block.
+
+    .code-block-folded .code-fold:not(.is-open) {
+        display: inline;
+    }
+
+    .code-block-folded .code-fold-toggle,
+    .code-block-unfold {
+        display: none !important;
+    }
 }

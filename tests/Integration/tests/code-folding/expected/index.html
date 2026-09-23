@@ -1,0 +1,246 @@
+<!-- content start -->
+                <section class="section" id="code-folding" data-rst-anchor="code-folding"><a id="code-folding-1"></a>
+            
+            <h1>Code folding<a class="headerlink" href="#code-folding" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            
+    <p>The header of a PHP file is folded:</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">EXT:my_extension/Classes/EventListener/MyListener.php</span>
+    </div><div class="code-block-wrapper code-block-foldable" translate="no">
+            
+    <pre class="code-block"><code class="hljs php"><button type="button" class="code-fold-toggle" data-fold-label="13 lines" aria-label="Show 13 lines"></button><span class="code-fold"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">declare</span>(strict_types=<span class="hljs-number">1</span>);
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * This file is part of the "my_extension" extension.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">MyVendor</span>\<span class="hljs-title">MyExtension</span>\<span class="hljs-title">EventListener</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Attribute</span>\<span class="hljs-title">AsEventListener</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Mail</span>\<span class="hljs-title">Event</span>\<span class="hljs-title">AfterMailerSentMessageEvent</span>;
+
+</span><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Logs every mail that was sent.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-comment">#[AsEventListener]</span>
+<span class="hljs-keyword">final</span> readonly <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyListener</span></span>
+<span class="hljs-class"></span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span><span class="hljs-params">(AfterMailerSentMessageEvent $event)</span>: <span class="hljs-title">void</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-comment">/* A comment</span>
+<span class="hljs-comment">           spanning lines */</span>
+        $message = $event-&gt;getMailer()-&gt;getSentMessage();
+    }
+}
+</code></pre>
+    <div class="code-block-actions">            <button type="button" class="code-block-unfold" title="Show all lines" aria-pressed="false" hidden>
+                <i class="icon fa-solid fa-up-right-and-down-left-from-center"></i>
+            </button>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Only the lines an author names are shown; a comment spans the fold:</p>
+
+                <div class="code-block-caption">
+        <span class="caption-text">EXT:my_extension/Classes/EventListener/MyListener.php</span>
+    </div><div class="code-block-wrapper code-block-foldable" translate="no">
+            
+    <pre class="code-block"><code class="hljs php"><button type="button" class="code-fold-toggle" data-fold-label="16 lines" aria-label="Show 16 lines"></button><span class="code-fold"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">declare</span>(strict_types=<span class="hljs-number">1</span>);
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * This file is part of the "my_extension" extension.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">MyVendor</span>\<span class="hljs-title">MyExtension</span>\<span class="hljs-title">EventListener</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Attribute</span>\<span class="hljs-title">AsEventListener</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Mail</span>\<span class="hljs-title">Event</span>\<span class="hljs-title">AfterMailerSentMessageEvent</span>;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Logs every mail that was sent.</span>
+<span class="hljs-comment"> */</span>
+</span><span class="hljs-comment">#[AsEventListener]</span>
+<span class="hljs-keyword">final</span> readonly <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyListener</span></span>
+<span class="hljs-class"></span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span><span class="hljs-params">(AfterMailerSentMessageEvent $event)</span>: <span class="hljs-title">void</span></span>
+<span class="hljs-function">    </span>{
+<button type="button" class="code-fold-toggle" data-fold-label="2 lines" aria-label="Show 2 lines"></button><span class="code-fold">        <span class="hljs-comment">/* A comment</span>
+<span class="hljs-comment">           spanning lines */</span>
+</span>        $message = $event-&gt;getMailer()-&gt;getSentMessage();
+    }
+<button type="button" class="code-fold-toggle" data-fold-label="1 line" aria-label="Show 1 line"></button><span class="code-fold">}
+</span></code></pre>
+    <div class="code-block-actions">            <button type="button" class="code-block-unfold" title="Show all lines" aria-pressed="false" hidden>
+                <i class="icon fa-solid fa-up-right-and-down-left-from-center"></i>
+            </button>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>Folding switched off:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">declare</span>(strict_types=<span class="hljs-number">1</span>);
+
+<span class="hljs-comment">/*
+ * This file is part of the "my_extension" extension.
+ */</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">MyVendor</span>\<span class="hljs-title">MyExtension</span>\<span class="hljs-title">EventListener</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Attribute</span>\<span class="hljs-title">AsEventListener</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Mail</span>\<span class="hljs-title">Event</span>\<span class="hljs-title">AfterMailerSentMessageEvent</span>;
+
+<span class="hljs-comment">/**
+ * Logs every mail that was sent.
+ */</span>
+<span class="hljs-comment">#[AsEventListener]</span>
+<span class="hljs-keyword">final</span> readonly <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyListener</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span><span class="hljs-params">(AfterMailerSentMessageEvent $event)</span>: <span class="hljs-title">void</span>
+    </span>{
+        <span class="hljs-comment">/* A comment
+           spanning lines */</span>
+        $message = $event-&gt;getMailer()-&gt;getSentMessage();
+    }
+}
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>An invalid value is reported and leaves the default folding:</p>
+
+            <div class="code-block-wrapper code-block-foldable" translate="no">
+            
+    <pre class="code-block"><code class="hljs php"><button type="button" class="code-fold-toggle" data-fold-label="13 lines" aria-label="Show 13 lines"></button><span class="code-fold"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">declare</span>(strict_types=<span class="hljs-number">1</span>);
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * This file is part of the "my_extension" extension.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">MyVendor</span>\<span class="hljs-title">MyExtension</span>\<span class="hljs-title">EventListener</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Attribute</span>\<span class="hljs-title">AsEventListener</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Mail</span>\<span class="hljs-title">Event</span>\<span class="hljs-title">AfterMailerSentMessageEvent</span>;
+
+</span><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Logs every mail that was sent.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-comment">#[AsEventListener]</span>
+<span class="hljs-keyword">final</span> readonly <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyListener</span></span>
+<span class="hljs-class"></span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span><span class="hljs-params">(AfterMailerSentMessageEvent $event)</span>: <span class="hljs-title">void</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-comment">/* A comment</span>
+<span class="hljs-comment">           spanning lines */</span>
+        $message = $event-&gt;getMailer()-&gt;getSentMessage();
+    }
+}
+</code></pre>
+    <div class="code-block-actions">            <button type="button" class="code-block-unfold" title="Show all lines" aria-pressed="false" hidden>
+                <i class="icon fa-solid fa-up-right-and-down-left-from-center"></i>
+            </button>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>A file with no header worth folding:</p>
+
+            <div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">return</span> [<span class="hljs-string">'key'</span> =&gt; <span class="hljs-string">'value'</span>];
+</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>A code-block takes the option too:</p>
+
+            <div class="code-block-wrapper code-block-foldable" translate="no">
+            
+    <pre class="code-block"><code class="hljs yaml"><button type="button" class="code-fold-toggle" data-fold-label="1 line" aria-label="Show 1 line"></button><span class="code-fold"><span class="hljs-attr">services:</span>
+</span>  <span class="hljs-string">MyVendor\MyExtension\:</span>
+<button type="button" class="code-fold-toggle" data-fold-label="1 line" aria-label="Show 1 line"></button><span class="code-fold">    <span class="hljs-attr">resource:</span> <span class="hljs-string">'../Classes/*'</span></span></code></pre>
+    <div class="code-block-actions">            <button type="button" class="code-block-unfold" title="Show all lines" aria-pressed="false" hidden>
+                <i class="icon fa-solid fa-up-right-and-down-left-from-center"></i>
+            </button>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+            
+    <p>With line numbers and emphasized lines:</p>
+
+            <div class="code-block-wrapper code-block-foldable" translate="no">
+                                
+    <pre class="code-block"><code class="hljs php"><button type="button" class="code-fold-toggle" data-fold-label="13 lines" aria-label="Show 13 lines"></button><span class="code-fold"><span data-line-number="1"><span class="hljs-meta">&lt;?php</span></span>
+<span data-line-number="2"></span>
+<span data-line-number="3"><span class="hljs-keyword">declare</span>(strict_types=<span class="hljs-number">1</span>);</span>
+<span data-line-number="4"></span>
+<span data-line-number="5"><span class="hljs-comment">/*</span></span>
+<span data-line-number="6"><span class="hljs-comment"> * This file is part of the "my_extension" extension.</span></span>
+<span data-line-number="7"><span class="hljs-comment"> */</span></span>
+<span data-line-number="8"></span>
+<span data-line-number="9"><span class="hljs-keyword">namespace</span> <span class="hljs-title">MyVendor</span>\<span class="hljs-title">MyExtension</span>\<span class="hljs-title">EventListener</span>;</span>
+<span data-line-number="10"></span>
+<span data-line-number="11"><span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Attribute</span>\<span class="hljs-title">AsEventListener</span>;</span>
+<span data-line-number="12"><span class="hljs-keyword">use</span> <span class="hljs-title">TYPO3</span>\<span class="hljs-title">CMS</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Mail</span>\<span class="hljs-title">Event</span>\<span class="hljs-title">AfterMailerSentMessageEvent</span>;</span>
+<span data-line-number="13"></span>
+</span><span data-line-number="14"><span class="hljs-comment">/**</span></span>
+<span data-line-number="15"><span class="hljs-comment"> * Logs every mail that was sent.</span></span>
+<span data-line-number="16"><span class="hljs-comment"> */</span></span>
+<span data-line-number="17"><span class="hljs-comment">#[AsEventListener]</span></span>
+<span data-line-number="18"><span class="hljs-keyword">final</span> readonly <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyListener</span></span></span>
+<span data-line-number="19"><span class="hljs-class"></span>{</span>
+<span data-emphasize-line><span data-line-number="20">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span><span class="hljs-params">(AfterMailerSentMessageEvent $event)</span>: <span class="hljs-title">void</span></span></span></span>
+<span data-line-number="21"><span class="hljs-function">    </span>{</span>
+<span data-line-number="22">        <span class="hljs-comment">/* A comment</span></span>
+<span data-line-number="23"><span class="hljs-comment">           spanning lines */</span></span>
+<span data-line-number="24">        $message = $event-&gt;getMailer()-&gt;getSentMessage();</span>
+<span data-line-number="25">    }</span>
+<span data-line-number="26">}</span>
+<span data-line-number="27"></span></code></pre>
+    <div class="code-block-actions">            <button type="button" class="code-block-unfold" title="Show all lines" aria-pressed="false" hidden>
+                <i class="icon fa-solid fa-up-right-and-down-left-from-center"></i>
+            </button>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+    </section>
+        <!-- content end -->
