@@ -1,0 +1,6 @@
+{#- Double backticks. They mean what the "literal" text role of a single
+    backtick means, and are rendered the same: the reader cannot tell which
+    of the two an author wrote, and should not have to. -#}
+{% apply spaceless %}
+    <code class="code-inline" translate="no">{{ replaceLineBreakOpportunityTags(node.value) }}</code>
+{% endapply %}

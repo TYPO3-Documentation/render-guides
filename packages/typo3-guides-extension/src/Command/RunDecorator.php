@@ -155,12 +155,22 @@ final class RunDecorator extends Command
         $guessedInput = [];
         if ($arguments['input'] === null && $arguments['command'] !== 'run' && is_string($arguments['command'])) {
             $guessedInput = $this->guessInput($arguments['command'], $output, false);
-            $input->setArgument('input', $guessedInput['input']);
-            $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
+            if ($guessedInput === []) {
+                $this->reportNothingToRender($output, $arguments['command']);
+
+                return Command::FAILURE;
+            }
+
+            $this->useGuessedInput($input, $guessedInput);
         } elseif ($arguments['input'] === null) {
             $guessedInput = $this->guessInput(self::DEFAULT_INPUT_DIRECTORY, $output, false);
-            $input->setArgument('input', $guessedInput['input']);
-            $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
+            if ($guessedInput === []) {
+                $this->reportNothingToRender($output, self::DEFAULT_INPUT_DIRECTORY);
+
+                return Command::FAILURE;
+            }
+
+            $this->useGuessedInput($input, $guessedInput);
         }
 
         if (!isset($options['--output'])) {
@@ -341,6 +351,30 @@ final class RunDecorator extends Command
     }
 
     /** @return array<string, string> */
+    /**
+     * Render what was found: the directory, and the file within it when the
+     * entry is a README beside the project rather than an index of its own.
+     * Without the file, the render looks for an index that is not there.
+     *
+     * @param array<string, string> $guessedInput
+     */
+    private function useGuessedInput(InputInterface $input, array $guessedInput): void
+    {
+        $input->setArgument('input', $guessedInput['input']);
+        $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
+        if (!isset($guessedInput['--input-file'])) {
+            return;
+        }
+
+        $input->setOption('input-file', $guessedInput['--input-file']);
+    }
+
+    /**
+     * The directory to render, the format, and the entry file when it is not
+     * an index of its own -- empty when there is nothing to render.
+     *
+     * @return array<string, string>
+     */
     private function guessInput(string $inputBaseDirectory, OutputInterface $output, bool $isAbsoluteDirectory = false): array
     {
         $currentDirectory = getcwd();
@@ -400,6 +434,34 @@ final class RunDecorator extends Command
         }
 
         return [];
+    }
+
+    /**
+     * Say that there is nothing to render, and what would make there be.
+     *
+     * Without this the caller writes the guessed input into the command
+     * anyway, which is nothing, and the failure surfaces several layers down
+     * as the library complaining about its own default directory: a warning
+     * about an undefined array key, then 'Input directory "docs" was not
+     * found!' -- a name this tool never uses and the reader never typed.
+     */
+    private function reportNothingToRender(OutputInterface $output, string $directory): void
+    {
+        $output->writeln(sprintf(
+            '<error>No documentation found to render in %s.</error>',
+            getcwd() === false ? 'the current directory' : getcwd(),
+        ));
+        $output->writeln('');
+        $output->writeln(sprintf(
+            'A project is rendered from an entry file: <info>%s</info> in <info>%s/</info>, or a <info>%s</info> beside it.',
+            implode('</info>, <info>', array_keys(self::INDEX_FILE_NAMES)),
+            $directory,
+            implode('</info> or <info>', array_keys(self::FALLBACK_FILE_NAMES)),
+        ));
+        $output->writeln('');
+        $output->writeln('Scaffold one with <info>init</info> -- as the first argument to the Docker image,');
+        $output->writeln('or as <info>typo3-guides init</info> locally. Or name the directory to render as an argument.');
+        $output->writeln('See <info>https://docs.typo3.org/permalink/h2document:how-to-start-docs-extension</info>.');
     }
 
     private function internalRun(InputInterface $input, OutputInterface $output): int
