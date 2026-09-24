@@ -1,0 +1,3 @@
+The headline "Nested without an anchor" has no anchor, so no permalink leads to it. Give it one: ..  _nested-without-an-anchor:
+The headline "Without an anchor" has no anchor, so no permalink leads to it. Give it one: ..  _without-an-anchor:
+The headline "A page title without anchor" has no anchor, so no permalink leads to it. Give it one: ..  _a-page-title-without-anchor:

@@ -115,6 +115,9 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                         // the warning fails --minimal-test, and most manuals
                         // still have references without a link text of their own.
                         'check_link_text' => $this->getConfigValue($configs, 'check_link_text', ''),
+                        // Off for the same reason: most manuals have headlines
+                        // without a label, and a Markdown one cannot have any.
+                        'check_headline_anchors' => $this->getConfigValue($configs, 'check_headline_anchors', ''),
                     ],
                 ],
             );
