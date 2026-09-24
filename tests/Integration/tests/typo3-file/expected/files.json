@@ -1,0 +1,99 @@
+{
+    "project": {
+        "title": "",
+        "version": ""
+    },
+    "files": [
+        {
+            "id": "extension-ext-tables-sql",
+            "fileName": "ext_tables.sql",
+            "language": "",
+            "scope": "extension",
+            "composerPath": "",
+            "composerPathPrefix": "packages/my_extension/",
+            "classicPath": "",
+            "classicPathPrefix": "typo3conf/ext/my_extension/",
+            "regex": "/^.*ext_tables\\.sql$/",
+            "shortDescription": "Table-structure dump of the tables used by the extension",
+            "path": "index.html#file-extension-ext-tables-sql"
+        },
+        {
+            "id": "extension-configuration-page-tsconfig",
+            "fileName": "page.tsconfig",
+            "language": "",
+            "scope": "extension",
+            "composerPath": "Configuration/",
+            "composerPathPrefix": "packages/my_extension/",
+            "classicPath": "Configuration/",
+            "classicPathPrefix": "typo3conf/ext/my_extension/",
+            "regex": "~^.*Configuration/page\\.tsconfig$~",
+            "shortDescription": "global page TSconfig",
+            "path": "index.html#file-extension-configuration-page-tsconfig"
+        },
+        {
+            "id": "project-config-system-settings-php",
+            "fileName": "settings.php",
+            "language": "",
+            "scope": "project",
+            "composerPath": "config/system/",
+            "composerPathPrefix": "",
+            "classicPath": "typo3conf/system/",
+            "classicPathPrefix": "",
+            "regex": "/^.*settings\\.php$/",
+            "shortDescription": "",
+            "path": "index.html#file-project-config-system-settings-php"
+        },
+        {
+            "id": "project-config-enable-install-tool",
+            "fileName": "ENABLE_INSTALL_TOOL",
+            "language": "plaintext",
+            "scope": "project",
+            "composerPath": "config/",
+            "composerPathPrefix": "",
+            "classicPath": "typo3conf/",
+            "classicPathPrefix": "",
+            "regex": "/^.*ENABLE\\_INSTALL\\_TOOL$/",
+            "shortDescription": "",
+            "path": "index.html#file-project-config-enable-install-tool"
+        },
+        {
+            "id": "project-var-lock-lock-backend",
+            "fileName": "LOCK_BACKEND",
+            "language": "plaintext",
+            "scope": "project",
+            "composerPath": "var/lock/",
+            "composerPathPrefix": "",
+            "classicPath": "config/",
+            "classicPathPrefix": "",
+            "regex": "/^.*LOCK\\_BACKEND$/",
+            "shortDescription": "",
+            "path": "index.html#file-project-var-lock-lock-backend"
+        },
+        {
+            "id": "set-config-yaml",
+            "fileName": "config.yaml",
+            "language": "",
+            "scope": "set",
+            "composerPath": "",
+            "composerPathPrefix": "packages/my_extension/Configuration/Sets/MySet/",
+            "classicPath": "",
+            "classicPathPrefix": "typo3conf/ext/my_extension/Configuration/Sets/MySet/",
+            "regex": "/.*Configuration\\/Sets\\/[^\\/]+\\/config\\.yaml$/",
+            "shortDescription": "",
+            "path": "index.html#file-set-config-yaml"
+        },
+        {
+            "id": "extension-classes-someclass-php",
+            "fileName": "SomeClass.php",
+            "language": "",
+            "scope": "extension",
+            "composerPath": "Classes/",
+            "composerPathPrefix": "packages/my_extension/",
+            "classicPath": "Classes/",
+            "classicPathPrefix": "typo3conf/ext/my_extension/",
+            "regex": "/^.*Classes\\/.*\\.php/",
+            "shortDescription": "PHP Classes in this file get auto-loaded",
+            "path": "index.html#file-extension-classes-someclass-php"
+        }
+    ]
+}
