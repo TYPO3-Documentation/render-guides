@@ -1,0 +1,73 @@
+{
+    "project": {
+        "title": "TYPO3 Explained",
+        "version": "main"
+    },
+    "files": [
+        {
+            "id": "extension-ext-tables-sql",
+            "fileName": "ext_tables.sql",
+            "language": "",
+            "scope": "extension",
+            "composerPath": "",
+            "composerPathPrefix": "packages/my_extension/",
+            "classicPath": "",
+            "classicPathPrefix": "typo3conf/ext/my_extension/",
+            "regex": "/^.*ext\\_tables\\.sql$/",
+            "shortDescription": "Holds additional SQL definition of database tables.",
+            "path": "ExtensionArchitecture/FileStructure/ExtTablesSql.html#file-extension-ext-tables-sql"
+        },
+        {
+            "id": "extension-ext-localconf-php",
+            "fileName": "ext_localconf.php",
+            "language": "",
+            "scope": "extension",
+            "composerPath": "",
+            "composerPathPrefix": "packages/my_extension/",
+            "classicPath": "",
+            "classicPathPrefix": "typo3conf/ext/my_extension/",
+            "regex": "/^.*ext\\_localconf\\.php$/",
+            "shortDescription": "Should contain additional configuration of $GLOBALS['TYPO3_CONF_VARS'].",
+            "path": "ExtensionArchitecture/FileStructure/ExtLocalconf.html#file-extension-ext-localconf-php"
+        },
+        {
+            "id": "set-config-yaml",
+            "fileName": "config.yaml",
+            "language": "yaml",
+            "scope": "set",
+            "composerPath": "",
+            "composerPathPrefix": "packages/my_extension/Configuration/Sets/MySet/",
+            "classicPath": "",
+            "classicPathPrefix": "typo3conf/ext/my_extension/Configuration/Sets/MySet/",
+            "regex": "/^.*Configuration\\/Sets\\/[\\w\\-]+\\/config\\.yaml$/",
+            "shortDescription": "Defines a site set.",
+            "path": "ExtensionArchitecture/FileStructure/Configuration/Sets/Index.html#file-set-config-yaml"
+        },
+        {
+            "id": "site-config-sites-my-site-config-yaml",
+            "fileName": "config.yaml",
+            "language": "yaml",
+            "scope": "site",
+            "composerPath": "config/sites/my-site/",
+            "composerPathPrefix": "",
+            "classicPath": "typo3conf/sites/my-site/",
+            "classicPathPrefix": "",
+            "regex": "",
+            "shortDescription": "The configuration of a site.",
+            "path": "Administration/DirectoryStructure/SiteFolder.html#file-site-config-sites-my-site-config-yaml"
+        },
+        {
+            "id": "broken",
+            "fileName": "invalid.regex",
+            "language": "",
+            "scope": "project",
+            "regex": "/^(invalid\\.regex$/",
+            "path": "Broken.html#file-broken"
+        },
+        {
+            "id": "no-path",
+            "fileName": "Unknown/File.xyz",
+            "regex": "/^Unknown\\/File\\.xyz$/"
+        }
+    ]
+}

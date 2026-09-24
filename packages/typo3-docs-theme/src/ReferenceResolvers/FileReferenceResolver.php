@@ -44,6 +44,11 @@ final class FileReferenceResolver implements ReferenceResolver
         if ($node->getFileObject() === null) {
             return true;
         }
+        if ($node->getFileObject()->url !== '') {
+            // Defined in another manual, @see ObjectsInventory\ExternalFileObjects
+            $node->setUrl($node->getFileObject()->url);
+            return true;
+        }
 
         $reducedAnchor = $this->anchorReducer->reduceAnchor($node->getFileObject()->id);
         $target = $renderContext->getProjectNode()->getInternalTarget($reducedAnchor, Typo3FileNode::LINK_TYPE);

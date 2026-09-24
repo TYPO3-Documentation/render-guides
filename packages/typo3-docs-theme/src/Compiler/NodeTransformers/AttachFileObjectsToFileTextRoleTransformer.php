@@ -18,14 +18,18 @@ use phpDocumentor\Guides\Compiler\NodeTransformer;
 use phpDocumentor\Guides\Nodes\Node;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\DataObject;
+use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ExternalFileObjects;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\FileObject;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
+
+use function array_filter;
 
 /** @implements NodeTransformer<FileInlineNode> */
 final class AttachFileObjectsToFileTextRoleTransformer implements NodeTransformer
 {
     public function __construct(
         private readonly ObjectInventory $objectInventory,
+        private readonly ExternalFileObjects $externalFileObjects,
     ) {}
 
     public function enterNode(Node $node, CompilerContextInterface $compilerContext): Node
@@ -33,35 +37,39 @@ final class AttachFileObjectsToFileTextRoleTransformer implements NodeTransforme
         if (!$node instanceof FileInlineNode) {
             return $node;
         }
-        /** @var DataObject[] $fileObjects */
-        $fileObjects = $this->objectInventory->getGroup(FileObject::KEY);
+        $fileObjects = array_filter(
+            $this->objectInventory->getGroup(FileObject::KEY),
+            static fn(DataObject $fileObject): bool => $fileObject instanceof FileObject,
+        );
+        // A file the manual defines itself wins; only then is it looked up in
+        // TYPO3 Explained, where the official manuals define their files.
+        $node->setFileObject(
+            $this->match($fileObjects, $node->getFileLink())
+            ?? $this->match($this->externalFileObjects->all(), $node->getFileLink()),
+        );
+
+        return $node;
+    }
+
+    /**
+     * The file named by its id, or else the first whose regex matches.
+     *
+     * @param FileObject[] $fileObjects
+     */
+    private function match(array $fileObjects, string $fileLink): ?FileObject
+    {
         foreach ($fileObjects as $fileObject) {
-            if (!$fileObject instanceof FileObject) {
-                continue;
-            }
-            if ($fileObject->id === $node->getFileLink()) {
-                $node->setFileObject($fileObject);
-                return $node;
-            }
-            if (preg_match($fileObject->regex, $node->getFileLink())) {
-                $node->setFileObject($fileObject);
-                break;
+            if ($fileObject->matchesId($fileLink)) {
+                return $fileObject;
             }
         }
         foreach ($fileObjects as $fileObject) {
-            if (!$fileObject instanceof FileObject) {
-                continue;
-            }
-            if ($fileObject->regex === '') {
-                continue;
-            }
-            if (preg_match($fileObject->regex, $node->getFileLink())) {
-                $node->setFileObject($fileObject);
-                break;
+            if ($fileObject->matchesRegex($fileLink)) {
+                return $fileObject;
             }
         }
 
-        return $node;
+        return null;
     }
 
     public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node

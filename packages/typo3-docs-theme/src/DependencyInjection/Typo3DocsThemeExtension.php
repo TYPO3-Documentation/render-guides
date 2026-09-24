@@ -270,10 +270,12 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         }
 
         // Every manual gets a table of contents, and the Core Changelog gets
-        // an index of its entries on top. @see TocJsonRenderer,
-        // ChangelogJsonRenderer
+        // an index of its entries on top. A manual that defines files lists
+        // them for the others. @see TocJsonRenderer, ChangelogJsonRenderer,
+        // FilesJsonRenderer
         $this->appendOutputFormat($container, 'tocjson');
         $this->appendOutputFormat($container, 'classindex');
+        $this->appendOutputFormat($container, 'filesjson');
         if ($this->isChangelog($container)) {
             $this->appendOutputFormat($container, 'changelogjson');
         }
