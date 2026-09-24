@@ -19,7 +19,7 @@
                 {
                     "path": "index",
                     "anchor": "class-index-example",
-                    "kind": "use"
+                    "kind": "code"
                 }
             ]
         },
@@ -29,12 +29,12 @@
                 {
                     "path": "index",
                     "anchor": "class-index",
-                    "kind": "role"
+                    "kind": "inline"
                 },
                 {
                     "path": "index",
                     "anchor": "class-index-example",
-                    "kind": "use"
+                    "kind": "code"
                 }
             ]
         },
@@ -44,18 +44,30 @@
                 {
                     "path": "index",
                     "anchor": "class-index",
-                    "kind": "role",
-                    "member": "::makeInstance()"
+                    "kind": "inline",
+                    "members": [
+                        "::makeInstance()"
+                    ]
+                },
+                {
+                    "path": "index",
+                    "anchor": "class-index",
+                    "section": "a-section-without-a-label",
+                    "kind": "inline",
+                    "members": [
+                        "::getFileAbsFileName()",
+                        "::makeInstance()"
+                    ]
                 },
                 {
                     "path": "index",
                     "anchor": "class-index-example",
-                    "kind": "role"
+                    "kind": "code"
                 },
                 {
                     "path": "index",
                     "anchor": "class-index-example",
-                    "kind": "use"
+                    "kind": "inline"
                 }
             ]
         },
@@ -65,7 +77,7 @@
                 {
                     "path": "index",
                     "anchor": "class-index-example",
-                    "kind": "use"
+                    "kind": "code"
                 }
             ]
         }

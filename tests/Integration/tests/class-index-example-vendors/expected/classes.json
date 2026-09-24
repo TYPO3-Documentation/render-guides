@@ -10,12 +10,12 @@
                 {
                     "path": "index",
                     "anchor": "example-vendors",
-                    "kind": "role"
+                    "kind": "code"
                 },
                 {
                     "path": "index",
                     "anchor": "example-vendors",
-                    "kind": "use"
+                    "kind": "inline"
                 }
             ]
         }

@@ -7,6 +7,7 @@ namespace T3Docs\Typo3DocsTheme\Renderer;
 use phpDocumentor\Guides\Handlers\RenderCommand;
 use phpDocumentor\Guides\Renderer\TypeRenderer;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
+use T3Docs\Typo3DocsTheme\ClassIndex\ClassIndex;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 use function json_encode;
@@ -23,7 +24,8 @@ use const JSON_UNESCAPED_UNICODE;
  *
  * "Changelog-14.json" beside "Changelog-14.html" and its Markdown: the same
  * entries the overview page lists, with the permalink of each entry, its file,
- * its title, the kind of change, the issue and the tags.
+ * its title, the kind of change, the issue, the tags, and the PHP classes it
+ * speaks of.
  *
  * The overview page links entries by permalink, which costs a redirect per
  * entry -- 445 of them for v14 -- for anybody walking the release rather than
@@ -34,6 +36,8 @@ use const JSON_UNESCAPED_UNICODE;
  * and written by the theme rather than asked for in the manual's guides.xml --
  * that file lives in typo3/cms-core, and this should not need a Core patch to
  * exist.
+ *
+ * @phpstan-import-type Place from ClassIndex
  */
 final class ChangelogJsonRenderer implements TypeRenderer
 {
@@ -43,6 +47,7 @@ final class ChangelogJsonRenderer implements TypeRenderer
         private readonly ChangelogEntry $changelogEntry,
         private readonly Typo3DocsThemeSettings $themeSettings,
         private readonly PageFiles $pageFiles,
+        private readonly ClassIndex $classIndex,
     ) {}
 
     public function render(RenderCommand $renderCommand): void
@@ -51,6 +56,8 @@ final class ChangelogJsonRenderer implements TypeRenderer
         if ($shortcode !== 'changelog') {
             return;
         }
+
+        $classesByPath = $this->classesByPath($renderCommand);
 
         $byMajor = [];
         foreach ($renderCommand->getDocumentArray() as $document) {
@@ -73,6 +80,7 @@ final class ChangelogJsonRenderer implements TypeRenderer
                 'path' => $entry['path'],
                 ...$this->pageFiles->of($entry['path']),
                 ...$entry,
+                ...$this->classesOf($classesByPath[$entry['path']] ?? [], $entry['anchor']),
             ];
         }
 
@@ -94,5 +102,57 @@ final class ChangelogJsonRenderer implements TypeRenderer
                 ),
             );
         }
+    }
+
+    /**
+     * The places of the class index, by the page they stand on.
+     *
+     * The index itself lists them by class; an entry wants them the other
+     * way round, and gets them from there so both files say the same.
+     *
+     * @return array<string, array<string, list<Place>>>
+     */
+    private function classesByPath(RenderCommand $renderCommand): array
+    {
+        $byPath = [];
+        foreach ($this->classIndex->of($renderCommand->getDocumentArray()) as $name => $class) {
+            foreach ($class['places'] as $place) {
+                $byPath[$place['path']][$name][] = $place;
+            }
+        }
+
+        return $byPath;
+    }
+
+    /**
+     * The classes an entry speaks of, each with the places in it.
+     *
+     * The entry already names its page and release. A place keeps its anchor
+     * only where it lies below a label of its own inside the entry, and
+     * otherwise just the section it stands in.
+     *
+     * @param array<string, list<Place>> $classes
+     * @return array{classes?: array<string, list<array<string, mixed>>>}
+     */
+    private function classesOf(array $classes, string $entryAnchor): array
+    {
+        if ($classes === []) {
+            return [];
+        }
+
+        foreach ($classes as $name => $places) {
+            foreach ($places as $i => $place) {
+                unset($place['path'], $place['typo3-version']);
+                if (($place['anchor'] ?? '') === $entryAnchor) {
+                    unset($place['anchor']);
+                }
+
+                $places[$i] = $place;
+            }
+
+            $classes[$name] = $places;
+        }
+
+        return ['classes' => $classes];
     }
 }

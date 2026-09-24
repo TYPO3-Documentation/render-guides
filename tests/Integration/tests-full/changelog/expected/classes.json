@@ -1,0 +1,35 @@
+{
+    "project": {
+        "title": "Core",
+        "version": "main",
+        "permalink": "https://docs.typo3.org/permalink/changelog:{anchor}"
+    },
+    "classes": {
+        "\\TYPO3\\CMS\\Frontend\\Event\\ModifyPageLinkConfigurationEvent": {
+            "type": "class",
+            "places": [
+                {
+                    "path": "Changelog/12.0/Breaking-87616-RemovedHookForAlteringPageLinks",
+                    "typo3-version": "12.0",
+                    "anchor": "breaking-87616",
+                    "section": "description",
+                    "kind": "inline"
+                },
+                {
+                    "path": "Changelog/12.0/Feature-87616-PSR-14EventForModifyingPageLinkGeneration",
+                    "typo3-version": "12.0",
+                    "anchor": "feature-87616",
+                    "section": "description",
+                    "kind": "inline"
+                },
+                {
+                    "path": "Changelog/12.0/Feature-87616-PSR-14EventForModifyingPageLinkGeneration",
+                    "typo3-version": "12.0",
+                    "anchor": "feature-87616",
+                    "section": "example",
+                    "kind": "code"
+                }
+            ]
+        }
+    }
+}
