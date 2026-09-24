@@ -61,9 +61,11 @@ use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItem
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Permalinks\Permalinks;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\FileReferenceResolver;
+use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ExternalFileObjects;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
 use T3Docs\Typo3DocsTheme\Renderer\ChangelogJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\FilesJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\PageFiles;
@@ -174,6 +176,15 @@ return static function (ContainerConfigurator $container): void {
             [
                 'noderender_tag' => 'phpdoc.guides.noderenderer.html',
                 'format' => 'classindex',
+            ],
+        )
+
+        ->set(FilesJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'filesjson',
             ],
         )
 
@@ -318,6 +329,10 @@ return static function (ContainerConfigurator $container): void {
         ->set(Typo3ApiService::class)
 
         ->set(ObjectInventory::class)
+
+        ->set(ExternalFileObjects::class)
+        ->arg('$inventoryRepository', service(InventoryRepository::class))
+        ->public()
 
         ->set(FileReferenceResolver::class)
         ->tag('phpdoc.guides.reference_resolver')
