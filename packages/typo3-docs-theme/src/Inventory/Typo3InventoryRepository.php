@@ -72,6 +72,15 @@ final class Typo3InventoryRepository implements InventoryRepository
         }
     }
 
+    /**
+     * Where the manual an interlink key names is published, or null for a key
+     * this render knows no manual for. Pure: no network, no mutation.
+     */
+    public function getBaseUrl(string $key): ?string
+    {
+        return ($this->inventories[$this->anchorNormalizer->reduceAnchor($key)] ?? null)?->getBaseUrl();
+    }
+
     /** Pure parsing; no network, no mutation. */
     public function parseOnly(string $key): ?InterlinkParts
     {

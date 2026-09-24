@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckHeadlineAnchorsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckLinkTextNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
@@ -54,14 +55,17 @@ use T3Docs\Typo3DocsTheme\Inventory\InventoryUrlBuilderInterface;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Parser\ExtendedInterlinkParser;
+use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\CheckHeadlineAnchorsFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\CheckLinkTextFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\EditOnGitHubFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Parser\Productions\FieldList\TemplateFieldListItemRule;
 use T3Docs\Typo3DocsTheme\Permalinks\Permalinks;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\FileReferenceResolver;
+use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ExternalFileObjects;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
 use T3Docs\Typo3DocsTheme\Renderer\ChangelogJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\FilesJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\PageFiles;
@@ -144,6 +148,8 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(CheckLinkTextNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(CheckHeadlineAnchorsNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(TwigExtension::class)
         ->tag('twig.extension')
         ->autowire()
@@ -170,6 +176,15 @@ return static function (ContainerConfigurator $container): void {
             [
                 'noderender_tag' => 'phpdoc.guides.noderenderer.html',
                 'format' => 'classindex',
+            ],
+        )
+
+        ->set(FilesJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'filesjson',
             ],
         )
 
@@ -255,6 +270,8 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.parser.rst.fieldlist')
         ->set(CheckLinkTextFieldListItemRule::class)
         ->tag('phpdoc.guides.parser.rst.fieldlist')
+        ->set(CheckHeadlineAnchorsFieldListItemRule::class)
+        ->tag('phpdoc.guides.parser.rst.fieldlist')
 
         ->set(DelegatingReferenceResolver::class)
         ->arg('$resolvers', tagged_iterator('phpdoc.guides.reference_resolver', defaultPriorityMethod: 'getPriority'))
@@ -312,6 +329,10 @@ return static function (ContainerConfigurator $container): void {
         ->set(Typo3ApiService::class)
 
         ->set(ObjectInventory::class)
+
+        ->set(ExternalFileObjects::class)
+        ->arg('$inventoryRepository', service(InventoryRepository::class))
+        ->public()
 
         ->set(FileReferenceResolver::class)
         ->tag('phpdoc.guides.reference_resolver')

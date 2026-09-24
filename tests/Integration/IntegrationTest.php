@@ -13,6 +13,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 use T3Docs\GuidesExtension\Command\RunDecorator;
 use T3Docs\Typo3DocsTheme\ApplicationTestCase;
+use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ExternalFileObjects;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 
 use function array_filter;
@@ -24,6 +25,7 @@ use function explode;
 use function file_exists;
 use function file_get_contents;
 use function implode;
+use function json_decode;
 use function setlocale;
 use function str_ends_with;
 use function str_replace;
@@ -66,6 +68,17 @@ final class IntegrationTest extends ApplicationTestCase
             $plantuml = $this->getContainer()->get(DecoratingPlantumlRenderer::class);
             assert($plantuml instanceof DecoratingPlantumlRenderer);
             $plantuml->setDisabled(true);
+
+            // Never the live TYPO3 Explained, whose files change: a case that
+            // links to its files brings the "files.json" to link them with.
+            $externalFileObjects = $this->getContainer()->get(ExternalFileObjects::class);
+            assert($externalFileObjects instanceof ExternalFileObjects);
+            $externalFileObjects->useDefinitions(
+                file_exists($inputPath . '/t3coreapi-files.json')
+                    ? (array) json_decode((string) file_get_contents($inputPath . '/t3coreapi-files.json'), true)
+                    : [],
+                'https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/',
+            );
 
             chdir(dirname($inputPath));
             $input = new ArrayInput(
