@@ -13,6 +13,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 use T3Docs\GuidesExtension\Command\RunDecorator;
 use T3Docs\Typo3DocsTheme\ApplicationTestCase;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckEntryFileNameNodeTransformer;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ExternalFileObjects;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 
@@ -79,6 +80,12 @@ final class IntegrationTest extends ApplicationTestCase
                     : [],
                 'https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/',
             );
+
+            // Most fixtures start at "index.rst", which is fine for a render
+            // that is never deployed. A case that tests the warning says so.
+            $checkEntryFileName = $this->getContainer()->get(CheckEntryFileNameNodeTransformer::class);
+            assert($checkEntryFileName instanceof CheckEntryFileNameNodeTransformer);
+            $checkEntryFileName->setDisabled(!file_exists($inputPath . '/check-entry-file-name'));
 
             chdir(dirname($inputPath));
             $input = new ArrayInput(
