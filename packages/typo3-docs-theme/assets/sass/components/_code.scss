@@ -24,6 +24,15 @@ code {
 
     & [data-emphasize-line] {
         background: $yellow-100;
+
+        // A diff colours the background of every line it adds or removes,
+        // which hid the emphasis. The sign and the text colour still say
+        // what changed.
+
+        & .hljs-addition,
+        & .hljs-deletion {
+            background-color: transparent;
+        }
     }
 }
 
