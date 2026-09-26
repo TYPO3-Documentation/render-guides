@@ -1,0 +1,46 @@
+{
+    "project": {
+        "title": "",
+        "version": "",
+        "permalink": ""
+    },
+    "confvals": {
+        "confval-input-size": {
+            "name": "size",
+            "context": [
+                "Fields",
+                "Input fields"
+            ],
+            "type": "integer",
+            "default": "30",
+            "fields": {
+                "Path": "$GLOBALS['TCA'][$table]['columns'][$field]['config']",
+                "Scope": "Display"
+            },
+            "summary": "Abstract value for the width of the field, see Fields.",
+            "path": "Fields/Index"
+        },
+        "confval-input-behaviour": {
+            "name": "behaviour",
+            "context": [
+                "Fields",
+                "Input fields"
+            ],
+            "type": "array",
+            "path": "Fields/Index"
+        },
+        "confval-input-behaviour-allowlanguagesynchronization": {
+            "name": "allowLanguageSynchronization",
+            "context": [
+                "Fields",
+                "Input fields",
+                "behaviour"
+            ],
+            "parent": "confval-input-behaviour",
+            "type": "boolean",
+            "required": true,
+            "summary": "Allows an editor to select in a localized record whether the value is copied over from the default language.",
+            "path": "Fields/Index"
+        }
+    }
+}
