@@ -35,7 +35,9 @@
         max-width: 100%;
         height: auto;
 
-        // float-left/float-right: deprecated legacy Bootstrap 4 class names — remove after migration period (see #1179)
+        // float-left/float-right: deprecated legacy Bootstrap 4 class names — remove after migration period (see #1179).
+        // Before removing, search the docs corpus for `rst-class:: float-left/float-right` too:
+        // classes set that way bypass the directive-level deprecation warning.
 
         &.float-start,
         &.float-left {

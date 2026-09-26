@@ -118,3 +118,19 @@ Substitution Image Left
    :class: float-left
 
 Use the |sub-logo| inline text here.
+
+Image Align Plus Legacy Class
+=============================
+
+.. image:: /typo3-logo.png
+   :alt: Image align plus legacy class
+   :align: left
+   :class: float-left
+
+Image Align Plus Hyphenated Project Class
+=========================================
+
+.. image:: /typo3-logo.png
+   :alt: Image align plus project class
+   :align: left
+   :class: my-float-start
