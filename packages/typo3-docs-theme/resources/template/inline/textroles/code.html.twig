@@ -1,3 +1,8 @@
+{#- In a headline a code role shows as a literal: no infobox inside the
+    heading. @see CodeInHeadlineNodeTransformer -#}
+{% if node.inHeadline %}
+    {%- include 'inline/textroles/literal.html.twig' -%}
+{% else %}
 {% apply spaceless %}
     <code class="code-inline{% if node.value|length > 10 %} code-inline-long{% endif %}"
           translate="no"
@@ -29,3 +34,4 @@
         ><i class="fa-regular fa-circle-question"></i></button>
     </code>
 {% endapply %}
+{% endif %}

@@ -4,8 +4,10 @@ namespace T3Docs\Typo3DocsTheme\Nodes\Inline;
 
 use phpDocumentor\Guides\Nodes\Inline\InlineNode;
 
-final class CodeInlineNode extends InlineNode
+final class CodeInlineNode extends InlineNode implements InHeadline
 {
+    use InHeadlineTrait;
+
     public const TYPE = 'code';
 
     /**
