@@ -1,0 +1,1 @@
+The manual starts at "index.rst". docs.typo3.org opens a manual at "Index.html", so once deployed it has no start page. Rename the file to "Index.rst".
