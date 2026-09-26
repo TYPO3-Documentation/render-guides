@@ -7,8 +7,10 @@ use phpDocumentor\Guides\Nodes\Inline\CrossReferenceNode;
 use phpDocumentor\Guides\Nodes\Inline\PlainTextInlineNode;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\FileObject;
 
-final class FileInlineNode extends AbstractLinkInlineNode implements CrossReferenceNode
+final class FileInlineNode extends AbstractLinkInlineNode implements CrossReferenceNode, InHeadline
 {
+    use InHeadlineTrait;
+
     public const TYPE = 'file';
     private ?FileObject $fileObject = null;
 

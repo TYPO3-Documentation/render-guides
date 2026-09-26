@@ -1,3 +1,8 @@
+{#- In a headline a package shows as a literal: no popup inside the heading.
+    @see CodeInHeadlineNodeTransformer -#}
+{% if node.inHeadline %}
+    {%- apply spaceless %}<code class="code-inline" translate="no">{{ replaceLineBreakOpportunityTags(node.composerName) }}</code>{% endapply -%}
+{% else %}
 <a class="composer-link"
    href="{{ node.package.packagistLink }}"
    title="Packagist information"
@@ -13,3 +18,4 @@
 >
     {{ node.composerName }}
 </a>
+{%- endif %}

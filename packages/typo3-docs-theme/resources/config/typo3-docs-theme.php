@@ -9,6 +9,7 @@ use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckHeadlineAnchorsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckLinkTextNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CodeInHeadlineNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
@@ -129,6 +130,8 @@ return static function (ContainerConfigurator $container): void {
         ->instanceof(BaseDirective::class)
         ->tag('phpdoc.guides.directive')
         ->set(AttachFileObjectsToFileTextRoleTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(CodeInHeadlineNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(RedirectsNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')

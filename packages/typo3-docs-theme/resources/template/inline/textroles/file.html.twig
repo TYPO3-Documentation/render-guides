@@ -1,5 +1,9 @@
 {% apply spaceless %}
-    {% if node.fileObject %}
+    {#- In a headline a file shows as a literal: no popup inside the heading.
+        @see CodeInHeadlineNodeTransformer -#}
+    {% if node.inHeadline %}
+        <code class="code-inline" translate="no">{{ replaceLineBreakOpportunityTags(node.fileLabel) }}</code>
+    {% elseif node.fileObject %}
         <a class="composer-link"
            href="{{ node.url }}"
            title="File Information"
