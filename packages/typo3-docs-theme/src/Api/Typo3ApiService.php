@@ -10,6 +10,9 @@ final class Typo3ApiService
     /** @var array<string, array<string, string>>|null  */
     private ?array $apiData = null;
 
+    /** @var array<string, true>|null */
+    private ?array $namespaces = null;
+
     public function __construct(
         private readonly LoggerInterface $logger,
         private readonly Typo3VersionService $typo3VersionService,
@@ -20,11 +23,48 @@ final class Typo3ApiService
      */
     public function getClassInfo(string $fqn): array
     {
+        return $this->apiData()[$fqn] ?? [];
+    }
+
+    /**
+     * Whether a namespace holds a type the API documents, directly or further
+     * down. The API lists types only, so a namespace is known when it is the
+     * beginning of a type's fully qualified name.
+     */
+    public function isNamespace(string $fqn): bool
+    {
+        if ($this->namespaces === null) {
+            $this->namespaces = [];
+            foreach (array_keys($this->apiData()) as $type) {
+                $namespace = $type;
+                while (($separator = strrpos($namespace, '\\')) !== false && $separator > 0) {
+                    $namespace = substr($namespace, 0, $separator);
+                    $this->namespaces[$namespace] = true;
+                }
+            }
+        }
+
+        return isset($this->namespaces[$fqn]);
+    }
+
+    /** The page of a namespace in the API documentation. */
+    public function getNamespaceUrl(string $fqn): string
+    {
+        return sprintf(
+            'https://api.typo3.org/%s/namespaces/%s.html',
+            $this->typo3VersionService->getPreferredVersion(),
+            strtolower(str_replace('\\', '-', trim($fqn, '\\'))),
+        );
+    }
+
+    /** @return array<string, array<string, string>> */
+    private function apiData(): array
+    {
         if ($this->apiData === null) {
             $version = $this->typo3VersionService->getPreferredVersion();
             $this->apiData = $this->loadApi('https://api.typo3.org/' . $version . '/api-info.json');
         }
-        return $this->apiData[$fqn] ?? [];
+        return $this->apiData;
     }
 
     /**
