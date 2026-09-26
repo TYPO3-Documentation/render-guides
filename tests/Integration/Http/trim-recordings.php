@@ -11,6 +11,7 @@ declare(strict_types=1);
  *
  * - an inventory keeps the link targets whose key the sources contain,
  * - the API information the classes the sources name, also in a group use,
+ *   and one class below each namespace they name,
  * - a Packagist answer the one version that is read.
  *
  * Run after recording, from the project root:
@@ -38,6 +39,34 @@ $anchors = preg_replace('/[^a-z0-9\/]+/', '-', $lower) ?? '';
 function named(string $key, string $lower, string $anchors): bool
 {
     return $key !== '' && (str_contains($lower, $key) || str_contains($anchors, $key));
+}
+
+/**
+ * The API lists types only, and a namespace is known by a type below it. For
+ * each namespace the sources name, the first type below it stays.
+ *
+ * @param array<string, mixed> $types
+ * @return array<string, mixed>
+ */
+function namespaceWitnesses(array $types, string $lower): array
+{
+    $witnesses = [];
+    foreach ($types as $fqn => $info) {
+        $namespace = strtolower(ltrim((string) $fqn, '\\'));
+        while (($separator = strrpos($namespace, '\\')) !== false) {
+            $namespace = substr($namespace, 0, $separator);
+            // "TYPO3" and "TYPO3\CMS" are named everywhere; a namespace worth
+            // a witness has a package in it.
+            if (substr_count($namespace, '\\') < 2 || isset($witnesses[$namespace])) {
+                continue;
+            }
+            if (preg_match('/' . preg_quote($namespace, '/') . '(?![\w\\\\])/', $lower) === 1) {
+                $witnesses[$namespace] = [$fqn => $info];
+            }
+        }
+    }
+
+    return array_merge(...array_values($witnesses));
 }
 
 foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($recordings, FilesystemIterator::SKIP_DOTS)) as $file) {
@@ -72,7 +101,7 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($recording
                     && preg_match('/\b' . preg_quote(substr($name, $separator + 1), '/') . '\b/', $lower) === 1);
             },
             ARRAY_FILTER_USE_KEY,
-        );
+        ) + namespaceWitnesses($json, $lower);
     } elseif (str_contains($path, '/repo.packagist.org/')) {
         foreach ($json['packages'] ?? [] as $name => $versions) {
             $json['packages'][$name] = array_slice($versions, 0, 1);

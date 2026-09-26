@@ -189,6 +189,12 @@ final class ClassIndex
 
         if ($node instanceof CodeNode) {
             foreach ($this->useStatements->of($node) as $fqn) {
+                // "use TYPO3\CMS\Extbase\Attribute as Extbase;" imports a
+                // namespace, not a class, as a class role naming one does.
+                $name = '\\' . ltrim($fqn, '\\');
+                if ($this->typo3ApiService->getClassInfo($name) === [] && $this->typo3ApiService->isNamespace($name)) {
+                    continue;
+                }
                 $this->add($classes, $fqn, $place + ['kind' => 'code']);
             }
 
