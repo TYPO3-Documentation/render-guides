@@ -1,0 +1,1 @@
+The manual declares no interlink shortcode, so it has no permalinks and other manuals cannot link to it. Add interlink-shortcode="my-vendor/my-extension" to the <extension> element of guides.xml. See https://docs.typo3.org/permalink/h2document:guides-extension-interlink-shortcode
