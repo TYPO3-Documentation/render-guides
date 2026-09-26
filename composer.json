@@ -19,6 +19,7 @@
         "phpdocumentor/guides-theme-bootstrap": "^1.7",
         "phpdocumentor/guides-theme-rst": "^1.7",
         "psr/http-message": "^1.1",
+        "sebastian/diff": "^5.1 || ^6.0 || ^7.0",
         "symfony/clock": "^6.4",
         "symfony/finder": "^6.4",
         "symfony/http-client": "^6.4",
