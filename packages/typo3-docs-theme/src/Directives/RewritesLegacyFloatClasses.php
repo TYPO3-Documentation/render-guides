@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\Directives;
 
 use function preg_match;
-use function preg_replace;
+use function preg_replace_callback;
 
 /**
  * Shared logic for detecting and rewriting deprecated Bootstrap 4 float class names.
@@ -18,16 +18,22 @@ use function preg_replace;
  */
 trait RewritesLegacyFloatClasses
 {
+    /**
+     * Anchored on class boundaries rather than \b, which also breaks at a
+     * hyphen: a project class such as "my-float-left" is not Bootstrap's.
+     */
+    private const LEGACY_FLOAT_CLASS_PATTERN = '/(?<![\w-])float-(left|right)(?![\w-])/';
+
     private function hasLegacyFloatClass(string $classValue): bool
     {
-        return (bool) preg_match('/\bfloat-(left|right)\b/', $classValue);
+        return (bool) preg_match(self::LEGACY_FLOAT_CLASS_PATTERN, $classValue);
     }
 
     private function rewriteLegacyFloatClasses(string $classValue): string
     {
-        return (string) preg_replace(
-            ['/\bfloat-left\b/', '/\bfloat-right\b/'],
-            ['float-start', 'float-end'],
+        return (string) preg_replace_callback(
+            self::LEGACY_FLOAT_CLASS_PATTERN,
+            static fn(array $matches): string => $matches[1] === 'left' ? 'float-start' : 'float-end',
             $classValue,
         );
     }

@@ -25286,7 +25286,7 @@ figure.align-center {
   figure.float-end,
   figure.float-left,
   figure.float-right {
-    float: none;
+    float: none !important;
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
@@ -25382,10 +25382,12 @@ article *:hover .headerNoindex {
   margin-right: auto;
 }
 @media (max-width: 575.98px) {
-  .rst-content img.float-left, .rst-content img.float-right,
+  .rst-content img.float-start, .rst-content img.float-end, .rst-content img.float-left, .rst-content img.float-right,
+  .rst-content object.float-start,
+  .rst-content object.float-end,
   .rst-content object.float-left,
   .rst-content object.float-right {
-    float: none;
+    float: none !important;
     margin-left: 0;
     margin-right: 0;
     max-width: 100%;
@@ -25396,7 +25398,7 @@ article *:hover .headerNoindex {
   .rst-content img.float-end,
   .rst-content img.float-left,
   .rst-content img.float-right {
-    float: none;
+    float: none !important;
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;

@@ -36,6 +36,7 @@
         height: auto;
 
         // Deprecated: legacy Bootstrap 4 class names — remove after migration period (see #1179)
+
         &.float-start,
         &.float-left {
             float: left;
@@ -57,22 +58,27 @@
         }
         @media (max-width: 575.98px) {
 
+            // !important: Bootstrap's .float-start/.float-end utilities carry it
+
+            &.float-start,
+            &.float-end,
             &.float-left,
             &.float-right {
-                float: none;
+                float: none !important;
                 margin-left: 0;
                 margin-right: 0;
                 max-width: 100%;
             }
         }
     }
-
     @media (max-width: 575.98px) {
+
         img.float-start,
         img.float-end,
         img.float-left,
         img.float-right {
-            float: none;
+            // !important: Bootstrap's .float-start/.float-end utilities carry it
+            float: none !important;
             max-width: 100%;
             margin-left: 0;
             margin-right: 0;

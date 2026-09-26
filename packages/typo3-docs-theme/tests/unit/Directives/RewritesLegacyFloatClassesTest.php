@@ -52,6 +52,8 @@ final class RewritesLegacyFloatClassesTest extends TestCase
         yield 'empty string' => ['', false];
         yield 'partial match float-leftover' => ['float-leftover', false];
         yield 'partial match afloat-right' => ['afloat-right', false];
+        yield 'hyphenated project class my-float-left' => ['my-float-left', false];
+        yield 'hyphenated project class float-right-wide' => ['with-shadow float-right-wide', false];
     }
 
     #[Test]
@@ -71,5 +73,7 @@ final class RewritesLegacyFloatClassesTest extends TestCase
         yield 'modern classes unchanged' => ['float-start', 'float-start'];
         yield 'no float classes unchanged' => ['with-shadow', 'with-shadow'];
         yield 'empty string unchanged' => ['', ''];
+        yield 'hyphenated project classes unchanged' => ['my-float-left float-right-wide', 'my-float-left float-right-wide'];
+        yield 'legacy class beside a hyphenated project class' => ['my-float-left float-left', 'my-float-left float-start'];
     }
 }

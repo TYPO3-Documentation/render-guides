@@ -53,7 +53,8 @@ figure {
     figure.float-end,
     figure.float-left,
     figure.float-right {
-        float: none;
+        // !important: Bootstrap's .float-start/.float-end utilities carry it
+        float: none !important;
         max-width: 100%;
         margin-left: 0;
         margin-right: 0;
