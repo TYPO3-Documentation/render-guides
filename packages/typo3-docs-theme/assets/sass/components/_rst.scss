@@ -35,7 +35,7 @@
         max-width: 100%;
         height: auto;
 
-        // Deprecated: legacy Bootstrap 4 class names — remove after migration period (see #1179)
+        // float-left/float-right: deprecated legacy Bootstrap 4 class names — remove after migration period (see #1179)
 
         &.float-start,
         &.float-left {
@@ -69,19 +69,6 @@
                 margin-right: 0;
                 max-width: 100%;
             }
-        }
-    }
-    @media (max-width: 575.98px) {
-
-        img.float-start,
-        img.float-end,
-        img.float-left,
-        img.float-right {
-            // !important: Bootstrap's .float-start/.float-end utilities carry it
-            float: none !important;
-            max-width: 100%;
-            margin-left: 0;
-            margin-right: 0;
         }
     }
 

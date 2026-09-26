@@ -25393,17 +25393,6 @@ article *:hover .headerNoindex {
     max-width: 100%;
   }
 }
-@media (max-width: 575.98px) {
-  .rst-content img.float-start,
-  .rst-content img.float-end,
-  .rst-content img.float-left,
-  .rst-content img.float-right {
-    float: none !important;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
 .rst-content .plantuml object {
   height: auto !important;
 }

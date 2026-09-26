@@ -114,8 +114,10 @@ final class FigureDirective extends BaseDirective
 
         // Strip float classes from the inner image — floating should only apply
         // to the <figure> element to keep the caption below the image.
-        // Non-float classes (e.g. with-shadow) are still propagated to the
-        // inner <img> so they can style the image itself.
+        // Note: Currently the framework's postProcessNode() only processes the
+        // top-level FigureNode, so the inner image's classesString is empty and
+        // this option is not rendered. We strip here for forward-compatibility
+        // should this behavior change.
         if ($figureClass !== null) {
             $imageClasses = array_filter(
                 explode(' ', $figureClass),

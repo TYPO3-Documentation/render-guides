@@ -26,9 +26,9 @@ use function is_string;
  * The upstream instance is created internally to avoid Symfony service decoration
  * side effects with tagged directive services.
  *
- * The deprecation warning additionally mentions `float-start`/`float-end` as
- * alternatives because substitution images (|name|) do not support the `:align:`
- * option — only `:class:` is available.
+ * The deprecation warning additionally mentions `:class: float-start` /
+ * `:class: float-end`: docutils restricts `:align:` on substitution images
+ * (|name|) to top/middle/bottom, so the class is the portable choice there.
  *
  * Note: process() delegates to $this->inner->process() which internally calls
  * BaseDirective::process() including withKeepExistingOptions(). We intentionally
@@ -67,7 +67,7 @@ final class ImageDirective extends BaseDirective
             if (is_string($classValue) && $this->hasLegacyFloatClass($classValue)) {
                 $this->logger->warning(
                     'Using `:class: float-left` / `:class: float-right` is deprecated. '
-                    . 'Use `:align: left` / `:align: right` instead, or `float-start` / `float-end` for substitution images.',
+                    . 'Use `:align: left` / `:align: right` or `:class: float-start` / `:class: float-end` instead.',
                     $blockContext->getLoggerInformation(),
                 );
                 $directive->addOption(new DirectiveOption('class', $this->rewriteLegacyFloatClasses($classValue)));
