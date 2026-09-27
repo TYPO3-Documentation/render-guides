@@ -518,6 +518,12 @@
             "ExtensionArchitecture/HowTo/UpdateExtensions/UpdateWizards/Index.html#upgrade-wizards",
             "Upgrade wizards"
         ],
+        "extension-development": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Index.html#extension-development",
+            "Extension development"
+        ],
         "start": [
             "TYPO3 Explained",
             "14.3",
