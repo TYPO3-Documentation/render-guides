@@ -118,6 +118,9 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                         // Off for the same reason: most manuals have headlines
                         // without a label, and a Markdown one cannot have any.
                         'check_headline_anchors' => $this->getConfigValue($configs, 'check_headline_anchors', ''),
+                        // The fields ".. confval::" may carry besides its own,
+                        // empty to check none. @see ConfvalFields
+                        'confval_fields' => $this->getConfigValue($configs, 'confval_fields', ''),
                     ],
                 ],
             );

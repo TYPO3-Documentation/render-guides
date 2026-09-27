@@ -1,0 +1,4 @@
+The confval-menu column "Path" is not a field the manual declares, so it stays empty. Correct it, or declare it in confval-fields in guides.xml.
+The confval "cols" has the field "Default", which the manual does not declare. Did you mean the built-in "default"?
+The confval "cols" has the field "TCA Path", which the manual does not declare. Did you mean "TCA path"?
+The confval "cols" has the field "Remark", which the manual does not declare. Correct it, or declare it in confval-fields in guides.xml.
