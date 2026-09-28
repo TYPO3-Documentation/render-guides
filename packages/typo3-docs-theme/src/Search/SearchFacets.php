@@ -36,6 +36,16 @@ final class SearchFacets
         'File',
         'Directory',
         SiteSetSettingsDirective::FACET,
+        // The kinds of option TYPO3 Explained documents besides
+        // TYPO3_CONF_VARS and the site configuration
+        'Global Variable',
+        'PHP Configuration File',
+        'PHP API Option',
+        'FlexForm Element',
+        'php.ini Setting',
+        'JavaScript Option',
+        'Expression Language Variable',
+        'Expression Language Function',
     ];
 
     /** The facet a value stands for: itself when it is one, "Option" otherwise. */
