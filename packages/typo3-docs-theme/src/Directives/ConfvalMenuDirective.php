@@ -23,7 +23,11 @@ use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use phpDocumentor\Guides\RestructuredText\TextRoles\GenericLinkProvider;
+use Psr\Log\LoggerInterface;
+use T3Docs\Typo3DocsTheme\ConfvalFields\ConfvalFields;
 use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
+
+use function sprintf;
 
 class ConfvalMenuDirective extends SubDirective
 {
@@ -32,6 +36,8 @@ class ConfvalMenuDirective extends SubDirective
         Rule $startingRule,
         GenericLinkProvider $genericLinkProvider,
         private readonly AnchorNormalizer $anchorReducer,
+        private readonly ConfvalFields $confvalFields,
+        private readonly LoggerInterface $logger,
     ) {
         parent::__construct($startingRule);
         $genericLinkProvider->addGenericLink(self::NAME, ConfvalMenuNode::LINK_TYPE, ConfvalMenuNode::LINK_PREFIX);
@@ -67,6 +73,16 @@ class ConfvalMenuDirective extends SubDirective
                 $value['max'] = intval(str_replace('max=', '', $option->getValue()));
             }
             $fields[$option->getName()] = $value;
+
+            // A column is matched to a field by its exact name, and one that
+            // names no field stays empty without a word. @see ConfvalFields
+            if ($this->confvalFields->isChecked() && !$this->confvalFields->isAllowed($option->getName())) {
+                $this->logger->warning(sprintf(
+                    'The confval-menu column "%s" is not a field the manual declares, so it stays empty. %s',
+                    $option->getName(),
+                    $this->confvalFields->advice($option->getName()),
+                ), $blockContext->getLoggerInformation());
+            }
         }
         $exclude = explode(',', $directive->getOptionString('exclude'));
         $anchorReducer = $this->anchorReducer;
