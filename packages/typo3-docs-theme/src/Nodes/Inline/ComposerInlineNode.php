@@ -5,8 +5,10 @@ namespace T3Docs\Typo3DocsTheme\Nodes\Inline;
 use phpDocumentor\Guides\Nodes\Inline\InlineNode;
 use T3Docs\VersionHandling\Packagist\ComposerPackage;
 
-final class ComposerInlineNode extends InlineNode
+final class ComposerInlineNode extends InlineNode implements InHeadline
 {
+    use InHeadlineTrait;
+
     public const TYPE = 'code';
 
     public function __construct(
