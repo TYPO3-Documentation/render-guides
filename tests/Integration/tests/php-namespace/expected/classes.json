@@ -1,0 +1,42 @@
+{
+    "project": {
+        "title": "",
+        "version": "",
+        "permalink": ""
+    },
+    "classes": {
+        "\\TYPO3\\CMS\\Core\\Exception": {
+            "type": "class",
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "",
+                    "section": "php-namespaces",
+                    "kind": "inline"
+                }
+            ]
+        },
+        "\\TYPO3\\CMS\\Core\\Utility\\GeneralUtility": {
+            "type": "class",
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "",
+                    "section": "php-namespaces",
+                    "kind": "inline"
+                }
+            ]
+        },
+        "\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractEntity": {
+            "type": "class",
+            "places": [
+                {
+                    "path": "index",
+                    "anchor": "",
+                    "section": "php-namespaces",
+                    "kind": "code"
+                }
+            ]
+        }
+    }
+}

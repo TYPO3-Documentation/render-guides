@@ -59,9 +59,13 @@ type
     What the TYPO3 API says the name is: :samp:`class`, :samp:`interface`,
     :samp:`trait` or :samp:`enum`. Left out for a name the API does not know --
     a class of an extension or of another vendor, but below
-    :samp:`\\TYPO3` also a namespace, a typo or an invented example. Nothing
-    in the writing tells those apart: a :samp:`use` statement imports a
-    namespace and a class alike.
+    :samp:`\\TYPO3` also a typo, a class that is gone, or an invented example.
+
+    A namespace is not a class and is not listed: one named with
+    :rst:`:php-namespace:`, and one the API knows, named with :rst:`:php:` or
+    imported by a :samp:`use` statement. Only a name that is a class and a
+    namespace at once, like :samp:`\\TYPO3\\CMS\\Core\\Exception`, stays a
+    class unless :rst:`:php-namespace:` says otherwise.
 
 places
     Where the manual speaks of the class, ordered by page, anchor and section.
