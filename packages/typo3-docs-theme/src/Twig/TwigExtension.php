@@ -29,7 +29,6 @@ use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Deployment\DeploymentMode;
-use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\EditOnGitHubNode;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
@@ -38,6 +37,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperArgumentNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperNode;
 use T3Docs\Typo3DocsTheme\Permalinks\Permalinks;
+use T3Docs\Typo3DocsTheme\Search\SearchFacets;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use T3Docs\Typo3DocsThemeMd\Anchors\AddressableAnchors;
 use T3Docs\VersionHandling\DefaultInventories;
@@ -95,6 +95,7 @@ final class TwigExtension extends AbstractExtension
         private readonly ChangelogEntry                $changelogEntry,
         private readonly Permalinks                    $permalinks,
         private readonly DeploymentMode                $deploymentMode,
+        private readonly SearchFacets                  $searchFacets,
     ) {
         $this->typo3AzureEdgeURI = $deploymentMode->azureEdgeUri();
     }
@@ -143,27 +144,7 @@ final class TwigExtension extends AbstractExtension
 
     public function filterAllowedSearchFacets(string $value): string
     {
-        $allowed = [
-            'TypoScript',
-            'TSconfig',
-            'ViewHelper',
-            'TCA',
-            'TYPO3_CONF_VAR',
-            'YAML Form Setting',
-            'YAML RTE Setting',
-            'Site Language Configuration',
-            'Site Configuration',
-            'Console Command',
-            'Console Command Argument',
-            'Console Command Option',
-            'File',
-            'Directory',
-            SiteSetSettingsDirective::FACET,
-        ];
-        if (!in_array(trim($value), $allowed, true)) {
-            return 'Option';
-        }
-        return $value;
+        return $this->searchFacets->of($value);
     }
     public function replaceLineBreakOpportunityTags(string $value): string
     {
