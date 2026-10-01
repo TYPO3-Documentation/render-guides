@@ -19,6 +19,7 @@ use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\Nodes\TitleNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
+use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\RenderContext;
 use phpDocumentor\Guides\Renderer\UrlGenerator\UrlGeneratorInterface;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
@@ -37,6 +38,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperArgumentNode;
 use T3Docs\Typo3DocsTheme\Nodes\ViewHelperNode;
 use T3Docs\Typo3DocsTheme\Permalinks\Permalinks;
+use T3Docs\Typo3DocsTheme\ConfvalVersions\ConfvalVersions;
 use T3Docs\Typo3DocsTheme\Search\SearchFacets;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use T3Docs\Typo3DocsThemeMd\Anchors\AddressableAnchors;
@@ -96,6 +98,7 @@ final class TwigExtension extends AbstractExtension
         private readonly Permalinks                    $permalinks,
         private readonly DeploymentMode                $deploymentMode,
         private readonly SearchFacets                  $searchFacets,
+        private readonly ConfvalVersions               $confvalVersions,
     ) {
         $this->typo3AzureEdgeURI = $deploymentMode->azureEdgeUri();
     }
@@ -134,12 +137,24 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getRstCodeForLink', $this->getRstCodeForLink(...), ['is_safe' => [], 'needs_context' => true]),
             new TwigFunction('isRenderedForDeployment', $this->isRenderedForDeployment(...)),
             new TwigFunction('replaceLineBreakOpportunityTags', $this->replaceLineBreakOpportunityTags(...), ['is_safe' => ['html'], 'needs_context' => false]),
+            new TwigFunction('confvalVersions', $this->confvalVersions(...), ['needs_context' => true]),
             new TwigFunction('filterAllowedSearchFacets', $this->filterAllowedSearchFacets(...), ['is_safe' => ['html'], 'needs_context' => false]),
             new TwigFunction('getPermalink', $this->getPermalink(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('getTopPageLink', $this->getTopPageLink(...), ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFunction('setBackAnchor', $this->setBackAnchor(...), ['needs_context' => true]),
             new TwigFunction('getBackAnchor', $this->getBackAnchor(...), ['needs_context' => true]),
         ];
+    }
+
+    /**
+     * When a confval says it was added, changed, deprecated or removed.
+     *
+     * @param array{env: RenderContext} $context
+     * @return list<array{kind: string, label: string, version: string, changelog: string, reference: ReferenceNode|null}>
+     */
+    public function confvalVersions(array $context, ConfvalNode $node): array
+    {
+        return $this->confvalVersions->of($node, $context['env']->getLoggerInformation());
     }
 
     public function filterAllowedSearchFacets(string $value): string
