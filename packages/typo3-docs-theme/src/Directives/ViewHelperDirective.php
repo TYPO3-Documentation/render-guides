@@ -99,7 +99,8 @@ final class ViewHelperDirective extends BaseDirective
         $data = $json['viewHelpers'][$directive->getData()];
         /** @var array<string, array{sourcePrefix: string, editPrefix: string}> $sourceEdit */
         $sourceEdit = is_array($json['sourceEdit'] ?? null) ? $json['sourceEdit'] : [];
-        $viewHelperNode = $this->getViewHelperNode($directive, $data, $sourceEdit, $blockContext, $noindex);
+        $namespaceAlias = is_string($json['namespaceAlias'] ?? null) ? $json['namespaceAlias'] : '';
+        $viewHelperNode = $this->getViewHelperNode($directive, $data, $sourceEdit, $blockContext, $noindex, $namespaceAlias);
         /** @var array<string, ViewHelperArgumentNode> $arguments */
         $arguments = [];
         $argumentDefs = $data['argumentDefinitions'] ?? [];
@@ -160,7 +161,7 @@ final class ViewHelperDirective extends BaseDirective
      * @param array<string, mixed> $data
      * @param array<string, array{'sourcePrefix': string, 'editPrefix': string}> $sourceEdit
      */
-    private function getViewHelperNode(Directive $directive, array $data, array $sourceEdit, BlockContext $blockContext, bool $noindex): ViewHelperNode
+    private function getViewHelperNode(Directive $directive, array $data, array $sourceEdit, BlockContext $blockContext, bool $noindex, string $namespaceAlias): ViewHelperNode
     {
         $rawDocumentation = $this->getString($data, 'documentation');
         /** @var list<Node> $description */
@@ -239,6 +240,8 @@ final class ViewHelperDirective extends BaseDirective
             noindex: $noindex,
             display: $display,
             arguments: [],
+            namespaceAlias: $namespaceAlias,
+            rawDocumentation: $rawDocumentation,
         );
         return $viewHelperNode;
     }
