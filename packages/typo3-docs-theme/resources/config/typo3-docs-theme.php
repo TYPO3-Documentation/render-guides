@@ -10,6 +10,8 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextR
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckHeadlineAnchorsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckLinkTextNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectViewHelpersTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\DescribeFluidViewHelpersTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RedirectsNodeTransformer;
@@ -74,6 +76,8 @@ use T3Docs\Typo3DocsTheme\ClassIndex\UseStatements;
 use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ViewHelpersJsonRenderer;
+use T3Docs\Typo3DocsTheme\ViewHelperIndex\ExternalViewHelpers;
+use T3Docs\Typo3DocsTheme\ViewHelperIndex\LocalViewHelpers;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\ViewHelperIndex;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
@@ -191,6 +195,14 @@ return static function (ContainerConfigurator $container): void {
         )
 
         ->set(ViewHelperIndex::class)
+        ->set(ExternalViewHelpers::class)
+        ->arg('$inventoryRepository', service(InventoryRepository::class))
+        ->public()
+        ->set(LocalViewHelpers::class)
+        ->set(CollectViewHelpersTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(DescribeFluidViewHelpersTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
 
         ->set(ViewHelpersJsonRenderer::class)
         ->tag(
