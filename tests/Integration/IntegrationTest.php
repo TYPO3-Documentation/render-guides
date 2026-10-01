@@ -15,6 +15,7 @@ use T3Docs\GuidesExtension\Command\RunDecorator;
 use T3Docs\Typo3DocsTheme\ApplicationTestCase;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ExternalFileObjects;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+use T3Docs\Typo3DocsTheme\ViewHelperIndex\ExternalViewHelpers;
 
 use function array_filter;
 use function array_merge;
@@ -78,6 +79,16 @@ final class IntegrationTest extends ApplicationTestCase
                     ? (array) json_decode((string) file_get_contents($inputPath . '/t3coreapi-files.json'), true)
                     : [],
                 'https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/',
+            );
+
+            // The same for the ViewHelper Reference, which ":fluid:" looks up.
+            $externalViewHelpers = $this->getContainer()->get(ExternalViewHelpers::class);
+            assert($externalViewHelpers instanceof ExternalViewHelpers);
+            $externalViewHelpers->useDefinitions(
+                file_exists($inputPath . '/t3viewhelper-viewhelpers.json')
+                    ? (array) json_decode((string) file_get_contents($inputPath . '/t3viewhelper-viewhelpers.json'), true)
+                    : [],
+                'https://docs.typo3.org/other/typo3/view-helper-reference/main/en-us/',
             );
 
             chdir(dirname($inputPath));
