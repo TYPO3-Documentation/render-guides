@@ -99,6 +99,7 @@ and the GitHub pipelines, while internally only using :file:`Makefile` syntax.
     LinkTextCheck
     HeadlineAnchorCheck
     AjaxVersions
+    ViewHelperIndex
 
 
 ..  _phpDocumentor/guides: https://github.com/phpDocumentor/guides

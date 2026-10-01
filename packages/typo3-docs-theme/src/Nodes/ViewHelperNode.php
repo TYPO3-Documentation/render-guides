@@ -40,6 +40,8 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
         private readonly bool $noindex = false,
         private readonly array $display = [],
         private array $arguments = [],
+        private readonly string $namespaceAlias = '',
+        private readonly string $rawDocumentation = '',
     ) {
         parent::__construct('viewhelper', $tagName, new InlineCompoundNode([new PlainTextInlineNode($tagName)]), array_values($documentation));
     }
@@ -74,6 +76,27 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
     public function getDescription(): array
     {
         return $this->description;
+    }
+
+    /**
+     * The prefix a template uses for the ViewHelper's namespace, such as "f"
+     * or "be": the "namespaceAlias" of the file that describes it.
+     */
+    public function getNamespaceAlias(): string
+    {
+        return $this->namespaceAlias;
+    }
+
+    /** The name a template writes, such as "f:format.html", or the bare tag name without a prefix. */
+    public function getFullName(): string
+    {
+        return $this->namespaceAlias === '' ? $this->tagName : $this->namespaceAlias . ':' . $this->tagName;
+    }
+
+    /** The documentation as the describing file writes it, before it is parsed. */
+    public function getRawDocumentation(): string
+    {
+        return $this->rawDocumentation;
     }
 
     public function getTagName(): string
