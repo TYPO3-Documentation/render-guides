@@ -79,8 +79,19 @@ type, default, required
 
 fields
     Every other field of the directive, by the name the manual gives it and
-    as plain text, except those the search reads. The names are the manual's own and differ between
+    as plain text, except those the search reads and those listed under
+    :samp:`versions`. The names are the manual's own and differ between
     manuals: the TCA reference writes :samp:`Path` and :samp:`Scope`.
+
+versions
+    When the option was added, changed, deprecated or removed, as its
+    :rst:`:added:`, :rst:`:changed:`, :rst:`:deprecated:` and
+    :rst:`:removed:` options state it: each with its :samp:`kind`, the
+    :samp:`version`, and the :samp:`changelog` entry and its :samp:`url`
+    where the option names one, such as
+    :rst:`:removed: 14.0 breaking-106863-1749629371`. Left out for an option
+    that states none. A version directive in the description is text and is
+    not read.
 
 summary
     The first paragraph of the option's own description, as plain text.

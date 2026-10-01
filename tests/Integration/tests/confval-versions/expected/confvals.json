@@ -1,0 +1,72 @@
+{
+    "project": {
+        "title": "",
+        "version": "",
+        "permalink": ""
+    },
+    "confvals": {
+        "confval-ctrl-is-static": {
+            "name": "is_static",
+            "searchFacet": "Option",
+            "context": [
+                "Confval versions"
+            ],
+            "type": "boolean",
+            "versions": [
+                {
+                    "kind": "deprecated",
+                    "version": "13.4"
+                },
+                {
+                    "kind": "removed",
+                    "version": "14.0",
+                    "changelog": "breaking-106863-1749629371",
+                    "url": "https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/14.0/Breaking-106863-TCAControlOptionIs_staticRemoved.html#breaking-106863-1749629371"
+                }
+            ],
+            "summary": "Removed, with the changelog entry that says so.",
+            "path": "index"
+        },
+        "confval-ctrl-searchable": {
+            "name": "searchable",
+            "searchFacet": "Option",
+            "context": [
+                "Confval versions"
+            ],
+            "type": "boolean",
+            "versions": [
+                {
+                    "kind": "added",
+                    "version": "14.0"
+                }
+            ],
+            "summary": "Added, without a changelog entry.",
+            "path": "index"
+        },
+        "confval-ctrl-rendertype": {
+            "name": "renderType",
+            "searchFacet": "Option",
+            "context": [
+                "Confval versions"
+            ],
+            "versions": [
+                {
+                    "kind": "changed",
+                    "version": "14.0",
+                    "changelog": "breaking-0-does-not-exist"
+                }
+            ],
+            "summary": "Changed, with a changelog entry that does not exist.",
+            "path": "index"
+        },
+        "confval-ctrl-label": {
+            "name": "label",
+            "searchFacet": "Option",
+            "context": [
+                "Confval versions"
+            ],
+            "summary": "Not a version.",
+            "path": "index"
+        }
+    }
+}
