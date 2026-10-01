@@ -1,0 +1,41 @@
+{
+    "project": {
+        "title": "ViewHelpers",
+        "version": "main",
+        "permalink": "https://docs.typo3.org/permalink/t3viewhelper:{anchor}@main"
+    },
+    "viewhelpers": {
+        "f:format.html": {
+            "class": "TYPO3\\CMS\\Fluid\\ViewHelpers\\Format\\HtmlViewHelper",
+            "namespace": "TYPO3\\CMS\\Fluid\\ViewHelpers",
+            "xmlNamespace": "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers",
+            "summary": "Renders a string which can contain HTML markup.",
+            "documentation": "Renders a string which can contain HTML markup.\n\nIt passes the string to a TYPO3 parseFunc.",
+            "docTags": {
+                "@see": "https://docs.typo3.org/permalink/t3tsref:parsefunc"
+            },
+            "allowsArbitraryArguments": false,
+            "source": "https://github.com/TYPO3/typo3/blob/main/typo3/sysext/fluid/Classes/ViewHelpers/Format/HtmlViewHelper.php",
+            "arguments": {
+                "data": {
+                    "type": "mixed",
+                    "required": false,
+                    "description": "Initialize the content object with this set of data.",
+                    "anchor": "viewhelper-argument-typo3-cms-fluid-viewhelpers-format-htmlviewhelper-data",
+                    "permalink": "https://docs.typo3.org/permalink/t3viewhelper:viewhelper-argument-typo3-cms-fluid-viewhelpers-format-htmlviewhelper-data@main"
+                },
+                "parseFuncTSPath": {
+                    "type": "string",
+                    "required": false,
+                    "default": "'lib.parseFunc_RTE'",
+                    "description": "Path to the TypoScript parseFunc setup.",
+                    "anchor": "viewhelper-argument-typo3-cms-fluid-viewhelpers-format-htmlviewhelper-parsefunctspath",
+                    "permalink": "https://docs.typo3.org/permalink/t3viewhelper:viewhelper-argument-typo3-cms-fluid-viewhelpers-format-htmlviewhelper-parsefunctspath@main"
+                }
+            },
+            "path": "index",
+            "anchor": "viewhelper-typo3-cms-fluid-viewhelpers-format-htmlviewhelper",
+            "permalink": "https://docs.typo3.org/permalink/t3viewhelper:viewhelper-typo3-cms-fluid-viewhelpers-format-htmlviewhelper@main"
+        }
+    }
+}
