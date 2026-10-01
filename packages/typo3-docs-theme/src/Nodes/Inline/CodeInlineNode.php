@@ -35,4 +35,17 @@ final class CodeInlineNode extends InlineNode implements InHeadline
     {
         return $this->info;
     }
+
+    /**
+     * What the infobox says, once it is known: a ":fluid:" role learns what
+     * its ViewHelper does only after every page is parsed.
+     *
+     * @param array<string, string> $info
+     */
+    public function describeAs(string $language, string $helpText, array $info): void
+    {
+        $this->language = $language;
+        $this->helpText = $helpText;
+        $this->info = [...$this->info, ...$info];
+    }
 }

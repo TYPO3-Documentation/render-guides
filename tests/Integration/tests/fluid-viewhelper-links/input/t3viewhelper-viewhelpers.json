@@ -1,0 +1,37 @@
+{
+    "project": {
+        "title": "Fluid ViewHelper Reference",
+        "version": "main",
+        "permalink": ""
+    },
+    "viewhelpers": {
+        "f:format.html": {
+            "class": "TYPO3\\CMS\\Fluid\\ViewHelpers\\Format\\HtmlViewHelper",
+            "summary": "Renders a string which can contain HTML markup.",
+            "arguments": {},
+            "path": "Global/Format/Html",
+            "anchor": "viewhelper-typo3-cms-fluid-viewhelpers-format-htmlviewhelper"
+        },
+        "f:translate": {
+            "class": "TYPO3\\CMS\\Fluid\\ViewHelpers\\TranslateViewHelper",
+            "summary": "Translates a key from a language file.",
+            "arguments": {},
+            "path": "Global/Translate",
+            "anchor": "viewhelper-typo3-cms-fluid-viewhelpers-translateviewhelper"
+        },
+        "be:moduleLink": {
+            "class": "TYPO3\\CMS\\Backend\\ViewHelpers\\ModuleLinkViewHelper",
+            "summary": "Creates a link to a backend module.",
+            "arguments": {},
+            "path": "Backend/ModuleLink",
+            "anchor": "viewhelper-typo3-cms-backend-viewhelpers-modulelinkviewhelper"
+        },
+        "f:uri.image": {
+            "class": "TYPO3\\CMS\\Fluid\\ViewHelpers\\Uri\\ImageViewHelper",
+            "summary": "Resizes a given image and returns its URI.",
+            "arguments": {},
+            "path": "Global/Uri/Image",
+            "anchor": "viewhelper-typo3-cms-fluid-viewhelpers-uri-imageviewhelper"
+        }
+    }
+}
