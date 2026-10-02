@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://docs.typo3.org/c/typo3/cms-core/main/en-us/sitemap.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/sitemap.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://docs.typo3.org/m/typo3/reference-exceptions/main/en-us/sitemap.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://docs.typo3.org/c/typo3/cms-adminpanel/main/en-us/sitemap.xml</loc>
+  </sitemap>
+</sitemapindex>
