@@ -73,7 +73,9 @@ use T3Docs\Typo3DocsTheme\Renderer\PageFiles;
 use T3Docs\Typo3DocsTheme\ClassIndex\ClassIndex;
 use T3Docs\Typo3DocsTheme\ClassIndex\UseStatements;
 use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\SitemapXmlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
+use T3Docs\Typo3DocsTheme\Sitemap\ManualAddress;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\CssTextRole;
@@ -186,6 +188,18 @@ return static function (ContainerConfigurator $container): void {
             [
                 'noderender_tag' => 'phpdoc.guides.noderenderer.html',
                 'format' => 'filesjson',
+            ],
+        )
+
+        ->set(ManualAddress::class)
+        ->arg('$inventoryRepository', service(InventoryRepository::class))
+
+        ->set(SitemapXmlRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'sitemapxml',
             ],
         )
 
