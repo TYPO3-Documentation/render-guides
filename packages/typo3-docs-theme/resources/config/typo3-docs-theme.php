@@ -66,6 +66,7 @@ use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ObjectInventory;
 use T3Docs\Typo3DocsTheme\Renderer\ChangelogJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\FilesJsonRenderer;
+use T3Docs\Typo3DocsTheme\ManualsIndex\ManualsIndex;
 use T3Docs\Typo3DocsTheme\Renderer\MainMenuJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\PageFiles;
@@ -205,6 +206,7 @@ return static function (ContainerConfigurator $container): void {
                 'format' => 'mainmenujson',
             ],
         )
+        ->set(ManualsIndex::class)
         ->set(MainMenuJsonDocumentRenderer::class)
         ->tag('phpdoc.guides.noderenderer.mainmenu')
         ->set(IssueReferenceTextRole::class)

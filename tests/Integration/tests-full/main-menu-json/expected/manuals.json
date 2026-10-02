@@ -1,0 +1,61 @@
+{
+    "manuals": {
+        "typo3/cms-core": {
+            "name": "Changelog TYPO3 Core",
+            "group": "References",
+            "versions": [
+                {
+                    "version": "main",
+                    "base": "https://docs.typo3.org/c/typo3/cms-core/main/en-us/"
+                }
+            ]
+        },
+        "t3coreapi": {
+            "name": "TYPO3 Explained",
+            "group": "References",
+            "versions": [
+                {
+                    "version": "main",
+                    "base": "https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"
+                },
+                {
+                    "version": "12.4",
+                    "base": "https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/"
+                }
+            ]
+        },
+        "t3exceptions": {
+            "name": "TYPO3 Exceptions",
+            "group": "References",
+            "versions": [
+                {
+                    "version": "main",
+                    "base": "https://docs.typo3.org/m/typo3/reference-exceptions/main/en-us/"
+                }
+            ]
+        },
+        "typo3/cms-adminpanel": {
+            "name": "adminpanel",
+            "group": "System Extensions",
+            "versions": [
+                {
+                    "version": "main",
+                    "base": "https://docs.typo3.org/c/typo3/cms-adminpanel/main/en-us/"
+                },
+                {
+                    "version": "12.4",
+                    "base": "https://docs.typo3.org/c/typo3/cms-adminpanel/12.4/en-us/"
+                }
+            ]
+        }
+    },
+    "files": {
+        "llms.txt": "every manual",
+        "toc.json": "every manual",
+        "objects.inv.json": "every manual",
+        "classes.json": "every manual",
+        "confvals.json": "a manual that documents options",
+        "files.json": "a manual that defines files",
+        "viewhelpers.json": "a manual that documents ViewHelpers"
+    }
+}

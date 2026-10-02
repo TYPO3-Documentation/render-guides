@@ -20,6 +20,20 @@
                         "href": "https:\/\/docs.typo3.org\/m\/typo3\/reference-coreapi\/12.4\/en-us\/Index.html#start"
                     }
                 ]
+            },
+            {
+                "name": "TYPO3 Exceptions",
+                "href": "https:\/\/docs.typo3.org\/m\/typo3\/reference-exceptions\/main\/en-us\/Index.html#start"
+            },
+            {
+                "name": "Extension Development",
+                "href": "https:\/\/docs.typo3.org\/m\/typo3\/reference-coreapi\/14.3\/en-us\/ExtensionArchitecture\/Index.html#extension-development",
+                "children": [
+                    {
+                        "name": "main",
+                        "href": "https:\/\/docs.typo3.org\/m\/typo3\/reference-coreapi\/main\/en-us\/ExtensionArchitecture\/Index.html#extension-development"
+                    }
+                ]
             }
         ]
     },
