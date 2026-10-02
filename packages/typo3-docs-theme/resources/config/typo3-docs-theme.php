@@ -85,6 +85,7 @@ use T3Docs\Typo3DocsTheme\ConfvalVersions\ConfvalVersions;
 use T3Docs\Typo3DocsTheme\Search\SearchFacets;
 use T3Docs\Typo3DocsTheme\Renderer\ConfvalIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\LlmsTxtRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\SitemapXmlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ViewHelpersJsonRenderer;
@@ -260,6 +261,15 @@ return static function (ContainerConfigurator $container): void {
             [
                 'noderender_tag' => 'phpdoc.guides.noderenderer.html',
                 'format' => 'sitemapxml',
+            ],
+        )
+
+        ->set(LlmsTxtRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'llmstxt',
             ],
         )
 
