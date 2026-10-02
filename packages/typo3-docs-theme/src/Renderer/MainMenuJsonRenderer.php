@@ -11,9 +11,15 @@ use T3Docs\Typo3DocsTheme\ManualsIndex\ManualsIndex;
 use T3Docs\Typo3DocsTheme\Nodes\MainMenuJsonNode;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\TemplateNode;
 use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
+use T3Docs\VersionHandling\Typo3VersionMapping;
 
+use function array_map;
+use function htmlspecialchars;
+use function in_array;
 use function json_encode;
+use function sprintf;
 
+use const ENT_XML1;
 use const JSON_PRETTY_PRINT;
 use const JSON_UNESCAPED_SLASHES;
 use const JSON_UNESCAPED_UNICODE;
@@ -31,6 +37,12 @@ use const JSON_UNESCAPED_UNICODE;
 final class MainMenuJsonRenderer implements TypeRenderer
 {
     public const MANUALS_FILE_NAME = 'manuals.json';
+
+    /**
+     * The sitemaps of those manuals, for the search engines: a sitemap index
+     * named on its own, as the homepage is a manual with a sitemap.xml too.
+     */
+    public const SITEMAP_INDEX_FILE_NAME = 'sitemap-index.xml';
 
     /**
      * The indexes a manual publishes beside its pages, and which manuals do:
@@ -80,17 +92,55 @@ final class MainMenuJsonRenderer implements TypeRenderer
 
                     $menu = $this->menu($document);
                     if ($menu !== null) {
+                        $manuals = $this->manualsIndex->of($menu, $context);
                         $renderCommand->getDestination()->put(
                             self::MANUALS_FILE_NAME,
                             (string) json_encode(
-                                ['manuals' => $this->manualsIndex->of($menu, $context), 'files' => self::FILES],
+                                ['manuals' => $manuals, 'files' => self::FILES],
                                 JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
                             ),
+                        );
+                        $renderCommand->getDestination()->put(
+                            self::SITEMAP_INDEX_FILE_NAME,
+                            $this->sitemapIndex($manuals),
                         );
                     }
                 }
             }
         }
+    }
+
+    /**
+     * The sitemaps of the versions a reader is sent to: the one in
+     * development, the current LTS and the one before. Older versions stay
+     * published, but are not where a search should lead.
+     *
+     * @param array<string, array{versions: list<array{version: string, base: string}>}> $manuals
+     */
+    private function sitemapIndex(array $manuals): string
+    {
+        $versions = array_map(
+            static fn(Typo3VersionMapping $mapping): string => $mapping->getVersion(),
+            [Typo3VersionMapping::Dev, Typo3VersionMapping::Stable, Typo3VersionMapping::OldStable],
+        );
+
+        $sitemaps = '';
+        foreach ($manuals as $manual) {
+            foreach ($manual['versions'] as $version) {
+                if (!in_array($version['version'], $versions, true)) {
+                    continue;
+                }
+                $sitemaps .= sprintf(
+                    "  <sitemap>\n    <loc>%s</loc>\n  </sitemap>\n",
+                    htmlspecialchars($version['base'] . SitemapXmlRenderer::FILE_NAME, ENT_XML1),
+                );
+            }
+        }
+
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+            . "<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n"
+            . $sitemaps
+            . "</sitemapindex>\n";
     }
 
     private function menu(Node $node): ?MainMenuJsonNode
