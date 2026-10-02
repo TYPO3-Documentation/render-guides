@@ -1,0 +1,22 @@
+# Core
+
+> Version main of this manual.
+> Every page is also available as Markdown: the same path with .md instead of .html.
+> The permalink of an anchor is https://docs.typo3.org/permalink/changelog:{anchor}.
+
+## Indexes
+
+- [toc.json](toc.json): Table of contents: every page in order, with its title and permalink anchor
+- [classes.json](classes.json): Every PHP class the manual speaks of, and where
+- [objects.inv.json](objects.inv.json): Every link target, as the interlinks of other manuals use them
+- [Changelog-12.json](Changelog-12.json): Every entry of TYPO3 12 with its type, issue, tags, version and the classes it names, and the link to its Markdown page
+
+## Pages
+
+To find entries, filter Changelog-<major>.json; each entry links its page.
+The pages of each version list its entries by title.
+
+- [TYPO3 Core](Index.md)
+  - [ChangeLog v12](Changelog-12.md)
+    - [12.0 Changes](Changelog/12.0/Index.md)
+  - [Sitemap](Sitemap.md)

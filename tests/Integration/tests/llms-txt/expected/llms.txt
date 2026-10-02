@@ -1,0 +1,21 @@
+# TCA Reference
+
+> Version 13.4 of this manual.
+> Every page is also available as Markdown: the same path with .md instead of .html.
+> The permalink of an anchor is https://docs.typo3.org/permalink/t3tca:{anchor}@13.4.
+
+## Indexes
+
+- [toc.json](toc.json): Table of contents: every page in order, with its title and permalink anchor
+- [classes.json](classes.json): Every PHP class the manual speaks of, and where
+- [objects.inv.json](objects.inv.json): Every link target, as the interlinks of other manuals use them
+
+## Pages
+
+- [TCA Reference](index.md)
+  - [Columns \[and their properties\]](Columns/Index.md)
+    - [Size](Columns/Size.md)
+
+## Removed content
+
+- [Content was removed](404.md): what was removed from this manual, by TYPO3 version, and what replaces it. Old anchors and permalinks lead here.

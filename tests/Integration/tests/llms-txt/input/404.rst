@@ -1,0 +1,7 @@
+:orphan:
+
+===================
+Content was removed
+===================
+
+What the manual removed, by TYPO3 version.
