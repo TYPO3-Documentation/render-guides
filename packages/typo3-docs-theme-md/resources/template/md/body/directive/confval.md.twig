@@ -29,9 +29,12 @@
     {%- set properties = properties|merge([{'label': 'Default', 'value': renderNode(node.default)}]) -%}
 {%- endif -%}
 {%- for key, option in node.additionalOptions -%}
-    {%- if not (key in ['searchFacet', 'searchKeywords']) -%}
+    {%- if not (key in ['searchFacet', 'searchKeywords', 'added', 'changed', 'deprecated', 'removed']) -%}
         {%- set properties = properties|merge([{'label': key, 'value': renderNode(option)}]) -%}
     {%- endif -%}
+{%- endfor -%}
+{%- for version in confvalVersions(node) -%}
+    {%- set properties = properties|merge([{'label': version.label, 'value': version.version ~ (version.reference ? ', ' ~ renderNode(version.reference) : '')}]) -%}
 {%- endfor -%}
 {%- set body -%}
 {%- for property in properties -%}

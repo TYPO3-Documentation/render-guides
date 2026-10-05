@@ -122,6 +122,12 @@
             "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.html#feature-105638-1732034075",
             "Feature: #105638 - Modify fetched page content"
         ],
+        "breaking-106863-1749629371": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Breaking-106863-TCAControlOptionIs_staticRemoved.html#breaking-106863-1749629371",
+            "Breaking: #106863 - TCA control option is_static removed"
+        ],
         "feature-107628-1729026000": [
             "TYPO3 Core Changelog",
             "main",
@@ -465,6 +471,12 @@
             "main",
             "Changelog/8.6/Deprecation-79440-TcaChanges.html#type-group",
             "type=group"
+        ],
+        "summary": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Important-80241-ExtFormSimplifyTranslationHandling.html#summary",
+            "Summary"
         ],
         "breaking": [
             "TYPO3 Core Changelog",

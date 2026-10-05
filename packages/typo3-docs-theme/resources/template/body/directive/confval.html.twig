@@ -60,11 +60,19 @@
                         </dd>
                     {% endif -%}
                     {%- for key, option in node.additionalOptions -%}
-                        {%- if not (key in ['searchFacet', 'searchKeywords']) %}
+                        {%- if not (key in ['searchFacet', 'searchKeywords', 'added', 'changed', 'deprecated', 'removed']) %}
                             <dt class="field-even">{{ key }}</dt>
                             <dd class="field-even">{{ renderNode(option) }}
                             </dd>
                         {% endif -%}
+                    {% endfor -%}
+                    {#- When the option was added, changed, deprecated or removed,
+                        @see ConfvalVersions -#}
+                    {%- for version in confvalVersions(node) %}
+                        <dt class="field-odd confval-version confval-version-{{ version.kind }}">{{ version.label }}</dt>
+                        <dd class="field-odd confval-version confval-version-{{ version.kind }}">{{ version.version }}
+                            {%- if version.reference %}, {{ renderNode(version.reference) }}{% endif %}
+                        </dd>
                     {% endfor -%}
                 </dl>
             {% endif %}

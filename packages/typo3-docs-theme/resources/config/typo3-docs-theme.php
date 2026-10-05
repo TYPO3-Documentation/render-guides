@@ -6,6 +6,7 @@ use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
+use T3Docs\Typo3DocsTheme\Changelog\ChangelogReferences;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckEntryFileNameNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckHeadlineAnchorsNodeTransformer;
@@ -78,6 +79,7 @@ use T3Docs\Typo3DocsTheme\Renderer\PageFiles;
 use T3Docs\Typo3DocsTheme\ClassIndex\ClassIndex;
 use T3Docs\Typo3DocsTheme\ClassIndex\UseStatements;
 use T3Docs\Typo3DocsTheme\ConfvalIndex\ConfvalIndex;
+use T3Docs\Typo3DocsTheme\ConfvalVersions\ConfvalVersions;
 use T3Docs\Typo3DocsTheme\Search\SearchFacets;
 use T3Docs\Typo3DocsTheme\Renderer\ConfvalIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
@@ -210,6 +212,8 @@ return static function (ContainerConfigurator $container): void {
 
         ->set(ConfvalIndex::class)
         ->set(SearchFacets::class)
+        ->set(ChangelogReferences::class)
+        ->set(ConfvalVersions::class)
 
         ->set(ConfvalIndexJsonRenderer::class)
         ->tag(

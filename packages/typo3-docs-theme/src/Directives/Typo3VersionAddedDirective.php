@@ -5,20 +5,16 @@ declare(strict_types=1);
 namespace T3Docs\Typo3DocsTheme\Directives;
 
 use phpDocumentor\Guides\Nodes\CollectionNode;
-use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
-use Psr\Log\LoggerInterface;
-use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
+use T3Docs\Typo3DocsTheme\Changelog\ChangelogReferences;
 
 final class Typo3VersionAddedDirective extends AbstractTypo3VersionChangeDirective
 {
     /** @param Rule<CollectionNode> $startingRule */
     public function __construct(
         Rule $startingRule,
-        Typo3DocsThemeSettings $themeSettings,
-        LoggerInterface $logger,
-        InterlinkParser $interlinkParser,
+        ChangelogReferences $changelogReferences,
     ) {
-        parent::__construct($startingRule, 'versionadded', 'New in version %s', $themeSettings, $logger, $interlinkParser);
+        parent::__construct($startingRule, 'versionadded', 'New in version %s', $changelogReferences);
     }
 }

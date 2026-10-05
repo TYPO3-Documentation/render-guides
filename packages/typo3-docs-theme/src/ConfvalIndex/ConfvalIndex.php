@@ -14,6 +14,7 @@ use phpDocumentor\Guides\Nodes\ProjectNode;
 use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
+use T3Docs\Typo3DocsTheme\ConfvalVersions\ConfvalVersions;
 use T3Docs\Typo3DocsTheme\Search\SearchFacets;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
@@ -37,7 +38,7 @@ use function trim;
  * of an option is not: it says what kind of option it is, from one list for
  * every manual. @see SearchFacets
  *
- * @phpstan-type Entry array{name: string, searchFacet: string, context: list<string>, parent?: string, type?: string, default?: string, required?: true, fields?: array<string, string>, summary?: string, path: string}
+ * @phpstan-type Entry array{name: string, searchFacet: string, context: list<string>, parent?: string, type?: string, default?: string, required?: true, fields?: array<string, string>, versions?: list<array{kind: string, version: string, changelog?: string, url?: string}>, summary?: string, path: string}
  */
 final class ConfvalIndex
 {
@@ -48,6 +49,7 @@ final class ConfvalIndex
         private readonly AnchorNormalizer $anchorNormalizer,
         private readonly SearchFacets $searchFacets,
         private readonly Typo3DocsThemeSettings $themeSettings,
+        private readonly ConfvalVersions $confvalVersions,
     ) {}
 
     /**
@@ -153,7 +155,7 @@ final class ConfvalIndex
 
         $fields = [];
         foreach ($node->getAdditionalOptions() as $name => $value) {
-            if (in_array($name, self::SEARCH_FIELDS, true)) {
+            if (in_array($name, self::SEARCH_FIELDS, true) || ConfvalVersions::isVersionOption($name)) {
                 continue;
             }
             $text = $this->text($value);
@@ -165,6 +167,11 @@ final class ConfvalIndex
             $entry['fields'] = $fields;
         }
 
+        $versions = $this->versions($node);
+        if ($versions !== []) {
+            $entry['versions'] = $versions;
+        }
+
         $summary = $this->summary($node);
         if ($summary !== '') {
             $entry['summary'] = $summary;
@@ -173,6 +180,31 @@ final class ConfvalIndex
         $entry['path'] = $path;
 
         return $entry;
+    }
+
+    /**
+     * When the option was added, changed, deprecated or removed, with the
+     * changelog entry that says more, as the confval states it.
+     *
+     * @return list<array{kind: string, version: string, changelog?: string, url?: string}>
+     */
+    private function versions(ConfvalNode $node): array
+    {
+        $versions = [];
+        foreach ($this->confvalVersions->of($node) as $version) {
+            $entry = ['kind' => $version['kind'], 'version' => $version['version']];
+            if ($version['changelog'] !== '') {
+                $entry['changelog'] = $version['changelog'];
+            }
+            // Resolved when the page was rendered to HTML, before this file.
+            $url = $version['reference'] === null ? '' : $version['reference']->getUrl();
+            if ($url !== '') {
+                $entry['url'] = $url;
+            }
+            $versions[] = $entry;
+        }
+
+        return $versions;
     }
 
     /**
