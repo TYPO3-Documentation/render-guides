@@ -6,6 +6,8 @@ namespace T3Docs\Typo3DocsTheme\DependencyInjection;
 
 use phpDocumentor\Guides\Graphs\Nodes\UmlNode;
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
+use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
+use phpDocumentor\Guides\ReferenceResolvers\InterlinkReferenceResolver;
 use phpDocumentor\Guides\RestructuredText\Directives\FigureDirective as BaseFigureDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\ImageDirective as BaseImageDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\IndexDirective as BaseIndexDirective;
@@ -34,6 +36,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3VersionChangeNode;
+use T3Docs\Typo3DocsTheme\ReferenceResolvers\SelfInterlinkReferenceResolver;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
 use T3Docs\Typo3DocsThemeMd\DependencyInjection\Typo3DocsThemeMdExtension;
@@ -47,6 +50,9 @@ use function phpDocumentor\Guides\DependencyInjection\template;
 
 class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface, CompilerPassInterface
 {
+    /** guides' interlink resolver, which ours asks. @see SelfInterlinkReferenceResolver */
+    private const INNER_INTERLINK_RESOLVER = 't3docs.interlink_reference_resolver.inner';
+
     private const HTML = [
         YoutubeNode::class => 'body/directive/youtube.html.twig',
         Typo3VersionChangeNode::class => 'body/version-change.html.twig',
@@ -277,6 +283,21 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         // returns null, so the terms are lost. Ours keeps them.
         if ($container->hasDefinition(BaseIndexDirective::class)) {
             $container->removeDefinition(BaseIndexDirective::class);
+        }
+
+        // A link of a manual to itself resolves within the render, never by
+        // its published inventory. Ours asks guides' resolver for every other
+        // link, which therefore loses its place among the resolvers.
+        // @see SelfInterlinkReferenceResolver
+        if ($container->hasDefinition(InterlinkReferenceResolver::class)) {
+            $container->removeDefinition(InterlinkReferenceResolver::class);
+            $container->register(self::INNER_INTERLINK_RESOLVER, InterlinkReferenceResolver::class)
+                ->setAutowired(true);
+            $container->register(SelfInterlinkReferenceResolver::class, SelfInterlinkReferenceResolver::class)
+                ->setAutowired(true)
+                ->setArgument('$interlinkResolver', new Reference(self::INNER_INTERLINK_RESOLVER))
+                ->setArgument('$inventoryRepository', new Reference(InventoryRepository::class))
+                ->addTag('phpdoc.guides.reference_resolver');
         }
 
         if ($this->markdownRequested($container)) {
