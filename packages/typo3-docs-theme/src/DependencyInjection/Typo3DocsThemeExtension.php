@@ -291,6 +291,10 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             $this->appendOutputFormat($container, 'changelogjson');
         }
 
+        // Last, so that it can name the indexes written before it.
+        // @see LlmsTxtRenderer
+        $this->appendOutputFormat($container, 'llmstxt');
+
         if ($this->markdownRequested($container)) {
             $this->markdownExtension()->markUnsupportedNodes($container);
         }
