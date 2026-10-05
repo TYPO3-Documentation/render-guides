@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckEntryFileNameNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckHeadlineAnchorsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckInterlinkShortcodeNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckLinkTextNodeTransformer;
@@ -131,6 +132,9 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.directive')
         ->set(AttachFileObjectsToFileTextRoleTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(CheckEntryFileNameNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->public()
         ->set(CheckInterlinkShortcodeNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->public()
