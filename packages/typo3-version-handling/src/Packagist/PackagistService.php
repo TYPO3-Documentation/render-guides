@@ -6,6 +6,21 @@ class PackagistService
 {
     /** @var array<string, ComposerPackage>  */
     private array $cache = [];
+
+    /** @var \Closure(string): (string|null)|null */
+    private ?\Closure $fetcher = null;
+
+    /**
+     * Fetch with this instead of over the network: the integration tests read
+     * recorded responses, so that a render does not depend on Packagist being
+     * reachable. The callable returns the body, or null for a failure.
+     *
+     * @param callable(string): (string|null) $fetcher
+     */
+    public function fetchWith(callable $fetcher): void
+    {
+        $this->fetcher = $fetcher(...);
+    }
     private bool $timeoutOccurred = false;
 
     public function getComposerInfo(string $composerName, bool $dev = false): ComposerPackage
@@ -111,6 +126,10 @@ class PackagistService
 
     public function fetchPackageData(string $url): bool|string
     {
+        if ($this->fetcher !== null) {
+            return ($this->fetcher)($url) ?? false;
+        }
+
         if ($this->timeoutOccurred) {
             return false;
         }

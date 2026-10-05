@@ -1,0 +1,694 @@
+{
+    "minified": "composer/2.0",
+    "packages": {
+        "typo3/cms-core": [
+            {
+                "name": "typo3/cms-core",
+                "description": "TYPO3 CMS Core",
+                "keywords": [],
+                "homepage": "https://typo3.community/",
+                "version": "v14.3.7",
+                "version_normalized": "14.3.7.0",
+                "license": [
+                    "GPL-2.0-or-later"
+                ],
+                "authors": [
+                    {
+                        "name": "TYPO3 Core Team",
+                        "email": "typo3cms@typo3.org",
+                        "role": "Developer"
+                    }
+                ],
+                "source": {
+                    "url": "https://github.com/TYPO3-CMS/core.git",
+                    "type": "git",
+                    "reference": "18071e452396230c34e23554298591ada6dc4c4a"
+                },
+                "dist": {
+                    "url": "https://api.github.com/repos/TYPO3-CMS/core/zipball/18071e452396230c34e23554298591ada6dc4c4a",
+                    "type": "zip",
+                    "shasum": "",
+                    "reference": "18071e452396230c34e23554298591ada6dc4c4a"
+                },
+                "type": "typo3-cms-framework",
+                "support": {
+                    "chat": "https://typo3.community/meet/slack/",
+                    "docs": "https://docs.typo3.org/",
+                    "forum": "https://talk.typo3.org/",
+                    "issues": "https://forge.typo3.org/issues/",
+                    "rss": "https://news.typo3.com/rss/",
+                    "security": "https://typo3.org/security/",
+                    "source": "https://github.com/TYPO3/typo3/"
+                },
+                "funding": [
+                    {
+                        "url": "https://typo3.org/membership",
+                        "type": "membership"
+                    }
+                ],
+                "time": "2026-09-08T09:17:25+00:00",
+                "published-time": "2026-09-08T09:21:28+00:00",
+                "autoload": {
+                    "files": [
+                        "Resources/PHP/GlobalDebugFunctions.php"
+                    ],
+                    "psr-4": {
+                        "TYPO3\\CMS\\Core\\": "Classes/"
+                    },
+                    "classmap": [
+                        "DeprecatedClasses/ext-install/"
+                    ]
+                },
+                "extra": {
+                    "typo3/cms": {
+                        "Package": {
+                            "protected": true,
+                            "serviceProvider": "TYPO3\\CMS\\Core\\ServiceProvider",
+                            "partOfFactoryDefault": true,
+                            "partOfMinimalUsableSystem": true
+                        },
+                        "extension-key": "core"
+                    },
+                    "branch-alias": {
+                        "dev-main": "14.3.x-dev"
+                    },
+                    "typo3/class-alias-loader": {
+                        "class-alias-maps": [
+                            "Migrations/Code/ClassAliasMap.php"
+                        ]
+                    }
+                },
+                "require": {
+                    "php": "^8.2",
+                    "ext-pdo": "*",
+                    "ext-dom": "*",
+                    "ext-intl": "*",
+                    "ext-json": "*",
+                    "ext-libxml": "*",
+                    "ext-mbstring": "*",
+                    "ext-pcre": "*",
+                    "ext-session": "*",
+                    "ext-sodium": "*",
+                    "ext-tokenizer": "*",
+                    "ext-xml": "*",
+                    "composer-runtime-api": "^2.1",
+                    "bacon/bacon-qr-code": "^3.1.1",
+                    "christian-riesen/base32": "^2.0",
+                    "composer/class-map-generator": "^1.7.2",
+                    "composer/semver": "^3.4",
+                    "doctrine/dbal": "~4.4.4",
+                    "doctrine/lexer": "^3.0.1",
+                    "egulias/email-validator": "^4.0",
+                    "enshrined/svg-sanitize": "~0.22",
+                    "firebase/php-jwt": "^6.10.2 || ^7.0.5",
+                    "guzzlehttp/guzzle": "^7.15.2 || ^8.0",
+                    "guzzlehttp/promises": "^2.0.3 || ^3.0",
+                    "guzzlehttp/psr7": "^2.10.2 || ^3.0",
+                    "lolli42/finediff": "^1.1.2",
+                    "masterminds/html5": "^2.10.0",
+                    "psr/clock": "^1.0",
+                    "psr/container": "^2.0",
+                    "psr/event-dispatcher": "^1.0",
+                    "psr/http-client": "^1.0.3",
+                    "psr/http-factory": "^1.1.0",
+                    "psr/http-message": "^1.1 || ^2.0",
+                    "psr/http-server-handler": "^1.0",
+                    "psr/http-server-middleware": "^1.0",
+                    "psr/log": "^3.0.1",
+                    "symfony/config": "^7.4.8",
+                    "symfony/console": "^7.4.8",
+                    "symfony/dependency-injection": "^7.4.8",
+                    "symfony/doctrine-messenger": "^7.4.6",
+                    "symfony/event-dispatcher-contracts": "^3.6.0",
+                    "symfony/expression-language": "^7.4.8",
+                    "symfony/filesystem": "^7.4.8",
+                    "symfony/finder": "^7.4.8",
+                    "symfony/http-foundation": "^7.4.13",
+                    "symfony/mailer": "^7.4.12",
+                    "symfony/messenger": "^7.4.8",
+                    "symfony/mime": "^7.4.12",
+                    "symfony/options-resolver": "^7.4.8",
+                    "symfony/polyfill-php83": "^1.36.0",
+                    "symfony/polyfill-php84": "^1.38",
+                    "symfony/polyfill-php85": "^1.38",
+                    "symfony/process": "^7.4.8",
+                    "symfony/rate-limiter": "^7.4.8",
+                    "symfony/routing": "^7.4.13",
+                    "symfony/translation": "^7.4.8",
+                    "symfony/uid": "^7.4.8",
+                    "symfony/yaml": "^7.4.12",
+                    "typo3/class-alias-loader": "^2.0.1",
+                    "typo3/cms-cli": "^3.1.3",
+                    "typo3/cms-composer-installers": "^5.0.2",
+                    "typo3/html-sanitizer": "^2.3.2",
+                    "typo3fluid/fluid": "^5.3.2"
+                },
+                "suggest": {
+                    "ext-apcu": "Needed when non-default APCU based cache backends are used",
+                    "ext-exif": "Used to extract exif metadata 'Orientation' of uploaded images",
+                    "ext-fileinfo": "Used for proper file type detection in the file abstraction layer",
+                    "ext-gd": "GDlib/Freetype is required for building images with text (GIFBUILDER) and can also be used to scale images",
+                    "ext-mysqli": "",
+                    "ext-openssl": "OpenSSL is required for sending SMTP mails over an encrypted channel endpoint",
+                    "ext-zip": "",
+                    "ext-zlib": "TYPO3 uses zlib for resource compression and un/packing t3x extension files"
+                },
+                "conflict": {
+                    "hoa/core": "*",
+                    "typo3/cms": "*"
+                },
+                "provide": {
+                    "psr/http-factory-implementation": "1.0",
+                    "psr/http-message-implementation": "1.0"
+                },
+                "replace": {
+                    "typo3/cms-lang": "self.version",
+                    "typo3/cms-saltedpasswords": "self.version",
+                    "typo3/cms-sv": "self.version"
+                }
+            }
+        ]
+    },
+    "security-advisories": [
+        {
+            "advisoryId": "PKSA-hf64-fs5s-6k3h",
+            "affectedVersions": ">=13.0.0,<13.4.34|>=14.0.0,<14.3.6"
+        },
+        {
+            "advisoryId": "PKSA-32mm-z25f-2ysj",
+            "affectedVersions": "<10.4.57|>=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-q3vc-jr63-rrrj",
+            "affectedVersions": "<10.4.57|>=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-pg93-52nb-x8ym",
+            "affectedVersions": ">=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-gj1k-954p-nhmk",
+            "affectedVersions": "<10.4.57|>=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-gr4f-6g49-cg8v",
+            "affectedVersions": "<10.4.57|>=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-6jfs-jhtj-72x7",
+            "affectedVersions": "<10.4.57|>=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-2yr3-by9d-r1gh",
+            "affectedVersions": "<10.4.57|>=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-bzt2-2962-49bj",
+            "affectedVersions": "<10.4.57|>=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-vbrn-fwpj-xmx5",
+            "affectedVersions": ">=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-s3vj-chpj-8wrn",
+            "affectedVersions": "<10.4.57|>=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-ghx2-mc2z-fx6x",
+            "affectedVersions": "<10.4.57|>=11.0.0,<11.5.51|>=12.0.0,<12.4.46|>=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-vv7s-w171-wb2j",
+            "affectedVersions": ">=13.0.0,<13.4.31|>=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-hqhs-7j5f-td2d",
+            "affectedVersions": ">=14.0.0,<14.3.3"
+        },
+        {
+            "advisoryId": "PKSA-rtck-8z1q-gn5s",
+            "affectedVersions": ">=10.0.0,<=10.4.54|>=11.0.0,<=11.5.48|>=12.0.0,<=12.4.40|>=13.0.0,<=13.4.22|>=14.0.0,<=14.0.1"
+        },
+        {
+            "advisoryId": "PKSA-pz1k-khnw-3j7j",
+            "affectedVersions": ">=13.0.0,<13.4.18|>=12.0.0,<12.4.37|>=11.0.0,<11.5.48|>=10.0.0,<10.4.54|>=9.0.0,<9.5.55"
+        },
+        {
+            "advisoryId": "PKSA-rwv7-ff55-f18g",
+            "affectedVersions": ">=13.0.0,<13.4.18|>=12.0.0,<12.4.37"
+        },
+        {
+            "advisoryId": "PKSA-ns26-fz7n-2jm8",
+            "affectedVersions": ">=13.0.0,<13.4.18|>=12.0.0,<12.4.37|>=11.0.0,<11.5.48|>=10.0.0,<10.4.54|>=9.0.0,<9.5.55"
+        },
+        {
+            "advisoryId": "PKSA-q3vc-nbpk-d1gk",
+            "affectedVersions": ">=13.0.0,<=13.4.11|>=12.0.0,<=12.4.30|>=11.0.0,<=11.5.43|>=10.0.0,<=10.4.49|>=9.0.0,<=9.5.50"
+        },
+        {
+            "advisoryId": "PKSA-2ssc-6m7w-s9xh",
+            "affectedVersions": ">=13.0.0,<=13.4.11|>=12.0.0,<=12.4.30|>=11.0.0,<=11.5.43|>=10.4.0,<=10.4.49"
+        },
+        {
+            "advisoryId": "PKSA-b5m3-ttcx-cz18",
+            "affectedVersions": ">=13.0.0,<=13.4.11|>=12.0.0,<=12.4.30|>=11.0.0,<=11.5.43|>=10.0.0,<=10.4.49|>=9.0.0,<=9.5.50"
+        },
+        {
+            "advisoryId": "PKSA-6d7x-2gs8-wr59",
+            "affectedVersions": ">=13.0.0,<=13.4.11|>=12.0.0,<=12.4.30|>=11.0.0,<=11.5.43|>=10.0.0,<=10.4.49|>=9.0.0,<=9.5.50"
+        },
+        {
+            "advisoryId": "PKSA-3gg2-48j5-46ky",
+            "affectedVersions": ">=13.0.0,<=13.4.2|>=12.0.0,<=12.4.24|>=11.0.0,<=11.5.41|>=10.0.0,<=10.4.47|>=9.0.0,<=9.5.48"
+        },
+        {
+            "advisoryId": "PKSA-yj7d-v8zz-m6nq",
+            "affectedVersions": ">=9.0.0,<9.5.12|>=8.0.0,<8.7.30|>=10.0.0,<10.2.1"
+        },
+        {
+            "advisoryId": "PKSA-7dr7-npxr-1nyj",
+            "affectedVersions": ">=13.0.0,<=13.1.0"
+        },
+        {
+            "advisoryId": "PKSA-8vkj-4d3h-x586",
+            "affectedVersions": ">=13.0.0,<=13.1.0|>=12.0.0,<=12.4.14|>=11.0.0,<=11.5.36|>=10.0.0,<=10.4.44|>=9.0.0,<=9.5.47"
+        },
+        {
+            "advisoryId": "PKSA-443h-dk5w-qm2g",
+            "affectedVersions": ">=13.0.0,<=13.1.0|>=12.0.0,<=12.4.14|>=11.0.0,<=11.5.36|>=10.0.0,<=10.4.44|>=9.0.0,<=9.5.47"
+        },
+        {
+            "advisoryId": "PKSA-tm11-834c-1wbq",
+            "affectedVersions": ">=13.0.0,<=13.1.0|>=12.0.0,<=12.4.14|>=11.0.0,<=11.5.36|>=10.0.0,<=10.4.44|>=9.0.0,<=9.5.47"
+        },
+        {
+            "advisoryId": "PKSA-prgj-sgzn-q6cs",
+            "affectedVersions": "=13.0.0|>=12.0.0,<=12.4.10|>=11.0.0,<=11.5.34|>=10.0.0,<=10.4.42|>=9.0.0,<=9.5.45|>=8.0.0,<=8.7.56"
+        },
+        {
+            "advisoryId": "PKSA-d551-hdqh-5mmf",
+            "affectedVersions": "=13.0.0|>=12.0.0,<=12.4.10|>=11.0.0,<=11.5.34|>=10.0.0,<=10.4.42|>=9.0.0,<=9.5.45|>=8.0.0,<=8.7.56"
+        },
+        {
+            "advisoryId": "PKSA-h5xk-8nxx-znp4",
+            "affectedVersions": "=13.0.0|>=12.0.0,<=12.4.10|>=11.0.0,<=11.5.34|>=10.0.0,<=10.4.42|>=9.0.0,<=9.5.45|>=8.0.0,<=8.7.56"
+        },
+        {
+            "advisoryId": "PKSA-99mg-htb6-c272",
+            "affectedVersions": "=13.0.0|>=12.0.0,<=12.4.10|>=11.0.0,<=11.5.34|>=10.0.0,<=10.4.42|>=9.0.0,<=9.5.45|>=8.0.0,<=8.7.56"
+        },
+        {
+            "advisoryId": "PKSA-jbhx-knzt-5y6m",
+            "affectedVersions": "=13.0.0|>=12.0.0,<=12.4.10|>=11.0.0,<=11.5.34|>=10.0.0,<=10.4.42|>=9.0.0,<=9.5.45|>=8.0.0,<=8.7.56"
+        },
+        {
+            "advisoryId": "PKSA-kpzq-776n-w7hy",
+            "affectedVersions": ">=4.2.0,<4.2.1|>=4.1.0,<4.1.7|>=4.0.0,<4.0.9"
+        },
+        {
+            "advisoryId": "PKSA-536c-fstd-1vzp",
+            "affectedVersions": ">=4.3alpha1,<4.3beta2|>=4.2.0,<4.2.10|>=4.1.0,<4.1.13|<=4.0.13"
+        },
+        {
+            "advisoryId": "PKSA-1gz3-81f5-ttyn",
+            "affectedVersions": ">=4.4.0,<4.4.5|>=4.3.0,<4.3.9|>=4.2.0,<4.2.16"
+        },
+        {
+            "advisoryId": "PKSA-h3yp-gcbn-7gbt",
+            "affectedVersions": ">=4.4,<4.4.1|>=4.3,<4.3.4|<4.2.13"
+        },
+        {
+            "advisoryId": "PKSA-zz7z-6zsy-d2hc",
+            "affectedVersions": "=13.0.0|>=12.0.0,<=12.4.10|>=11.0.0,<=11.5.34|>=10.0.0,<=10.4.42|>=9.0.0,<=9.5.45|>=8.0.0,<=8.7.56"
+        },
+        {
+            "advisoryId": "PKSA-jp7z-h3vv-yr4s",
+            "affectedVersions": ">=8.0.0,<8.7.55|>=9.0.0,<9.5.44|>=10.0.0,<10.4.41|>=11.0.0,<11.5.33|>=12.0.0,<12.4.8"
+        },
+        {
+            "advisoryId": "PKSA-bww2-xt9d-zd9m",
+            "affectedVersions": ">=6.0.0,<6.0.3|>=4.7.0,<4.7.9|>=4.6.0,<4.6.17|>=4.5.0,<=4.5.23"
+        },
+        {
+            "advisoryId": "PKSA-645k-592v-1hn5",
+            "affectedVersions": ">=6.1.0,<6.1.6|>=6.0.0,<6.0.11|>=4.7.0,<4.7.16|>=4.5.0,<4.5.31"
+        },
+        {
+            "advisoryId": "PKSA-kwrd-d779-ytq1",
+            "affectedVersions": ">=6.0.0,<6.0.11|>=4.6.0,<4.7.16|>=4.5.0,<4.5.31"
+        },
+        {
+            "advisoryId": "PKSA-b1zy-bnzv-mr97",
+            "affectedVersions": ">=6.0.0,<6.0.3|>=4.7.0,<4.7.9|>=4.6.0,<4.6.17|>=4.5.0,<4.5.24"
+        },
+        {
+            "advisoryId": "PKSA-hwwm-389j-p6f2",
+            "affectedVersions": ">=6.1,<6.1.4|>=6.0,<6.0.9"
+        },
+        {
+            "advisoryId": "PKSA-7y51-jdq5-j3jz",
+            "affectedVersions": ">=6.1,<6.1.7|>=6.0,<6.0.12"
+        },
+        {
+            "advisoryId": "PKSA-mcdh-s731-c8c7",
+            "affectedVersions": ">=6.0.0,<6.0.11|>=6.1.0,<6.1.6|>=4.7.0,<4.7.16|>=4.5.0,<4.5.31"
+        },
+        {
+            "advisoryId": "PKSA-83hy-ynvj-7pfq",
+            "affectedVersions": ">=12.0.0,<12.4.4|>=11.0.0,<11.5.30|>=10.0.0,<10.4.39|>=9.4.0,<9.5.42"
+        },
+        {
+            "advisoryId": "PKSA-vxw7-bfmg-pz5q",
+            "affectedVersions": ">=10.0.0,<10.4.35|>=11.0.0,<11.5.23|>=12.0.0,<12.2.0"
+        },
+        {
+            "advisoryId": "PKSA-ccxj-fgkz-pynv",
+            "affectedVersions": ">=10.0.0,<10.4.33|>=11.0.0,<11.5.20|>=12.0.0,<12.1.1"
+        },
+        {
+            "advisoryId": "PKSA-3p3s-8w1v-x6b3",
+            "affectedVersions": ">=10.0.0,<10.4.33|>=11.0.0,<11.5.20|>=12.0.0,<12.1.1"
+        },
+        {
+            "advisoryId": "PKSA-j3x1-dtrb-kbct",
+            "affectedVersions": ">=10.0.0,<10.4.33|>=11.0.0,<11.5.20"
+        },
+        {
+            "advisoryId": "PKSA-hf6f-qcwd-7279",
+            "affectedVersions": ">=10.0.0,<10.4.33|>=11.0.0,<11.5.20|>=12.0.0,<12.1.1"
+        },
+        {
+            "advisoryId": "PKSA-pdn3-qb24-bkw6",
+            "affectedVersions": ">=10.0.0,<10.4.33|>=11.0.0,<11.5.20|>=12.0.0,<12.1.1"
+        },
+        {
+            "advisoryId": "PKSA-qbn4-sj3q-rvvx",
+            "affectedVersions": ">=10.0.0,<10.4.33|>=11.0.0,<11.5.20|>=12.0.0,<12.1.1"
+        },
+        {
+            "advisoryId": "PKSA-rwrz-v1bh-34yt",
+            "affectedVersions": ">=10.0.0,<10.4.32|>=11.0.0,<11.5.16"
+        },
+        {
+            "advisoryId": "PKSA-d4cy-7k8v-3wtm",
+            "affectedVersions": ">=10.0.0,<10.4.32|>=11.0.0,<11.5.16"
+        },
+        {
+            "advisoryId": "PKSA-wjjh-fbmt-t55w",
+            "affectedVersions": ">=10.0.0,<10.4.32|>=11.0.0,<11.5.16"
+        },
+        {
+            "advisoryId": "PKSA-wkgp-n44t-r1jh",
+            "affectedVersions": ">=10.0.0,<10.4.32|>=11.0.0,<11.5.16"
+        },
+        {
+            "advisoryId": "PKSA-p25q-9h89-q9b8",
+            "affectedVersions": ">=11.0.0,<11.5.16"
+        },
+        {
+            "advisoryId": "PKSA-v1kb-vbr1-8fy1",
+            "affectedVersions": ">=10.0.0,<10.4.32|>=11.0.0,<11.5.16"
+        },
+        {
+            "advisoryId": "PKSA-4kgv-d12j-68gk",
+            "affectedVersions": ">=10.0.0,<10.4.29|>=11.0.0,<11.5.11"
+        },
+        {
+            "advisoryId": "PKSA-1f5c-bp4y-tqft",
+            "affectedVersions": ">=10.0.0,<10.4.29|>=11.0.0,<11.5.11"
+        },
+        {
+            "advisoryId": "PKSA-sy4v-bxfk-mjjn",
+            "affectedVersions": ">=10.0.0,<10.4.29|>=11.0.0,<11.5.11"
+        },
+        {
+            "advisoryId": "PKSA-dh2h-m334-x2dj",
+            "affectedVersions": ">=10.0.0,<10.4.29|>=11.0.0,<11.5.11"
+        },
+        {
+            "advisoryId": "PKSA-dnvg-71td-yz19",
+            "affectedVersions": ">=10.0.0,<10.4.29|>=11.0.0,<11.5.11"
+        },
+        {
+            "advisoryId": "PKSA-146t-35pv-hv8w",
+            "affectedVersions": ">=11.2.0,<11.5.0"
+        },
+        {
+            "advisoryId": "PKSA-ptbd-5fbp-bm32",
+            "affectedVersions": ">=11.0.0,<11.5.0"
+        },
+        {
+            "advisoryId": "PKSA-gbv9-2d3q-gcts",
+            "affectedVersions": ">=10.0.0,<10.4.19|>=11.0.0,<11.3.2|>=9.0.0,<9.5.29"
+        },
+        {
+            "advisoryId": "PKSA-6rbt-6s1d-gvry",
+            "affectedVersions": ">=8.0.0,<8.7.23|>=9.0.0,<9.5.4"
+        },
+        {
+            "advisoryId": "PKSA-d1gc-jvn6-g46m",
+            "affectedVersions": ">=10.0.0,<10.4.6|>=9.0.0,<9.5.20"
+        },
+        {
+            "advisoryId": "PKSA-gt1g-9dsw-fhqp",
+            "affectedVersions": ">=10.0.0,<10.2.1|>=8.0.0,<8.7.30|>=9.0.0,<9.5.12"
+        },
+        {
+            "advisoryId": "PKSA-h6n8-zzc6-1djm",
+            "affectedVersions": ">=10.0.0,<10.4.14|>=11.0.0,<11.1.1"
+        },
+        {
+            "advisoryId": "PKSA-8qyp-kq69-8m7s",
+            "affectedVersions": ">=10.0.0,<10.4.2|>=9.0.0,<9.5.17"
+        },
+        {
+            "advisoryId": "PKSA-nxc9-3rpx-fj8p",
+            "affectedVersions": ">=10.0.0,<10.4.14|>=11.0.0,<11.1.1|>=9.0.0,<9.5.25"
+        },
+        {
+            "advisoryId": "PKSA-xg1n-zvqv-pswm",
+            "affectedVersions": ">=10.0.0,<10.4.14|>=11.0.0,<11.1.1|>=9.0.0,<9.5.25"
+        },
+        {
+            "advisoryId": "PKSA-2ynr-pyxr-sckk",
+            "affectedVersions": ">=10.0.0,<10.4.10|>=9.0.0,<9.5.23|>=8.7.0,<8.7.38"
+        },
+        {
+            "advisoryId": "PKSA-sy5h-2rr8-prnp",
+            "affectedVersions": ">=10.0.0,<10.4.2|>=9.0.0,<9.5.17"
+        },
+        {
+            "advisoryId": "PKSA-v9y4-y7z6-sjjg",
+            "affectedVersions": ">=8.0.0,<8.7.27|>=9.0.0,<9.5.8"
+        },
+        {
+            "advisoryId": "PKSA-hrdf-cmfs-zgg7",
+            "affectedVersions": ">=10.0.0,<10.4.14|>=11.0.0,<11.1.1"
+        },
+        {
+            "advisoryId": "PKSA-jydd-ptqz-cc3y",
+            "affectedVersions": ">=10.0.0,<10.2.1|>=8.0.0,<8.7.30|>=9.0.0,<9.5.12"
+        },
+        {
+            "advisoryId": "PKSA-mzh3-fprn-psqp",
+            "affectedVersions": ">=10.0.0,<10.4.2"
+        },
+        {
+            "advisoryId": "PKSA-k1cr-xs53-x3zz",
+            "affectedVersions": ">=10.0.0,<10.4.2|>=9.0.0,<9.5.17"
+        },
+        {
+            "advisoryId": "PKSA-kzft-dxcq-xwfm",
+            "affectedVersions": ">=10.0.0,<10.4.6|>=9.0.0,<9.5.20"
+        },
+        {
+            "advisoryId": "PKSA-1rbp-fbhh-b1cd",
+            "affectedVersions": ">=8.0.0,<8.7.25|>=9.0.0,<9.5.6"
+        },
+        {
+            "advisoryId": "PKSA-769c-kbh8-sdc8",
+            "affectedVersions": ">=10.0.0,<10.4.2|>=9.0.0,<9.5.17"
+        },
+        {
+            "advisoryId": "PKSA-1c5b-sjdg-7rc3",
+            "affectedVersions": ">=10.0.0,<10.4.18|>=11.0.0,<11.3.1|>=9.0.0,<9.5.28"
+        },
+        {
+            "advisoryId": "PKSA-bmvt-8jd1-qp5w",
+            "affectedVersions": ">=10.0.0,<10.4.14|>=11.0.0,<11.1.1|>=9.0.0,<9.5.25"
+        },
+        {
+            "advisoryId": "PKSA-5b2v-fk9x-ph9d",
+            "affectedVersions": ">=10.0.0,<10.4.10"
+        },
+        {
+            "advisoryId": "PKSA-cqmn-5jhg-hqxx",
+            "affectedVersions": ">=10.0.0,<10.4.10|>=9.0.0,<9.5.23|>=8.7.0,<8.7.38"
+        },
+        {
+            "advisoryId": "PKSA-5y7r-7h1g-qrym",
+            "affectedVersions": ">=8.0.0,<8.7.21|>=9.0.0,<9.5.2"
+        },
+        {
+            "advisoryId": "PKSA-txkp-tzqy-rz72",
+            "affectedVersions": ">=10.0.0,<10.4.18|>=11.0.0,<11.3.1|>=9.0.0,<9.5.28"
+        },
+        {
+            "advisoryId": "PKSA-ttpr-h5zy-14x1",
+            "affectedVersions": ">=10.0.0,<10.4.2|>=9.0.0,<9.5.17"
+        },
+        {
+            "advisoryId": "PKSA-rmrp-g3x4-sq5j",
+            "affectedVersions": ">=10.0.0,<10.4.18|>=11.0.0,<11.3.1|>=9.0.0,<9.5.28"
+        },
+        {
+            "advisoryId": "PKSA-s5jg-xrdb-kcbj",
+            "affectedVersions": ">=8.0.0,<8.7.27|>=9.0.0,<9.5.8"
+        },
+        {
+            "advisoryId": "PKSA-2xbd-k6f8-vc7m",
+            "affectedVersions": ">=10.0.0,<10.2.1|>=8.0.0,<8.7.30|>=9.0.0,<9.5.12"
+        },
+        {
+            "advisoryId": "PKSA-k7qq-jvk9-4s56",
+            "affectedVersions": ">=10.0.0,<10.4.14|>=11.0.0,<11.1.1|>=9.0.0,<9.5.25"
+        },
+        {
+            "advisoryId": "PKSA-t9b1-2gtq-zpcq",
+            "affectedVersions": ">=9.0.0,<9.5.8"
+        },
+        {
+            "advisoryId": "PKSA-wqbp-c8pr-qp5w",
+            "affectedVersions": ">=10.0.0,<10.4.14|>=11.0.0,<11.1.1|>=9.0.0,<9.5.25"
+        },
+        {
+            "advisoryId": "PKSA-zhxh-zqgh-5btz",
+            "affectedVersions": ">=8.0.0,<8.7.25|>=9.0.0,<9.5.6"
+        },
+        {
+            "advisoryId": "PKSA-8svt-p3nh-mpwn",
+            "affectedVersions": ">=10.0.0,<10.4.14|>=11.0.0,<11.1.1|>=9.0.0,<9.5.25"
+        },
+        {
+            "advisoryId": "PKSA-tpdb-shwd-489h",
+            "affectedVersions": ">=10.0.0,<10.4.18|>=11.0.0,<11.3.1|>=9.0.0,<9.5.28"
+        },
+        {
+            "advisoryId": "PKSA-f4p7-n9ff-b1y3",
+            "affectedVersions": ">=8.0.0,<8.7.17|>=9.0.0,<9.3.2"
+        },
+        {
+            "advisoryId": "PKSA-ctc9-m9tc-zx87",
+            "affectedVersions": ">=8.0.0,<8.7.23|>=9.0.0,<9.5.4"
+        },
+        {
+            "advisoryId": "PKSA-xxc6-f4fc-bhvm",
+            "affectedVersions": ">=8.0.0,<8.7.27|>=9.0.0,<9.5.8"
+        },
+        {
+            "advisoryId": "PKSA-3886-d5zt-qwrh",
+            "affectedVersions": ">=8.0.0,<8.7.23|>=9.0.0,<9.5.4"
+        },
+        {
+            "advisoryId": "PKSA-kgft-67y3-84tv",
+            "affectedVersions": ">=10.0.0,<10.2.1|>=8.0.0,<8.7.30|>=9.0.0,<9.5.12"
+        },
+        {
+            "advisoryId": "PKSA-44gr-w8s1-1nzt",
+            "affectedVersions": ">=8.0.0,<8.7.25|>=9.0.0,<9.5.6"
+        },
+        {
+            "advisoryId": "PKSA-8d3v-z4d4-n11g",
+            "affectedVersions": ">=8.0.0,<8.7.21|>=9.0.0,<9.5.2"
+        },
+        {
+            "advisoryId": "PKSA-t2bp-d8b3-sc74",
+            "affectedVersions": ">=8.0.0,<8.7.23|>=9.0.0,<9.5.4"
+        },
+        {
+            "advisoryId": "PKSA-39st-t16f-w2cm",
+            "affectedVersions": ">=9.0.0,<9.5.6"
+        },
+        {
+            "advisoryId": "PKSA-53xp-pxrc-sbvb",
+            "affectedVersions": ">=8.0.0,<8.7.17|>=9.0.0,<9.3.2"
+        },
+        {
+            "advisoryId": "PKSA-ngtt-95zk-116b",
+            "affectedVersions": ">=8.0.0,<8.7.30|>=9.0.0,<9.5.12"
+        },
+        {
+            "advisoryId": "PKSA-jndc-1hrg-s597",
+            "affectedVersions": ">=8.5.0,<8.7.17|>=9.0.0,<9.3.2"
+        },
+        {
+            "advisoryId": "PKSA-138z-v62j-p84r",
+            "affectedVersions": ">=10.0.0,<10.2.1|>=8.0.0,<8.7.30|>=9.0.0,<9.5.12"
+        },
+        {
+            "advisoryId": "PKSA-xy95-nkpr-w5rm",
+            "affectedVersions": ">=8.0.0,<8.7.23"
+        },
+        {
+            "advisoryId": "PKSA-f5jr-dg29-ng7s",
+            "affectedVersions": ">=8.0.0,<8.7.27|>=9.0.0,<9.5.8"
+        },
+        {
+            "advisoryId": "PKSA-2q76-3mvw-8hk3",
+            "affectedVersions": ">=8.0.0,<8.7.21|>=9.0.0,<9.5.2"
+        },
+        {
+            "advisoryId": "PKSA-q5ym-2n81-pfr3",
+            "affectedVersions": ">=8.0.0,<8.7.21"
+        },
+        {
+            "advisoryId": "PKSA-jktp-yswk-rrww",
+            "affectedVersions": ">=8.0.0,<8.7.23|>=9.0.0,<9.5.4"
+        },
+        {
+            "advisoryId": "PKSA-4jxn-z7kk-hs67",
+            "affectedVersions": ">=10.0.0,<10.2.1|>=8.0.0,<8.7.30|>=9.0.0,<9.5.12"
+        },
+        {
+            "advisoryId": "PKSA-yzt1-7625-ng3j",
+            "affectedVersions": ">=8.0.0,<8.7.21|>=9.0.0,<9.5.2"
+        },
+        {
+            "advisoryId": "PKSA-qszd-7zv5-3hkx",
+            "affectedVersions": ">=8.0.0,<8.7.21|>=9.0.0,<9.5.2"
+        },
+        {
+            "advisoryId": "PKSA-zmbz-zt2r-qk52",
+            "affectedVersions": ">=9.0.0,<9.5.4"
+        },
+        {
+            "advisoryId": "PKSA-rfsn-q422-vhgz",
+            "affectedVersions": ">=9.0.0,<9.5.8"
+        },
+        {
+            "advisoryId": "PKSA-rvt7-wnc1-w2gd",
+            "affectedVersions": ">=8.0.0,<8.7.21|>=9.0.0,<9.5.2"
+        },
+        {
+            "advisoryId": "PKSA-sntp-fryn-mxq8",
+            "affectedVersions": ">=8.0.0,<8.7.21|>=9.0.0,<9.5.2"
+        },
+        {
+            "advisoryId": "PKSA-fnjs-nj4b-mz65",
+            "affectedVersions": ">=8.0.0,<8.7.23|>=9.0.0,<9.5.4"
+        },
+        {
+            "advisoryId": "PKSA-tdw8-rcwc-259v",
+            "affectedVersions": ">=8.0.0,<8.7.27|>=9.0.0,<9.5.8"
+        },
+        {
+            "advisoryId": "PKSA-nx6h-6z7h-64pg",
+            "affectedVersions": ">=8.5.0,<8.7.17|>=9.0.0,<9.3.2"
+        },
+        {
+            "advisoryId": "PKSA-6bzd-gjbs-96f6",
+            "affectedVersions": ">=9.0.0,<9.5.6"
+        }
+    ]
+}

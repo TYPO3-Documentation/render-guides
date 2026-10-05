@@ -1,0 +1,1416 @@
+{
+    "std:doc": {
+        "404": [
+            "TypoScript Explained",
+            "14.3",
+            "404.html",
+            "Content was removed"
+        ],
+        "Glossary": [
+            "TypoScript Explained",
+            "14.3",
+            "Glossary.html",
+            "Glossary"
+        ],
+        "Index": [
+            "TypoScript Explained",
+            "14.3",
+            "Index.html",
+            "TypoScript Explained"
+        ],
+        "Sitemap": [
+            "TypoScript Explained",
+            "14.3",
+            "Sitemap.html",
+            "Sitemap"
+        ]
+    },
+    "std:label": {
+        "not-found": [
+            "TypoScript Explained",
+            "14.3",
+            "404.html#not-found",
+            "Content was removed"
+        ],
+        "conditions": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#conditions",
+            "Frontend TypoScript conditions criteria"
+        ],
+        "condition-frontend": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#condition-frontend",
+            "frontend"
+        ],
+        "condition-frontend-user": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#condition-frontend-user",
+            "frontend.user"
+        ],
+        "condition-frontend-user-isloggedin": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#condition-frontend-user-isloggedin",
+            "frontend.user.isLoggedIn"
+        ],
+        "cobj-case": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#cobj-case",
+            "CASE"
+        ],
+        "cobj-case-array-of-cobjects": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#cobj-case-array-of-cobjects",
+            "array of cObjects"
+        ],
+        "cobj-case-key": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#cobj-case-key",
+            "key"
+        ],
+        "tmenu": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Hmenu/Tmenu/Index.html#tmenu",
+            "TMENU"
+        ],
+        "cobject": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Index.html#cobject",
+            "Content Objects (cObject)"
+        ],
+        "cache": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Cache.html#cache",
+            "cache"
+        ],
+        "calc": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Calc.html#calc",
+            "Calculating values (+calc)"
+        ],
+        "if": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/If.html#if",
+            "if"
+        ],
+        "replacement": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Replacement.html#replacement",
+            "replacement"
+        ],
+        "round": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Round.html#round",
+            "round"
+        ],
+        "select": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Select.html#select",
+            "select"
+        ],
+        "select-where": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Select.html#select-where",
+            "where"
+        ],
+        "split": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Split.html#split",
+            "split"
+        ],
+        "tags": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Tags.html#tags",
+            "tags"
+        ],
+        "typolink": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink",
+            "typolink"
+        ],
+        "gifbuilder": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/Index.html#gifbuilder",
+            "GIFBUILDER"
+        ],
+        "glossary": [
+            "TypoScript Explained",
+            "14.3",
+            "Glossary.html#glossary",
+            "Glossary"
+        ],
+        "guide": [
+            "TypoScript Explained",
+            "14.3",
+            "Guide/Index.html#guide",
+            "Getting started: A quick introduction into TypoScript"
+        ],
+        "start": [
+            "TypoScript Explained",
+            "14.3",
+            "Index.html#start",
+            "TypoScript Explained"
+        ],
+        "introduction": [
+            "TypoScript Explained",
+            "14.3",
+            "Introduction/Index.html#introduction",
+            "Introduction into TypoScript"
+        ],
+        "tceform": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceForm.html#tceform",
+            "TCEFORM"
+        ],
+        "sitemap": [
+            "TypoScript Explained",
+            "14.3",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ],
+        "syntax": [
+            "TypoScript Explained",
+            "14.3",
+            "Syntax/Index.html#syntax",
+            "TypoScript syntax"
+        ],
+        "config": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Config.html#config",
+            "config: TypoScript configuration"
+        ],
+        "setup": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Index.html#setup",
+            "Top-level objects"
+        ],
+        "page": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Page/Index.html#page",
+            "PAGE object type in TypoScript"
+        ],
+        "meta": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Page/Index.html#meta",
+            "Properties"
+        ],
+        "plugin": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Plugin.html#plugin",
+            "plugin"
+        ]
+    },
+    "std:title": {
+        "typo3-v12": [
+            "TypoScript Explained",
+            "14.3",
+            "404.html#not-found-v12",
+            "TYPO3 v12"
+        ],
+        "example": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/PageTSconfig.html#setting-page-tsconfig-example",
+            "Example"
+        ],
+        "page": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-page",
+            "page"
+        ],
+        "tree": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-tree",
+            "tree"
+        ],
+        "tree-level": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-tree-level",
+            "tree.level"
+        ],
+        "backend": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-backend",
+            "backend"
+        ],
+        "backend-user": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-backend-user",
+            "backend.user"
+        ],
+        "frontend": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#condition-frontend",
+            "frontend"
+        ],
+        "frontend-user": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#condition-frontend-user",
+            "frontend.user"
+        ],
+        "frontend-user-isloggedin": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#condition-frontend-user-isloggedin",
+            "frontend.user.isLoggedIn"
+        ],
+        "typo3": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-typo3",
+            "typo3"
+        ],
+        "typo3-version": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-typo3-version",
+            "typo3.version"
+        ],
+        "date": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-function-date",
+            "date()"
+        ],
+        "like": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-function-like",
+            "like()"
+        ],
+        "feature": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-function-feature",
+            "feature()"
+        ],
+        "ip": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#condition-function-ip",
+            "ip()"
+        ],
+        "request": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-request",
+            "request"
+        ],
+        "site": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/Conditions.html#tsconfig-condition-function-site",
+            "site()"
+        ],
+        "locale": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#condition-functions-in-frontend-context-function-locale",
+            "locale()"
+        ],
+        "examples": [
+            "TypoScript Explained",
+            "14.3",
+            "UserTsconfig/Auth.html#user-auth-mfa-example",
+            "Examples"
+        ],
+        "case": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#cobj-case",
+            "CASE"
+        ],
+        "properties": [
+            "TypoScript Explained",
+            "14.3",
+            "UserTsconfig/Setup.html#user-setup-properties",
+            "Properties"
+        ],
+        "array-of-cobjects": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#cobj-case-array-of-cobjects",
+            "array of cObjects"
+        ],
+        "cache": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/UserAndUserInt/Index.html#cobj-user-cache",
+            "cache"
+        ],
+        "default": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#cobj-case-default",
+            "default"
+        ],
+        "if": [
+            "TypoScript Explained",
+            "14.3",
+            "Guide/TypoScriptFunctions/If/Index.html#guide-function-if",
+            "if"
+        ],
+        "key": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Cache.html#cache-key",
+            "key"
+        ],
+        "1-2-3-4": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/Properties.html#gifbuilder-properties-array",
+            "1,2,3,4..."
+        ],
+        "wrap": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Wrap.html#data-type-wrap",
+            "Wrap"
+        ],
+        "content": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Content/Index.html#cobj-content",
+            "CONTENT"
+        ],
+        "select": [
+            "TypoScript Explained",
+            "14.3",
+            "Guide/TypoScriptFunctions/Select/Index.html#guide-function-select",
+            "select"
+        ],
+        "table": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceMain.html#pagetcemain-table-table-name",
+            "table"
+        ],
+        "extensionname": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Extbaseplugin/Index.html#cobj-extbaseplugin-extensionname",
+            "extensionName"
+        ],
+        "pluginname": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Extbaseplugin/Index.html#cobj-extbaseplugin-pluginname",
+            "pluginName"
+        ],
+        "files": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Files/Index.html#cobj-files",
+            "FILES"
+        ],
+        "references": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Files/Index.html#cobj-files-references",
+            "references"
+        ],
+        "folders": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Files/Index.html#cobj-files-folders",
+            "folders"
+        ],
+        "fluidtemplate": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Fluidtemplate/Index.html#cobj-template",
+            "FLUIDTEMPLATE"
+        ],
+        "file": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Image/Index.html#gifbuilder-image-file",
+            "file"
+        ],
+        "format": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/Properties.html#gifbuilder-properties-format",
+            "format"
+        ],
+        "layoutrootpath": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Fluidtemplate/Index.html#cobj-fluidtemplate-properties-layoutrootpath",
+            "layoutRootPath"
+        ],
+        "partialrootpath": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Fluidtemplate/Index.html#cobj-fluidtemplate-properties-partialrootpath",
+            "partialRootPath"
+        ],
+        "settings": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Module.html#tlo-module-properties-settings",
+            "settings"
+        ],
+        "template": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Fluidtemplate/Index.html#cobj-fluidtemplate-properties-template",
+            "template"
+        ],
+        "templatename": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Fluidtemplate/Index.html#cobj-fluidtemplate-properties-templatename",
+            "templateName"
+        ],
+        "templaterootpath": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Fluidtemplate/Index.html#cobj-fluidtemplate-properties-templaterootpath",
+            "templateRootPath"
+        ],
+        "variables": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Fluidtemplate/Index.html#cobj-fluidtemplate-properties-variables",
+            "variables"
+        ],
+        "tmenu-1": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Hmenu/Tmenu/Index.html#tmenu",
+            "TMENU"
+        ],
+        "before": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text-nicetext-before",
+            "before"
+        ],
+        "after": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text-nicetext-after",
+            "after"
+        ],
+        "linkwrap": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Image/Index.html#cobj-image-linkwrap",
+            "linkWrap"
+        ],
+        "additionalparams": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-additionalparams",
+            "additionalParams"
+        ],
+        "image": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Image/Index.html#gifbuilder-image",
+            "IMAGE"
+        ],
+        "params": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Scale/Index.html#gifbuilder-scale-params",
+            "params"
+        ],
+        "layout": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Image/Index.html#cobj-image-layout",
+            "layout"
+        ],
+        "records": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Records/Index.html#cobj-records-introduction",
+            "RECORDS"
+        ],
+        "source": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Records/Index.html#cobj-records-properties-source",
+            "source"
+        ],
+        "categories": [
+            "TypoScript Explained",
+            "14.3",
+            "DataProcessing/MenuProcessor/Categories.html#hmenu-special-categories",
+            "Categories"
+        ],
+        "tables": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Records/Index.html#cobj-records-properties-tables",
+            "tables"
+        ],
+        "width": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Scale/Index.html#gifbuilder-scale-width",
+            "width"
+        ],
+        "height": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Scale/Index.html#gifbuilder-scale-height",
+            "height"
+        ],
+        "src": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Svg/Index.html#cobj-svg-src",
+            "src"
+        ],
+        "text": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text",
+            "TEXT"
+        ],
+        "value": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/If.html#if-value",
+            "value"
+        ],
+        "options": [
+            "TypoScript Explained",
+            "14.3",
+            "UserTsconfig/Options.html#useroptions",
+            "options"
+        ],
+        "tags": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Parsefunc.html#parsefunc-tags",
+            "tags"
+        ],
+        "cobj": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-cobj-example",
+            "cObj"
+        ],
+        "context": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-context",
+            "context"
+        ],
+        "current": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-current",
+            "current"
+        ],
+        "db": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-db",
+            "DB"
+        ],
+        "debug": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-debug",
+            "debug"
+        ],
+        "field": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-field",
+            "field"
+        ],
+        "global": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-global",
+            "global"
+        ],
+        "gp": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-gp",
+            "GP"
+        ],
+        "level": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-level",
+            "level"
+        ],
+        "parameters": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Data.html#data-type-gettext-parameters",
+            "parameters"
+        ],
+        "path": [
+            "TypoScript Explained",
+            "14.3",
+            "Syntax/StringFormats/Index.html#data-type-path",
+            "path"
+        ],
+        "register": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSetting/Register.html#using-setting-register",
+            "Register"
+        ],
+        "allowtags": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/Rte.html#rte-proc-allowtags",
+            "allowTags"
+        ],
+        "protect": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/HtmlparserTags.html#htmlparser-tags-protect",
+            "protect"
+        ],
+        "if-1": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/If.html#if",
+            "if"
+        ],
+        "contains": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/If.html#if-contains",
+            "contains"
+        ],
+        "equals": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/If.html#if-equals",
+            "equals"
+        ],
+        "negate": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/If.html#if-negate",
+            "negate"
+        ],
+        "enable": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Imagelinkwrap.html#imagelinkwrap-enable",
+            "enable"
+        ],
+        "title": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-title",
+            "title"
+        ],
+        "target": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-target",
+            "target"
+        ],
+        "typolink": [
+            "TypoScript Explained",
+            "14.3",
+            "Guide/TypoScriptFunctions/Typolink/Index.html#guide-function-typolink",
+            "typolink"
+        ],
+        "implementation": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Imagelinkwrap.html#imagelinkwrap-implementation",
+            "Implementation"
+        ],
+        "ext": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Imgresource.html#imgresource-ext",
+            "ext"
+        ],
+        "frame": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Imgresource.html#imgresource-frame",
+            "frame"
+        ],
+        "import": [
+            "TypoScript Explained",
+            "14.3",
+            "Syntax/FileImports/Index.html#typoscript-syntax-import",
+            "@import"
+        ],
+        "maxw": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Imgresource.html#imgresource-maxw",
+            "maxW"
+        ],
+        "http": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Makelinks.html#makelinks-http",
+            "http"
+        ],
+        "mailto": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Makelinks.html#makelinks-mailto",
+            "mailto"
+        ],
+        "introduction": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/OptionSplit.html#optionsplit-intro",
+            "Introduction"
+        ],
+        "php-code": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/OptionSplit.html#optionsplit-php-code",
+            "PHP-Code"
+        ],
+        "more": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/OptionSplit.html#optionsplit-more",
+            "More"
+        ],
+        "short": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Parsefunc.html#parsefunc-short",
+            "short"
+        ],
+        "search": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Replacement.html#replacement-search",
+            "search"
+        ],
+        "replace": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Replacement.html#replacement-replace",
+            "replace"
+        ],
+        "recursive": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Select.html#select-recursive",
+            "recursive"
+        ],
+        "max": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Split.html#split-max",
+            "max"
+        ],
+        "where": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Select.html#select-where",
+            "where"
+        ],
+        "markers": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Select.html#select-markers",
+            "markers"
+        ],
+        "token": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Split.html#split-token",
+            "token"
+        ],
+        "min": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Split.html#split-min",
+            "min"
+        ],
+        "type": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/Mod/WebView.html#pagewebview-type",
+            "type"
+        ],
+        "exttarget": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-exttarget",
+            "extTarget"
+        ],
+        "filetarget": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-filetarget",
+            "fileTarget"
+        ],
+        "language": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-language",
+            "language"
+        ],
+        "addquerystring": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-addquerystring",
+            "addQueryString"
+        ],
+        "parameter": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-parameter",
+            "parameter"
+        ],
+        "section": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-section",
+            "section"
+        ],
+        "page-uid": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-handler-page-uid",
+            "page.uid"
+        ],
+        "page-type": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-handler-page-type",
+            "page.type"
+        ],
+        "file-identifier": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-handler-file-identifier",
+            "file.identifier"
+        ],
+        "folder": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-handler-folder",
+            "folder"
+        ],
+        "email": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-handler-email",
+            "email"
+        ],
+        "url": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-handler-url",
+            "url"
+        ],
+        "record": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Typolink.html#typolink-handler-record",
+            "record"
+        ],
+        "setup": [
+            "TypoScript Explained",
+            "14.3",
+            "UserTsconfig/Setup.html#user-setup",
+            "setup"
+        ],
+        "result": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/Examples.html#gifbuilder-examples-creating-shadows-images-variant-1-result",
+            "Result"
+        ],
+        "constants": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSetting/Constants.html#typoscript-syntax-constants",
+            "Constants"
+        ],
+        "gifbuilder-1": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/Index.html#gifbuilder-toc",
+            "GIFBUILDER"
+        ],
+        "adjust": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Adjust/Index.html#gifbuilder-adjust",
+            "ADJUST"
+        ],
+        "box": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Box/Index.html#gifbuilder-box",
+            "BOX"
+        ],
+        "align": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text-align",
+            "align"
+        ],
+        "color": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Shadow/Index.html#gifbuilder-shadow-color",
+            "color"
+        ],
+        "effect": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Effect/Index.html#gifbuilder-effect",
+            "EFFECT"
+        ],
+        "syntax": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Effect/Index.html#gifbuilder-effect-syntax",
+            "Syntax"
+        ],
+        "colors": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Effect/Index.html#gifbuilder-effect-colors",
+            "colors"
+        ],
+        "edge": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Effect/Index.html#gifbuilder-effect-edge",
+            "edge"
+        ],
+        "thickness": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Outline/Index.html#gifbuilder-outline-thickness",
+            "thickness"
+        ],
+        "shadow": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text-shadow",
+            "shadow"
+        ],
+        "angle": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text-angle",
+            "angle"
+        ],
+        "hide": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text-hide",
+            "hide"
+        ],
+        "spacing": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text-spacing",
+            "spacing"
+        ],
+        "array": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/Properties.html#gifbuilder-properties-charrangemap-array",
+            "[array]"
+        ],
+        "text-1": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text-text",
+            "text"
+        ],
+        "clear": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Workarea/Index.html#gifbuilder-workarea-clear",
+            "clear"
+        ],
+        "set": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/ObjectNames/Workarea/Index.html#gifbuilder-workarea-set",
+            "set"
+        ],
+        "speed": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/Properties.html#gifbuilder-properties-speed",
+            "speed"
+        ],
+        "xy": [
+            "TypoScript Explained",
+            "14.3",
+            "Gifbuilder/Properties.html#gifbuilder-properties-xy",
+            "XY"
+        ],
+        "troubleshooting": [
+            "TypoScript Explained",
+            "14.3",
+            "Guide/Overview/Index.html#guide-troubleshooting",
+            "Troubleshooting"
+        ],
+        "split": [
+            "TypoScript Explained",
+            "14.3",
+            "Guide/TypoScriptFunctions/Split/Index.html#guide-function-split",
+            "split"
+        ],
+        "cobject": [
+            "TypoScript Explained",
+            "14.3",
+            "Guide/TypoScriptFunctions/StdWrap/Index.html#guide-stdwrap-cobject",
+            "cObject"
+        ],
+        "frontend-typoscript": [
+            "TypoScript Explained",
+            "14.3",
+            "Introduction/Index.html#introduction-frontend-typoscript",
+            "Frontend TypoScript"
+        ],
+        "page-tsconfig": [
+            "TypoScript Explained",
+            "14.3",
+            "Introduction/Index.html#about-page-tsconfig",
+            "Page TSconfig"
+        ],
+        "user-tsconfig": [
+            "TypoScript Explained",
+            "14.3",
+            "Introduction/Index.html#about-user-tsconfig",
+            "User TSconfig"
+        ],
+        "mod": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/Mod.html#pagemod",
+            "mod"
+        ],
+        "shared": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/Mod/Shared.html#mod-shared",
+            "SHARED"
+        ],
+        "wizards": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/Mod/Wizards.html#page-mod-wizard",
+            "wizards"
+        ],
+        "rte": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/Rte.html#pagetsrte",
+            "RTE"
+        ],
+        "disabled": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceForm.html#tceform-disabled",
+            "disabled"
+        ],
+        "buttons": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/Rte.html#page-ts-rte-properties-buttons",
+            "buttons"
+        ],
+        "proc": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/Rte.html#rte-config-proc",
+            "proc"
+        ],
+        "page-tsconfig-id": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceForm.html#tceform-page-tsconfig-id",
+            "PAGE_TSCONFIG_ID"
+        ],
+        "config": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceForm.html#pagetsconfigtceformconfig",
+            "config"
+        ],
+        "description": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceForm.html#tceform-description",
+            "description"
+        ],
+        "label": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceForm.html#tceform-label",
+            "label"
+        ],
+        "suggest": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceForm.html#pagetceformsuggest",
+            "suggest"
+        ],
+        "group": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceMain.html#pagetcemain-permissions-group",
+            "group"
+        ],
+        "user": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceMain.html#pagetcemain-permissions-actions",
+            "user"
+        ],
+        "preview": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/TceMain.html#pagetcemain-preview",
+            "preview"
+        ],
+        "templates": [
+            "TypoScript Explained",
+            "14.3",
+            "PageTsconfig/Templates.html#pagetemplates",
+            "templates"
+        ],
+        "tx": [
+            "TypoScript Explained",
+            "14.3",
+            "UserTsconfig/Tx.html#user-tx",
+            "tx_*"
+        ],
+        "code-blocks": [
+            "TypoScript Explained",
+            "14.3",
+            "Syntax/CodeBlocks/Index.html#typoscript-syntax-syntax-curly-brackets",
+            "Code blocks"
+        ],
+        "comments": [
+            "TypoScript Explained",
+            "14.3",
+            "Syntax/Comments/Index.html#typoscript-syntax-syntax-comment-blocks",
+            "Comments"
+        ],
+        "identifiers": [
+            "TypoScript Explained",
+            "14.3",
+            "Syntax/Identifiers/Index.html#typoscript-syntax-syntax-object-path",
+            "Identifiers"
+        ],
+        "integer": [
+            "TypoScript Explained",
+            "14.3",
+            "Syntax/StringFormats/Index.html#data-type-integer",
+            "integer"
+        ],
+        "resource": [
+            "TypoScript Explained",
+            "14.3",
+            "Syntax/StringFormats/Index.html#data-type-resource",
+            "resource"
+        ],
+        "string": [
+            "TypoScript Explained",
+            "14.3",
+            "Syntax/StringFormats/Index.html#data-type-string",
+            "string"
+        ],
+        "module": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Module.html#tlo-module",
+            "module"
+        ],
+        "lib": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Other.html#tlo-lib",
+            "lib"
+        ],
+        "styles": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Other.html#tlo-styles",
+            "styles"
+        ],
+        "tt-content": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Other.html#tlo-tt-content",
+            "tt_content"
+        ],
+        "resources": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Other.html#tlo-resources",
+            "resources"
+        ],
+        "guidelines": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Page/Index.html#page-guidelines",
+            "Guidelines"
+        ],
+        "auth": [
+            "TypoScript Explained",
+            "14.3",
+            "UserTsconfig/Auth.html#user-auth",
+            "auth"
+        ],
+        "fluid": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSetting/AccessTypoScriptWithExtensions.html#extdev-access-typoscript-fluid",
+            "Fluid"
+        ],
+        "php-api": [
+            "TypoScript Explained",
+            "14.3",
+            "UsingSettingTSconfig/PhpApi.html#phpapi",
+            "PHP API"
+        ]
+    },
+    "std:confval": {
+        "condition-frontend": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#confval-condition-frontend",
+            "frontend"
+        ],
+        "condition-frontend-user": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#confval-condition-frontend-user",
+            "frontend.user"
+        ],
+        "condition-frontend-user-isloggedin": [
+            "TypoScript Explained",
+            "14.3",
+            "Conditions/Index.html#confval-condition-frontend-user-isloggedin",
+            "frontend.user.isLoggedIn"
+        ],
+        "case-array": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#confval-case-array",
+            "array of cObjects"
+        ],
+        "case-cache": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#confval-case-cache",
+            "cache"
+        ],
+        "case-default": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#confval-case-default",
+            "default"
+        ],
+        "case-if": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#confval-case-if",
+            "if"
+        ],
+        "case-key": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/Case/Index.html#confval-case-key",
+            "key"
+        ],
+        "coa-array": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/CoaAndCoaInt/Index.html#confval-coa-array",
+            "1,2,3,4..."
+        ],
+        "coa-cache": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/CoaAndCoaInt/Index.html#confval-coa-cache",
+            "cache"
+        ],
+        "coa-if": [
+            "TypoScript Explained",
+            "14.3",
+            "ContentObjects/CoaAndCoaInt/Index.html#confval-coa-if",
+            "if"
+        ],
+        "select-where": [
+            "TypoScript Explained",
+            "14.3",
+            "Functions/Select.html#confval-select-where",
+            "where"
+        ],
+        "config-filetarget": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Config.html#confval-config-filetarget",
+            "fileTarget"
+        ],
+        "config-spamprotectemailaddresses": [
+            "TypoScript Explained",
+            "14.3",
+            "TopLevelObjects/Config.html#confval-config-spamprotectemailaddresses",
+            "spamProtectEmailAddresses"
+        ]
+    },
+    "std:confval-menu": {
+        "auth": [
+            "TypoScript Explained",
+            "14.3",
+            "UserTsconfig/Auth.html#confval-menu-auth",
+            ""
+        ]
+    }
+}

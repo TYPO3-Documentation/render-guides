@@ -42,6 +42,15 @@ and copy `temp/` over `expected/` — never hand-edit `expected/`. Cases under
 menu shows up there; the others compare only the content region between
 markers. A `temp/` directory is gitignored.
 
+**Integration tests do not use the network.** What docs.typo3.org,
+api.typo3.org and Packagist answer is recorded in
+`tests/Integration/http-fixtures/<host>/<path>`, and an address without a
+recording is answered as not found. A new fixture that links to another
+manual, names a PHP class or a Composer package needs its answers recorded:
+run the tests with `RECORD_HTTP=1`, then cut the recordings down with
+`php tests/Integration/Http/trim-recordings.php`, and check that the tests
+pass with the network off (`docker run --network none …`).
+
 **`--config` is not optional.** `vendor/bin/guides` resolves the project
 configuration from the working directory, not from the input path. Rendering a
 manual whose `guides.xml` lives in a subdirectory without `--config=<that dir>`

@@ -1,0 +1,613 @@
+{
+    "std:doc": {
+        "Index": [
+            "How to Document",
+            "main",
+            "Index.html",
+            "How to Document TYPO3"
+        ],
+        "Sitemap": [
+            "How to Document",
+            "main",
+            "Sitemap.html",
+            "Sitemap"
+        ]
+    },
+    "std:label": {
+        "editorconfig": [
+            "How to Document",
+            "main",
+            "Advanced/CodingGuidelines.html#editorconfig",
+            ".editorconfig"
+        ],
+        "supported-formats": [
+            "How to Document",
+            "main",
+            "Advanced/Format.html#supported-formats",
+            "Formats (reST, Markdown)"
+        ],
+        "advanced": [
+            "How to Document",
+            "main",
+            "Advanced/Index.html#advanced",
+            "Advanced documentation topics"
+        ],
+        "licenses": [
+            "How to Document",
+            "main",
+            "Advanced/Licenses.html#licenses",
+            "Licenses"
+        ],
+        "redirects": [
+            "How to Document",
+            "main",
+            "Advanced/Redirects.html#redirects",
+            "Redirecting renamed or deleted pages"
+        ],
+        "about": [
+            "How to Document",
+            "main",
+            "Basics/BasicPrinciples.html#about",
+            "Basic principles"
+        ],
+        "help": [
+            "How to Document",
+            "main",
+            "Basics/BasicPrinciples.html#help",
+            "Help and support"
+        ],
+        "slack": [
+            "How to Document",
+            "main",
+            "Basics/BasicPrinciples.html#slack",
+            "Help and support"
+        ],
+        "migrate": [
+            "How to Document",
+            "main",
+            "Howto/Migration/Index.html#migrate",
+            "Migration: from Sphinx to PHP-based rendering"
+        ],
+        "start": [
+            "How to Document",
+            "main",
+            "Index.html#start",
+            "How to Document TYPO3"
+        ],
+        "changelog-feature": [
+            "How to Document",
+            "main",
+            "Maintainers/Changelog.html#changelog-feature",
+            "New features in the Changelog"
+        ],
+        "index-rst": [
+            "How to Document",
+            "main",
+            "Reference/FileStructure.html#index-rst",
+            "Start page: Documentation/Index.rst"
+        ],
+        "includes-rst-txt": [
+            "How to Document",
+            "main",
+            "Reference/FileStructure.html#includes-rst-txt",
+            "Optional: Documentation/Includes.rst.txt"
+        ],
+        "guides-xml": [
+            "How to Document",
+            "main",
+            "Reference/GuidesXml.html#guides-xml",
+            "Configuration of the rendering - guides.xml"
+        ],
+        "rendering": [
+            "How to Document",
+            "main",
+            "Reference/RenderingContainer.html#rendering",
+            "Rendering container"
+        ],
+        "rest-confval": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Code/Confval.html#rest-confval",
+            "Configuration values (confval)"
+        ],
+        "inline-code": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Code/InlineCode.html#inline-code",
+            "Inline code with or without infoboxes"
+        ],
+        "rest-cards": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Cards.html#rest-cards",
+            "Cards"
+        ],
+        "rest-content": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Index.html#rest-content",
+            "Directives (reST content elements)"
+        ],
+        "rest-tabs": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Tabs.html#rest-tabs",
+            "Tabs"
+        ],
+        "viewhelper": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/ViewHelper.html#viewhelper",
+            "Display Fluid ViewHelpers in reStructuredText"
+        ],
+        "youtube": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/YoutubeVideos.html#youtube",
+            "Embed YouTube videos"
+        ],
+        "images": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Graphics/Images.html#images",
+            "Using images in reST documentation"
+        ],
+        "text-roles": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/InlineMarkup/TextRoles/Index.html#text-roles",
+            "Supported named inline text roles"
+        ],
+        "permalinks": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Links/Documentation.html#permalinks",
+            "Permalinks"
+        ],
+        "link-text": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Links/Documentation.html#link-text",
+            "Always give a link text"
+        ],
+        "check-link-text": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Links/Documentation.html#check-link-text",
+            "Let the rendering check the link texts"
+        ],
+        "check-link-text-page": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Links/Documentation.html#check-link-text-page",
+            "Switching the check for a single page"
+        ],
+        "external-links": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Links/ExternalLinks.html#external-links",
+            "External links"
+        ],
+        "how-to-document-hyperlinks": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Links/Index.html#how-to-document-hyperlinks",
+            "Links in ReStructured text"
+        ],
+        "links": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Links/Index.html#links",
+            "Links in ReStructured text"
+        ],
+        "content-menu": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Menus/ContentMenu.html#content-menu",
+            "Content menu"
+        ],
+        "toctree": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Menus/MenuHierarchy.html#toctree",
+            "Main menu of a TYPO3 documentation manual"
+        ],
+        "navigation-title": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Menus/NavigationTitle.html#navigation-title",
+            "Navigation title: a page title displayed in menus"
+        ],
+        "sitemap": [
+            "How to Document",
+            "main",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ]
+    },
+    "std:title": {
+        "encoding": [
+            "How to Document",
+            "main",
+            "Advanced/CodingGuidelines.html#format-rest-cgl-basic-formatting-rules-encoding",
+            "Encoding"
+        ],
+        "format": [
+            "How to Document",
+            "main",
+            "Advanced/CommitMessages.html#commit-messages-format",
+            "Format"
+        ],
+        "rest": [
+            "How to Document",
+            "main",
+            "Advanced/Format.html#formats-rest",
+            "reST"
+        ],
+        "markdown": [
+            "How to Document",
+            "main",
+            "Advanced/Format.html#formats-markdown",
+            "Markdown"
+        ],
+        "terms": [
+            "How to Document",
+            "main",
+            "Advanced/Glossary.html#preferred-terms-terms",
+            "Terms"
+        ],
+        "project": [
+            "How to Document",
+            "main",
+            "Advanced/ReadmeFile.html#readme-rst-project",
+            "Project"
+        ],
+        "rendering": [
+            "How to Document",
+            "main",
+            "Basics/BasicPrinciples.html#whats-rendering",
+            "Rendering"
+        ],
+        "code-blocks": [
+            "How to Document",
+            "main",
+            "Basics/RstCheatSheet.html#rest-cheat-sheet-code-blocks",
+            "Code blocks"
+        ],
+        "comments": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Comments.html#writing-rest-comments",
+            "Comments"
+        ],
+        "admonitions": [
+            "How to Document",
+            "main",
+            "Basics/MdCheatSheet.html#md-cheat-sheet-admonitions",
+            "Admonitions"
+        ],
+        "more-information": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Admonitions.html#rest-admonitions-information",
+            "More information"
+        ],
+        "how-to": [
+            "How to Document",
+            "main",
+            "Howto/Index.html#how-to",
+            "How to"
+        ],
+        "github": [
+            "How to Document",
+            "main",
+            "Howto/WritingDocForExtension/Webhook.html#webhook-github",
+            "GitHub"
+        ],
+        "examples": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Comments.html#writing-rest-comments-examples",
+            "Examples"
+        ],
+        "literalinclude": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Code/Codeblocks.html#writing-rest-codeblocks-with-syntax-highlighting-literalinclude",
+            "Literalinclude"
+        ],
+        "confval-menu": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Code/Confval.html#rest-confval-confval-menu",
+            "Confval menu"
+        ],
+        "php-domain": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Code/Phpdomain.html#rest-phpdomain",
+            "PHP domain"
+        ],
+        "namespaces": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Code/Phpdomain.html#rest-phpdomain-namespaces",
+            "Namespaces"
+        ],
+        "admonitions-tip-note-warning-see-also-etc": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Admonitions.html#rest-admonitions",
+            "Admonitions: tip, note, warning, see also,  etc"
+        ],
+        "see-also": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Admonitions.html#rest-admonitions-examples-see",
+            "See also"
+        ],
+        "note": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Admonitions.html#rest-admonitions-examples-note",
+            "Note"
+        ],
+        "tip": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Admonitions.html#rest-admonitions-examples-tip",
+            "Tip"
+        ],
+        "warning": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Admonitions.html#rest-admonitions-examples-warning",
+            "Warning"
+        ],
+        "attention": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Admonitions.html#rest-admonitions-examples-attention",
+            "Attention"
+        ],
+        "cards": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Cards.html#rest-cards",
+            "Cards"
+        ],
+        "simple-cards": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Cards.html#rest-cards-simple-cards",
+            "Simple cards"
+        ],
+        "cards-with-buttons-in-the-footer": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Cards.html#rest-cards-cards-buttons-footer",
+            "Cards with buttons in the footer"
+        ],
+        "code": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/SpecialCharacters.html#reference-re-structured-text-content-special-characters-u-2420-code",
+            "Code"
+        ],
+        "result": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/SpecialCharacters.html#reference-re-structured-text-content-special-characters-u-2420-result",
+            "Result"
+        ],
+        "tables": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Tables.html#rest-tables",
+            "Tables"
+        ],
+        "grid-table": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Tables.html#rest-tables-grid-table",
+            "Grid table"
+        ],
+        "simple-table": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Tables.html#rest-tables-simple-table",
+            "Simple table"
+        ],
+        "csv-table": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Tables.html#rest-tables-csv-table",
+            "CSV table"
+        ],
+        "t3-field-list-table-tables": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Tables.html#rest-tables-t3-field-list",
+            "t3-field-list-table tables"
+        ],
+        "tabs": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Tabs.html#rest-tabs",
+            "Tabs"
+        ],
+        "versionadded": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Versions.html#rest-versions-versionadded",
+            "Versionadded"
+        ],
+        "deprecated": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Versions.html#rest-versions-deprecated",
+            "Deprecated"
+        ],
+        "versionchanged": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Content/Versions.html#rest-versions-versionchanged",
+            "Versionchanged"
+        ],
+        "align-option": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Graphics/ImageAlignment.html#image-float-align-option",
+            "Align option"
+        ],
+        "bold": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/InlineMarkup/InlineMarkup/Index.html#rest-bold",
+            "Bold"
+        ],
+        "abbr": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/InlineMarkup/TextRoles/Index.html#text-roles-abbr",
+            ":abbr:"
+        ],
+        "path": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/InlineMarkup/TextRoles/Index.html#text-roles-path",
+            ":path:"
+        ],
+        "file": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/InlineMarkup/TextRoles/Index.html#text-roles-file",
+            ":file:"
+        ],
+        "issue": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/InlineMarkup/TextRoles/Index.html#text-roles-issue",
+            ":issue:"
+        ],
+        "styled-numbered-sections-bignums": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/BignumLists.html#styled-numbered-lists",
+            "Styled numbered sections (bignums)"
+        ],
+        "with-xxl-big-numbers": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/BignumLists.html#big-nums-xxl",
+            "With XXL big numbers"
+        ],
+        "with-big-numbers": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/BignumLists.html#big-nums",
+            "With big numbers"
+        ],
+        "with-big-numbers-tip": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/BignumLists.html#styled-numbered-lists-big-numbers-tip",
+            "With big numbers - tip"
+        ],
+        "nested-bignums-xxl-bignums-normally-styled": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/BignumLists.html#styled-numbered-lists-nested-bignums-xxl",
+            "Nested bignums-xxl > bignums > normally styled"
+        ],
+        "directory-tree": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/DirectoryTree.html#writing-rest-directory-tree",
+            "Directory tree"
+        ],
+        "properties": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Menus/IncludingFiles.html#include-properties",
+            "Properties"
+        ],
+        "level": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/DirectoryTree.html#writing-rest-directory-tree-properties-level",
+            "level"
+        ],
+        "show-file-icons": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/DirectoryTree.html#writing-rest-directory-tree-properties-show-file-icons",
+            "show-file-icons"
+        ],
+        "lists": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/Index.html#rest-lists",
+            "Lists"
+        ],
+        "horizbuttons-striking-m": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/ListItemsAsButtons.html#list-items-as-buttons-available-styles-horizbuttons-striking-m",
+            "horizbuttons-striking-m"
+        ],
+        "sidebar": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Menus/Sidebar.html#rest-sidebar",
+            "Sidebar"
+        ]
+    },
+    "std:confval-menu": {},
+    "std:confval": {
+        "guides": [
+            "How to Document",
+            "main",
+            "Reference/GuidesXml.html#confval-guides",
+            "<guides>"
+        ],
+        "inventory": [
+            "How to Document",
+            "main",
+            "Reference/GuidesXml.html#confval-inventory",
+            "<inventory>"
+        ],
+        "project": [
+            "How to Document",
+            "main",
+            "Reference/GuidesXml.html#confval-project",
+            "<project>"
+        ],
+        "extension": [
+            "How to Document",
+            "main",
+            "Reference/GuidesXml.html#confval-extension",
+            "<extension>"
+        ],
+        "confval-1": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Code/Confval.html#confval-confval-1",
+            "confval-1"
+        ],
+        "directory-tree-level": [
+            "How to Document",
+            "main",
+            "Reference/ReStructuredText/Lists/DirectoryTree.html#confval-directory-tree-level",
+            "level"
+        ]
+    },
+    "php:class": {},
+    "php:method": {},
+    "php:const": {},
+    "php:interface": {},
+    "php:property": {},
+    "php:exception": {},
+    "php:trait": {},
+    "std:accordion": {}
+}

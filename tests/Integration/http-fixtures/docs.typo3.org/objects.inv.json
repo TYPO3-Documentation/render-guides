@@ -1,0 +1,86 @@
+{
+    "std:doc": {
+        "404": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "404.html",
+            "Page not found (404)"
+        ],
+        "Index": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Index.html",
+            "Welcome to the official TYPO3 Documentation"
+        ],
+        "mainMenu.json": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "mainMenu.json.html",
+            "<Unknown>"
+        ]
+    },
+    "std:label": {
+        "resources": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Home/Overview.html#resources",
+            "Official documentation resources"
+        ],
+        "start": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Index.html#start",
+            "Welcome to the official TYPO3 Documentation"
+        ],
+        "guides": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Index.html#guides",
+            "Welcome to the official TYPO3 Documentation"
+        ],
+        "examples": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Index.html#examples",
+            "Welcome to the official TYPO3 Documentation"
+        ],
+        "extensions": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Index.html#extensions",
+            "Welcome to the official TYPO3 Documentation"
+        ],
+        "getting-started": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Index.html#getting-started",
+            "Welcome to the official TYPO3 Documentation"
+        ],
+        "system-extensions": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Index.html#System-Extensions",
+            "Welcome to the official TYPO3 Documentation"
+        ],
+        "references": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Index.html#references",
+            "References"
+        ]
+    },
+    "std:title": {
+        "contact": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "404.html#contact",
+            "Contact"
+        ],
+        "typo3-documentation": [
+            "Homepage of docs.typo3.org",
+            "main",
+            "Home/WikiLanding.html#wikilanding",
+            "TYPO3 Documentation"
+        ]
+    }
+}

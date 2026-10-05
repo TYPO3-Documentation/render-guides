@@ -1,0 +1,279 @@
+{
+    "std:doc": {
+        "About": [
+            "Getting Started",
+            "11.5",
+            "About.html",
+            "About This Tutorial"
+        ],
+        "Index": [
+            "Getting Started",
+            "11.5",
+            "Index.html",
+            "TYPO3 - Getting Started Tutorial"
+        ],
+        "Sitemap": [
+            "Getting Started",
+            "11.5",
+            "Sitemap.html",
+            "Sitemap"
+        ]
+    },
+    "std:label": {
+        "about": [
+            "Getting Started",
+            "11.5",
+            "About.html#about",
+            "About This Tutorial"
+        ],
+        "concepts": [
+            "Getting Started",
+            "11.5",
+            "Concepts/Index.html#concepts",
+            "TYPO3 Concepts"
+        ],
+        "start": [
+            "Getting Started",
+            "11.5",
+            "Index.html#start",
+            "TYPO3 - Getting Started Tutorial"
+        ],
+        "install": [
+            "Getting Started",
+            "11.5",
+            "Installation/Install.html#install",
+            "Installing TYPO3"
+        ],
+        "ensure-safety": [
+            "Getting Started",
+            "11.5",
+            "PermissionsManagement/GeneralRecommendations/Index.html#ensure-safety",
+            "How to ensure safety"
+        ],
+        "setup": [
+            "Getting Started",
+            "11.5",
+            "Setup/Index.html#setup",
+            "Setup"
+        ],
+        "site-configuration": [
+            "Getting Started",
+            "11.5",
+            "SiteManagement/Index.html#site-configuration",
+            "Create a new site configuration"
+        ],
+        "system-requirements": [
+            "Getting Started",
+            "11.5",
+            "SystemRequirements/Index.html#system-requirements",
+            "System Requirements"
+        ],
+        "apache": [
+            "Getting Started",
+            "11.5",
+            "SystemRequirements/Index.html#apache",
+            "-"
+        ],
+        "database": [
+            "Getting Started",
+            "11.5",
+            "SystemRequirements/Index.html#database",
+            "Required Database Privileges"
+        ],
+        "php": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/PHP.html#php",
+            "PHP"
+        ],
+        "typoscript": [
+            "Getting Started",
+            "11.5",
+            "TypoScript/Index.html#typoscript",
+            "A minimal page created by pure TypoScript"
+        ],
+        "admin-user": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/BackendPrivileges/Index.html#admin-user",
+            "Admin"
+        ],
+        "general": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/GroupPermissions/Index.html#general",
+            "General"
+        ],
+        "modules": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/GroupPermissions/Index.html#modules",
+            "Modules"
+        ],
+        "tables": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/GroupPermissions/Index.html#tables",
+            "Tables"
+        ],
+        "groups": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/Groups/Index.html#groups",
+            "Groups"
+        ]
+    },
+    "std:title": {
+        "backend": [
+            "Getting Started",
+            "11.5",
+            "Concepts/Index.html#backend",
+            "Backend"
+        ],
+        "extensions": [
+            "Getting Started",
+            "11.5",
+            "Concepts/Index.html#extensions",
+            "Extensions"
+        ],
+        "frontend": [
+            "Getting Started",
+            "11.5",
+            "Concepts/Index.html#frontend",
+            "Frontend"
+        ],
+        "installation": [
+            "Getting Started",
+            "11.5",
+            "Installation/Index.html#installation_index",
+            "Installation"
+        ],
+        "introduction": [
+            "Getting Started",
+            "11.5",
+            "PermissionsManagement/Index.html#introduction",
+            "Introduction"
+        ],
+        "languages": [
+            "Getting Started",
+            "11.5",
+            "Setup/SiteRecords.html#languages",
+            "Languages"
+        ],
+        "sitemap": [
+            "Getting Started",
+            "11.5",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ],
+        "php": [
+            "Getting Started",
+            "11.5",
+            "SystemRequirements/Index.html#systemrequirements_php",
+            "PHP"
+        ],
+        "configure": [
+            "Getting Started",
+            "11.5",
+            "SystemRequirements/Index.html#configure",
+            "Configure"
+        ],
+        "web-server": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/WebServer.html#webserver",
+            "Web Server"
+        ],
+        "database": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/Database.html#troubleshooting_database",
+            "Database"
+        ],
+        "composer": [
+            "Getting Started",
+            "11.5",
+            "SystemRequirements/Index.html#composer",
+            "Composer"
+        ],
+        "mysql": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/Database.html#mysql",
+            "MySQL"
+        ],
+        "troubleshooting": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/Index.html#troubleshooting_index",
+            "Troubleshooting"
+        ],
+        "log": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/SystemModules.html#system-modules-log",
+            "Log"
+        ],
+        "configuration": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/SystemModules.html#system-modules-configuration",
+            "Configuration"
+        ],
+        "typo3": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/TYPO3.html#troubleshooting_typo3",
+            "TYPO3"
+        ],
+        "caching": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/TYPO3.html#troubleshooting-caching",
+            "Caching"
+        ],
+        "apache": [
+            "Getting Started",
+            "11.5",
+            "Troubleshooting/WebServer.html#apache",
+            "Apache"
+        ],
+        "admin": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/BackendPrivileges/Index.html#admin-user",
+            "Admin"
+        ],
+        "next": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/BackendUsers/CreateDefaultEditors.html#next",
+            "Next"
+        ],
+        "advanced-editor": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/BackendUsers/Index.html#user-management-advanced-editor",
+            "\"advanced_editor\""
+        ],
+        "general": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/GroupPermissions/Index.html#general",
+            "General"
+        ],
+        "modules": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/GroupPermissions/Index.html#modules",
+            "Modules"
+        ],
+        "tables": [
+            "Getting Started",
+            "11.5",
+            "UserManagement/GroupPermissions/Index.html#tables-modify",
+            "Tables"
+        ]
+    },
+    "std:confval": {}
+}

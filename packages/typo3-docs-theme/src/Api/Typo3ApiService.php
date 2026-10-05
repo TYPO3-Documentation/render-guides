@@ -10,10 +10,25 @@ final class Typo3ApiService
     /** @var array<string, array<string, string>>|null  */
     private ?array $apiData = null;
 
+    /** @var \Closure(string): (string|null)|null */
+    private ?\Closure $fetcher = null;
+
     public function __construct(
         private readonly LoggerInterface $logger,
         private readonly Typo3VersionService $typo3VersionService,
     ) {}
+
+    /**
+     * Fetch with this instead of over the network: the integration tests read
+     * recorded responses, so that a render does not depend on api.typo3.org
+     * being reachable. The callable returns the body, or null for a failure.
+     *
+     * @param callable(string): (string|null) $fetcher
+     */
+    public function fetchWith(callable $fetcher): void
+    {
+        $this->fetcher = $fetcher(...);
+    }
 
     /**
      * @return array<string, string>
@@ -56,6 +71,10 @@ final class Typo3ApiService
      */
     private function fetchJsonData(string $url): ?string
     {
+        if ($this->fetcher !== null) {
+            return ($this->fetcher)($url);
+        }
+
         $ch = curl_init($url);
 
         if ($ch === false) {
