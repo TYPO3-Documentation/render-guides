@@ -539,6 +539,7 @@ final class RunDecorator extends Command
             new RunCommand($settings, $projectNode, $input),
         );
 
+        $failed = $settings->isFailOnError() && $spyProcessor->hasBeenCalled();
         $outputFormats = $settings->getOutputFormats();
         $outputDir = $settings->getOutput();
         if ($output->isQuiet() === false) {
@@ -549,13 +550,19 @@ final class RunDecorator extends Command
             }
 
             $formatsText = strtoupper(implode(', ', $outputFormats)) . $lastFormat;
+            $placed = (is_countable($documents) ? count($documents) : 0) . ' rendered ' . $formatsText . ' files';
 
+            // The files are written either way. A render that is about to fail
+            // must not call itself successful: the line is what a reader looks
+            // at, and the exit code is not printed.
             $output->writeln(
-                'Successfully placed ' . (is_countable($documents) ? count($documents) : 0) . ' rendered ' . $formatsText . ' files into ' . $outputDir,
+                $failed
+                    ? '<error>Rendering failed: warnings or errors were logged, see above. ' . $placed . ' were placed into ' . $outputDir . ' anyway.</error>'
+                    : 'Successfully placed ' . $placed . ' into ' . $outputDir,
             );
         }
 
-        if ($settings->isFailOnError() && $spyProcessor->hasBeenCalled()) {
+        if ($failed) {
             return Command::FAILURE;
         }
 
