@@ -1,0 +1,261 @@
+{
+    "std:doc": {
+        "About": [
+            "Getting Started",
+            "14.3",
+            "About.html",
+            "About This Tutorial"
+        ],
+        "Index": [
+            "Getting Started",
+            "14.3",
+            "Index.html",
+            "TYPO3 - Getting Started Tutorial"
+        ],
+        "Sitemap": [
+            "Getting Started",
+            "14.3",
+            "Sitemap.html",
+            "Sitemap"
+        ]
+    },
+    "std:label": {
+        "about": [
+            "Getting Started",
+            "14.3",
+            "About.html#about",
+            "About This Tutorial"
+        ],
+        "administration": [
+            "Getting Started",
+            "14.3",
+            "Administration/Index.html#administration",
+            "Administration of your first TYPO3 project"
+        ],
+        "media": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Assets/Index.html#media",
+            "Media and downloads"
+        ],
+        "context-menu": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Backend/GeneralBackendStructure/ContextMenu/Index.html#context-menu",
+            "The context menus"
+        ],
+        "page-tree": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Backend/GeneralBackendStructure/PageTree/Index.html#page-tree",
+            "Page tree"
+        ],
+        "the-context-menu": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Backend/GeneralBackendStructure/PageTree/Index.html#the-context-menu",
+            "The context menu"
+        ],
+        "backend": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Backend/Index.html#backend",
+            "Backend"
+        ],
+        "page-content": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Backend/LayoutModule/Index.html#page-content",
+            "\"Layout\" backend module in TYPO3"
+        ],
+        "system-extensions": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Backend/SystemMaintainerArea/Extensions.html#system-extensions",
+            "Extensions (System)"
+        ],
+        "cache": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Cache/Index.html#cache",
+            "Cache"
+        ],
+        "fluid-templates": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Fluid/Index.html#fluid-templates",
+            "Fluid templates"
+        ],
+        "frontend": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Frontend/Index.html#frontend",
+            "Frontend"
+        ],
+        "concepts": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Index.html#concepts",
+            "TYPO3 Concepts"
+        ],
+        "tca": [
+            "Getting Started",
+            "14.3",
+            "Concepts/TCA/Index.html#tca",
+            "TCA (Table Configuration Array)"
+        ],
+        "tsconfig": [
+            "Getting Started",
+            "14.3",
+            "Concepts/TSconfig/Index.html#tsconfig",
+            "TSConfig"
+        ],
+        "typoscript": [
+            "Getting Started",
+            "14.3",
+            "Concepts/TypoScript/Index.html#typoscript",
+            "A minimal page created by pure TypoScript"
+        ],
+        "content-elements": [
+            "Getting Started",
+            "14.3",
+            "Extensions/RecommendedExtensions.html#content-elements",
+            "Content elements"
+        ],
+        "setup": [
+            "Getting Started",
+            "14.3",
+            "FirstProject/Index.html#setup",
+            "First project setup"
+        ],
+        "settings": [
+            "Getting Started",
+            "14.3",
+            "FirstProject/Settings.html#settings",
+            "Settings"
+        ],
+        "site-configuration": [
+            "Getting Started",
+            "14.3",
+            "FirstProject/SiteManagement/Index.html#site-configuration",
+            "Create a new site configuration"
+        ],
+        "start": [
+            "Getting Started",
+            "14.3",
+            "Index.html#start",
+            "TYPO3 - Getting Started Tutorial"
+        ],
+        "deployment": [
+            "Getting Started",
+            "14.3",
+            "Installation/DeployTYPO3.html#deployment",
+            "Deploying TYPO3"
+        ],
+        "install": [
+            "Getting Started",
+            "14.3",
+            "Installation/Install.html#install",
+            "Installing TYPO3 with DDEV"
+        ],
+        "typo3-setup": [
+            "Getting Started",
+            "14.3",
+            "Installation/Setup.html#typo3-setup",
+            "TYPO3 setup on first installation"
+        ],
+        "system-requirements": [
+            "Getting Started",
+            "14.3",
+            "Installation/SystemRequirements/Index.html#system-requirements",
+            "System requirements"
+        ],
+        "typo3-version": [
+            "Getting Started",
+            "14.3",
+            "Installation/Version.html#typo3-version",
+            "TYPO3 version and which to start"
+        ]
+    },
+    "std:title": {
+        "log": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Backend/AdministrationModules/Index.html#administration-modules-log",
+            "Log"
+        ],
+        "content-elements": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Backend/LayoutModule/Index.html#page-content-elements",
+            "Content elements"
+        ],
+        "extensions": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Extensions/Index.html#concepts-extensions",
+            "Extensions"
+        ],
+        "directory-structure": [
+            "Getting Started",
+            "14.3",
+            "Concepts/Fluid/Index.html#ft-directory-structure",
+            "Directory structure"
+        ],
+        "file-config": [
+            "Getting Started",
+            "14.3",
+            "Concepts/ProjectStructure/Index.html#directory-config",
+            "config/"
+        ],
+        "user-tsconfig": [
+            "Getting Started",
+            "14.3",
+            "Concepts/TSconfig/Index.html#concepts-user-tsconfig",
+            "User TSconfig"
+        ],
+        "page-tsconfig": [
+            "Getting Started",
+            "14.3",
+            "Concepts/TSconfig/Index.html#concepts-page-tsconfig",
+            "Page TSconfig"
+        ],
+        "development": [
+            "Getting Started",
+            "14.3",
+            "Extensions/RecommendedExtensions.html#development-extensions",
+            "Development"
+        ],
+        "news": [
+            "Getting Started",
+            "14.3",
+            "Extensions/RecommendedExtensions.html#news-extension",
+            "News"
+        ],
+        "search": [
+            "Getting Started",
+            "14.3",
+            "Extensions/RecommendedExtensions.html#search-extensions",
+            "Search"
+        ],
+        "glossary": [
+            "Getting Started",
+            "14.3",
+            "Glossary/Index.html#getting-started-glossary-index",
+            "Glossary"
+        ],
+        "sitemap": [
+            "Getting Started",
+            "14.3",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ],
+        "troubleshooting": [
+            "Getting Started",
+            "14.3",
+            "Troubleshooting/Index.html#troubleshooting-index",
+            "Troubleshooting"
+        ]
+    },
+    "std:accordion": {}
+}

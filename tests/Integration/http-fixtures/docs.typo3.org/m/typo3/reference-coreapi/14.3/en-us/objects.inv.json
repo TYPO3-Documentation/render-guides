@@ -1,0 +1,2256 @@
+{
+    "std:doc": {
+        "404": [
+            "TYPO3 Explained",
+            "14.3",
+            "404.html",
+            "Content was removed"
+        ],
+        "About": [
+            "TYPO3 Explained",
+            "14.3",
+            "About.html",
+            "About this manual"
+        ],
+        "Administration/DirectoryStructure/SiteFolder": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/SiteFolder.html",
+            "The site folder config/sites/ / typo3conf/sites/"
+        ],
+        "ExtensionArchitecture/FileStructure/Configuration/Sets/Index": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/Sets/Index.html",
+            "Extension folder Configuration/Sets"
+        ],
+        "ExtensionArchitecture/FileStructure/ExtLocalconf": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtLocalconf.html",
+            "ext_localconf.php"
+        ],
+        "ExtensionArchitecture/FileStructure/ExtTables": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTables.html",
+            "ext_tables.php (Deprecated)"
+        ],
+        "ExtensionArchitecture/FileStructure/ExtTablesSql": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTablesSql.html",
+            "ext_tables.sql"
+        ],
+        "Index": [
+            "TYPO3 Explained",
+            "14.3",
+            "Index.html",
+            "TYPO3 Explained"
+        ],
+        "Sitemap": [
+            "TYPO3 Explained",
+            "14.3",
+            "Sitemap.html",
+            "Sitemap"
+        ]
+    },
+    "std:label": {
+        "not-found": [
+            "TYPO3 Explained",
+            "14.3",
+            "404.html#not-found",
+            "Content was removed"
+        ],
+        "tsfe": [
+            "TYPO3 Explained",
+            "14.3",
+            "404.html#tsfe",
+            "TypoScriptFrontendController and $GLOBALS['TSFE'] removed"
+        ],
+        "about": [
+            "TYPO3 Explained",
+            "14.3",
+            "About.html#about",
+            "About this manual"
+        ],
+        "audience": [
+            "TYPO3 Explained",
+            "14.3",
+            "About.html#audience",
+            "Intended audience"
+        ],
+        "deployment": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Deployment/Index.html#deployment",
+            "Deploying TYPO3"
+        ],
+        "directory-structure": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/Index.html#directory-structure",
+            "Directory structure of a typical TYPO3 project"
+        ],
+        "extension-manager": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/ExtensionManagement/ClassicMode/Index.html#extension-manager",
+            "Installing an extension using the extension manager"
+        ],
+        "administration": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Index.html#administration",
+            "TYPO3 administration"
+        ],
+        "installation": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Installation/ComposerMode/Index.html#installation",
+            "Installing TYPO3 with Composer"
+        ],
+        "system-requirements": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Installation/SystemRequirements/Index.html#system-requirements",
+            "System requirements for running TYPO3"
+        ],
+        "ensure-safety": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/PermissionsManagement/GeneralRecommendations/Index.html#ensure-safety",
+            "How to ensure safety"
+        ],
+        "clear-caches": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Tools/Maintenance/Index.html#clear-caches",
+            "Flush TYPO3 and PHP cache"
+        ],
+        "run-upgrade-wizard": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Tools/Upgrade/Index.html#run-upgrade-wizard",
+            "Upgrade wizard"
+        ],
+        "major": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Upgrade/Major/Index.html#major",
+            "Major upgrade"
+        ],
+        "admin-user": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/UserManagement/BackendPrivileges/Index.html#admin-user",
+            "Administrators"
+        ],
+        "general": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/UserManagement/Groups/GroupPermissions.html#general",
+            "\"General\" tab - backend user groups"
+        ],
+        "groups": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/UserManagement/Groups/Index.html#groups",
+            "Backend user groups"
+        ],
+        "access": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/AccessControl/Index.html#access",
+            "Access control in the backend (users and groups)"
+        ],
+        "context-menu": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/ContextualMenu.html#context-menu",
+            "Context-sensitive menus"
+        ],
+        "backend": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/Index.html#backend",
+            "Backend APIs"
+        ],
+        "javascript": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/JavaScript/Index.html#javascript",
+            "JavaScript in TYPO3 backend"
+        ],
+        "modules": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/JavaScript/Modules/Index.html#modules",
+            "Various JavaScript modules"
+        ],
+        "page-tree": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/PageTree.html#page-tree",
+            "The page tree in the TYPO3 backend"
+        ],
+        "caching": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CachingFramework/Index.html#caching",
+            "Caching"
+        ],
+        "chash": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CachingFramework/Index.html#chash",
+            "Caching variants - or: what is a \"cache hash\"?"
+        ],
+        "categories": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Categories/Index.html#categories",
+            "System categories"
+        ],
+        "command-cache-flush": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/Index.html#command-cache-flush",
+            "Clearing the cache with cache:flush"
+        ],
+        "command-help": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/Index.html#command-help",
+            "Viewing help for CLI commands"
+        ],
+        "content-element-wizard": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/ContentElements/ContentElementsWizard.html#content-element-wizard",
+            "New content element wizard"
+        ],
+        "content-elements": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/ContentElements/Index.html#content-elements",
+            "Content elements in TYPO3"
+        ],
+        "database": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/Index.html#database",
+            "Database access and scheme in TYPO3"
+        ],
+        "tce": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Index.html#tce",
+            "DataHandler"
+        ],
+        "dependencyinjection": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DependencyInjection/Index.html#dependencyinjection",
+            "Dependency injection"
+        ],
+        "deprecation": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Deprecation/Index.html#deprecation",
+            "Deprecation handling: logging, marking and finding deprecations"
+        ],
+        "encryption": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Encryption/Index.html#encryption",
+            "Encrypt and decrypt sensitive data with the cipher service"
+        ],
+        "environment": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Environment/Index.html#environment",
+            "Environment"
+        ],
+        "aftermailersentmessageevent": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Mail/AfterMailerSentMessageEvent.html#AfterMailerSentMessageEvent",
+            "AfterMailerSentMessageEvent"
+        ],
+        "modifypagelinkconfigurationevent": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Frontend/ModifyPageLinkConfigurationEvent.html#ModifyPageLinkConfigurationEvent",
+            "ModifyPageLinkConfigurationEvent"
+        ],
+        "eventlist": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Index.html#eventlist",
+            "Event list"
+        ],
+        "fal": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fal/Index.html#fal",
+            "File abstraction layer (FAL)"
+        ],
+        "fluid": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Index.html#fluid",
+            "Fluid"
+        ],
+        "fluid-syntax": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Index.html#fluid-syntax",
+            "Fluid"
+        ],
+        "fluid-templates": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Introduction.html#fluid-templates",
+            "Templates"
+        ],
+        "fluid-layouts": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Introduction.html#fluid-layouts",
+            "Layouts"
+        ],
+        "fluid-partials": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Introduction.html#fluid-partials",
+            "Partials"
+        ],
+        "formengine": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/FormEngine/Index.html#formengine",
+            "FormEngine"
+        ],
+        "icon": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Icon/Index.html#icon",
+            "Icon API"
+        ],
+        "api": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Index.html#api",
+            "API A-Z"
+        ],
+        "locallang": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Localization/Index.html#locallang",
+            "Localization: translating labels in TYPO3"
+        ],
+        "xliff": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Localization/XliffFormat.html#xliff",
+            "Translation files (XLIFF format)"
+        ],
+        "mail": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Mail/Index.html#mail",
+            "Mail API"
+        ],
+        "mail-sender": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Mail/Index.html#mail-sender",
+            "How to set and use a default sender"
+        ],
+        "namespaces": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Namespaces/Index.html#namespaces",
+            "Namespaces"
+        ],
+        "pagination": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Pagination/Index.html#pagination",
+            "Pagination"
+        ],
+        "resources": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Resources/Index.html#resources",
+            "Resources API"
+        ],
+        "rte": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Rte/Index.html#rte",
+            "Rich text editors (RTE)"
+        ],
+        "services": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Services/Index.html#services",
+            "Services"
+        ],
+        "configuration": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Index.html#configuration",
+            "Settings and configuration of TYPO3 systems and sites"
+        ],
+        "site-configuration": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Modules/SiteConfiguration/Index.html#site-configuration",
+            "Site configuration: basic settings for the whole web site"
+        ],
+        "globals-typo3-conf-vars-sys-caching": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/SYS.html#globals-typo3-conf-vars-sys-caching",
+            "caching"
+        ],
+        "typoscript": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/TypoScript/Index.html#typoscript",
+            "TypoScript"
+        ],
+        "tsconfig": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/TypoScript/TSconfig/Index.html#tsconfig",
+            "TSconfig"
+        ],
+        "extension-key": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/BestPractices/ExtensionKey.html#extension-key",
+            "Choosing an extension key"
+        ],
+        "extension-local": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Concepts/Index.html#extension-local",
+            "Third-party and custom extensions"
+        ],
+        "extbase": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Index.html#extbase",
+            "Extbase: extension framework in TYPO3"
+        ],
+        "extension-classes": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Classes/Index.html#extension-classes",
+            "Extension folder Classes for PHP classes"
+        ],
+        "composer-json": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#composer-json",
+            "composer.json"
+        ],
+        "ext-emconf-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtEmconf.html#ext-emconf-php",
+            "ext_emconf.php (Deprecated)"
+        ],
+        "ext-localconf-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtLocalconf.html#ext-localconf-php",
+            "ext_localconf.php"
+        ],
+        "ext-tables-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTables.html#ext-tables-php",
+            "ext_tables.php (Deprecated)"
+        ],
+        "ext-tables-sql": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTablesSql.html#ext-tables-sql",
+            "ext_tables.sql"
+        ],
+        "ext-tables-static-adt-sql": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTablesStaticAdtSql.html#ext_tables_static+adt.sql",
+            "ext_tables_static+adt.sql"
+        ],
+        "ext-typoscript-constants-typoscript": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTyposcriptConstantsTyposcript.html#ext-typoscript-constants-typoscript",
+            "ext_typoscript_constants.typoscript"
+        ],
+        "ext-typoscript-setup-typoscript": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTyposcriptSetupTyposcript.html#ext-typoscript-setup-typoscript",
+            "ext_typoscript_setup.typoscript"
+        ],
+        "distribution": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/CreateNewDistribution.html#distribution",
+            "Creating a new distribution"
+        ],
+        "http": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/RestRequests/Index.html#http",
+            "HTTP requests to external sources"
+        ],
+        "upgrade-wizards": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/UpdateExtensions/UpdateWizards/Index.html#upgrade-wizards",
+            "Upgrade wizards"
+        ],
+        "start": [
+            "TYPO3 Explained",
+            "14.3",
+            "Index.html#start",
+            "TYPO3 Explained"
+        ],
+        "introduction": [
+            "TYPO3 Explained",
+            "14.3",
+            "Introduction/Index.html#introduction",
+            "Introduction"
+        ],
+        "security": [
+            "TYPO3 Explained",
+            "14.3",
+            "Security/Index.html#security",
+            "Security guidelines"
+        ],
+        "sitemap": [
+            "TYPO3 Explained",
+            "14.3",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ],
+        "file-site-config-sites-my-site-config-yaml": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/SiteFolder.html#file-site-config-sites-my-site-config-yaml",
+            "config/sites/my-site/config.yaml"
+        ],
+        "console-command-list": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-list",
+            "vendor/bin/typo3 list"
+        ],
+        "console-command-setup": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-setup",
+            "vendor/bin/typo3 setup"
+        ],
+        "console-command-cache-flush": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-cache-flush",
+            "vendor/bin/typo3 cache:flush"
+        ],
+        "console-command-language-update": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-language-update",
+            "vendor/bin/typo3 language:update"
+        ],
+        "typo3-cms-core-mail-event-aftermailersentmessageevent": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Mail/AfterMailerSentMessageEvent.html#typo3-cms-core-mail-event-aftermailersentmessageevent",
+            "\\TYPO3\\CMS\\Core\\Mail\\Event\\AfterMailerSentMessageEvent"
+        ],
+        "typo3-cms-frontend-event-modifypagelinkconfigurationevent": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Frontend/ModifyPageLinkConfigurationEvent.html#typo3-cms-frontend-event-modifypagelinkconfigurationevent",
+            "\\TYPO3\\CMS\\Frontend\\Event\\ModifyPageLinkConfigurationEvent"
+        ],
+        "file-set-config-yaml": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/Sets/Index.html#file-set-config-yaml",
+            "packages/my_extension/Configuration/Sets/MySet/config.yaml"
+        ],
+        "file-extension-ext-localconf-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtLocalconf.html#file-extension-ext-localconf-php",
+            "packages/my_extension/ext_localconf.php"
+        ],
+        "file-extension-ext-tables-sql": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTablesSql.html#file-extension-ext-tables-sql",
+            "packages/my_extension/ext_tables.sql"
+        ]
+    },
+    "std:title": {
+        "typo3-v12": [
+            "TYPO3 Explained",
+            "14.3",
+            "404.html#not-found-12",
+            "TYPO3 v12"
+        ],
+        "deployment": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/SitePackage/Introduction.html#site-package-deployment",
+            "Deployment"
+        ],
+        "flush-typo3-caches": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Deployment/InitialDeployment/Index.html#initial-deploy-flush-caches",
+            "Flush TYPO3 caches:"
+        ],
+        "fileadmin": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/ClassicInstallations.html#legacy-directory-fileadmin",
+            "fileadmin/"
+        ],
+        "typo3": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/GlobalValues/Constants/Index.html#globals-constants-typo3",
+            "TYPO3"
+        ],
+        "typo3conf": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/ClassicInstallations.html#legacy-directory-typo3conf",
+            "typo3conf/"
+        ],
+        "vendor": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/Index.html#directory-vendor",
+            "vendor/"
+        ],
+        "config": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/Index.html#directory-config",
+            "config/"
+        ],
+        "config-sites": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/Index.html#directory-config-sites",
+            "config/sites/"
+        ],
+        "packages": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/Index.html#directory-packages",
+            "packages/"
+        ],
+        "public": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Resources/Public/Index.html#extension-resources-public",
+            "Public"
+        ],
+        "var": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/Index.html#directory-var",
+            "var/"
+        ],
+        "initialize": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Installation/ComposerMode/Index.html#install-initialize",
+            "Initialize"
+        ],
+        "introduction": [
+            "TYPO3 Explained",
+            "14.3",
+            "Testing/Tutorial/Enetcache.html#testing-tutorial-enetcache-introduction",
+            "Introduction"
+        ],
+        "apache": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Troubleshooting/WebServer.html#troubleshooting-apache",
+            "Apache"
+        ],
+        "installation": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Seo/XmlSitemap.html#xmlsitemap-installation",
+            "Installation"
+        ],
+        "env": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/SystemSettings/ApplicationContext/Index.html#set-application-context-env-env",
+            ".env"
+        ],
+        "index-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/SystemSettings/ApplicationContext/Index.html#set-application-context-index-php",
+            "index.php"
+        ],
+        "php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Debugging/Index.html#examples-debug-php",
+            "PHP"
+        ],
+        "site-configuration": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/CreateNewDistribution.html#distribution-kickstart-site",
+            "Site configuration"
+        ],
+        "typoscript": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/Localization/TypoScript.html#extension-localization-typoscript",
+            "TypoScript"
+        ],
+        "configuration": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Services/Configuration/Index.html#services-configuration",
+            "Configuration"
+        ],
+        "migration": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Icon/Index.html#icon-migration",
+            "Migration"
+        ],
+        "upgrade-wizard": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Tools/Upgrade/Index.html#use-the-upgrade-wizard",
+            "Upgrade wizard"
+        ],
+        "database": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Database/Index.html#eventlist-core-database",
+            "Database"
+        ],
+        "mysql": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Troubleshooting/Database.html#troubleshooting-database-mysql",
+            "MySQL"
+        ],
+        "troubleshooting": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/PasswordHashing/Troubleshooting.html#password-hashing-troubleshooting",
+            "Troubleshooting"
+        ],
+        "log": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Logging/Quickstart/Index.html#logging-quickstart-log-2",
+            "Log"
+        ],
+        "caching": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/SYS.html#globals-typo3-conf-vars-sys-caching",
+            "caching"
+        ],
+        "web-server": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Troubleshooting/WebServer.html#troubleshooting-webserver",
+            "Web server"
+        ],
+        "requirements": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Upgrade/MigrateToComposer/Requirements.html#migratetocomposer-requirements",
+            "Requirements"
+        ],
+        "typo3-version": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Upgrade/MigrateToComposer/Requirements.html#migratetocomposer-requirements-typo3-version",
+            "TYPO3 version"
+        ],
+        "composer": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Upgrade/MigrateToComposer/Requirements.html#migratetocomposer-requirements-composer",
+            "Composer"
+        ],
+        "resources": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Resources/Index.html#extension-resources",
+            "Resources"
+        ],
+        "support": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/Upgrade/Tools/Index.html#tools-rector-typo3-support",
+            "Support"
+        ],
+        "backend-user-groups": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/UserManagement/Groups/Index.html#groups",
+            "Backend user groups"
+        ],
+        "examples": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtLocalconf.html#ext-localconf-php-example",
+            "Examples"
+        ],
+        "workflow": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Authentication/AuthenticationService/CSRFlikeRequestTokenHandling.html#authentication-request-token-workflow",
+            "Workflow"
+        ],
+        "references": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Namespaces/Index.html#namespaces-references",
+            "References"
+        ],
+        "user-tsconfig": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/UserTsconfig.html#extension-configuration-user-tsconfig",
+            "user.tsconfig"
+        ],
+        "roles": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/AccessControl/Roles/Index.html#access-control-roles",
+            "Roles"
+        ],
+        "users": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/AccessControl/UsersAndGroups/Index.html#access-users-groups-users",
+            "Users"
+        ],
+        "groups": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/AccessControl/UsersAndGroups/Index.html#access-users-groups-groups",
+            "Groups"
+        ],
+        "the-admin-user": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/AccessControl/UsersAndGroups/Index.html#access-users-groups-admin",
+            "The \"admin\" user"
+        ],
+        "example": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/SystemRegistry/Index.html#registry-examples",
+            "Example"
+        ],
+        "via-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/BackendRouting.html#backend-routing-url-php",
+            "Via PHP"
+        ],
+        "more-information": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#ext-composer-json-more-information",
+            "More information"
+        ],
+        "markup": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/ContextualMenu.html#csm-implementation-markup",
+            "Markup"
+        ],
+        "registration": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Icon/Index.html#icon-registration",
+            "Registration"
+        ],
+        "api": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/SystemRegistry/Index.html#registry-api-api",
+            "API"
+        ],
+        "data-attributes": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Backend/JavaScript/Modules/Modals.html#modules-modals-api-data-attributes",
+            "Data attributes"
+        ],
+        "port": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CachingFramework/Backends/Index.html#caching-backend-redis-port",
+            "port"
+        ],
+        "username": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Context/Index.html#user-aspect-username",
+            "username"
+        ],
+        "password": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CachingFramework/Backends/Index.html#caching-backend-redis-password",
+            "password"
+        ],
+        "cache-warmup": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CachingFramework/Index.html#caching-clearing-flushing-warming-cache-warmup",
+            "Cache warmup"
+        ],
+        "module": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/RequestAttributes/Module.html#typo3-request-attribute-module",
+            "Module"
+        ],
+        "options": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/FE.html#typo3confvars-fe-passwordhashing-options",
+            "options"
+        ],
+        "modes": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CodeEditor/Index.html#code-editor-register-addon-modes",
+            "modes"
+        ],
+        "extensions": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CodeEditor/Index.html#code-editor-register-mode-extensions",
+            "extensions"
+        ],
+        "default": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CodeEditor/Index.html#code-editor-register-mode-default",
+            "default"
+        ],
+        "event-listener": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/ContentElements/CustomBackendPreview.html#configurece-preview-eventlistener",
+            "Event listener"
+        ],
+        "directives": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/ContentSecurityPolicy/Index.html#content-security-policy-terminology-directives",
+            "Directives"
+        ],
+        "nonce": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/RequestAttributes/Nonce.html#typo3-request-attribute-nonce",
+            "Nonce"
+        ],
+        "iso": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Context/Index.html#datetime-aspect-iso",
+            "iso"
+        ],
+        "full": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Context/Index.html#datetime-aspect-full",
+            "full"
+        ],
+        "isloggedin": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Context/Index.html#user-aspect-isloggedin",
+            "isLoggedIn"
+        ],
+        "form-viewhelper": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Country/Index.html#country-select-viewhelper",
+            "Form ViewHelper"
+        ],
+        "insert": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/DoctrineDbal/Connection/Index.html#database-connection-insert",
+            "insert()"
+        ],
+        "update": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/DoctrineDbal/Connection/Index.html#database-connection-update",
+            "update()"
+        ],
+        "count": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/DoctrineDbal/QueryBuilder/Index.html#database-query-builder-count",
+            "count()"
+        ],
+        "select": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/DoctrineDbal/Connection/Index.html#database-connection-select",
+            "select()"
+        ],
+        "before": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/DoctrineDbal/Middleware/Index.html#database-middleware-sorting-before",
+            "before"
+        ],
+        "after": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/DoctrineDbal/Middleware/Index.html#database-middleware-sorting-after",
+            "after"
+        ],
+        "disabled": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/DoctrineDbal/Middleware/Index.html#database-middleware-sorting-disabled",
+            "disabled"
+        ],
+        "from": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/DoctrineDbal/QueryBuilder/Index.html#database-query-builder-from",
+            "from()"
+        ],
+        "result": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Database/DoctrineDbal/Statement/Index.html#database-result",
+            "Result"
+        ],
+        "uid": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Database/Index.html#datahandler-cmd-uid",
+            "uid"
+        ],
+        "command": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Database/Index.html#datahandler-cmd-command",
+            "command"
+        ],
+        "value": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Database/Index.html#datahandler-cmd-value",
+            "value"
+        ],
+        "move": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Database/Index.html#datahandler-cmd-move",
+            "move"
+        ],
+        "version": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#ext-composer-json-property-version",
+            "version"
+        ],
+        "fieldname": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Database/Index.html#datahandler-data-fieldname",
+            "fieldname"
+        ],
+        "value-1": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Database/Index.html#datahandler-data-value",
+            "value"
+        ],
+        "clear-cache": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Database/Index.html#tce-clear-cache",
+            "Clear cache"
+        ],
+        "all": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Database/Index.html#datahandler-clear-cachecmd-all",
+            "\"all\""
+        ],
+        "pages": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/Database/Index.html#datahandler-clear-cachecmd-pages",
+            "\"pages\""
+        ],
+        "files": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Index.html#extension-files",
+            "Files"
+        ],
+        "redirect": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/TceDb/Index.html#datahandler-commit-redirect",
+            "redirect"
+        ],
+        "cb": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/TceDb/Index.html#cb",
+            "CB"
+        ],
+        "vc": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/DataHandler/TceDb/Index.html#vc",
+            "vC"
+        ],
+        "labels": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Backend/AfterPageTreeItemsPreparedEvent.html#AfterPageTreeItemsPreparedEvent-labels",
+            "Labels"
+        ],
+        "backend-user": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Backend/BackendUser/Index.html#eventlist-backend-user",
+            "Backend user"
+        ],
+        "backend": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/RequestAttributes/Routing.html#typo3-request-attribute-routing-backend",
+            "Backend"
+        ],
+        "title": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Tutorials/Tea/Model.html#extbase-tutorial-tea-model-ctrl-title",
+            "title"
+        ],
+        "description": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#ext-composer-json-property-description",
+            "description"
+        ],
+        "usage": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Pagination/Index.html#pagination-sliding-window-usage",
+            "Usage"
+        ],
+        "cache": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Cache/Index.html#eventlist-core-cache",
+            "Cache"
+        ],
+        "core": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Index.html#eventlist-core",
+            "Core"
+        ],
+        "domain": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Domain/Index.html#eventlist-core-domain",
+            "Domain"
+        ],
+        "html": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Html/Index.html#eventlist-core-html",
+            "Html"
+        ],
+        "aftermailersentmessageevent": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Mail/AfterMailerSentMessageEvent.html#AfterMailerSentMessageEvent",
+            "AfterMailerSentMessageEvent"
+        ],
+        "mail": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Mail/Index.html#eventlist-core-mail",
+            "Mail"
+        ],
+        "package": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Package/Index.html#eventlist-core-package",
+            "Package"
+        ],
+        "page": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Page/Index.html#eventlist-core-page",
+            "Page"
+        ],
+        "resource": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Resource/Index.html#eventlist-core-resource",
+            "Resource"
+        ],
+        "security": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/SitePackage/Introduction.html#site-package-security",
+            "Security"
+        ],
+        "tree": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Tree/Index.html#eventlist-core-tree",
+            "Tree"
+        ],
+        "extbase": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/Extbase/Index.html#extension-configuration-extbase",
+            "Extbase"
+        ],
+        "mvc": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Extbase/Mvc/Index.html#eventlist-extbase-mvc",
+            "Mvc"
+        ],
+        "persistence": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/Extbase/Persistence/Index.html#extension-configuration-extbase-persistence",
+            "Persistence"
+        ],
+        "fluid": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/DevelopCustomViewhelper.html#fluid-custom-viewhelper-fluid",
+            "Fluid"
+        ],
+        "form": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Form/Index.html#eventlist-form",
+            "Form"
+        ],
+        "frontend": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/RequestAttributes/Routing.html#typo3-request-attribute-routing-frontend",
+            "Frontend"
+        ],
+        "modifypagelinkconfigurationevent": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Frontend/ModifyPageLinkConfigurationEvent.html#ModifyPageLinkConfigurationEvent",
+            "ModifyPageLinkConfigurationEvent"
+        ],
+        "impexp": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Impexp/Index.html#eventlist-impexp",
+            "Impexp"
+        ],
+        "event-list": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Index.html#eventlist",
+            "Event list"
+        ],
+        "info": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Info/Index.html#eventlist-info",
+            "Info"
+        ],
+        "install": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Install/Index.html#eventlist-install",
+            "Install"
+        ],
+        "redirects": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Redirects/Index.html#eventlist-redirects",
+            "Redirects"
+        ],
+        "php-globals-typo3-conf-vars-sc-options": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Hooks/Index.html#hooks-core",
+            "$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']"
+        ],
+        "administration": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fal/Administration/Index.html#fal-administration",
+            "Administration"
+        ],
+        "maintenance": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fal/Administration/Maintenance.html#fal-administration-maintenance",
+            "Maintenance"
+        ],
+        "components": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Introduction.html#fluid-components",
+            "Components"
+        ],
+        "storage": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fal/Architecture/Components.html#fal-architecture-components-storage",
+            "Storage"
+        ],
+        "services": [
+            "TYPO3 Explained",
+            "14.3",
+            "PhpArchitecture/Services.html#cgl-services",
+            "Services"
+        ],
+        "folders": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fal/Architecture/Folders.html#architecture-folders",
+            "Folders"
+        ],
+        "architecture": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fal/Architecture/Index.html#fal-architecture",
+            "Architecture"
+        ],
+        "overview": [
+            "TYPO3 Explained",
+            "14.3",
+            "Testing/FunctionalTesting/Introduction.html#testing-writing-functional-overview",
+            "Overview"
+        ],
+        "fluidtemplate": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/SiteHandling/UseSiteInTypoScript.html#sitehandling-fluidtemplate",
+            "FLUIDTEMPLATE"
+        ],
+        "actions": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/BackendModule/CreateModule.html#backend-modules-template-without-extbase-actions",
+            "Actions"
+        ],
+        "select-field": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/FlexForms/Definition/Index.html#flexforms-definition-select",
+            "Select field"
+        ],
+        "meta": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/FlexForms/T3datastructure/Elements/Index.html#t3datastructure-meta",
+            "<meta>"
+        ],
+        "root": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/FlexForms/T3datastructure/Elements/Index.html#t3datastructure-root",
+            "<ROOT>"
+        ],
+        "field-name": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/FlexForms/T3datastructure/Elements/Index.html#t3datastructure-field-name",
+            "<[field name]>"
+        ],
+        "el": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/FlexForms/T3datastructure/Elements/Index.html#t3datastructure-el",
+            "<el>"
+        ],
+        "section": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/FlexForms/T3datastructure/Elements/Index.html#t3datastructure-section",
+            "<section>"
+        ],
+        "render": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/DevelopCustomViewhelper.html#fluid-custom-viewhelper-implementation-render",
+            "render()"
+        ],
+        "tagname": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/DevelopCustomViewhelper.html#abstracttagbasedviewhelper-tagname",
+            "$tagName"
+        ],
+        "directory-structure": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Introduction.html#fluid-directory-structure",
+            "Directory structure"
+        ],
+        "templates": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Introduction.html#fluid-templates",
+            "Templates"
+        ],
+        "layouts": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Introduction.html#fluid-layouts",
+            "Layouts"
+        ],
+        "partials": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Fluid/Introduction.html#fluid-partials",
+            "Partials"
+        ],
+        "rendering": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/FormEngine/Rendering/Index.html#formengine-rendering",
+            "Rendering"
+        ],
+        "constants": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/GlobalValues/Constants/Index.html#globals-constants",
+            "Constants"
+        ],
+        "locale": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Localization/LocalizationApi/Locale.html#locale-api",
+            "Locale"
+        ],
+        "glossary": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Localization/TranslationServer/Crowdin/Bestpractice.html#crowdin-bestpractice-in-short-glossary",
+            "Glossary"
+        ],
+        "validation": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Localization/TranslationServer/Crowdin/MassApproval.html#crowdin-mass-approval-best-practices-validation",
+            "Validation"
+        ],
+        "see-also": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/MountPoints/Index.html#mount-points-see",
+            "See also"
+        ],
+        "getting-started": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Localization/TranslationServer/Crowdin/OnlineTranslation.html#crowdin-crowdin-translation-getting-started",
+            "Getting started"
+        ],
+        "links": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Localization/TranslationServer/Crowdin/OnlineTranslation.html#crowdin-crowdin-translation-links",
+            "Links"
+        ],
+        "logger": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Logging/Logger/Index.html#logging-logger",
+            "Logger"
+        ],
+        "message": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Logging/Logger/Index.html#logger-log-message",
+            "$message"
+        ],
+        "data": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Logging/Logger/Index.html#logger-log-data",
+            "$data"
+        ],
+        "warning": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Logging/Logger/Index.html#label-warning",
+            "Warning"
+        ],
+        "error": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Logging/Logger/Index.html#label-error",
+            "Error"
+        ],
+        "alert": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Logging/Logger/Index.html#label-alert",
+            "Alert"
+        ],
+        "format": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/LANG.html#globals-typo3-conf-vars-lang-format",
+            "format"
+        ],
+        "transport": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Mail/Index.html#mail-configuration-transport",
+            "transport"
+        ],
+        "sendmail": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Mail/Index.html#mail-configuration-sendmail",
+            "sendmail"
+        ],
+        "classname": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/FE.html#typo3confvars-fe-passwordhashing-classname",
+            "className"
+        ],
+        "php-api": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/TypoScript/PhpApi/Index.html#typoscript-syntax-custom-typoscript",
+            "PHP API"
+        ],
+        "initialization": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/Bootstrapping.html#backend-initialization",
+            "Initialization"
+        ],
+        "middlewares": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/Middlewares.html#request-handling-middlewares",
+            "Middlewares"
+        ],
+        "frontend-typoscript": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/TypoScript/PhpApi/Index.html#typoscript-access-frontend-typoscript",
+            "Frontend TypoScript"
+        ],
+        "frontend-user": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/RequestAttributes/FrontendUser.html#typo3-request-attribute-frontend-user",
+            "Frontend user"
+        ],
+        "language": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Resources/Private/Language.html#extension-resources-private-language",
+            "Language"
+        ],
+        "route": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/RequestAttributes/Route.html#typo3-request-attribute-route",
+            "Route"
+        ],
+        "site": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/RequestAttributes/Site.html#typo3-request-attribute-site",
+            "Site"
+        ],
+        "target": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/RequestAttributes/Target.html#typo3-request-attribute-target",
+            "Target"
+        ],
+        "viewhelper": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/Typo3Request.html#typo3-request-viewhelper",
+            "ViewHelper"
+        ],
+        "console-command": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/Typo3Request.html#typo3-request-console-command",
+            "Console command"
+        ],
+        "attributes": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/RequestLifeCycle/Typo3Request.html#typo3-request-attributes",
+            "Attributes"
+        ],
+        "ext-news": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Routing/Examples/Index.html#routing-examples-news",
+            "EXT: news"
+        ],
+        "fluid-templates": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Rte/RenderingInTheFrontend/Index.html#rte-rendering-fluid",
+            "Fluid templates"
+        ],
+        "entry-point": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Seo/Configuration/Index.html#seo-configuration-site-entry-point",
+            "Entry point"
+        ],
+        "languages": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/SiteHandling/Basics.html#sitehandling-basics-languages",
+            "languages"
+        ],
+        "php-class": [
+            "TYPO3 Explained",
+            "14.3",
+            "CodingGuidelines/CglPhp/FileStructure.html#cgl-namespaces-class-names",
+            "PHP class"
+        ],
+        "typo3-cms-core-utility-generalutility": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Services/Developer/ServiceRelatedApi.html#services-developer-service-related-api-general-utility",
+            "\\TYPO3\\CMS\\Core\\Utility\\GeneralUtility"
+        ],
+        "base": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/SiteHandling/Basics.html#sitehandling-basics-base",
+            "base"
+        ],
+        "flag": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/SiteHandling/AddLanguages.html#sitehandling-addinglanguages-flag",
+            "flag"
+        ],
+        "properties": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#ext-composer-json-properties",
+            "Properties"
+        ],
+        "routes": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/SiteHandling/Basics.html#sitehandling-basics-routes",
+            "routes"
+        ],
+        "settings": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/SiteHandling/Basics.html#sitehandling-basics-settings",
+            "settings"
+        ],
+        "imports": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/SiteHandling/Basics.html#sitehandling-basics-imports",
+            "imports"
+        ],
+        "page-tsconfig": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/PageTsconfig.html#extension-configuration-page-tsconfig",
+            "page.tsconfig"
+        ],
+        "namespace": [
+            "TYPO3 Explained",
+            "14.3",
+            "CodingGuidelines/CglPhp/FileStructure.html#cgl-file-structure-namespace",
+            "Namespace"
+        ],
+        "identifiers": [
+            "TYPO3 Explained",
+            "14.3",
+            "CodingGuidelines/CglPhp/PhpSyntaxFormatting.html#cgl-php-syntax-formatting-identifiers",
+            "Identifiers"
+        ],
+        "comments": [
+            "TYPO3 Explained",
+            "14.3",
+            "CodingGuidelines/CglPhp/PhpSyntaxFormatting.html#cgl-php-syntax-formatting-comments",
+            "Comments"
+        ],
+        "conditions": [
+            "TYPO3 Explained",
+            "14.3",
+            "CodingGuidelines/CglPhp/PhpSyntaxFormatting.html#cgl-php-syntax-formatting-conditions",
+            "Conditions"
+        ],
+        "switch": [
+            "TYPO3 Explained",
+            "14.3",
+            "CodingGuidelines/CglPhp/PhpSyntaxFormatting.html#cgl-php-syntax-formatting-switch",
+            "Switch"
+        ],
+        "strings": [
+            "TYPO3 Explained",
+            "14.3",
+            "CodingGuidelines/CglPhp/PhpSyntaxFormatting.html#cgl-php-syntax-formatting-strings",
+            "Strings"
+        ],
+        "null": [
+            "TYPO3 Explained",
+            "14.3",
+            "CodingGuidelines/CglPhp/PhpSyntaxFormatting.html#cgl-php-syntax-formatting-null",
+            "NULL"
+        ],
+        "editorconfig": [
+            "TYPO3 Explained",
+            "14.3",
+            "CodingGuidelines/Introduction.html#cgl-editorconfig",
+            ".editorconfig"
+        ],
+        "yaml": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/Configuration.html#extension-configuration-yaml",
+            "YAML"
+        ],
+        "globals": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/GlobalVariables.html#globals-variables",
+            "$GLOBALS"
+        ],
+        "tca": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/GlobalVariables.html#globals-tca",
+            "TCA"
+        ],
+        "lang": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/GlobalVariables.html#globals-lang",
+            "LANG"
+        ],
+        "lockbackendfile": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/BE.html#typo3confvars-be-lockbackendfile",
+            "lockBackendFile"
+        ],
+        "debug": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/FE.html#typo3confvars-fe-debug",
+            "debug"
+        ],
+        "http": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/BE.html#typo3confvars-be-http",
+            "HTTP"
+        ],
+        "entrypoint": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/BE.html#typo3confvars-be-entrypoint",
+            "entryPoint"
+        ],
+        "permalogin": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/FE.html#typo3confvars-fe-permalogin",
+            "permalogin"
+        ],
+        "cert": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/HTTP.html#typo3confvars-http-cert",
+            "cert"
+        ],
+        "timeout": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/HTTP.html#typo3confvars-http-timeout",
+            "timeout"
+        ],
+        "defaultscheme": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/SYS.html#typo3confvars-sys-defaultscheme",
+            "defaultScheme"
+        ],
+        "features": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/SYS.html#typo3confvars-sys-features",
+            "features"
+        ],
+        "typoscript-1": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/TypoScript/Index.html#typoscript",
+            "TypoScript"
+        ],
+        "syntax": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtConfTemplate.html#extension-options-syntax",
+            "Syntax"
+        ],
+        "class-name": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/BestPractices/NamingConventions.html#extension-naming-class-name",
+            "Class name"
+        ],
+        "system-extensions": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Concepts/Index.html#extensions-core",
+            "System extensions"
+        ],
+        "lazy": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Appendix/Attributes.html#extbase-attribute-lazy",
+            "#[Lazy]"
+        ],
+        "validate": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Appendix/Attributes.html#extbase-attribute-validate",
+            "#[Validate]"
+        ],
+        "emailaddress": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Validation/BuiltIn.html#extbase-validator-emailaddress",
+            "EmailAddress"
+        ],
+        "url": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Validation/BuiltIn.html#extbase-validator-url-use-cases",
+            "Url"
+        ],
+        "text": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Validation/BuiltIn.html#extbase-validator-text",
+            "Text"
+        ],
+        "integer": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Validation/BuiltIn.html#extbase-validator-integer",
+            "Integer"
+        ],
+        "float": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Validation/BuiltIn.html#extbase-validator-float",
+            "Float"
+        ],
+        "number": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Validation/BuiltIn.html#extbase-validation-builtin-number",
+            "Number"
+        ],
+        "datetime": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Validation/BuiltIn.html#extbase-validator-datetime",
+            "DateTime"
+        ],
+        "filesize": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Validation/BuiltIn.html#extbase-validator-file-size",
+            "FileSize"
+        ],
+        "filename": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Extbase/Validation/BuiltIn.html#extbase-validator-file-name",
+            "FileName"
+        ],
+        "name": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#ext-composer-json-property-name",
+            "name"
+        ],
+        "type": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#ext-composer-json-property-type",
+            "type"
+        ],
+        "license": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#ext-composer-json-property-license",
+            "license"
+        ],
+        "require": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#ext-composer-json-property-require",
+            "require"
+        ],
+        "suggest": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ComposerJson.html#ext-composer-json-property-suggest",
+            "suggest"
+        ],
+        "contentsecuritypolicies-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/ContentSecurityPolicies.html#extension-configuration-contentsecuritypolicies-php",
+            "ContentSecurityPolicies.php"
+        ],
+        "icons-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/Icons.html#extension-configuration-icons-php",
+            "Icons.php"
+        ],
+        "requestmiddlewares-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/RequestMiddlewaresPhp.html#extension-configuration-requestmiddlewares-php",
+            "RequestMiddlewares.php"
+        ],
+        "services-yaml": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/ServicesYaml.html#extension-configuration-services-yaml",
+            "Services.yaml"
+        ],
+        "tsconfig": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/TsConfig/Index.html#extension-configuration-tsconfig",
+            "TsConfig"
+        ],
+        "documentation": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/PublishExtension/Index.html#publishextensiondocumentation",
+            "Documentation"
+        ],
+        "ext-conf-template-txt": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtConfTemplate.html#extension-options",
+            "ext_conf_template.txt"
+        ],
+        "ext-tables-static-adt-sql": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTablesStaticAdtSql.html#ext_tables_static+adt.sql",
+            "ext_tables_static+adt.sql"
+        ],
+        "private": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Resources/Private/Index.html#extension-resources-private",
+            "Private"
+        ],
+        "tests": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Tests/Index.html#extension-files-tests",
+            "Tests"
+        ],
+        "main-entry-point": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/BackendModule/CreateModule.html#backend-modules-template-without-extbase-main-entry",
+            "Main entry point"
+        ],
+        "git": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/PublishExtension/Index.html#publishextensiongit",
+            "Git"
+        ],
+        "ter": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/PublishExtension/Index.html#publishextensionter",
+            "TER"
+        ],
+        "limits": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/HowTo/UpdateExtensions/ExtensionScanner.html#extension-scanner-limits",
+            "Limits"
+        ],
+        "make": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Kickstarter/Make/Index.html#extension-make",
+            "Make"
+        ],
+        "controller": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Tutorials/Tea/Controller.html#extbase-tutorial-tea-controller",
+            "Controller"
+        ],
+        "label": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Tutorials/Tea/Model.html#extbase-tutorial-tea-model-ctrl-label",
+            "label"
+        ],
+        "repository": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/Tutorials/Tea/Repository.html#extbase-tutorial-tea-repositoy",
+            "Repository"
+        ],
+        "typo3-explained": [
+            "TYPO3 Explained",
+            "14.3",
+            "Index.html#api-overview",
+            "TYPO3 Explained"
+        ],
+        "logout": [
+            "TYPO3 Explained",
+            "14.3",
+            "Security/GuidelinesEditors/Index.html#security-logout",
+            "Logout"
+        ],
+        "simple-example": [
+            "TYPO3 Explained",
+            "14.3",
+            "Testing/FunctionalTesting/Index.html#testing-writing-functional-example-simple",
+            "Simple example"
+        ],
+        "history": [
+            "TYPO3 Explained",
+            "14.3",
+            "Testing/History.html#testing-history",
+            "History"
+        ],
+        "scope": [
+            "TYPO3 Explained",
+            "14.3",
+            "Testing/Tutorial/Enetcache.html#testing-tutorial-enetcache-scope",
+            "Scope"
+        ]
+    },
+    "typo3:file": {
+        "site-config-sites-my-site-config-yaml": [
+            "TYPO3 Explained",
+            "14.3",
+            "Administration/DirectoryStructure/SiteFolder.html#file-site-config-sites-my-site-config-yaml",
+            "config/sites/my-site/config.yaml"
+        ],
+        "set-config-yaml": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/Configuration/Sets/Index.html#file-set-config-yaml",
+            "packages/my_extension/Configuration/Sets/MySet/config.yaml"
+        ],
+        "extension-ext-localconf-php": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtLocalconf.html#file-extension-ext-localconf-php",
+            "packages/my_extension/ext_localconf.php"
+        ],
+        "extension-ext-tables-sql": [
+            "TYPO3 Explained",
+            "14.3",
+            "ExtensionArchitecture/FileStructure/ExtTablesSql.html#file-extension-ext-tables-sql",
+            "packages/my_extension/ext_tables.sql"
+        ]
+    },
+    "std:confval": {
+        "globals-typo3-conf-vars": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/GlobalVariables.html#confval-globals-typo3-conf-vars",
+            "TYPO3_CONF_VARS"
+        ],
+        "globals-typo3-conf-vars-be-lockbackendfile": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/BE.html#confval-globals-typo3-conf-vars-be-lockbackendfile",
+            "lockBackendFile"
+        ],
+        "globals-typo3-conf-vars-sys-caching": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/SYS.html#confval-globals-typo3-conf-vars-sys-caching",
+            "caching"
+        ]
+    },
+    "php:class": {
+        "typo3-cms-core-mail-event-aftermailersentmessageevent": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Core/Mail/AfterMailerSentMessageEvent.html#typo3-cms-core-mail-event-aftermailersentmessageevent",
+            "\\TYPO3\\CMS\\Core\\Mail\\Event\\AfterMailerSentMessageEvent"
+        ],
+        "typo3-cms-frontend-event-modifypagelinkconfigurationevent": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/Events/Events/Frontend/ModifyPageLinkConfigurationEvent.html#typo3-cms-frontend-event-modifypagelinkconfigurationevent",
+            "\\TYPO3\\CMS\\Frontend\\Event\\ModifyPageLinkConfigurationEvent"
+        ]
+    },
+    "php:method": {},
+    "std:confval-menu": {
+        "globals-typo3-conf-vars-be": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/BE.html#confval-menu-globals-typo3-conf-vars-be",
+            ""
+        ],
+        "globals-typo3-conf-vars-sys": [
+            "TYPO3 Explained",
+            "14.3",
+            "Configuration/Typo3ConfVars/SYS.html#confval-menu-globals-typo3-conf-vars-sys",
+            ""
+        ]
+    },
+    "php:interface": {},
+    "php:const": {},
+    "std:console:command-list": {},
+    "std:console:command": {
+        "completion": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-completion",
+            "vendor/bin/typo3 completion"
+        ],
+        "help": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-help",
+            "vendor/bin/typo3 help"
+        ],
+        "list": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-list",
+            "vendor/bin/typo3 list"
+        ],
+        "setup": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-setup",
+            "vendor/bin/typo3 setup"
+        ],
+        "backend-lock": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-backend-lock",
+            "vendor/bin/typo3 backend:lock"
+        ],
+        "backend-unlock": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-backend-unlock",
+            "vendor/bin/typo3 backend:unlock"
+        ],
+        "cache-flush": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-cache-flush",
+            "vendor/bin/typo3 cache:flush"
+        ],
+        "cache-warmup": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-cache-warmup",
+            "vendor/bin/typo3 cache:warmup"
+        ],
+        "language-update": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-language-update",
+            "vendor/bin/typo3 language:update"
+        ],
+        "setup-begroups-default": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-setup-begroups-default",
+            "vendor/bin/typo3 setup:begroups:default"
+        ],
+        "upgrade-list": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-upgrade-list",
+            "vendor/bin/typo3 upgrade:list"
+        ],
+        "upgrade-run": [
+            "TYPO3 Explained",
+            "14.3",
+            "ApiOverview/CommandControllers/ListCommands.html#console-command-upgrade-run",
+            "vendor/bin/typo3 upgrade:run"
+        ]
+    },
+    "php:property": {},
+    "std:accordion": {}
+}

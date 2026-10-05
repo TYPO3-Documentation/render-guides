@@ -1,0 +1,413 @@
+{
+    "std:doc": {
+        "Index": [
+            "News system",
+            "main",
+            "Index.html",
+            "News system"
+        ],
+        "Sitemap": [
+            "News system",
+            "main",
+            "Sitemap.html",
+            "Sitemap"
+        ]
+    },
+    "std:label": {
+        "configuration": [
+            "News system",
+            "main",
+            "Administration/Configuration/Index.html#configuration",
+            "Configuration"
+        ],
+        "installation": [
+            "News system",
+            "main",
+            "Administration/Installation/Index.html#installation",
+            "Installation"
+        ],
+        "start": [
+            "News system",
+            "main",
+            "Index.html#start",
+            "News system"
+        ],
+        "introduction": [
+            "News system",
+            "main",
+            "Introduction/Index.html#introduction",
+            "Introduction"
+        ],
+        "support": [
+            "News system",
+            "main",
+            "Introduction/Support/Index.html#support",
+            "Need Support?"
+        ],
+        "changelog": [
+            "News system",
+            "main",
+            "Misc/Changelog/Index.html#changelog",
+            "ChangeLog"
+        ],
+        "reference": [
+            "News system",
+            "main",
+            "Reference/Index.html#reference",
+            "Reference"
+        ],
+        "tsconfig": [
+            "News system",
+            "main",
+            "Reference/TsConfig/Index.html#tsconfig",
+            "TsConfig"
+        ],
+        "typoscript": [
+            "News system",
+            "main",
+            "Reference/TypoScript/Index.html#typoscript",
+            "TypoScript"
+        ],
+        "ts": [
+            "News system",
+            "main",
+            "Reference/TypoScript/Index.html#ts",
+            "TypoScript"
+        ],
+        "plugin": [
+            "News system",
+            "main",
+            "UsersManual/Plugins/Index.html#plugin",
+            "Plugin"
+        ],
+        "records": [
+            "News system",
+            "main",
+            "UsersManual/Records/Index.html#records",
+            "Records"
+        ]
+    },
+    "std:title": {
+        "features": [
+            "News system",
+            "main",
+            "Misc/Changelog/14-1-0.html#features",
+            "Features"
+        ],
+        "usage": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/DataProcessing/LanguageMenuProcessor.html#usage",
+            "Usage"
+        ],
+        "configuration": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/ExtensionBasedOnNews/Index.html#configuration",
+            "Configuration"
+        ],
+        "administration": [
+            "News system",
+            "main",
+            "Administration/Index.html#admin-manual",
+            "Administration"
+        ],
+        "migration": [
+            "News system",
+            "main",
+            "Administration/Migration/MigrationFromTtNews/Index.html#migration",
+            "Migration"
+        ],
+        "requirements": [
+            "News system",
+            "main",
+            "Administration/Migration/MigrationFromTtNews/Index.html#requirements",
+            "Requirements"
+        ],
+        "index": [
+            "News system",
+            "main",
+            "genindex.html#index",
+            "Index"
+        ],
+        "slack": [
+            "News system",
+            "main",
+            "Introduction/Support/Index.html#support-slack",
+            "Slack"
+        ],
+        "viewhelpers": [
+            "News system",
+            "main",
+            "Tutorials/Templates/ViewHelpers/Index.html#viewHelpersTutorial",
+            "ViewHelpers"
+        ],
+        "breaking-changes": [
+            "News system",
+            "main",
+            "Misc/Changelog/14-1-0.html#breaking-changes",
+            "Breaking changes"
+        ],
+        "changelog-1": [
+            "News system",
+            "main",
+            "Misc/Changelog/Index.html#changelog",
+            "ChangeLog"
+        ],
+        "controller": [
+            "News system",
+            "main",
+            "Reference/Events/Index.html#controller",
+            "Controller"
+        ],
+        "repository": [
+            "News system",
+            "main",
+            "Reference/Events/Index.html#repository",
+            "Repository"
+        ],
+        "backend": [
+            "News system",
+            "main",
+            "Reference/Events/Index.html#backend",
+            "Backend"
+        ],
+        "import": [
+            "News system",
+            "main",
+            "Reference/Events/Index.html#import",
+            "Import"
+        ],
+        "records": [
+            "News system",
+            "main",
+            "Reference/ExtensionConfiguration/Index.html#records",
+            "Records"
+        ],
+        "columns": [
+            "News system",
+            "main",
+            "Reference/TsConfig/Administration.html#tsconfigColumns",
+            "columns"
+        ],
+        "archive": [
+            "News system",
+            "main",
+            "Reference/TsConfig/General.html#tsconfigArchive",
+            "archive"
+        ],
+        "format": [
+            "News system",
+            "main",
+            "Reference/TypoScript/GeneralSettings.html#tsFormat",
+            "format"
+        ],
+        "typoscript-1": [
+            "News system",
+            "main",
+            "Reference/TypoScript/Index.html#typoscript",
+            "TypoScript"
+        ],
+        "examples": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/Events/Index.html#examples",
+            "Examples"
+        ],
+        "sitemap": [
+            "News system",
+            "main",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ],
+        "troubleshooting": [
+            "News system",
+            "main",
+            "Tutorials/BestPractice/Rss/Index.html#troubleshooting",
+            "Troubleshooting"
+        ],
+        "references": [
+            "News system",
+            "main",
+            "Tutorials/BestPractice/Routing/Index.html#references",
+            "References"
+        ],
+        "categories": [
+            "News system",
+            "main",
+            "Tutorials/BestPractice/TsConfigExamples/Index.html#categories",
+            "Categories"
+        ],
+        "via-typoscript": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/Demands/Index.html#via-typoscript",
+            "Via TypoScript"
+        ],
+        "ext-emconf-php": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/ProxyClassGenerator/Index.html#ext-emconf-php",
+            "ext_emconf.php"
+        ],
+        "ext-localconf-php": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/ExtensionBasedOnNews/Index.html#ext-localconf-php",
+            "ext_localconf.php"
+        ],
+        "setup": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/ExtensionBasedOnNews/Index.html#setup",
+            "Setup"
+        ],
+        "example": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/FormDataProvider/Index.html#example",
+            "Example"
+        ],
+        "sql-definition": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/ProxyClassGenerator/Index.html#sql-definition",
+            "SQL definition"
+        ],
+        "registration": [
+            "News system",
+            "main",
+            "Tutorials/ExtendNews/ProxyClassGenerator/Index.html#registration",
+            "Registration"
+        ],
+        "templates": [
+            "News system",
+            "main",
+            "Tutorials/Templates/Start/Index.html#templates",
+            "Templates"
+        ],
+        "using-fluid": [
+            "News system",
+            "main",
+            "Tutorials/Templates/RenderContentElements/Index.html#using-fluid",
+            "Using Fluid"
+        ],
+        "layouts": [
+            "News system",
+            "main",
+            "Tutorials/Templates/Start/Index.html#layouts",
+            "Layouts"
+        ],
+        "partials": [
+            "News system",
+            "main",
+            "Tutorials/Templates/Start/Index.html#partials",
+            "Partials"
+        ],
+        "sections": [
+            "News system",
+            "main",
+            "Tutorials/Templates/Start/Index.html#sections",
+            "Sections"
+        ],
+        "see-also": [
+            "News system",
+            "main",
+            "Tutorials/Templates/ViewHelpers/Index.html#see-also",
+            "See also"
+        ],
+        "list": [
+            "News system",
+            "main",
+            "UsersManual/Plugins/Index.html#plugin-list",
+            "List"
+        ],
+        "category": [
+            "News system",
+            "main",
+            "UsersManual/Records/Category/Index.html#recordCategory",
+            "Category"
+        ],
+        "properties": [
+            "News system",
+            "main",
+            "UsersManual/Records/Tag/Index.html#properties",
+            "Properties"
+        ],
+        "news": [
+            "News system",
+            "main",
+            "UsersManual/Records/News/Index.html#recordNews",
+            "News"
+        ],
+        "news-record": [
+            "News system",
+            "main",
+            "UsersManual/Records/News/Index.html#news-record",
+            "News record"
+        ],
+        "tag": [
+            "News system",
+            "main",
+            "UsersManual/Records/Tag/Index.html#recordTag",
+            "Tag"
+        ]
+    },
+    "std:confval": {
+        "columns": [
+            "News system",
+            "main",
+            "Reference/TsConfig/Administration.html#confval-columns",
+            "columns"
+        ],
+        "archive": [
+            "News system",
+            "main",
+            "Reference/TsConfig/General.html#confval-archive",
+            "archive"
+        ],
+        "format": [
+            "News system",
+            "main",
+            "Reference/TypoScript/GeneralSettings.html#confval-format",
+            "format"
+        ],
+        "categories": [
+            "News system",
+            "main",
+            "Reference/TypoScript/PluginSettings.html#confval-categories",
+            "categories"
+        ],
+        "recursive": [
+            "News system",
+            "main",
+            "Reference/TypoScript/PluginSettings.html#confval-recursive",
+            "recursive"
+        ],
+        "limit": [
+            "News system",
+            "main",
+            "Reference/TypoScript/PluginSettings.html#confval-limit",
+            "limit"
+        ],
+        "tags": [
+            "News system",
+            "main",
+            "Reference/TypoScript/PluginSettings.html#confval-tags",
+            "tags"
+        ],
+        "title": [
+            "News system",
+            "main",
+            "UsersManual/Records/Tag/Index.html#confval-title",
+            "Title"
+        ],
+        "hidden": [
+            "News system",
+            "main",
+            "UsersManual/Records/Tag/Index.html#confval-hidden",
+            "Hidden"
+        ]
+    },
+    "std:confval-menu": {}
+}

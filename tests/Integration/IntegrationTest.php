@@ -13,6 +13,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 use T3Docs\GuidesExtension\Command\RunDecorator;
 use T3Docs\Typo3DocsTheme\ApplicationTestCase;
+use T3Docs\Typo3DocsTheme\Integration\Http\RecordedHttpExtension;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ExternalFileObjects;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
 
@@ -61,7 +62,8 @@ final class IntegrationTest extends ApplicationTestCase
         try {
             system('mkdir ' . escapeshellarg($outputPath));
 
-            $this->prepareContainer($configurationFile);
+            // Never the network: what it answered is recorded.
+            $this->prepareContainer($configurationFile, [], [new RecordedHttpExtension(__DIR__ . '/http-fixtures')]);
             $command = $this->getContainer()->get(Run::class);
             assert($command instanceof Run || $command instanceof RunDecorator);
 

@@ -1,0 +1,981 @@
+{
+    "std:doc": {
+        "Changelog-12": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog-12.html",
+            "ChangeLog v12"
+        ],
+        "Changelog/7.2/Breaking-66431-NewLoginScreen": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.2/Breaking-66431-NewLoginScreen.html",
+            "Breaking: #66431 - New Login Screen"
+        ],
+        "Changelog/12.0/Index": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Index.html",
+            "12.0 Changes"
+        ],
+        "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.html",
+            "Feature: #105638 - Modify fetched page content"
+        ],
+        "Index": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Index.html",
+            "TYPO3 Core Changelog"
+        ],
+        "Sitemap": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Sitemap.html",
+            "Sitemap"
+        ]
+    },
+    "std:label": {
+        "changelog-v12": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog-12.html#changelog-v12",
+            "ChangeLog v12"
+        ],
+        "breaking-66431": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.2/Breaking-66431-NewLoginScreen.html#breaking-66431",
+            "Breaking: #66431 - New Login Screen"
+        ],
+        "feature-91008": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.4/Feature-91008-ItemSortingForTCASelectItems.html#feature-91008",
+            "Feature: #91008 - Item sorting for TCA select items"
+        ],
+        "breaking-87616": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Breaking-87616-RemovedHookForAlteringPageLinks.html#breaking-87616",
+            "Breaking: #87616 - Removed hook for altering page links"
+        ],
+        "breaking-90044": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Breaking-90044-ConfigspamProtectEmailAddressesWithOptionAsciiRemoved.html#breaking-90044",
+            "Breaking: #90044 - config.spamProtectEmailAddresses with option \"ascii\" removed"
+        ],
+        "deprecation-97866-1657185866": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Deprecation-97866-VariousPublicTSFEProperties.html#deprecation-97866-1657185866",
+            "Deprecation: #97866 - Various public TSFE properties"
+        ],
+        "deprecation-98168-1660890228": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Deprecation-98168-BindingContextMenuItemToThis.html#deprecation-98168-1660890228",
+            "Deprecation: #98168 - Binding context menu item to this"
+        ],
+        "feature-87616": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Feature-87616-PSR-14EventForModifyingPageLinkGeneration.html#feature-87616",
+            "Feature: #87616 - PSR-14 event for modifying Page Link Generation"
+        ],
+        "feature-90994": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Feature-90994-MarkCurrentPageInFluid_styled_contentMenuContentElements.html#feature-90994",
+            "Feature: #90994 - Mark current page in fluid_styled_content menu content elements"
+        ],
+        "feature-91077": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Feature-91077-ElementBrowserEntryPointsForTCATypeGroup.html#feature-91077",
+            "Feature: #91077 - Element browser entry points for TCA types \"group\" and \"folder\""
+        ],
+        "important-92020": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Important-92020-NewAPIEntryPointAvailableAtHttpsgettypo3orgapi.html#important-92020",
+            "Important: #92020 - New API entry point available at https://get.typo3.org/api/"
+        ],
+        "important-94951-1655368666": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Important-94951-RestrictExportFunctionalityToAllowedUsers.html#important-94951-1655368666",
+            "Important: #94951 - Restrict export functionality to allowed users"
+        ],
+        "breaking-pagetsbackendlayoutdataprovider-1687440947": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.0/Breaking-101149-MarkPageTsBackendLayoutDataProviderAsFinal.html#breaking-PageTsBackendLayoutDataProvider-1687440947",
+            "Breaking: #101149 - Mark PageTsBackendLayoutDataProvider as final"
+        ],
+        "feature-105638-1732034075": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.html#feature-105638-1732034075",
+            "Feature: #105638 - Modify fetched page content"
+        ],
+        "feature-107628-1729026000": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Feature-107628-ImprovedBackendModuleNamingAndStructure.html#feature-107628-1729026000",
+            "Feature: #107628 - Improved backend module naming and structure"
+        ],
+        "start": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Index.html#start",
+            "TYPO3 Core Changelog"
+        ]
+    },
+    "std:title": {
+        "breaking-changes": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Index.html#breaking-changes",
+            "Breaking Changes"
+        ],
+        "features": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Index.html#features",
+            "Features"
+        ],
+        "description": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Important-110864-CopyingRecordsKeepsTheirLanguage.html#description",
+            "Description"
+        ],
+        "impact": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Important-110175-TypoScriptLocalLangDefaultIsALastResortFallback.html#impact",
+            "Impact"
+        ],
+        "affected-installations": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Deprecation-110865-UuidOptionEnableCopyToClipboardMovedToAppearance.html#affected-installations",
+            "Affected installations"
+        ],
+        "migration": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Feature-102217-ConfigurableScaleForTCATypeNumber.html#migration",
+            "Migration"
+        ],
+        "templateview": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.0/Breaking-53542-DeprecatedCodeRemovalInFluid.html#templateview",
+            "TemplateView"
+        ],
+        "install-tool": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.0/Breaking-62670-DeprecatedCodeRemovalInMultipleSysexts.html#install-tool",
+            "Install Tool"
+        ],
+        "fluidtemplate": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.0/Feature-61361-FallbackTemplatePathsForFluidStandaloneView.html#fluidtemplate",
+            "FLUIDTEMPLATE"
+        ],
+        "deprecation": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Index.html#deprecation",
+            "Deprecation"
+        ],
+        "backend": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.1/Breaking-61510-IndexedSearch.html#backend",
+            "Backend"
+        ],
+        "usage": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.3.x/Important-109731-ModalApiSizeConfiguration.html#usage",
+            "Usage"
+        ],
+        "api": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.1/Feature-63729-ApiForBootstrapModals.html#api",
+            "API"
+        ],
+        "data-attributes": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.1/Feature-63729-ApiForBootstrapModals.html#data-attributes",
+            "Data-Attributes"
+        ],
+        "examples": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Feature-109263-ExpressionLanguageSupportForLimitToPagesInRouteEnhancers.html#examples",
+            "Examples"
+        ],
+        "breaking-66431-new-login-screen": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.2/Breaking-66431-NewLoginScreen.html#breaking-66431",
+            "Breaking: #66431 - New Login Screen"
+        ],
+        "items": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.2/Feature-65767-SystemInformationDropdown.html#items",
+            "Items"
+        ],
+        "messages": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.2/Feature-65767-SystemInformationDropdown.html#messages",
+            "Messages"
+        ],
+        "example": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Feature-110815-AfterRecordIsRenderedEvent.html#example",
+            "Example"
+        ],
+        "warning": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.3/Feature-67229-FormEngineNodeFactoryApi.html#warning",
+            "Warning"
+        ],
+        "important": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Index.html#important",
+            "Important"
+        ],
+        "tca": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.4/Breaking-67753-DropSecondaryOptions.html#tca",
+            "TCA"
+        ],
+        "php": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Breaking-96520-EnforceNon-emptyConfigurationInCObjparseFunc.html#php",
+            "PHP"
+        ],
+        "php-classes": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.4/Breaking-67811-RteApi.html#php-classes",
+            "PHP classes"
+        ],
+        "encode": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.4/Feature-67932-RsaauthApiRewrite.html#encode",
+            "Encode"
+        ],
+        "viewhelper": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.5/Feature-69095-IntroduceIconStateForIconFactory.html#viewhelper",
+            "ViewHelper"
+        ],
+        "details": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.5/Feature-69401-AdoptFormToSupportTheExtbaseFluidMVCStack.html#details",
+            "Details"
+        ],
+        "validation": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.3/Feature-103511-IntroduceExtbaseFileUploadHandling.html#validation",
+            "Validation:"
+        ],
+        "ext-backend": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.6/Breaking-69916-RegisteredAJAXHandlersReplacedByRoutes.html#ext-backend",
+            "EXT:backend"
+        ],
+        "buttons": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80579-ImprovedJavaScriptModalAPI.html#buttons",
+            "Buttons"
+        ],
+        "menus": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.6/Feature-69814-ModuleTemplateAPI.html#menus",
+            "Menus"
+        ],
+        "form": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.6/Feature-70332-EXTform-AddHTML4HTML5AttributesToTheWizard.html#form",
+            "FORM"
+        ],
+        "button": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.6/Feature-70332-EXTform-AddHTML4HTML5AttributesToTheWizard.html#button",
+            "BUTTON"
+        ],
+        "select": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.6/Feature-70332-EXTform-AddHTML4HTML5AttributesToTheWizard.html#select",
+            "SELECT"
+        ],
+        "submit": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.6/Feature-70332-EXTform-AddHTML4HTML5AttributesToTheWizard.html#submit",
+            "SUBMIT"
+        ],
+        "password": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.6/Feature-70332-EXTform-AddHTML4HTML5AttributesToTheWizard.html#password",
+            "PASSWORD"
+        ],
+        "hidden": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.6/Feature-70332-EXTform-AddHTML4HTML5AttributesToTheWizard.html#hidden",
+            "HIDDEN"
+        ],
+        "reset": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/7.6/Feature-70332-EXTform-AddHTML4HTML5AttributesToTheWizard.html#reset",
+            "RESET"
+        ],
+        "set": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.0/Feature-73429-WizardComponentHasBeenAdded.html#set",
+            "set"
+        ],
+        "page": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.3/Feature-74365-LinkServiceForUnifiedReferencingSyntax.html#page",
+            "page"
+        ],
+        "file": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.3/Feature-74365-LinkServiceForUnifiedReferencingSyntax.html#file",
+            "file"
+        ],
+        "folder": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.3/Feature-74365-LinkServiceForUnifiedReferencingSyntax.html#folder",
+            "folder"
+        ],
+        "structure": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Feature-108843-UserSettingsConfigurationMigratedToTCA.html#structure",
+            "Structure"
+        ],
+        "note": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/11.5.x/Important-98960-DefaultTypeDefinitionOfCustomContentTypes.html#note",
+            "Note"
+        ],
+        "language": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.5/Important-78383-TCAStreamlineFieldPositionsInTabsForRecurringFields.html#language",
+            "Language"
+        ],
+        "access": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.5/Important-78383-TCAStreamlineFieldPositionsInTabsForRecurringFields.html#access",
+            "Access"
+        ],
+        "categories": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.5/Important-78383-TCAStreamlineFieldPositionsInTabsForRecurringFields.html#categories",
+            "Categories"
+        ],
+        "extended": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.5/Important-78383-TCAStreamlineFieldPositionsInTabsForRecurringFields.html#extended",
+            "Extended"
+        ],
+        "fluid-styled-content": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Breaking-80412-NewSharedContentElementTyposcriptLibraryObjectForFluidStyledContent.html#fluid-styled-content",
+            "Fluid Styled Content"
+        ],
+        "typoscript-setup": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.6/Breaking-79622-TypoScriptStandardHeaderHasBeenRemovedFromFluidStyledContent.html#typoscript-setup",
+            "TypoScript Setup"
+        ],
+        "fluid-template": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.6/Breaking-79622-TypoScriptStandardHeaderHasBeenRemovedFromFluidStyledContent.html#fluid-template",
+            "Fluid Template"
+        ],
+        "suggest-wizard": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.6/Deprecation-79440-TcaChanges.html#suggest-wizard",
+            "Suggest wizard"
+        ],
+        "type-list": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.6/Deprecation-79440-TcaChanges.html#type-list",
+            "Type list"
+        ],
+        "type-text": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.6/Deprecation-79440-TcaChanges.html#type-text",
+            "type=text"
+        ],
+        "type-group": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.6/Deprecation-79440-TcaChanges.html#type-group",
+            "type=group"
+        ],
+        "breaking": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7.x/Index.html#breaking",
+            "Breaking"
+        ],
+        "template": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80374-FrontendLoginConfigurationNowAvailableThroughTypoScriptConstants.html#template",
+            "Template"
+        ],
+        "storage": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80374-FrontendLoginConfigurationNowAvailableThroughTypoScriptConstants.html#storage",
+            "Storage"
+        ],
+        "e-mail": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80374-FrontendLoginConfigurationNowAvailableThroughTypoScriptConstants.html#e-mail",
+            "E-Mail"
+        ],
+        "redirects": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80374-FrontendLoginConfigurationNowAvailableThroughTypoScriptConstants.html#redirects",
+            "Redirects"
+        ],
+        "security": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80374-FrontendLoginConfigurationNowAvailableThroughTypoScriptConstants.html#security",
+            "Security"
+        ],
+        "type": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80579-ImprovedJavaScriptModalAPI.html#type",
+            "Type"
+        ],
+        "title": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80579-ImprovedJavaScriptModalAPI.html#title",
+            "Title"
+        ],
+        "content": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80579-ImprovedJavaScriptModalAPI.html#content",
+            "Content"
+        ],
+        "style": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80579-ImprovedJavaScriptModalAPI.html#style",
+            "Style"
+        ],
+        "size": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80579-ImprovedJavaScriptModalAPI.html#size",
+            "Size"
+        ],
+        "callback": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/8.7/Feature-80579-ImprovedJavaScriptModalAPI.html#callback",
+            "Callback"
+        ],
+        "related": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.0/Deprecation-87889-TYPO3BackendEntrypointScriptDeprecated.html#related",
+            "Related"
+        ],
+        "more-information": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.4.x/Important-92655-MakeRequestTimeoutConfigurableForLinkvalidator.html#more-information",
+            "More information"
+        ],
+        "intro": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/9.0/Important-81330-DealingWithPropertiesThatAreMigratedToProtected.html#intro",
+            "Intro"
+        ],
+        "config-yaml": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/9.2/Feature-84581-SiteHandling.html#config-yaml",
+            "config.yaml"
+        ],
+        "configuration": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Feature-108653-DatabaseStorageForFormExtension.html#configuration",
+            "Configuration"
+        ],
+        "options": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Feature-89951-CleanupCommandForFormFileUploadFolders.html#options",
+            "Options"
+        ],
+        "conditions": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/9.4/Feature-84133-IntroduceVariants.html#conditions",
+            "Conditions"
+        ],
+        "installation": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.1/Feature-108539-Default-Theme-Camino.html#installation",
+            "Installation"
+        ],
+        "variables": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/9.4/Feature-85829-ImplementSymfonyExpressionLanguageForTypoScriptConditions.html#variables",
+            "Variables"
+        ],
+        "purpose": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/9.4/Feature-86003-AdminpanelCompositionApi.html#purpose",
+            "Purpose"
+        ],
+        "hint": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/9.5.x/Feature-87085-FallbackOptionsForSlugFields.html#hint",
+            "Hint"
+        ],
+        "php-api": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/9.5.x/Important-94484-IntroduceHTMLSanitizer.html#php-api",
+            "PHP API"
+        ],
+        "typoscript": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.0/Breaking-102902-SearchRulesRemovedFromIndexedSearch.html#typoscript",
+            "TypoScript"
+        ],
+        "troubleshooting": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/9.5.x/Important-94484-IntroduceHTMLSanitizer.html#troubleshooting",
+            "Troubleshooting"
+        ],
+        "implementation": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Feature-108027-Type-SpecificCtrlPropertiesInTCATypes.html#implementation",
+            "Implementation"
+        ],
+        "identifiers": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/9.5/Important-82363-MakeExtBaseTranslationHandlingConsistentWithTyposcript.html#identifiers",
+            "Identifiers"
+        ],
+        "single-file": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.0/Breaking-87009-UseMultipleTranslationFilesByDefaultInEXTform.html#single-file",
+            "Single file"
+        ],
+        "request": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.3/Feature-89738-ApiForAjaxRequests.html#request",
+            "Request"
+        ],
+        "get": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.3/Feature-89738-ApiForAjaxRequests.html#get",
+            "get()"
+        ],
+        "post": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.3/Feature-89738-ApiForAjaxRequests.html#post",
+            "post()"
+        ],
+        "put": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.3/Feature-89738-ApiForAjaxRequests.html#put",
+            "put()"
+        ],
+        "abort": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.3/Feature-89738-ApiForAjaxRequests.html#abort",
+            "abort()"
+        ],
+        "response": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.3/Feature-89738-ApiForAjaxRequests.html#response",
+            "Response"
+        ],
+        "resolve": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.3/Feature-89738-ApiForAjaxRequests.html#resolve",
+            "resolve()"
+        ],
+        "raw": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/10.3/Feature-89738-ApiForAjaxRequests.html#raw",
+            "raw()"
+        ],
+        "important-94951-restrict-export-functionality-to-allowed-users": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Important-94951-RestrictExportFunctionalityToAllowedUsers.html#important-94951-1655368666",
+            "Important: #94951 - Restrict export functionality to allowed users"
+        ],
+        "frontend-login": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/11.3/Feature-93825-RateLimitingForFailedLogins.html#frontend-login",
+            "Frontend login"
+        ],
+        "syntax": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/11.5/Feature-95176-IntroduceFtransformhtmlView-helper.html#syntax",
+            "Syntax"
+        ],
+        "breaking-87616-removed-hook-for-altering-page-links": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Breaking-87616-RemovedHookForAlteringPageLinks.html#breaking-87616",
+            "Breaking: #87616 - Removed hook for altering page links"
+        ],
+        "breaking-90044-config-spamprotectemailaddresses-with-option-ascii-removed": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Breaking-90044-ConfigspamProtectEmailAddressesWithOptionAsciiRemoved.html#breaking-90044",
+            "Breaking: #90044 - config.spamProtectEmailAddresses with option \"ascii\" removed"
+        ],
+        "fluid-templates": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Breaking-96520-EnforceNon-emptyConfigurationInCObjparseFunc.html#fluid-templates",
+            "Fluid Templates"
+        ],
+        "report": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Breaking-97320-RegisterReportAndStatusViaServiceConfiguration.html#report",
+            "Report"
+        ],
+        "deprecation-97866-various-public-tsfe-properties": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Deprecation-97866-VariousPublicTSFEProperties.html#deprecation-97866-1657185866",
+            "Deprecation: #97866 - Various public TSFE properties"
+        ],
+        "deprecation-98168-binding-context-menu-item-to-this": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Deprecation-98168-BindingContextMenuItemToThis.html#deprecation-98168-1660890228",
+            "Deprecation: #98168 - Binding context menu item to this"
+        ],
+        "feature-87616-psr-14-event-for-modifying-page-link-generation": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Feature-87616-PSR-14EventForModifyingPageLinkGeneration.html#feature-87616",
+            "Feature: #87616 - PSR-14 event for modifying Page Link Generation"
+        ],
+        "feature-90994-mark-current-page-in-fluid-styled-content-menu-content-elements": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Feature-90994-MarkCurrentPageInFluid_styled_contentMenuContentElements.html#feature-90994",
+            "Feature: #90994 - Mark current page in fluid_styled_content menu content elements"
+        ],
+        "feature-91077-element-browser-entry-points-for-tca-types-group-and-folder": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Feature-91077-ElementBrowserEntryPointsForTCATypeGroup.html#feature-91077",
+            "Feature: #91077 - Element browser entry points for TCA types \"group\" and \"folder\""
+        ],
+        "validate": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Feature-96688-AttributesForExtbaseAnnotations.html#validate",
+            "Validate"
+        ],
+        "introduction": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Breaking-108055-RemovedFrontendAssetConcatenationAndCompression.html#introduction",
+            "Introduction"
+        ],
+        "12-0-changes": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.0/Index.html#changelog-12-0",
+            "12.0 Changes"
+        ],
+        "before": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Deprecation-108843-ExtensionManagementUtilityAddFieldsToUserSettings.html#before",
+            "Before"
+        ],
+        "after": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Deprecation-108843-ExtensionManagementUtilityAddFieldsToUserSettings.html#after",
+            "After"
+        ],
+        "frontend-typoscript": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.3/Feature-100218-ImprovedTypoScriptAndPageTsConfigModules.html#frontend-typoscript",
+            "Frontend TypoScript"
+        ],
+        "page-tsconfig": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/12.3/Feature-100218-ImprovedTypoScriptAndPageTsConfigModules.html#page-tsconfig",
+            "Page TSconfig"
+        ],
+        "fluid": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.0/Breaking-102902-SearchRulesRemovedFromIndexedSearch.html#fluid",
+            "Fluid"
+        ],
+        "pagination": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.0/Breaking-102925-TemplateChangesInIndexedSearch.html#pagination",
+            "Pagination"
+        ],
+        "settings-definitions": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.1/Feature-103437-IntroduceSiteSets.html#settings-definitions",
+            "Settings definitions"
+        ],
+        "property-name": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.3/Feature-103511-IntroduceExtbaseFileUploadHandling.html#property-name",
+            "Property name:"
+        ],
+        "required": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.3/Feature-103511-IntroduceExtbaseFileUploadHandling.html#required",
+            "Required:"
+        ],
+        "readonly": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.3/Feature-104794-IntroduceSiteSettingsEditor.html#readonly",
+            "Readonly"
+        ],
+        "feature-105638-modify-fetched-page-content": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.4.x/Feature-105638-ModifyFetchedPageContent.html#feature-105638-1732034075",
+            "Feature: #105638 - Modify fetched page content"
+        ],
+        "new-psr-14-event": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/13.4.x/Important-107062-AvoidApplyingContent-Security-PolicyNonceSourcesWhenNotRequired.html#new-psr-14-event",
+            "New PSR-14 event"
+        ],
+        "upgrade-wizard": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Deprecation-106947-MoveUpgradeWizardRelatedInterfacesAndAttributeToEXTcore.html#upgrade-wizard",
+            "Upgrade Wizard"
+        ],
+        "format": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Feature-93334-TranslationDomainMapping.html#format",
+            "Format"
+        ],
+        "psr-14-event": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Feature-107471-NewSchedulerTaskWizard.html#psr-14-event",
+            "PSR-14 event"
+        ],
+        "static-installation": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Feature-106839-IntroduceShellAuto-completionForTheTypo3Script.html#static-installation",
+            "Static installation"
+        ],
+        "dynamic-installation": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Feature-106839-IntroduceShellAuto-completionForTheTypo3Script.html#dynamic-installation",
+            "Dynamic installation"
+        ],
+        "how-to-use": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Feature-107697-UnifiedFileCreationInElementBrowser.html#how-to-use",
+            "How to use"
+        ],
+        "changes": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Feature-107791-ReportsModuleUsesSubmoduleOverview.html#changes",
+            "Changes"
+        ],
+        "history": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.0/Feature-108227-AllowIgnoreValidationAndValidateAttributesAtControllerActionMethodParameters.html#history",
+            "History"
+        ],
+        "fluid-viewhelper": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.1/Deprecation-108086-RaiseDeprecationErrorOnUsingDeprecatedLabels.html#fluid-viewhelper",
+            "Fluid ViewHelper"
+        ],
+        "user-tsconfig": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Feature-105827-BackendSearchByPageURL.html#user-tsconfig",
+            "User TSconfig"
+        ],
+        "render": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Deprecation-109286-ExplicitRequestHandlingInPageRenderer.html#render",
+            "render()"
+        ],
+        "arguments": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Feature-89951-CleanupCommandForFormFileUploadFolders.html#arguments",
+            "Arguments"
+        ],
+        "overview": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.2/Feature-107940-IntroduceReportAboutContentTypeUsage.html#overview",
+            "Overview"
+        ],
+        "properties": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/14.3/Deprecation-109575-ContentObjectRendererPropertiesAndMethods.html#properties",
+            "Properties"
+        ],
+        "jquery": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Breaking-109998-RemovedJQuery.html#jquery",
+            "jQuery"
+        ],
+        "formengine": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Breaking-109998-RemovedJQuery.html#formengine",
+            "FormEngine"
+        ],
+        "concept": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/15.0/Feature-110347-NativeLazyObjectsForExtbaseLazyLoading.html#concept",
+            "Concept"
+        ],
+        "location": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/Howto.html#changelog_howto_location",
+            "Location"
+        ],
+        "file-content": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Changelog/Howto.html#changelog_howto_file_content",
+            "File content"
+        ],
+        "typo3-core-changelog": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Index.html#start",
+            "TYPO3 Core Changelog"
+        ],
+        "sitemap": [
+            "TYPO3 Core Changelog",
+            "main",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ]
+    },
+    "std:confval": {}
+}

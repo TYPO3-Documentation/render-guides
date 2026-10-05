@@ -1,0 +1,124 @@
+{
+    "std:doc": {
+        "Index": [
+            "Admin Panel",
+            "main",
+            "Index.html",
+            "TYPO3 Admin Panel"
+        ],
+        "Sitemap": [
+            "Admin Panel",
+            "main",
+            "Sitemap.html",
+            "Sitemap"
+        ]
+    },
+    "std:label": {
+        "configuration": [
+            "Admin Panel",
+            "main",
+            "Configuration/Index.html#configuration",
+            "Configuration"
+        ],
+        "start": [
+            "Admin Panel",
+            "main",
+            "Index.html#start",
+            "TYPO3 Admin Panel"
+        ],
+        "debug": [
+            "Admin Panel",
+            "main",
+            "Inspecting/Debug/Index.html#debug",
+            "Debugging a page"
+        ],
+        "debug-log": [
+            "Admin Panel",
+            "main",
+            "Inspecting/Debug/Index.html#debug-log",
+            "Log"
+        ],
+        "info": [
+            "Admin Panel",
+            "main",
+            "Inspecting/Info/Index.html#info",
+            "Information about a page"
+        ],
+        "typoscript": [
+            "Admin Panel",
+            "main",
+            "Inspecting/TypoScript/Index.html#TypoScript",
+            "TypoScript"
+        ],
+        "installation": [
+            "Admin Panel",
+            "main",
+            "Installation/Index.html#installation",
+            "Installation"
+        ],
+        "introduction": [
+            "Admin Panel",
+            "main",
+            "Introduction/Index.html#introduction",
+            "Introduction"
+        ],
+        "settings": [
+            "Admin Panel",
+            "main",
+            "Settings/Index.html#settings",
+            "Settings"
+        ],
+        "sitemap": [
+            "Admin Panel",
+            "main",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ]
+    },
+    "std:title": {
+        "examples": [
+            "Admin Panel",
+            "main",
+            "Extending/Index.html#extending-page-settings-example",
+            "Examples"
+        ],
+        "log": [
+            "Admin Panel",
+            "main",
+            "Inspecting/Debug/Index.html#debug-log",
+            "Log"
+        ],
+        "page-title": [
+            "Admin Panel",
+            "main",
+            "Inspecting/Debug/Index.html#debug-page-title",
+            "Page title"
+        ],
+        "general": [
+            "Admin Panel",
+            "main",
+            "Inspecting/Info/Index.html#info-general",
+            "General"
+        ],
+        "php": [
+            "Admin Panel",
+            "main",
+            "Inspecting/Info/Index.html#info-php",
+            "PHP"
+        ],
+        "request": [
+            "Admin Panel",
+            "main",
+            "Inspecting/Info/Index.html#info-request",
+            "REQUEST"
+        ],
+        "typoscript": [
+            "Admin Panel",
+            "main",
+            "Inspecting/TypoScript/Index.html#TypoScript",
+            "TypoScript"
+        ]
+    },
+    "std:confval": {},
+    "std:confval-menu": {}
+}
