@@ -85,11 +85,13 @@ use T3Docs\Typo3DocsTheme\ConfvalVersions\ConfvalVersions;
 use T3Docs\Typo3DocsTheme\Search\SearchFacets;
 use T3Docs\Typo3DocsTheme\Renderer\ConfvalIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\SitemapXmlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ViewHelpersJsonRenderer;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\ExternalViewHelpers;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\LocalViewHelpers;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\ViewHelperIndex;
+use T3Docs\Typo3DocsTheme\Sitemap\ManualAddress;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\CssTextRole;
@@ -246,6 +248,18 @@ return static function (ContainerConfigurator $container): void {
             [
                 'noderender_tag' => 'phpdoc.guides.noderenderer.html',
                 'format' => 'viewhelpersjson',
+            ],
+        )
+
+        ->set(ManualAddress::class)
+        ->arg('$inventoryRepository', service(InventoryRepository::class))
+
+        ->set(SitemapXmlRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'sitemapxml',
             ],
         )
 

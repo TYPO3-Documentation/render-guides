@@ -275,12 +275,14 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             $this->appendOutputFormat($container, 'md');
         }
 
-        // Every manual gets a table of contents, and the Core Changelog gets
-        // an index of its entries on top. A manual that documents options or
-        // ViewHelpers, or defines files, lists them. @see TocJsonRenderer,
+        // Every manual gets a table of contents and, where its address is
+        // known, a sitemap; the Core Changelog gets an index of its entries on
+        // top. A manual that documents options or ViewHelpers, or defines
+        // files, lists them. @see TocJsonRenderer, SitemapXmlRenderer,
         // ChangelogJsonRenderer, ConfvalIndexJsonRenderer, FilesJsonRenderer,
         // ViewHelpersJsonRenderer
         $this->appendOutputFormat($container, 'tocjson');
+        $this->appendOutputFormat($container, 'sitemapxml');
         $this->appendOutputFormat($container, 'classindex');
         $this->appendOutputFormat($container, 'confvalindex');
         $this->appendOutputFormat($container, 'viewhelpersjson');
