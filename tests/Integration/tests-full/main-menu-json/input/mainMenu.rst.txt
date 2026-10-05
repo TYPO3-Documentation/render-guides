@@ -7,6 +7,12 @@
         *   :ref:`main <t3coreapi/main:start>`
         *   :ref:`12.4 <t3coreapi/12:start>`
 
+    *   :ref:`TYPO3 Exceptions <t3exceptions:start>`
+
+    *   :ref:`Extension Development <t3coreapi:extension-development>`
+
+        *   :ref:`main <t3coreapi/main:extension-development>`
+
 *   :ref:`System Extensions <t3docs:System-Extensions>`
 
     *   :doc:`adminpanel <typo3/cms-adminpanel:Index>`
