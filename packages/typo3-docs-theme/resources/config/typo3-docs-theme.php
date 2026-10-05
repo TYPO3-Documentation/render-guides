@@ -11,6 +11,7 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckEntryFileNameNodeTransf
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckHeadlineAnchorsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckInterlinkShortcodeNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckLinkTextNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CodeInHeadlineNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
@@ -138,6 +139,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(CheckInterlinkShortcodeNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->public()
+        ->set(CodeInHeadlineNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(RedirectsNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(ReplacePermalinksNodeTransformer::class)
