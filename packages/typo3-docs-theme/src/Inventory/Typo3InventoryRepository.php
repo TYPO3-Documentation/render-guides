@@ -14,6 +14,7 @@ use phpDocumentor\Guides\ReferenceResolvers\Messages;
 use phpDocumentor\Guides\RenderContext;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\Exception\ClientException;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 use T3Docs\VersionHandling\DefaultInventories;
 use T3Docs\VersionHandling\Typo3VersionMapping;
 
@@ -29,6 +30,13 @@ final class Typo3InventoryRepository implements InventoryRepository
     private array $inventories = [];
     /** @var list<string> */
     private array $ignoredInventories = [];
+    /**
+     * The inventories that exist but could not be loaded, which are among the
+     * ignored ones: a link to one says so rather than that it does not exist.
+     *
+     * @var list<string>
+     */
+    private array $unreachableInventories = [];
 
     /**
      * @param array<int, array<string, string>> $inventoryConfigs
@@ -125,28 +133,42 @@ final class Typo3InventoryRepository implements InventoryRepository
             return false;
         }
 
-        if ($this->tryLoadInventoryJson($reducedKey, $inventoryUrl)) {
+        $failure = $this->tryLoadInventoryJson($reducedKey, $inventoryUrl);
+        if ($failure === null) {
             return ($this->inventories[$reducedKey] ?? false) instanceof Inventory
                 && $this->inventories[$reducedKey]->isLoaded();
         }
 
-        $this->logger->warning(\sprintf('Interlink inventory for manual %s not found.', $key));
+        $this->logger->warning($failure === ''
+            ? \sprintf('Interlink inventory for manual %s not found.', $key)
+            : \sprintf('Interlink inventory for manual %s could not be loaded: %s', $key, $failure));
         $this->ignoredInventories[] = $reducedKey;
+        if ($failure !== '') {
+            $this->unreachableInventories[] = $reducedKey;
+        }
         return false;
     }
 
-    private function tryLoadInventoryJson(string $reducedKey, string $inventoryUrl): bool
+    /**
+     * Null where the inventory was loaded, "" where it does not exist, or
+     * why it could not be loaded otherwise: a refused connection, an error
+     * of the server or an answer that is no inventory. Each of those would
+     * abort the render where it was let through.
+     */
+    private function tryLoadInventoryJson(string $reducedKey, string $inventoryUrl): ?string
     {
         try {
             $json = $this->jsonLoader->loadJsonFromUrl($inventoryUrl . 'objects.inv.json');
             if ($json === []) {
-                return false;
+                return '';
             }
             /** @var array<string, mixed> $json */
             $this->loadInventoryFromJson($inventoryUrl, $json, $reducedKey);
-            return true;
+            return null;
         } catch (ClientException) {
-            return false;
+            return '';
+        } catch (ExceptionInterface $exception) {
+            return $exception->getMessage();
         }
     }
 
@@ -168,15 +190,37 @@ final class Typo3InventoryRepository implements InventoryRepository
         if (!$this->hasInventory($key)) {
             $messages->addWarning(
                 new Message(
-                    \sprintf('Inventory with key %s not found. ', $key),
+                    \sprintf(
+                        \in_array($reducedKey, $this->unreachableInventories, true)
+                            ? 'Inventory with key %s could not be loaded. '
+                            : 'Inventory with key %s not found. ',
+                        $key,
+                    ),
                     \array_merge($renderContext->getLoggerInformation(), $node->getDebugInformation()),
                 ),
             );
             return null;
         }
 
-        // Ensure fully loaded (no-op if already)
-        $this->inventoryLoader->loadInventory($this->inventories[$reducedKey]);
+        // Ensure fully loaded (no-op if already). guides catches a missing
+        // inventory only: anything else that keeps it from loading would abort
+        // the render. Such an inventory is not asked for again in this run,
+        // so that the links to it do not wait for the network one by one.
+        try {
+            $this->inventoryLoader->loadInventory($this->inventories[$reducedKey]);
+        } catch (ExceptionInterface $exception) {
+            $this->logger->warning(\sprintf('Interlink inventory for manual %s could not be loaded: %s', $key, $exception->getMessage()));
+            unset($this->inventories[$reducedKey]);
+            $this->ignoredInventories[] = $reducedKey;
+            $this->unreachableInventories[] = $reducedKey;
+            $messages->addWarning(
+                new Message(
+                    \sprintf('Inventory with key %s could not be loaded. ', $key),
+                    \array_merge($renderContext->getLoggerInformation(), $node->getDebugInformation()),
+                ),
+            );
+            return null;
+        }
 
         return $this->inventories[$reducedKey];
     }
