@@ -74,6 +74,9 @@ use T3Docs\Typo3DocsTheme\Renderer\NodeRenderer\MainMenuJsonDocumentRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\PageFiles;
 use T3Docs\Typo3DocsTheme\ClassIndex\ClassIndex;
 use T3Docs\Typo3DocsTheme\ClassIndex\UseStatements;
+use T3Docs\Typo3DocsTheme\ConfvalIndex\ConfvalIndex;
+use T3Docs\Typo3DocsTheme\Search\SearchFacets;
+use T3Docs\Typo3DocsTheme\Renderer\ConfvalIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
@@ -196,6 +199,18 @@ return static function (ContainerConfigurator $container): void {
             [
                 'noderender_tag' => 'phpdoc.guides.noderenderer.html',
                 'format' => 'filesjson',
+            ],
+        )
+
+        ->set(ConfvalIndex::class)
+        ->set(SearchFacets::class)
+
+        ->set(ConfvalIndexJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'confvalindex',
             ],
         )
 
