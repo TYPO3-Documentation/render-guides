@@ -41,6 +41,12 @@ final class ComposerTextRole implements TextRole
             return new PlainTextInlineNode($composerName);
         }
         $composerPackage = $this->packagistService->getComposerInfo($composerName);
+        if ($composerPackage->getPackagistStatus() === PackagistService::STATUS_UNREACHABLE) {
+            // Says nothing about the package, and the author cannot act on
+            // it: a render that fails on warnings must not fail for it.
+            $this->logger->notice(sprintf('"%s" could not be looked up: Packagist did not answer.', $composerName), $documentParserContext->getLoggerInformation());
+            return new PlainTextInlineNode($composerName);
+        }
         if ($composerPackage->getPackagistStatus() !== 'found') {
             $this->logger->warning(sprintf('"%s" was not found on packagist. ', $composerName), $documentParserContext->getLoggerInformation());
             return new PlainTextInlineNode($composerName);
