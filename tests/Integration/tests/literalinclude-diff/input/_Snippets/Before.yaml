@@ -1,0 +1,7 @@
+base: 'https://example.org/'
+languages:
+  -
+    title: English
+    languageId: 0
+    base: /
+    locale: en_US.UTF-8
