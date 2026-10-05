@@ -38,6 +38,7 @@ final class PhpTextRole implements TextRole
     {
         return [
             'php-short',
+            'php-namespace',
         ];
     }
 
@@ -50,12 +51,20 @@ final class PhpTextRole implements TextRole
         if (preg_match(self::MEMBER_PATTERN_REGEX, $rawContent, $matches) === 1) {
             [, $className, $member] = $matches;
         }
+        if ($role === 'php-namespace' && $this->isClassName($rawContent, $fqn)) {
+            return $this->getNamespaceCodeNode('\\' . ltrim($rawContent, '\\'));
+        }
         if (str_contains($className, '\\') && $this->isClassName($className, $fqn)) {
             if (!str_starts_with($className, '\\')) {
                 $className = '\\' . $className;
             }
             $type = 'class or interface';
             $apiInfo = $this->typo3ApiService->getClassInfo($className);
+            // Not a type the API knows, but the namespace of some: a class
+            // role that names a namespace is a namespace, not a class.
+            if ($apiInfo === [] && $member === '' && $this->typo3ApiService->isNamespace($className)) {
+                return $this->getNamespaceCodeNode($className);
+            }
             $name = $className;
             if ($role === 'php-short') {
                 $shortName = $fqn[2] ?? '';
@@ -76,6 +85,33 @@ final class PhpTextRole implements TextRole
             return $this->getDeprecationErrorCodeNode($rawContent);
         }
         return new CodeInlineNode($rawContent, 'Code written in PHP', 'Dynamic server-side scripting language.');
+    }
+
+    /**
+     * A namespace, written in full whatever the role: its last segment alone
+     * says too little. It carries no "fqn", which is what makes the class
+     * index list a node and the popup offer a use statement.
+     */
+    private function getNamespaceCodeNode(string $namespace): CodeInlineNode
+    {
+        $info = ['signature' => 'namespace ' . ltrim($namespace, '\\')];
+        if ($this->typo3ApiService->isNamespace($namespace)) {
+            return new CodeInlineNode(
+                $namespace,
+                'PHP namespace',
+                'A namespace of the TYPO3 API. Its classes and interfaces are listed in the API documentation.',
+                [...$info, 'url' => $this->typo3ApiService->getNamespaceUrl($namespace)],
+            );
+        }
+        if (str_starts_with($namespace, '\\MyVendor') || str_starts_with($namespace, '\\Vendor')) {
+            return new CodeInlineNode(
+                $namespace,
+                'PHP namespace',
+                'This namespace is commonly used in examples. Replace it with your own vendor and namespace on implementation.',
+                $info,
+            );
+        }
+        return new CodeInlineNode($namespace, 'PHP namespace', '', $info);
     }
 
     private function getDeprecationErrorCodeNode(string $rawContent): CodeInlineNode

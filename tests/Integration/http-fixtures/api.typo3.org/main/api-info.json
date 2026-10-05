@@ -17,6 +17,24 @@
         "implements": "",
         "summary": "Service tag to autoconfigure event listeners."
     },
+    "\\TYPO3\\CMS\\Core\\Exception": {
+        "url": "https://api.typo3.org/main/classes/TYPO3-CMS-Core-Exception.html",
+        "short": "Exception",
+        "fqn": "\\TYPO3\\CMS\\Core\\Exception",
+        "github": "https://github.com/TYPO3/typo3/blob/main/typo3/sysext/core/Classes/Exception.php",
+        "file": "typo3/sysext/core/Classes/Exception.php",
+        "type": "class",
+        "final": "",
+        "abstract": "",
+        "readonly": "",
+        "internal": "",
+        "internal-message": "",
+        "deprecated": "",
+        "deprecation": "",
+        "extends": "",
+        "implements": "",
+        "summary": "An exception"
+    },
     "\\TYPO3\\CMS\\Core\\Http\\ServerRequest": {
         "url": "https://api.typo3.org/main/classes/TYPO3-CMS-Core-Http-ServerRequest.html",
         "short": "ServerRequest",
@@ -88,6 +106,24 @@
         "extends": "",
         "implements": "",
         "summary": "Class with helper functions for file paths."
+    },
+    "\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractEntity": {
+        "url": "https://api.typo3.org/main/classes/TYPO3-CMS-Extbase-DomainObject-AbstractEntity.html",
+        "short": "AbstractEntity",
+        "fqn": "\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractEntity",
+        "github": "https://github.com/TYPO3/typo3/blob/main/typo3/sysext/extbase/Classes/DomainObject/AbstractEntity.php",
+        "file": "typo3/sysext/extbase/Classes/DomainObject/AbstractEntity.php",
+        "type": "class",
+        "final": "",
+        "abstract": "1",
+        "readonly": "",
+        "internal": "",
+        "internal-message": "",
+        "deprecated": "",
+        "deprecation": "",
+        "extends": "\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractDomainObject",
+        "implements": "",
+        "summary": "An abstract Entity. An Entity is an object fundamentally defined not by its attributes, but by a thread of continuity and identity (e.g. a person)."
     },
     "\\TYPO3\\CMS\\Extbase\\Error\\Error": {
         "url": "https://api.typo3.org/main/classes/TYPO3-CMS-Extbase-Error-Error.html",
@@ -412,5 +448,41 @@
         "extends": "",
         "implements": "",
         "summary": "Base interface which all parts of a form must adhere to."
+    },
+    "\\TYPO3\\CMS\\Core\\Exception\\Archive\\ExtractException": {
+        "url": "https://api.typo3.org/main/classes/TYPO3-CMS-Core-Exception-Archive-ExtractException.html",
+        "short": "ExtractException",
+        "fqn": "\\TYPO3\\CMS\\Core\\Exception\\Archive\\ExtractException",
+        "github": "https://github.com/TYPO3/typo3/blob/main/typo3/sysext/core/Classes/Exception/Archive/ExtractException.php",
+        "file": "typo3/sysext/core/Classes/Exception/Archive/ExtractException.php",
+        "type": "class",
+        "final": "",
+        "abstract": "",
+        "readonly": "",
+        "internal": "",
+        "internal-message": "",
+        "deprecated": "",
+        "deprecation": "",
+        "extends": "\\TYPO3\\CMS\\Core\\Exception",
+        "implements": "",
+        "summary": "An exception thrown when extracting an archive fails"
+    },
+    "\\TYPO3\\CMS\\Extbase\\Attribute\\Authorize": {
+        "url": "https://api.typo3.org/main/classes/TYPO3-CMS-Extbase-Attribute-Authorize.html",
+        "short": "Authorize",
+        "fqn": "\\TYPO3\\CMS\\Extbase\\Attribute\\Authorize",
+        "github": "https://github.com/TYPO3/typo3/blob/main/typo3/sysext/extbase/Classes/Attribute/Authorize.php",
+        "file": "typo3/sysext/extbase/Classes/Attribute/Authorize.php",
+        "type": "class",
+        "final": "",
+        "abstract": "",
+        "readonly": "1",
+        "internal": "",
+        "internal-message": "",
+        "deprecated": "",
+        "deprecation": "",
+        "extends": "",
+        "implements": "",
+        "summary": ""
     }
 }
