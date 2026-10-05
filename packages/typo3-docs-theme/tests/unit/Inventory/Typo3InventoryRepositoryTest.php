@@ -12,6 +12,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
+use Symfony\Component\HttpClient\Exception\TransportException;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInterlinkParser;
 use T3Docs\Typo3DocsTheme\Inventory\DefaultInventoryUrlBuilder;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3InventoryRepository;
@@ -210,6 +211,34 @@ final class Typo3InventoryRepositoryTest extends TestCase
         ];
     }
 
+
+    #[Test]
+    public function aManualThatCannotBeReachedIsNotFoundAndNotAskedForAgain(): void
+    {
+        $this->jsonLoaderMock->expects(self::once())
+            ->method('loadJsonFromUrl')
+            ->willThrowException(new TransportException('Connection refused'));
+
+        self::assertFalse($this->subject->hasInventory('georgringer/news'));
+        self::assertFalse($this->subject->hasInventory('georgringer/news'));
+    }
+
+    #[Test]
+    public function aKnownInventoryThatCannotBeReachedIsMissingAndNotAskedForAgain(): void
+    {
+        $this->jsonLoaderMock->expects(self::once())
+            ->method('loadJsonFromUrl')
+            ->willThrowException(new TransportException('Connection refused'));
+        $node = new ReferenceNode('someReference', [], 't3coreapi');
+        $messages = new Messages();
+
+        $again = new Messages();
+
+        self::assertNull($this->subject->getInventory($node, $this->renderContext, $messages));
+        self::assertNull($this->subject->getInventory($node, $this->renderContext, $again));
+        self::assertStringContainsString('could not be loaded', (string) $messages->getLastWarning()?->getMessage());
+        self::assertStringContainsString('could not be loaded', (string) $again->getLastWarning()?->getMessage());
+    }
 
     private function getInventoryRepository(Typo3DocsThemeSettings $settings, array $inventoryConfigs)
     {
