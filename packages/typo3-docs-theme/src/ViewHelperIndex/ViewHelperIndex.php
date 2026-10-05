@@ -125,7 +125,7 @@ final class ViewHelperIndex
     }
 
     /** The first paragraph of the description, as plain text. */
-    private function summary(ViewHelperNode $node): string
+    public function summary(ViewHelperNode $node): string
     {
         foreach ($node->getDescription() as $child) {
             if ($child instanceof ParagraphNode) {
