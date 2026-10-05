@@ -1,0 +1,44 @@
+{
+    "name": "Global",
+    "label": "Global",
+    "namespaceAlias": "f",
+    "targetNamespace": "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers",
+    "sourceEdit": {
+        "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers": {
+            "sourcePrefix": "https://github.com/TYPO3/typo3/blob/main/typo3/sysext/fluid/Classes/ViewHelpers/",
+            "editPrefix": "https://github.com/TYPO3/typo3/edit/main/typo3/sysext/fluid/Classes/ViewHelpers/"
+        }
+    },
+    "viewHelpers": {
+        "TYPO3\\CMS\\Fluid\\ViewHelpers\\Format\\HtmlViewHelper": {
+            "className": "TYPO3\\CMS\\Fluid\\ViewHelpers\\Format\\HtmlViewHelper",
+            "namespace": "TYPO3\\CMS\\Fluid\\ViewHelpers",
+            "name": "Format\\HtmlViewHelper",
+            "tagName": "format.html",
+            "documentation": "Renders a string which can contain HTML markup.\n\nIt passes the string to a TYPO3 parseFunc.",
+            "xmlNamespace": "http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers",
+            "docTags": {
+                "@see": "https://docs.typo3.org/permalink/t3tsref:parsefunc"
+            },
+            "argumentDefinitions": {
+                "parseFuncTSPath": {
+                    "name": "parseFuncTSPath",
+                    "type": "string",
+                    "description": "Path to the TypoScript parseFunc setup.",
+                    "required": false,
+                    "defaultValue": "lib.parseFunc_RTE",
+                    "escape": null
+                },
+                "data": {
+                    "name": "data",
+                    "type": "mixed",
+                    "description": "Initialize the content object with this set of data.",
+                    "required": false,
+                    "defaultValue": null,
+                    "escape": null
+                }
+            },
+            "allowsArbitraryArguments": false
+        }
+    }
+}

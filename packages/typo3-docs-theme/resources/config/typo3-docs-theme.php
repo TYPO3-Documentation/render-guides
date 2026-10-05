@@ -84,6 +84,8 @@ use T3Docs\Typo3DocsTheme\Search\SearchFacets;
 use T3Docs\Typo3DocsTheme\Renderer\ConfvalIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\ViewHelpersJsonRenderer;
+use T3Docs\Typo3DocsTheme\ViewHelperIndex\ViewHelperIndex;
 use T3Docs\Typo3DocsTheme\TextRoles\ApiClassTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\ComposerTextRole;
 use T3Docs\Typo3DocsTheme\TextRoles\CssTextRole;
@@ -221,6 +223,17 @@ return static function (ContainerConfigurator $container): void {
             [
                 'noderender_tag' => 'phpdoc.guides.noderenderer.html',
                 'format' => 'confvalindex',
+            ],
+        )
+
+        ->set(ViewHelperIndex::class)
+
+        ->set(ViewHelpersJsonRenderer::class)
+        ->tag(
+            'phpdoc.renderer.typerenderer',
+            [
+                'noderender_tag' => 'phpdoc.guides.noderenderer.html',
+                'format' => 'viewhelpersjson',
             ],
         )
 
