@@ -24324,6 +24324,9 @@ code {
 .code-block [data-emphasize-line] {
   background: rgb(100%, 96.7058823529%, 80%);
 }
+.code-block [data-emphasize-line] .hljs-addition, .code-block [data-emphasize-line] .hljs-deletion {
+  background-color: transparent;
+}
 
 .code-block-caption {
   hyphens: auto;
