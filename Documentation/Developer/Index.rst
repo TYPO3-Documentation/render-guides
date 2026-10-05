@@ -99,6 +99,7 @@ and the GitHub pipelines, while internally only using :file:`Makefile` syntax.
     ChangelogIndex
     ManualsIndex
     LinkTextCheck
+    ConfvalFieldCheck
     HeadlineAnchorCheck
     AjaxVersions
 

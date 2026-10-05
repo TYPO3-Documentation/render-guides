@@ -9,9 +9,11 @@ use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckEntryFileNameNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckHeadlineAnchorsNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckConfvalFieldsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckInterlinkShortcodeNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckLinkTextNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CodeInHeadlineNodeTransformer;
+use T3Docs\Typo3DocsTheme\ConfvalFields\ConfvalFields;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
@@ -145,6 +147,9 @@ return static function (ContainerConfigurator $container): void {
         ->public()
         ->set(CodeInHeadlineNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(CheckConfvalFieldsNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(ConfvalFields::class)
         ->set(RedirectsNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(ReplacePermalinksNodeTransformer::class)
