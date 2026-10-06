@@ -26,6 +26,10 @@ use SebastianBergmann\Diff\Differ;
 use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
 use T3Docs\Typo3DocsTheme\CodeFolding\FoldedLines;
 
+use function array_reverse;
+use function array_shift;
+use function array_slice;
+use function basename;
 use function count;
 use function explode;
 use function implode;
@@ -52,6 +56,10 @@ final class LiteralincludeDirective extends BaseDirective
      * The language of a file, by its extension or, for files that have none,
      * by its name. TYPO3 manuals name a file meant only for including with a
      * leading underscore, such as `_Dockerfile`.
+     *
+     * When the last extension tells nothing, the one before it is used:
+     * `Example.php.inc` is PHP and `services.yaml.dist` is YAML. A known last
+     * extension wins, so `Include.rst.txt` stays plain text.
      */
     private function detectLanguageFromExtension(string $path): ?string
     {
@@ -97,9 +105,12 @@ final class LiteralincludeDirective extends BaseDirective
             'makefile' => 'makefile',
         ];
 
-        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-        if (isset($extensionMap[$extension])) {
-            return $extensionMap[$extension];
+        $extensions = explode('.', strtolower(basename($path)));
+        array_shift($extensions);
+        foreach (array_slice(array_reverse($extensions), 0, 2) as $extension) {
+            if (isset($extensionMap[$extension])) {
+                return $extensionMap[$extension];
+            }
         }
 
         // "Dockerfile", "_Dockerfile" and "_Dockerfile-apache-php" alike
