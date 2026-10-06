@@ -18,6 +18,7 @@
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
 <link href="_resources/css/theme.css" rel="stylesheet">
 <link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<link href="https://docs.typo3.org/permalink/permalinktest:permalink-validation@main" rel="canonical">
 <script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
 <script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
                         <link href="#" rel="top" title="Permalink validation"/>
@@ -75,14 +76,14 @@
                     </select>
                     <div id="global-search-root"></div>
                 </search>
-                <button id="options-toggle" class="btn btn-light" type="button"
+                                                <button id="options-toggle" class="btn btn-light" type="button"
                         aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
                     <i class="fa-solid fa-gear" aria-hidden="true"></i>
                     <span class="visually-hidden">Options</span>
                 </button>
                 <div id="options-panel" class="shadow p-3" popover>
                     <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
-                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
+                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-code"></i>
         View source
     </a>
@@ -90,12 +91,8 @@
         <i class="fa-solid fa-circle-info"></i>
         How to edit
     </a>
-                <a class="dropdown-item d-flex align-items-center gap-2" href="singlehtml/Index.html" target="_blank" rel="noopener">
-            <i class="fa-solid fa-print"></i>
-            Full documentation (single file)
-        </a>
-                    </div>
-            </div>
+                </div>
+                            </div>
         </div>
     </div>
 </header>    <main class="page-main">
@@ -113,9 +110,9 @@
         
     </div>
                         </div>
-                        <div class="toc-options d-lg-none">
+                                                <div class="toc-options d-lg-none">
                             <p class="caption">Options</p>
-                                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
+                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
         <i class="fa-solid fa-code"></i>
         View source
     </a>
@@ -123,12 +120,8 @@
         <i class="fa-solid fa-circle-info"></i>
         How to edit
     </a>
-                <a class="dropdown-item d-flex align-items-center gap-2" href="singlehtml/Index.html" target="_blank" rel="noopener">
-            <i class="fa-solid fa-print"></i>
-            Full documentation (single file)
-        </a>
-                            </div>
-                    </div>
+                        </div>
+                                            </div>
                 </nav>
             </div>
             <div class="page-main-content">
@@ -180,6 +173,15 @@ without a hyphen has nothing for the route to replace:</p>
             
     <p><a href="https://docs.typo3.org/c/typo3/cms-form/14.3/en-us/I/Concepts/Configuration/Index.html#concepts-configuration">Core extension</a>
 <a href="https://docs.typo3.org/p/georgringer/news/main/en-us/Index.html#start">No hyphen</a></p>
+
+            
+    <p>A file path where the anchor belongs, as the link modal used to offer for a
+headline without an anchor. No spelling of the path resolves, so the warning
+must not suggest one:</p>
+
+            
+    <p><span class="invalid-link" title="This link cannot be resolved">Index#permalink-validation</span>
+<span class="invalid-link" title="This link cannot be resolved">Sub/Index</span></p>
 
     </section>
         <!-- content end -->
@@ -249,7 +251,7 @@ without a hyphen has nothing for the route to replace:</p>
 </div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
     aria-hidden="true" data-current-filename="index"
 >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="generalModalLabel"></h5>
