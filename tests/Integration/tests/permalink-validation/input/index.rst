@@ -29,3 +29,10 @@ without a hyphen has nothing for the route to replace:
 
 `Core extension <https://docs.typo3.org/permalink/typo3/cms-form:concepts-configuration>`__
 `No hyphen <https://docs.typo3.org/permalink/georgringer/news:start>`__
+
+A file path where the anchor belongs, as the link modal used to offer for a
+headline without an anchor. No spelling of the path resolves, so the warning
+must not suggest one:
+
+`File path <https://docs.typo3.org/permalink/permalinktest:Index#permalink-validation>`__
+`Nested file path <https://docs.typo3.org/permalink/permalinktest:Sub/Index>`__

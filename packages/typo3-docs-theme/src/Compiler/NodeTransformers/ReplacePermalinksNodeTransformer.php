@@ -24,6 +24,7 @@ use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 use T3Docs\VersionHandling\DefaultInventories;
 
 use function assert;
+use function explode;
 use function sprintf;
 use function preg_match;
 use function preg_replace;
@@ -105,7 +106,7 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
     }
 
     /**
-     * Two forms the route rejects although rendering accepts them.
+     * The forms the route rejects although rendering accepts them.
      *
      * Reported rather than corrected: the rendered page already links to a
      * resolved deep link that works, so there is nothing to repair there. The
@@ -117,6 +118,27 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
         string $anchor,
         CompilerContextInterface $compilerContext,
     ): void {
+        // A file path where the anchor belongs, as the link modal offered for a
+        // headline without an anchor: "manual:Path/Index#section". The route
+        // accepts only letters, digits, "-" and "_" there, so no spelling of
+        // the path resolves -- normalising it would suggest a second URL that
+        // answers 404. What resolves is an anchor on the headline. Without a
+        // manual, a slash may belong to a manual key such as "georgringer/news"
+        // instead, so only the "#" tells a path there.
+        if (str_contains($anchor, '#') || ($interlink !== null && str_contains($anchor, '/'))) {
+            $this->logger->warning(
+                sprintf(
+                    'The permalink "%s" names the file "%s" instead of an anchor and resolves to 404. '
+                    . 'Link to the anchor of the headline. If the headline has none, add one.',
+                    $permalink,
+                    explode('#', $anchor, 2)[0],
+                ),
+                $compilerContext->getLoggerInformation(),
+            );
+
+            return;
+        }
+
         // The published inventory holds anchors normalised, the in-memory one
         // holds them as written, so "run_upgrade_wizard" resolves here and 404s
         // there.
