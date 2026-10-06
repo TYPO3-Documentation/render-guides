@@ -19,27 +19,22 @@
     return rstAnchor ? `${window.location.origin}${window.location.pathname}#${rstAnchor}` : `${window.location.origin}${window.location.pathname}#${section?.id || ''}`;
   }
 
-  function generateShortUri(linkReferenceModal, section, headerText, rstAnchor, filename) {
+  // The "/permalink/" route on docs.typo3.org resolves anchors only. A file
+  // path in its place, such as "manual:Path/Index#section", answers 404.
+  function generateShortUri(linkReferenceModal, rstAnchor) {
+    if (!rstAnchor) {
+      return '';
+    }
     const urlPrefix = 'https://docs.typo3.org/permalink/';
     const interlinkTarget = linkReferenceModal.dataset.interlinkShortcode || 'somemanual';
     // Replaces a link like "typo3/cms-sys-note" to "typo3-cms-sys-note"
     const adjustedInterlinkTarget = interlinkTarget.replaceAll('/', '-', interlinkTarget);
 
-    if (rstAnchor) {
-      return urlPrefix + `${adjustedInterlinkTarget}:${rstAnchor}`;
-    }
-    if (filename === '') {
-      return '';
-    }
-
-    // @todo - check how anchor hashes + filenames work with redirects? Other edge cases?
-    return urlPrefix + `${adjustedInterlinkTarget}:${filename}#${section?.id || ''}`;
+    return urlPrefix + `${adjustedInterlinkTarget}:${rstAnchor}`;
   }
 
-  function generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename) {
-    const url = generateShortUri(linkReferenceModal, section, headerText, rstAnchor, filename);
+  function generateRstLink(headerText, url) {
     if (!url) return '';
-    // Always use the permalink produced by generateShortUri
     return `\`${headerText} <${url}>\`_`;
   }
 
@@ -128,10 +123,14 @@
 
       const uri = generateUri(section, rstAnchor);
       const filename = linkReferenceModal.dataset.currentFilename;
-      const rstLink = rstLinkData ? rstLinkData : generateRstLink(linkReferenceModal, section, headerText, rstAnchor, filename);
-      const shortUri = generateShortUri(linkReferenceModal, section, headerText, rstAnchor, filename);
+      const shortUri = generateShortUri(linkReferenceModal, rstAnchor);
+      // Without an anchor there is no permalink, so the reST link is the page
+      // URL, which the alert above it warns about. The single HTML file has no
+      // page of its own to link to, so it offers no reST link then.
+      const rstUri = shortUri || (filename === '' ? '' : uri);
+      const rstLink = rstLinkData ? rstLinkData : generateRstLink(headerText, rstUri);
 
-      updateInputsAndTextareas(linkReferenceModal, header, headerText, uri, rstLink, rstAnchor?shortUri:uri);
+      updateInputsAndTextareas(linkReferenceModal, header, headerText, uri, rstLink, shortUri || uri);
 
 
       handleCopyButtons(linkReferenceModal);
