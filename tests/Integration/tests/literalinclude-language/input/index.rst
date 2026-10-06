@@ -20,6 +20,16 @@ Language of a literal include
 
 ..  literalinclude:: _Snippets/_Settings.YAML
 
+When the last extension tells nothing, the one before it is used:
+
+..  literalinclude:: _Snippets/_Example.php.inc
+
+..  literalinclude:: _Snippets/_services.yaml.dist
+
+A known last extension wins over the one before it:
+
+..  literalinclude:: _Snippets/_Include.rst.txt
+
 An explicit language wins over the extension:
 
 ..  literalinclude:: _Snippets/_script.sh
