@@ -33,6 +33,7 @@ use function rtrim;
 use function sprintf;
 use function str_contains;
 use function str_starts_with;
+use function strtolower;
 
 final class LiteralincludeDirective extends BaseDirective
 {
@@ -47,31 +48,68 @@ final class LiteralincludeDirective extends BaseDirective
         return 'literalinclude';
     }
 
+    /**
+     * The language of a file, by its extension or, for files that have none,
+     * by its name. TYPO3 manuals name a file meant only for including with a
+     * leading underscore, such as `_Dockerfile`.
+     */
     private function detectLanguageFromExtension(string $path): ?string
     {
         $extensionMap = [
+            'bash' => 'bash',
+            'cjs' => 'javascript',
+            'css' => 'css',
+            'csv' => 'plaintext',
+            'diff' => 'diff',
+            'env' => 'bash',
+            'htaccess' => 'apache',
             'html' => 'html',
-            'php' => 'php',
-            'typoscript' => 'typoscript',
-            'tsconfig' => 'typoscript',
-            'xml' => 'xml',
+            'ini' => 'ini',
+            'js' => 'javascript',
             'json' => 'json',
+            'less' => 'less',
+            'md' => 'markdown',
+            'mjs' => 'javascript',
+            'patch' => 'diff',
+            'php' => 'php',
+            'py' => 'python',
+            'rst' => 'rst',
+            'scss' => 'scss',
+            'sh' => 'bash',
+            'sql' => 'sql',
+            'svg' => 'xml',
+            'toml' => 'ini',
+            'ts' => 'typescript',
+            'tsconfig' => 'typoscript',
+            'twig' => 'twig',
+            'txt' => 'plaintext',
+            'typoscript' => 'typoscript',
+            'xlf' => 'xml',
+            'xliff' => 'xml',
+            'xml' => 'xml',
+            'xsd' => 'xml',
             'yaml' => 'yaml',
             'yml' => 'yaml',
-            'js' => 'javascript',
-            'css' => 'css',
-            'scss' => 'scss',
-            'ts' => 'typescript',
-            'txt' => 'plaintext',
-            'htaccess' => 'plaintext',
-            'rst' => 'rest',
-            'diff' => 'diff',
+            'zsh' => 'bash',
+        ];
+        $nameMap = [
+            'dockerfile' => 'dockerfile',
+            'makefile' => 'makefile',
         ];
 
-        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
         if (isset($extensionMap[$extension])) {
             return $extensionMap[$extension];
         }
+
+        // "Dockerfile", "_Dockerfile" and "_Dockerfile-apache-php" alike
+        $name = strtolower(ltrim(pathinfo($path, PATHINFO_FILENAME), '_'));
+        foreach ($nameMap as $prefix => $language) {
+            if (str_starts_with($name, $prefix)) {
+                return $language;
+            }
+        }
+
         return null;
     }
 
