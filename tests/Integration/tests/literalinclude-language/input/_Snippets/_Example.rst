@@ -1,0 +1,6 @@
+:orphan:
+
+Title
+=====
+
+Some *text*.
