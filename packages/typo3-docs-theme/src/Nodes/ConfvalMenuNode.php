@@ -34,6 +34,7 @@ final class ConfvalMenuNode extends GeneralDirectiveNode implements LinkTargetNo
         private readonly array $exclude = [],
         private readonly bool $noindex = false,
         private readonly string $facet = 'Option',
+        private readonly string $parent = '',
     ) {
         parent::__construct('confval-menu', $plainContent, $content, array_values($value));
     }
@@ -41,6 +42,15 @@ final class ConfvalMenuNode extends GeneralDirectiveNode implements LinkTargetNo
     public function getId(): string
     {
         return $this->id;
+    }
+
+    /**
+     * The name of the option whose properties the menu lists, such as
+     * "cobj-text", or "" for a menu that lists no option's properties.
+     */
+    public function getParent(): string
+    {
+        return $this->parent;
     }
 
     public function getCaption(): string

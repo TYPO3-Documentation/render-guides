@@ -15,6 +15,7 @@ use phpDocumentor\Guides\Nodes\SectionNode;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use phpDocumentor\Guides\RestructuredText\Nodes\ConfvalNode;
 use T3Docs\Typo3DocsTheme\ConfvalVersions\ConfvalVersions;
+use T3Docs\Typo3DocsTheme\Nodes\ConfvalMenuNode;
 use T3Docs\Typo3DocsTheme\Search\SearchFacets;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
@@ -33,6 +34,13 @@ use function trim;
  * each stands -- the titles of the pages and sections above it, and the option
  * it is nested in -- so every entry carries those.
  *
+ * An option nested in another is that option's property. So is an option a
+ * "confval-menu" lists whose ":parent:" names another, or one that names its
+ * parent with ":parent:" itself: on a page that documents an object and its
+ * properties side by side, which nesting would turn into one box without
+ * headlines. Nesting comes first, then the option's own ":parent:", then the
+ * menu's.
+ *
  * The fields of the directive are passed on as written. Their names and
  * values are the manual's own, and differ between manuals. The search facet
  * of an option is not: it says what kind of option it is, from one list for
@@ -42,8 +50,8 @@ use function trim;
  */
 final class ConfvalIndex
 {
-    /** Fields the theme reads for the search, which the index lists on their own or not at all. */
-    private const SEARCH_FIELDS = ['searchFacet', 'searchKeywords'];
+    /** Fields the theme reads itself, which the index lists on their own or not at all. */
+    private const SEARCH_FIELDS = ['searchFacet', 'searchKeywords', 'parent'];
 
     public function __construct(
         private readonly AnchorNormalizer $anchorNormalizer,
@@ -69,7 +77,9 @@ final class ConfvalIndex
         $options = [];
         foreach ($documents as $document) {
             $path = $document->getFilePath();
-            $this->walk($document, $trails[$path] ?? [], $path, null, $options);
+            $menuParents = [];
+            $this->menuParents($document, $menuParents);
+            $this->walk($document, $trails[$path] ?? [], $path, null, $menuParents, $options);
         }
 
         return $options;
@@ -94,10 +104,42 @@ final class ConfvalIndex
     }
 
     /**
+     * The parent each option has from a "confval-menu" with ":parent:", by the
+     * option's anchor. The first menu that lists an option counts.
+     *
+     * @param array<string, string> $menuParents
+     */
+    private function menuParents(Node $node, array &$menuParents): void
+    {
+        if ($node instanceof ConfvalMenuNode && $node->getParent() !== '') {
+            $parent = $this->anchor($node->getParent());
+            foreach ($node->getConfvals() as $confval) {
+                $menuParents[$this->anchorNormalizer->reduceAnchor($confval->getAnchor())] ??= $parent;
+            }
+        }
+
+        if (!$node instanceof CompoundNode) {
+            return;
+        }
+        foreach ($node->getChildren() as $child) {
+            if ($child instanceof Node) {
+                $this->menuParents($child, $menuParents);
+            }
+        }
+    }
+
+    /** The anchor of the option with this name, as ":parent:" writes it: "cobj-text". */
+    private function anchor(string $name): string
+    {
+        return $this->anchorNormalizer->reduceAnchor(ConfvalNode::LINK_PREFIX . $name);
+    }
+
+    /**
      * @param list<string> $context the titles above the node
+     * @param array<string, string> $menuParents
      * @param array<string, Entry> $options
      */
-    private function walk(Node $node, array $context, string $path, ?string $parent, array &$options): void
+    private function walk(Node $node, array $context, string $path, ?string $parent, array $menuParents, array &$options): void
     {
         if ($node instanceof SectionNode) {
             $context[] = $node->getTitle()->toString();
@@ -106,7 +148,13 @@ final class ConfvalIndex
         if ($node instanceof ConfvalNode) {
             if (!$node->isNoindex()) {
                 $anchor = $this->anchorNormalizer->reduceAnchor($node->getAnchor());
-                $options[$anchor] = $this->entry($node, $context, $path, $parent);
+                $ownParent = $this->text($node->getAdditionalOptions()['parent'] ?? null);
+                $options[$anchor] = $this->entry(
+                    $node,
+                    $context,
+                    $path,
+                    $parent ?? ($ownParent !== '' ? $this->anchor($ownParent) : null) ?? $menuParents[$anchor] ?? null,
+                );
                 $parent = $anchor;
             }
             // What is nested in an option belongs to it, not to a section.
@@ -119,7 +167,7 @@ final class ConfvalIndex
 
         foreach ($node->getChildren() as $child) {
             if ($child instanceof Node) {
-                $this->walk($child, $context, $path, $parent, $options);
+                $this->walk($child, $context, $path, $parent, $menuParents, $options);
             }
         }
     }

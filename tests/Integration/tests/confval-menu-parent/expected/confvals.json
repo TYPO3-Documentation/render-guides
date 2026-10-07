@@ -1,0 +1,79 @@
+{
+    "project": {
+        "title": "",
+        "version": "",
+        "permalink": ""
+    },
+    "confvals": {
+        "confval-cobj-text": {
+            "name": "TEXT",
+            "searchFacet": "Option",
+            "context": [
+                "Content object"
+            ],
+            "type": "cObject",
+            "summary": "Outputs static text or HTML.",
+            "path": "index"
+        },
+        "confval-text-value": {
+            "name": "value",
+            "searchFacet": "Option",
+            "context": [
+                "Content object",
+                "value"
+            ],
+            "parent": "confval-cobj-text",
+            "type": "string",
+            "summary": "The text to output.",
+            "path": "index"
+        },
+        "confval-text-stdwrap": {
+            "name": "stdWrap",
+            "searchFacet": "Option",
+            "context": [
+                "Content object",
+                "stdWrap"
+            ],
+            "parent": "confval-cobj-text",
+            "type": "stdWrap",
+            "summary": "The stdWrap properties of the text.",
+            "path": "index"
+        },
+        "confval-text-stdwrap-wrap": {
+            "name": "wrap",
+            "searchFacet": "Option",
+            "context": [
+                "Content object",
+                "stdWrap",
+                "stdWrap"
+            ],
+            "parent": "confval-text-stdwrap",
+            "type": "wrap",
+            "summary": "A property nested in stdWrap stays its property.",
+            "path": "index"
+        },
+        "confval-text-cache": {
+            "name": "cache",
+            "searchFacet": "Option",
+            "context": [
+                "Content object",
+                "cache"
+            ],
+            "parent": "confval-cobj-other",
+            "type": "cache",
+            "summary": "An option that names its own parent keeps it.",
+            "path": "index"
+        },
+        "confval-cobj-other": {
+            "name": "OTHER",
+            "searchFacet": "Option",
+            "context": [
+                "Content object",
+                "Other object"
+            ],
+            "type": "cObject",
+            "summary": "Another object.",
+            "path": "index"
+        }
+    }
+}
