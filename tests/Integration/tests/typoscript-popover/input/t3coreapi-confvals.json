@@ -1,0 +1,21 @@
+{
+    "project": {
+        "title": "TYPO3 Explained",
+        "version": "main",
+        "permalink": "https://docs.typo3.org/permalink/t3coreapi:{anchor}@main"
+    },
+    "confvals": {
+        "confval-extbase-typoscript-config-tx-extbase": {
+            "name": "config.tx_extbase",
+            "searchFacet": "Option",
+            "context": [
+                "Extension development",
+                "Extbase",
+                "Configuration"
+            ],
+            "type": "array",
+            "summary": "Configuration that applies to every Extbase plugin and module of the installation.",
+            "path": "ExtensionArchitecture/Extbase/Configuration/Reference"
+        }
+    }
+}

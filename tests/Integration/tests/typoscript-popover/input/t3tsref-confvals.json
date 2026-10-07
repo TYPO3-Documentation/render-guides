@@ -1,0 +1,246 @@
+{
+    "project": {
+        "title": "TypoScript Explained",
+        "version": "main",
+        "permalink": "https://docs.typo3.org/permalink/t3tsref:{anchor}@main"
+    },
+    "confvals": {
+        "confval-stdwrap-parsefunc": {
+            "name": "parseFunc",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Functions",
+                "stdWrap",
+                "Properties",
+                "Properties for parsing data"
+            ],
+            "type": "object path reference / parseFunc / stdWrap",
+            "summary": "Processing instructions to be applied to content.",
+            "path": "Functions/Stdwrap"
+        },
+        "confval-page-includejs": {
+            "name": "includeJS.[array]",
+            "searchFacet": "TypoScript",
+            "context": [
+                "PAGE object type in TypoScript",
+                "Properties"
+            ],
+            "type": "resource",
+            "fields": {
+                "Example": "Include JavaScript in the header"
+            },
+            "summary": "Inserts one or more (Java)Scripts in <script> tags. With Properties of 'config' set to TRUE all files will be moved to the footer. The file definition must be a valid resource data type, otherwise nothing is inserted.",
+            "path": "TopLevelObjects/Page/Index"
+        },
+        "confval-coa-wrap": {
+            "name": "wrap",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Content Objects (cObject)",
+                "Content object array - COA, COA_INT",
+                "Properties",
+                "wrap"
+            ],
+            "type": "wrap / stdWrap",
+            "summary": "Wraps all rendered cObjects. Executed before property stdWrap.",
+            "path": "ContentObjects/CoaAndCoaInt/Index"
+        },
+        "confval-content-wrap": {
+            "name": "wrap",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Content Objects (cObject)",
+                "CONTENT",
+                "Properties",
+                "wrap"
+            ],
+            "type": "wrap / stdWrap",
+            "summary": "Wrap the whole content.",
+            "path": "ContentObjects/Content/Index"
+        },
+        "confval-condition-applicationcontext": {
+            "name": "applicationContext",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Frontend TypoScript conditions criteria",
+                "applicationContext"
+            ],
+            "type": "String",
+            "summary": "The current application context as a string. See Application context.",
+            "path": "Conditions/Index"
+        },
+        "confval-mod-web-list-itemslimitsingletable": {
+            "name": "itemsLimitSingleTable",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Page TSconfig Reference",
+                "mod",
+                "web_list",
+                "itemsLimitSingleTable"
+            ],
+            "type": "positive integer",
+            "default": "100",
+            "summary": "Set the default maximum number of items to show in single table view. The number must be between 0 and 10000. If below or above this range, the nearest valid number will be used.",
+            "path": "PageTsconfig/Mod/WebList"
+        },
+        "confval-useroptions-pagetree-doktypestoshowinnewpagedragarea": {
+            "name": "doktypesToShowInNewPageDragArea",
+            "searchFacet": "TypoScript",
+            "context": [
+                "User TSconfig reference",
+                "options",
+                "Properties",
+                "pageTree"
+            ],
+            "parent": "confval-useroptions-pagetree",
+            "type": "string",
+            "default": "1,6,4,7,3,254,255,199",
+            "fields": {
+                "User TSconfig path": "options.pageTree.doktypesToShowInNewPageDragArea"
+            },
+            "summary": "If set, the node top panel feature can be configured by a comma-separated list. Each number stands for a doktype ID that should be added to the node top panel.",
+            "path": "UserTsconfig/Options"
+        },
+        "confval-mod-wizards-newcontentelement-wizarditems-group-before": {
+            "name": "[group].before",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Page TSconfig Reference",
+                "mod",
+                "wizards",
+                "newContentElement.wizardItems",
+                "newContentElement.wizardItems"
+            ],
+            "parent": "confval-mod-wizards-newcontentelement-wizarditems",
+            "type": "string",
+            "fields": {
+                "Page TSconfig path": "mod.wizards.newContentElement.wizardItems.[group].before"
+            },
+            "summary": "Sorts [group] in front of the group given.",
+            "path": "PageTsconfig/Mod/Wizards"
+        },
+        "confval-cobj-user": {
+            "name": "USER",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Content Objects (cObject)",
+                "USER and USER_INT"
+            ],
+            "type": "cObject",
+            "summary": "Calls a PHP function or a method in a class, to incorporate your own data processing or content. The output is cached with the page.",
+            "path": "ContentObjects/UserAndUserInt/Index"
+        },
+        "confval-cobj-coa-int": {
+            "name": "COA_INT",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Content Objects (cObject)",
+                "Content object array - COA, COA_INT"
+            ],
+            "type": "cObject",
+            "summary": "Works like COA, but is rendered non-cached, so every content object inside it is rendered non-cached as well.",
+            "path": "ContentObjects/CoaAndCoaInt/Index"
+        },
+        "confval-page": {
+            "name": "PAGE",
+            "searchFacet": "TypoScript",
+            "context": [
+                "PAGE object type in TypoScript"
+            ],
+            "type": "toplevel",
+            "summary": "Defines what is rendered in the frontend.",
+            "path": "TopLevelObjects/Page/Index"
+        },
+        "confval-stdwrap": {
+            "name": "stdWrap",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Functions",
+                "stdWrap"
+            ],
+            "type": "function",
+            "summary": "Gets, changes, and wraps a value. Many properties of content objects and functions accept stdWrap properties.",
+            "path": "Functions/Stdwrap"
+        },
+        "confval-typolink": {
+            "name": "typolink",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Functions",
+                "typolink"
+            ],
+            "type": "function",
+            "summary": "Wraps the incoming value in a link with an HTML 'a' tag.",
+            "path": "Functions/Typolink"
+        },
+        "confval-function-htmlparser-tags": {
+            "name": "HTMLparser_tags",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Functions",
+                "HTMLparser_tags"
+            ],
+            "type": "function",
+            "summary": "Configures how HTMLparser handles one tag, set in its property tags.[tagname].",
+            "path": "Functions/HtmlparserTags"
+        },
+        "confval-htmlparser-tags": {
+            "name": "tags",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Functions",
+                "HTMLparser",
+                "Properties",
+                "tags.[tagname]"
+            ],
+            "type": "boolean / string of HTMLparser_tags",
+            "summary": "Either set this property to 0 or 1 to allow or deny the tag. If you enter HTMLparser_tags properties, those will automatically overrule this option, thus it's not needed then.",
+            "path": "Functions/Htmlparser"
+        },
+        "confval-htmlparser": {
+            "name": "HTMLparser",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Functions",
+                "HTMLparser"
+            ],
+            "type": "function",
+            "summary": "Cleans up HTML: it keeps, removes, or changes tags and their attributes.",
+            "path": "Functions/Htmlparser"
+        },
+        "confval-config": {
+            "name": "config",
+            "searchFacet": "TypoScript",
+            "context": [
+                "config: TypoScript configuration"
+            ],
+            "type": "toplevel",
+            "summary": "Sets options for the rendering and output of the frontend page.",
+            "path": "TopLevelObjects/Config"
+        },
+        "confval-stdwrap-current": {
+            "name": "current",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Functions",
+                "stdWrap",
+                "Properties",
+                "Properties for getting data"
+            ],
+            "type": "boolean / stdWrap",
+            "summary": "Sets the content to the \"current\" value (see ->split)",
+            "path": "Functions/Stdwrap"
+        },
+        "confval-cobj-pageview": {
+            "name": "PAGEVIEW",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Content Objects (cObject)",
+                "PAGEVIEW"
+            ],
+            "type": "cObject",
+            "summary": "Renders a page with a Fluid template, which it finds by naming conventions from the backend layout of the page.",
+            "path": "ContentObjects/Pageview/Index"
+        }
+    }
+}

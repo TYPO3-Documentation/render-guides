@@ -201,16 +201,7 @@ final class ConfvalIndex
             $entry['required'] = true;
         }
 
-        $fields = [];
-        foreach ($node->getAdditionalOptions() as $name => $value) {
-            if (in_array($name, self::SEARCH_FIELDS, true) || ConfvalVersions::isVersionOption($name)) {
-                continue;
-            }
-            $text = $this->text($value);
-            if ($text !== '') {
-                $fields[$name] = $text;
-            }
-        }
+        $fields = $this->fields($node);
         if ($fields !== []) {
             $entry['fields'] = $fields;
         }
@@ -228,6 +219,46 @@ final class ConfvalIndex
         $entry['path'] = $path;
 
         return $entry;
+    }
+
+    /**
+     * What kind of option it is, its type, the first paragraph of its
+     * description and its fields, as "confvals.json" gives them: what a code
+     * role that names the option says about it, and the paths it declares.
+     * @see \T3Docs\Typo3DocsTheme\TypoScriptReference\LocalTypoScript
+     *
+     * @return array{searchFacet: string, type: string, summary: string, fields: array<string, string>}
+     */
+    public function describe(ConfvalNode $node): array
+    {
+        return [
+            'searchFacet' => $this->searchFacet($node),
+            'type' => $this->text($node->getType()),
+            'summary' => $this->summary($node),
+            'fields' => $this->fields($node),
+        ];
+    }
+
+    /**
+     * The fields of the directive the manual declares, such as "Page TSconfig
+     * path", as plain text.
+     *
+     * @return array<string, string>
+     */
+    private function fields(ConfvalNode $node): array
+    {
+        $fields = [];
+        foreach ($node->getAdditionalOptions() as $name => $value) {
+            if (in_array($name, self::SEARCH_FIELDS, true) || ConfvalVersions::isVersionOption($name)) {
+                continue;
+            }
+            $text = $this->text($value);
+            if ($text !== '') {
+                $fields[$name] = $text;
+            }
+        }
+
+        return $fields;
     }
 
     /**

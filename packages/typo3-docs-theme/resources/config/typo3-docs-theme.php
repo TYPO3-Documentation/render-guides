@@ -16,8 +16,10 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckLinkTextNodeTransformer
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CodeInHeadlineNodeTransformer;
 use T3Docs\Typo3DocsTheme\ConfvalFields\ConfvalFields;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectTypoScriptOptionsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectViewHelpersTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\DescribeFluidViewHelpersTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\DescribeTypoScriptTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectPrefixLinkTargetsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ConfvalMenuNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RedirectsNodeTransformer;
@@ -91,6 +93,8 @@ use T3Docs\Typo3DocsTheme\Renderer\SitemapXmlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\PreRenderers\CardImagePreNodeRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ViewHelpersJsonRenderer;
+use T3Docs\Typo3DocsTheme\TypoScriptReference\ExternalTypoScript;
+use T3Docs\Typo3DocsTheme\TypoScriptReference\LocalTypoScript;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\ExternalViewHelpers;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\LocalViewHelpers;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\ViewHelperIndex;
@@ -246,6 +250,15 @@ return static function (ContainerConfigurator $container): void {
         ->set(CollectViewHelpersTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(DescribeFluidViewHelpersTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+
+        ->set(ExternalTypoScript::class)
+        ->arg('$inventoryRepository', service(InventoryRepository::class))
+        ->public()
+        ->set(LocalTypoScript::class)
+        ->set(CollectTypoScriptOptionsTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(DescribeTypoScriptTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
 
         ->set(ViewHelpersJsonRenderer::class)

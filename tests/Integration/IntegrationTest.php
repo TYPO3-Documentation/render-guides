@@ -18,6 +18,7 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckInterlinkShortcodeNodeT
 use T3Docs\Typo3DocsTheme\Integration\Http\RecordedHttpExtension;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\ObjectsInventory\ExternalFileObjects;
 use T3Docs\Typo3DocsTheme\Renderer\DecoratingPlantumlRenderer;
+use T3Docs\Typo3DocsTheme\TypoScriptReference\ExternalTypoScript;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\ExternalViewHelpers;
 
 use function array_filter;
@@ -94,6 +95,27 @@ final class IntegrationTest extends ApplicationTestCase
                     : [],
                 'https://docs.typo3.org/other/typo3/view-helper-reference/main/en-us/',
             );
+
+            // The same for the TypoScript reference, which ":typoscript:" looks up.
+            $externalTypoScript = $this->getContainer()->get(ExternalTypoScript::class);
+            assert($externalTypoScript instanceof ExternalTypoScript);
+            $externalTypoScript->useDefinitions(
+                file_exists($inputPath . '/t3tsref-confvals.json')
+                    ? (array) json_decode((string) file_get_contents($inputPath . '/t3tsref-confvals.json'), true)
+                    : [],
+                file_exists($inputPath . '/t3tsref-objects.inv.json')
+                    ? (array) json_decode((string) file_get_contents($inputPath . '/t3tsref-objects.inv.json'), true)
+                    : [],
+                'https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/',
+            );
+            // A role that names a confval of TYPO3 Explained in angle brackets
+            if (file_exists($inputPath . '/t3coreapi-confvals.json')) {
+                $externalTypoScript->useConfvalsOf(
+                    't3coreapi',
+                    (array) json_decode((string) file_get_contents($inputPath . '/t3coreapi-confvals.json'), true),
+                    'https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/',
+                );
+            }
 
             // Most fixtures start at "index.rst", which is fine for a render
             // that is never deployed. A case that tests the warning says so.

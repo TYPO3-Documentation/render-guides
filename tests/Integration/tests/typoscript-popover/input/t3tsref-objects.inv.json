@@ -1,0 +1,114 @@
+{
+    "std:doc": {
+        "TopLevelObjects/Page/Index": [
+            "TypoScript Explained",
+            "main",
+            "TopLevelObjects/Page/Index.html",
+            "PAGE object type in TypoScript"
+        ],
+        "ContentObjects/Pageview/Index": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/Pageview/Index.html",
+            "PAGEVIEW"
+        ],
+        "ContentObjects/CoaAndCoaInt/Index": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/CoaAndCoaInt/Index.html",
+            "Content object array - COA, COA_INT"
+        ],
+        "ContentObjects/Image/Index": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/Image/Index.html",
+            "IMAGE"
+        ],
+        "Gifbuilder/ObjectNames/Image/Index": [
+            "TypoScript Explained",
+            "main",
+            "Gifbuilder/ObjectNames/Image/Index.html",
+            "IMAGE"
+        ],
+        "Gifbuilder/ObjectNames/Emboss/Index": [
+            "TypoScript Explained",
+            "main",
+            "Gifbuilder/ObjectNames/Emboss/Index.html",
+            "EMBOSS"
+        ],
+        "Gifbuilder/ObjectNames/Text/Index": [
+            "TypoScript Explained",
+            "main",
+            "Gifbuilder/ObjectNames/Text/Index.html",
+            "TEXT"
+        ],
+        "ContentObjects/Text/Index": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/Text/Index.html",
+            "TEXT"
+        ]
+    },
+    "std:label": {
+        "page": [
+            "TypoScript Explained",
+            "main",
+            "TopLevelObjects/Page/Index.html#page",
+            "PAGE object type in TypoScript"
+        ],
+        "cobj-pageview": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/Pageview/Index.html#cobj-pageview",
+            "PAGEVIEW"
+        ],
+        "cobj-coa": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/CoaAndCoaInt/Index.html#cobj-coa",
+            "Content object array - COA, COA_INT"
+        ],
+        "cobj-coa-int": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/CoaAndCoaInt/Index.html#cobj-coa-int",
+            "Content object array - COA, COA_INT"
+        ],
+        "cobj-image": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/Image/Index.html#cobj-image",
+            "IMAGE"
+        ],
+        "gifbuilder-image": [
+            "TypoScript Explained",
+            "main",
+            "Gifbuilder/ObjectNames/Image/Index.html#gifbuilder-image",
+            "IMAGE"
+        ],
+        "cobj-text": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/Text/Index.html#cobj-text",
+            "TEXT"
+        ],
+        "gifbuilder-text": [
+            "TypoScript Explained",
+            "main",
+            "Gifbuilder/ObjectNames/Text/Index.html#gifbuilder-text",
+            "TEXT"
+        ],
+        "cobj-user": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/UserAndUserInt/Index.html#cobj-user",
+            "USER and USER_INT"
+        ],
+        "cobj-user-int": [
+            "TypoScript Explained",
+            "main",
+            "ContentObjects/UserAndUserInt/Index.html#cobj-user-int",
+            "USER and USER_INT"
+        ]
+    }
+}
