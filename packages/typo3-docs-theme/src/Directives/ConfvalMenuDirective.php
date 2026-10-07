@@ -63,6 +63,7 @@ class ConfvalMenuDirective extends SubDirective
             'display',
             'exclude-noindex',
             'exclude',
+            'parent',
         ];
         foreach ($directive->getOptions() as $option) {
             if (in_array($option->getName(), $reservedParameterNames, true)) {
@@ -109,6 +110,7 @@ class ConfvalMenuDirective extends SubDirective
             $directive->getOptionBool('exclude-noindex'),
             $exclude,
             $directive->getOptionBool('noindex'),
+            parent: $directive->hasOption('parent') ? $this->anchorReducer->reduceAnchor($directive->getOptionString('parent')) : '',
         );
     }
     public function getName(): string

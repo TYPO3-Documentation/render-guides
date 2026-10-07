@@ -41,8 +41,9 @@ Columns of :rst:`..  confval-menu::`
 
 Always allowed are the fields the directive reads itself, :rst:`:name:`,
 :rst:`:type:`, :rst:`:default:`, :rst:`:required:` and :rst:`:noindex:`, and
-those the theme reads for the search, :rst:`:searchFacet:` and
-:rst:`:searchKeywords:`. The options of a site set's settings are not
+those the theme reads itself: :rst:`:searchFacet:` and
+:rst:`:searchKeywords:` for the search, and :rst:`:parent:`, which names the
+option this one is a property of. The options of a site set's settings are not
 checked: the theme writes them itself.
 
 A field that differs from an allowed one only in case, spaces, hyphens or

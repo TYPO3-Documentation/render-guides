@@ -32,7 +32,7 @@ use function trim;
 final class ConfvalFields
 {
     /** The fields the confval directive reads itself. */
-    public const BUILT_IN = ['name', 'type', 'default', 'required', 'noindex'];
+    public const BUILT_IN = ['name', 'type', 'default', 'required', 'noindex', 'parent'];
 
     /** The fields the theme reads from any confval, for the search. */
     public const THEME = ['searchFacet', 'searchKeywords'];
