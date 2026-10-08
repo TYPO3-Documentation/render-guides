@@ -26,3 +26,12 @@ Confval fields
 
         A built-in field with the wrong case, a declared one with the wrong
         case, and one that is not declared at all.
+
+    ..  confval:: rows
+        :name: rows
+        :added: 12.4
+        :changed: 13.0
+        :Deprecated: 14.0
+
+        The version fields the theme reads: no warning, unless spelled
+        differently.
