@@ -10,7 +10,7 @@
     the list loose, and a renderer then wraps every name in its own paragraph. -#}
 {%- macro item(node) -%}
     {%- set label -%}
-        {%- for part in node.children -%}
+        {%- for part in node.value -%}
             {%- if not part.isList -%}{{ renderNode(part)|raw }}{%- endif -%}
         {%- endfor -%}
     {%- endset -%}

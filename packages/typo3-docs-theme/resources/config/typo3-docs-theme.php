@@ -89,6 +89,7 @@ use T3Docs\Typo3DocsTheme\Renderer\ClassIndexJsonRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\LlmsTxtRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\SitemapXmlRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\TocJsonRenderer;
+use T3Docs\Typo3DocsTheme\Renderer\PreRenderers\CardImagePreNodeRenderer;
 use T3Docs\Typo3DocsTheme\Renderer\ViewHelpersJsonRenderer;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\ExternalViewHelpers;
 use T3Docs\Typo3DocsTheme\ViewHelperIndex\LocalViewHelpers;
@@ -233,6 +234,9 @@ return static function (ContainerConfigurator $container): void {
                 'format' => 'confvalindex',
             ],
         )
+
+        ->set(CardImagePreNodeRenderer::class)
+        ->tag('phpdoc.guides.prerenderer')
 
         ->set(ViewHelperIndex::class)
         ->set(ExternalViewHelpers::class)

@@ -5,7 +5,7 @@
     "type": "library",
     "require": {
         "php": "^8.2",
-        "phpdocumentor/guides": "^1.9",
+        "phpdocumentor/guides": "^1.11",
         "twig/twig": "^3.20"
     },
     "autoload": {
