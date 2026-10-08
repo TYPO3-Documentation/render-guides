@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Directives;
 
+use phpDocumentor\Guides\Compiler\CompilerContextInterface;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
+use phpDocumentor\Guides\RestructuredText\Directives\Attributes;
 use phpDocumentor\Guides\RestructuredText\Directives\BaseDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\ImageDirective as BaseImageDirective;
-use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
-use phpDocumentor\Guides\RestructuredText\Parser\Directive;
+use phpDocumentor\Guides\RestructuredText\Nodes\DirectiveNode;
 use phpDocumentor\Guides\RestructuredText\Parser\DirectiveOption;
 use Psr\Log\LoggerInterface;
 
@@ -30,14 +31,17 @@ use function is_string;
  * `:class: float-end`: docutils restricts `:align:` on substitution images
  * (|name|) to top/middle/bottom, so the class is the portable choice there.
  *
- * Note: process() delegates to $this->inner->process() which internally calls
- * BaseDirective::process() including withKeepExistingOptions(). We intentionally
- * skip the outer BaseDirective::process() to avoid double-applying options.
+ * Like the upstream directive it creates its node while compiling, from the
+ * DirectiveNode the parser leaves: the upstream directive no longer creates
+ * an image in process(), only a generic node that renders its path as text.
+ * The options the directive does not consume itself, ":zoom:" and the like,
+ * reach the image the same way. @see DirectiveProcessPass
  *
  * @see BaseImageDirective (upstream, composed)
  * @see https://github.com/phpDocumentor/guides/issues/1303 (final removal request)
  * @see FigureDirective (same float class rewriting for figures)
  */
+#[Attributes\Directive(name: 'image')]
 final class ImageDirective extends BaseDirective
 {
     use RewritesLegacyFloatClasses;
@@ -51,29 +55,23 @@ final class ImageDirective extends BaseDirective
         $this->inner = new BaseImageDirective($documentNameResolver);
     }
 
-    public function getName(): string
+    public function createNode(DirectiveNode $directiveNode, CompilerContextInterface $compilerContext): Node
     {
-        return 'image';
-    }
-
-    public function process(
-        BlockContext $blockContext,
-        Directive $directive,
-    ): Node|null {
         // Detect and rewrite legacy float classes before delegating to upstream
         // See also: figure.html.twig / image.html.twig alignMap for :align: option mapping
+        $directive = $directiveNode->getDirective();
         if ($directive->hasOption('class')) {
             $classValue = $directive->getOption('class')->getValue();
             if (is_string($classValue) && $this->hasLegacyFloatClass($classValue)) {
                 $this->logger->warning(
                     'Using `:class: float-left` / `:class: float-right` is deprecated. '
                     . 'Use `:align: left` / `:align: right` or `:class: float-start` / `:class: float-end` instead.',
-                    $blockContext->getLoggerInformation(),
+                    $directiveNode->getSourceLocation()->toLoggerInformation(),
                 );
                 $directive->addOption(new DirectiveOption('class', $this->rewriteLegacyFloatClasses($classValue)));
             }
         }
 
-        return $this->inner->process($blockContext, $directive);
+        return $this->inner->createNode($directiveNode, $compilerContext);
     }
 }

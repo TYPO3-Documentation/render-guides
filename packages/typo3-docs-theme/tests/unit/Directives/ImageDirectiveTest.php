@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\Tests\Unit\Directives;
 
+use phpDocumentor\Guides\Compiler\CompilerContextInterface;
 use phpDocumentor\Guides\Nodes\ImageNode;
 use phpDocumentor\Guides\ReferenceResolvers\DocumentNameResolverInterface;
-use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
+use phpDocumentor\Guides\RestructuredText\Nodes\DirectiveNode;
+use phpDocumentor\Guides\RestructuredText\Nodes\DirectiveSourceLocation;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\DirectiveOption;
-use phpDocumentor\Guides\RestructuredText\Parser\DocumentParserContext;
-use phpDocumentor\Guides\ParserContext;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -38,7 +38,7 @@ final class ImageDirectiveTest extends TestCase
     }
 
     #[Test]
-    public function processRewritesLegacyFloatLeftClass(): void
+    public function createNodeRewritesLegacyFloatLeftClass(): void
     {
         $directive = new Directive('', 'image', 'image.png', [
             'class' => new DirectiveOption('class', 'float-left'),
@@ -48,14 +48,14 @@ final class ImageDirectiveTest extends TestCase
             ->method('warning')
             ->with(self::stringContains('deprecated'));
 
-        $result = $this->subject->process($this->createBlockContext(), $directive);
+        $result = $this->subject->createNode($this->createDirectiveNode($directive), $this->createMock(CompilerContextInterface::class));
 
         self::assertInstanceOf(ImageNode::class, $result);
         self::assertSame('float-start', $directive->getOption('class')->getValue());
     }
 
     #[Test]
-    public function processRewritesLegacyFloatRightClass(): void
+    public function createNodeRewritesLegacyFloatRightClass(): void
     {
         $directive = new Directive('', 'image', 'image.png', [
             'class' => new DirectiveOption('class', 'float-right'),
@@ -65,14 +65,14 @@ final class ImageDirectiveTest extends TestCase
             ->method('warning')
             ->with(self::stringContains('deprecated'));
 
-        $result = $this->subject->process($this->createBlockContext(), $directive);
+        $result = $this->subject->createNode($this->createDirectiveNode($directive), $this->createMock(CompilerContextInterface::class));
 
         self::assertInstanceOf(ImageNode::class, $result);
         self::assertSame('float-end', $directive->getOption('class')->getValue());
     }
 
     #[Test]
-    public function processRewritesLegacyClassWithOtherClasses(): void
+    public function createNodeRewritesLegacyClassWithOtherClasses(): void
     {
         $directive = new Directive('', 'image', 'image.png', [
             'class' => new DirectiveOption('class', 'with-shadow float-left'),
@@ -80,14 +80,14 @@ final class ImageDirectiveTest extends TestCase
 
         $this->logger->expects(self::once())->method('warning');
 
-        $result = $this->subject->process($this->createBlockContext(), $directive);
+        $result = $this->subject->createNode($this->createDirectiveNode($directive), $this->createMock(CompilerContextInterface::class));
 
         self::assertInstanceOf(ImageNode::class, $result);
         self::assertSame('with-shadow float-start', $directive->getOption('class')->getValue());
     }
 
     #[Test]
-    public function processDoesNotRewriteModernClasses(): void
+    public function createNodeDoesNotRewriteModernClasses(): void
     {
         $directive = new Directive('', 'image', 'image.png', [
             'class' => new DirectiveOption('class', 'float-start'),
@@ -95,26 +95,26 @@ final class ImageDirectiveTest extends TestCase
 
         $this->logger->expects(self::never())->method('warning');
 
-        $result = $this->subject->process($this->createBlockContext(), $directive);
+        $result = $this->subject->createNode($this->createDirectiveNode($directive), $this->createMock(CompilerContextInterface::class));
 
         self::assertInstanceOf(ImageNode::class, $result);
         self::assertSame('float-start', $directive->getOption('class')->getValue());
     }
 
     #[Test]
-    public function processHandlesNoClassOption(): void
+    public function createNodeHandlesNoClassOption(): void
     {
         $directive = new Directive('', 'image', 'image.png');
 
         $this->logger->expects(self::never())->method('warning');
 
-        $result = $this->subject->process($this->createBlockContext(), $directive);
+        $result = $this->subject->createNode($this->createDirectiveNode($directive), $this->createMock(CompilerContextInterface::class));
 
         self::assertInstanceOf(ImageNode::class, $result);
     }
 
     #[Test]
-    public function processHandlesNonStringClassValue(): void
+    public function createNodeHandlesNonStringClassValue(): void
     {
         $directive = new Directive('', 'image', 'image.png', [
             'class' => new DirectiveOption('class', true),
@@ -122,22 +122,17 @@ final class ImageDirectiveTest extends TestCase
 
         $this->logger->expects(self::never())->method('warning');
 
-        $result = $this->subject->process($this->createBlockContext(), $directive);
+        $result = $this->subject->createNode($this->createDirectiveNode($directive), $this->createMock(CompilerContextInterface::class));
 
         self::assertInstanceOf(ImageNode::class, $result);
     }
 
-    private function createBlockContext(): BlockContext
+    /** The node the parser leaves for a directive, which is turned into its node while compiling. */
+    private function createDirectiveNode(Directive $directive): DirectiveNode
     {
-        $parserContext = $this->createMock(ParserContext::class);
-        $parserContext->method('getCurrentAbsolutePath')->willReturn('/test');
-        $parserContext->method('getLoggerInformation')->willReturn(['rst-file' => 'test.rst']);
-        $parserContext->method('getInitialHeaderLevel')->willReturn(1);
+        $directiveNode = new DirectiveNode($directive);
+        $directiveNode->setSourceLocation(DirectiveSourceLocation::fromLoggerInformation(['rst-file' => 'test.rst'], '/test'));
 
-        $documentParserContext = $this->createMock(DocumentParserContext::class);
-        $documentParserContext->method('getContext')->willReturn($parserContext);
-        $documentParserContext->method('getLoggerInformation')->willReturn(['rst-file' => 'test.rst']);
-
-        return new BlockContext($documentParserContext, '', false, 0);
+        return $directiveNode;
     }
 }

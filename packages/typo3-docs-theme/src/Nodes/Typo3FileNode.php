@@ -12,6 +12,8 @@ use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
 final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode, PrefixedLinkTargetNode
 {
+    use CompiledPropertiesTrait;
+
     public const LINK_TYPE = 'typo3:file';
     public const LINK_PREFIX = 'file-';
 
@@ -28,8 +30,8 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
         private readonly string $classicPathPrefix = '',
         private readonly string $scope = '',
         private readonly string $regex = '',
-        private readonly ?CollectionNode $configuration = null,
-        private readonly ?CollectionNode $command = null,
+        private ?CollectionNode $configuration = null,
+        private ?CollectionNode $command = null,
         private array $description = [],
         private readonly bool $noindex = false,
         public readonly string $shortDescription = '',
@@ -130,4 +132,9 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
         return $this->shortDescription;
     }
 
+    /** @return list<string> */
+    protected function compiledProperties(): array
+    {
+        return ['description', 'configuration', 'command'];
+    }
 }
