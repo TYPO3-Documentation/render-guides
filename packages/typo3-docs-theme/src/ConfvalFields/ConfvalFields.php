@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\ConfvalFields;
 
+use T3Docs\Typo3DocsTheme\ConfvalVersions\ConfvalVersions;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
 
 use function array_filter;
+use function array_keys;
 use function array_map;
 use function array_merge;
 use function array_values;
@@ -34,7 +36,11 @@ final class ConfvalFields
     /** The fields the confval directive reads itself. */
     public const BUILT_IN = ['name', 'type', 'default', 'required', 'noindex', 'parent'];
 
-    /** The fields the theme reads from any confval, for the search. */
+    /**
+     * The fields the theme reads from any confval, for the search. It also
+     * reads when an option was added, changed, deprecated or removed.
+     * @see ConfvalVersions::OPTIONS
+     */
     public const THEME = ['searchFacet', 'searchKeywords'];
 
     /** @var list<string>|null */
@@ -53,7 +59,7 @@ final class ConfvalFields
     public function isAllowed(string $field): bool
     {
         return in_array($field, self::BUILT_IN, true)
-            || in_array($field, self::THEME, true)
+            || in_array($field, $this->theme(), true)
             || in_array($field, $this->declared(), true);
     }
 
@@ -69,13 +75,19 @@ final class ConfvalFields
                 return sprintf('Did you mean the built-in "%s"?', $builtIn);
             }
         }
-        foreach (array_merge(self::THEME, $this->declared()) as $allowed) {
+        foreach (array_merge($this->theme(), $this->declared()) as $allowed) {
             if ($this->normalize($allowed) === $this->normalize($field)) {
                 return sprintf('Did you mean "%s"?', $allowed);
             }
         }
 
         return 'Correct it, or declare it in confval-fields in guides.xml.';
+    }
+
+    /** @return list<string> */
+    private function theme(): array
+    {
+        return [...self::THEME, ...array_keys(ConfvalVersions::OPTIONS)];
     }
 
     /** @return list<string> */
