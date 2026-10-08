@@ -94,6 +94,54 @@
             "index.html#f-split",
             "f:split"
         ],
+        "examples": [
+            "-",
+            "-",
+            "index.html#examples",
+            "Examples"
+        ],
+        "split-with-a-separator": [
+            "-",
+            "-",
+            "index.html#split-with-a-separator",
+            "Split with a separator"
+        ],
+        "split-using-tag-content-as-value": [
+            "-",
+            "-",
+            "index.html#split-using-tag-content-as-value",
+            "Split using tag content as value"
+        ],
+        "split-with-a-limit": [
+            "-",
+            "-",
+            "index.html#split-with-a-limit",
+            "Split with a limit"
+        ],
+        "examples-1": [
+            "-",
+            "-",
+            "index.html#examples-1",
+            "Examples"
+        ],
+        "split-with-a-separator-1": [
+            "-",
+            "-",
+            "index.html#split-with-a-separator-1",
+            "Split with a separator"
+        ],
+        "split-using-tag-content-as-value-1": [
+            "-",
+            "-",
+            "index.html#split-using-tag-content-as-value-1",
+            "Split using tag content as value"
+        ],
+        "split-with-a-limit-1": [
+            "-",
+            "-",
+            "index.html#split-with-a-limit-1",
+            "Split with a limit"
+        ],
         "f-link-external": [
             "-",
             "-",

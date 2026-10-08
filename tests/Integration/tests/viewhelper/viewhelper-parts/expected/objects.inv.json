@@ -32,6 +32,30 @@
             "-",
             "index.html#only-examples",
             "Only examples"
+        ],
+        "examples": [
+            "-",
+            "-",
+            "index.html#examples",
+            "Examples"
+        ],
+        "split-with-a-separator": [
+            "-",
+            "-",
+            "index.html#split-with-a-separator",
+            "Split with a separator"
+        ],
+        "split-using-tag-content-as-value": [
+            "-",
+            "-",
+            "index.html#split-using-tag-content-as-value",
+            "Split using tag content as value"
+        ],
+        "split-with-a-limit": [
+            "-",
+            "-",
+            "index.html#split-with-a-limit",
+            "Split with a limit"
         ]
     }
 }

@@ -1,0 +1,21 @@
+{
+    "application": {
+        "name": "TYPO3 CMS",
+        "version": "14.0.0"
+    },
+    "commands": [
+        {
+            "name": "cache:warmup",
+            "description": "Warmup TYPO3 caches.",
+            "usage": [
+                "cache:warmup"
+            ],
+            "help": "This command is useful for deployments to warmup caches.\n\nSee: https:\/\/docs.typo3.org\/permalink\/checklinktexthelp:start",
+            "definition": {
+                "arguments": [],
+                "options": {}
+            },
+            "hidden": false
+        }
+    ]
+}

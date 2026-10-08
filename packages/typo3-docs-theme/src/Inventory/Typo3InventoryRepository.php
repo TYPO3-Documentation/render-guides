@@ -202,14 +202,12 @@ final class Typo3InventoryRepository implements InventoryRepository
             return null;
         }
 
-        // Ensure fully loaded (no-op if already). guides catches a missing
-        // inventory only: anything else that keeps it from loading would abort
-        // the render. Such an inventory is not asked for again in this run,
-        // so that the links to it do not wait for the network one by one.
-        try {
-            $this->inventoryLoader->loadInventory($this->inventories[$reducedKey]);
-        } catch (ExceptionInterface $exception) {
-            $this->logger->warning(\sprintf('Interlink inventory for manual %s could not be loaded: %s', $key, $exception->getMessage()));
+        // Ensure fully loaded (no-op if already). Since guides 1.11 the loader
+        // catches what keeps an inventory from loading itself, logs it once and
+        // leaves the inventory unloaded. Such an inventory is not asked for
+        // again in this run, and each link into it says why it is not resolved.
+        $this->inventoryLoader->loadInventory($this->inventories[$reducedKey]);
+        if (!$this->inventories[$reducedKey]->isLoaded()) {
             unset($this->inventories[$reducedKey]);
             $this->ignoredInventories[] = $reducedKey;
             $this->unreachableInventories[] = $reducedKey;

@@ -37,6 +37,10 @@ return static function (ContainerConfigurator $container): void {
 
         ->set(SingleHtmlUrlGenerator::class)
         ->set(UrlGeneratorInterface::class, RenderOutputUrlGenerator::class)
+        // Since guides 1.11 the asset() function has a URL generator of its
+        // own. It has to be ours too, or an image in the single page is
+        // linked relative to its page instead of the single page.
+        ->alias('phpdoc.guides.assets_url_generator', UrlGeneratorInterface::class)
 
         ->set(\phpDocumentor\Guides\NodeRenderers\DelegatingNodeRenderer::class)
         ->call('setNodeRendererFactory', [service('phpdoc.guides.noderenderer.factory.html')])

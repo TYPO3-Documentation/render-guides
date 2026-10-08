@@ -12,6 +12,34 @@ use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
 final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNode, OptionalLinkTargetsNode, PrefixedLinkTargetNode
 {
+    use CompiledPropertiesTrait {
+        removeNode as private removeCompiledNode;
+    }
+
+    private const DESCRIPTION = 'description';
+    private const SECTION = 'section';
+    private const EXAMPLE = 'example';
+
+    /** The ":display:" value that shows each part. */
+    private const DISPLAYED_AS = [
+        self::DESCRIPTION => 'description',
+        self::SECTION => 'sections',
+        self::EXAMPLE => 'examples',
+    ];
+
+    /**
+     * What each node of the documentation is shown as, by its position: the
+     * description, a section or an example. The documentation is compiled as
+     * children after the arguments, and the compiler replaces its nodes with
+     * what it makes of them -- since phpDocumentor/guides 1.11 a "note" in it
+     * becomes an admonition only then. So the parts are taken from the
+     * documentation when they are asked for, not kept as nodes of their own
+     * that would stay as parsed.
+     *
+     * @var list<string>
+     */
+    private array $roles = [];
+
     public const LINK_TYPE = 'typo3:viewhelper';
     public const LINK_PREFIX = 'viewhelper-';
     /**
@@ -29,10 +57,10 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
         private readonly string $shortClassName,
         private readonly string $namespace,
         private readonly string $className,
-        private readonly array $documentation,
-        private readonly array $description,
-        private readonly array $sections,
-        private readonly array $examples,
+        private array $documentation,
+        array $description,
+        array $sections,
+        array $examples,
         private readonly string $xmlNamespace,
         private readonly bool $allowsArbitraryArguments,
         private readonly array $docTags,
@@ -43,7 +71,16 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
         private readonly string $namespaceAlias = '',
         private readonly string $rawDocumentation = '',
     ) {
-        parent::__construct('viewhelper', $tagName, new InlineCompoundNode([new PlainTextInlineNode($tagName)]), array_values($documentation));
+        $this->documentation = array_values($documentation);
+        parent::__construct('viewhelper', $tagName, new InlineCompoundNode([new PlainTextInlineNode($tagName)]), $this->documentation);
+        foreach ($this->documentation as $node) {
+            $this->roles[] = match (true) {
+                in_array($node, $description, true) => self::DESCRIPTION,
+                in_array($node, $sections, true) => self::SECTION,
+                in_array($node, $examples, true) => self::EXAMPLE,
+                default => '',
+            };
+        }
     }
 
     /**
@@ -51,7 +88,7 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
      */
     public function getSections(): array
     {
-        return $this->sections;
+        return $this->part(self::SECTION);
     }
 
     /**
@@ -59,7 +96,7 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
      */
     public function getExamples(): array
     {
-        return $this->examples;
+        return $this->part(self::EXAMPLE);
     }
 
     /**
@@ -75,7 +112,7 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
      */
     public function getDescription(): array
     {
-        return $this->description;
+        return $this->part(self::DESCRIPTION);
     }
 
     /**
@@ -194,5 +231,51 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
     public function getGitHubLink(): string
     {
         return $this->gitHubLink;
+    }
+
+    /** @return list<string> */
+    protected function compiledProperties(): array
+    {
+        return ['documentation'];
+    }
+
+    /**
+     * Only the documentation the ViewHelper shows: with ":display: description"
+     * its sections are not on the page, and must not become sections of it.
+     */
+    protected function compilesItem(string $property, int|string $key): bool
+    {
+        if (in_array('documentation', $this->display, true)) {
+            return true;
+        }
+        $role = $this->roles[$key] ?? '';
+
+        return $role !== '' && in_array(self::DISPLAYED_AS[$role], $this->display, true);
+    }
+
+    public function removeNode(int $key): static
+    {
+        // The index in the documentation, which is not the position among the
+        // children when a part is not shown.
+        $index = $this->propertySlot($key)[1] ?? null;
+        $result = $this->removeCompiledNode($key);
+        if (is_int($index)) {
+            array_splice($result->roles, $index, 1);
+        }
+
+        return $result;
+    }
+
+    /** @return Node[] the nodes of the documentation shown as this part */
+    private function part(string $role): array
+    {
+        $part = [];
+        foreach ($this->documentation as $position => $node) {
+            if (($this->roles[$position] ?? '') === $role) {
+                $part[] = $node;
+            }
+        }
+
+        return $part;
     }
 }

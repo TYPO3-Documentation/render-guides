@@ -23,6 +23,7 @@ use phpDocumentor\Guides\Nodes\Inline\ReferenceNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\SectionNode;
 use Psr\Log\LoggerInterface;
+use T3Docs\ConsoleCommand\Nodes\CommandNode;
 use T3Docs\Typo3DocsTheme\Directives\AbstractTypo3VersionChangeDirective;
 use T3Docs\Typo3DocsTheme\Nodes\Metadata\CheckLinkTextNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
@@ -62,6 +63,10 @@ final class CheckLinkTextNodeTransformer implements NodeTransformer
             return $node;
         }
         if (!$node instanceof AbstractLinkInlineNode || $node->getChildren() !== [] || !$this->isWrittenByAuthor($node)) {
+            return $node;
+        }
+
+        if ($this->isInCommandHelp($compilerContext)) {
             return $node;
         }
         $role = $node instanceof DocReferenceNode ? 'doc' : 'ref';
@@ -106,6 +111,22 @@ final class CheckLinkTextNodeTransformer implements NodeTransformer
         return $node instanceof ReferenceNode
             && $node->getLinkType() === SectionNode::STD_LABEL
             && !in_array(AbstractTypo3VersionChangeDirective::CHANGELOG_LINK_CLASS, $node->getClasses(), true);
+    }
+
+    /**
+     * The help of a console command is read from the JSON the command writes,
+     * not from the manual: a link there, such as a bare permalink, is nothing
+     * the author of the manual could give a text.
+     */
+    private function isInCommandHelp(CompilerContextInterface $compilerContext): bool
+    {
+        for ($parent = $compilerContext->getShadowTree()->getParent(); $parent !== null; $parent = $parent->getParent()) {
+            if ($parent->getNode() instanceof CommandNode) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function supports(Node $node): bool
