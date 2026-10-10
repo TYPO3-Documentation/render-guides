@@ -87,6 +87,25 @@ final class ExternalTypoScriptTest extends TestCase
         self::assertNull($subject->findOption('mod.group.c'));
     }
 
+    public function testFindsAPluginOptionBelowTheKeyOfAPlugin(): void
+    {
+        $this->jsonLoader->method('loadJsonFromUrl')->willReturn(['confvals' => [
+            'confval-plugin-persistence-storagepid' => ['name' => 'persistence.storagePid', 'searchFacet' => 'TypoScript', 'path' => 'TopLevelObjects/Plugin'],
+        ]]);
+
+        $subject = $this->subject(['typo3_core_preferred' => '13.4']);
+
+        $url = self::BASE_URL . 'TopLevelObjects/Plugin.html#confval-plugin-persistence-storagepid';
+        self::assertSame($url, $subject->findOption('plugin.persistence.storagePid')['url'] ?? null);
+        self::assertSame($url, $subject->findOption('plugin.tx_blog.persistence.storagePid')['url'] ?? null);
+        self::assertSame($url, $subject->findOption('plugin.tx_blog_list.persistence.storagePid')['url'] ?? null);
+        // Only the key of a plugin is left out
+        self::assertNull($subject->findOption('plugin.blog.persistence.storagePid'));
+        self::assertNull($subject->findOption('module.tx_blog.persistence.storagePid'));
+        // Without the plugin, the path is ambiguous
+        self::assertNull($subject->findOption('persistence.storagePid'));
+    }
+
     public function testFindsAnObjectTypeByItsAnchorOrItsPage(): void
     {
         $this->jsonLoader->expects(self::once())

@@ -10,6 +10,9 @@ options of that name: :typoscript:`wrap`.
 
 A path the reference does not document stays code: :typoscript:`lib.myContent.wrap`.
 
+An option of Extbase plugins, below the key of a plugin:
+:typoscript:`plugin.tx_blog.persistence.storagePid`.
+
 An object type the reference documents by a headline only, as an older
 version of it does, links there without a description. Found by its anchor,
 where a content object that is also a GIFBUILDER object is the content
