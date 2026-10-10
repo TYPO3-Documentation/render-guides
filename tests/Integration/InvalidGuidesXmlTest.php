@@ -88,14 +88,8 @@ final class InvalidGuidesXmlTest extends TestCase
     public function testValidGuidesXmlRendersSuccessfully(): void
     {
         $binPath = dirname(__DIR__, 2) . '/bin/guides';
-        $validFixturePath = __DIR__ . '/tests/getting-started/input';
-
-        // Skip if fixture doesn't exist
-        if (!is_dir($validFixturePath)) {
-            self::markTestSkipped('Valid fixture not available');
-        }
-
-        $outputPath = sys_get_temp_dir() . '/render-guides-test-' . uniqid();
+        $validFixturePath = __DIR__ . '/../fixtures/valid-guides-xml';
+        $outputPath = $this->tempDir . '/output';
 
         $process = new Process([
             'php',
@@ -108,12 +102,8 @@ final class InvalidGuidesXmlTest extends TestCase
 
         $process->run();
 
-        // Clean up
-        if (is_dir($outputPath)) {
-            system('rm -rf ' . escapeshellarg($outputPath));
-        }
-
         // Should succeed
         self::assertSame(0, $process->getExitCode(), 'Expected exit code 0 for valid guides.xml. Error: ' . $process->getErrorOutput());
+        self::assertFileExists($outputPath . '/Index.html');
     }
 }
