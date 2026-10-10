@@ -44,8 +44,25 @@ Where the code alone does not tell the option, a role names its confval as
 :typoscript:`config.tx_extbase <t3coreapi:extbase-typoscript-config-tx-extbase>`.
 Any kind of option counts, not only TypoScript ones.
 
+A key that starts with an underscore can name its confval too:
+:typoscript:`_CSS_DEFAULT_STYLE <t3tsref:plugin-css-default-style>`.
+
 A name the manual does not document is reported: :typoscript:`wrap <t3tsref:no-such-option>`.
 A manual that cannot be reached is not: :typoscript:`wrap <t3unreachable:some-option>`.
+
+In a definition list
+====================
+
+A role in the term of a definition list is described as in running text.
+
+:typoscript:`current <t3tsref:stdwrap-current>`
+    Named in angle brackets.
+
+:typoscript:`stdWrap.parseFunc`
+    By its full path.
+
+*Emphasised* :typoscript:`COA_INT`
+    An object type after other inline text.
 
 TSconfig
 ========

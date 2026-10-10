@@ -30,6 +30,7 @@ final class NamedConfvalTest extends TestCase
         yield 'brackets alone are code' => ['<some-key>', ['<some-key>', '']];
         yield 'HTML in a wrap is code' => ['<div style="text-align:[*value*];"> | </div>', ['<div style="text-align:[*value*];"> | </div>', '']];
         yield 'a wrap ending in a tag is code' => ['value | <br>', ['value | <br>', '']];
+        yield 'a key starting with an underscore' => ['_LOCAL_LANG <t3tsref:plugin-local-lang>', ['_LOCAL_LANG', 't3tsref:plugin-local-lang']];
         yield 'a path with a placeholder' => ['mod.wizards.newContentElement.wizardItems.[group] <t3tsref:some-key>', ['mod.wizards.newContentElement.wizardItems.[group]', 't3tsref:some-key']];
     }
 }
