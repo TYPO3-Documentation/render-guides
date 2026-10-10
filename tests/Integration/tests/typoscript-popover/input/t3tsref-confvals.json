@@ -253,6 +253,18 @@
             "type": "string",
             "summary": "CSS that the plugin adds to the page.",
             "path": "TopLevelObjects/Plugin"
+        },
+        "confval-plugin-persistence-storagepid": {
+            "name": "persistence.storagePid",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Top-level objects",
+                "plugin",
+                "Properties for Extbase plugins"
+            ],
+            "type": "string",
+            "summary": "List of page IDs from which Extbase reads records.",
+            "path": "TopLevelObjects/Plugin"
         }
     }
 }

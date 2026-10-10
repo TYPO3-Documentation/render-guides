@@ -7,6 +7,7 @@ namespace T3Docs\Typo3DocsTheme\TypoScriptReference;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 
 use function count;
+use function preg_replace;
 
 /**
  * Options by their anchor and by the paths they declare, found by the full
@@ -15,10 +16,17 @@ use function count;
  * The anchor is tried first, "stdWrap.parseFunc" as "confval-stdwrap-parsefunc".
  * A declared path counts only where one option declares it.
  *
+ * An Extbase plugin is configured below a key of its own, which the reference
+ * documents once, as "plugin": "plugin.tx_blog.persistence.storagePid" is
+ * found as "plugin.persistence.storagePid".
+ *
  * @phpstan-import-type Option from ExternalTypoScript
  */
 final class Options
 {
+    /** The key of a plugin, "plugin.tx_blog." or "plugin.tx_blog_list.". */
+    private const PLUGIN_KEY = '/^plugin\.tx_[A-Za-z0-9_]+\./';
+
     /** @var array<string, Option> */
     private array $byAnchor = [];
 
@@ -62,6 +70,19 @@ final class Options
 
     /** @return Option|null */
     public function find(string $path, AnchorNormalizer $anchorNormalizer): ?array
+    {
+        $option = $this->findPath($path, $anchorNormalizer);
+        if ($option !== null) {
+            return $option;
+        }
+
+        $pluginPath = preg_replace(self::PLUGIN_KEY, 'plugin.', $path) ?? $path;
+
+        return $pluginPath !== $path ? $this->findPath($pluginPath, $anchorNormalizer) : null;
+    }
+
+    /** @return Option|null */
+    private function findPath(string $path, AnchorNormalizer $anchorNormalizer): ?array
     {
         $anchor = 'confval-' . $anchorNormalizer->reduceAnchor($path);
         if (isset($this->typoScript[$anchor])) {
