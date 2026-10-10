@@ -430,6 +430,21 @@ several options stays code: <code class="code-inline"
 Any kind of option counts, not only TypoScript ones.</p>
 
             
+    <p>A key that starts with an underscore can name its confval too:
+<code class="code-inline code-inline-long"
+          translate="no"
+    >
+        _CSS_<wbr>DEFAULT_<wbr>STYLE
+        <button class="btn btn-light"
+                aria-label="Open modal for code and class information"
+                data-bs-toggle="modal"
+                data-bs-target="#generalModal"
+                data-code="_CSS_DEFAULT_STYLE"
+                data-shortdescription="TypoScript option"
+                data-details="CSS that the plugin adds to the page."                    data-flags="Type: string"                    data-morelink="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/TopLevelObjects/Plugin.html#confval-plugin-css-default-style"                data-bs-html="true"
+        ><i class="fa-regular fa-circle-question"></i></button></code>.</p>
+
+            
     <p>A name the manual does not document is reported: <code class="code-inline"
           translate="no"
     >
@@ -455,6 +470,56 @@ A manual that cannot be reached is not: <code class="code-inline"
                 data-details="Directive-based configuration language used by TYPO3."                data-bs-html="true"
         ><i class="fa-regular fa-circle-question"></i></button></code>.</p>
 
+    </section>
+            <section class="section" id="in-a-definition-list">
+            <h2>In a definition list<a class="headerlink" href="#in-a-definition-list" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    <p>A role in the term of a definition list is described as in running text.</p>
+
+            <dl>
+                        <dt><code class="code-inline"
+          translate="no"
+    >
+        current
+        <button class="btn btn-light"
+                aria-label="Open modal for code and class information"
+                data-bs-toggle="modal"
+                data-bs-target="#generalModal"
+                data-code="current"
+                data-shortdescription="TypoScript option"
+                data-details="Sets the content to the &quot;current&quot; value (see -&gt;split)"                    data-flags="Type: boolean / stdWrap"                    data-morelink="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Functions/Stdwrap.html#confval-stdwrap-current"                data-bs-html="true"
+        ><i class="fa-regular fa-circle-question"></i></button></code></dt>
+        
+        <dd>Named in angle brackets.</dd>
+                                <dt><code class="code-inline code-inline-long"
+          translate="no"
+    >
+        std<wbr>Wrap.<wbr>parse<wbr>Func
+        <button class="btn btn-light"
+                aria-label="Open modal for code and class information"
+                data-bs-toggle="modal"
+                data-bs-target="#generalModal"
+                data-code="stdWrap.parseFunc"
+                data-shortdescription="TypoScript option"
+                data-details="Processing instructions to be applied to content."                    data-flags="Type: object path reference / parseFunc / stdWrap"                    data-morelink="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Functions/Stdwrap.html#confval-stdwrap-parsefunc"                data-bs-html="true"
+        ><i class="fa-regular fa-circle-question"></i></button></code></dt>
+        
+        <dd>By its full path.</dd>
+                                <dt><em>Emphasised</em> <code class="code-inline"
+          translate="no"
+    >
+        COA_<wbr>INT
+        <button class="btn btn-light"
+                aria-label="Open modal for code and class information"
+                data-bs-toggle="modal"
+                data-bs-target="#generalModal"
+                data-code="COA_INT"
+                data-shortdescription="TypoScript object type"
+                data-details="Works like COA, but is rendered non-cached, so every content object inside it is rendered non-cached as well."                    data-morelink="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ContentObjects/CoaAndCoaInt/Index.html#confval-cobj-coa-int"                data-bs-html="true"
+        ><i class="fa-regular fa-circle-question"></i></button></code></dt>
+        
+        <dd>An object type after other inline text.</dd>
+            </dl>
     </section>
             <section class="section" id="tsconfig">
             <h2>TSconfig<a class="headerlink" href="#tsconfig" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>

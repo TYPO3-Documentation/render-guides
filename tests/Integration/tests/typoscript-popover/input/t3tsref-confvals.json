@@ -241,6 +241,18 @@
             "type": "cObject",
             "summary": "Renders a page with a Fluid template, which it finds by naming conventions from the backend layout of the page.",
             "path": "ContentObjects/Pageview/Index"
+        },
+        "confval-plugin-css-default-style": {
+            "name": "_CSS_DEFAULT_STYLE",
+            "searchFacet": "TypoScript",
+            "context": [
+                "Top-level objects",
+                "plugin",
+                "Properties for all plugins"
+            ],
+            "type": "string",
+            "summary": "CSS that the plugin adds to the page.",
+            "path": "TopLevelObjects/Plugin"
         }
     }
 }

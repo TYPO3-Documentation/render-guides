@@ -6,6 +6,8 @@ namespace T3Docs\Typo3DocsTheme\Compiler\NodeTransformers;
 
 use phpDocumentor\Guides\Compiler\CompilerContextInterface;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
+use phpDocumentor\Guides\Nodes\DefinitionLists\DefinitionListItemNode;
+use phpDocumentor\Guides\Nodes\InlineCompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
 use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
@@ -34,7 +36,10 @@ use function str_ends_with;
  * a full path is looked up: "wrap" alone names eleven options, and a wrong
  * description is worse than none. What neither knows stays TypoScript code.
  *
- * @implements NodeTransformer<CodeInlineNode>
+ * The term of a definition list is no child of its item, so the compiler does
+ * not visit the roles in it. They are described from the item.
+ *
+ * @implements NodeTransformer<CodeInlineNode|DefinitionListItemNode>
  * @phpstan-import-type Option from ExternalTypoScript
  */
 final class DescribeTypoScriptTransformer implements NodeTransformer
@@ -50,16 +55,41 @@ final class DescribeTypoScriptTransformer implements NodeTransformer
 
     public function enterNode(Node $node, CompilerContextInterface $compilerContext): Node
     {
-        if (!$node instanceof CodeInlineNode) {
+        if ($node instanceof DefinitionListItemNode) {
+            foreach ([$node->getTerm(), ...$node->getClassifiers()] as $inline) {
+                $this->describeAll($inline, $compilerContext);
+            }
+
             return $node;
         }
 
+        if ($node instanceof CodeInlineNode) {
+            $this->describeCode($node, $compilerContext);
+        }
+
+        return $node;
+    }
+
+    /** The roles in inline text, also inside emphasis and the like. */
+    private function describeAll(InlineCompoundNode $node, CompilerContextInterface $compilerContext): void
+    {
+        foreach ($node->getChildren() as $child) {
+            if ($child instanceof CodeInlineNode) {
+                $this->describeCode($child, $compilerContext);
+            } elseif ($child instanceof InlineCompoundNode) {
+                $this->describeAll($child, $compilerContext);
+            }
+        }
+    }
+
+    private function describeCode(CodeInlineNode $node, CompilerContextInterface $compilerContext): void
+    {
         $info = $node->getInfo();
         $named = $info[NamedConfval::INFO] ?? '';
         if ($named !== '') {
             $this->describeNamed($node, $named, $info[NamedConfval::ROLE_INFO] ?? 'typoscript', $compilerContext);
 
-            return $node;
+            return;
         }
 
         foreach ([TypoScriptTextTextRole::OPTION_INFO => 'TypoScript option', TSconfigTextRole::OPTION_INFO => 'TSconfig option'] as $key => $kind) {
@@ -72,7 +102,7 @@ final class DescribeTypoScriptTransformer implements NodeTransformer
                 $this->describe($node, $option, $kind);
             }
 
-            return $node;
+            return;
         }
 
         // An object type or a function the reference documents as an option
@@ -85,7 +115,7 @@ final class DescribeTypoScriptTransformer implements NodeTransformer
             if ($option !== null) {
                 $this->describe($node, $option, $type !== '' ? 'TypoScript object type' : self::OPTION);
 
-                return $node;
+                return;
             }
         }
 
@@ -99,8 +129,6 @@ final class DescribeTypoScriptTransformer implements NodeTransformer
                 $node->describeAs('TypoScript object type', $details, $this->info('', $objectType['url']));
             }
         }
-
-        return $node;
     }
 
     /**
@@ -177,7 +205,7 @@ final class DescribeTypoScriptTransformer implements NodeTransformer
 
     public function supports(Node $node): bool
     {
-        return $node instanceof CodeInlineNode;
+        return $node instanceof CodeInlineNode || $node instanceof DefinitionListItemNode;
     }
 
     public function getPriority(): int
