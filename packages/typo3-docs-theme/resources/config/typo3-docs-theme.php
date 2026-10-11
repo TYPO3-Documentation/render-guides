@@ -56,6 +56,7 @@ use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
 use T3Docs\Typo3DocsTheme\Deployment\DeploymentMode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
+use T3Docs\Typo3DocsTheme\EventListeners\InterlinkShortcodeFromComposer;
 use T3Docs\Typo3DocsTheme\EventListeners\NavigationTitleAnchorSetter;
 use T3Docs\Typo3DocsTheme\EventListeners\OriginalFileNameSetter;
 use T3Docs\Typo3DocsTheme\EventListeners\TestingModeActivator;
@@ -443,6 +444,11 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.reference_resolver')
 
         // Register Event Listeners
+        // Before AddThemeSettingsToProjectNode, which copies the shortcode
+        // into the project node: the listeners run in this order.
+        ->set(InterlinkShortcodeFromComposer::class)
+        ->tag('event_listener', ['event' => PostProjectNodeCreated::class])
+
         ->set(AddThemeSettingsToProjectNode::class)
         ->tag('event_listener', ['event' => PostProjectNodeCreated::class])
 
