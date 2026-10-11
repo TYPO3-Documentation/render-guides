@@ -3,7 +3,7 @@
 ..  _InterlinkRepositories:
 
 =====================
-Interlink Inventories
+Interlink inventories
 =====================
 
 Sections in other manuals than the current one can be linked during rendering
@@ -156,7 +156,7 @@ Setting the preferred TYPO3 version
 -----------------------------------
 
 The preferred version can be set in the guides.xml to `dev`, `stable`,
-`oldstable` or a specific minor version, for example `8.7` or `v8`.
+`oldstable`, or a specific minor version, for example `8.7` or `v8`.
 
 ..  code-block:: xml
     :caption: Documentation/guides.xml
@@ -265,7 +265,7 @@ This will be rendered as:
 *   :ref:`RTE <typo3/cms-rte-ckeditor/v8:introduction>`
 *   :ref:`RTE <typo3/cms-rte-ckeditor/8.7:introduction>`
 
-For your convenience the changelog, situated in system extension `typo3/cms-core`
+For your convenience the Changelog, situated in system extension `typo3/cms-core`
 can also be linked with the prefix `changelog`:
 
 ..  code-block:: rst
@@ -277,13 +277,13 @@ This will be rendered as:
 *   :ref:`Changelog: Remove jquery-ui <changelog:breaking-100966-1686062649>`
 
 
-Interlinks to third-party extensions
+Interlinks to third party extensions
 ====================================
 
-You can link to the manual of a third-party extension if
+You can link to the manual of a third party extension if
 that extension's manual has been rendered on https://docs.typo3.org.
 
-To create an interlink to a third-party extension, use the extension's
+To create an interlink to a third party extension, use the extension's
 Composer name as interlink domain:
 
 ..  code-block:: rst

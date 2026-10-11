@@ -38,7 +38,7 @@ The sitemap index
 :file:`sitemap-index.xml` is written by the docs homepage beside
 :ref:`manuals.json <ManualsIndexJson>`, from the same menu. It lists the
 sitemaps of each manual in the versions a search should lead to: the one in
-development, the current LTS and the LTS before it, as
+development, the current LTS, and the LTS before it, as
 :file:`packages/typo3-version-handling` names them. Older versions stay
 published, but are not listed.
 

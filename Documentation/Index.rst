@@ -34,7 +34,7 @@ to extend the tool.
 
 ----
 
-**Table of Contents:**
+**Table of contents:**
 
 ..  toctree::
     :maxdepth: 2

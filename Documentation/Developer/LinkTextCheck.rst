@@ -38,9 +38,9 @@ Permalinks
     shows the title of its target.
 
 Not checked are the roles that show the name they point to, such as
-:rst:`:php:`, :rst:`:confval:` or :rst:`:t3ext:`, and the :rst:`:changelog:`
+:rst:`:php:`, :rst:`:confval:`, or :rst:`:t3ext:`, and the :rst:`:changelog:`
 option of :rst:`versionchanged` and its kind, which shows the title of the
-changelog entry by design.
+Changelog entry by design.
 
 The warning names the file, but not the line, since a reference does not
 record where it was written.

@@ -105,7 +105,7 @@ which repeats the project title and version in every one of its entries and
 knows only :samp:`.html` addresses.
 
 Saying those things once is most of the difference in size. For TYPO3 Explained,
-982 pages, :file:`objects.inv.json` is 4.2 MB and :file:`toc.json` is 553 KB --
+982 pages, :file:`objects.inv.json` is 4.2 MB and :file:`toc.json` is 553 KB —
 36 KB against 335 KB once compressed.
 
 ..  note::

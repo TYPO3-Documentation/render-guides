@@ -12,7 +12,7 @@ option, with what the directive says about it, where it stands, and the
 first paragraph of its description.
 
 It lets a reader find an option by its name without reading the pages that
-document it -- ninety of them for the TCA reference -- and pick the right one
+document it — ninety of them for the TCA reference — and pick the right one
 when several share a name. :file:`objects.inv.json` lists the same options,
 but by name and address alone: the TCA reference documents
 :samp:`itemsProcFunc` eight times, once for each field type that has it, and
@@ -59,7 +59,7 @@ searchFacet
     What kind of option it is, as the search of docs.typo3.org files it: the
     option's own :rst:`:searchFacet:`, or else the manual's
     :samp:`confval-default`. The list of facets is the same for every manual,
-    such as :samp:`TCA`, :samp:`TypoScript` or :samp:`TYPO3_CONF_VAR`, so
+    such as :samp:`TCA`, :samp:`TypoScript`, or :samp:`TYPO3_CONF_VAR`, so
     options of one kind can be found across manuals. Any other value is
     :samp:`Option`.
 
@@ -84,8 +84,8 @@ fields
     manuals: the TCA reference writes :samp:`Path` and :samp:`Scope`.
 
 versions
-    When the option was added, changed, deprecated or removed, as its
-    :rst:`:added:`, :rst:`:changed:`, :rst:`:deprecated:` and
+    When the option was added, changed, deprecated, or removed, as its
+    :rst:`:added:`, :rst:`:changed:`, :rst:`:deprecated:`, and
     :rst:`:removed:` options state it: each with its :samp:`kind`, the
     :samp:`version`, and the :samp:`changelog` entry and its :samp:`url`
     where the option names one, such as

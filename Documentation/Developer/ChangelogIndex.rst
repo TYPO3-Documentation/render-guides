@@ -69,7 +69,7 @@ anchor
     what a link to the entry has to name.
 
 type
-    One of :samp:`feature`, :samp:`breaking`, :samp:`deprecation` or
+    One of :samp:`feature`, :samp:`breaking`, :samp:`deprecation`, or
     :samp:`important`.
 
 issue
@@ -90,7 +90,7 @@ tags
 
 classes
     The PHP classes the entry speaks of, by their fully qualified name, each
-    with the places in the entry: the :samp:`section`, :samp:`kind` and
+    with the places in the entry: the :samp:`section`, :samp:`kind`, and
     :samp:`members` of the :ref:`class index <ClassIndexJson>`, which says the
     same by class. A class under :samp:`migration` is often what replaces
     the one under :samp:`description` or :samp:`impact`. The page and release
@@ -106,7 +106,7 @@ Why it exists
 =============
 
 The overview page links its entries by permalink, which costs a redirect per
-entry -- 445 of them for v14 -- for anybody walking a whole release rather than
+entry — 445 of them for v14 — for anybody walking a whole release rather than
 reading one page. The index is that list in a single request, and it carries
 what the page cannot: the file of each entry, so a reader can go straight to
 the Markdown instead of scraping HTML.
