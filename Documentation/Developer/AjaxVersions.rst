@@ -65,8 +65,9 @@ This allows a Twig function `isRenderedForDeployment` (defined in
 :file:`packages/typo3-docs-theme/src/Twig/TwigExtension.php` of this repository) to
 conditionally generate output. The Twig template file
 `packages/typo3-docs-theme/resources/template/structure/navigation/navigationHeader.html.twig`
-makes use of that function to define some default HTML data-attributes for out-of-the-box
-version witcher simulation, once the PHP proxy URL can be called without a 404 error.
+makes use of that function to define some default HTML data-attributes for
+out-of-the-box version switcher simulation, once the PHP proxy URL can be
+called without a 404 error.
 
 The JavaScript is contained in :file:`packages/typo3-docs-theme/assets/js/versions.js` and
 contains the code for parsing the JSON response of the API, and sorting the keys appropriately.
@@ -103,8 +104,9 @@ The following data-attributes on the HTML element :html:`<div id="toc-version">`
 Seeing the simulated output
 ===========================
 
-Once the PHP proxy is in place, open the rendered documentation HTML file in your DDEV/webserver
-environment (not using a `file:///` syntax, because then JavaScript may unavailable), for example
+Once the PHP proxy is in place, open the rendered documentation HTML file in
+your DDEV/webserver environment (not using a `file:///` syntax, because then
+JavaScript may be unavailable), for example
 
 ..  code::
 

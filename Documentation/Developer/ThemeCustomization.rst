@@ -7,10 +7,11 @@ Theme customization
 ===================
 
 The theme provided by this package is prepared to be integrated into the TYPO3
-documentation website. Templates are written in Twig_ and uses components
+documentation website. Templates are written in Twig_ and use components
 provided by `phpDocumentor/guides`_. The theme is using Bootstrap_ as a
 base framework. You can find the theme in ``packages/typo3-docs-theme``.
-Templates can be found in :file:`packages/typo3-docs-theme/resource/template/`.
+Templates can be found in
+:file:`packages/typo3-docs-theme/resources/template/`.
 
 To customize the components provided by `phpDocumentor/guides`_ you have to follow
 the directory structure of the templates provided by this package. Every template

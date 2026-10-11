@@ -7,7 +7,7 @@ Building
 ========
 
 While the components of this repository are split into separate packages, it can
-be build as a standalone application. Two ways are provided to use this project
+be built as a standalone application. Two ways are provided to use this project
 on your own environment.
 
 ..  _building-using-docker:
@@ -71,7 +71,7 @@ GitHub workflow
 ===============
 
 Developers contributing to the repository of this project on github_renderguides_
-will trigger several GitHub Workflow when commiting/pushing code.
+will trigger several GitHub Workflows when committing/pushing code.
 
 On terminology: A `GitHub Workflow` is something that is triggered within
 the repository (i.e. on a commit/tag). A `GitHub Action` is something that can
@@ -81,7 +81,7 @@ to i.e. render the documentation. This repository provides both `Workflows` and
 
 ..  _building-github-workflow-commit-pr-strategy:
 
-GitHub workflow: Commit/PR stragegy
+GitHub workflow: Commit/PR strategy
 ===================================
 
 The Git `main` branch is protected, so only feature/bugfix/task-branches and forked
@@ -151,8 +151,9 @@ be used by other repositories in workflows.
 
 The GitHub repository github_gh_render_action_ provides an easy interface to
 that action. That repository provides a wrapper to check if a documentation repository
-needs to be rendered using Sphinx (the old rendering, using a :file:`Settings.cfg`
-file) or via phpDocumentor (the new rendering, using a : file:`guides.xml` file).
+needs to be rendered using Sphinx (the old rendering, using a
+:file:`Settings.cfg` file) or via phpDocumentor (the new rendering, using a
+:file:`guides.xml` file).
 
 The central piece of that action is:
 
@@ -239,14 +240,14 @@ matching `*.*.*` is committed to the repository.
 It does these steps:
 
 -   `build`: Sets up a matrix of Docker platforms (arm, amd) to be built. This
-    results in three build steps in total, once per platform:
+    results in two build steps in total, once per platform:
     -   Check out the repository with the current Git tag
     -   Retrieve Docker metadata (tags, versions)
     -   Initiates the Docker build chain
     -   Store the currently used Git tag (version number) in an environment
         variable `TYPO3AZUREEDGEURIVERSION`. See description below.
     -   Create the Docker image, using the environment variable.
--   `merge`: Then the three builds are merged and uploaded to the `gchr` docker
+-   `merge`: Then the two builds are merged and uploaded to the `ghcr` Docker
     registry.
 
 The variable `TYPO3AZUREEDGEURIVERSION` is very important to be baked into
@@ -284,7 +285,7 @@ instead of a registry URI.
 
 A limitation currently is that the local Docker image will always use the action
 steps to configure and render the documentation from the `main` repository, not
-the fles that may be modified within the commit. See the note in
+the files that may be modified within the commit. See the note in
 :file:`.github/workflows/docker-test.yaml` at the end for details.
 
 ..  _building-github-workflow-main:

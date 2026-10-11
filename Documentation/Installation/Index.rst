@@ -52,7 +52,7 @@ documentation.
 ..  note::
 
     The Docker container internally contains a tagged release version of
-    this repository, and use that version as well to reference asset
+    this repository, and uses that version as well to reference asset
     URIs of the theme on our CDN.
 
 ..  code-block:: shell
