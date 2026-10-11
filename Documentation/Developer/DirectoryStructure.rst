@@ -1,6 +1,6 @@
 ..  include:: /Includes.rst.txt
 
-..  _directory_structure:
+..  _directory-structure:
 
 ===================
 Directory structure

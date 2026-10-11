@@ -1,5 +1,6 @@
 ..  include:: /Includes.rst.txt
 
+..  _ajax-versions:
 ..  _AjaxVersions:
 
 =====================
@@ -16,17 +17,18 @@ versions and languages for the current documentation.
 For local rendering however, there are two issues that will lead to
 the version switcher not working properly:
 
-* Rendered HTML files viewed via the `file:///` notation may not
-  execute any JavaScript due to security considerations/configuration
-  of your browser.
-* When viewing HTML files via `localhost` or a `.ddev.site` webserver,
-  the AJAX call will fail due to `CORS <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>`__
-  (Cross-Origin Resource Sharing) security restrictions.
+*   Rendered HTML files viewed via the `file:///` notation may not
+    execute any JavaScript due to security considerations/configuration
+    of your browser.
+*   When viewing HTML files via `localhost` or a `.ddev.site` webserver,
+    the AJAX call will fail due to `CORS <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>`__
+    (Cross-Origin Resource Sharing) security restrictions.
 
 Developers of the `render-guides` project may need to simulate menu rendering though.
 
 For them, navigation can be proxied and simulated.
 
+..  _ajax-versions-proxy:
 ..  _AjaxVersions-proxy:
 
 Making the proxy available
@@ -49,7 +51,9 @@ integration of this project does, a server that only hands out files does not.
 Without it the version switcher and the menu stay empty, and the browser console
 says so.
 
-See :ref:`AjaxVersions-data-attributes` on how to fine-tune this.
+See :ref:`ajax-versions-data-attributes` on how to fine-tune this.
+
+..  _ajax-versions-details-version-switcher-implemented:
 
 Details on how the version switcher is implemented
 ==================================================
@@ -76,21 +80,25 @@ If a static name is not available, it is resolved to the ISO-code (like "de-de")
 TYPO3 Documentation Team can not easily access active server-side code to get an automatic
 list of languages.
 
+..  _ajax-versions-data-attributes:
 ..  _AjaxVersions-data-attributes:
+
 Configuring HTML data-attributes
 ================================
 
 The following data-attributes on the HTML element :html:`<div id="toc-version">` are available:
 
-*  `data-override-url-self` - This is a full URL starting with `https://docs.typo3.org` which
-   is used as the simulated page from which the version switching information is retrieved for.
-   For example, `https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html`.
+*   `data-override-url-self` - This is a full URL starting with `https://docs.typo3.org` which
+    is used as the simulated page from which the version switching information is retrieved for.
+    For example, `https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html`.
 
-*  `data-override-url-proxy` - Points to the full URI of the :ref:`AjaxVersions-proxy` PHP proxy.
-   This is called due to CORS reasons. The default of this attribute is set to
-   `https://render-guides.ddev.site/versions-proxy.php?url=`. Unless this file is manually
-   copied to this URL, the proxy will return a 404 failure and inform about the non-working
-   version switcher.
+*   `data-override-url-proxy` - Points to the full URI of the :ref:`ajax-versions-proxy` PHP proxy.
+    This is called due to CORS reasons. The default of this attribute is set to
+    `https://render-guides.ddev.site/versions-proxy.php?url=`. Unless this file is manually
+    copied to this URL, the proxy will return a 404 failure and inform about the non-working
+    version switcher.
+
+..  _ajax-versions-seeing-the-simulated-output:
 
 Seeing the simulated output
 ===========================

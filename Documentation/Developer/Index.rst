@@ -1,6 +1,6 @@
 ..  include:: /Includes.rst.txt
 
-..  _Developers:
+..  _developers:
 
 ==========
 Developers

@@ -1,10 +1,11 @@
 ..  include:: /Includes.rst.txt
 
+..  _table-of-contents-json:
 ..  _TableOfContentsJson:
 
-===========================
+=========================
 Table of contents as JSON
-===========================
+=========================
 
 Every manual is rendered with a :file:`toc.json` at its root: what pages there
 are, in the order the table of contents puts them and nested the way it nests
@@ -95,6 +96,8 @@ orphan
     the same, because the file is published, and a table of contents that
     silently drops published pages is worse than one that says where they stand.
 
+..  _table-of-contents-json-why-it-exists:
+
 Why it exists
 =============
 
@@ -113,5 +116,5 @@ Saying those things once is most of the difference in size. For TYPO3 Explained,
     The file lists pages, not the headings inside them. Those are in
     :file:`objects.inv.json`, which stays the place to look up a single anchor.
 
-See :ref:`ChangelogIndex` for the Core Changelog, which is rendered with an
+See :ref:`changelog-index` for the Core Changelog, which is rendered with an
 index of its entries on top of this.

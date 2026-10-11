@@ -15,6 +15,7 @@
         edit-on-github="TYPO3-Documentation/render-guides"
         edit-on-github-branch="main"
         interlink-shortcode="t3renderguides"
+        check-headline-anchors="true"
         project-contact="https://typo3.slack.com/archives/C0638JMJVLY"
         project-home="https://github.com/TYPO3-Documentation/render-guides"
         project-issues="https://github.com/TYPO3-Documentation/render-guides/issues"

@@ -1,6 +1,6 @@
 ..  include:: /Includes.rst.txt
 
-.. _start:
+..  _start:
 
 =============
 Render guides

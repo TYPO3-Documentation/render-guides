@@ -1,6 +1,6 @@
 ..  include:: /Includes.rst.txt
 
-..  _Sitemaps:
+..  _sitemaps:
 
 ========
 Sitemaps
@@ -11,6 +11,8 @@ by following its links, every old version included, unless a sitemap tells
 them what there is. An official manual is rendered with a :file:`sitemap.xml`
 at its root, and the docs homepage lists the sitemaps that matter in a
 :file:`sitemap-index.xml`.
+
+..  _sitemaps-the-sitemap-of-a-manual:
 
 The sitemap of a manual
 =======================
@@ -32,11 +34,13 @@ So only the official manuals and the system extensions, which docs.typo3.org
 publishes under that layout, get a sitemap. A manual of another vendor, or one
 without an interlink shortcode, gets none.
 
+..  _sitemaps-the-sitemap-index:
+
 The sitemap index
 =================
 
 :file:`sitemap-index.xml` is written by the docs homepage beside
-:ref:`manuals.json <ManualsIndexJson>`, from the same menu. It lists the
+:ref:`manuals.json <manuals-index-json>`, from the same menu. It lists the
 sitemaps of each manual in the versions a search should lead to: the one in
 development, the current LTS, and the LTS before it, as
 :file:`packages/typo3-version-handling` names them. Older versions stay

@@ -1,10 +1,11 @@
 ..  include:: /Includes.rst.txt
 
+..  _file-definitions-json:
 ..  _FileDefinitionsJson:
 
-=================================
+===============================
 File definitions across manuals
-=================================
+===============================
 
 A :rst:`:file:` text role links to the :rst:`..  typo3:file::` definition it
 names, with a popup that says where the file lives in Composer and Classic mode
@@ -25,6 +26,8 @@ Nothing has to change in a manual for this. TYPO3 Explained itself never looks
 itself up. A manual that cannot fetch the definitions — rendered offline, or
 while TYPO3 Explained is not yet rendered with a theme that writes them —
 renders its files as plain code and warns about nothing.
+
+..  _file-definitions-json-file-typo3-explained-publishes:
 
 The file TYPO3 Explained publishes
 ==================================
@@ -73,6 +76,8 @@ path
 
 A manual without definitions writes no :file:`files.json`. A definition with
 :samp:`:noindex:` is left out, as it is from the manual's own lookup.
+
+..  _file-definitions-json-why-it-exists:
 
 Why it exists
 =============

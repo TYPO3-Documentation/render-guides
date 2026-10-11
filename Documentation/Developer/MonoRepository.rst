@@ -31,9 +31,9 @@ It is recommended to run the validation check before you commit:
 
     make test-monorepo
 
-.. _`monorepo-builder`: https://github.com/symplify/monorepo-builder
+..  _`monorepo-builder`: https://github.com/symplify/monorepo-builder
 
-..  _repository_split:
+..  _repository-split:
 
 Repository split (subtree-split of this mono-repository)
 ========================================================

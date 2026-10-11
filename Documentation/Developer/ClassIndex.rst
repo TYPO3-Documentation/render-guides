@@ -1,13 +1,14 @@
 ..  include:: /Includes.rst.txt
 
+..  _class-index-json:
 ..  _ClassIndexJson:
 
-=====================
+===================
 Class index as JSON
-=====================
+===================
 
 Every manual is rendered with a :file:`classes.json` beside its
-:ref:`toc.json <TableOfContentsJson>`: every PHP class the manual speaks of,
+:ref:`toc.json <table-of-contents-json>`: every PHP class the manual speaks of,
 and where it does so.
 
 It answers what no rendered file answered before: where a class is explained,
@@ -78,7 +79,7 @@ path
     extension, as in :file:`toc.json`.
 
 typo3-version
-    In the :ref:`Changelog <ChangelogIndex>` only: the release of the entry the
+    In the :ref:`Changelog <changelog-index>` only: the release of the entry the
     place is in, read from its path, for example :samp:`12.1` or
     :samp:`13.4.x`. Left out in every other manual.
 
@@ -137,7 +138,7 @@ Unset, which is the default, the index keeps every class a manual speaks of.
 
 In a manual about the past, a missing :samp:`type` mostly means the class is
 gone rather than misspelled: the API knows the current version, and the
-:ref:`Changelog <ChangelogIndex>` speaks of many classes that no longer
+:ref:`Changelog <changelog-index>` speaks of many classes that no longer
 exist. There each place names the release of its entry, and the
 :samp:`anchor` of a place in an entry is the entry's own, the key of the entry
 in :file:`Changelog-<major>.json`.

@@ -1,5 +1,6 @@
 ..  include:: /Includes.rst.txt
 
+..  _link-text-check:
 ..  _LinkTextCheck:
 
 ===================
@@ -23,6 +24,8 @@ The check is off by default. Most manuals still have references without a link
 text, and a warning fails a render with :bash:`--minimal-test`, which is what
 their pipelines run.
 
+..  _link-text-check-what-is-checked:
+
 What is checked
 ===============
 
@@ -44,6 +47,8 @@ Changelog entry by design.
 
 The warning names the file, but not the line, since a reference does not
 record where it was written.
+
+..  _link-text-check-switching-the-check-per-page:
 
 Switching the check per page
 ============================

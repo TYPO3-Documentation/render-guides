@@ -1,6 +1,6 @@
 ..  include:: /Includes.rst.txt
 
-..  _Contributing:
+..  _contributing:
 
 ============
 Contributing
@@ -36,6 +36,8 @@ these checks are performed before any Git commit:
     ddev composer make githooks
 
 Those Git hooks will also check your commit message for line length.
+
+..  _contributing-merging-pull-requests:
 
 Merging pull requests
 =====================

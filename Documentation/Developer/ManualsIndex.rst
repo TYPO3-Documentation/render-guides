@@ -1,5 +1,6 @@
 ..  include:: /Includes.rst.txt
 
+..  _manuals-index-json:
 ..  _ManualsIndexJson:
 
 =====================
@@ -7,8 +8,8 @@ Manuals index as JSON
 =====================
 
 Every manual publishes machine-readable indexes of its own beside its pages:
-:ref:`toc.json <TableOfContentsJson>`, :file:`objects.inv.json`,
-:ref:`classes.json <ClassIndexJson>`, and more. What was missing is a list of
+:ref:`toc.json <table-of-contents-json>`, :file:`objects.inv.json`,
+:ref:`classes.json <class-index-json>`, and more. What was missing is a list of
 the manuals themselves. The docs homepage renders one, :file:`manuals.json`,
 beside the :file:`mainmenu.json` of the "All documentation" menu and from the
 same menu:
