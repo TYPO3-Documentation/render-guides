@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use T3Docs\Typo3DocsTheme\Api\TerService;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogReferences;
@@ -53,6 +54,7 @@ use T3Docs\Typo3DocsTheme\Directives\Typo3VersionChangedDirective;
 use T3Docs\Typo3DocsTheme\Directives\ViewHelperDirective;
 use T3Docs\Typo3DocsTheme\Directives\YoutubeDirective;
 use T3Docs\Typo3DocsTheme\EventListeners\AddThemeSettingsToProjectNode;
+use T3Docs\Typo3DocsTheme\ExtensionLinks\ExtensionLinks;
 use T3Docs\Typo3DocsTheme\Deployment\DeploymentMode;
 use T3Docs\Typo3DocsTheme\EventListeners\CopyResources;
 use T3Docs\Typo3DocsTheme\EventListeners\IgnoreLocalizationsFolders;
@@ -433,6 +435,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(PackagistService::class)
         ->set(Typo3VersionService::class)
         ->set(Typo3ApiService::class)
+        ->set(TerService::class)
+        ->set(ExtensionLinks::class)
 
         ->set(ObjectInventory::class)
 
