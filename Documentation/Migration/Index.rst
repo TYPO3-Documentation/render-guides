@@ -17,6 +17,8 @@ the outdated :file:`Settings.cfg`.
 After migration, you can add your :file:`guides.xml` file to your custom repository,
 and optionally also remove the old :file:`Settings.cfg` file.
 
+..  _migration-with-official-docker-container:
+
 With official Docker container
 ==============================
 
@@ -38,6 +40,8 @@ path accordingly.
 
 ..  include:: ../_Includes/NoteProjectDirectoryName.rst.txt
 
+..  _migration-with-make:
+
 With make
 =========
 
@@ -51,6 +55,8 @@ command in your project's root folder:
 When running the command from another folder than the project's root folder,
 adapt the given path accordingly.
 
+..  _migration-with-ddev:
+
 With DDEV
 =========
 
@@ -63,6 +69,8 @@ command in your project's root folder:
 
 When running the command from another folder than the project's root folder,
 adapt the given path accordingly.
+
+..  _migration-with-php:
 
 With PHP
 ========

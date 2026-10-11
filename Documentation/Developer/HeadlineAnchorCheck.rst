@@ -1,5 +1,6 @@
 ..  include:: /Includes.rst.txt
 
+..  _headline-anchor-check:
 ..  _HeadlineAnchorCheck:
 
 =========================
@@ -34,6 +35,8 @@ The check is off by default. Many manuals, and those of third party
 extensions most of all, still have headlines without a label, and a warning
 fails a render with :bash:`--minimal-test`, which is what their pipelines run.
 
+..  _headline-anchor-check-what-is-checked:
+
 What is checked
 ===============
 
@@ -54,6 +57,8 @@ already warns about a duplicate anchor on its own.
 A manual written in Markdown is never checked, even with the setting on. A
 Markdown headline cannot carry a label, so nothing could fix the warning.
 
+..  _headline-anchor-check-switching-the-check-per-page:
+
 Switching the check per page
 ============================
 
@@ -72,4 +77,4 @@ title:
 being given its anchors page by page while the manual's setting is still off.
 
 The check works the same way as the one for
-:ref:`link texts <LinkTextCheck>`, and a manual can switch on either or both.
+:ref:`link texts <link-text-check>`, and a manual can switch on either or both.

@@ -1,5 +1,6 @@
 ..  include:: /Includes.rst.txt
 
+..  _viewhelper-index-json:
 ..  _ViewHelperIndexJson:
 
 ========================
@@ -8,7 +9,7 @@ ViewHelper index as JSON
 
 A manual that documents ViewHelpers with :rst:`..  typo3:viewhelper::` is
 rendered with a :file:`viewhelpers.json` beside its
-:ref:`toc.json <TableOfContentsJson>`. It lists every ViewHelper by the name a
+:ref:`toc.json <table-of-contents-json>`. It lists every ViewHelper by the name a
 template writes, with what the file describing it says and where the manual
 shows it:
 

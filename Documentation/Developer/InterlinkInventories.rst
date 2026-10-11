@@ -1,5 +1,6 @@
 ..  include:: /Includes.rst.txt
 
+..  _interlink-inventories:
 ..  _InterlinkRepositories:
 
 =====================
@@ -8,6 +9,8 @@ Interlink inventories
 
 Sections in other manuals than the current one can be linked during rendering
 by prefixing an anchor link or page link with the name of the manual.
+
+..  _interlink-inventories-official-manuals:
 
 Interlinks to official manuals
 ==============================
@@ -214,6 +217,8 @@ The following link:
 *   :ref:`TYPO3 Explained, always version 8.7 <t3coreapi_v8:start>`
 
 
+..  _interlink-inventories-official-manuals-add-version:
+
 Adding a new TYPO3 version or manual
 ------------------------------------
 
@@ -224,6 +229,8 @@ TYPO3 versions can be made directly in the theme within the enum
 The default manuals to be supported can be managed in enum
 :php:`\T3Docs\Typo3DocsTheme\Inventory\DefaultInventories`.
 
+
+..  _interlink-inventories-system-extensions:
 
 Interlinks to system extensions
 ===============================
@@ -276,6 +283,8 @@ This will be rendered as:
 
 *   :ref:`Changelog: Remove jquery-ui <changelog:breaking-100966-1686062649>`
 
+
+..  _interlink-inventories-third-party-extensions:
 
 Interlinks to third party extensions
 ====================================

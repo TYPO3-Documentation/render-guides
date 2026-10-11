@@ -1,13 +1,14 @@
 ..  include:: /Includes.rst.txt
 
+..  _confval-index-json:
 ..  _ConfvalIndexJson:
 
-======================
+====================
 Option index as JSON
-======================
+====================
 
 A manual that documents options with :rst:`..  confval::` is rendered with a
-:file:`confvals.json` beside its :ref:`toc.json <TableOfContentsJson>`: every
+:file:`confvals.json` beside its :ref:`toc.json <table-of-contents-json>`: every
 option, with what the directive says about it, where it stands, and the
 first paragraph of its description.
 

@@ -1,5 +1,6 @@
 ..  include:: /Includes.rst.txt
 
+..  _confval-field-check:
 ..  _ConfvalFieldCheck:
 
 =======================
@@ -27,6 +28,8 @@ other one:
 The names are separated by commas and may contain spaces. The check is off
 until a manual sets them, and a warning fails a render with
 :bash:`--minimal-test`, which is what the pipelines of the manuals run.
+
+..  _confval-field-check-what-is-checked:
 
 What is checked
 ===============

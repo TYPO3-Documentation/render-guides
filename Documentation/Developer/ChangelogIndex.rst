@@ -1,5 +1,6 @@
 ..  include:: /Includes.rst.txt
 
+..  _changelog-index:
 ..  _ChangelogIndex:
 
 =======================
@@ -7,7 +8,7 @@ Changelog index as JSON
 =======================
 
 Every manual is rendered with a :ref:`table of contents as JSON
-<TableOfContentsJson>`. The TYPO3 Core Changelog gets one artifact on top that
+<table-of-contents-json>`. The TYPO3 Core Changelog gets one artifact on top that
 no other manual does: a machine-readable index of its entries, one file per
 major release, written beside the overview page it belongs to.
 
@@ -91,7 +92,7 @@ tags
 classes
     The PHP classes the entry speaks of, by their fully qualified name, each
     with the places in the entry: the :samp:`section`, :samp:`kind`, and
-    :samp:`members` of the :ref:`class index <ClassIndexJson>`, which says the
+    :samp:`members` of the :ref:`class index <class-index-json>`, which says the
     same by class. A class under :samp:`migration` is often what replaces
     the one under :samp:`description` or :samp:`impact`. The page and release
     are the entry's; a place names an :samp:`anchor` only where it lies below
@@ -101,6 +102,8 @@ classes
 Entries are ordered newest release first, matching the overview page, and
 within a release by issue, so the file does not change between two renders of
 the same sources.
+
+..  _changelog-index-why-it-exists:
 
 Why it exists
 =============

@@ -1,6 +1,6 @@
 ..  include:: ../Includes.rst.txt
 
-..  _Building:
+..  _building:
 
 ========
 Building
@@ -10,8 +10,10 @@ While the components of this repository are split into separate packages, it can
 be build as a standalone application. Two ways are provided to use this project
 on your own environment.
 
+..  _building-using-docker:
+
 Using Docker
-------------
+============
 
 A Docker image is available on `GitHub packages`_. If you want to build your own
 image you can use the following command, in the root of this repository.
@@ -34,8 +36,10 @@ For macOS you may need to specify the argument ``user``:
 
 ..  include:: ../_Includes/NoteProjectDirectoryName.rst.txt
 
+..  _building-using-php:
+
 Using PHP
----------
+=========
 
 A phar_ binary is shipped with this repository. In short, a phar file is an
 executable PHP file. You can run it like any other executable.
@@ -61,8 +65,10 @@ can execute the phar file like a PHP file using:
     means that the :file:`composer.json` is modified during the build process.
     You shall not commit this change to the repository.
 
+..  _building-github-workflow:
+
 GitHub workflow
----------------
+===============
 
 Developers contributing to the repository of this project on github_renderguides_
 will trigger several GitHub Workflow when commiting/pushing code.
@@ -73,8 +79,10 @@ be executed from the repository, where the repository allows other repositories
 to i.e. render the documentation. This repository provides both `Workflows` and
 `Actions`.
 
+..  _building-github-workflow-commit-pr-strategy:
+
 GitHub workflow: Commit/PR stragegy
------------------------------------
+===================================
 
 The Git `main` branch is protected, so only feature/bugfix/task-branches and forked
 repositories can be merged into it. When a pull request (PR) is created, at least
@@ -89,8 +97,10 @@ are executed:
 
 Once a PR is merged, nothing else happens.
 
+..  _building-github-workflow-release-strategy:
+
 GitHub workflow: Release strategy
------------------------------------
+=================================
 
 Whenever assets of our theme (`packages/typo3-docs-theme`) need to be uploaded,
 or the official Docker container needs to be updated, a Git tag must be pushed to
@@ -131,8 +141,10 @@ When a Git version tag matching `*.*.*` is pushed, these workflows are executed:
     :file:`packages/typo3-docs-theme/resources/public`) to the Azure cloud CDN,
     using the version tag.
 
+..  _building-github-workflow-github-actions-main-entry:
+
 GitHub workflow: GitHub Actions - main entry
---------------------------------------------
+============================================
 
 :file:`/action.yaml` is the main entry point for a composite action. It can
 be used by other repositories in workflows.
@@ -189,13 +201,13 @@ not need different version numbers/tags.
 The :file:`/action.yaml` composite action takes in the input of the code snippet
 above, and then executes two composite steps:
 
--    :file:`.github/actions/configure-guides-step/action.yaml` that provides
-     extension-repository specific attributes that influence the local rendering.
-     The input variables are dynamically injected into a temporary :file:`guides.xml`
-     file, that is used for the actual rendering. This is done by executing
-     our own `latest` Docker container image.
--    :file:`.github/actions/render-guides-step/action.yaml` is the actual
-     rendering step, also using the same `latest` Docker container image.
+-   :file:`.github/actions/configure-guides-step/action.yaml` that provides
+    extension-repository specific attributes that influence the local rendering.
+    The input variables are dynamically injected into a temporary :file:`guides.xml`
+    file, that is used for the actual rendering. This is done by executing
+    our own `latest` Docker container image.
+-   :file:`.github/actions/render-guides-step/action.yaml` is the actual
+    rendering step, also using the same `latest` Docker container image.
 
 Note that we only have one central Docker container image entrypoint that can
 take arguments like `migrate` or `render` to trigger different actions.
@@ -203,7 +215,7 @@ take arguments like `migrate` or `render` to trigger different actions.
 ..  _deploy-azure-assets:
 
 GitHub workflow: deploy-azure-assets
-------------------------------------
+====================================
 
 :file:`.github/workflows/deploy-azure-assets.yaml` is triggered when a Git tag
 matching `*.*.*` is committed to the repository.
@@ -216,8 +228,10 @@ number that has been used in the Git tag).
 That directory structure is then uploaded to Azure, by using the secret GitHub
 environment variables configured in our repository.
 
+..  _building-github-workflow-docker:
+
 GitHub workflow: docker
------------------------
+=======================
 
 :file:`.github/workflows/docker.yaml` is triggered when a Git tag
 matching `*.*.*` is committed to the repository.
@@ -252,8 +266,10 @@ a way, that could reference exact Docker images other than `latest`, like by
 referring to a `:5.0` image (using 5.0.1 / 5.0.2 / ... CDN URIs), or even using
 `:5` to reference to the most recent 5.x version.
 
+..  _building-github-workflow-docker-test:
+
 GitHub workflow: docker-test
-----------------------------
+============================
 
 :file:`.github/workflows/docker-test.yaml` is triggered whenever a commit changes
 the :file:`Dockerfile`.
@@ -271,8 +287,10 @@ steps to configure and render the documentation from the `main` repository, not
 the fles that may be modified within the commit. See the note in
 :file:`.github/workflows/docker-test.yaml` at the end for details.
 
+..  _building-github-workflow-main:
+
 GitHub workflow: main
------------------------
+=====================
 
 :file:`.github/workflows/main.yaml` is triggered on each commit and for each
 pull request (PR).
@@ -295,8 +313,10 @@ It performs basic code quality analysis and execution of unit/integration tests:
 
 -   Validate monorepo structure
 
+..  _building-github-workflow-phar:
+
 GitHub workflow: phar
------------------------
+=====================
 
 (work in progress)
 
@@ -305,8 +325,8 @@ pull requests). It builds the a phar_ archive that will be available for
 created releases.
 
 
-.. _phar: https://www.php.net/manual/en/intro.phar.php
-.. _Box: https://box-project.github.io/box/
-.. _`GitHub packages`: https://github.com/TYPO3-Documentation/render-guides/pkgs/container/render-guides
-.. _github_renderguides: https://github.com/TYPO3-documentation/render-guides
-.. _github_gh_render_action: https://github.com/TYPO3-documentation/gh-render-action
+..  _phar: https://www.php.net/manual/en/intro.phar.php
+..  _Box: https://box-project.github.io/box/
+..  _`GitHub packages`: https://github.com/TYPO3-Documentation/render-guides/pkgs/container/render-guides
+..  _github_renderguides: https://github.com/TYPO3-documentation/render-guides
+..  _github_gh_render_action: https://github.com/TYPO3-documentation/gh-render-action

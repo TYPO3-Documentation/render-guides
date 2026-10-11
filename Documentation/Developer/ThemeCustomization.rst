@@ -28,6 +28,8 @@ array of nodes. You can iterate over this array to render the children using the
 ``render_node`` function. This function will render the node using the correct
 template.
 
+..  _theme-customization-build-sources:
+
 Build sources
 =============
 
@@ -47,6 +49,8 @@ Or use the custom DDEV commands:
     ddev npm-ci
     ddev npm-build
 
+
+..  _theme-customization-debug-assets:
 
 Debug assets
 ============

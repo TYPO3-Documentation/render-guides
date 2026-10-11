@@ -2,9 +2,9 @@
 
 ..  _installation:
 
-=============
+============
 Installation
-=============
+============
 
 This project is not a TYPO3 extension, but a standalone application
 used to render documentation. If you want to learn more about how to write
@@ -33,10 +33,10 @@ You can choose whatever is easiest for you:
     the mentioned containers by replacing all :bash:`docker` commands in the
     following steps with :bash:`podman`.
 
-..  _Setup_Docker:
+..  _setup-docker:
 
 Docker
-------
+======
 
 The Docker image is available on GitHub packages. You can pull the image with
 the following command.
@@ -92,7 +92,7 @@ The provided image allows you to also perform a few other actions:
 ..  _installation-single-markdown:
 
 The whole manual as one Markdown file
-=====================================
+-------------------------------------
 
 Every page is rendered to Markdown beside its HTML, which is what tools reading
 a single page want. A tool that wants to read the *whole* manual at once —
@@ -132,7 +132,7 @@ per-page Markdown instead, which is linked from every page as
 ..  _installation-single-html:
 
 The whole manual as one HTML page
-=================================
+---------------------------------
 
 For reading or printing a manual in one piece, pass :bash:`--single-html`:
 
@@ -163,13 +163,13 @@ In case of errors you can increase verbose output by prefixing any command with 
     SHELL_VERBOSITY=3 docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest (render|migrate|lint-guides-xml|configure) [arguments/options]
 
 Another way to utilize Docker is to create your own image/container. This is aimed at people
-who want to contribute to the underlying documentation tool. Please see :ref:`_Building`
+who want to contribute to the underlying documentation tool. Please see :ref:`building`
 for those steps.
 
-..  _Setup_DDEV:
+..  _setup-ddev:
 
 DDEV
-----
+====
 
 `DDEV <https://ddev.com/>`__ is a utility layer on top of Docker. It allows to easily
 build and maintain local development instances with specific environments.
@@ -187,10 +187,10 @@ To render the documentation you can run
     ddev composer install
     ddev composer make docs
 
-..  _Setup_PHP:
+..  _setup-php:
 
 PHP
----
+===
 
 If your host environment already has a PHP binary and is able to run Composer,
 as well as interpret Makefile syntax (i.e. through a `build-essential` package),
@@ -209,4 +209,4 @@ The provided Symfony commands can be executed via:
 
     ./packages/typo3-guides-cli/bin/typo3-guides (migrate|lint-guides-xml|configure)
 
-.. _`GitHub packages page`: https://github.com/TYPO3-Documentation/render-guides/pkgs/container/render-guides
+..  _`GitHub packages page`: https://github.com/TYPO3-Documentation/render-guides/pkgs/container/render-guides

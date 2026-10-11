@@ -39,13 +39,13 @@ search path, giving them higher priority than the built-in templates.
 
 The resolution order is:
 
-#. Custom templates mounted via Docker volume at :file:`/templates`
-   (highest priority)
-#. Custom templates bundled in the project at
-   :file:`resources/custom-templates` (relative to the project root)
-#. TYPO3-specific theme templates
-#. Bootstrap 5 theme templates (fallback)
-#. Base phpDocumentor templates (fallback)
+#.  Custom templates mounted via Docker volume at :file:`/templates`
+    (highest priority)
+#.  Custom templates bundled in the project at
+    :file:`resources/custom-templates` (relative to the project root)
+#.  TYPO3-specific theme templates
+#.  Bootstrap 5 theme templates (fallback)
+#.  Base phpDocumentor templates (fallback)
 
 ..  _template-docker-volume:
 
@@ -208,6 +208,8 @@ be used.
 Examples
 ========
 
+..  _template-examples-override-the-page-layout:
+
 Override the page layout
 ------------------------
 
@@ -232,6 +234,8 @@ Override the page layout
       -v "$(pwd)/my-custom-templates:/templates:ro" \
       -it ghcr.io/typo3-documentation/render-guides:latest \
       --progress --config=Documentation
+
+..  _template-examples-override-block-quote-rendering:
 
 Override block quote rendering
 ------------------------------
