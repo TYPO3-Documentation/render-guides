@@ -132,7 +132,7 @@ These inventories can be used by default in any rendered documentation:
 
     Inventory key: :doc:`t3org <t3org:Index>`
 
-    URL: https://docs.typo3.org/m/typo3/writing-guide/main/en-us/
+    URL: https://docs.typo3.org/m/typo3/team-t3oteam/main/en-us/
 
 *   Title: :doc:`fluid:Index`
 
@@ -185,9 +185,10 @@ or
     <extension
         class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
         typo3-core-preferred="8.7"
+    />
 
 It is not necessary anymore to list each of the standard inventories in the
-:file:`guides.xml` anymore. If desired you can override or redefine standard interlink
+:file:`guides.xml`. If desired you can override or redefine standard interlink
 inventories or define new ones:
 
 ..  code-block:: xml
@@ -336,7 +337,7 @@ they can define that version manually in the manual's :file:`guides.xml`:
         />
         <!-- explicitly link to stable versions of extensions -->
         <inventory id="georgringer/news/stable" url="https://docs.typo3.org/p/georgringer/news/11.3/en-us/"/>
-        <inventory id="georgringer/news/stable" url="https://docs.typo3.org/p/cobweb/external_import/7.2/en-us/"/>
+        <inventory id="cobweb/external_import/stable" url="https://docs.typo3.org/p/cobweb/external_import/7.2/en-us/"/>
     </guides>
 
 ..  code-block:: rst

@@ -114,7 +114,7 @@ reading one page. The index is that list in a single request, and it carries
 what the page cannot: the file of each entry, so a reader can go straight to
 the Markdown instead of scraping HTML.
 
-The Changelog is recognised by its interlink shortcode, and the format is added
+The Changelog is recognized by its interlink shortcode, and the format is added
 by the theme rather than configured in the manual: the Changelog's
 :file:`guides.xml` lives in :samp:`typo3/cms-core`, and a documentation artifact
 should not cost a Core patch.

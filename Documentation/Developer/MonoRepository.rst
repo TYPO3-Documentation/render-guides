@@ -52,7 +52,7 @@ To add a new split-repository package, the following is needed:
     `PHP-based-rendering-bot <https://github.com/orgs/TYPO3-Documentation/teams/php-based-rendering-bot>`__
 *   Add an entry to file :file:`config.subsplit-publish.json`, formatted
     like the existing subtrees.
-*   Push some change within the correspondig package directory on the
+*   Push some change within the corresponding package directory on the
     mono-repository's `main` branch.
 *   Add the new repository to `Packagist <https://packagist.org>`__.
 
