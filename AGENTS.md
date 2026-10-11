@@ -59,6 +59,9 @@ output looks plausible. Always pass both:
 
     vendor/bin/guides run <dir> --output=<out> --config=<dir>
 
+`bin/guides`, which the Docker image runs, adds `--config=<dir>` itself when
+`<dir>` has a `guides.xml`; `vendor/bin/guides` does not.
+
 **A manual is the real test.** The fixtures are small. Before claiming a
 rendering change works, render a real manual against this checkout and compare
 it with a render from `main` — the TYPO3 Core Changelog, at around 3900 pages,

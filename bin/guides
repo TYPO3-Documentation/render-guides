@@ -6,6 +6,7 @@ declare(strict_types=1);
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
 use Symfony\Component\Console\Input\ArgvInput;
+use T3Docs\GuidesExtension\Command\DefaultConfigDirectory;
 
 $root = dirname(__DIR__);
 
@@ -64,6 +65,17 @@ function outputError(string $message, bool $isHeader = false): void
     } else {
         fwrite(STDERR, $message . "\n");
     }
+}
+
+// Without "--config", load the guides.xml of the directory being rendered.
+// Upstream reads the option from $_SERVER['argv'] before it knows the input.
+$defaultConfig = DefaultConfigDirectory::find(
+    array_values(array_map('strval', (array) ($_SERVER['argv'] ?? []))),
+    (new ArgvInput())->getParameterOption(['--working-dir', '-w'], getcwd(), true),
+);
+if ($defaultConfig !== null) {
+    array_splice($_SERVER['argv'], 1, 0, ['--config=' . $defaultConfig]);
+    $argv = $_SERVER['argv'];
 }
 
 // Determine which guides.xml files will be loaded (mirrors upstream logic)
