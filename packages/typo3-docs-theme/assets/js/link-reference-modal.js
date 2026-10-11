@@ -26,11 +26,11 @@
       return '';
     }
     const urlPrefix = 'https://docs.typo3.org/permalink/';
+    // The shortcode keeps its slash, such as "web-vision/deepltranslate-core".
+    // With a hyphen in its place, the resolver cannot tell where the vendor ends.
     const interlinkTarget = linkReferenceModal.dataset.interlinkShortcode || 'somemanual';
-    // Replaces a link like "typo3/cms-sys-note" to "typo3-cms-sys-note"
-    const adjustedInterlinkTarget = interlinkTarget.replaceAll('/', '-', interlinkTarget);
 
-    return urlPrefix + `${adjustedInterlinkTarget}:${rstAnchor}`;
+    return urlPrefix + `${interlinkTarget}:${rstAnchor}`;
   }
 
   function generateRstLink(headerText, url) {
