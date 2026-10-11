@@ -89,9 +89,9 @@ renders Markdown beside the HTML.
 
 The documentation's commit conventions apply here too: see
 [Commit messages](https://docs.typo3.org/permalink/h2document:commit-messages).
-In short — prefix the summary with `[TASK]`, `[BUGFIX]` or `[FEATURE]`, explain
-in the body why the change is needed rather than what the diff already shows,
-and end with the trailers:
+In short — prefix the summary with `[TASK]`, `[BUGFIX]`, or `[FEATURE]`,
+explain in the body why the change is needed rather than what the diff already
+shows, and end with the trailers:
 
     Assisted-by: Claude Opus 5 <noreply@anthropic.com>
     Signed-off-by: Jane Doe
@@ -103,6 +103,10 @@ dependabot, never for a model.
 
 A `Releases:` trailer does not belong here: it marks which per-version branches
 a change applies to, and this repository has none.
+
+This repository holds code, not only documentation, so it has one more
+prefix: a change that touches only documentation — `Documentation/`, a README,
+or this file — gets `[DOCS]`, also when it corrects an error in it.
 
 Branch from a freshly fetched `origin/main` and name the branch `task/<what>`.
 
