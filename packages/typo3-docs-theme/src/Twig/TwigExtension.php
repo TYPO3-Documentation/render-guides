@@ -118,6 +118,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('markdownDownloadName', $this->getMarkdownDownloadName(...), ['needs_context' => true]),
             new TwigFunction('markdownLinkUrl', $this->getMarkdownLinkUrl(...), ['needs_context' => true]),
             new TwigFunction('markdownSectionAnchors', $this->getMarkdownSectionAnchors(...), ['needs_context' => true]),
+            new TwigFunction('markdownLabelAnchors', $this->getMarkdownLabelAnchors(...), ['needs_context' => true]),
             new TwigFunction('headingId', $this->getHeadingId(...), ['needs_context' => true]),
             new TwigFunction('sectionIdOfAnchor', $this->getSectionIdOfAnchor(...), ['needs_context' => true]),
             new TwigFunction('isSitemap', $this->isSitemap(...)),
@@ -358,6 +359,40 @@ final class TwigExtension extends AbstractExtension
         }
 
         return array_values(array_unique($anchors));
+    }
+
+    /**
+     * The labels of a section that its Markdown heading does not carry.
+     *
+     * A heading carries one id, "{#...}", and that is the label nearest to it
+     * (see getHeadingId()). A section can have more labels, when an old one is
+     * kept beside a new one. The HTML page writes an empty anchor for each of
+     * them, so the per-page Markdown writes them too: a tool that looks up a
+     * section by one of its anchors finds it in either format.
+     *
+     * In the order the source has them. The library holds the labels of a
+     * section the other way round, the nearest first.
+     *
+     * @param array{env: RenderContext} $context
+     * @return list<string>
+     */
+    public function getMarkdownLabelAnchors(array $context, SectionNode $sectionNode): array
+    {
+        $headingAnchor = $this->getAnchorIdOfSection($context, $sectionNode);
+
+        $anchors = [];
+        foreach ($sectionNode->getChildren() as $childNode) {
+            if ($childNode instanceof AnchorNode) {
+                $anchors[] = $this->anchorNormalizer->reduceAnchor($childNode->toString());
+            }
+        }
+
+        $anchors = array_unique(array_reverse($anchors));
+
+        return array_values(array_filter(
+            $anchors,
+            static fn(string $anchor): bool => $anchor !== '' && $anchor !== $headingAnchor,
+        ));
     }
 
     /**
