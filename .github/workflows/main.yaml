@@ -109,9 +109,6 @@ jobs:
   theme-js-tests:
     name: "typo3-docs-theme JS tests"
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/typo3-docs-theme
     steps:
       - name: "Checkout"
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -123,14 +120,11 @@ jobs:
           cache: npm
           cache-dependency-path: packages/typo3-docs-theme/package-lock.json
 
-      - name: "Install npm dependencies"
-        run: npm ci --no-progress
-
-      - name: "Run JS unit tests"
-        run: npm test
-
-      - name: "Lint the SCSS sources"
-        run: npm run lint:css
+      # The same targets a contributor gets from `make test`, so that a green
+      # run locally means a green run here. Whether the committed assets are
+      # up to date is check-built-assets.yaml's job.
+      - name: "Run the theme tests"
+        run: "make test-theme-js test-theme-css ENV=local"
 
   monorepo-validate:
     name: "Validate monorepo structure"
