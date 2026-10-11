@@ -44,14 +44,14 @@ The :file:`packages/` directory contains the TYPO3-specific extensions. The
 TYPO3-specific directives. The ``typo3-guides-extension`` extension contains
 extensions on the base tool. This are customizations to make the tool fit the
 TYPO3 documentation needs. The ``typo3-guides-cli`` package is a collection
-of Symfony Commands for tasks like conversion or linting.
+of Symfony commands for tasks like conversion or linting.
 
 The :file:`tests/` directory contains the tests for the project. The integration
 tests are located in the :file:`Integration/` directory. During the integration
 tests the tool is executed as it was run by the user.
 
 The :file:`tools/` directory contains the tools needed for the project. Like
-scripts to build the phar file or adapt GIT hooks.
+scripts to build the phar file or adapt Git hooks.
 
 The :file:`Documentation/` directory holds the documentation you are now
 reading. It is the default documentation being build by the project, too.
@@ -60,7 +60,7 @@ The :file:`Dockerfile` and :file:`entrypoint.sh` files provide the Docker
 container support for the project.
 
 The :file:`Makefile` contains a list of all supported development commands and
-tasks that can be executed. All of them can also be executed with a composer
+tasks that can be executed. All of them can also be executed with a Composer
 wrapper script (:bash:`composer make ...`).
 
 ..  _DDEV: https://ddev.com/

@@ -22,8 +22,8 @@ Within each of these, a file named by its id wins over one whose
 :samp:`:regex:` matches, and otherwise the first matching regex does.
 
 Nothing has to change in a manual for this. TYPO3 Explained itself never looks
-itself up. A manual that cannot fetch the definitions -- rendered offline, or
-while TYPO3 Explained is not yet rendered with a theme that writes them --
+itself up. A manual that cannot fetch the definitions — rendered offline, or
+while TYPO3 Explained is not yet rendered with a theme that writes them —
 renders its files as plain code and warns about nothing.
 
 The file TYPO3 Explained publishes

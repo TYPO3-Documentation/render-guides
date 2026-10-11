@@ -30,7 +30,7 @@ The warning names the headline and suggests a label made from it:
     The headline "Inline columns" has no anchor, so no permalink leads to it.
     Give it one: ..  _inline-columns:
 
-The check is off by default. Many manuals, and those of third-party
+The check is off by default. Many manuals, and those of third party
 extensions most of all, still have headlines without a label, and a warning
 fails a render with :bash:`--minimal-test`, which is what their pipelines run.
 

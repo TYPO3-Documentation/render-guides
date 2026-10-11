@@ -57,8 +57,8 @@ and the places that speak of it:
 
 type
     What the TYPO3 API says the name is: :samp:`class`, :samp:`interface`,
-    :samp:`trait` or :samp:`enum`. Left out for a name the API does not know --
-    a class of an extension or of another vendor, but below
+    :samp:`trait`, or :samp:`enum`. Left out for a name the API does not
+    know — a class of an extension or of another vendor, but below
     :samp:`\\TYPO3` also a typo, a class that is gone, or an invented example.
 
     A namespace is not a class and is not listed: one named with
@@ -68,7 +68,7 @@ type
     class unless :rst:`:php-namespace:` says otherwise.
 
 places
-    Where the manual speaks of the class, ordered by page, anchor and section.
+    Where the manual speaks of the class, ordered by page, anchor, and section.
     Each place says:
 
 ..  rst-class:: dl-parameters
@@ -86,7 +86,7 @@ anchor
     The nearest label at or above the place: the label of its section, or
     of the section or page around it. Fill it into the project's
     :samp:`permalink` to link to the passage rather than to the top of the
-    page -- every anchor here resolves. Empty where the page has no label at
+    page — every anchor here resolves. Empty where the page has no label at
     all. For a :samp:`definition` it is the anchor of the class itself.
 
 section
@@ -142,10 +142,10 @@ exist. There each place names the release of its entry, and the
 :samp:`anchor` of a place in an entry is the entry's own, the key of the entry
 in :file:`Changelog-<major>.json`.
 
-Classes below :samp:`Vendor`, :samp:`MyVendor`, :samp:`Foo` or
+Classes below :samp:`Vendor`, :samp:`MyVendor`, :samp:`Foo`, or
 :samp:`OriginalVendor` are left out: an example invents them for the reader to
 replace with their own, so where they are spoken of says nothing. A manual
-that invents other names says so on the extension, and names all of them --
+that invents other names says so on the extension, and names all of them —
 the setting replaces the list above rather than adding to it:
 
 ..  code-block:: xml

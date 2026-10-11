@@ -34,7 +34,7 @@ Making the proxy available
 
 A render that does not go to docs.typo3.org writes two proxies beside its
 assets, :file:`_resources/js/versions-proxy.php` and
-:file:`_resources/js/menu-proxy.php`, and points the version switch and the
+:file:`_resources/js/menu-proxy.php`, and points the version switcher and the
 "All documentation" menu at them. They are the same files that live in
 :file:`packages/typo3-docs-theme/assets/js/` in the repository of this project
 (`<https://github.com/TYPO3-Documentation/render-guides>`).
@@ -44,9 +44,9 @@ endpoint, and returns its output locally, so that a page may read it: the
 browser refuses to fetch it from the page itself, which is a foreign origin to
 `docs.typo3.org`.
 
-It is PHP, so the server showing the documentation has to run PHP -- the DDEV
+It is PHP, so the server showing the documentation has to run PHP — the DDEV
 integration of this project does, a server that only hands out files does not.
-Without it the version switch and the menu stay empty, and the browser console
+Without it the version switcher and the menu stay empty, and the browser console
 says so.
 
 See :ref:`AjaxVersions-data-attributes` on how to fine-tune this.
@@ -73,7 +73,7 @@ documentation must be rendered with the built assets (:bash:`make docs`).
 
 The JavaScript file also contains some logic to set names for known published translations.
 If a static name is not available, it is resolved to the ISO-code (like "de-de"). The
-TYPO3 Documentation team can not easily access active server-side code to get an automatic
+TYPO3 Documentation Team can not easily access active server-side code to get an automatic
 list of languages.
 
 ..  _AjaxVersions-data-attributes:

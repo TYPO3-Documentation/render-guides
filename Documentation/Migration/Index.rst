@@ -51,7 +51,7 @@ command in your project's root folder:
 When running the command from another folder than the project's root folder,
 adapt the given path accordingly.
 
-With ddev
+With DDEV
 =========
 
 To migrate your settings to the new rendering method, run the following

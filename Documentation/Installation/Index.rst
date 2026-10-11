@@ -9,7 +9,7 @@ Installation
 This project is not a TYPO3 extension, but a standalone application
 used to render documentation. If you want to learn more about how to write
 documentation, please check the
-:ref:`Contributing Guide - How to Document <h2document:contribute>`.
+:ref:`Contributing guide - how to document <h2document:contribute>`.
 
 Multiple methods are provided to install the project on your local machine.
 You can choose whatever is easiest for you:
@@ -95,8 +95,8 @@ The whole manual as one Markdown file
 =====================================
 
 Every page is rendered to Markdown beside its HTML, which is what tools reading
-a single page want. A tool that wants to read the *whole* manual at once --
-a local language model being the obvious case -- is better served by one file.
+a single page want. A tool that wants to read the *whole* manual at once —
+a local language model being the obvious case — is better served by one file.
 
 Pass :bash:`--single-markdown` to get it:
 
@@ -125,7 +125,7 @@ working wherever the file is copied.
     Markdown points at them and would otherwise point at nothing.
 
 This is deliberately a local tool. Nothing publishes the file, and
-:samp:`docs.typo3.org` does not carry it -- the published manuals offer the
+:samp:`docs.typo3.org` does not carry it — the published manuals offer the
 per-page Markdown instead, which is linked from every page as
 :html:`<link rel="alternate" type="text/markdown">`.
 
@@ -163,7 +163,7 @@ In case of errors you can increase verbose output by prefixing any command with 
     SHELL_VERBOSITY=3 docker run --rm -v $(pwd):/project ghcr.io/typo3-documentation/render-guides:latest (render|migrate|lint-guides-xml|configure) [arguments/options]
 
 Another way to utilize Docker is to create your own image/container. This is aimed at people
-who want to contribute to the underlying Documentation tool. Please see :ref:`_Building`
+who want to contribute to the underlying documentation tool. Please see :ref:`_Building`
 for those steps.
 
 ..  _Setup_DDEV:
@@ -175,7 +175,7 @@ DDEV
 build and maintain local development instances with specific environments.
 
 This project also ships a :file:`.ddev/` configuration directory, that allows
-you to start a specific container in which you can render Documentation, and
+you to start a specific container in which you can render documentation, and
 have an environment where you can contribute to this repository without any
 other requirement than Docker and DDEV.
 
@@ -194,7 +194,7 @@ PHP
 
 If your host environment already has a PHP binary and is able to run Composer,
 as well as interpret Makefile syntax (i.e. through a `build-essential` package),
-you can create documentation natively, without needing docker.
+you can create documentation natively, without needing Docker.
 
 You can run these commands locally:
 
@@ -203,7 +203,7 @@ You can run these commands locally:
     composer install
     make docs
 
-The provided Symfony Commands can be executed via:
+The provided Symfony commands can be executed via:
 
 ..  code-block:: shell
 

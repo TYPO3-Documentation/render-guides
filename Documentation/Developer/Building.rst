@@ -76,15 +76,15 @@ to i.e. render the documentation. This repository provides both `Workflows` and
 GitHub workflow: Commit/PR stragegy
 -----------------------------------
 
-The GIT `main` branch is protected, so only feature/bugfix/task-branches and forked
-repositories can be merged into it. When a Pull Request (PR) is created, at least
+The Git `main` branch is protected, so only feature/bugfix/task-branches and forked
+repositories can be merged into it. When a pull request (PR) is created, at least
 one team member needs to approve it, so that it can be merged.
 
 When a PR is created (and for every follow-up commit) the following GitHub Action
 are executed:
 
 -   :file:`.github/workflows/main.yaml` runs code quality and integration checks
--   :file:`.github/workflows/docker-self.yaml` creates a test docker container image
+-   :file:`.github/workflows/docker-self.yaml` creates a test Docker container image
     (not uploaded anywhere), only if the PR modifies the main :file:`Dockerfile`.
 
 Once a PR is merged, nothing else happens.
@@ -93,7 +93,7 @@ GitHub workflow: Release strategy
 -----------------------------------
 
 Whenever assets of our theme (`packages/typo3-docs-theme`) need to be uploaded,
-or the official Docker container needs to be updated, a GIT tag must be pushed to
+or the official Docker container needs to be updated, a Git tag must be pushed to
 this repository.
 
 The tag must be formatted as a semver-version string without a leading character,
@@ -101,10 +101,10 @@ i.e. `0.1.0` or `5.1.1`. We only support a progressive mainline of versions, so
 if a `5.0.0` version will come out at some point, backporting bugfixes to previous
 major versions is not planned.
 
-If that ever needs to happen, also tags for older versions can be added to GIT
+If that ever needs to happen, also tags for older versions can be added to Git
 to trigger building the relevant Docker container images. It is then very important
 that the most recent version is tagged LAST in this process, because only the
-last GIT tag is used for the `latest` Docker container:
+last Git tag is used for the `latest` Docker container:
 
 ..  code-block:: shell
 
@@ -122,7 +122,7 @@ last GIT tag is used for the `latest` Docker container:
     git checkout 3.1.2
     # ...
 
-When a GIT version tag matching `*.*.*` is pushed, these workflows are executed:
+When a Git version tag matching `*.*.*` is pushed, these workflows are executed:
 
 -   :file:`.github/workflows/phar.yaml` build the PHAR image for the release
 -   :file:`.github/workflows/docker.yaml` build the Docker container image for the release,
@@ -131,7 +131,7 @@ When a GIT version tag matching `*.*.*` is pushed, these workflows are executed:
     :file:`packages/typo3-docs-theme/resources/public`) to the Azure cloud CDN,
     using the version tag.
 
-GitHub workflow: GitHub Actions - Main entry
+GitHub workflow: GitHub Actions - main entry
 --------------------------------------------
 
 :file:`/action.yaml` is the main entry point for a composite action. It can
@@ -182,7 +182,7 @@ Then it does not even matter, if the repository uses the old or new rendering,
 everything is done through the intermediate layer of `gh-render-action`.
 
 This will also in the future allow us to switch to different renderings or take
-care of breaking configurations, so that extension authors (and the TYPO3 core
+care of breaking configurations, so that extension authors (and the TYPO3 Core
 documentation) always can rely on one action that does not change, and does
 not need different version numbers/tags.
 
@@ -205,33 +205,33 @@ take arguments like `migrate` or `render` to trigger different actions.
 GitHub workflow: deploy-azure-assets
 ------------------------------------
 
-:file:`.github/workflows/deploy-azure-assets.yaml` is triggered when a GIT tag
+:file:`.github/workflows/deploy-azure-assets.yaml` is triggered when a Git tag
 matching `*.*.*` is committed to the repository.
 
-It checks out this repository, retrieves the current GIT tag, gathers all files in
-:file:`packages/typo3-docs-theme/resources/public` and moves them to a directory
+It checks out this repository, retrieves the current Git tag, gathers all files in
+:file:`packages/typo3-docs-theme/resources/public`, and moves them to a directory
 structure like :file:`cdn/cdn/theme/typo3-docs-theme/1.0.0/` (using the version
-number that has been used in the GIT tag).
+number that has been used in the Git tag).
 
-That directory structure is then uploaded to azure, by using the secret GIT
+That directory structure is then uploaded to Azure, by using the secret GitHub
 environment variables configured in our repository.
 
 GitHub workflow: docker
 -----------------------
 
-:file:`.github/workflows/docker.yaml` is triggered when a GIT tag
+:file:`.github/workflows/docker.yaml` is triggered when a Git tag
 matching `*.*.*` is committed to the repository.
 
 It does these steps:
 
--   `build`: Sets up a matrix of docker platforms (arm, amd) to be built. This
+-   `build`: Sets up a matrix of Docker platforms (arm, amd) to be built. This
     results in three build steps in total, once per platform:
-    -   Check out the repository with the current GIT tag
+    -   Check out the repository with the current Git tag
     -   Retrieve Docker metadata (tags, versions)
     -   Initiates the Docker build chain
-    -   Store the currently used GIT tag (version number) in an environment
+    -   Store the currently used Git tag (version number) in an environment
         variable `TYPO3AZUREEDGEURIVERSION`. See description below.
-    -   Create the docker image, using the environment variable.
+    -   Create the Docker image, using the environment variable.
 -   `merge`: Then the three builds are merged and uploaded to the `gchr` docker
     registry.
 
@@ -262,7 +262,7 @@ The workflow step then uses that modified :file:`Dockerfile` and tries to build
 it, and just execute the resulting container.
 
 Note that no Docker container is actually uploaded. All the GitHub actions
-are just executed with the locally built docker container in this case, because
+are just executed with the locally built Docker container in this case, because
 this workflow step replaces the Docker container image name to the local Dockerfile
 instead of a registry URI.
 
@@ -275,7 +275,7 @@ GitHub workflow: main
 -----------------------
 
 :file:`.github/workflows/main.yaml` is triggered on each commit and for each
-Pull Request (PR).
+pull request (PR).
 
 It performs basic code quality analysis and execution of unit/integration tests:
 
@@ -301,7 +301,7 @@ GitHub workflow: phar
 (work in progress)
 
 :file:`.github/workflows/phar.yaml` is triggered on each commit (not on
-Pull Requests). It builds the a phar_ archive that will be available for
+pull requests). It builds the a phar_ archive that will be available for
 created releases.
 
 

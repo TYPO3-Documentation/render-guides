@@ -53,8 +53,8 @@ If the parameter :bash:`ENV=local` is appended or prepended to the command, they
 also be run locally, without Docker. This can speed up processing and saves
 resources on build pipelines. This requires PHP on your host.
 
-The :file:`Makefile` can also be executed via composer. All commands in the
-:bash:`make` range are just passed onto the :file:`Makefile` via a composer script,
+The :file:`Makefile` can also be executed via Composer. All commands in the
+:bash:`make` range are just passed onto the :file:`Makefile` via a Composer script,
 and automatically then use the :file:`ENV=local` scope:
 
 ..  code-block:: shell

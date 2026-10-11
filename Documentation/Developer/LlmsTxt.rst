@@ -43,7 +43,7 @@ there. A page without a title is left out.
 
 The Core Changelog lists its pages down to each version, not its thousands of
 entries. Those are in :ref:`Changelog-\<major\>.json <ChangelogIndex>`, with
-their type, issue, tags and version to filter by, and each links its page.
+their type, issue, tags, and version to filter by, and each links its page.
 
 The docs homepage writes none: the :file:`llms.txt` of docs.typo3.org is
 written by hand.

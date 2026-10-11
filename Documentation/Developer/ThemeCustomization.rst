@@ -3,7 +3,7 @@
 ..  _theme-customization:
 
 ===================
-Theme Customization
+Theme customization
 ===================
 
 The theme provided by this package is prepared to be integrated into the TYPO3
@@ -28,7 +28,7 @@ array of nodes. You can iterate over this array to render the children using the
 ``render_node`` function. This function will render the node using the correct
 template.
 
-Build Sources
+Build sources
 =============
 
 To build the public assets execute the following commands:
@@ -40,7 +40,7 @@ To build the public assets execute the following commands:
     npm ci
     npm run build
 
-Or use the custom ddev commands:
+Or use the custom DDEV commands:
 
 ..  code-block:: shell
 
@@ -60,7 +60,7 @@ You can build the assets for debugging with the following commands:
     npm ci
     npm run debug
 
-Or use the custom ddev commands:
+Or use the custom DDEV commands:
 
 ..  code-block:: shell
 
@@ -69,7 +69,7 @@ Or use the custom ddev commands:
 
 The generated assets are copied directly into :file:`Documentation-GENERATED-temp/_resources`
 and source maps are not removed. Upon inspection in the browsers web developer
-tools you can therefore see in which source scss file certain styles were
+tools you can therefore see in which source SCSS file certain styles were
 defined. Before committing you must run :shell:`cd packages/typo3-docs-theme && npm ci && npm run build`
 and commit the regenerated asset files in
 :file:`packages/typo3-docs-theme/assets/` and
