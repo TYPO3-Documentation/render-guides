@@ -6,7 +6,8 @@ export default defineConfig({
     build: {
         // The theme's only JavaScript artifact, loaded by
         // resources/template/structure/layoutParts/footerAssets.html.twig as a
-        // classic script, so the bundle has to be an IIFE rather than a module.
+        // classic script, so the bundle has to be an IIFE (Immediately Invoked
+        // Function Expression) rather than a module.
         outDir: 'resources/public/js',
         // `npm run clean` empties this directory, and `npm run copy` puts
         // bootstrap.min.js in it, so vite must leave what it finds alone.
