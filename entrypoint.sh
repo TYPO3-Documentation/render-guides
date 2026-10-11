@@ -2,14 +2,14 @@
 
 # INPUT ARGUMENT SPLITTING:
 #
-# By default, the entrypoint assumes that the PHP entrypoint "/opt/guides/vendor/bin/guides"
+# By default, the entrypoint assumes that the PHP entrypoint "/opt/guides/bin/guides"
 # is executed, and all arguments passed on to that PHP script.
 #
 # When executing Docker via:
 #
 # $ docker run --rm -v $(pwd):/project -it typo3-docs:local --progress SomeDocsFolder"
 #
-# then this script receives the input "/opt/guides/vendor/bin/guides --progress SomeDocsFolder"
+# then this script receives the input "/opt/guides/bin/guides --progress SomeDocsFolder"
 # as "$@" input. This is passed on then to the PHP binary.
 #
 # Before the final destination script is executed, this entrypoint performs some basic
@@ -57,7 +57,7 @@ if [ "${SHELL_VERBOSITY}" -gt 0 ]; then
     echo "CDN VERSION:           ${TYPO3AZUREEDGEURIVERSION}"
 fi
 
-ENTRYPOINT_DEFAULT="/opt/guides/vendor/bin/guides"
+ENTRYPOINT_DEFAULT="/opt/guides/bin/guides"
 ENTRYPOINT_SYMFONY_COMMANDS="/opt/guides/packages/typo3-guides-cli/bin/typo3-guides"
 
 # This is intentionally a specified list of allowed scripts.
