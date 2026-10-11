@@ -28,7 +28,7 @@
         "build:css:debug": "sass --style=expanded --load-path=node_modules --quiet-deps assets/sass/theme.scss ../../Documentation-GENERATED-temp/_resources/css/theme.css",
         "build:js": "vite build",
         "build": "npm run clean && npm run copy && npm run build:css && npm run build:js",
-        "debug": "npm run clean && npm run copy && npm run build:css:debug && npm run build:js && npm run copy:debug",
+        "debug": "npm run build && npm run build:css:debug && npm run copy:debug",
         "lint:css": "stylelint \"assets/sass/**/*.scss\"",
         "lint:css:fix": "stylelint \"assets/sass/**/*.scss\" --fix",
         "test": "vitest run",
