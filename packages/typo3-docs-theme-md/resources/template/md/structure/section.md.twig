@@ -1,12 +1,13 @@
-{#- Only the single-file output needs anchors: there, a link to another page of
-    the manual stays inside the document and has to land somewhere. The per-page
-    Markdown links to permalinks instead, and would carry the markup for
-    nothing.
+{#- Markdown cannot give a heading an id, so an empty HTML anchor goes before
+    it. Several ids for one heading are possible, and they sit on consecutive
+    lines so the block stays one thing.
 
-    Markdown cannot give a heading an id, so an empty HTML anchor goes before
-    it. Several ids for one heading are possible -- an explicit label and the
-    title -- and they sit on consecutive lines so the block stays one thing. -#}
-{%- set anchorIds = env.outputFormat == 'singlemd' ? markdownSectionAnchors(node) : [] -%}
+    The single file writes every id a link inside it may point at: there, a link
+    to another page of the manual stays inside the document and has to land
+    somewhere. The per-page Markdown links to permalinks instead. Its heading
+    carries one label as "{#...}", so it writes only the other labels of the
+    section, as the HTML page does. -#}
+{%- set anchorIds = env.outputFormat == 'singlemd' ? markdownSectionAnchors(node) : markdownLabelAnchors(node) -%}
 {%- if anchorIds is not empty -%}
 {% for anchorId in anchorIds %}<a id="{{ anchorId }}"></a>
 {% endfor %}
