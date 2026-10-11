@@ -4,13 +4,16 @@
  * the file path, "manual:Path/Index#section", which answers 404. It now offers
  * the page URL, the same as the Markdown and HTML fields.
  *
+ * The permalink keeps the slash of the shortcode. "web-vision-deepltranslate-core"
+ * does not say where the vendor ends, and the resolver answers 404.
+ *
  * The modal script is a side-effecting IIFE that captures #linkReferenceModal
  * at import time, so each test resets the module registry and imports the file
  * after building the DOM.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-const setupDom = (currentFilename) => {
+const setupDom = (currentFilename, interlinkShortcode = 'georgringer/news') => {
     document.body.innerHTML = `
       <section class="section" id="news" data-rst-anchor="news">
         <h1>News<a class="headerlink" href="#news" title="Reference this headline"></a></h1>
@@ -18,7 +21,7 @@ const setupDom = (currentFilename) => {
           <h2>Some further explanations<a class="headerlink" href="#some-further-explanations" title="Reference this headline"></a></h2>
         </section>
       </section>
-      <div id="linkReferenceModal" data-current-filename="${currentFilename}" data-interlink-shortcode="georgringer/news">
+      <div id="linkReferenceModal" data-current-filename="${currentFilename}" data-interlink-shortcode="${interlinkShortcode}">
         <h5></h5>
         <div id="permalink-alert-success" class="d-none"></div>
         <div class="permalink-short-wrapper"><input id="permalink-short"></div>
@@ -57,11 +60,19 @@ describe('link reference modal', () => {
         await import('../../assets/js/link-reference-modal.js');
         openModalFor('h1');
 
-        const permalink = 'https://docs.typo3.org/permalink/georgringer-news:news';
+        const permalink = 'https://docs.typo3.org/permalink/georgringer/news:news';
         expect(value('permalink-short')).toBe(permalink);
         expect(value('permalink-rst')).toBe(`\`News <${permalink}>\`_`);
         expect(value('permalink-md')).toBe(`[News](${permalink})`);
         expect(isHidden('permalink-short')).toBe(false);
+    });
+
+    it('keeps the slash of a shortcode whose vendor has a hyphen', async () => {
+        setupDom('Tutorials/Index', 'web-vision/deepltranslate-core');
+        await import('../../assets/js/link-reference-modal.js');
+        openModalFor('h1');
+
+        expect(value('permalink-short')).toBe('https://docs.typo3.org/permalink/web-vision/deepltranslate-core:news');
     });
 
     it('offers the page URL in reST for a headline without an anchor', async () => {
