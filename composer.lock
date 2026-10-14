@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "25d9b35058efe0101acd38bf412e99c5",
+    "content-hash": "9f6ab16976f1447c64d550bcb695dc6f",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -8750,63 +8750,6 @@
                 }
             ],
             "time": "2025-07-11T02:50:53+00:00"
-        },
-        {
-            "name": "symplify/phpstan-rules",
-            "version": "14.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symplify/phpstan-rules.git",
-                "reference": "dc1035ded416b99313d6a14e69923f5e018a6b40"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symplify/phpstan-rules/zipball/dc1035ded416b99313d6a14e69923f5e018a6b40",
-                "reference": "dc1035ded416b99313d6a14e69923f5e018a6b40",
-                "shasum": ""
-            },
-            "require": {
-                "nette/utils": "^3.2|^4.0",
-                "php": "^7.4|^8.0",
-                "phpstan/phpstan": "^2.1.33",
-                "webmozart/assert": "^1.12 || ^2.0"
-            },
-            "type": "phpstan-extension",
-            "extra": {
-                "phpstan": {
-                    "includes": [
-                        "config/services/services.neon"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/functions/fast-functions.php"
-                ],
-                "psr-4": {
-                    "Symplify\\PHPStanRules\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Set of Symplify rules for PHPStan",
-            "support": {
-                "issues": "https://github.com/symplify/phpstan-rules/issues",
-                "source": "https://github.com/symplify/phpstan-rules/tree/14.10.0"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.me/rectorphp",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/tomasvotruba",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-05-22T09:35:51+00:00"
         },
         {
             "name": "theseer/tokenizer",
