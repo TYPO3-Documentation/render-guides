@@ -11,7 +11,7 @@ PHP_PROJECT_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/proje
 
 ## Docker wrapper to use for a typo3-docs:local container.
 ## This container provides a composer-runtime; mounts project on /app
-PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:2
+PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:2 composer
 
 ## Docker wrapper for npm, for the typo3-docs-theme JS tests (so node is not required on the host)
 NPM_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -e HOME=/tmp -v${PWD}/packages/typo3-docs-theme:/app -w /app node:24 npm
@@ -219,5 +219,5 @@ static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan
 
 vendor: composer.json composer.lock
 	@echo "$(ENV_INFO)"
-	$(PHP_COMPOSER_BIN) composer validate --no-check-publish
-	$(PHP_COMPOSER_BIN) composer install --no-interaction --no-progress  --ignore-platform-reqs
+	$(PHP_COMPOSER_BIN) validate --no-check-publish
+	$(PHP_COMPOSER_BIN) install --no-interaction --no-progress  --ignore-platform-reqs
