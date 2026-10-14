@@ -9,5 +9,9 @@
         <transformation writer="twig" source="index.json.twig" artifact="objects.inv.json"/>
         <transformation writer="twig" source="api-info.json.twig" artifact="api-info.json"/>
         <transformation writer="twig" source="404.html.twig" artifact="404.html"/>
+        <transformation writer="twig" query="indexes.classes" source="api-class.json.twig" artifact="classes/{{fullyQualifiedStructuralElementName}}.json"/>
+        <transformation writer="twig" query="indexes.interfaces" source="api-class.json.twig" artifact="classes/{{fullyQualifiedStructuralElementName}}.json"/>
+        <transformation writer="twig" query="indexes.traits" source="api-class.json.twig" artifact="classes/{{fullyQualifiedStructuralElementName}}.json"/>
+        <transformation writer="twig" query="indexes.enums" source="api-class.json.twig" artifact="classes/{{fullyQualifiedStructuralElementName}}.json"/>
     </transformations>
 </template>

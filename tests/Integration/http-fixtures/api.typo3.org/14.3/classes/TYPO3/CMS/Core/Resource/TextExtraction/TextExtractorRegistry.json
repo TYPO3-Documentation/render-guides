@@ -1,0 +1,135 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorRegistry",
+    "namespace": "TYPO3\\CMS\\Core\\Resource\\TextExtraction",
+    "name": "TextExtractorRegistry",
+    "file": "typo3/sysext/core/Classes/Resource/TextExtraction/TextExtractorRegistry.php",
+    "line": 29,
+    "modifiers": [],
+    "summary": "Registry for text extractors, which are registered as tagged services\nvia the #[AsTextExtractor] attribute or the 'fal.text_extractor'\nservice tag. Extractors are ordered by their tag priority, an\nextractor with a higher priority is asked first whether it can\nextract text from a file.",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [
+        {
+            "name": "instances",
+            "visibility": "protected",
+            "modifiers": [],
+            "type": "\\TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorInterface[]|null",
+            "default": "null",
+            "summary": "Instance cache for text extractor classes",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorRegistry"
+        },
+        {
+            "name": "textExtractors",
+            "visibility": "protected",
+            "modifiers": [
+                "readonly"
+            ],
+            "type": "iterable",
+            "default": "[]",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorRegistry"
+        }
+    ],
+    "methods": [
+        {
+            "name": "__construct",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "textExtractors",
+                    "type": "iterable<\\TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorInterface>",
+                    "default": "[]",
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "mixed",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorRegistry"
+        },
+        {
+            "name": "registerTextExtractor",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "className",
+                    "type": "string",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "void",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": "since TYPO3 v15.0, this method is a no-op and will be removed in TYPO3 v16.0. Register the text extractor as a tagged service using the #[AsTextExtractor] attribute instead.",
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorRegistry"
+        },
+        {
+            "name": "getTextExtractorInstances",
+            "visibility": "protected",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "\\TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorInterface[]",
+                "description": ""
+            },
+            "summary": "Get all registered text extractor instances",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorRegistry"
+        },
+        {
+            "name": "getTextExtractor",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "file",
+                    "type": "\\TYPO3\\CMS\\Core\\Resource\\FileInterface",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "?\\TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorInterface",
+                "description": ""
+            },
+            "summary": "Checks whether any registered text extractor can deal with a given file\nand returns it.",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\TextExtraction\\TextExtractorRegistry"
+        }
+    ]
+}

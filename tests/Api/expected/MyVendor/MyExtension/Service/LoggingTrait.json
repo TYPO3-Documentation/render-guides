@@ -1,0 +1,36 @@
+{
+    "schema": 1,
+    "type": "trait",
+    "fqn": "MyVendor\\MyExtension\\Service\\LoggingTrait",
+    "namespace": "MyVendor\\MyExtension\\Service",
+    "name": "LoggingTrait",
+    "file": "input/Service/LoggingTrait.php",
+    "line": 7,
+    "modifiers": [],
+    "summary": "",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [],
+    "methods": [
+        {
+            "name": "clearLog",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "void",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\LoggingTrait"
+        }
+    ]
+}

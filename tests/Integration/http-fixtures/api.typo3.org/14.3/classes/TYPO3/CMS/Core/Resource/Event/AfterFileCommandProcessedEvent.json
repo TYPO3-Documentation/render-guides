@@ -1,0 +1,112 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "TYPO3\\CMS\\Core\\Resource\\Event\\AfterFileCommandProcessedEvent",
+    "namespace": "TYPO3\\CMS\\Core\\Resource\\Event",
+    "name": "AfterFileCommandProcessedEvent",
+    "file": "typo3/sysext/core/Classes/Resource/Event/AfterFileCommandProcessedEvent.php",
+    "line": 25,
+    "modifiers": [
+        "final",
+        "readonly"
+    ],
+    "summary": "Event that is triggered after a file command has been processed. Can be used\nto perform additional tasks for specific commands. For example, trigger a\ncustom indexer after a file has been uploaded.",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [],
+    "methods": [
+        {
+            "name": "__construct",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "command",
+                    "type": "array",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                },
+                {
+                    "name": "result",
+                    "type": "mixed",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                },
+                {
+                    "name": "conflictMode",
+                    "type": "string",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "mixed",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\Event\\AfterFileCommandProcessedEvent"
+        },
+        {
+            "name": "getCommand",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "array<string,array<string,mixed>>",
+                "description": ""
+            },
+            "summary": "A single command, e.g.",
+            "description": "```\n'upload' => [\n    'target' => '1:/some/folder/'\n    'data' => '1'\n]\n```",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\Event\\AfterFileCommandProcessedEvent"
+        },
+        {
+            "name": "getResult",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "mixed",
+                "description": "The result - Depending on the performed action,\nthis could e.g. be a File or just a boolean."
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\Event\\AfterFileCommandProcessedEvent"
+        },
+        {
+            "name": "getConflictMode",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "string",
+                "description": "The current conflict mode"
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\Event\\AfterFileCommandProcessedEvent"
+        }
+    ],
+    "dispatchedBy": [
+        "TYPO3\\CMS\\Core\\Utility\\File\\ExtendedFileUtility::processData()"
+    ]
+}

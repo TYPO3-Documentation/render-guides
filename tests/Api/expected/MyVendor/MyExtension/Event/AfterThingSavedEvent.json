@@ -1,0 +1,120 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "MyVendor\\MyExtension\\Event\\AfterThingSavedEvent",
+    "namespace": "MyVendor\\MyExtension\\Event",
+    "name": "AfterThingSavedEvent",
+    "file": "input/Event/AfterThingSavedEvent.php",
+    "line": 12,
+    "modifiers": [
+        "final",
+        "readonly"
+    ],
+    "summary": "Dispatched after a thing is saved.",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [
+        {
+            "name": "uid",
+            "visibility": "public",
+            "modifiers": [],
+            "type": "int",
+            "default": null,
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Event\\AfterThingSavedEvent"
+        },
+        {
+            "name": "state",
+            "visibility": "public",
+            "modifiers": [],
+            "type": "\\MyVendor\\MyExtension\\Enum\\ThingState",
+            "default": null,
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Event\\AfterThingSavedEvent"
+        },
+        {
+            "name": "context",
+            "visibility": "public",
+            "modifiers": [],
+            "type": "array",
+            "default": "[]",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": "",
+            "declaredIn": "MyVendor\\MyExtension\\Event\\AfterThingSavedEvent"
+        }
+    ],
+    "methods": [
+        {
+            "name": "__construct",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "uid",
+                    "type": "int",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                },
+                {
+                    "name": "state",
+                    "type": "\\MyVendor\\MyExtension\\Enum\\ThingState",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                },
+                {
+                    "name": "context",
+                    "type": "array",
+                    "default": "[]",
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "mixed",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Event\\AfterThingSavedEvent"
+        },
+        {
+            "name": "isVisible",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "bool",
+                "description": ""
+            },
+            "summary": "Whether the thing is visible now.",
+            "description": "```\nif ($event->isVisible()) {\n    $this->cache->flush();\n}\n```",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Event\\AfterThingSavedEvent"
+        }
+    ],
+    "dispatchedBy": [
+        "MyVendor\\MyExtension\\Service\\ThingService::notify()",
+        "MyVendor\\MyExtension\\Service\\ThingService::save()"
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "schema": 1,
+    "type": "interface",
+    "fqn": "TYPO3\\CMS\\Core\\Resource\\ResourceStorageInterface",
+    "namespace": "TYPO3\\CMS\\Core\\Resource",
+    "name": "ResourceStorageInterface",
+    "file": "typo3/sysext/core/Classes/Resource/ResourceStorageInterface.php",
+    "line": 21,
+    "modifiers": [],
+    "summary": "The interface for a resource storage containing all constants",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": [],
+    "implements": [],
+    "uses": [],
+    "constants": [
+        {
+            "name": "DEFAULT_ProcessingFolder",
+            "visibility": "public",
+            "modifiers": [],
+            "type": null,
+            "value": "'_processed_'",
+            "summary": "Name of the default processing folder",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\ResourceStorageInterface"
+        }
+    ],
+    "properties": [],
+    "methods": []
+}

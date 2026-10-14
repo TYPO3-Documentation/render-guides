@@ -104,6 +104,7 @@ and the GitHub pipelines, while internally only using :file:`Makefile` syntax.
     ConfvalFieldCheck
     HeadlineAnchorCheck
     AjaxVersions
+    ApiClass
     ViewHelperIndex
 
 
