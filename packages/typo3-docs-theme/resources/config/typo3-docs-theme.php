@@ -9,6 +9,7 @@ use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogReferences;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckEntryFileNameNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckDuplicateAnchorsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckHeadlineAnchorsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckConfvalFieldsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckInterlinkShortcodeNodeTransformer;
@@ -46,6 +47,7 @@ use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3DeprecatedDirective;
+use T3Docs\Typo3DocsTheme\Directives\Typo3ApiClassDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3FileDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3TalkDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3VersionAddedDirective;
@@ -187,6 +189,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(CheckLinkTextNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(CheckHeadlineAnchorsNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(CheckDuplicateAnchorsNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(TwigExtension::class)
         ->tag('twig.extension')
@@ -404,6 +408,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(MainMenuJsonDirective::class)
         ->set(RawDirective::class)
         ->set(SiteSetSettingsDirective::class)
+        ->set(Typo3ApiClassDirective::class)
+        ->arg('$startingRule', service(DocumentRule::class))
         ->set(Typo3FileDirective::class)
         ->set(T3FieldListTableDirective::class)
         ->set(IndexEntriesDirective::class)

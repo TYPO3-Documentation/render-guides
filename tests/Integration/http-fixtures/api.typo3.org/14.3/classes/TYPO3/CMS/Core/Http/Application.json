@@ -1,0 +1,145 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "TYPO3\\CMS\\Core\\Http\\Application",
+    "namespace": "TYPO3\\CMS\\Core\\Http",
+    "name": "Application",
+    "file": "typo3/sysext/core/Classes/Http/Application.php",
+    "line": 27,
+    "modifiers": [],
+    "summary": "Entry point for TYPO3",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": "TYPO3\\CMS\\Core\\Http\\AbstractApplication",
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [
+        {
+            "name": "configurationManager",
+            "visibility": "protected",
+            "modifiers": [
+                "readonly"
+            ],
+            "type": "\\TYPO3\\CMS\\Core\\Configuration\\ConfigurationManager",
+            "default": null,
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Http\\Application"
+        },
+        {
+            "name": "requestHandler",
+            "visibility": "protected",
+            "modifiers": [],
+            "type": "?\\Psr\\Http\\Server\\RequestHandlerInterface",
+            "default": null,
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Http\\AbstractApplication"
+        }
+    ],
+    "methods": [
+        {
+            "name": "__construct",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "requestHandler",
+                    "type": "\\Psr\\Http\\Server\\RequestHandlerInterface",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                },
+                {
+                    "name": "configurationManager",
+                    "type": "\\TYPO3\\CMS\\Core\\Configuration\\ConfigurationManager",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "mixed",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Http\\Application"
+        },
+        {
+            "name": "sendResponse",
+            "visibility": "protected",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "response",
+                    "type": "\\Psr\\Http\\Message\\ResponseInterface",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "void",
+                "description": ""
+            },
+            "summary": "Outputs content",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Http\\AbstractApplication"
+        },
+        {
+            "name": "handle",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "request",
+                    "type": "\\Psr\\Http\\Message\\ServerRequestInterface",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "\\Psr\\Http\\Message\\ResponseInterface",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Http\\AbstractApplication"
+        },
+        {
+            "name": "run",
+            "visibility": "public",
+            "modifiers": [
+                "final"
+            ],
+            "parameters": [],
+            "returns": {
+                "type": "mixed",
+                "description": ""
+            },
+            "summary": "Set up the application and shut it down afterwards",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Http\\AbstractApplication"
+        }
+    ]
+}

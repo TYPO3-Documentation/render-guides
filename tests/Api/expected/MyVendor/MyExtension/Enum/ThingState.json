@@ -1,0 +1,55 @@
+{
+    "schema": 1,
+    "type": "enum",
+    "fqn": "MyVendor\\MyExtension\\Enum\\ThingState",
+    "namespace": "MyVendor\\MyExtension\\Enum",
+    "name": "ThingState",
+    "file": "input/Enum/ThingState.php",
+    "line": 10,
+    "modifiers": [],
+    "summary": "Whether a thing is shown in the frontend.",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [],
+    "methods": [
+        {
+            "name": "isShown",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "bool",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Enum\\ThingState"
+        }
+    ],
+    "backedType": "string",
+    "cases": [
+        {
+            "name": "Visible",
+            "value": "'visible'",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null
+        },
+        {
+            "name": "Hidden",
+            "value": "'hidden'",
+            "summary": "Not shown, but kept.",
+            "description": "",
+            "deprecated": null,
+            "internal": null
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "TYPO3\\CMS\\Core\\Resource\\MetaDataEventListener",
+    "namespace": "TYPO3\\CMS\\Core\\Resource",
+    "name": "MetaDataEventListener",
+    "file": "typo3/sysext/core/Classes/Resource/MetaDataEventListener.php",
+    "line": 28,
+    "modifiers": [
+        "final"
+    ],
+    "summary": "",
+    "description": "",
+    "deprecated": null,
+    "internal": "Marked as internal for now, methods in this class may change any time.",
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [],
+    "methods": [
+        {
+            "name": "afterFileMetaDataUpdated",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "event",
+                    "type": "\\TYPO3\\CMS\\Core\\Resource\\Event\\AfterFileMetaDataUpdatedEvent",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "void",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\MetaDataEventListener"
+        }
+    ]
+}

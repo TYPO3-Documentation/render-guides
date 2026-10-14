@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>TYPO3 API type
+        documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2023-01-01T12:00:00+00:00" name="docsearch:modified">
+<meta content="2023-01-01T12:00:00+00:00" name="dc.modified">
+<meta content="2023-01-01T12:00:00+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<link href="index.md" rel="alternate" title="Markdown" type="text/markdown">
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                        <link href="#" rel="top" title="TYPO3 API type"/>
+    </head>
+<body>
+<div class="page">
+    <header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <a class="navbar-brand" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                <span class="navbar-brand-text">
+                    <img src="_resources/img/typo3-soul.svg" alt="TYPO3" class="navbar-brand-logo" width="29" height="29">
+                    <span class="navbar-brand-name">Documentation</span>
+                </span>
+            </a>
+            <div class="header-nav">
+                
+<div class="toc-header">
+    <div class="toc-title">
+                            <a class="toc-title-project" href="#">TYPO3 API type</a>
+            </div>
+    </div>            </div>
+            <div class="header-actions">
+                <button id="search-toggle" class="btn btn-light d-lg-none" type="button"
+                        aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                </button>
+                <button id="toc-toggle" class="btn btn-light d-lg-none" type="button"
+                        aria-label="Menu" aria-expanded="false" aria-controls="toc-collapse">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+                <all-documentations-menu data-override-url="_resources/js/menu-proxy.php"></all-documentations-menu>
+                                <search role="search" aria-label="Site search">
+                                        <select id="searchscope" hidden aria-hidden="true">
+                        <option value="">Search all</option>
+                    </select>
+                    <div id="global-search-root"></div>
+                </search>
+                                                <button id="options-toggle" class="btn btn-light" type="button"
+                        aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                    <span class="visually-hidden">Options</span>
+                </button>
+                <div id="options-panel" class="shadow p-3" popover>
+                    <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+                        <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="index.md" id="btnViewMarkdown" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        View as Markdown
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-circle-info"></i>
+        How to edit
+    </a>
+                </div>
+                            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+
+                    <div id="toc-collapse">
+                                                <div aria-label="main navigation" class="toc"
+                             role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">TYPO3 API type</p>
+        
+    </div>
+                        </div>
+                                                <div class="toc-options d-lg-none">
+                            <p class="caption">Options</p>
+                                <a class="dropdown-item d-flex align-items-center gap-2" href="_sources/index.rst.txt" id="btnViewSource" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="index.md" id="btnViewMarkdown" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        View as Markdown
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fa-solid fa-circle-info"></i>
+        How to edit
+    </a>
+                        </div>
+                                            </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                        <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
+        
+
+        <div class="breadcrumb-additions">                <a class="btn btn-sm btn-light" href="index.md" id="btnDownloadMarkdown" rel="nofollow noopener" download>
+                    <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
+                    <span class="btn-text">Markdown</span>
+                </a>
+            </div>
+    </nav>
+                    
+<article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+    <div itemprop="articleBody">
+        <!-- content start -->
+                <section class="section" id="typo3-api-type">
+            <h1>TYPO3 API type<a class="headerlink" href="#typo3-api-type" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h1>
+            <section class="section" id="an-event">
+            <h2>An event<a class="headerlink" href="#an-event" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <dl class="php class">
+    <dt class="sig sig-object php" id="typo3-cms-backend-event-addusersettingsjavascriptmodulesevent">
+        <span class="sig-name modifier"><span class="pre">final</span></span> <em class="property"><span class="pre">class</span> </em>
+        <code class="sig-name descname"><span class="pre fqn" data-fqn="\TYPO3\CMS\Backend\Event\AddUserSettingsJavaScriptModulesEvent" title="\TYPO3\CMS\Backend\Event\AddUserSettingsJavaScriptModulesEvent">AddUserSettingsJavaScriptModulesEvent</span></code><a class="headerlink" href="#typo3-cms-backend-event-addusersettingsjavascriptmodulesevent" data-id="typo3-cms-backend-event-addusersettingsjavascriptmodulesevent" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:class:`somemanual:\TYPO3\CMS\Backend\Event\AddUserSettingsJavaScriptModulesEvent`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+                    <dl class="field-list simple">
+                                    <dt class="field-even">Fully qualified name</dt>
+                    <dd class="field-even">
+                        <code class="code-inline" translate="no">\TYPO3\<wbr>CMS\<wbr>Backend\<wbr>Event\<wbr>Add<wbr>User<wbr>Settings<wbr>Java<wbr>Script<wbr>Modules<wbr>Event</code>                    </dd>
+                </dl>
+        
+    <p>Collects additional JavaScript modules to be loaded in SetupModuleController (User Settings).</p>
+
+    <p>Replacement for prior TYPO3\CMS\Setup\Event\AddJavaScriptModulesEvent.</p>
+<dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-backend-event-addusersettingsjavascriptmodulesevent-getrequest"><code class="sig-name descname"><span class="pre">getRequest</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-backend-event-addusersettingsjavascriptmodulesevent-getrequest" data-id="typo3-cms-backend-event-addusersettingsjavascriptmodulesevent-getrequest" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Backend\Event\AddUserSettingsJavaScriptModulesEvent::getRequest`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">Psr<wbr>Http<wbr>Message<wbr>Server<wbr>Request<wbr>Interface</code>
+                </dd>
+            </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-backend-event-addusersettingsjavascriptmodulesevent-addjavascriptmodule"><code class="sig-name descname"><span class="pre">addJavaScriptModule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">string $specifier</span></em><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-backend-event-addusersettingsjavascriptmodulesevent-addjavascriptmodule" data-id="typo3-cms-backend-event-addusersettingsjavascriptmodulesevent-addjavascriptmodule" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Backend\Event\AddUserSettingsJavaScriptModulesEvent::addJavaScriptModule`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        <dl class="field-list simple ">
+            <dt class="field-odd">param $specifier</dt>
+
+        <dd class="field-odd">
+            
+    <p>Bare module identifier like @my/package/filename.js</p>
+        </dd>
+    </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-backend-event-addusersettingsjavascriptmodulesevent-getjavascriptmodules"><code class="sig-name descname"><span class="pre">getJavaScriptModules</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-backend-event-addusersettingsjavascriptmodulesevent-getjavascriptmodules" data-id="typo3-cms-backend-event-addusersettingsjavascriptmodulesevent-getjavascriptmodules" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Backend\Event\AddUserSettingsJavaScriptModulesEvent::getJavaScriptModules`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">string<wbr>[]</code>
+                </dd>
+            </dl>
+        </dd>
+</dl>
+    </dd>
+</dl>
+    </section>
+            <section class="section" id="an-enum">
+            <h2>An enum<a class="headerlink" href="#an-enum" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <dl class="php enum">
+    <dt class="sig sig-object php" id="typo3-cms-core-utility-diffgranularity">
+        <em class="property"><span class="pre">enum</span> </em>
+        <code class="sig-name descname"><span class="pre fqn" data-fqn="\TYPO3\CMS\Core\Utility\DiffGranularity" title="\TYPO3\CMS\Core\Utility\DiffGranularity">DiffGranularity</span></code><a class="headerlink" href="#typo3-cms-core-utility-diffgranularity" data-id="typo3-cms-core-utility-diffgranularity" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:enum:`somemanual:\TYPO3\CMS\Core\Utility\DiffGranularity`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+                    <dl class="field-list simple">
+                                    <dt class="field-even">Fully qualified name</dt>
+                    <dd class="field-even">
+                        <code class="code-inline" translate="no">\TYPO3\<wbr>CMS\<wbr>Core\<wbr>Utility\<wbr>Diff<wbr>Granularity</code>                    </dd>
+                </dl>
+        <dl class="php case">
+    <dt class="sig sig-object php" id="typo3-cms-core-utility-diffgranularity-word">
+        <em class="property"><span class="pre">case</span></em>
+        <code class="sig-name descname"><span class="pre">WORD</span></code> : <a class="headerlink" href="#typo3-cms-core-utility-diffgranularity-word" data-id="typo3-cms-core-utility-diffgranularity-word" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:case:`somemanual:\TYPO3\CMS\Core\Utility\DiffGranularity::WORD`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd></dd>
+</dl><dl class="php case">
+    <dt class="sig sig-object php" id="typo3-cms-core-utility-diffgranularity-character">
+        <em class="property"><span class="pre">case</span></em>
+        <code class="sig-name descname"><span class="pre">CHARACTER</span></code> : <a class="headerlink" href="#typo3-cms-core-utility-diffgranularity-character" data-id="typo3-cms-core-utility-diffgranularity-character" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:case:`somemanual:\TYPO3\CMS\Core\Utility\DiffGranularity::CHARACTER`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd></dd>
+</dl>
+    </dd>
+</dl>
+    </section>
+            <section class="section" id="an-interface-with-a-constant">
+            <h2>An interface with a constant<a class="headerlink" href="#an-interface-with-a-constant" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <dl class="php interface">
+    <dt class="sig sig-object php" id="typo3-cms-core-resource-resourcestorageinterface">
+        <em class="property"><span class="pre">interface</span> </em>
+        <code class="sig-name descname"><span class="pre fqn" data-fqn="\TYPO3\CMS\Core\Resource\ResourceStorageInterface" title="\TYPO3\CMS\Core\Resource\ResourceStorageInterface">ResourceStorageInterface</span></code><a class="headerlink" href="#typo3-cms-core-resource-resourcestorageinterface" data-id="typo3-cms-core-resource-resourcestorageinterface" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:interface:`somemanual:\TYPO3\CMS\Core\Resource\ResourceStorageInterface`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+                    <dl class="field-list simple">
+                                    <dt class="field-even">Fully qualified name</dt>
+                    <dd class="field-even">
+                        <code class="code-inline" translate="no">\TYPO3\<wbr>CMS\<wbr>Core\<wbr>Resource\<wbr>Resource<wbr>Storage<wbr>Interface</code>                    </dd>
+                </dl>
+        
+    <p>The interface for a resource storage containing all constants</p>
+<dl class="php const">
+    <dt class="sig sig-object php" id="typo3-cms-core-resource-resourcestorageinterface-default-processingfolder">
+        <span class="sig-name modifier"><span class="pre">public</span></span> <em class="property"><span class="pre">const</span></em>
+        <code class="sig-name descname"><span class="pre">DEFAULT_<wbr>Processing<wbr>Folder</span></code>
+        <a class="headerlink" href="#typo3-cms-core-resource-resourcestorageinterface-default-processingfolder" data-id="typo3-cms-core-resource-resourcestorageinterface-default-processingfolder" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:const:`somemanual:\TYPO3\CMS\Core\Resource\ResourceStorageInterface::DEFAULT_ProcessingFolder`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+    <p><code class="code-inline code-inline-long"
+          translate="no"
+    >
+        &#039;_<wbr>processed_&#039;
+        <button class="btn btn-light"
+                aria-label="Open modal for code and class information"
+                data-bs-toggle="modal"
+                data-bs-target="#generalModal"
+                data-code="&#039;_processed_&#039;"
+                data-shortdescription="Code written in PHP"
+                data-details="Dynamic server-side scripting language."                data-bs-html="true"
+        ><i class="fa-regular fa-circle-question"></i></button></code>, type string</p>
+
+    <p>Name of the default processing folder</p>
+</dd>
+</dl>
+    </dd>
+</dl>
+    </section>
+            <section class="section" id="protected-and-inherited-members-and-the-constructor">
+            <h2>Protected and inherited members, and the constructor<a class="headerlink" href="#protected-and-inherited-members-and-the-constructor" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <dl class="php class">
+    <dt class="sig sig-object php" id="typo3-cms-core-http-application">
+        <em class="property"><span class="pre">class</span> </em>
+        <code class="sig-name descname"><span class="pre fqn" data-fqn="\TYPO3\CMS\Core\Http\Application" title="\TYPO3\CMS\Core\Http\Application">Application</span></code><a class="headerlink" href="#typo3-cms-core-http-application" data-id="typo3-cms-core-http-application" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:class:`somemanual:\TYPO3\CMS\Core\Http\Application`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+                    <dl class="field-list simple">
+                                    <dt class="field-even">Fully qualified name</dt>
+                    <dd class="field-even">
+                        <code class="code-inline" translate="no">\TYPO3\<wbr>CMS\<wbr>Core\<wbr>Http\<wbr>Application</code>                    </dd>
+                </dl>
+        
+    <p>Entry point for TYPO3</p>
+<dl class="php property">
+    <dt class="sig sig-object php" id="typo3-cms-core-http-application-configurationmanager">
+        <span class="sig-name modifier"><span class="pre">protected</span></span> <span class="sig-name modifier"><span class="pre">readonly</span></span> <code class="sig-name descname"><span class="pre">configuration<wbr>Manager</span></code>
+        <a class="headerlink" href="#typo3-cms-core-http-application-configurationmanager" data-id="typo3-cms-core-http-application-configurationmanager" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:property:`somemanual:\TYPO3\CMS\Core\Http\Application::configurationManager`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd></dd>
+</dl><dl class="php property">
+    <dt class="sig sig-object php" id="typo3-cms-core-http-application-requesthandler">
+        <span class="sig-name modifier"><span class="pre">protected</span></span> <code class="sig-name descname"><span class="pre">request<wbr>Handler</span></code>
+        <a class="headerlink" href="#typo3-cms-core-http-application-requesthandler" data-id="typo3-cms-core-http-application-requesthandler" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:property:`somemanual:\TYPO3\CMS\Core\Http\Application::requestHandler`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd></dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-core-http-application-construct"><code class="sig-name descname"><span class="pre">__construct</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">\Psr\Http\Server\RequestHandlerInterface $requestHandler</span></em>, <em class="sig-param"><span class="pre">\TYPO3\CMS\Core\Configuration\ConfigurationManager $configurationManager</span></em><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-core-http-application-construct" data-id="typo3-cms-core-http-application-construct" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Core\Http\Application::__construct`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        <dl class="field-list simple ">
+            <dt class="field-odd">param $requestHandler</dt>
+
+        <dd class="field-odd">
+            
+    <p>the requestHandler</p>
+        </dd>
+            <dt class="field-odd">param $configurationManager</dt>
+
+        <dd class="field-odd">
+            
+    <p>the configurationManager</p>
+        </dd>
+    </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-core-http-application-sendresponse"><span class="sig-name modifier"><span class="pre">protected</span></span> <code class="sig-name descname"><span class="pre">sendResponse</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">\Psr\Http\Message\ResponseInterface $response</span></em><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-core-http-application-sendresponse" data-id="typo3-cms-core-http-application-sendresponse" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Core\Http\Application::sendResponse`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        
+    <p>Outputs content</p>
+<dl class="field-list simple ">
+            <dt class="field-odd">param $response</dt>
+
+        <dd class="field-odd">
+            
+    <p>the response</p>
+        </dd>
+    </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-core-http-application-handle"><code class="sig-name descname"><span class="pre">handle</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">\Psr\Http\Message\ServerRequestInterface $request</span></em><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-core-http-application-handle" data-id="typo3-cms-core-http-application-handle" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Core\Http\Application::handle`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        <dl class="field-list simple ">
+            <dt class="field-odd">param $request</dt>
+
+        <dd class="field-odd">
+            
+    <p>the request</p>
+        </dd>
+    </dl>
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">Psr<wbr>Http<wbr>Message<wbr>Response<wbr>Interface</code>
+                </dd>
+            </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-core-http-application-run"><span class="sig-name modifier"><span class="pre">final</span></span> <span class="sig-name modifier"><span class="pre">final</span></span> <code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-core-http-application-run" data-id="typo3-cms-core-http-application-run" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Core\Http\Application::run`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        
+    <p>Set up the application and shut it down afterwards</p>
+
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">mixed</code>
+                </dd>
+            </dl>
+        </dd>
+</dl>
+    </dd>
+</dl>
+    </section>
+            <section class="section" id="selected-members-also-a-deprecated-one">
+            <h2>Selected members, also a deprecated one<a class="headerlink" href="#selected-members-also-a-deprecated-one" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <dl class="php class">
+    <dt class="sig sig-object php" id="typo3-cms-core-resource-textextraction-textextractorregistry">
+        <em class="property"><span class="pre">class</span> </em>
+        <code class="sig-name descname"><span class="pre fqn" data-fqn="\TYPO3\CMS\Core\Resource\TextExtraction\TextExtractorRegistry" title="\TYPO3\CMS\Core\Resource\TextExtraction\TextExtractorRegistry">TextExtractorRegistry</span></code><a class="headerlink" href="#typo3-cms-core-resource-textextraction-textextractorregistry" data-id="typo3-cms-core-resource-textextraction-textextractorregistry" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:class:`somemanual:\TYPO3\CMS\Core\Resource\TextExtraction\TextExtractorRegistry`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+                    <dl class="field-list simple">
+                                    <dt class="field-even">Fully qualified name</dt>
+                    <dd class="field-even">
+                        <code class="code-inline" translate="no">\TYPO3\<wbr>CMS\<wbr>Core\<wbr>Resource\<wbr>Text<wbr>Extraction\<wbr>Text<wbr>Extractor<wbr>Registry</code>                    </dd>
+                </dl>
+        <dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-core-resource-textextraction-textextractorregistry-gettextextractor"><code class="sig-name descname"><span class="pre">getTextExtractor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">\TYPO3\CMS\Core\Resource\FileInterface $file</span></em><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-core-resource-textextraction-textextractorregistry-gettextextractor" data-id="typo3-cms-core-resource-textextraction-textextractorregistry-gettextextractor" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Core\Resource\TextExtraction\TextExtractorRegistry::getTextExtractor`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        
+    <p>Checks whether any registered text extractor can deal with a given file
+and returns it.</p>
+<dl class="field-list simple ">
+            <dt class="field-odd">param $file</dt>
+
+        <dd class="field-odd">
+            
+    <p>the file</p>
+        </dd>
+    </dl>
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">?TYPO3CMSCore<wbr>Resource<wbr>Text<wbr>Extraction<wbr>Text<wbr>Extractor<wbr>Interface</code>
+                </dd>
+            </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-core-resource-textextraction-textextractorregistry-registertextextractor"><code class="sig-name descname"><span class="pre">registerTextExtractor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">string $className</span></em><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-core-resource-textextraction-textextractorregistry-registertextextractor" data-id="typo3-cms-core-resource-textextraction-textextractorregistry-registertextextractor" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Core\Resource\TextExtraction\TextExtractorRegistry::registerTextExtractor`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        
+    <p><strong>Deprecated:</strong> since TYPO3 v15.0, this method is a no-op and will be removed in TYPO3 v16.0. Register the text extractor as a tagged service using the #[AsTextExtractor] attribute instead.</p>
+<dl class="field-list simple ">
+            <dt class="field-odd">param $className</dt>
+
+        <dd class="field-odd">
+            
+    <p>the className</p>
+        </dd>
+    </dl>
+        </dd>
+</dl>
+    </dd>
+</dl>
+    </section>
+            <section class="section" id="without-deprecated-members">
+            <h2>Without deprecated members<a class="headerlink" href="#without-deprecated-members" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <dl class="php class">
+    <dt class="sig sig-object php">
+        <em class="property"><span class="pre">class</span> </em>
+        <code class="sig-name descname"><span class="pre fqn" data-fqn="\TYPO3\CMS\Core\Resource\TextExtraction\TextExtractorRegistry" title="\TYPO3\CMS\Core\Resource\TextExtraction\TextExtractorRegistry">TextExtractorRegistry</span></code><span class="headerNoindex" title="This PHP item cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+    </dt>
+    <dd>
+                    <dl class="field-list simple">
+                                    <dt class="field-even">Fully qualified name</dt>
+                    <dd class="field-even">
+                        <code class="code-inline" translate="no">\TYPO3\<wbr>CMS\<wbr>Core\<wbr>Resource\<wbr>Text<wbr>Extraction\<wbr>Text<wbr>Extractor<wbr>Registry</code>                    </dd>
+                </dl>
+        
+    <p>Registry for text extractors, which are registered as tagged services
+via the #[AsTextExtractor] attribute or the &#039;fal.text_extractor&#039;
+service tag. Extractors are ordered by their tag priority, an
+extractor with a higher priority is asked first whether it can
+extract text from a file.</p>
+<dl class="php method">
+    <dt class="sig sig-object php"><code class="sig-name descname"><span class="pre">getTextExtractor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">\TYPO3\CMS\Core\Resource\FileInterface $file</span></em><span class="sig-paren">)</span>        <span class="headerNoindex" title="This PHP item cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+    </dt>
+    <dd>
+        
+    <p>Checks whether any registered text extractor can deal with a given file
+and returns it.</p>
+<dl class="field-list simple ">
+            <dt class="field-odd">param $file</dt>
+
+        <dd class="field-odd">
+            
+    <p>the file</p>
+        </dd>
+    </dl>
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">?TYPO3CMSCore<wbr>Resource<wbr>Text<wbr>Extraction<wbr>Text<wbr>Extractor<wbr>Interface</code>
+                </dd>
+            </dl>
+        </dd>
+</dl>
+    </dd>
+</dl>
+    </section>
+            <section class="section" id="code-in-a-description-without-parameters">
+            <h2>Code in a description, without parameters<a class="headerlink" href="#code-in-a-description-without-parameters" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <dl class="php class">
+    <dt class="sig sig-object php" id="typo3-cms-core-resource-event-afterfilecommandprocessedevent">
+        <span class="sig-name modifier"><span class="pre">final</span></span> <em class="property"><span class="pre">class</span> </em>
+        <code class="sig-name descname"><span class="pre fqn" data-fqn="\TYPO3\CMS\Core\Resource\Event\AfterFileCommandProcessedEvent" title="\TYPO3\CMS\Core\Resource\Event\AfterFileCommandProcessedEvent">AfterFileCommandProcessedEvent</span></code><a class="headerlink" href="#typo3-cms-core-resource-event-afterfilecommandprocessedevent" data-id="typo3-cms-core-resource-event-afterfilecommandprocessedevent" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:class:`somemanual:\TYPO3\CMS\Core\Resource\Event\AfterFileCommandProcessedEvent`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+                    <dl class="field-list simple">
+                                    <dt class="field-even">Fully qualified name</dt>
+                    <dd class="field-even">
+                        <code class="code-inline" translate="no">\TYPO3\<wbr>CMS\<wbr>Core\<wbr>Resource\<wbr>Event\<wbr>After<wbr>File<wbr>Command<wbr>Processed<wbr>Event</code>                    </dd>
+                </dl>
+        
+    <p>Event that is triggered after a file command has been processed. Can be used
+to perform additional tasks for specific commands. For example, trigger a
+custom indexer after a file has been uploaded.</p>
+<dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-core-resource-event-afterfilecommandprocessedevent-getcommand"><code class="sig-name descname"><span class="pre">getCommand</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-core-resource-event-afterfilecommandprocessedevent-getcommand" data-id="typo3-cms-core-resource-event-afterfilecommandprocessedevent-getcommand" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Core\Resource\Event\AfterFileCommandProcessedEvent::getCommand`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        
+    <p>A single command, e.g.</p>
+<div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs php"><span class="hljs-string">'upload'</span> =&gt; [
+    <span class="hljs-string">'target'</span> =&gt; <span class="hljs-string">'1:/some/folder/'</span>
+    <span class="hljs-string">'data'</span> =&gt; <span class="hljs-string">'1'</span>
+]</code></pre>
+    <div class="code-block-actions">        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+    </div>
+</div>
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">array&lt;string,array&lt;string,mixed&gt;&gt;</code>
+                </dd>
+            </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-core-resource-event-afterfilecommandprocessedevent-getresult"><code class="sig-name descname"><span class="pre">getResult</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-core-resource-event-afterfilecommandprocessedevent-getresult" data-id="typo3-cms-core-resource-event-afterfilecommandprocessedevent-getresult" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Core\Resource\Event\AfterFileCommandProcessedEvent::getResult`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">mixed</code>
+                </dd>
+            </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php" id="typo3-cms-core-resource-event-afterfilecommandprocessedevent-getconflictmode"><code class="sig-name descname"><span class="pre">getConflictMode</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span>        <a class="headerlink" href="#typo3-cms-core-resource-event-afterfilecommandprocessedevent-getconflictmode" data-id="typo3-cms-core-resource-event-afterfilecommandprocessedevent-getconflictmode" data-bs-toggle="modal" data-bs-target="#linkReferenceModal" data-rstCode=":php:method:`somemanual:\TYPO3\CMS\Core\Resource\Event\AfterFileCommandProcessedEvent::getConflictMode`"  title="Reference this definition"><i class="fa-solid fa-paragraph"></i></a>
+    </dt>
+    <dd>
+        
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">string</code>
+                </dd>
+            </dl>
+        </dd>
+</dl>
+    </dd>
+</dl>
+    </section>
+            <section class="section" id="the-event-again-without-index-entries">
+            <h2>The event again, without index entries<a class="headerlink" href="#the-event-again-without-index-entries" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            <dl class="php class">
+    <dt class="sig sig-object php">
+        <span class="sig-name modifier"><span class="pre">final</span></span> <em class="property"><span class="pre">class</span> </em>
+        <code class="sig-name descname"><span class="pre fqn" data-fqn="\TYPO3\CMS\Backend\Event\AddUserSettingsJavaScriptModulesEvent" title="\TYPO3\CMS\Backend\Event\AddUserSettingsJavaScriptModulesEvent">AddUserSettingsJavaScriptModulesEvent</span></code><span class="headerNoindex" title="This PHP item cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+    </dt>
+    <dd>
+                    <dl class="field-list simple">
+                                    <dt class="field-even">Fully qualified name</dt>
+                    <dd class="field-even">
+                        <code class="code-inline" translate="no">\TYPO3\<wbr>CMS\<wbr>Backend\<wbr>Event\<wbr>Add<wbr>User<wbr>Settings<wbr>Java<wbr>Script<wbr>Modules<wbr>Event</code>                    </dd>
+                </dl>
+        
+    <p>Collects additional JavaScript modules to be loaded in SetupModuleController (User Settings).</p>
+
+    <p>Replacement for prior TYPO3\CMS\Setup\Event\AddJavaScriptModulesEvent.</p>
+<dl class="php method">
+    <dt class="sig sig-object php"><code class="sig-name descname"><span class="pre">getRequest</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span>        <span class="headerNoindex" title="This PHP item cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+    </dt>
+    <dd>
+        
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">Psr<wbr>Http<wbr>Message<wbr>Server<wbr>Request<wbr>Interface</code>
+                </dd>
+            </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php"><code class="sig-name descname"><span class="pre">addJavaScriptModule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">string $specifier</span></em><span class="sig-paren">)</span>        <span class="headerNoindex" title="This PHP item cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+    </dt>
+    <dd>
+        <dl class="field-list simple ">
+            <dt class="field-odd">param $specifier</dt>
+
+        <dd class="field-odd">
+            
+    <p>Bare module identifier like @my/package/filename.js</p>
+        </dd>
+    </dl>
+        </dd>
+</dl><dl class="php method">
+    <dt class="sig sig-object php"><code class="sig-name descname"><span class="pre">getJavaScriptModules</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span>        <span class="headerNoindex" title="This PHP item cannot be linked directly. Consider to link to the section above."><i class="fa-solid fa-link-slash"></i></span>
+    </dt>
+    <dd>
+        
+                    <dl class="field-list simple">
+                <dt class="field-even">Returns</dt>
+                <dd class="field-even">
+                    <code class="code-inline" translate="no">string<wbr>[]</code>
+                </dd>
+            </dl>
+        </dd>
+</dl>
+    </dd>
+</dl>
+    </section>
+            <section class="section" id="an-internal-class">
+            <h2>An internal class<a class="headerlink" href="#an-internal-class" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    </section>
+            <section class="section" id="a-class-that-does-not-exist">
+            <h2>A class that does not exist<a class="headerlink" href="#a-class-that-does-not-exist" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">&nbsp;<i class="fa-solid fa-link"></i></a></h2>
+            
+    </section>
+    </section>
+        <!-- content end -->
+    </div>
+</article>
+                        
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="index">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="fa-regular fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
+                    </div>
+                    <label for="permalink-uri" class="col-form-label">URL</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="fa-regular fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">Link in reStructuredText (reST)</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="fa-regular fa-clone"></i></button>
+                    </div>
+                    <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="fa-regular fa-clone"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">Link in HTML</label>
+                                        <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="fa-regular fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="index"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generalModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="general-alert-success" role="alert"></div>
+                <div id="generalModalContent">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div id="generalModalCustomButtons"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>    
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Jan 01, 2023 12:00</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer></div>
+
+
+<script src="_resources/js/bootstrap.min.js"></script>
+<script src="_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>
