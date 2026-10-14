@@ -7,6 +7,9 @@ use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
 
 final class Typo3ApiService
 {
+    /** The version of the format of classes/<Name>.json that this theme reads. */
+    public const TYPE_SCHEMA_VERSION = 1;
+
     /** @var array<string, array<string, string>>|null  */
     private ?array $apiData = null;
 
@@ -15,6 +18,9 @@ final class Typo3ApiService
 
     /** @var \Closure(string): (string|null)|null */
     private ?\Closure $fetcher = null;
+
+    /** @var array<string, array<string, mixed>|null> the API of a type, indexed by its name */
+    private array $types = [];
 
     public function __construct(
         private readonly LoggerInterface $logger,
@@ -72,6 +78,64 @@ final class Typo3ApiService
         );
     }
 
+    /**
+     * The API of a class, interface, trait, or enum with its members, as
+     * api.typo3.org writes it to classes/<Vendor>/<Package>/<Name>.json, or
+     * null if the API does not know the type.
+     *
+     * @return array<string, mixed>|null
+     */
+    public function getTypeApi(string $fqn): ?array
+    {
+        $fqn = trim($fqn, '\\');
+        if (!array_key_exists($fqn, $this->types)) {
+            $this->types[$fqn] = $this->loadType($fqn);
+        }
+
+        return $this->types[$fqn];
+    }
+
+    /** The page of a class, interface, trait, or enum in the API documentation. */
+    public function getTypeUrl(string $fqn): string
+    {
+        return sprintf(
+            'https://api.typo3.org/%s/classes/%s.html',
+            $this->typo3VersionService->getPreferredVersion(),
+            str_replace('\\', '-', trim($fqn, '\\')),
+        );
+    }
+
+    /** @return array<string, mixed>|null */
+    private function loadType(string $fqn): ?array
+    {
+        $url = sprintf(
+            'https://api.typo3.org/%s/classes/%s.json',
+            $this->typo3VersionService->getPreferredVersion(),
+            str_replace('\\', '/', $fqn),
+        );
+
+        // A type the API does not know is reported by the directive that
+        // asked for it, which knows the document and the line.
+        $jsonData = $this->fetchJsonData($url, false);
+        if ($jsonData === null) {
+            return null;
+        }
+
+        $type = json_decode($jsonData, true);
+        if (!is_array($type) || ($type['schema'] ?? null) !== self::TYPE_SCHEMA_VERSION) {
+            $this->logger->warning(sprintf(
+                'The API of %s from %s is not in the format version %d that this theme reads.',
+                $fqn,
+                $url,
+                self::TYPE_SCHEMA_VERSION,
+            ));
+            return null;
+        }
+
+        /** @var array<string, mixed> $type */
+        return $type;
+    }
+
     /** @return array<string, array<string, string>> */
     private function apiData(): array
     {
@@ -107,9 +171,12 @@ final class Typo3ApiService
     /**
      * Fetch JSON data from the given URL.
      *
+     * Without $warnOnFailure, a URL that is not found returns null without a
+     * warning, so that the caller can report it.
+     *
      * @return string|null
      */
-    private function fetchJsonData(string $url): ?string
+    private function fetchJsonData(string $url, bool $warnOnFailure = true): ?string
     {
         if ($this->fetcher !== null) {
             return ($this->fetcher)($url);
@@ -142,6 +209,11 @@ final class Typo3ApiService
                     curl_error($ch)
                 )
             );
+            curl_close($ch);
+            return null;
+        }
+
+        if ($httpStatus === 404 && !$warnOnFailure) {
             curl_close($ch);
             return null;
         }

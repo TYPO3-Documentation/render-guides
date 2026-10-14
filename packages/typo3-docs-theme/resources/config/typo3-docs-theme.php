@@ -47,6 +47,7 @@ use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
 use T3Docs\Typo3DocsTheme\Directives\T3FieldListTableDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3DeprecatedDirective;
+use T3Docs\Typo3DocsTheme\Directives\Typo3ApiClassDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3FileDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3TalkDirective;
 use T3Docs\Typo3DocsTheme\Directives\Typo3VersionAddedDirective;
@@ -407,6 +408,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(MainMenuJsonDirective::class)
         ->set(RawDirective::class)
         ->set(SiteSetSettingsDirective::class)
+        ->set(Typo3ApiClassDirective::class)
+        ->arg('$startingRule', service(DocumentRule::class))
         ->set(Typo3FileDirective::class)
         ->set(T3FieldListTableDirective::class)
         ->set(IndexEntriesDirective::class)
