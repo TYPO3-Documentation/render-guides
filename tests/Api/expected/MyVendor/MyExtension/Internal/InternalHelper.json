@@ -1,0 +1,38 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "MyVendor\\MyExtension\\Internal\\InternalHelper",
+    "namespace": "MyVendor\\MyExtension\\Internal",
+    "name": "InternalHelper",
+    "file": "input/Internal/InternalHelper.php",
+    "line": 10,
+    "modifiers": [
+        "final"
+    ],
+    "summary": "",
+    "description": "",
+    "deprecated": null,
+    "internal": "Not part of the public API.",
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [],
+    "methods": [
+        {
+            "name": "help",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "void",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Internal\\InternalHelper"
+        }
+    ]
+}

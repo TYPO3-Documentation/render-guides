@@ -86,6 +86,26 @@ The file has the following properties:
     `dispatchedBy`. The extension in
     :path:`packages/typo3-api/extensions/Typo3Events` provides both.
 
+..  _api-class-json-test:
+
+Test the JSON
+-------------
+
+Run the following command after a change to the template or to the
+extensions in :path:`packages/typo3-api`:
+
+..  code-block:: bash
+
+    make test-api
+
+The command renders the classes in :path:`tests/Api/input` with the
+phpDocumentor image that `PHPDOC_IMAGE` in the :file:`Makefile` names. It
+compares the JSON files with :path:`tests/Api/expected`, and checks that the
+HTML pages show the PSR-14 events. It needs Docker.
+
+If the JSON changes on purpose, look at the difference. Then copy
+:path:`tests/Api/temp/json` over :path:`tests/Api/expected`.
+
 ..  _api-class-directive:
 
 Show a type in a manual
