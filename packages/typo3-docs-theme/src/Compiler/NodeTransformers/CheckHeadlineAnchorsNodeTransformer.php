@@ -38,7 +38,8 @@ use function trim;
  * page field ":check-headline-anchors:" overrides that for its page, either
  * way. The page title counts as a headline too.
  *
- * Duplicate anchors are reported already, by phpDocumentor/guides itself.
+ * Duplicate anchors are reported elsewhere: across pages by phpDocumentor/guides
+ * itself, within one page by CheckDuplicateAnchorsNodeTransformer.
  *
  * @implements NodeTransformer<SectionNode>
  */

@@ -9,6 +9,7 @@ use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogReferences;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\AttachFileObjectsToFileTextRoleTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckEntryFileNameNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckDuplicateAnchorsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckHeadlineAnchorsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckConfvalFieldsNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckInterlinkShortcodeNodeTransformer;
@@ -187,6 +188,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(CheckLinkTextNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(CheckHeadlineAnchorsNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(CheckDuplicateAnchorsNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(TwigExtension::class)
         ->tag('twig.extension')
