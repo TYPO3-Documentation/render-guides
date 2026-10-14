@@ -13,6 +13,10 @@ PHP_PROJECT_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/proje
 ## This container provides a composer-runtime; mounts project on /app
 PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:2 composer
 
+## phpDocumentor, which renders api.typo3.org. The image is pinned, because the
+## extensions in packages/typo3-api need a version that is not released yet.
+PHPDOC_IMAGE ?= phpdoc/phpdoc:3-unstable@sha256:68495f7aed4189a3197768893a2edae9786dcb6745e23148932ab1c0c976015f
+
 ## Docker wrapper for npm, for the typo3-docs-theme JS tests (so node is not required on the host)
 NPM_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -e HOME=/tmp -v${PWD}/packages/typo3-docs-theme:/app -w /app node:24 npm
 
@@ -191,7 +195,11 @@ migrate-settings: ## Migrate Settings.cfg to guides.xml
 	$(PHP_BIN) packages/typo3-guides-cli/bin/typo3-guides migrate $(path)
 
 api-docs: .phpdoc/template .phpdoc/extensions phpdoc.dist.xml ## Generate API documentation
-	docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/data phpdoc/phpdoc:3-unstable  --setting template.typo3_version=12.4
+	docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/data $(PHPDOC_IMAGE)  --setting template.typo3_version=12.4
+
+.PHONY: test-api
+test-api: ## Renders the API test classes with phpDocumentor and compares the JSON (Docker only)
+	tests/Api/run.sh $(PHPDOC_IMAGE)
 
 .HIDDEN: .phpdoc/template .phpdoc/extensions phpdoc.dist.xml
 .phpdoc/template:

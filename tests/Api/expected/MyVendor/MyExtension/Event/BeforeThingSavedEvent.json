@@ -1,0 +1,89 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "MyVendor\\MyExtension\\Event\\BeforeThingSavedEvent",
+    "namespace": "MyVendor\\MyExtension\\Event",
+    "name": "BeforeThingSavedEvent",
+    "file": "input/Event/BeforeThingSavedEvent.php",
+    "line": 10,
+    "modifiers": [
+        "final"
+    ],
+    "summary": "Dispatched before a thing is saved. A listener can change the title.",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [],
+    "methods": [
+        {
+            "name": "__construct",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "mixed",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Event\\BeforeThingSavedEvent"
+        },
+        {
+            "name": "getTitle",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "string",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Event\\BeforeThingSavedEvent"
+        },
+        {
+            "name": "setTitle",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": "The new title, see {@see \\MyVendor\\MyExtension\\Service\\ThingService::save()}"
+                }
+            ],
+            "returns": {
+                "type": "void",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Event\\BeforeThingSavedEvent"
+        }
+    ],
+    "dispatchedBy": [
+        "MyVendor\\MyExtension\\Service\\ThingService::save()"
+    ]
+}

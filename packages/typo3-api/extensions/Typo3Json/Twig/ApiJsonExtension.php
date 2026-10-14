@@ -75,7 +75,7 @@ final class ApiJsonExtension extends AbstractExtension
             $data['cases'] = array_values(array_map(
                 fn(EnumCaseInterface $case): array => [
                     'name' => $case->getName(),
-                    'value' => $case->getValue() === null ? null : (string)$case->getValue(),
+                    'value' => $this->expression($case->getValue()),
                     ...$this->docBlock($case),
                 ],
                 $type->getCases()->getAll(),
@@ -98,7 +98,7 @@ final class ApiJsonExtension extends AbstractExtension
             'visibility' => (string)$constant->getVisibility(),
             'modifiers' => $this->modifiers($constant),
             'type' => $constant->getType() === null ? null : (string)$constant->getType(),
-            'value' => (string)$constant->getValue(),
+            'value' => (string)$this->expression($constant->getValue()),
             ...$this->docBlock($constant),
         ];
     }
@@ -111,7 +111,7 @@ final class ApiJsonExtension extends AbstractExtension
             'visibility' => (string)$property->getVisibility(),
             'modifiers' => $this->modifiers($property),
             'type' => $property->getType() === null ? null : (string)$property->getType(),
-            'default' => $property->getDefault() === null ? null : (string)$property->getDefault(),
+            'default' => $this->expression($property->getDefault()),
             ...$this->docBlock($property),
         ];
     }
@@ -128,7 +128,7 @@ final class ApiJsonExtension extends AbstractExtension
                 fn(ArgumentInterface $argument): array => [
                     'name' => $argument->getName(),
                     'type' => $argument->getType() === null ? null : (string)$argument->getType(),
-                    'default' => $argument->getDefault() === null ? null : (string)$argument->getDefault(),
+                    'default' => $this->expression($argument->getDefault()),
                     'variadic' => $argument->isVariadic(),
                     'byReference' => $argument->isByReference(),
                     'description' => $this->text($argument->getDescription()),
@@ -215,7 +215,8 @@ final class ApiJsonExtension extends AbstractExtension
 
     /**
      * The own members of a type, followed by the inherited ones that it does
-     * not override.
+     * not override. The constants of a class include those of its
+     * interfaces.
      *
      * @param 'Constants'|'Properties'|'Methods' $kind
      * @return list<array<string, mixed>>
@@ -236,7 +237,31 @@ final class ApiJsonExtension extends AbstractExtension
             }
         }
 
+        // A class has the constants of its interfaces, too.
+        if ($kind === 'Constants' && !$type instanceof InterfaceInterface && method_exists($type, 'getInterfacesIncludingInherited')) {
+            foreach ($type->getInterfacesIncludingInherited() as $interface) {
+                if ($interface instanceof InterfaceInterface) {
+                    foreach ($this->members($interface, 'Constants', $describe) as $constant) {
+                        $members[$constant['name']] ??= $constant;
+                    }
+                }
+            }
+        }
+
         return array_values($members);
+    }
+
+    /**
+     * The PHP code of a default value or a constant. The printer of
+     * phpDocumentor writes \\self::FOO, which is not valid PHP.
+     */
+    private function expression(?object $expression): ?string
+    {
+        if ($expression === null) {
+            return null;
+        }
+
+        return (string)preg_replace('/\\\\(self|static|parent)::/', '$1::', (string)$expression);
     }
 
     /** @return list<string> */

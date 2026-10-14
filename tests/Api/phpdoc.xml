@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+        configVersion="3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://www.phpdoc.org"
+        xsi:noNamespaceSchemaLocation="https://www.phpdoc.org/xsd/phpdoc.xsd"
+>
+    <title>API test</title>
+    <paths>
+        <output>build</output>
+        <cache>cache</cache>
+    </paths>
+    <version number="3.0.0">
+        <folder>latest</folder>
+        <api>
+            <source dsn=".">
+                <path>input</path>
+            </source>
+            <include-source>false</include-source>
+            <visibilities>public</visibilities>
+            <visibilities>protected</visibilities>
+            <visibilities>internal</visibilities>
+            <extensions>
+                <extension>php</extension>
+            </extensions>
+        </api>
+    </version>
+    <setting name="graphs.enabled" value="false"/>
+    <setting name="template.typo3_version" value="main" />
+    <template name=".phpdoc/template" />
+</phpdocumentor>

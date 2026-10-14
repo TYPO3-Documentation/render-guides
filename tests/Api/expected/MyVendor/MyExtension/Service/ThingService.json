@@ -1,0 +1,269 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "MyVendor\\MyExtension\\Service\\ThingService",
+    "namespace": "MyVendor\\MyExtension\\Service",
+    "name": "ThingService",
+    "file": "input/Service/ThingService.php",
+    "line": 17,
+    "modifiers": [
+        "final"
+    ],
+    "summary": "Saves things and tells listeners about it.",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": "MyVendor\\MyExtension\\Service\\AbstractService",
+    "implements": [
+        "MyVendor\\MyExtension\\Service\\ThingServiceInterface"
+    ],
+    "uses": [
+        "MyVendor\\MyExtension\\Service\\LoggingTrait"
+    ],
+    "constants": [
+        {
+            "name": "VERSION",
+            "visibility": "public",
+            "modifiers": [],
+            "type": null,
+            "value": "2",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\AbstractService"
+        },
+        {
+            "name": "TABLE",
+            "visibility": "public",
+            "modifiers": [],
+            "type": null,
+            "value": "'tx_myextension_thing'",
+            "summary": "The table that stores things.",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingServiceInterface"
+        }
+    ],
+    "properties": [
+        {
+            "name": "log",
+            "visibility": "protected",
+            "modifiers": [],
+            "type": "string[]",
+            "default": "[]",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\AbstractService"
+        }
+    ],
+    "methods": [
+        {
+            "name": "__construct",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "eventDispatcher",
+                    "type": "\\Psr\\EventDispatcher\\EventDispatcherInterface",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                },
+                {
+                    "name": "bus",
+                    "type": "\\Symfony\\Component\\Messenger\\MessageBusInterface",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "mixed",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingService"
+        },
+        {
+            "name": "save",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "int",
+                "description": "the uid of the saved thing"
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "dispatches": [
+                "MyVendor\\MyExtension\\Event\\BeforeThingSavedEvent",
+                "MyVendor\\MyExtension\\Event\\AfterThingSavedEvent"
+            ],
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingService"
+        },
+        {
+            "name": "notify",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "event",
+                    "type": "\\MyVendor\\MyExtension\\Event\\AfterThingSavedEvent",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "\\MyVendor\\MyExtension\\Event\\AfterThingSavedEvent",
+                "description": ""
+            },
+            "summary": "Tells the listeners again about a thing that was saved before.",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "dispatches": [
+                "MyVendor\\MyExtension\\Event\\AfterThingSavedEvent"
+            ],
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingService"
+        },
+        {
+            "name": "store",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "int",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": "since 2.0, use save() instead.",
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingService"
+        },
+        {
+            "name": "reset",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "static",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": "Only for the tests of this extension.",
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingService"
+        },
+        {
+            "name": "persist",
+            "visibility": "protected",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                },
+                {
+                    "name": "pid",
+                    "type": "int",
+                    "default": "self::VERSION",
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                },
+                {
+                    "name": "error",
+                    "type": "?string",
+                    "default": "null",
+                    "variadic": false,
+                    "byReference": true,
+                    "description": ""
+                },
+                {
+                    "name": "tags",
+                    "type": "string",
+                    "default": null,
+                    "variadic": true,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "int",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingService"
+        },
+        {
+            "name": "getLog",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "string[]",
+                "description": ""
+            },
+            "summary": "Returns what the service did, newest last.",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\AbstractService"
+        },
+        {
+            "name": "clearLog",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "void",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\LoggingTrait"
+        }
+    ]
+}
