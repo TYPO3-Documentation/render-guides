@@ -38,8 +38,7 @@
         "phpstan/phpstan-strict-rules": "^2.1",
         "phpunit/phpunit": "^10.5",
         "symfony/console": "^6.4",
-        "symplify/monorepo-builder": "^11.2.0",
-        "symplify/phpstan-rules": "^14.10"
+        "symplify/monorepo-builder": "^11.2.0"
     },
     "replace": {
         "symfony/polyfill-php80": "*",
