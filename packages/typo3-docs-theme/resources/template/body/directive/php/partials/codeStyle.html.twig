@@ -1,3 +1,9 @@
+{#- The fully qualified name of php:class and the other types: a class of the TYPO3 API as the :php: role shows it. -#}
+{%- set apiClass = phpApiClass(code) -%}
+{%- if apiClass -%}
+    {{- renderNode(apiClass) -}}
+{%- else -%}
 {%- apply spaceless -%}
     <code class="code-inline" translate="no">{{ replaceLineBreakOpportunityTags(code) }}</code>
 {%- endapply -%}
+{%- endif -%}
