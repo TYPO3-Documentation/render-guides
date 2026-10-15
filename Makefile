@@ -11,7 +11,11 @@ PHP_PROJECT_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/proje
 
 ## Docker wrapper to use for a typo3-docs:local container.
 ## This container provides a composer-runtime; mounts project on /app
-PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:2
+PHP_COMPOSER_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/app composer:2 composer
+
+## phpDocumentor, which renders api.typo3.org. The image is pinned, because the
+## extensions in packages/typo3-api need a version that is not released yet.
+PHPDOC_IMAGE ?= phpdoc/phpdoc:3-unstable@sha256:68495f7aed4189a3197768893a2edae9786dcb6745e23148932ab1c0c976015f
 
 ## Docker wrapper for npm, for the typo3-docs-theme JS tests (so node is not required on the host)
 NPM_BIN ?= docker run -i --rm --user $$(id -u):$$(id -g) -e HOME=/tmp -v${PWD}/packages/typo3-docs-theme:/app -w /app node:24 npm
@@ -197,13 +201,21 @@ migrate-settings: ## Migrate Settings.cfg to guides.xml
     fi
 	$(PHP_BIN) packages/typo3-guides-cli/bin/typo3-guides migrate $(path)
 
-api-docs: .phpdoc/template phpdoc.dist.xml ## Generate API documentation
-	docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/data phpdoc/phpdoc:3  --setting template.typo3_version=12.4
+api-docs: .phpdoc/template .phpdoc/extensions phpdoc.dist.xml ## Generate API documentation
+	docker run -i --rm --user $$(id -u):$$(id -g) -v${PWD}:/data $(PHPDOC_IMAGE)  --setting template.typo3_version=12.4
 
-.HIDDEN: .phpdoc/template phpdoc.dist.xml
+.PHONY: test-api
+test-api: ## Renders the API test classes with phpDocumentor and compares the JSON (Docker only)
+	tests/Api/run.sh $(PHPDOC_IMAGE)
+
+.HIDDEN: .phpdoc/template .phpdoc/extensions phpdoc.dist.xml
 .phpdoc/template:
 	@mkdir -p .phpdoc
 	cp -r ${PWD}/packages/typo3-api/template .phpdoc/template
+
+.phpdoc/extensions:
+	@mkdir -p .phpdoc
+	cp -r ${PWD}/packages/typo3-api/extensions .phpdoc/extensions
 
 phpdoc.dist.xml:
 	cp ${PWD}/packages/typo3-api/phpdoc.dist.xml phpdoc.dist.xml
@@ -226,5 +238,5 @@ static-code-analysis: vendor phpstan ## Runs a static code analysis with phpstan
 
 vendor: composer.json composer.lock
 	@echo "$(ENV_INFO)"
-	$(PHP_COMPOSER_BIN) composer validate --no-check-publish
-	$(PHP_COMPOSER_BIN) composer install --no-interaction --no-progress  --ignore-platform-reqs
+	$(PHP_COMPOSER_BIN) validate --no-check-publish
+	$(PHP_COMPOSER_BIN) install --no-interaction --no-progress  --ignore-platform-reqs

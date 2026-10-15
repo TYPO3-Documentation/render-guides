@@ -1,0 +1,104 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "TYPO3\\CMS\\Backend\\Event\\AddUserSettingsJavaScriptModulesEvent",
+    "namespace": "TYPO3\\CMS\\Backend\\Event",
+    "name": "AddUserSettingsJavaScriptModulesEvent",
+    "file": "typo3/sysext/backend/Classes/Event/AddUserSettingsJavaScriptModulesEvent.php",
+    "line": 26,
+    "modifiers": [
+        "final"
+    ],
+    "summary": "Collects additional JavaScript modules to be loaded in SetupModuleController (User Settings).",
+    "description": "Replacement for prior TYPO3\\CMS\\Setup\\Event\\AddJavaScriptModulesEvent.",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [],
+    "methods": [
+        {
+            "name": "__construct",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "request",
+                    "type": "\\Psr\\Http\\Message\\ServerRequestInterface",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "mixed",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Backend\\Event\\AddUserSettingsJavaScriptModulesEvent"
+        },
+        {
+            "name": "getRequest",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "\\Psr\\Http\\Message\\ServerRequestInterface",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Backend\\Event\\AddUserSettingsJavaScriptModulesEvent"
+        },
+        {
+            "name": "addJavaScriptModule",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "specifier",
+                    "type": "string",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": "Bare module identifier like @my/package/filename.js"
+                }
+            ],
+            "returns": {
+                "type": "void",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Backend\\Event\\AddUserSettingsJavaScriptModulesEvent"
+        },
+        {
+            "name": "getJavaScriptModules",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "string[]",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Backend\\Event\\AddUserSettingsJavaScriptModulesEvent"
+        }
+    ],
+    "dispatchedBy": [
+        "TYPO3\\CMS\\Backend\\Controller\\SetupModuleController::processAdditionalJavaScriptModules()"
+    ]
+}

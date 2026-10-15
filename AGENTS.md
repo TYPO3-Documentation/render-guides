@@ -16,6 +16,7 @@ your host instead, which is faster.
                               # static-code-analysis, test-monorepo
     make test-integration     # rendering fixtures (the slow one, ~2 min)
     make test-unit
+    make test-api             # api.typo3.org output of tests/Api (Docker only)
     make code-style           # check;  make fix-code-style  applies
     make phpstan
     make docs                 # renders Documentation/ into Documentation-GENERATED-temp
@@ -41,12 +42,22 @@ and a PR whose SCSS and CSS disagree ships a change nobody sees. `make assets`
 is reproducible: rebuilding an unchanged tree produces byte-identical files, so
 a rebuild that shows no diff is the check that a compiled file is genuine.
 
+
 **All of the theme's JavaScript is one vite bundle.** `assets/js/theme.js` is
 the entry; it imports the classic scripts beside it and the React search
 application from `resources/js/`. Add a new file there and it does nothing
 until the entry imports it. The bundle is an IIFE because
 `footerAssets.html.twig` loads it as a classic script, so nothing may rely on
 top-level `await` or on being a module at runtime.
+
+**`packages/typo3-api` is tested by `make test-api` only.** api.typo3.org is
+rendered by the `phpdoc/phpdoc` image, not by anything in `vendor/`, so
+`pre-commit-test` does not cover the template or the phpDocumentor extensions
+in `packages/typo3-api/extensions/`. Run `make test-api` after changing them.
+It renders the classes in `tests/Api/input/` and compares the JSON with
+`tests/Api/expected/`, which you update like an integration fixture: copy
+`tests/Api/temp/json/` over it. `PHPDOC_IMAGE` in the `Makefile` pins the image
+
 
 **Integration fixtures are generated, not written.** Each case under
 `tests/Integration/tests*/` has `input/` and `expected/`; running the test

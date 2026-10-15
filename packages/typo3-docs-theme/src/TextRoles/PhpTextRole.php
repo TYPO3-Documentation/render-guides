@@ -44,6 +44,15 @@ final class PhpTextRole implements TextRole
 
     public function processNode(DocumentParserContext $documentParserContext, string $role, string $content, string $rawContent): InlineNode
     {
+        return $this->createNode($role, $rawContent);
+    }
+
+    /**
+     * The node of the role without a parser, for a template that shows a
+     * name as the role does, such as the fully qualified name of php:class.
+     */
+    public function createNode(string $role, string $rawContent): InlineNode
+    {
         $fqn = [];
         $rawContent = trim($rawContent);
         $className = $rawContent;

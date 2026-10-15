@@ -1,0 +1,6 @@
+<h5 class="phpdocumentor-typo3-events__title">Dispatched by</h5>
+<ul class="phpdocumentor-typo3-events">
+    {% for dispatcher in metadata.dispatchers %}
+        <li>{{ dispatcher|route('class:short') }}</li>
+    {% endfor %}
+</ul>

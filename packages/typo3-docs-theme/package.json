@@ -18,8 +18,8 @@
         "postcss-scss": "^4.0.9",
         "sass": "^1.105.1",
         "stylelint": "^17.16.0",
-        "vite": "^8.3.3",
-        "vitest": "^5.0.3"
+        "vite": "^8.3.4",
+        "vitest": "^5.0.4"
     },
     "scripts": {
         "clean": "rm -rf resources/public/css resources/public/fonts resources/public/js",

@@ -1,0 +1,90 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "MyVendor\\MyExtension\\Service\\AbstractService",
+    "namespace": "MyVendor\\MyExtension\\Service",
+    "name": "AbstractService",
+    "file": "input/Service/AbstractService.php",
+    "line": 7,
+    "modifiers": [
+        "abstract"
+    ],
+    "summary": "",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [
+        {
+            "name": "VERSION",
+            "visibility": "public",
+            "modifiers": [],
+            "type": null,
+            "value": "2",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\AbstractService"
+        }
+    ],
+    "properties": [
+        {
+            "name": "log",
+            "visibility": "protected",
+            "modifiers": [],
+            "type": "string[]",
+            "default": "[]",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\AbstractService"
+        }
+    ],
+    "methods": [
+        {
+            "name": "getLog",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "string[]",
+                "description": ""
+            },
+            "summary": "Returns what the service did, newest last.",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\AbstractService"
+        },
+        {
+            "name": "persist",
+            "visibility": "protected",
+            "modifiers": [
+                "abstract"
+            ],
+            "parameters": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "int",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\AbstractService"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "schema": 1,
+    "type": "enum",
+    "fqn": "TYPO3\\CMS\\Core\\Utility\\DiffGranularity",
+    "namespace": "TYPO3\\CMS\\Core\\Utility",
+    "name": "DiffGranularity",
+    "file": "typo3/sysext/core/Classes/Utility/DiffGranularity.php",
+    "line": 20,
+    "modifiers": [],
+    "summary": "",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [],
+    "methods": [],
+    "backedType": null,
+    "cases": [
+        {
+            "name": "WORD",
+            "value": null,
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null
+        },
+        {
+            "name": "CHARACTER",
+            "value": null,
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null
+        }
+    ]
+}
