@@ -57,7 +57,7 @@ in `packages/typo3-api/extensions/`. Run `make test-api` after changing them.
 It renders the classes in `tests/Api/input/` and compares the JSON with
 `tests/Api/expected/`, which you update like an integration fixture: copy
 `tests/Api/temp/json/` over it. `PHPDOC_IMAGE` in the `Makefile` pins the image
-
+by digest.
 
 **Integration fixtures are generated, not written.** Each case under
 `tests/Integration/tests*/` has `input/` and `expected/`; running the test
