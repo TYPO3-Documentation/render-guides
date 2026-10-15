@@ -1,3 +1,5 @@
+import { AllDocumentationsMenuBase } from './all-documentations-menu-base.js';
+
 class AllDocumentationsMenuMobile extends AllDocumentationsMenuBase {
 
   constructor() {

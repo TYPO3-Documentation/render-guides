@@ -65,10 +65,17 @@ assets-debug: ## Builds assets, keeping the sourcemap. It copies the output file
 assets-watch: ## Watches changes of sass files and build automatically on change
 	ddev npm-watch
 
-.PHONY: test-theme-js
-test-theme-js: ## Runs the typo3-docs-theme JS unit tests (vitest)
+.PHONY: theme-npm-ci
+theme-npm-ci: ## Installs the typo3-docs-theme node_modules (shared by the theme targets below)
 	$(NPM_BIN) ci --no-progress
+
+.PHONY: test-theme-js
+test-theme-js: theme-npm-ci ## Runs the typo3-docs-theme JS unit tests (vitest)
 	$(NPM_BIN) test
+
+.PHONY: test-theme-css
+test-theme-css: theme-npm-ci ## Checks the typo3-docs-theme SCSS sources with stylelint
+	$(NPM_BIN) run lint:css
 
 .PHONE: build-phar
 build-phar: ## Creates a guides.phar file (github workflow)
@@ -136,7 +143,7 @@ show-env: ## Shows PHP environment options (buildinfo)
 	@echo ""
 
 .PHONY: test
-test: test-integration test-unit test-xml test-docs test-rendertest test-theme-js ## Runs all test suites (PHP phpunit + theme JS vitest)
+test: test-integration test-unit test-xml test-docs test-rendertest test-theme-js test-theme-css ## Runs all test suites (PHP phpunit + theme JS vitest + theme SCSS lint)
 
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
