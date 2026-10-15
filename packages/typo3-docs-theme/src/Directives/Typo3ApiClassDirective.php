@@ -12,6 +12,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\BlockContext;
 use phpDocumentor\Guides\RestructuredText\Parser\Directive;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\Rule;
 use Psr\Log\LoggerInterface;
+use T3Docs\GuidesPhpDomain\PhpDomain\NamespaceRepository;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 
 /**
@@ -58,6 +59,7 @@ final class Typo3ApiClassDirective extends BaseDirective
         private readonly Rule $startingRule,
         private readonly Typo3ApiService $typo3ApiService,
         private readonly LoggerInterface $logger,
+        private readonly NamespaceRepository $namespaceRepository,
     ) {}
 
     public function getName(): string
@@ -98,9 +100,13 @@ final class Typo3ApiClassDirective extends BaseDirective
 
         $rst = $this->renderType($type, $settings, $blockContext);
 
+        // The php:namespace of the type stays the current namespace of all
+        // pages that are parsed afterwards, unless it is reset.
+        $currentNamespace = $this->namespaceRepository->getCurrentNamespace();
         $currentDocument = $blockContext->getDocumentParserContext()->getDocument();
         $document = $this->startingRule->apply(new BlockContext($blockContext->getDocumentParserContext(), $rst));
         $blockContext->getDocumentParserContext()->setDocument($currentDocument);
+        $this->namespaceRepository->setCurrentNamespace($currentNamespace);
 
         return new CollectionNode($document?->getChildren() ?? []);
     }
