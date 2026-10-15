@@ -62,3 +62,14 @@ A class that does not exist
 ===========================
 
 ..  typo3:api-class:: \TYPO3\CMS\Core\DoesNotExist
+
+A global class after the directive
+==================================
+
+The namespace of the types above does not apply here.
+
+..  php:class:: DateTime
+
+    A class without a namespace.
+
+See :php:class:`DateTime`.
