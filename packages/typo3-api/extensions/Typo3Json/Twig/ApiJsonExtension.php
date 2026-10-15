@@ -20,6 +20,7 @@ use phpDocumentor\Descriptor\Tag\LinkDescriptor;
 use phpDocumentor\Descriptor\Tag\SeeDescriptor;
 use phpDocumentor\Descriptor\TagDescriptor;
 use phpDocumentor\Descriptor\ValueObjects\Deprecation;
+use T3Docs\Typo3Api\Json\Reflection\DocBlockTypes;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -36,6 +37,9 @@ use Twig\TwigFunction;
  * Descriptions are the text of the docblock: inline tags such as
  * `{@see \Foo}` stay as they are, because links to api.typo3.org would not
  * work in a manual. The manual decides how to render them.
+ *
+ * A type that phpDocumentor could not read in a docblock is written as it
+ * is in the docblock, see DocBlockTypesReducer.
  */
 final class ApiJsonExtension extends AbstractExtension
 {
@@ -106,11 +110,17 @@ final class ApiJsonExtension extends AbstractExtension
     /** @return array<string, mixed> */
     private function property(PropertyInterface $property): array
     {
+        // A @var tag that phpDocumentor could not read, kept on the class.
+        $docBlockType = $property->getVar()->count() === 0 && $property->getParent() instanceof Descriptor
+            ? $this->docBlockTypes($property->getParent())?->getProperty($property->getName())
+            : null;
+
         return [
             'name' => $property->getName(),
             'visibility' => (string)$property->getVisibility(),
             'modifiers' => $this->modifiers($property),
-            'type' => $property->getType() === null ? null : (string)$property->getType(),
+            'type' => $docBlockType['type']
+                ?? ($property->getType() === null ? null : (string)$property->getType()),
             'default' => $this->expression($property->getDefault()),
             ...$this->docBlock($property),
         ];
@@ -120,6 +130,8 @@ final class ApiJsonExtension extends AbstractExtension
     private function method(MethodInterface $method): array
     {
         $response = $method->getResponse();
+        $docBlockTypes = $this->docBlockTypes($method);
+        $return = $docBlockTypes?->getReturn();
         $data = [
             'name' => $method->getName(),
             'visibility' => (string)$method->getVisibility(),
@@ -127,17 +139,19 @@ final class ApiJsonExtension extends AbstractExtension
             'parameters' => array_values(array_map(
                 fn(ArgumentInterface $argument): array => [
                     'name' => $argument->getName(),
-                    'type' => $argument->getType() === null ? null : (string)$argument->getType(),
+                    'type' => $docBlockTypes?->getParam($argument->getName())['type']
+                        ?? ($argument->getType() === null ? null : (string)$argument->getType()),
                     'default' => $this->expression($argument->getDefault()),
                     'variadic' => $argument->isVariadic(),
                     'byReference' => $argument->isByReference(),
-                    'description' => $this->text($argument->getDescription()),
+                    'description' => $docBlockTypes?->getParam($argument->getName())['description']
+                        ?? $this->text($argument->getDescription()),
                 ],
                 $method->getArguments()->getAll(),
             )),
             'returns' => [
-                'type' => $response->getType() === null ? null : (string)$response->getType(),
-                'description' => $this->text($response->getDescription()),
+                'type' => $return['type'] ?? ($response->getType() === null ? null : (string)$response->getType()),
+                'description' => $return['description'] ?? $this->text($response->getDescription()),
             ],
             ...$this->docBlock($method),
         ];
@@ -324,6 +338,13 @@ final class ApiJsonExtension extends AbstractExtension
             $type instanceof EnumDescriptor => 'enum',
             default => 'class',
         };
+    }
+
+    private function docBlockTypes(Descriptor $element): ?DocBlockTypes
+    {
+        $types = $this->metadata($element, DocBlockTypes::KEY);
+
+        return $types instanceof DocBlockTypes ? $types : null;
     }
 
     private function metadata(Descriptor $element, string $key): ?object

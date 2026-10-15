@@ -1,0 +1,95 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "MyVendor\\MyExtension\\Service\\ThingRegistry",
+    "namespace": "MyVendor\\MyExtension\\Service",
+    "name": "ThingRegistry",
+    "file": "input/Service/ThingRegistry.php",
+    "line": 17,
+    "modifiers": [
+        "final"
+    ],
+    "summary": "Keeps the states of things, by uid.",
+    "description": "phpDocumentor 3 cannot read an array key type such as ThingUid or\n0|positive-int. The JSON shows these types as they are written.",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [
+        {
+            "name": "states",
+            "visibility": "public",
+            "modifiers": [],
+            "type": "array<ThingUid, ThingState>",
+            "default": "[]",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingRegistry"
+        },
+        {
+            "name": "titles",
+            "visibility": "public",
+            "modifiers": [],
+            "type": "list<string>",
+            "default": "[]",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingRegistry"
+        }
+    ],
+    "methods": [
+        {
+            "name": "replace",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "states",
+                    "type": "array<0|positive-int, ThingState>",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": "The new states, by uid"
+                },
+                {
+                    "name": "keep",
+                    "type": "bool",
+                    "default": "false",
+                    "variadic": false,
+                    "byReference": false,
+                    "description": "Whether to keep the states of the other things"
+                }
+            ],
+            "returns": {
+                "type": "array<ThingUid, ThingState>",
+                "description": "The states before"
+            },
+            "summary": "Replaces the states.",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingRegistry"
+        },
+        {
+            "name": "visible",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [],
+            "returns": {
+                "type": "array<int,\\MyVendor\\MyExtension\\Enum\\ThingState>",
+                "description": "A type that phpDocumentor reads"
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingRegistry"
+        }
+    ]
+}

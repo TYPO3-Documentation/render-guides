@@ -7,6 +7,7 @@ namespace T3Docs\Typo3Api\Json;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use T3Docs\Typo3Api\Json\Reflection\DocBlockTypes;
 
 /**
  * Writes a class, interface, trait, or enum with its members as JSON, so
@@ -17,6 +18,17 @@ final class Extension extends \phpDocumentor\Extension\Extension
     public function getAlias(): string
     {
         return 'typo3-json';
+    }
+
+    public function getTemplatePath(): string
+    {
+        return __DIR__ . '/Resources/templates';
+    }
+
+    /** @return string[] */
+    public function getMetadataKeys(): array
+    {
+        return [DocBlockTypes::KEY];
     }
 
     /** @param array<mixed> $configs */
