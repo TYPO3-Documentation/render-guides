@@ -42,6 +42,7 @@ use T3Docs\Typo3DocsTheme\Directives\VisibleLinesOption;
 use T3Docs\Typo3DocsTheme\CodeFolding\FoldedLines;
 use T3Docs\Typo3DocsTheme\CodeFolding\HtmlLineFolder;
 use T3Docs\Typo3DocsTheme\Twig\CodeFoldingExtension;
+use T3Docs\Typo3DocsTheme\Twig\PhpCodeExtension;
 use T3Docs\Typo3DocsTheme\Directives\MainMenuJsonDirective;
 use T3Docs\Typo3DocsTheme\Directives\RawDirective;
 use T3Docs\Typo3DocsTheme\Directives\SiteSetSettingsDirective;
@@ -404,6 +405,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(FoldedLines::class)
         ->set(HtmlLineFolder::class)
         ->set(CodeFoldingExtension::class)
+        ->tag('twig.extension')
+        ->set(PhpCodeExtension::class)
         ->tag('twig.extension')
         ->set(MainMenuJsonDirective::class)
         ->set(RawDirective::class)
