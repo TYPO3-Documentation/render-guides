@@ -14,14 +14,6 @@
         "@testing-library/jest-dom": "^7.0.1",
         "@testing-library/react": "^16.3.3",
         "@vitejs/plugin-react": "^6.1.2",
-        "grunt": "^1.6.3",
-        "grunt-cli": "^1.5.0",
-        "grunt-contrib-clean": "^2.0.1",
-        "grunt-contrib-copy": "1.0.0",
-        "grunt-contrib-uglify": "^5.2.2",
-        "grunt-contrib-watch": "^1.1.0",
-        "grunt-sass": "^4.1.0",
-        "grunt-stylelint": "^0.21.0",
         "jsdom": "^30.1.2",
         "postcss-scss": "^4.0.9",
         "sass": "^1.105.1",
@@ -30,10 +22,18 @@
         "vitest": "^5.0.4"
     },
     "scripts": {
-        "build": "vite build && grunt build",
-        "debug": "grunt debug",
+        "clean": "rm -rf resources/public/css resources/public/fonts resources/public/js",
+        "copy": "mkdir -p resources/public/fonts resources/public/js && cp -R node_modules/@fortawesome/fontawesome-free/webfonts/. resources/public/fonts/ && cp -R assets/fonts/. resources/public/fonts/ && sed '/# sourceMappingURL=/d' node_modules/bootstrap/dist/js/bootstrap.min.js > resources/public/js/bootstrap.min.js",
+        "build:css": "sass --no-source-map --style=expanded --load-path=node_modules --quiet-deps assets/sass/theme.scss resources/public/css/theme.css",
+        "build:css:debug": "sass --style=expanded --load-path=node_modules --quiet-deps assets/sass/theme.scss ../../Documentation-GENERATED-temp/_resources/css/theme.css",
+        "build:js": "vite build",
+        "build": "npm run clean && npm run copy && npm run build:css && npm run build:js",
+        "debug": "npm run build && npm run build:css:debug && npm run copy:debug",
+        "lint:css": "stylelint \"assets/sass/**/*.scss\"",
+        "lint:css:fix": "stylelint \"assets/sass/**/*.scss\" --fix",
         "test": "vitest run",
-        "watch": "vite build --watch & grunt watch"
+        "watch": "npm run build:js -- --watch & npm run build:css -- --watch",
+        "copy:debug": "mkdir -p ../../Documentation-GENERATED-temp/_resources && cp -R assets/. ../../Documentation-GENERATED-temp/_resources/"
     },
     "engines": {
         "node": ">=24.16.0 <25.0.0"

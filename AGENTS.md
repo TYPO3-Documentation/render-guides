@@ -25,6 +25,13 @@ your host instead, which is faster.
 Run `make pre-commit-test` before proposing a commit. `make githooks` installs
 it as a pre-commit hook.
 
+CI delegates to these same targets rather than reimplementing them, so a
+target that only exists in `.github/workflows/` is a target contributors
+cannot run. Keep new checks in the `Makefile` and have the workflow call them.
+The one exception is the check that the committed theme assets match a fresh
+build: only `check-built-assets.yaml` runs it, because it rewrites the working
+tree and would add a full asset build to every pre-commit run.
+
 ## Things that will bite you
 
 **Built assets are committed.** `packages/typo3-docs-theme/resources/public/`
@@ -34,6 +41,13 @@ result. Never edit the compiled files by hand — the next build overwrites them
 and a PR whose SCSS and CSS disagree ships a change nobody sees. `make assets`
 is reproducible: rebuilding an unchanged tree produces byte-identical files, so
 a rebuild that shows no diff is the check that a compiled file is genuine.
+
+**All of the theme's JavaScript is one vite bundle.** `assets/js/theme.js` is
+the entry; it imports the classic scripts beside it and the React search
+application from `resources/js/`. Add a new file there and it does nothing
+until the entry imports it. The bundle is an IIFE because
+`footerAssets.html.twig` loads it as a classic script, so nothing may rely on
+top-level `await` or on being a module at runtime.
 
 **`packages/typo3-api` is tested by `make test-api` only.** api.typo3.org is
 rendered by the `phpdoc/phpdoc` image, not by anything in `vendor/`, so

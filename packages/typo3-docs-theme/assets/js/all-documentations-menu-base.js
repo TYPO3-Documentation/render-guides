@@ -1,5 +1,5 @@
 
-class AllDocumentationsMenuBase extends HTMLElement {
+export class AllDocumentationsMenuBase extends HTMLElement {
   MAINMENU_JSON_URL = 'https://docs.typo3.org/h/typo3/docs-homepage/main/en-us/mainmenu.json';
 
   async initializeDocumentationsData() {

@@ -1,3 +1,4 @@
+import { AllDocumentationsMenuBase } from './all-documentations-menu-base.js';
 
 class AllDocumentationsMenu extends AllDocumentationsMenuBase {
 
