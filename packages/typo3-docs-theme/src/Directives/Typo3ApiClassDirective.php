@@ -269,7 +269,7 @@ final class Typo3ApiClassDirective extends BaseDirective
         $valueLine = '';
         if ($value !== '' && !str_contains($value, '`')) {
             $type = $this->string($constant, 'type', $this->typeOfValue($value));
-            $valueLine = ':php:`' . $this->escape($value) . '`' . ($type !== '' ? ', type ' . $type : '');
+            $valueLine = ':php:`' . $this->escape($value) . '`' . ($type !== '' ? ', type ' . $this->escape($type) : '');
         }
 
         return $this->renderMember($lines, $constant, $settings, valueLine: $valueLine);
@@ -318,7 +318,8 @@ final class Typo3ApiClassDirective extends BaseDirective
         $returnType = $this->type($this->string($returns, 'type'));
         $lines = [sprintf('..  php:method:: %s(%s)', $this->string($method, 'name'), implode(', ', $signature))];
         if ($returnType !== '' && $returnType !== 'void' && ($method['name'] ?? '') !== '__construct') {
-            $lines[] = self::INDENT . ':returns: `' . $returnType . '`';
+            // The php domain parses the field as reStructuredText.
+            $lines[] = self::INDENT . ':returns: `' . $this->escape($returnType) . '`';
         }
         foreach (array_intersect($this->strings($method, 'modifiers'), ['static', 'abstract', 'final']) as $modifier) {
             $lines[] = self::INDENT . ':' . $modifier . ':';
