@@ -42,7 +42,6 @@ and a PR whose SCSS and CSS disagree ships a change nobody sees. `make assets`
 is reproducible: rebuilding an unchanged tree produces byte-identical files, so
 a rebuild that shows no diff is the check that a compiled file is genuine.
 
-
 **All of the theme's JavaScript is one vite bundle.** `assets/js/theme.js` is
 the entry; it imports the classic scripts beside it and the React search
 application from `resources/js/`. Add a new file there and it does nothing
