@@ -12,6 +12,11 @@ An enum
 
 ..  typo3:api-class:: \TYPO3\CMS\Core\Utility\DiffGranularity
 
+A backed enum
+=============
+
+..  typo3:api-class:: \TYPO3\CMS\Core\Resource\Enum\DuplicationBehavior
+
 An interface with a constant
 ============================
 

@@ -683,6 +683,24 @@
         "implements": "",
         "summary": "Base interface which all parts of a form must adhere to."
     },
+    "\\TYPO3\\CMS\\Core\\Resource\\Enum\\DuplicationBehavior": {
+        "url": "https://api.typo3.org/14.3/classes/TYPO3-CMS-Core-Resource-Enum-DuplicationBehavior.html",
+        "short": "DuplicationBehavior",
+        "fqn": "\\TYPO3\\CMS\\Core\\Resource\\Enum\\DuplicationBehavior",
+        "github": "https://github.com/TYPO3/typo3/blob/14.3/typo3/sysext/core/Classes/Resource/Enum/DuplicationBehavior.php",
+        "file": "typo3/sysext/core/Classes/Resource/Enum/DuplicationBehavior.php",
+        "type": "enum",
+        "final": "",
+        "abstract": "",
+        "readonly": "",
+        "internal": "",
+        "internal-message": "",
+        "deprecated": "",
+        "deprecation": "",
+        "extends": "",
+        "implements": "",
+        "summary": "Enumeration for DuplicationBehavior"
+    },
     "\\TYPO3\\CMS\\Core\\Utility\\DiffGranularity": {
         "url": "https://api.typo3.org/14.3/classes/TYPO3-CMS-Core-Utility-DiffGranularity.html",
         "short": "DiffGranularity",

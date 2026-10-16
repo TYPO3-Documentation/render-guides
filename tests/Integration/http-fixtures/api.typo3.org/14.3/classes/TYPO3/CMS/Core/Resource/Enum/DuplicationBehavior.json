@@ -1,0 +1,74 @@
+{
+    "schema": 1,
+    "type": "enum",
+    "fqn": "TYPO3\\CMS\\Core\\Resource\\Enum\\DuplicationBehavior",
+    "namespace": "TYPO3\\CMS\\Core\\Resource\\Enum",
+    "name": "DuplicationBehavior",
+    "file": "typo3/sysext/core/Classes/Resource/Enum/DuplicationBehavior.php",
+    "line": 27,
+    "modifiers": [],
+    "summary": "Enumeration for DuplicationBehavior",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [],
+    "methods": [
+        {
+            "name": "getDefaultDuplicationBehaviour",
+            "visibility": "public",
+            "modifiers": [
+                "static"
+            ],
+            "parameters": [
+                {
+                    "name": "backendUserAuthentication",
+                    "type": "?\\TYPO3\\CMS\\Core\\Authentication\\BackendUserAuthentication",
+                    "default": "null",
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "\\TYPO3\\CMS\\Core\\Resource\\Enum\\DuplicationBehavior",
+                "description": ""
+            },
+            "summary": "Return the default duplication behaviour action, set in TSconfig",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "TYPO3\\CMS\\Core\\Resource\\Enum\\DuplicationBehavior"
+        }
+    ],
+    "backedType": "string",
+    "cases": [
+        {
+            "name": "RENAME",
+            "value": "'rename'",
+            "summary": "If a file is uploaded and another file with\nthe same name already exists, the new file\nis renamed.",
+            "description": "",
+            "deprecated": null,
+            "internal": null
+        },
+        {
+            "name": "REPLACE",
+            "value": "'replace'",
+            "summary": "If a file is uploaded and another file with\nthe same name already exists, the old file\ngets overwritten by the new file.",
+            "description": "",
+            "deprecated": null,
+            "internal": null
+        },
+        {
+            "name": "CANCEL",
+            "value": "'cancel'",
+            "summary": "If a file is uploaded and another file with\nthe same name already exists, the process is\naborted.",
+            "description": "",
+            "deprecated": null,
+            "internal": null
+        }
+    ]
+}
