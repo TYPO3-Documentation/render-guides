@@ -1,0 +1,64 @@
+{
+    "schema": 1,
+    "type": "class",
+    "fqn": "MyVendor\\MyExtension\\Event\\AfterThingDeletedEvent",
+    "namespace": "MyVendor\\MyExtension\\Event",
+    "name": "AfterThingDeletedEvent",
+    "file": "input/Event/AfterThingDeletedEvent.php",
+    "line": 10,
+    "modifiers": [
+        "final",
+        "readonly"
+    ],
+    "summary": "Dispatched after a thing is deleted.",
+    "description": "",
+    "deprecated": null,
+    "internal": null,
+    "extends": null,
+    "implements": [],
+    "uses": [],
+    "constants": [],
+    "properties": [
+        {
+            "name": "uid",
+            "visibility": "public",
+            "modifiers": [],
+            "type": "int",
+            "default": null,
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Event\\AfterThingDeletedEvent"
+        }
+    ],
+    "methods": [
+        {
+            "name": "__construct",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "uid",
+                    "type": "int",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "mixed",
+                "description": ""
+            },
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Event\\AfterThingDeletedEvent"
+        }
+    ],
+    "dispatchedBy": [
+        "MyVendor\\MyExtension\\Service\\ThingService::delete()"
+    ]
+}

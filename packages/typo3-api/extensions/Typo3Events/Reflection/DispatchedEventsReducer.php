@@ -17,6 +17,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\New_;
+use PhpParser\Node\Expr\NullsafeMethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\FunctionLike;
 use PhpParser\Node\Identifier;
@@ -29,6 +30,9 @@ use PhpParser\NodeFinder;
  * A reducer and not a strategy, because a strategy only receives the
  * statements at the top of a method body: a dispatch inside `try`, `foreach`
  * or `return` would be missed. A reducer receives the whole method node.
+ *
+ * Both `->dispatch()` and `?->dispatch()` count, the second for a dispatcher
+ * that can be null.
  *
  * The event is known when it is created in the call, when it is assigned to
  * the variable with `new` in the same method, or when it is a parameter
@@ -87,13 +91,13 @@ final class DispatchedEventsReducer implements Reducer
         return $carry;
     }
 
-    /** @return list<MethodCall> */
+    /** @return list<MethodCall|NullsafeMethodCall> */
     private function findDispatchCalls(FunctionLike $function): array
     {
-        /** @var list<MethodCall> */
+        /** @var list<MethodCall|NullsafeMethodCall> */
         return $this->finder->find(
             $function->getStmts() ?? [],
-            static fn(Node $node): bool => $node instanceof MethodCall
+            static fn(Node $node): bool => ($node instanceof MethodCall || $node instanceof NullsafeMethodCall)
                 && $node->name instanceof Identifier
                 && $node->name->toLowerString() === 'dispatch'
                 && count($node->getArgs()) === 1,
