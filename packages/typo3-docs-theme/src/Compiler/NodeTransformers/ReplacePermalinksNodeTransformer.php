@@ -21,13 +21,10 @@ use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\ReferenceResolvers\AnchorNormalizer;
 use Psr\Log\LoggerInterface;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsThemeSettings;
-use T3Docs\VersionHandling\DefaultInventories;
 
 use function assert;
 use function explode;
 use function sprintf;
-use function preg_match;
-use function preg_replace;
 use function str_contains;
 use function str_replace;
 use function str_starts_with;
@@ -162,7 +159,7 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
                 sprintf(
                     'The permalink "%s" names no manual and resolves to 404. Write "%s:%s".',
                     $permalink,
-                    $own !== '' ? $this->routeKey($own) : 'manual',
+                    $own !== '' ? $own : 'manual',
                     $normalized,
                 ),
                 $compilerContext->getLoggerInformation(),
@@ -171,19 +168,11 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
             return;
         }
 
-        if ($this->routeMisreadsRepository($interlink)) {
-            $this->logger->warning(
-                sprintf(
-                    'The permalink "%s" uses the interlink key "%s", which the route reads as the manual "%s". Write "%s".',
-                    $permalink,
-                    $interlink,
-                    preg_replace('/-/', '/', strtolower($interlink), 1),
-                    $this->routeKey($interlink),
-                ),
-                $compilerContext->getLoggerInformation(),
-            );
-        }
-
+        // A slashed manual key such as "web-vision/deepltranslate-core" is not
+        // reported: the route uses it as written since
+        // TYPO3GmbH/site-intercept#321, and it is the form that resolves for
+        // every vendor. The dash form does not, "web-vision-deepltranslate-core"
+        // is looked up as "/p/web/vision-deepltranslate-core/".
         if ($anchor !== '' && $asTheRouteReadsIt !== $normalized) {
             $this->logger->warning(
                 sprintf(
@@ -195,40 +184,6 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
                 $compilerContext->getLoggerInformation(),
             );
         }
-    }
-
-    /**
-     * Whether the route would look the manual up somewhere else than intended.
-     *
-     * For a third-party manual it builds the path by replacing the *first*
-     * hyphen with a slash: "friendsoftypo3-content-blocks" becomes
-     * "/p/friendsoftypo3/content-blocks/". Hand it the interlink key
-     * "friendsoftypo3/content-blocks" instead and the first hyphen is the one
-     * inside the package name, so it looks for "/p/friendsoftypo3/content/blocks/"
-     * and answers 404.
-     *
-     * Two slashed keys survive this and are not reported. A "typo3/…" key is
-     * matched before that branch and maps to "/c/typo3/…", and a key with no
-     * hyphen at all -- "georgringer/news" -- has nothing to replace. Both
-     * resolve today, so warning about them would be noise.
-     */
-    private function routeMisreadsRepository(string $interlink): bool
-    {
-        if (!str_contains($interlink, '/') || !str_contains($interlink, '-')) {
-            return false;
-        }
-
-        if (preg_match('/^typo3[\/-]/i', $interlink) === 1) {
-            return false;
-        }
-
-        return DefaultInventories::tryFrom(strtolower($interlink)) === null;
-    }
-
-    /** The manual key as the "/permalink/" route spells it. */
-    private function routeKey(string $interlink): string
-    {
-        return str_replace('/', '-', $interlink);
     }
 
     public function supports(Node $node): bool

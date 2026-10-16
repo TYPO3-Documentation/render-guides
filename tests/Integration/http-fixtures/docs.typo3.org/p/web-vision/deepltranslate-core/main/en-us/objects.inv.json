@@ -1,0 +1,185 @@
+{
+    "std:doc": {
+        "Index": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Index.html",
+            "DeepL Translate (CORE)"
+        ],
+        "Sitemap": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Sitemap.html",
+            "Sitemap"
+        ]
+    },
+    "std:label": {
+        "administration": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Administration/Index.html#administration",
+            "Administration"
+        ],
+        "installation": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Administration/Installation/Index.html#installation",
+            "Installation"
+        ],
+        "changelog": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/Index.html#changelog",
+            "ChangeLog"
+        ],
+        "editor": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Editor/Index.html#editor",
+            "Editors manual"
+        ],
+        "start": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Index.html#start",
+            "DeepL Translate (CORE)"
+        ],
+        "introduction": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Introduction/Index.html#introduction",
+            "Introduction"
+        ],
+        "reference": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Reference/Index.html#reference",
+            "Reference"
+        ]
+    },
+    "std:title": {
+        "configuration": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Administration/Configuration/Index.html#administrationConfiguration",
+            "Configuration"
+        ],
+        "description": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/6.1/Important-ManualTranslationOfInlineRecordsInTheWizard.html#description",
+            "Description"
+        ],
+        "impact": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/6.1/Important-ManualTranslationOfInlineRecordsInTheWizard.html#impact",
+            "Impact"
+        ],
+        "affected-installations": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/6.0/Deprecation-AccessRegistryMethods.html#affected-installations",
+            "Affected installations"
+        ],
+        "migration": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/6.0/Deprecation-AccessRegistryMethods.html#migration",
+            "Migration"
+        ],
+        "example": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/6.0/Feature-InlineRelationResolver.html#example",
+            "Example"
+        ],
+        "attributes": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/6.0/Important-ContentFormatOfTranslatedFields.html#attributes",
+            "Attributes"
+        ],
+        "related": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/6.0/Important-ContentFormatOfTranslatedFields.html#related",
+            "Related"
+        ],
+        "breaking-changes": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/Changelog-6-combined.html#changelog-v6-bc",
+            "Breaking Changes"
+        ],
+        "features": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/Changelog-6-combined.html#changelog-v6-feat",
+            "Features"
+        ],
+        "deprecation": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/6.0/Index.html#deprecation",
+            "Deprecation"
+        ],
+        "important": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/6.1/Index.html#important",
+            "Important"
+        ],
+        "changelog-1": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Changelog/Index.html#changelog",
+            "ChangeLog"
+        ],
+        "examples": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Introduction/Contribution/Index.html#examples",
+            "Examples"
+        ],
+        "settings": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Reference/ExtensionConfiguration/Index.html#deeplApiKey",
+            "Settings"
+        ],
+        "api": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Reference/ExtensionConfiguration/Index.html#api",
+            "API"
+        ],
+        "content-blocks": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Reference/TableConfiguration/Index.html#tableConfigurationContentBlocks",
+            "Content Blocks"
+        ],
+        "sitemap": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ]
+    },
+    "std:confval": {},
+    "std:confval-menu": {
+        "settings": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Reference/ExtensionConfiguration/Index.html#confval-menu-settings",
+            ""
+        ],
+        "api": [
+            "DeepL Translate (CORE)",
+            "main",
+            "Reference/ExtensionConfiguration/Index.html#confval-menu-api",
+            ""
+        ]
+    }
+}
