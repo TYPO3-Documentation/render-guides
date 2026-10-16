@@ -5,7 +5,7 @@
     "namespace": "MyVendor\\MyExtension\\Service",
     "name": "ThingService",
     "file": "input/Service/ThingService.php",
-    "line": 17,
+    "line": 18,
     "modifiers": [
         "final"
     ],
@@ -145,6 +145,41 @@
             "internal": null,
             "dispatches": [
                 "MyVendor\\MyExtension\\Event\\AfterThingSavedEvent"
+            ],
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingService"
+        },
+        {
+            "name": "delete",
+            "visibility": "public",
+            "modifiers": [],
+            "parameters": [
+                {
+                    "name": "uid",
+                    "type": "int",
+                    "default": null,
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                },
+                {
+                    "name": "eventDispatcher",
+                    "type": "?\\Psr\\EventDispatcher\\EventDispatcherInterface",
+                    "default": "null",
+                    "variadic": false,
+                    "byReference": false,
+                    "description": ""
+                }
+            ],
+            "returns": {
+                "type": "void",
+                "description": ""
+            },
+            "summary": "Deletes a thing, and tells the listeners about it if there is a dispatcher.",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "dispatches": [
+                "MyVendor\\MyExtension\\Event\\AfterThingDeletedEvent"
             ],
             "declaredIn": "MyVendor\\MyExtension\\Service\\ThingService"
         },

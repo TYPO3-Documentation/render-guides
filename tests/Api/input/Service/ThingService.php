@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MyVendor\MyExtension\Service;
 
 use MyVendor\MyExtension\Enum\ThingState;
+use MyVendor\MyExtension\Event\AfterThingDeletedEvent;
 use MyVendor\MyExtension\Event\AfterThingSavedEvent;
 use MyVendor\MyExtension\Event\BeforeThingSavedEvent;
 use MyVendor\MyExtension\Message\ThingSavedMessage;
@@ -46,6 +47,15 @@ final class ThingService extends AbstractService implements ThingServiceInterfac
     public function notify(AfterThingSavedEvent $event): AfterThingSavedEvent
     {
         return $this->eventDispatcher->dispatch($event);
+    }
+
+    /**
+     * Deletes a thing, and tells the listeners about it if there is a dispatcher.
+     */
+    public function delete(int $uid, ?EventDispatcherInterface $eventDispatcher = null): void
+    {
+        // A dispatcher that can be null
+        $eventDispatcher?->dispatch(new AfterThingDeletedEvent($uid));
     }
 
     /**

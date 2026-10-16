@@ -59,6 +59,7 @@ check_page() {
 }
 check_page MyVendor-MyExtension-Service-ThingService.html 'Dispatched events'
 check_page MyVendor-MyExtension-Event-AfterThingSavedEvent.html 'Dispatched by'
+check_page MyVendor-MyExtension-Event-AfterThingDeletedEvent.html 'Dispatched by'
 
 if [ "$failed" -eq 0 ]; then
     echo "The API test passed."
