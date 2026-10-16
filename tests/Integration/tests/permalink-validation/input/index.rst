@@ -4,7 +4,7 @@
 Permalink validation
 ====================
 
-Three forms resolve while rendering and answer 404 on the published route.
+Some forms resolve while rendering and answer 404 on the published route.
 
 A link without a manual, whose anchor is also unnormalised -- the
 suggested replacement has to carry the normalised form:
@@ -19,14 +19,12 @@ And one written correctly, which must stay silent:
 
 `Correct <https://docs.typo3.org/permalink/permalinktest:permalink-validation>`__
 
-A third-party key the route reads as a different manual, because it replaces
-the first hyphen with a slash:
+Manual keys with a slash resolve and must stay silent: the route uses
+them as written, also with a hyphen in the package or the vendor name.
+"typo3/…" maps to /c/:
 
 `Interlink key <https://docs.typo3.org/permalink/friendsoftypo3/content-blocks:field-types>`__
-
-These two resolve and must stay silent -- "typo3/…" maps to /c/, and a key
-without a hyphen has nothing for the route to replace:
-
+`Vendor with a hyphen <https://docs.typo3.org/permalink/web-vision/deepltranslate-core:start>`__
 `Core extension <https://docs.typo3.org/permalink/typo3/cms-form:concepts-configuration>`__
 `No hyphen <https://docs.typo3.org/permalink/georgringer/news:start>`__
 

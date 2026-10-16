@@ -1,0 +1,1 @@
+[2023-01-01T12:00:00.000000+00:00] app.WARNING: The permalink "https://docs.typo3.org/permalink/slashed-shortcode" names no manual and resolves to 404. Write "web-vision/deepltranslate-core:slashed-shortcode". {"rst-file":"index.rst"} []
