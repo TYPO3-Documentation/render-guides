@@ -261,6 +261,10 @@ final class Typo3ApiClassDirective extends BaseDirective
     private function renderCase(array $case, ApiClassSettings $settings): string
     {
         $lines = ['..  php:case:: ' . $this->string($case, 'name')];
+        $value = $this->string($case, 'value');
+        if ($value !== '') {
+            $lines[] = self::INDENT . ':value: ' . $value;
+        }
 
         return $this->renderMember($lines, $case, $settings);
     }

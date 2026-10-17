@@ -1,0 +1,10 @@
+{#- The colon separates the name from the value, so a case without a value
+    has none. -#}
+<dl class="php case">
+    <dt class="sig sig-object php" {%- if not node.noindex %} id="{{ node.id }}"{% endif -%}>
+        <em class="property"><span class="pre">case</span></em>
+        {{ renderNode(node.memberName) }} {% if node.backedValue -%}: <span class="pre">{{ node.backedValue }}</span> {% endif -%}
+        {% include "body/directive/php/partials/linkToSnippet.html.twig" %}
+    </dt>
+    <dd>{{ renderNode(node.value) }}</dd>
+</dl>
