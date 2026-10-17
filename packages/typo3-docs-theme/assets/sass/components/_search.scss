@@ -84,6 +84,12 @@
         }
     }
 
+    &__shortcut {
+        @include inline-box; // like the :kbd: text role
+        flex-shrink: 0;
+        margin-right: -1.5rem; // sit where the clear button does, inside the wrapper's padding
+    }
+
     &__clear {
         position: absolute;
         right: 1rem;

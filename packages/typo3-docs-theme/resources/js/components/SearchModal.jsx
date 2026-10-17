@@ -237,6 +237,11 @@ const SearchModal = ({ isOpen, onClose }) => {
                             onChange={handleSearchChange}
                             onKeyDown={handleKeyDown}
                         />
+                        {!searchQuery && scopes.length === 0 && (
+                            <kbd className="search-modal__shortcut d-none d-md-block" aria-hidden="true">
+                                {/mac/i.test(navigator.platform) ? '⌘' : 'Ctrl'} K
+                            </kbd>
+                        )}
                         {(searchQuery || scopes.length > 0) && (
                             <button
                                 className="search-modal__clear"

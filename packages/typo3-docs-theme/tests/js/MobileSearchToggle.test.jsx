@@ -3,13 +3,13 @@
  * reveal a panel containing nothing but another "Search" button instead
  * of opening the search modal directly.
  *
- * Covers both entry points into SearchModal: the mobile #search-toggle
- * (forwarded via menu-expandable.js) and GlobalSearch's own visible
- * desktop button.
+ * Covers the entry points into SearchModal: the mobile #search-toggle
+ * (forwarded via menu-expandable.js), GlobalSearch's own visible
+ * desktop button, and the Ctrl/Cmd+K shortcut.
  */
 import React from 'react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, fireEvent } from '@testing-library/react';
 import GlobalSearch from '../../resources/js/components/GlobalSearch';
 
 beforeEach(() => {
@@ -47,5 +47,36 @@ describe('search modal trigger', () => {
         });
 
         expect(document.getElementById('search-modal')?.open).toBe(true);
+    });
+
+    it.each([['Ctrl', { ctrlKey: true }], ['Cmd', { metaKey: true }]])('keyboard: %s+K opens the modal', (_, modifier) => {
+        render(<GlobalSearch />, { container: document.getElementById('global-search-root') });
+
+        act(() => {
+            fireEvent.keyDown(document, { key: 'k', ...modifier });
+        });
+
+        expect(document.getElementById('search-modal')?.open).toBe(true);
+    });
+
+    it('keyboard: K without a modifier does nothing', () => {
+        render(<GlobalSearch />, { container: document.getElementById('global-search-root') });
+
+        act(() => {
+            fireEvent.keyDown(document, { key: 'k' });
+        });
+
+        expect(document.getElementById('search-modal')).toBeNull();
+    });
+
+    it('keyboard: the search results page opens only one modal', () => {
+        render(<GlobalSearch />, { container: document.getElementById('global-search-root') });
+        render(<GlobalSearch displayInput={true} />);
+
+        act(() => {
+            fireEvent.keyDown(document, { key: 'k', ctrlKey: true });
+        });
+
+        expect(document.querySelectorAll('#search-modal')).toHaveLength(1);
     });
 });
