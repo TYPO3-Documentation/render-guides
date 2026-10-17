@@ -63,7 +63,9 @@ final class RecordedResponses
 
     private function record(string $url, string $file): ?string
     {
-        $body = @file_get_contents($url, false, stream_context_create(['http' => ['timeout' => 60, 'ignore_errors' => false]]));
+        // The TER answers a request without "Accept" with an error, and PHP
+        // sends none; curl, which a render uses, sends "*/*".
+        $body = @file_get_contents($url, false, stream_context_create(['http' => ['timeout' => 60, 'ignore_errors' => false, 'header' => 'Accept: */*']]));
         if ($body === false) {
             return null;
         }

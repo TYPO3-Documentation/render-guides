@@ -28,6 +28,8 @@ final class ComposerPackage
     private function __construct(
         public readonly string $name,
         public readonly string $type,
+        public readonly string $extensionKey = '',
+        public readonly string $source = '',
     ) {}
 
     public static function findFor(string $input): ?self
@@ -45,8 +47,17 @@ final class ComposerPackage
             }
 
             $type = $composer['type'] ?? null;
+            $typo3 = is_array($composer['extra'] ?? null) ? ($composer['extra']['typo3/cms'] ?? null) : null;
+            $extensionKey = is_array($typo3) ? ($typo3['extension-key'] ?? null) : null;
+            $support = $composer['support'] ?? null;
+            $source = is_array($support) ? ($support['source'] ?? null) : null;
 
-            return new self($name, is_string($type) ? $type : '');
+            return new self(
+                $name,
+                is_string($type) ? $type : '',
+                is_string($extensionKey) ? $extensionKey : '',
+                is_string($source) ? $source : '',
+            );
         }
 
         return null;
