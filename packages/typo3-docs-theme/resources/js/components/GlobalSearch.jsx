@@ -13,6 +13,18 @@ const GlobalSearch = ({ displayInput = false }) => {
         }
     }, []);
 
+    useEffect(() => {
+        if (displayInput) return; // only the header instance listens, or the search page opens two modals
+        const onKeyDown = (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault(); // browsers use Ctrl+K to focus the address bar
+                setIsModalOpen(true);
+            }
+        };
+        document.addEventListener('keydown', onKeyDown);
+        return () => document.removeEventListener('keydown', onKeyDown);
+    }, [displayInput]);
+
     const handleButtonClick = (e) => {
         e.preventDefault();
         setIsModalOpen(true);
@@ -28,7 +40,7 @@ const GlobalSearch = ({ displayInput = false }) => {
                 <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value={searchQuery}></input>
                 <button class="btn btn-light"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
             </div> :
-                <button onClick={handleButtonClick} class="btn btn-light d-none d-lg-inline-flex"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>}
+                <button onClick={handleButtonClick} aria-keyshortcuts="Control+K Meta+K" class="btn btn-light d-none d-lg-inline-flex"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>}
         </>
     );
 };
