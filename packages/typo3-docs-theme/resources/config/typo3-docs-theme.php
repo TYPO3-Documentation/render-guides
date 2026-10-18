@@ -15,6 +15,7 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckConfvalFieldsNodeTransf
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckInterlinkShortcodeNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CheckLinkTextNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CodeInHeadlineNodeTransformer;
+use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\TableCellDirectivesTransformer;
 use T3Docs\Typo3DocsTheme\ConfvalFields\ConfvalFields;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectFileObjectsTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\CollectTypoScriptOptionsTransformer;
@@ -167,6 +168,8 @@ return static function (ContainerConfigurator $container): void {
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->public()
         ->set(CodeInHeadlineNodeTransformer::class)
+        ->tag('phpdoc.guides.compiler.nodeTransformers')
+        ->set(TableCellDirectivesTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
         ->set(CheckConfvalFieldsNodeTransformer::class)
         ->tag('phpdoc.guides.compiler.nodeTransformers')
