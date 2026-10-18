@@ -11,7 +11,9 @@ code {
 
 .code-block {
     margin-bottom: 0;
-    padding: 0.75rem 2rem 0.75rem 0.75rem;
+    padding: 0.75rem;
+    // Clear of the buttons at the end of a line: 2.25rem for each.
+    padding-right: calc(var(--code-block-buttons, 1) * 2.25rem + 0.75rem);
 
     & [data-line-number]:before {
         color: $gray-600;
@@ -62,29 +64,51 @@ code {
     line-height: 125%;
     margin-bottom: 1rem;
     position: relative;
+
+    // The copy button is always there; folding and GitHub add one each.
+
+    &:has(.code-block-unfold:not([hidden]), .code-block-edit) {
+        --code-block-buttons: 2;
+    }
+
+    &:has(.code-block-unfold:not([hidden])):has(.code-block-edit) {
+        --code-block-buttons: 3;
+    }
 }
 
 .code-block-actions {
     display: flex;
+    gap: 0.25rem;
     position: absolute;
-    right: 0.2em;
-    top: 0.1em;
+    right: 0.375rem;
+    top: 0.375rem;
+    user-select: none;
 }
 
 .code-block-copy,
 .code-block-unfold,
 a.code-block-edit {
-    background: none;
+    aspect-ratio: 1;
+    background-color: $gray-200;
     border: none;
-    padding: 0.75rem;
+    border-radius: $border-radius;
+    color: $black;
+    display: grid;
+    padding: 0;
+    place-items: center;
     text-decoration: none !important;
-    height: min-content;
+    width: 2rem;
 
     .icon {
         opacity: 0.5;
         transition: opacity 0.3s;
+    }
 
-        &:hover {
+    &:hover {
+        color: $secondary;
+        outline: 2px solid $secondary;
+
+        .icon {
             opacity: 1;
         }
     }
@@ -101,8 +125,11 @@ a.code-block-edit {
     font-size: 80%;
     padding: 2px 5px;
     position: absolute;
-    right: 40px;
-    top: 8px;
+    // Beside the copy button, which is the last of the actions.
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
 
     &:after {
         border: 10px solid;
