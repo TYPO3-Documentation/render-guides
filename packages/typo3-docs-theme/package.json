@@ -16,7 +16,7 @@
         "@vitejs/plugin-react": "^6.1.2",
         "jsdom": "^30.1.2",
         "postcss-scss": "^4.0.9",
-        "sass": "^1.105.1",
+        "sass": "^1.105.2",
         "stylelint": "^17.16.0",
         "vite": "^8.3.4",
         "vitest": "^5.0.4"
