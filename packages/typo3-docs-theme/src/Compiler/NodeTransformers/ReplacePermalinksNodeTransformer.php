@@ -68,16 +68,24 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
     public function leaveNode(Node $node, CompilerContextInterface $compilerContext): Node
     {
         assert($node instanceof HyperLinkNode);
-        if (!str_starts_with($node->getTargetReference(), self::PERMALINK_PREFIX)) {
-            return $node;
+        $permalink = $node->getTargetReference();
+        // A link to a named link, such as "`ModifyRenderedRecordEvent`_",
+        // targets the name. When the named link is a permalink, the link
+        // goes where that permalink goes. Its definition was reported already.
+        $named = !str_starts_with($permalink, self::PERMALINK_PREFIX);
+        if ($named) {
+            $permalink = $compilerContext->getDocumentNode()->getLink($permalink) ?? '';
+            if (!str_starts_with($permalink, self::PERMALINK_PREFIX)) {
+                return $node;
+            }
         }
 
         $value = $node->getValue();
-        if ($value === $node->getTargetReference()) {
+        if ($value === $permalink) {
             $value = '';
         }
 
-        $url = str_replace(self::PERMALINK_PREFIX, '', $node->getTargetReference());
+        $url = str_replace(self::PERMALINK_PREFIX, '', $permalink);
         $version = null;
         $interlink = null;
         if (str_contains($url, '@')) {
@@ -88,12 +96,9 @@ final class ReplacePermalinksNodeTransformer implements NodeTransformer
             [$interlink, $url] = explode(':', $url, 2);
         }
 
-        $this->reportUnresolvableByTheRoute(
-            $node->getTargetReference(),
-            $interlink,
-            $url,
-            $compilerContext,
-        );
+        if (!$named) {
+            $this->reportUnresolvableByTheRoute($permalink, $interlink, $url, $compilerContext);
+        }
 
         if ($version !== null && $interlink !== null) {
             $interlink = $interlink . '/' . $version;
