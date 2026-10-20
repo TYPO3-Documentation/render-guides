@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f6ab16976f1447c64d550bcb695dc6f",
+    "content-hash": "0dfd346204bbd0d15df0f42c8b87fc7f",
     "packages": [
         {
             "name": "brotkrueml/twig-codehighlight",
@@ -5410,26 +5410,27 @@
         },
         {
             "name": "t3docs/guides-php-domain",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3-Documentation/guides-php-domain.git",
-                "reference": "5c3484d4f31242cdc71823794e4a016d519680c3"
+                "reference": "d476c7d97f2674082dafbc06c906a0f82198c15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/5c3484d4f31242cdc71823794e4a016d519680c3",
-                "reference": "5c3484d4f31242cdc71823794e4a016d519680c3",
+                "url": "https://api.github.com/repos/TYPO3-Documentation/guides-php-domain/zipball/d476c7d97f2674082dafbc06c906a0f82198c15f",
+                "reference": "d476c7d97f2674082dafbc06c906a0f82198c15f",
                 "shasum": ""
             },
             "require": {
+                "php": "^8.2",
                 "phpdocumentor/guides": "^1.0",
                 "phpdocumentor/guides-restructured-text": "^1.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.39",
                 "friendsofphp/php-cs-fixer": "^3.39",
-                "phpdocumentor/guides-cli": "^0.3",
+                "phpdocumentor/guides-cli": "^1.0",
                 "phpstan/extension-installer": "^1.3",
                 "phpstan/phpstan": "^1.10.56",
                 "phpstan/phpstan-strict-rules": "^1.5",
@@ -5451,9 +5452,9 @@
             "homepage": "https://docs.typo3.org",
             "support": {
                 "issues": "https://github.com/TYPO3-Documentation/guides-php-domain/issues",
-                "source": "https://github.com/TYPO3-Documentation/guides-php-domain/tree/1.2.3"
+                "source": "https://github.com/TYPO3-Documentation/guides-php-domain/tree/1.2.4"
             },
-            "time": "2024-05-17T11:04:53+00:00"
+            "time": "2026-10-19T06:21:01+00:00"
         },
         {
             "name": "twig/twig",
