@@ -8,6 +8,7 @@ use phpDocumentor\Guides\Graphs\Nodes\UmlNode;
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
 use phpDocumentor\Guides\ReferenceResolvers\InterlinkReferenceResolver;
+use phpDocumentor\Guides\ReferenceResolvers\InternalReferenceResolver;
 use phpDocumentor\Guides\RestructuredText\Directives\FigureDirective as BaseFigureDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\ImageDirective as BaseImageDirective;
 use phpDocumentor\Guides\RestructuredText\Directives\IndexDirective as BaseIndexDirective;
@@ -36,6 +37,7 @@ use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3VersionChangeNode;
+use T3Docs\Typo3DocsTheme\ReferenceResolvers\NamedLinkReferenceResolver;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\SelfInterlinkReferenceResolver;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
 use T3Docs\Typo3DocsTheme\Settings\Typo3DocsInputSettings;
@@ -297,6 +299,14 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
                 ->setAutowired(true)
                 ->setArgument('$interlinkResolver', new Reference(self::INNER_INTERLINK_RESOLVER))
                 ->setArgument('$inventoryRepository', new Reference(InventoryRepository::class))
+                ->addTag('phpdoc.guides.reference_resolver');
+        }
+
+        // A reference to a permalink never resolves by the named link that its
+        // own link text defines. @see NamedLinkReferenceResolver
+        if ($container->hasDefinition(InternalReferenceResolver::class)) {
+            $container->removeDefinition(InternalReferenceResolver::class);
+            $container->register(NamedLinkReferenceResolver::class, NamedLinkReferenceResolver::class)
                 ->addTag('phpdoc.guides.reference_resolver');
         }
 
