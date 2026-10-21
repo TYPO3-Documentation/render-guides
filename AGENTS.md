@@ -117,7 +117,7 @@ In short — prefix the summary with `[TASK]`, `[BUGFIX]`, or `[FEATURE]`,
 explain in the body why the change is needed rather than what the diff already
 shows, and end with the trailers:
 
-    Assisted-by: Claude Opus 5 <noreply@anthropic.com>
+    Assisted-by: Product Version <noreply@example.com>
     Signed-off-by: Jane Doe
 
 `Assisted-by:` names the tool or model whenever AI helped with more than a
