@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phar xmlns="https://phar.io/xml/manifest/1.0">
+    <contains name="t3docs/typo3-api-documentation" version="1.0.0" type="extension">
+        <extension for="phpdocumentor/phpdocumentor" compatible="^3.5"/>
+    </contains>
+
+    <copyright>
+        <author name="TYPO3 Documentation Team" email="documentation@typo3.org"/>
+        <license type="MIT" url="https://github.com/TYPO3-Documentation/render-guides/blob/main/LICENSE"/>
+    </copyright>
+
+    <requires>
+        <php version="^8.2"/>
+    </requires>
+
+    <bundles>
+        <component name="T3Docs\Typo3Api\Documentation\Extension" version="1.0.0"/>
+    </bundles>
+</phar>

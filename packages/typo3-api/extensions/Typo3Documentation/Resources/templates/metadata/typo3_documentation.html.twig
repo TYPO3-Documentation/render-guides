@@ -1,0 +1,21 @@
+<h5 class="phpdocumentor-typo3-documentation__title" id="documentation">Documentation</h5>
+{% for manual in metadata.manuals %}
+    <details class="phpdocumentor-typo3-documentation"{% if manual.count <= 10 %} open{% endif %}>
+        <summary>{{ manual.name }} ({{ manual.count }})</summary>
+        {% for group in manual.groups %}
+            {% if group.version is not null %}
+                <h6 class="phpdocumentor-typo3-documentation__version">{{ group.version }}</h6>
+            {% endif %}
+            <ul>
+                {% for place in group.places %}
+                    <li class="-{{ place.kind }}">
+                        <a href="{{ place.url }}">{{ place.title }}</a>
+                        {%- if place.kind == 'definition' %} <span class="phpdocumentor-typo3-documentation__kind">reference</span>
+                        {%- elseif place.kind == 'code' %} <span class="phpdocumentor-typo3-documentation__kind">example</span>
+                        {%- endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </details>
+{% endfor %}

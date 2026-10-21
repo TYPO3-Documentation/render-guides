@@ -1,0 +1,45 @@
+{
+    "project": {
+        "title": "Example Explained",
+        "version": "main",
+        "permalink": "https://docs.typo3.org/permalink/t3example:{anchor}@main"
+    },
+    "classes": {
+        "\\MyVendor\\MyExtension\\Event\\AfterThingSavedEvent": {
+            "type": "class",
+            "places": [
+                {"path": "Things/Saving", "anchor": "things-saving", "kind": "code"},
+                {"path": "Things/Saving", "anchor": "things-saving-react", "kind": "inline"}
+            ]
+        },
+        "\\MyVendor\\MyExtension\\Service\\ThingService": {
+            "type": "class",
+            "places": [
+                {"path": "Things/Index", "anchor": "things", "kind": "inline"},
+                {"path": "Things/Saving", "anchor": "things-saving", "kind": "code"},
+                {"path": "Things/ThingService", "anchor": "myvendor-myextension-service-thingservice", "kind": "definition"},
+                {"path": "Things/ThingService", "anchor": "myvendor-myextension-service-thingservice", "kind": "code"}
+            ]
+        },
+        "\\MyVendor\\MyExtension\\Enum\\ThingState": {
+            "places": [
+                {"path": "Things/Index", "anchor": "things", "kind": "inline"}
+            ]
+        },
+        "\\MyVendor\\MyExtension\\Service\\LoggingTrait": {
+            "places": [
+                {"path": "Things/Index", "anchor": "things", "kind": "inline"}
+            ]
+        },
+        "\\MyVendor\\MyExtension\\Service\\ThingServiceInterface": {
+            "places": [
+                {"path": "Things/Index", "anchor": "things", "kind": "inline"}
+            ]
+        },
+        "\\MyVendor\\MyExtension": {
+            "places": [
+                {"path": "Things/Index", "anchor": "things", "kind": "code"}
+            ]
+        }
+    }
+}

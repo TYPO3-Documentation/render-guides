@@ -1,0 +1,5 @@
+{% extends 'default/interface.html.twig' %}
+
+{% block on_this_page %}
+    {{ include('components/on-this-page.html.twig', {toc: parent()}) }}
+{% endblock %}

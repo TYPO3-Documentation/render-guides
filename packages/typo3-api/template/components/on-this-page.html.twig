@@ -1,0 +1,15 @@
+{# "On this page" of the default template, with a link to where the manuals
+   document the type as the first entry below "Table Of Contents". Each type
+   writes the box itself, so it is changed here rather than copied four
+   times. The markup to find is the same in all four; if a new phpDocumentor
+   changes it, the link is missing and "make test-api" fails. #}
+{% set entries %}
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+{% endset %}
+{% if node.metadata.typo3_documentation is defined %}
+    {{ toc|replace({(entries): entries ~ '<li><a href="' ~ link(node) ~ '#documentation">Documentation</a></li>'})|raw }}
+{% else %}
+    {{ toc|raw }}
+{% endif %}
