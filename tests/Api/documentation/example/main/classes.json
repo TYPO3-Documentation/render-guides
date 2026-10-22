@@ -17,6 +17,7 @@
             "places": [
                 {"path": "Things/Index", "anchor": "things", "kind": "inline"},
                 {"path": "Things/Saving", "anchor": "things-saving", "kind": "code"},
+                {"path": "Things/ThingService", "anchor": "things-thingservice", "kind": "inline"},
                 {"path": "Things/ThingService", "anchor": "myvendor-myextension-service-thingservice", "kind": "definition"},
                 {"path": "Things/ThingService", "anchor": "myvendor-myextension-service-thingservice", "kind": "code"}
             ]
