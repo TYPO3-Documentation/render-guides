@@ -1,0 +1,12 @@
+{
+    "name": "georgringer/news",
+    "type": "typo3-cms-extension",
+    "support": {
+        "source": "https://github.com/georgringer/news"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "news"
+        }
+    }
+}

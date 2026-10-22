@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use T3Docs\Typo3DocsTheme\Api\TerService;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\VersionHandling\Packagist\PackagistService;
 
@@ -37,7 +38,7 @@ final class RecordedHttpExtension extends Extension implements CompilerPassInter
         $container->register(HttpClientInterface::class, MockHttpClient::class)
             ->setArguments([new Reference(RecordedHttpResponder::class)]);
 
-        foreach ([Typo3ApiService::class, PackagistService::class] as $service) {
+        foreach ([Typo3ApiService::class, PackagistService::class, TerService::class] as $service) {
             if ($container->hasDefinition($service)) {
                 $container->getDefinition($service)
                     ->addMethodCall('fetchWith', [new Reference(RecordedResponses::class)]);

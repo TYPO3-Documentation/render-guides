@@ -3,7 +3,11 @@
     <div class="frame frame-ruler-before frame-background-dark">
         <div class="frame-container">
             <div class="frame-inner">
-                {% if env.projectNode.variables.project_home or env.projectNode.variables.project_contact or env.projectNode.variables.project_issues or env.projectNode.variables.project_repository -%}
+                {# Where else an extension is found, derived from its composer.json.
+                    A repository set in guides.xml wins over the derived one. -#}
+                {%- set extensionLinks = getExtensionLinks() -%}
+                {%- set repository = env.projectNode.variables.project_repository ? renderNode(env.projectNode.variables.project_repository) : extensionLinks.repository -%}
+                {% if env.projectNode.variables.project_home or env.projectNode.variables.project_contact or env.projectNode.variables.project_issues or repository or extensionLinks.packagist or extensionLinks.ter -%}
                     <ul class="footer-simplemenu">
                         {% if env.projectNode.variables.project_home -%}
                             <li><a href="{{ renderNode(env.projectNode.variables.project_home) }}" title="Home" rel="nofollow noopener"><span>Home</span></a></li>
@@ -14,8 +18,14 @@
                         {% if env.projectNode.variables.project_issues -%}
                             <li><a href="{{ renderNode(env.projectNode.variables.project_issues) }}" rel="nofollow noopener" title="Issues"><span>Issues</span></a></li>
                         {% endif %}
-                        {% if env.projectNode.variables.project_repository -%}
-                            <li><a href="{{ renderNode(env.projectNode.variables.project_repository) }}" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
+                        {% if repository -%}
+                            <li><a href="{{ repository }}" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
+                        {% endif %}
+                        {% if extensionLinks.packagist -%}
+                            <li><a href="{{ extensionLinks.packagist }}" rel="nofollow noopener" title="Packagist"><span>Packagist</span></a></li>
+                        {% endif %}
+                        {% if extensionLinks.ter -%}
+                            <li><a href="{{ extensionLinks.ter }}" rel="nofollow noopener" title="TYPO3 Extension Repository"><span>TER</span></a></li>
                         {% endif %}
                     </ul>
                 {%- endif %}

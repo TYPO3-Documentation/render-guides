@@ -1,0 +1,9 @@
+{
+    "name": "my-vendor/my-extension",
+    "type": "typo3-cms-extension",
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "my_extension_not_published"
+        }
+    }
+}

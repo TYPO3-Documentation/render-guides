@@ -28,6 +28,7 @@ use RuntimeException;
 use Throwable;
 use T3Docs\GuidesPhpDomain\Nodes\PhpComponentNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpMemberNode;
+use T3Docs\Typo3DocsTheme\ExtensionLinks\ExtensionLinks;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
 use T3Docs\Typo3DocsTheme\Deployment\DeploymentMode;
 use T3Docs\Typo3DocsTheme\Inventory\Typo3VersionService;
@@ -99,6 +100,7 @@ final class TwigExtension extends AbstractExtension
         private readonly DeploymentMode                $deploymentMode,
         private readonly SearchFacets                  $searchFacets,
         private readonly ConfvalVersions               $confvalVersions,
+        private readonly ExtensionLinks                $extensionLinks,
     ) {
         $this->typo3AzureEdgeURI = $deploymentMode->azureEdgeUri();
     }
@@ -112,6 +114,7 @@ final class TwigExtension extends AbstractExtension
             new TwigFunction('getEditOnGitHubLink', $this->getEditOnGitHubLink(...), ['needs_context' => true]),
             new TwigFunction('getEditOnGitHubLinkFromPath', $this->getEditOnGitHubLinkFromPath(...), ['needs_context' => true]),
             new TwigFunction('getReportIssueLink', $this->getReportIssueLink(...), ['needs_context' => true]),
+            new TwigFunction('getExtensionLinks', $this->extensionLinks->getLinks(...)),
             new TwigFunction('getCurrentFilename', $this->getCurrentFilename(...), ['needs_context' => true]),
             new TwigFunction('sourceFilename', $this->getSourceFilename(...), ['needs_context' => true]),
             new TwigFunction('markdownAlternate', $this->getMarkdownAlternate(...), ['needs_context' => true]),
