@@ -1,0 +1,40 @@
+{
+    "manuals": {
+        "t3example": {
+            "name": "Example Explained",
+            "group": "References",
+            "versions": [
+                {"version": "14.3", "base": "example/14.3/"},
+                {"version": "main", "base": "example/main/"}
+            ]
+        },
+        "changelog": {
+            "name": "Example Changelog",
+            "group": "References",
+            "versions": [
+                {"version": "main", "base": "changelog/main/"}
+            ]
+        },
+        "t3old": {
+            "name": "Old Guide",
+            "group": "Guides",
+            "versions": [
+                {"version": "14.3", "base": "old/14.3/"}
+            ]
+        },
+        "t3excluded": {
+            "name": "Excluded Guide",
+            "group": "Contribution",
+            "versions": [
+                {"version": "main", "base": "excluded/main/"}
+            ]
+        },
+        "t3missing": {
+            "name": "Unrendered Guide",
+            "group": "Guides",
+            "versions": [
+                {"version": "main", "base": "missing/main/"}
+            ]
+        }
+    }
+}

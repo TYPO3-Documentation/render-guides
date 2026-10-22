@@ -100,8 +100,9 @@ extensions in :path:`packages/typo3-api`:
 
 The command renders the classes in :path:`tests/Api/input` with the
 phpDocumentor image that `PHPDOC_IMAGE` in the :file:`Makefile` names. It
-compares the JSON files with :path:`tests/Api/expected`, and checks that the
-HTML pages show the PSR-14 events. It needs Docker.
+compares the JSON files with :path:`tests/Api/expected`. It also checks that
+the HTML pages show the PSR-14 events and the places in the manuals of
+:path:`tests/Api/documentation`. It needs Docker.
 
 If the JSON changes on purpose, look at the difference. Then copy
 :path:`tests/Api/temp/json` over :path:`tests/Api/expected`.
@@ -194,3 +195,48 @@ shows the following details that a snippet leaves out or gets wrong:
     example
     :php-short:`\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT`
     instead of `'left'`.
+
+..  _api-class-documentation:
+
+Where the manuals speak of a type
+=================================
+
+The HTML page of a type on api.typo3.org lists the places in the manuals that
+speak of the type. Each manual publishes these places in its
+:file:`classes.json`. The page has one link to each section, with one of these
+marks:
+
+reference
+    The section documents the type.
+
+example
+    The section uses the type only in a code example.
+
+No mark
+    The section names the type in its text.
+
+The Changelog comes after the other manuals, with its entries grouped by
+release, newest first.
+
+The phpDocumentor extension in
+:path:`packages/typo3-api/extensions/Typo3Documentation` reads the manuals when
+the nightly build of api.typo3.org runs. Two settings in
+:file:`packages/typo3-api/phpdoc.dist.xml` configure it:
+
+`typo3.documentation.manuals`
+    The URL of the :file:`manuals.json` of the docs homepage. This file lists
+    every manual of the main menu with its versions. Without the setting, the
+    pages list no places.
+
+`typo3.documentation.exclude`
+    The interlink shortcodes of the manuals that the pages do not list,
+    separated by commas. The setting excludes How to Document, which shows
+    classes only to explain the markup that documents them.
+
+Each version of the API lists the same version of a manual. A manual that has
+only the version `main`, such as the Changelog, is listed for every version of
+the API. The Changelog then lists only the entries up to the version of the
+API.
+
+A new place shows up on api.typo3.org after the next render of the manual
+and the next build of api.typo3.org.

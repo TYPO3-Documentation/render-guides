@@ -1,0 +1,15 @@
+{
+    "project": {
+        "title": "Old Guide",
+        "version": "14.3",
+        "permalink": "https://docs.typo3.org/permalink/t3old:{anchor}@14.3"
+    },
+    "classes": {
+        "\\MyVendor\\MyExtension\\Service\\ThingService": {
+            "type": "class",
+            "places": [
+                {"path": "Index", "anchor": "start", "kind": "inline"}
+            ]
+        }
+    }
+}

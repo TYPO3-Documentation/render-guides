@@ -1,0 +1,19 @@
+{
+    "project": {
+        "title": "Example Changelog",
+        "version": "main",
+        "permalink": "https://docs.typo3.org/permalink/changelog:{anchor}"
+    },
+    "classes": {
+        "\\MyVendor\\MyExtension\\Service\\ThingService": {
+            "type": "class",
+            "places": [
+                {"path": "Changelog/12.4.x/Important-100-ThingService", "typo3-version": "12.4.x", "anchor": "important-100", "kind": "inline"},
+                {"path": "Changelog/14.0/Feature-300-SaveThingsTwice", "typo3-version": "14.0", "anchor": "feature-300", "section": "impact", "kind": "inline", "members": ["->save()"]},
+                {"path": "Changelog/14.0/Breaking-200-ThingServiceIsFinal", "typo3-version": "14.0", "anchor": "breaking-200", "kind": "inline"},
+                {"path": "Changelog/14.0/Breaking-200-ThingServiceIsFinal", "typo3-version": "14.0", "anchor": "breaking-200", "section": "migration", "kind": "code"},
+                {"path": "Changelog/15.0/Deprecation-400-ThingService", "typo3-version": "15.0", "anchor": "deprecation-400", "kind": "inline"}
+            ]
+        }
+    }
+}

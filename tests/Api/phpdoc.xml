@@ -27,5 +27,7 @@
     </version>
     <setting name="graphs.enabled" value="false"/>
     <setting name="template.typo3_version" value="main" />
+    <setting name="typo3.documentation.manuals" value="documentation/manuals.json" />
+    <setting name="typo3.documentation.exclude" value="t3other, t3excluded" />
     <template name=".phpdoc/template" />
 </phpdocumentor>
