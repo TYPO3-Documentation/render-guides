@@ -80,8 +80,13 @@ final class Typo3ApiClassDirective extends BaseDirective
 
         $type = $this->typo3ApiService->getTypeApi($fqn);
         if ($type === null) {
+            // Still a warning where the API did not answer: the page would
+            // be published without the type.
+            $failure = $this->typo3ApiService->getTypeFailure($fqn);
             $this->logger->warning(
-                sprintf('The TYPO3 API does not document "%s". Check the name, or whether the TYPO3 version of this manual has it.', $fqn),
+                $failure !== ''
+                    ? sprintf('The API of "%s" is missing: %s', $fqn, $failure)
+                    : sprintf('The TYPO3 API does not document "%s". Check the name, or whether the TYPO3 version of this manual has it.', $fqn),
                 $blockContext->getLoggerInformation(),
             );
             return new CollectionNode([]);
