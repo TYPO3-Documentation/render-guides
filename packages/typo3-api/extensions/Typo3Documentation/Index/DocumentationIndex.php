@@ -107,8 +107,10 @@ final class DocumentationIndex
     }
 
     /**
-     * One place for each anchor: a section that documents a class and also
-     * shows it in an example is listed once, as the more telling kind.
+     * One place for each title of a page: a section that documents a class
+     * and also shows it in an example is listed once, as the more telling
+     * kind. So is a page about a class that mentions it at the top and
+     * documents it further down, as both are titled by the page.
      *
      * @param list<array<string, mixed>> $places
      * @param array<string, mixed> $inventory
@@ -117,7 +119,7 @@ final class DocumentationIndex
      */
     private function placesOf(array $places, string $typo3Version, array $inventory, string $permalink, string $base): array
     {
-        $byAnchor = [];
+        $byTitle = [];
         foreach ($places as $place) {
             $anchor = (string)($place['anchor'] ?? '');
             $path = (string)($place['path'] ?? '');
@@ -131,16 +133,18 @@ final class DocumentationIndex
                 continue;
             }
 
-            if (isset($byAnchor[$anchor])) {
-                if (array_search($kind, self::KINDS, true) < array_search($byAnchor[$anchor]['kind'], self::KINDS, true)) {
-                    $byAnchor[$anchor]['kind'] = $kind;
-                }
-
+            $title = $this->titleOf($anchor, $path, $inventory);
+            $key = $path . "\n" . $title;
+            if (isset($byTitle[$key])
+                && array_search($kind, self::KINDS, true) >= array_search($byTitle[$key]['kind'], self::KINDS, true)
+            ) {
                 continue;
             }
 
-            $byAnchor[$anchor] = [
-                'title' => $this->titleOf($anchor, $path, $inventory),
+            // The stronger kind also brings its anchor: the definition of
+            // a class is a more exact target than the top of its page.
+            $byTitle[$key] = [
+                'title' => $title,
                 'url' => str_contains($permalink, '{anchor}')
                     ? str_replace('{anchor}', $anchor, $permalink)
                     : $base . $path . '.html#' . $anchor,
@@ -149,7 +153,7 @@ final class DocumentationIndex
             ];
         }
 
-        return array_values($byAnchor);
+        return array_values($byTitle);
     }
 
     /**

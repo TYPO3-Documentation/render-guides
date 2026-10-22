@@ -215,6 +215,11 @@ example
 No mark
     The section names the type in its text.
 
+Two sections of one manual page with the same title get one link. A manual
+page about a type often names the type at the top and documents it further
+down. Both sections have the title of the manual page, so the type gets one
+link to that page, with the mark "reference".
+
 The Changelog comes after the other manuals, with its entries grouped by
 release, newest first.
 
