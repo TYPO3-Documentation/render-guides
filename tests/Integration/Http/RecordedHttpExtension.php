@@ -37,6 +37,9 @@ final class RecordedHttpExtension extends Extension implements CompilerPassInter
             ->setArguments([new Reference(RecordedResponses::class)]);
         $container->register(HttpClientInterface::class, MockHttpClient::class)
             ->setArguments([new Reference(RecordedHttpResponder::class)]);
+        // A recording does not change when asked again; trying a 404 again
+        // would only add a second to each.
+        $container->removeDefinition('t3docs.retrying_http_client');
 
         foreach ([Typo3ApiService::class, PackagistService::class, TerService::class] as $service) {
             if ($container->hasDefinition($service)) {
