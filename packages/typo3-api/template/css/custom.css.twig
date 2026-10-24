@@ -57,3 +57,13 @@ section.phpdocumentor-description {
 .phpdocumentor-content abbr {
     white-space: normal;
 }
+
+/* "On this page" sticks below the header of the theme, as the menu does,
+   and its text starts as far down as that of the menu: the padding of the
+   menu (2rem) and the margin of its list (1rem). */
+.phpdocumentor-on-this-page__content {
+    top: var(--page-header-height);
+    height: calc(100vh - var(--page-header-height));
+    box-sizing: border-box;
+    padding-top: 3rem;
+}
