@@ -1,3 +1,5 @@
+{# The source of a member. The breadcrumb links the source of the type. #}
+{% if not (node is class or node is interface or node is trait or node is enum) %}
 <aside class="phpdocumentor-element-found-in">
 
     <a href="{{ parameter.typo3_github_url }}/{{ parameter.typo3_version }}/{{ node.file.path }}#L{{ node.line }}"
@@ -8,3 +10,4 @@
         On GitHub
     </a>
 </aside>
+{% endif %}

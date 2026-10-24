@@ -1,0 +1,12 @@
+{# The entries of the options menu, see
+   structure/layoutParts/editOnGithubButtons.html.twig of the theme. #}
+<a class="dropdown-item d-flex align-items-center gap-2" href="{{ reportIssueLink }}" rel="nofollow noopener" target="_blank">
+    <i class="fa-solid fa-comment-dots"></i>
+    Give feedback
+</a>
+{% if sourceLink %}
+<a class="dropdown-item d-flex align-items-center gap-2" href="{{ sourceLink }}" rel="nofollow noopener" target="_blank">
+    <i class="fa-solid fa-code"></i>
+    View source
+</a>
+{% endif %}

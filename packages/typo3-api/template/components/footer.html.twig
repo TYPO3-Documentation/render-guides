@@ -1,0 +1,29 @@
+{# The footer of docs.typo3.org, from structure/layoutParts/footer.html.twig
+   of the theme. The API documents the code of the Core, so contact, issues,
+   repository, and copyright are those of the Core Changelog. #}
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                <ul class="footer-simplemenu">
+                    <li><a href="https://api.typo3.org/{{ parameter.typo3_version }}/" title="Home" rel="nofollow noopener"><span>Home</span></a></li>
+                    <li><a href="https://typo3.slack.com/archives/C025BQLFA" title="Contact" rel="nofollow noopener"><span>Contact</span></a></li>
+                    <li><a href="https://forge.typo3.org/projects/typo3cms-core/issues" rel="nofollow noopener" title="Issues"><span>Issues</span></a></li>
+                    <li><a href="https://github.com/typo3/typo3" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
+                </ul>
+                <div class="footer-additional">
+                    <p class="text-center">Last rendered: {{ "now"|date("M d, Y H:i") }}</p>
+                </div>
+                <div class="footer-meta">
+                    <div class="footer-meta-copyright">
+                        &copy; since 1997 by the TYPO3 contributors
+                    </div>
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

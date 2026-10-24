@@ -1,10 +1,11 @@
-<h5 class="phpdocumentor-typo3-documentation__title" id="documentation">Documentation</h5>
+{# A section of the type: an h2 after the shift of the headings. #}
+<h3 class="phpdocumentor-typo3-documentation__title" id="documentation">Documentation</h3>
 {% for manual in metadata.manuals %}
     <details class="phpdocumentor-typo3-documentation"{% if manual.count <= 10 %} open{% endif %}>
         <summary>{{ manual.name }} ({{ manual.count }})</summary>
         {% for group in manual.groups %}
             {% if group.version is not null %}
-                <h6 class="phpdocumentor-typo3-documentation__version">{{ group.version }}</h6>
+                <h4 class="phpdocumentor-typo3-documentation__version">{{ group.version }}</h4>
             {% endif %}
             <ul>
                 {% for place in group.places %}

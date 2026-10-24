@@ -93,6 +93,34 @@ for page in Service-ThingService Service-ThingServiceInterface Service-LoggingTr
 done
 check_no_page MyVendor-MyExtension-Event-AfterThingDeletedEvent.html '#documentation"'
 
+# The pages have the frame of docs.typo3.org, with the theme from the CDN,
+# and the menu marks the namespace of the page.
+check_page MyVendor-MyExtension-Service-ThingService.html 'cdn.typo3.com/typo3documentation/theme/typo3-docs-theme/[0-9.]*/css/theme.css'
+check_page MyVendor-MyExtension-Service-ThingService.html 'class="page-main-navigation"'
+check_page MyVendor-MyExtension-Service-ThingService.html '<li class="active" role="menuitem">'
+
+# As on a page of a manual, the breadcrumb ends with the page and links the
+# source, and the title is the only h1, with the declaration below it.
+check_page MyVendor-MyExtension-Service-ThingService.html '<li aria-current="page" class="breadcrumb-item active">ThingService</li>'
+check_page MyVendor-MyExtension-Service-ThingService.html 'View on GitHub'
+check_page MyVendor-MyExtension-Service-ThingService.html 'typo3cms-core/issues/new?issue\[category_id\]=1004&amp;issue\[subject\]=Problem%20on%20https%3A%2F%2Fapi.typo3.org%2Fmain%2Fclasses%2FMyVendor-MyExtension-Service-ThingService.html&amp;issue\[custom_field_values\]\[4\]=15'
+check_page MyVendor-MyExtension-Service-ThingService.html 'id="options-panel"'
+
+# A long default value is shortened until it is opened, a short one is not.
+check_page MyVendor-MyExtension-Service-ThingRegistry.html 'phpdocumentor-signature__default-value -long'
+check_page MyVendor-MyExtension-Service-ThingRegistry.html '<summary>Show the full value</summary>'
+check_page MyVendor-MyExtension-Service-ThingRegistry.html '<span class="phpdocumentor-signature__default-value">\[\]</span>'
+check_page MyVendor-MyExtension-Service-ThingService.html '<h1 class="phpdocumentor-content__title">ThingService</h1>'
+check_page MyVendor-MyExtension-Service-ThingService.html '<title>ThingService — TYPO3 API main</title>'
+check_page MyVendor-MyExtension-Service-ThingService.html 'final class \\<wbr>MyVendor'
+check_page MyVendor-MyExtension-Enum-ThingState.html 'enum \\<wbr>MyVendor\\<wbr>MyExtension\\<wbr>Enum\\<wbr>ThingState: string'
+for page in Service-ThingService Service-ThingServiceInterface Service-LoggingTrait Enum-ThingState; do
+    if [ "$(grep -c '<h1' "temp/build/classes/MyVendor-MyExtension-$page.html")" -ne 1 ]; then
+        echo "temp/build/classes/MyVendor-MyExtension-$page.html does not have exactly one h1." >&2
+        failed=1
+    fi
+done
+
 if [ "$failed" -eq 0 ]; then
     echo "The API test passed."
 fi
