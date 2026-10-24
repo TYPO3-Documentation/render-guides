@@ -1,6 +1,8 @@
 {% extends 'default/class.html.twig' %}
 {% import 'components/macros/headings.macro.twig' as headings %}
 
+{% block title %}{{ include('components/page-title.html.twig') }}{% endblock %}
+
 {% block content %}
     {{ headings.shift(parent()) }}
 {% endblock %}
