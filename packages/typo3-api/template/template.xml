@@ -18,5 +18,8 @@
         <!-- The theme of docs.typo3.org. Each release of render-guides
              publishes it to the CDN; keep the version at the latest one. -->
         <parameter key="typo3_theme_url">https://cdn.typo3.com/typo3documentation/theme/typo3-docs-theme/0.47.3</parameter>
+        <!-- Where the source of a type is linked; the version of the API and
+             the path of the file follow. -->
+        <parameter key="typo3_github_url">https://github.com/TYPO3/typo3/blob</parameter>
     </parameters>
 </template>

@@ -30,7 +30,6 @@
     </version>
     <setting name="graphs.enabled" value="false"/>
     <setting name="template.color" value="orange"/>
-    <setting name="template.typo3_github_url" value="https://github.com/TYPO3/typo3/blob" />
     <setting name="template.typo3_version" value="main" />
     <!-- Where the manuals speak of a class. How to Document shows classes only
          to explain the markup that documents them. -->
