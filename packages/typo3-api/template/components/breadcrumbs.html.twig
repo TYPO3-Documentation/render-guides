@@ -6,7 +6,8 @@
 <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ path('/') }}">TYPO3 API</a></li>
-        {% for breadcrumb in breadcrumbs %}
+        {# Every type of the Core is in \TYPO3\CMS, so these two say nothing. #}
+        {% for breadcrumb in breadcrumbs|filter(b => (b.fullyQualifiedStructuralElementName ~ '') not in ['\\TYPO3', '\\TYPO3\\CMS']) %}
             <li class="breadcrumb-item"><a href="{{ link(breadcrumb) }}">{{ breadcrumb.name }}</a></li>
         {% endfor %}
         <li aria-current="page" class="breadcrumb-item active">{{ node.name }}</li>
