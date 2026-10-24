@@ -91,3 +91,31 @@ section.phpdocumentor-description {
     font-weight: 600;
     margin: 1rem 0 .5rem;
 }
+
+/* A long default value: its start, and the whole value once opened. */
+.phpdocumentor-signature__default-value.-long details {
+    display: inline;
+}
+
+.phpdocumentor-signature__default-value.-long summary {
+    display: inline;
+    margin-left: .5em;
+    font-family: var(--bs-body-font-family, inherit);
+    color: var(--bs-link-color, inherit);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.phpdocumentor-signature__default-value.-long details[open] summary {
+    display: block;
+    margin: .5em 0;
+}
+
+.phpdocumentor-signature__default-value.-long:has(details[open]) .phpdocumentor-signature__default-start {
+    display: none;
+}
+
+.phpdocumentor-signature__default-full {
+    display: block;
+    white-space: pre-wrap;
+}

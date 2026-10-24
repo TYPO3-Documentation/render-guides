@@ -41,6 +41,18 @@
             "deprecated": null,
             "internal": null,
             "declaredIn": "MyVendor\\MyExtension\\Service\\ThingRegistry"
+        },
+        {
+            "name": "actions",
+            "visibility": "public",
+            "modifiers": [],
+            "type": "array<string,array{label: string, icon: string}>",
+            "default": "['edit' => ['label' => 'LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:edit', 'icon' => 'actions-open'], 'delete' => ['label' => 'LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:delete', 'icon' => 'actions-edit-delete']]",
+            "summary": "",
+            "description": "",
+            "deprecated": null,
+            "internal": null,
+            "declaredIn": "MyVendor\\MyExtension\\Service\\ThingRegistry"
         }
     ],
     "methods": [
