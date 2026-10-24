@@ -67,3 +67,27 @@ section.phpdocumentor-description {
     box-sizing: border-box;
     padding-top: 3rem;
 }
+
+/* Extends, implements, and uses below the title: one line each. */
+.phpdocumentor-element__relations {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: .25rem 1rem;
+}
+
+.phpdocumentor-element__relations dt {
+    font-weight: 600;
+}
+
+.phpdocumentor-element__relations dt,
+.phpdocumentor-element__relations dd {
+    margin: 0;
+    padding: 0;
+}
+
+/* A release of the Changelog groups places; it is no section of its own. */
+.phpdocumentor-typo3-documentation__version {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 1rem 0 .5rem;
+}

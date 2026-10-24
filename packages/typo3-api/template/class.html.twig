@@ -1,4 +1,9 @@
 {% extends 'default/class.html.twig' %}
+{% import 'components/macros/headings.macro.twig' as headings %}
+
+{% block content %}
+    {{ headings.shift(parent()) }}
+{% endblock %}
 
 {% block on_this_page %}
     {{ include('components/on-this-page.html.twig', {toc: parent()}) }}

@@ -1,0 +1,6 @@
+{% extends 'default/namespace.html.twig' %}
+{% import 'components/macros/headings.macro.twig' as headings %}
+
+{% block content %}
+    {{ headings.shift(parent()) }}
+{% endblock %}

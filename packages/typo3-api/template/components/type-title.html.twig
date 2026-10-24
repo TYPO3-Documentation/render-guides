@@ -1,0 +1,28 @@
+{# The title of a class, interface, trait, or enum: the name as the heading,
+   the declaration as PHP writes it, and the types it builds on. The
+   modifiers in the declaration replace the labels "Final" and "Read only"
+   of the default template. The h2 becomes the h1 of the page, see
+   macros/headings.macro.twig. #}
+{% set keyword = node is interface ? 'interface' : node is trait ? 'trait' : node is enum ? 'enum' : 'class' %}
+{% set modifiers = node is class ? (node.isAbstract ? 'abstract ') ~ (node.isFinal ? 'final ') ~ (node.isReadOnly ? 'readonly ') : '' %}
+{% set extends = node is interface ? node.parent : (node is class and node.parent ? [node.parent] : []) %}
+{% set implements = node is class or node is enum ? node.interfaces : [] %}
+{% set uses = node is interface ? [] : node.usedTraits %}
+<h2 class="phpdocumentor-content__title">{{ node.name }}</h2>
+<p class="phpdocumentor-element__declaration"><code class="code-inline" translate="no">{{ modifiers }}{{ keyword }} {{ (node.fullyQualifiedStructuralElementName ~ '')|e|replace({'\\': '\\<wbr>'})|raw }}{% if node is enum and node.backedType %}: {{ node.backedType }}{% endif %}</code></p>
+{% if extends is not empty or implements is not empty or uses is not empty %}
+    <dl class="phpdocumentor-element__relations">
+        {% if extends is not empty %}
+            <dt>Extends</dt>
+            <dd>{% for type in extends %}{{ type|route('class:short') }}{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+        {% endif %}
+        {% if implements is not empty %}
+            <dt>Implements</dt>
+            <dd>{% for type in implements %}{{ type|route('class:short') }}{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+        {% endif %}
+        {% if uses is not empty %}
+            <dt>Uses</dt>
+            <dd>{% for type in uses %}{{ type|route('class:short') }}{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+        {% endif %}
+    </dl>
+{% endif %}
