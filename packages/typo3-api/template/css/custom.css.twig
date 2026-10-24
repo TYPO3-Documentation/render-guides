@@ -46,3 +46,14 @@ section.phpdocumentor-description {
     text-transform: uppercase;
     letter-spacing: .05em;
 }
+
+/* A long class name or type has no space to break at. On a phone it
+   breaks anywhere rather than make the page scroll sideways. */
+.phpdocumentor-content {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.phpdocumentor-content abbr {
+    white-space: normal;
+}

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+{# The frame of a page on docs.typo3.org, from structure/layout.html.twig of
+   the theme, with the theme's CSS and JavaScript from the CDN. The content
+   inside is still that of phpDocumentor. #}
+<html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
     {% block head %}
@@ -16,37 +19,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ renderBaseUrlHeader() }}
     <link rel="icon" href="/favicon.ico"/>
-    <link rel="stylesheet" href="css/normalize.css">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+    <link href="{{ parameter.typo3_theme_url }}/css/theme.css" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
-    {% block stylesheets %}
-    {% endblock %}
-    {% block javascripts %}
-    {% endblock %}
+    <link rel="stylesheet" href="css/template.css">
+    <link href="https://docs.typo3.org/search/" rel="search" title="Search">
+    <script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+    <script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
 </head>
 <body id="top">
-{% include 'components/header.html.twig' %}
-{% set usesPackages = false %}
-
-<main class="phpdocumentor">
-    <div class="phpdocumentor-section">
-        {% include 'components/sidebar.html.twig' %}
-
-        <div class="phpdocumentor-column -nine phpdocumentor-content">
-            {% if block('on_this_page') is defined %}
-            <section>
-                {% endif %}
-                {% block content %}{% endblock %}
-                {% if block('on_this_page') is defined %}
-            </section>
-            <section class="phpdocumentor-on-this-page__sidebar">
-                {{ block('on_this_page') }}
-            </section>
-            {% endif %}
+<div class="page">
+    {% include 'components/header.html.twig' %}
+    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+                    <div id="toc-collapse">
+                        <div aria-label="main navigation" class="toc" role="navigation">
+                            {% include 'components/sidebar.html.twig' %}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content phpdocumentor">
+                    {# The theme styles the headline links and the toggles
+                       of the sections only in an article. #}
+                    <article class="document phpdocumentor-content" role="main">
+                        {% if block('on_this_page') is defined %}
+                        <section>
+                        {% endif %}
+                            {% block content %}{% endblock %}
+                        {% if block('on_this_page') is defined %}
+                        </section>
+                        <section class="phpdocumentor-on-this-page__sidebar">
+                            {{ block('on_this_page') }}
+                        </section>
+                        {% endif %}
+                    </article>
+                </div>
+            </div>
         </div>
-        {% include 'components/search-results.html.twig' %}
-    </div>
-    {{ include('components/back-to-top.html.twig') }}
-</main>
+    </main>
+    {% include 'components/footer.html.twig' %}
+</div>
 
+<script src="{{ parameter.typo3_theme_url }}/js/bootstrap.min.js"></script>
+<script src="{{ parameter.typo3_theme_url }}/js/theme.min.js"></script>
 </body>
 </html>

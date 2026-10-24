@@ -93,6 +93,12 @@ for page in Service-ThingService Service-ThingServiceInterface Service-LoggingTr
 done
 check_no_page MyVendor-MyExtension-Event-AfterThingDeletedEvent.html '#documentation"'
 
+# The pages have the frame of docs.typo3.org, with the theme from the CDN,
+# and the menu marks the namespace of the page.
+check_page MyVendor-MyExtension-Service-ThingService.html 'cdn.typo3.com/typo3documentation/theme/typo3-docs-theme/[0-9.]*/css/theme.css'
+check_page MyVendor-MyExtension-Service-ThingService.html 'class="page-main-navigation"'
+check_page MyVendor-MyExtension-Service-ThingService.html '<li class="active" role="menuitem">'
+
 if [ "$failed" -eq 0 ]; then
     echo "The API test passed."
 fi

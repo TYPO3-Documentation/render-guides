@@ -1,3 +1,6 @@
+{# The header of docs.typo3.org, from structure/layoutParts/pageHeader.html.twig
+   of the theme. The versions are those of the API rather than those that
+   docs.typo3.org knows for the page, and there are no page options. #}
 <header>
     <div class="page-topbar">
         <div class="page-topbar-inner">
@@ -8,27 +11,47 @@
     </div>
     <div class="page-header">
         <div class="page-header-inner">
-            <div class="row">
-                <div class="col-sm-3 col-md-4 col-lg-6">
-                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
-                        <img alt="TYPO3 Logo" class="logo-image" src="https://cdn.typo3.com/typo3documentation/theme/typo3-docs-theme/0.5.1/img/typo3-logo.svg" width="484" height="130">
-                    </a>
+            <a class="navbar-brand" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                <span class="navbar-brand-text">
+                    <img src="{{ parameter.typo3_theme_url }}/img/typo3-soul.svg" alt="TYPO3" class="navbar-brand-logo" width="29" height="29">
+                    <span class="navbar-brand-name">Documentation</span>
+                </span>
+            </a>
+            <div class="header-nav">
+                <div class="toc-header">
+                    <div class="toc-title">
+                        <a class="toc-title-project" href="{{ path('/') }}">TYPO3 API</a>
+                    </div>
+                    <label for="api-version-select" class="visually-hidden">Select version</label>
+                    <select id="api-version-select" class="form-select" onchange="window.location.href = this.value">
+                        {% for version, label in {
+                            'main': 'main/v15-dev',
+                            '14.3': 'v14.3 LTS',
+                            '13.4': 'v13.4 LTS',
+                            '12.4': 'v12.4 eLTS',
+                            '11.5': 'v11.5 eLTS',
+                        } %}
+                            <option value="https://api.typo3.org/{{ version }}/{{ link(node) }}"{% if version == parameter.typo3_version %} selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <div class="col-sm-9 col-md-8 col-lg-6">
-                    <search role="search">
-                        <all-documentations-menu></all-documentations-menu>
-                        <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
-                            <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
-                            <div class="input-group mb-3 mt-sm-3">
-                                <select class="form-select search__scope" id="searchscope" name="scope">
-                                    <option value="">Search all</option>
-                                </select>
-                                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                                <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
-                            </div>
-                        </form>
-                    </search>
-                </div>
+            </div>
+            <div class="header-actions">
+                <button id="search-toggle" class="btn btn-light d-lg-none" type="button"
+                        aria-label="Search" aria-keyshortcuts="Control+K Meta+K">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                </button>
+                <button id="toc-toggle" class="btn btn-light d-lg-none" type="button"
+                        aria-label="Menu" aria-expanded="false" aria-controls="toc-collapse">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+                <all-documentations-menu></all-documentations-menu>
+                <search role="search" aria-label="Site search">
+                    <select id="searchscope" hidden aria-hidden="true">
+                        <option value="">Search all</option>
+                    </select>
+                    <div id="global-search-root"></div>
+                </search>
             </div>
         </div>
     </div>

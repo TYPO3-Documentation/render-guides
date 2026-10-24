@@ -1,14 +1,20 @@
+{# One level of the namespace tree, as menu-level.html.twig of the theme
+   writes a level of a manual's menu: "current" marks the page, "active" the
+   entries above it, which the theme shows expanded. #}
 {% if entry.children.count == 1 %}
     {% for child in entry.children %}
         {{ toc(child, 'components/menu.html.twig', maxDepth, depth-1) }}
     {% endfor %}
 {% else %}
     {% if entry.children.count > 0 %}
-    <ul class="phpdocumentor-list">
+    <ul class="menu-level-1" role="menubar">
         {% for child in entry.children %}
-        <li>
-            <a href="{{ child.url }}" class="{{ destinationPath|trim('/', 'left') == child.url ? '-active' }}">{{ child.title | shortFQSEN }}</a>
-            {{ toc(child, 'components/menu.html.twig', maxDepth, depth) }}
+        {% set current = destinationPath|trim('/', 'left') == child.url %}
+        {% set active = not current and node.fullyQualifiedStructuralElementName is defined
+            and (node.fullyQualifiedStructuralElementName ~ '\\') starts with (child.title ~ '\\') %}
+        <li class="{{ current ? 'current' }}{{ active ? 'active' }}" role="menuitem">
+            <a href="{{ child.url }}"{% if current %} aria-current="page"{% endif %}>{{ child.title | shortFQSEN }}</a>
+            {{- toc(child, 'components/menu.html.twig', maxDepth, depth) -}}
         </li>
         {% endfor %}
     </ul>

@@ -14,4 +14,9 @@
         <transformation writer="twig" query="indexes.traits" source="api-class.json.twig" artifact="classes/{{fullyQualifiedStructuralElementName}}.json"/>
         <transformation writer="twig" query="indexes.enums" source="api-class.json.twig" artifact="classes/{{fullyQualifiedStructuralElementName}}.json"/>
     </transformations>
+    <parameters>
+        <!-- The theme of docs.typo3.org. Each release of render-guides
+             publishes it to the CDN; keep the version at the latest one. -->
+        <parameter key="typo3_theme_url">https://cdn.typo3.com/typo3documentation/theme/typo3-docs-theme/0.47.3</parameter>
+    </parameters>
 </template>
