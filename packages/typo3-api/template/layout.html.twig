@@ -28,6 +28,15 @@
     <script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
 </head>
 <body id="top">
+{# An issue about the API is one about the documentation of the Core, as
+   getReportIssueLink() of the theme writes it for the Core Changelog. #}
+{% set pageUrl = 'https://api.typo3.org/' ~ parameter.typo3_version ~ '/' ~ link(node) %}
+{% set reportIssueLink = 'https://forge.typo3.org/projects/typo3cms-core/issues/new?issue[category_id]=1004&issue[subject]='
+    ~ ('Problem on ' ~ pageUrl)|url_encode
+    ~ '&issue[custom_field_values][4]=' ~ (parameter.typo3_version == 'main' ? '15' : parameter.typo3_version|split('.')|first) %}
+{% set sourceLink = node is class or node is interface or node is trait or node is enum
+    ? parameter.typo3_github_url ~ '/' ~ parameter.typo3_version ~ '/' ~ node.file.path ~ '#L' ~ node.line
+    : '' %}
 <div class="page">
     {% include 'components/header.html.twig' %}
     <main class="page-main">
@@ -37,6 +46,10 @@
                     <div id="toc-collapse">
                         <div aria-label="main navigation" class="toc" role="navigation">
                             {% include 'components/sidebar.html.twig' %}
+                        </div>
+                        <div class="toc-options d-lg-none">
+                            <p class="caption">Options</p>
+                            {% include 'components/options-menu.html.twig' %}
                         </div>
                     </div>
                 </nav>

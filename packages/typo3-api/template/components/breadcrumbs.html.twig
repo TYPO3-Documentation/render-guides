@@ -1,7 +1,7 @@
 {# The breadcrumb of docs.typo3.org, see structure/document.html.twig and
    body/menu/breadcrumb.html.twig of the theme: the start page of the API,
-   the namespaces, and the page itself. The source of a type is linked on the
-   right, where a manual links the source of its page. #}
+   the namespaces, and the page itself. Feedback and the source of a type are
+   linked on the right, as a manual links them for its page. #}
 {% set breadcrumbs = usesNamespaces ? breadcrumbs(node) : packages(node) %}
 <nav aria-label="breadcrumbs navigation" class="breadcrumb-bar" role="navigation">
     <ol class="breadcrumb">
@@ -11,13 +11,17 @@
         {% endfor %}
         <li aria-current="page" class="breadcrumb-item active">{{ node.name }}</li>
     </ol>
-    {% if node is class or node is interface or node is trait or node is enum %}
-        <div class="breadcrumb-additions">
-            <a class="btn btn-sm btn-secondary" href="{{ parameter.typo3_github_url }}/{{ parameter.typo3_version }}/{{ node.file.path }}#L{{ node.line }}"
+    <div class="breadcrumb-additions">
+        <a class="btn btn-sm btn-light" href="{{ reportIssueLink }}" id="btnReportIssue" rel="nofollow noopener" target="_blank">
+            <span class="btn-icon"><i class="fa-solid fa-comment-dots"></i></span>
+            <span class="btn-text">Give feedback</span>
+        </a>
+        {% if sourceLink %}
+            <a class="btn btn-sm btn-secondary" href="{{ sourceLink }}"
                rel="nofollow noopener" target="_blank" title="View {{ node.file.name }}:{{ node.line }} on GitHub">
                 <span class="btn-icon"><span class="fa-brands fa-github"></span></span>
                 <span class="btn-text">View on GitHub</span>
             </a>
-        </div>
-    {% endif %}
+        {% endif %}
+    </div>
 </nav>

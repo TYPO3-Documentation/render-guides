@@ -1,6 +1,6 @@
 {# The header of docs.typo3.org, from structure/layoutParts/pageHeader.html.twig
    of the theme. The versions are those of the API rather than those that
-   docs.typo3.org knows for the page, and there are no page options. #}
+   docs.typo3.org knows for the page. #}
 <header>
     <div class="page-topbar">
         <div class="page-topbar-inner">
@@ -52,6 +52,15 @@
                     </select>
                     <div id="global-search-root"></div>
                 </search>
+                <button id="options-toggle" class="btn btn-light" type="button"
+                        aria-controls="options-panel" aria-expanded="false" popovertarget="options-panel">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                    <span class="visually-hidden">Options</span>
+                </button>
+                <div id="options-panel" class="shadow p-3" popover>
+                    <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+                    {% include 'components/options-menu.html.twig' %}
+                </div>
             </div>
         </div>
     </div>

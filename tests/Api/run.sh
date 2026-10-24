@@ -103,6 +103,8 @@ check_page MyVendor-MyExtension-Service-ThingService.html '<li class="active" ro
 # source, and the title is the only h1, with the declaration below it.
 check_page MyVendor-MyExtension-Service-ThingService.html '<li aria-current="page" class="breadcrumb-item active">ThingService</li>'
 check_page MyVendor-MyExtension-Service-ThingService.html 'View on GitHub'
+check_page MyVendor-MyExtension-Service-ThingService.html 'typo3cms-core/issues/new?issue\[category_id\]=1004&amp;issue\[subject\]=Problem%20on%20https%3A%2F%2Fapi.typo3.org%2Fmain%2Fclasses%2FMyVendor-MyExtension-Service-ThingService.html&amp;issue\[custom_field_values\]\[4\]=15'
+check_page MyVendor-MyExtension-Service-ThingService.html 'id="options-panel"'
 check_page MyVendor-MyExtension-Service-ThingService.html '<h1 class="phpdocumentor-content__title">ThingService</h1>'
 check_page MyVendor-MyExtension-Service-ThingService.html 'final class \\<wbr>MyVendor'
 check_page MyVendor-MyExtension-Enum-ThingState.html 'enum \\<wbr>MyVendor\\<wbr>MyExtension\\<wbr>Enum\\<wbr>ThingState: string'
