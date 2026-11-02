@@ -68,6 +68,10 @@ check_page MyVendor-MyExtension-Event-AfterThingDeletedEvent.html 'Dispatched by
 # typo3.documentation.exclude names.
 check_page MyVendor-MyExtension-Service-ThingService.html 'Example Explained (3)'
 check_page MyVendor-MyExtension-Service-ThingService.html 'The thing service</a> <span class="phpdocumentor-typo3-documentation__kind">reference'
+# The top of a page about the class and its definition further down are
+# both titled by the page: listed once, linking to the definition (see
+# below for the top of the page).
+check_page MyVendor-MyExtension-Service-ThingService.html 'permalink/t3example:myvendor-myextension-service-thingservice@main'
 check_page MyVendor-MyExtension-Service-ThingService.html 'permalink/changelog:breaking-200'
 check_page MyVendor-MyExtension-Service-ThingService.html '12.4.x'
 check_page MyVendor-MyExtension-Event-AfterThingSavedEvent.html 'React to a saved thing'
@@ -80,6 +84,7 @@ check_no_page() {
 check_no_page MyVendor-MyExtension-Service-ThingService.html 'Old Guide'
 check_no_page MyVendor-MyExtension-Service-ThingService.html 'Unrendered Guide'
 check_no_page MyVendor-MyExtension-Service-ThingService.html 'Excluded Guide'
+check_no_page MyVendor-MyExtension-Service-ThingService.html 'permalink/t3example:things-thingservice@main'
 
 # "On this page" links to the list on every kind of type that has one, and
 # only there.

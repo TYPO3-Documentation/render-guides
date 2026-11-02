@@ -7,6 +7,7 @@
     "std:label": {
         "things": ["Example Explained", "main", "Things/Index.html#things", "Things"],
         "things-saving": ["Example Explained", "main", "Things/Saving.html#things-saving", "Saving a thing"],
+        "things-thingservice": ["Example Explained", "main", "Things/ThingService.html#things-thingservice", "The thing service"],
         "things-saving-react": ["Example Explained", "main", "Things/Saving.html#things-saving-react", "React to a saved thing"],
         "myvendor-myextension-service-thingservice": ["Example Explained", "main", "Things/ThingService.html#myvendor-myextension-service-thingservice", "\\MyVendor\\MyExtension\\Service\\ThingService"]
     }
