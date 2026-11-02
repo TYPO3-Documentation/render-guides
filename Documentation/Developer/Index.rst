@@ -90,6 +90,7 @@ and the GitHub pipelines, while internally only using :file:`Makefile` syntax.
     DirectoryStructure
     Building
     Contributing
+    CompareGuides
     ThemeCustomization
     InterlinkInventories
     TableOfContents
