@@ -1,4 +1,5 @@
-<h5 class="phpdocumentor-typo3-events__title">Dispatched by</h5>
+{# A section of the event: an h2 after the shift of the headings. #}
+<h3 class="phpdocumentor-typo3-events__title">Dispatched by</h3>
 <ul class="phpdocumentor-typo3-events">
     {% for dispatcher in metadata.dispatchers %}
         <li>{{ dispatcher|route('class:short') }}</li>

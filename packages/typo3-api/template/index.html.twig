@@ -2,14 +2,14 @@
 
 {% block content %}
     <section>
-        <h2>TYPO3 API</h2>
+        <h1>TYPO3 API</h1>
 
         {% set node = project.namespace %}
 
-        <h4 id="namespaces">
+        <h2 id="namespaces">
             System Extensions
             {{ include('components/headerlink.html.twig', {'on': node, 'at': 'namespaces'}, with_context = false) }}
-        </h4>
+        </h2>
         <dl class="phpdocumentor-table-of-contents">
             {% for namespace in project.namespace.children %}
                 {% for cms in namespace.children %}

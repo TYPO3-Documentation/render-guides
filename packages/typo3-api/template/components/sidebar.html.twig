@@ -1,44 +1,21 @@
-<input class="phpdocumentor-sidebar__menu-button" type="checkbox" id="sidebar-button" name="sidebar-button" />
-<label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
-    Menu
-</label>
-<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
-    <section class="phpdocumentor-sidebar__category -versions">
-        <h1 class="phpdocumentor-sidebar__category-title">TYPO3 {{ parameter.typo3_version }}</h1>
-        <ul class="phpdocumentor-list">
-            {% if parameter.typo3_version != 'main' %}<li><a href="https://api.typo3.org/main/{{ link(node) }}">TYPO3 main/v15-dev API</a></li>{% endif %}
-            {% if parameter.typo3_version != '14.3' %}<li><a href="https://api.typo3.org/14.3/{{ link(node) }}">TYPO3 v14.3 LTS API</a></li>{% endif %}
-            {% if parameter.typo3_version != '13.4' %}<li><a href="https://api.typo3.org/13.4/{{ link(node) }}">TYPO3 v13.4 LTS API</a></li>{% endif %}
-            {% if parameter.typo3_version != '12.4' %}<li><a href="https://api.typo3.org/12.4/{{ link(node) }}">TYPO3 v12.4 eLTS API</a></li>{% endif %}
-            {% if parameter.typo3_version != '11.5' %}<li><a href="https://api.typo3.org/11.5/{{ link(node) }}">TYPO3 v11.5 eLTS API</a></li>{% endif %}
-        </ul>
-    </section>
-    <section class="phpdocumentor-sidebar__category -docs">
-        <h2 class="phpdocumentor-sidebar__category-header">Documentation</h2>
-        <ul class="phpdocumentor-list">
-            <li><a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/{{ parameter.typo3_version }}/en-us/" target="_blank">Getting Started</a></li>
-            <li><a href="https://docs.typo3.org/m/typo3/reference-coreapi/{{ parameter.typo3_version }}/en-us/" target="_blank">TYPO3 Explained</a></li>
-            <li><a href="https://docs.typo3.org/c/typo3/cms-core/{{ parameter.typo3_version }}/en-us/" target="_blank">TYPO3 Core Changelog</a></li>
-        </ul>
-    </section>
+{# The menu of a manual on docs.typo3.org, see structure/navigation/menu.html.twig
+   of the theme: the manuals first, then the namespace tree. The versions are
+   in the header, the legal links in the footer. #}
+<div aria-label="Main navigation" class="main_menu" role="navigation">
+    <p class="caption">Documentation</p>
+    <ul class="menu-level-1" role="menubar">
+        <li role="menuitem"><a href="https://docs.typo3.org/m/typo3/tutorial-getting-started/{{ parameter.typo3_version }}/en-us/">Getting Started</a></li>
+        <li role="menuitem"><a href="https://docs.typo3.org/m/typo3/reference-coreapi/{{ parameter.typo3_version }}/en-us/">TYPO3 Explained</a></li>
+        <li role="menuitem"><a href="https://docs.typo3.org/c/typo3/cms-core/{{ parameter.typo3_version }}/en-us/">TYPO3 Core Changelog</a></li>
+    </ul>
     {% for version in project.versions %}
         {% for toc in version.tableOfContents %}
             {% if toc.name != "Packages" %}
-        <section class="phpdocumentor-sidebar__category -extensions">
-            <h2 class="phpdocumentor-sidebar__category-header">Extensions</h2>
+                <p class="caption">Extensions</p>
                 {% for root in toc.roots %}
                     {{ toc(root, 'components/menu.html.twig', 1) }}
                 {% endfor %}
-        </section>
             {% endif %}
         {% endfor %}
     {% endfor %}
-    <section class="phpdocumentor-sidebar__category -legal}">
-        <h2 class="phpdocumentor-sidebar__category-header">Legal</h2>
-        <ul class="phpdocumentor-list">
-            <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
-            <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
-        </ul>
-    </section>
-
-</aside>
+</div>

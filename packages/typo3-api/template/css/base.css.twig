@@ -1,0 +1,35 @@
+{# The base of the default template without what the theme of docs.typo3.org
+   does itself: the body, headings, links, the grid, the header, the sidebar,
+   and the search. What is left styles the content of a page. #}
+{% set breakpoints = {
+    'sm': '400px',
+    'md': '550px',
+    'lg': '750px',
+    'xl': '1000px',
+    'xxl': '1200px',
+    'xxxl': '1900px',
+    'menu': '1000px'
+} %}
+
+{% include 'css/variables.css.twig' %}
+
+:root {
+    /* The fonts of the theme. */
+    --font-primary: inherit;
+    --font-secondary: inherit;
+    --font-monospace: "Source Code Pro", monospace;
+    --letter-spacing--primary: normal;
+}
+
+{% include 'components/headerlink.css.twig' %}
+{% include 'objects/lists.css.twig' %}
+{% include 'objects/code.css.twig' %}
+{% include 'objects/tables.css.twig' %}
+{% include 'objects/labels.css.twig' %}
+
+{% include 'components/admonition.css.twig' %}
+{% include 'components/breadcrumbs.css.twig' %}
+{% include 'components/source-modal.css.twig' %}
+{% include 'components/on-this-page.css.twig' %}
+
+{% include 'css/utilities.css.twig' %}

@@ -1,0 +1,7 @@
+{# The title of a page, as a manual writes it: the page, then the manual and
+   its version. A namespace has its full name, since short names such as
+   "Event" exist in many extensions. #}
+{%- set name = title|default(node is defined and node is namespace
+    ? (node.fullyQualifiedStructuralElementName ~ '')|trim('\\', 'left')
+    : (node is defined and (node is class or node is interface or node is trait or node is enum) ? node.name : '')) -%}
+{%- if name %}{{ name }} — {% endif %}TYPO3 API {{ parameter.typo3_version -}}

@@ -1,0 +1,13 @@
+{# phpDocumentor gives the title of a page an h2 and its sections an h3. On
+   docs.typo3.org the title is an h1 and the sections are h2, so each type
+   of page shifts its headings up one level. The map is applied in one pass,
+   so an h3 that becomes an h2 is not shifted again. #}
+{% macro shift(html) %}
+    {{- html|replace({
+        '<h2': '<h1', '</h2>': '</h1>',
+        '<h3': '<h2', '</h3>': '</h2>',
+        '<h4': '<h3', '</h4>': '</h3>',
+        '<h5': '<h4', '</h5>': '</h4>',
+        '<h6': '<h5', '</h6>': '</h5>',
+    })|raw -}}
+{% endmacro %}

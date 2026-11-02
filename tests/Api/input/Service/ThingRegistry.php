@@ -22,6 +22,12 @@ final class ThingRegistry
     /** @var list<string> A type that phpDocumentor reads */
     public array $titles = [];
 
+    /** @var array<string, array{label: string, icon: string}> A long default, which the page shortens */
+    public array $actions = [
+        'edit' => ['label' => 'LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:edit', 'icon' => 'actions-open'],
+        'delete' => ['label' => 'LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:delete', 'icon' => 'actions-edit-delete'],
+    ];
+
     /**
      * Replaces the states.
      *

@@ -1,0 +1,9 @@
+{# The default template, with a long value shortened, see
+   default-value.html.twig. #}
+<code class="phpdocumentor-signature phpdocumentor-code {% if node.deprecated %}-deprecated{% endif %}">
+    <span class="phpdocumentor-signature__visibility">{{ node.visibility }}</span>
+    {% if node.final %}<span class="phpdocumentor-signature__final">final</span>{% endif %}
+    <span class="phpdocumentor-signature__type">{{ not node.type ? "mixed" : node.type|route('class:short')|join('|')|raw }}</span>
+    <span class="phpdocumentor-signature__name">{{ node.name }}</span>
+    = {{ include('components/default-value.html.twig', {value: node.value|default('""')}) }}
+</code>

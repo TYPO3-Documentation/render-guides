@@ -1,0 +1,9 @@
+{# The default value of a property or the value of a constant. A long one,
+   such as a configuration array, would make the signature a single line of
+   thousands of characters, so only its start is shown until it is opened. #}
+{% set value = value ~ '' %}
+{% if value|length > 80 %}
+<span class="phpdocumentor-signature__default-value -long"><span class="phpdocumentor-signature__default-start">{{ value|slice(0, 60) }}…</span><details><summary>Show the full value</summary><span class="phpdocumentor-signature__default-full">{{ value }}</span></details></span>
+{%- else -%}
+<span class="phpdocumentor-signature__default-value">{{ value }}</span>
+{%- endif %}

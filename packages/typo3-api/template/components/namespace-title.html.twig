@@ -1,0 +1,5 @@
+{# The h2 becomes the h1 of the page, see macros/headings.macro.twig. #}
+<h2 class="phpdocumentor-content__title">{{ node.name == '\\' ? 'TYPO3 API' : node.name }}</h2>
+{% if node.name != '\\' %}
+<p class="phpdocumentor-element__declaration"><code class="code-inline" translate="no">namespace {{ (node.fullyQualifiedStructuralElementName ~ '')|trim('\\', 'left')|e|replace({'\\': '\\<wbr>'})|raw }}</code></p>
+{% endif %}

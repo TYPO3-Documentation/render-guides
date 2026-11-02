@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ include('components/page-title.html.twig', {title: 'Page not found'}) }}{% endblock %}
+
 {% block content %}
 <section class="section " id="page-not-found">
     <h1>Page not found</h1>

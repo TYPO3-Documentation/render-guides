@@ -229,6 +229,18 @@ number that has been used in the Git tag).
 That directory structure is then uploaded to Azure, by using the secret GitHub
 environment variables configured in our repository.
 
+..  _deploy-azure-assets-api:
+
+The theme on api.typo3.org
+--------------------------
+
+api.typo3.org loads the theme from the CDN, too. The parameter
+`typo3_theme_url` in :file:`packages/typo3-api/template/template.xml` names
+the version. The header, the menu, and the footer of the template copy the
+markup of the theme of this version. After a release that changes this markup
+or its CSS, raise the version. Then run `make test-api` and look at the pages
+in :path:`tests/Api/temp/build`.
+
 ..  _building-github-workflow-docker:
 
 GitHub workflow: docker
