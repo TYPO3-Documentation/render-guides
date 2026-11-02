@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 use Brotkrueml\TwigCodeHighlight\Extension as CodeHighlight;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\HttpClient\Retry\GenericRetryStrategy;
+use Symfony\Component\HttpClient\RetryableHttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use T3Docs\Typo3DocsTheme\Api\TerService;
 use T3Docs\Typo3DocsTheme\Api\Typo3ApiService;
 use T3Docs\Typo3DocsTheme\Changelog\ChangelogEntry;
@@ -148,6 +151,7 @@ use phpDocumentor\Guides\RestructuredText\Parser\Interlink\InterlinkParser;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DirectiveContentRule;
 use phpDocumentor\Guides\RestructuredText\Parser\Productions\DocumentRule;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\inline_service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
@@ -443,6 +447,21 @@ return static function (ContainerConfigurator $container): void {
         ->arg('$classes', 'code-block')
         ->tag('twig.extension')
         ->autowire()
+
+        // The inventories of other manuals are loaded with this client. A
+        // failed request is tried once more after a second: a manual's
+        // inventory is briefly missing while that manual is deployed, and a
+        // render that fails on warnings would fail for it. The integration
+        // tests remove it, so that a recorded 404 answers at once.
+        // @see \T3Docs\Typo3DocsTheme\Integration\Http\RecordedHttpExtension
+        ->set('t3docs.retrying_http_client', RetryableHttpClient::class)
+        ->decorate(HttpClientInterface::class)
+        ->args([
+            service('.inner'),
+            inline_service(GenericRetryStrategy::class)
+                ->args([[...GenericRetryStrategy::DEFAULT_RETRY_STATUS_CODES, 404], 1000, 1.0]),
+            1,
+        ])
 
         ->set(PackagistService::class)
         ->set(Typo3VersionService::class)
