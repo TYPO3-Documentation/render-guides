@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{# The page at the root of api.typo3.org, which belongs to no version. The
+   nightly build takes it from the render of main and copies it to the root,
+   where css/ of a version does not exist. #}
+{% set isHomePage = true %}
+{% set versions = typo3_api_versions() %}
+
+{% block title %}TYPO3 API{% endblock %}
+
+{% block version_stylesheets %}{% endblock %}
+
+{% block menu %}
+<div aria-label="Main navigation" class="main_menu" role="navigation">
+    <p class="caption">Versions</p>
+    <ul class="menu-level-1" role="menubar">
+        {% for version in versions %}
+            <li role="menuitem"><a href="https://api.typo3.org/{{ version.version }}/">{{ version.label }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="section" id="welcome-to-the-official-typo3-api-documentation">
+    <h1>Welcome to the official TYPO3 API Documentation</h1>
+    <p>TYPO3 source code is well documented and allows you to understand many internals
+        by browsing through the various classes and methods.</p>
+
+    <div class="row card-group pb-4 row-cols-1 row-cols-md-3 g-4">
+        {% for version in versions|filter(version => version.status != 'elts') %}
+            {% set api = 'https://api.typo3.org/' ~ version.version ~ '/' %}
+            {% set github = 'https://github.com/TYPO3/typo3/tree/' ~ version.version %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3><a href="{{ api }}">TYPO3 {{ version.label }} API</a></h3>
+                        <div class="card-text">
+                            <p>Automatically generated API from the
+                                <a href="{{ github }}">{{ version.version }}</a> branch of TYPO3.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ api }}" class="btn btn-light">API</a>
+                        <a href="{{ github }}" class="btn btn-light">GitHub</a>
+                        <a href="https://docs.typo3.org/m/typo3/reference-coreapi/{{ version.version }}/en-us/" class="btn btn-light">Docs</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <section class="section" id="api-for-older-typo3-versions">
+        <h2>API for older TYPO3 versions</h2>
+        <ul>
+            {% for version in versions|filter(version => version.status == 'elts') %}
+                <li><a href="https://api.typo3.org/{{ version.version }}/">TYPO3 {{ version.label }} API</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+</section>
+{% endblock %}

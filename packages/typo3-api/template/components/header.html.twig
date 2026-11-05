@@ -1,6 +1,7 @@
 {# The header of docs.typo3.org, from structure/layoutParts/pageHeader.html.twig
    of the theme. The versions are those of the API rather than those that
-   docs.typo3.org knows for the page. #}
+   docs.typo3.org knows for the page. The start page of api.typo3.org belongs
+   to no version and lists them itself. #}
 <header>
     <div class="page-topbar">
         <div class="page-topbar-inner">
@@ -22,18 +23,14 @@
                     <div class="toc-title">
                         <a class="toc-title-project" href="{{ path('/') }}">TYPO3 API</a>
                     </div>
+                    {% if not isHomePage|default(false) %}
                     <label for="api-version-select" class="visually-hidden">Select version</label>
                     <select id="api-version-select" class="form-select" onchange="window.location.href = this.value">
-                        {% for version, label in {
-                            'main': 'main/v15-dev',
-                            '14.3': 'v14.3 LTS',
-                            '13.4': 'v13.4 LTS',
-                            '12.4': 'v12.4 eLTS',
-                            '11.5': 'v11.5 eLTS',
-                        } %}
-                            <option value="https://api.typo3.org/{{ version }}/{{ link(node) }}"{% if version == parameter.typo3_version %} selected{% endif %}>{{ label }}</option>
+                        {% for version in typo3_api_versions() %}
+                            <option value="https://api.typo3.org/{{ version.version }}/{{ link(node) }}"{% if version.version == parameter.typo3_version %} selected{% endif %}>{{ version.label }}</option>
                         {% endfor %}
                     </select>
+                    {% endif %}
                 </div>
             </div>
             <div class="header-actions">

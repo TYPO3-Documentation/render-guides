@@ -1,0 +1,7 @@
+[
+    {"version": "main", "label": "main/v15-dev", "status": "development"},
+    {"version": "14.3", "label": "v14.3 LTS", "status": "lts"},
+    {"version": "13.4", "label": "v13.4 LTS", "status": "lts"},
+    {"version": "12.4", "label": "v12.4 eLTS", "status": "elts"},
+    {"version": "11.5", "label": "v11.5 eLTS", "status": "elts"}
+]

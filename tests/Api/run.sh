@@ -121,6 +121,25 @@ for page in Service-ThingService Service-ThingServiceInterface Service-LoggingTr
     fi
 done
 
+# Every version of versions.json is in the version selector of a page and on
+# the start page, which has no selector and no CSS of a version: it is copied
+# to the root, where that CSS does not exist.
+home=../home.html
+versions=$(sed -n 's/.*"version": "\([^"]*\)".*/\1/p' ../../packages/typo3-api/template/versions.json)
+if [ -z "$versions" ]; then
+    echo "versions.json lists no version." >&2
+    failed=1
+fi
+for version in $versions; do
+    check_page MyVendor-MyExtension-Service-ThingService.html "value=\"https://api.typo3.org/$version/classes/MyVendor-MyExtension-Service-ThingService.html\""
+    check_page "$home" "href=\"https://api.typo3.org/$version/\""
+done
+check_page "$home" '<h1>Welcome to the official TYPO3 API Documentation</h1>'
+check_page "$home" 'href="https://github.com/TYPO3/typo3/tree/14.3"'
+check_page "$home" 'href="https://docs.typo3.org/m/typo3/reference-coreapi/13.4/en-us/"'
+check_no_page "$home" 'href="css/'
+check_no_page "$home" 'api-version-select'
+
 if [ "$failed" -eq 0 ]; then
     echo "The API test passed."
 fi
