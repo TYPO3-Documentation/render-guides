@@ -241,6 +241,27 @@ markup of the theme of this version. After a release that changes this markup
 or its CSS, raise the version. Then run `make test-api` and look at the pages
 in :path:`tests/Api/temp/build`.
 
+..  _deploy-azure-assets-api-versions:
+
+The versions and the start page of api.typo3.org
+------------------------------------------------
+
+The file :file:`packages/typo3-api/template/versions.json` lists the versions
+of the API. The nightly build renders each version in this file. The version
+selector of a page and the start page show the same list. To add a version,
+or to change a label, edit this file. A new version needs a branch in the TYPO3
+Core repository.
+
+The start page lists a version with the status `elts` under "API for older
+TYPO3 versions". It shows a card for each other version.
+
+Each render writes the start page from
+:file:`packages/typo3-api/template/home.html.twig` to :file:`home.html`. The
+nightly build takes this file out of each version, and copies the one of `main`
+to the web root of api.typo3.org as :file:`index.html`. There are no
+:file:`css/` files of a version at the web root, so this page uses only the
+theme from the CDN.
+
 ..  _building-github-workflow-docker:
 
 GitHub workflow: docker
