@@ -12,17 +12,14 @@
     </div>
     <div class="page-header">
         <div class="page-header-inner">
-            <a class="navbar-brand" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+            <a class="navbar-brand" href="{{ path('/') }}" title="TYPO3 API">
                 <span class="navbar-brand-text">
                     <img src="{{ parameter.typo3_theme_url }}/img/typo3-soul.svg" alt="TYPO3" class="navbar-brand-logo" width="29" height="29">
-                    <span class="navbar-brand-name">Documentation</span>
+                    <span class="navbar-brand-name">TYPO3 API</span>
                 </span>
             </a>
             <div class="header-nav">
                 <div class="toc-header">
-                    <div class="toc-title">
-                        <a class="toc-title-project" href="{{ path('/') }}">TYPO3 API</a>
-                    </div>
                     {% if not isHomePage|default(false) %}
                     <label for="api-version-select" class="visually-hidden">Select version</label>
                     <select id="api-version-select" class="form-select" onchange="window.location.href = this.value">
