@@ -33,6 +33,7 @@ use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\RemoveInterlinkSelfReference
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\ReplacePermalinksNodeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\SortMenuEntriesByToctreeTransformer;
 use T3Docs\Typo3DocsTheme\Compiler\NodeTransformers\Typo3TalkNodeTransformer;
+use T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension;
 use T3Docs\Typo3DocsTheme\Directives\ConfvalMenuDirective;
 use T3Docs\Typo3DocsTheme\Directives\DirectoryTreeDirective;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
@@ -502,5 +503,9 @@ return static function (ContainerConfigurator $container): void {
         ->tag('event_listener', ['event' => PostParseDocument::class])
 
         ->set(NavigationTitleAnchorSetter::class)
-        ->tag('event_listener', ['event' => ModifyDocumentEntryAdditionalData::class]);
+        ->tag('event_listener', ['event' => ModifyDocumentEntryAdditionalData::class])
+
+        ->set(Typo3DocsThemeExtension::class)
+        ->tag('phpdoc.guides.compiler.attached_node_provider')
+    ;
 };

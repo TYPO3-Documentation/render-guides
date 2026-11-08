@@ -2,15 +2,12 @@
 
 namespace T3Docs\Typo3DocsTheme\Nodes\DirectoryTree;
 
-use T3Docs\Typo3DocsTheme\Nodes\CompiledPropertiesTrait;
 use phpDocumentor\Guides\Nodes\CompoundNode;
 use phpDocumentor\Guides\Nodes\Node;
 
 /** @extends CompoundNode<Node> */
 final class DirectoryTreeListItemNode extends CompoundNode
 {
-    use CompiledPropertiesTrait;
-
     /**
      * @param Node[] $items
      * @param string $name
@@ -37,9 +34,11 @@ final class DirectoryTreeListItemNode extends CompoundNode
         return $this->subLists;
     }
 
-    /** @return list<string> */
-    protected function compiledProperties(): array
+    public function withSubLists(array $sublists): self
     {
-        return ['subLists'];
+        $clone = clone $this;
+        $clone->subLists = $sublists;
+
+        return $clone;
     }
 }
