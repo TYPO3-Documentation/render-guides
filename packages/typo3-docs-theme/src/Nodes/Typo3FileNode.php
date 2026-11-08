@@ -12,8 +12,6 @@ use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
 final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode, PrefixedLinkTargetNode
 {
-    use CompiledPropertiesTrait;
-
     public const LINK_TYPE = 'typo3:file';
     public const LINK_PREFIX = 'file-';
 
@@ -69,9 +67,25 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
         return $this->configuration;
     }
 
+    public function withConfiguration(?CollectionNode $configuration)
+    {
+        $clone = clone $this;
+        $clone->configuration = $configuration;
+
+        return $clone;
+    }
+
     public function getCommand(): ?CollectionNode
     {
         return $this->command;
+    }
+
+    public function withCommand(?CollectionNode $command)
+    {
+        $clone = clone $this;
+        $clone->command = $command;
+
+        return $clone;
     }
 
     /**
@@ -80,6 +94,16 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
     public function getDescription(): array
     {
         return $this->description;
+    }
+
+    /**
+     * @param Node[] $description
+     */
+    public function withDescription(array $description): self
+    {
+        $clone = clone $this;
+        $clone->description = $description;
+        return $clone;
     }
 
     public function getAnchor(): string
@@ -132,9 +156,4 @@ final class Typo3FileNode extends GeneralDirectiveNode implements LinkTargetNode
         return $this->shortDescription;
     }
 
-    /** @return list<string> */
-    protected function compiledProperties(): array
-    {
-        return ['description', 'configuration', 'command'];
-    }
 }
