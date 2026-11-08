@@ -8,7 +8,6 @@ use phpDocumentor\Guides\Nodes\Node;
 /** @extends CompoundNode<Node> */
 final class DirectoryTreeListItemNode extends CompoundNode
 {
-
     /**
      * @param Node[] $items
      * @param string $name

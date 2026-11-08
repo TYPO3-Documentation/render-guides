@@ -41,7 +41,6 @@ use T3Docs\GuidesPhpDomain\Nodes\PhpNamespaceNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpPropertyNode;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
 use T3Docs\Typo3DocsTheme\Nodes\DirectoryTree\DirectoryTreeListItemNode;
-use T3Docs\Typo3DocsTheme\Nodes\DirectoryTree\DirectoryTreeListNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
@@ -425,23 +424,23 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         $registry->register(
             DirectoryTreeListItemNode::class,
             new SubnodeList([
-                    new CallableListField('subLists', static fn (DirectoryTreeListItemNode $node) => $node->getSubLists(), static fn (DirectoryTreeListItemNode $node, array $sublists) => $node->withSubLists($sublists)),
+                    new CallableListField('subLists', static fn(DirectoryTreeListItemNode $node) => $node->getSubLists(), static fn(DirectoryTreeListItemNode $node, array $sublists) => $node->withSubLists($sublists)),
             ])
         );
 
         $registry->register(
             Typo3FileNode::class,
             new SubnodeList([
-                    new CallableListField('description', static fn (Typo3FileNode $node) => $node->getDescription(), static fn (Typo3FileNode $node, array $description) => $node->withDescription($description)),
-                    new CallableAccessor('configuration', static fn (Typo3FileNode $node) => $node->getConfiguration(), static fn (Typo3FileNode $node, ?CollectionNode $configuration) => $node->withConfiguration($configuration)),
-                    new CallableAccessor('command', static fn (Typo3FileNode $node) => $node->getCommand(), static fn (Typo3FileNode $node, ?CollectionNode $command) => $node->withCommand($command)),
+                    new CallableListField('description', static fn(Typo3FileNode $node) => $node->getDescription(), static fn(Typo3FileNode $node, array $description) => $node->withDescription($description)),
+                    new CallableAccessor('configuration', static fn(Typo3FileNode $node) => $node->getConfiguration(), static fn(Typo3FileNode $node, ?CollectionNode $configuration) => $node->withConfiguration($configuration)),
+                    new CallableAccessor('command', static fn(Typo3FileNode $node) => $node->getCommand(), static fn(Typo3FileNode $node, ?CollectionNode $command) => $node->withCommand($command)),
             ])
         );
 
         $registry->register(
             ViewHelperNode::class,
             new SubnodeList([
-                    new CallableListField('documentation', static fn (ViewHelperNode $node) => $node->getDocumentation(), static fn (ViewHelperNode $node, array $documentation) => $node->withDocumentation($documentation)),
+                    new CallableListField('documentation', static fn(ViewHelperNode $node) => $node->getDocumentation(), static fn(ViewHelperNode $node, array $documentation) => $node->withDocumentation($documentation)),
             ])
         );
     }
