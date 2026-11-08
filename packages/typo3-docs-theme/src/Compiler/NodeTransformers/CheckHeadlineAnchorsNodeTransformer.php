@@ -83,7 +83,7 @@ final class CheckHeadlineAnchorsNodeTransformer implements NodeTransformer
     {
         // A Markdown headline cannot carry a label, so there is nothing an
         // author could do about the warning.
-        if ($this->settingsManager->getProjectSettings()->getInputFormat() === 'md') {
+        if (SourceFormat::of($document, $this->settingsManager) === 'md') {
             return false;
         }
 

@@ -17,6 +17,7 @@ use phpDocumentor\Guides\Cli\Logger\SpyProcessor;
 use phpDocumentor\Guides\Event\PostParseDocument;
 use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Settings\ProjectSettings;
+use phpDocumentor\Guides\Settings\SettingsManager;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -57,6 +58,7 @@ final class RunDecorator extends Command
         private readonly EventDispatcher $eventDispatcher,
         private readonly Logger $logger,
         private readonly ProgressBarSubscriber $progressBarSubscriber,
+        private readonly SettingsManager $settingsManager,
     ) {
         parent::__construct('run');
     }
@@ -404,7 +406,8 @@ final class RunDecorator extends Command
     private function useGuessedInput(InputInterface $input, array $guessedInput): void
     {
         $input->setArgument('input', $guessedInput['input']);
-        $input->setOption('input-format', $guessedInput['--input-format'] ?? null);
+        $projectSettings = $this->settingsManager->getProjectSettings();
+        $input->setOption('input-format', EntryInputFormat::keepConfiguredFormats($guessedInput['--input-format'] ?? null, $projectSettings));
         if (!isset($guessedInput['--input-file'])) {
             return;
         }
