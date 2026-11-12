@@ -24186,6 +24186,7 @@ article ol > li::marker {
 
   Outdated base version: https://github.com/primer/github-syntax-light
   Current colors taken from GitHub's CSS
+  Keyword, entity-tag, comment and variable darkened for 4.5:1 contrast
 */
 .hljs {
   color: #24292e;
@@ -24199,7 +24200,7 @@ article ol > li::marker {
 .hljs-type,
 .hljs-variable.language_ {
   /* prettylights-syntax-keyword */
-  color: #d73a49;
+  color: #ce2a39;
 }
 
 .hljs-title,
@@ -24234,14 +24235,14 @@ article ol > li::marker {
 .hljs-built_in,
 .hljs-symbol {
   /* prettylights-syntax-variable */
-  color: #e36209;
+  color: #b44e07;
 }
 
 .hljs-comment,
 .hljs-code,
 .hljs-formula {
   /* prettylights-syntax-comment */
-  color: #6a737d;
+  color: #656e77;
 }
 
 .hljs-name,
@@ -24249,7 +24250,7 @@ article ol > li::marker {
 .hljs-selector-tag,
 .hljs-selector-pseudo {
   /* prettylights-syntax-entity-tag */
-  color: #22863a;
+  color: #1f7c36;
 }
 
 .hljs-subst {
@@ -24282,7 +24283,7 @@ article ol > li::marker {
 
 .hljs-addition {
   /* prettylights-syntax-markup-inserted */
-  color: #22863a;
+  color: #1f7c36;
   background-color: #f0fff4;
 }
 
@@ -24301,6 +24302,14 @@ article ol > li::marker {
   /* purposely ignored */
 }
 
+@media (forced-colors: active) {
+  .hljs-comment {
+    color: GrayText;
+  }
+  .hljs-keyword {
+    font-weight: bold;
+  }
+}
 code {
   color: #333333;
   font-size: 85%;
@@ -26664,7 +26673,7 @@ body {
   --property-card-name-font-weight: 600;
   --property-card-body-padding-y: 1.25rem;
   --property-card-body-padding-x: 1.25rem;
-  --property-card-meta-color: rgb(50%, 50%, 50%);
+  --property-card-meta-color: rgb(35%, 35%, 35%);
   --property-card-meta-font-size: 1.1rem;
   --property-card-meta-font-weight: 400;
   --property-card-action-color: #999999;
