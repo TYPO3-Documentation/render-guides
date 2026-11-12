@@ -61,6 +61,21 @@ final class CheckHeadlineAnchorsNodeTransformerTest extends TestCase
         self::assertCount($expectedWarnings, $this->warningsFor($this->section(anchored: false), $manual, $page, $inputFormat));
     }
 
+    /** @return iterable<string, array{string, string, int}> */
+    public static function pagesOfAManualWithBothFormats(): iterable
+    {
+        yield 'a reStructuredText page' => ['rst,md', 'Index.rst', 1];
+        yield 'a Markdown page' => ['rst,md', 'Specs/Spec.md', 0];
+        yield 'a Markdown page, Markdown listed first' => ['md,rst', 'Specs/Spec.md', 0];
+        yield 'a reStructuredText page, Markdown listed first' => ['md,rst', 'Index.rst', 1];
+    }
+
+    #[DataProvider('pagesOfAManualWithBothFormats')]
+    public function testInAManualWithBothFormatsOnlyMarkdownPagesAreLeftOut(string $inputFormat, string $originalFileName, int $expectedWarnings): void
+    {
+        self::assertCount($expectedWarnings, $this->warningsFor($this->section(anchored: false), 'true', null, $inputFormat, $originalFileName));
+    }
+
     private function section(bool $anchored): SectionNode
     {
         $section = new SectionNode(new TitleNode(new InlineCompoundNode([new PlainTextInlineNode('Inline columns')]), 2, 'inline-columns'));
@@ -72,7 +87,7 @@ final class CheckHeadlineAnchorsNodeTransformerTest extends TestCase
     }
 
     /** @return list<string> */
-    private function warningsFor(SectionNode $section, string $manual, ?string $page = null, string $inputFormat = 'rst'): array
+    private function warningsFor(SectionNode $section, string $manual, ?string $page = null, string $inputFormat = 'rst', ?string $originalFileName = null): array
     {
         $logger = new class () extends AbstractLogger {
             /** @var list<string> */
@@ -86,6 +101,10 @@ final class CheckHeadlineAnchorsNodeTransformerTest extends TestCase
         $document = new DocumentNode('hash', 'index');
         if ($page !== null) {
             $document->addHeaderNode(new CheckHeadlineAnchorsNode($page));
+        }
+        if ($originalFileName !== null) {
+            $document = $document->withKeepExistingOptions(['originalFileName' => $originalFileName]);
+            self::assertInstanceOf(DocumentNode::class, $document);
         }
         $projectSettings = new ProjectSettings();
         $projectSettings->setInputFormat($inputFormat);
