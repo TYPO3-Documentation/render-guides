@@ -109,6 +109,27 @@ repositories. Their `composer.json` files are kept in sync by
 roles, node renderers, Twig templates and the SCSS. `packages/typo3-docs-theme-md`
 renders Markdown beside the HTML.
 
+## Updating dependencies
+
+Composer resolves for PHP 8.2.28, the `config.platform.php` in the root
+`composer.json`, whichever PHP runs it.
+
+**Update only the packages the change is about.** `composer update <package>
+-W` moves that package and its dependencies, root requirements included. A
+full `composer update` moves everything, and a new `phpdocumentor/guides` can
+change the rendered output and with it the integration fixtures of a pull
+request that is about something else. A full update is right when the PHP
+floor changes: raise `require.php` and `config.platform.php` together, then
+update everything. `composer update --lock` rewrites only the hash and moves
+no package.
+
+**Resolve a conflict in `composer.lock` by resolving again, not by editing
+it.** During a rebase `--ours` is the branch you rebase onto, so take its lock
+file with `git checkout --ours composer.lock`, run the branch's own
+`composer update <package> -W` again, and `git rebase --continue`. After any
+rebase that changed `composer.lock`, run `composer install`: `vendor/` is not
+part of the rebase.
+
 ## Commits and pull requests
 
 The documentation's commit conventions apply here too: see
