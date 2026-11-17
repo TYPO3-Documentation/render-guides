@@ -11555,8 +11555,8 @@
   src: url("../fonts/source-sans-3/source-sans-3-v15-latin_latin-ext-700italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /*!
- * Bootstrap  v5.3.8 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
+ * Bootstrap  v5.3.9 (https://getbootstrap.com/)
+ * Copyright 2011-2026 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root,
@@ -12076,7 +12076,7 @@ legend + * {
 
 ::-webkit-datetime-edit-fields-wrapper,
 ::-webkit-datetime-edit-text,
-::-webkit-datetime-edit-minute,
+::-webkit-datetime-edit-minute-field,
 ::-webkit-datetime-edit-hour-field,
 ::-webkit-datetime-edit-day-field,
 ::-webkit-datetime-edit-month-field,
@@ -17446,13 +17446,20 @@ textarea.form-control-lg {
 }
 @media (min-width: 992px) {
   .modal-lg,
-  .modal-xl {
+  .modal-xl,
+  .modal-xxl {
     --bs-modal-width: 800px;
   }
 }
 @media (min-width: 1200px) {
-  .modal-xl {
+  .modal-xl,
+  .modal-xxl {
     --bs-modal-width: 1140px;
+  }
+}
+@media (min-width: 1600px) {
+  .modal-xxl {
+    --bs-modal-width: 1320px;
   }
 }
 .modal-fullscreen {
@@ -18629,6 +18636,11 @@ textarea.form-control-lg {
 .placeholder-glow .placeholder {
   animation: placeholder-glow 2s ease-in-out infinite;
 }
+@media (prefers-reduced-motion: reduce) {
+  .placeholder-glow .placeholder {
+    animation: none;
+  }
+}
 
 @keyframes placeholder-glow {
   50% {
@@ -18639,6 +18651,11 @@ textarea.form-control-lg {
   mask-image: linear-gradient(130deg, #000000 55%, rgba(0, 0, 0, 0.8) 75%, #000000 95%);
   mask-size: 200% 100%;
   animation: placeholder-wave 2s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .placeholder-wave {
+    animation: none;
+  }
 }
 
 @keyframes placeholder-wave {
