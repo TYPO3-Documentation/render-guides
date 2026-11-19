@@ -313,21 +313,28 @@ final class RunDecorator extends Command
 
         $process = new Process($processArguments);
         $output->writeln(sprintf('<info>SUB-PROCESS:</info> %s', $process->getCommandLine()));
-        $hasErrors = false;
-        $result = $process->run(function (string $type, string $buffer) use ($output, &$hasErrors): void {
-            if ($type === Process::ERR) {
-                $output->write('<error>' . $buffer . '</error>');
-                $hasErrors = true;
-            } else {
-                $output->write($buffer);
-            }
+
+        return self::runSubProcess($process, $output);
+    }
+
+    /**
+     * Run a localization render and pass on whether it failed.
+     *
+     * The render logs its warnings to stderr, so stderr says nothing about
+     * failure: a translation with a single warning failed although nothing
+     * asked for warnings to fail it, while the main render with the same
+     * warning passed. The exit code is what --fail-on-log and --minimal-test
+     * set, which the sub-process receives like the main render.
+     *
+     * @internal
+     */
+    public static function runSubProcess(Process $process, OutputInterface $output): int
+    {
+        $exitCode = $process->run(function (string $type, string $buffer) use ($output): void {
+            $output->write($type === Process::ERR ? '<error>' . $buffer . '</error>' : $buffer);
         });
 
-        if ($hasErrors) {
-            return Command::FAILURE;
-        }
-
-        return Command::SUCCESS;
+        return $exitCode === 0 ? Command::SUCCESS : Command::FAILURE;
     }
 
     /** @return mixed[] */
