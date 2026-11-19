@@ -6,6 +6,8 @@ namespace T3Docs\GuidesExtension\Tests\Unit\Command;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use phpDocumentor\Guides\Settings\ProjectSettings;
+use Psr\Log\LogLevel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Process\Process;
@@ -47,5 +49,24 @@ final class RunDecoratorTest extends TestCase
 
         self::assertSame($expected, $result);
         self::assertStringContainsString($expectedOutput, $output->fetch());
+    }
+
+    /** @return iterable<string, array{string|null, string|null}> */
+    public static function failOptionProvider(): iterable
+    {
+        yield 'the main render does not fail on its log' => [null, null];
+        yield 'the main render fails on warnings' => [LogLevel::WARNING, 'fail-on-log'];
+        yield 'the main render fails on errors' => [LogLevel::ERROR, 'fail-on-error'];
+    }
+
+    #[DataProvider('failOptionProvider')]
+    public function testLocalizationFailsWhereTheMainRenderFails(?string $level, ?string $expected): void
+    {
+        $settings = new ProjectSettings();
+        if ($level !== null) {
+            $settings->setFailOnError($level);
+        }
+
+        self::assertSame($expected, RunDecorator::failOptionFor($settings));
     }
 }

@@ -16,6 +16,7 @@ use phpDocumentor\Guides\Cli\Internal\RunCommand;
 use phpDocumentor\Guides\Cli\Logger\SpyProcessor;
 use phpDocumentor\Guides\Event\PostParseDocument;
 use phpDocumentor\Guides\Nodes\DocumentNode;
+use phpDocumentor\Guides\Settings\ProjectSettings;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -295,6 +296,11 @@ final class RunDecorator extends Command
         $input->setOption('config', $localInputDirectives['config']);
         $input->setOption('localization', $availableLocalization);
 
+        $failOption = self::failOptionFor($this->settingsBuilder->getSettings());
+        if ($failOption !== null) {
+            $input->setOption($failOption, true);
+        }
+
         if ($output->isDebug()) {
             $readableOutput = "<info>baseInputDirectives:</info>\n";
             $readableOutput .= print_r($baseInputDirectives, true);
@@ -315,6 +321,25 @@ final class RunDecorator extends Command
         $output->writeln(sprintf('<info>SUB-PROCESS:</info> %s', $process->getCommandLine()));
 
         return self::runSubProcess($process, $output);
+    }
+
+    /**
+     * The option that makes a localization fail where the main render fails.
+     *
+     * The main render may fail on its log because its guides.xml says so, and
+     * the localization reads its own guides.xml instead. Its warnings went to
+     * stderr, which failed it until the exit code decided; the option keeps
+     * them failing it.
+     *
+     * @internal
+     */
+    public static function failOptionFor(ProjectSettings $settings): ?string
+    {
+        if (!$settings->isFailOnError()) {
+            return null;
+        }
+
+        return $settings->getFailOnError() === LogLevel::ERROR ? 'fail-on-error' : 'fail-on-log';
     }
 
     /**
