@@ -16,6 +16,7 @@ use phpDocumentor\Guides\Cli\Internal\RunCommand;
 use phpDocumentor\Guides\Cli\Logger\SpyProcessor;
 use phpDocumentor\Guides\Event\PostParseDocument;
 use phpDocumentor\Guides\Nodes\DocumentNode;
+use phpDocumentor\Guides\Settings\ProjectSettings;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -295,6 +296,11 @@ final class RunDecorator extends Command
         $input->setOption('config', $localInputDirectives['config']);
         $input->setOption('localization', $availableLocalization);
 
+        $failOption = self::failOptionFor($this->settingsBuilder->getSettings());
+        if ($failOption !== null) {
+            $input->setOption($failOption, true);
+        }
+
         if ($output->isDebug()) {
             $readableOutput = "<info>baseInputDirectives:</info>\n";
             $readableOutput .= print_r($baseInputDirectives, true);
@@ -313,21 +319,50 @@ final class RunDecorator extends Command
 
         $process = new Process($processArguments);
         $output->writeln(sprintf('<info>SUB-PROCESS:</info> %s', $process->getCommandLine()));
-        $hasErrors = false;
-        $result = $process->run(function (string $type, string $buffer) use ($output, &$hasErrors): void {
-            if ($type === Process::ERR) {
-                $output->write('<error>' . $buffer . '</error>');
-                $hasErrors = true;
-            } else {
-                $output->write($buffer);
-            }
-        });
 
-        if ($hasErrors) {
-            return Command::FAILURE;
+        return self::runSubProcess($process, $output);
+    }
+
+    /**
+     * The option that makes a localization fail where the main render fails.
+     *
+     * The main render may fail on its log because its guides.xml says so, and
+     * the localization reads its own guides.xml instead. Its warnings went to
+     * stderr, which failed it until the exit code decided; the option keeps
+     * them failing it.
+     *
+     * @internal
+     */
+    public static function failOptionFor(ProjectSettings $settings): ?string
+    {
+        if (!$settings->isFailOnError()) {
+            return null;
         }
 
-        return Command::SUCCESS;
+        return $settings->getFailOnError() === LogLevel::ERROR ? 'fail-on-error' : 'fail-on-log';
+    }
+
+    /**
+     * Run a localization render and pass on whether it failed.
+     *
+     * The render logs its warnings to stderr, so stderr says nothing about
+     * failure: a translation with a single warning failed although nothing
+     * asked for warnings to fail it, while the main render with the same
+     * warning passed. The exit code is what --fail-on-log and --minimal-test
+     * set, which the sub-process receives like the main render.
+     *
+     * @internal
+     */
+    public static function runSubProcess(Process $process, OutputInterface $output): int
+    {
+        // A Process stops after 60 seconds by default. The main render has no
+        // limit, and a large translation takes longer than a minute.
+        $process->setTimeout(null);
+        $exitCode = $process->run(function (string $type, string $buffer) use ($output): void {
+            $output->write($type === Process::ERR ? '<error>' . $buffer . '</error>' : $buffer);
+        });
+
+        return $exitCode === 0 ? Command::SUCCESS : Command::FAILURE;
     }
 
     /** @return mixed[] */
