@@ -51,6 +51,18 @@ final class RunDecoratorTest extends TestCase
         self::assertStringContainsString($expectedOutput, $output->fetch());
     }
 
+    public function testSubProcessRunsPastTheTimeoutOfProcess(): void
+    {
+        $process = new Process([PHP_BINARY, '-r', 'usleep(1500000); echo "done";'], null, null, null, 1);
+
+        $output = new BufferedOutput();
+
+        $result = RunDecorator::runSubProcess($process, $output);
+
+        self::assertSame(Command::SUCCESS, $result);
+        self::assertStringContainsString('done', $output->fetch());
+    }
+
     /** @return iterable<string, array{string|null, string|null}> */
     public static function failOptionProvider(): iterable
     {

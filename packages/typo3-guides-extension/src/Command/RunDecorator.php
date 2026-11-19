@@ -355,6 +355,9 @@ final class RunDecorator extends Command
      */
     public static function runSubProcess(Process $process, OutputInterface $output): int
     {
+        // A Process stops after 60 seconds by default. The main render has no
+        // limit, and a large translation takes longer than a minute.
+        $process->setTimeout(null);
         $exitCode = $process->run(function (string $type, string $buffer) use ($output): void {
             $output->write($type === Process::ERR ? '<error>' . $buffer . '</error>' : $buffer);
         });
