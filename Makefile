@@ -145,6 +145,10 @@ show-env: ## Shows PHP environment options (buildinfo)
 .PHONY: test
 test: test-integration test-unit test-xml test-docs test-rendertest test-theme-js test-theme-css ## Runs all test suites (PHP phpunit + theme JS vitest + theme SCSS lint)
 
+.PHONY: compare-guides
+compare-guides: vendor ## Renders real manuals with the phpDocumentor/guides checkout GUIDES=<path> and with its merge base with BASE (default: origin/main), and reports the differences
+	ENV="$(ENV)" MANUALS="$(MANUALS)" tools/compare-guides.sh "$(GUIDES)" "$(BASE)"
+
 .PHONY: test-docs
 test-docs: ## Runs project generation tests
 	@echo "$(ENV_INFO)"
