@@ -13,6 +13,8 @@
         "php": "^8.2",
         "ext-dom": "*",
         "ext-libxml": "*",
+        "ext-pdo": "*",
+        "ext-pdo_sqlite": "*",
         "ext-simplexml": "*",
         "t3docs/typo3-version-handling": "self.version"
     },

@@ -7,6 +7,8 @@
         "ext-curl": "*",
         "ext-dom": "*",
         "ext-libxml": "*",
+        "ext-pdo": "*",
+        "ext-pdo_sqlite": "*",
         "ext-simplexml": "*",
         "brotkrueml/twig-codehighlight": "^1.0",
         "league/flysystem": "^3.29",
