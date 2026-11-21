@@ -112,7 +112,11 @@ renders Markdown beside the HTML.
 ## Updating dependencies
 
 Composer resolves for PHP 8.2.28, the `config.platform.php` in the root
-`composer.json`, whichever PHP runs it.
+`composer.json`, whichever PHP runs it. `config.platform` fixes only the PHP
+version. `phpdocumentor/dev-server` also requires `ext-inotify` and
+`ext-pcntl`, so on a host without them `composer update` stops. Add
+`--ignore-platform-req=ext-inotify --ignore-platform-req=ext-pcntl` to every
+`composer update`. The `Makefile` installs with `--ignore-platform-reqs`.
 
 **Update only the packages the change is about.** `composer update <package>
 -W` moves that package and its dependencies, root requirements included. A
@@ -120,15 +124,21 @@ full `composer update` moves everything, and a new `phpdocumentor/guides` can
 change the rendered output and with it the integration fixtures of a pull
 request that is about something else. A full update is right when the PHP
 floor changes: raise `require.php` and `config.platform.php` together, then
-update everything. `composer update --lock` rewrites only the hash and moves
-no package.
+update everything. `composer update --lock` moves no package: it rewrites the
+hash and refreshes package metadata such as mirrors and URLs.
 
 **Resolve a conflict in `composer.lock` by resolving again, not by editing
 it.** During a rebase `--ours` is the branch you rebase onto, so take its lock
-file with `git checkout --ours composer.lock`, run the branch's own
-`composer update <package> -W` again, and `git rebase --continue`. After any
-rebase that changed `composer.lock`, run `composer install`: `vendor/` is not
-part of the rebase.
+file and run the branch's own update again. If `composer.json` conflicts as
+well, resolve it first, because the update reads it. Then:
+
+    git checkout --ours composer.lock
+    composer update <package> -W --ignore-platform-req=ext-inotify --ignore-platform-req=ext-pcntl
+    git add composer.lock
+    git rebase --continue
+
+After any rebase that changed `composer.lock`, run `composer install` with the
+same two flags: `vendor/` is not part of the rebase.
 
 ## Commits and pull requests
 
