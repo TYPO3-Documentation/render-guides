@@ -1,19 +1,19 @@
 
 ======================================
-TYPO3 specific phpDocumentor extension
+TYPO3-API specific phpDocumentor extension
 ======================================
 
 You can also require this package in your composer.json::
 
-    composer req t3docs/typo3-guides-extension
+    composer req t3docs/typo3-api
 
 This package uses the `phpDocumentor Guides <https://github.com/phpDocumentor/guides>`__
 for parsing and rendering restructuredText.
 
 This repository is a subtree-split of the monorepo located at
-https://github.com/TYPO3-Documentation/render-guides/tree/main/packages/typo3-guides-extension
+https://github.com/TYPO3-Documentation/render-guides/tree/main/packages/typo3-api
 
-The package allows to define and utilize TYPO3 specific ReST formattings.
+The package generates api.typo3.org.
 
 More documentation about this rendering:
 
