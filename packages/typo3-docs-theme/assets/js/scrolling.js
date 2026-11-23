@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
   adjustScrollMargin();
   setTimeout(() => scrollToAnchor("auto"), 100); // Slight delay for rendering
 
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  // A bare "#" is left to the browser, which jumps to the top of the page
+  document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
       const targetId = this.getAttribute("href").substring(1);
