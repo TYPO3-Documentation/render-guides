@@ -20,6 +20,9 @@ your host instead, which is faster.
     make code-style           # check;  make fix-code-style  applies
     make phpstan
     make docs                 # renders Documentation/ into Documentation-GENERATED-temp
+    make compare-guides GUIDES=../guides
+                              # renders real manuals with a guides checkout and
+                              # its merge base, and reports the differences
     make assets               # rebuilds the theme's CSS and JS
 
 Run `make pre-commit-test` before proposing a commit. `make githooks` installs
