@@ -59,7 +59,7 @@ final class CheckEntryFileNameNodeTransformer implements NodeTransformer
             return $node;
         }
 
-        $extension = $this->settingsManager->getProjectSettings()->getInputFormat();
+        $extension = SourceFormat::of($node, $this->settingsManager);
         $this->logger->warning(sprintf(
             'The manual starts at "%1$s.%3$s". docs.typo3.org opens a manual at "%2$s.html", so once deployed it has no start page. Rename the file to "%2$s.%3$s".',
             self::LOWER_CASE_ENTRY,
