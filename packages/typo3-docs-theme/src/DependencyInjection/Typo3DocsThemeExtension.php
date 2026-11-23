@@ -4,8 +4,15 @@ declare(strict_types=1);
 
 namespace T3Docs\Typo3DocsTheme\DependencyInjection;
 
+use phpDocumentor\Guides\Compiler\CallableAccessor;
+use phpDocumentor\Guides\Compiler\CallableListField;
+use phpDocumentor\Guides\Compiler\SubNodeAccessorProvider;
+use phpDocumentor\Guides\Compiler\SubNodeAccessorRegistry;
+use phpDocumentor\Guides\Compiler\SubnodeList;
 use phpDocumentor\Guides\Graphs\Nodes\UmlNode;
 use phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer;
+use phpDocumentor\Guides\Nodes\CollectionNode;
+use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\ReferenceResolvers\Interlink\InventoryRepository;
 use phpDocumentor\Guides\ReferenceResolvers\InterlinkReferenceResolver;
 use phpDocumentor\Guides\ReferenceResolvers\InternalReferenceResolver;
@@ -33,10 +40,13 @@ use T3Docs\GuidesPhpDomain\Nodes\PhpModifierNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpNamespaceNode;
 use T3Docs\GuidesPhpDomain\Nodes\PhpPropertyNode;
 use T3Docs\Typo3DocsTheme\Directives\FigureDirective;
+use T3Docs\Typo3DocsTheme\Nodes\DirectoryTree\DirectoryTreeListItemNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\CodeInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\ComposerInlineNode;
 use T3Docs\Typo3DocsTheme\Nodes\Inline\FileInlineNode;
+use T3Docs\Typo3DocsTheme\Nodes\Typo3FileNode;
 use T3Docs\Typo3DocsTheme\Nodes\Typo3VersionChangeNode;
+use T3Docs\Typo3DocsTheme\Nodes\ViewHelperNode;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\NamedLinkReferenceResolver;
 use T3Docs\Typo3DocsTheme\ReferenceResolvers\SelfInterlinkReferenceResolver;
 use T3Docs\Typo3DocsTheme\Nodes\YoutubeNode;
@@ -50,7 +60,7 @@ use function strtolower;
 use function trim;
 use function phpDocumentor\Guides\DependencyInjection\template;
 
-class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface, CompilerPassInterface
+class Typo3DocsThemeExtension extends Extension implements PrependExtensionInterface, CompilerPassInterface, SubNodeAccessorProvider
 {
     /** guides' interlink resolver, which ours asks. @see SelfInterlinkReferenceResolver */
     private const INNER_INTERLINK_RESOLVER = 't3docs.interlink_reference_resolver.inner';
@@ -407,5 +417,31 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
         $settings = $arguments['$settings'] ?? [];
 
         return is_array($settings) && ($settings['interlink_shortcode'] ?? '') === 'changelog';
+    }
+
+    public function register(SubNodeAccessorRegistry $registry): void
+    {
+        $registry->register(
+            DirectoryTreeListItemNode::class,
+            new SubnodeList([
+                    new CallableListField('subLists', static fn(DirectoryTreeListItemNode $node) => $node->getSubLists(), static fn(DirectoryTreeListItemNode $node, array $sublists) => $node->withSubLists($sublists)),
+            ])
+        );
+
+        $registry->register(
+            Typo3FileNode::class,
+            new SubnodeList([
+                    new CallableListField('description', static fn(Typo3FileNode $node) => $node->getDescription(), static fn(Typo3FileNode $node, array $description) => $node->withDescription($description)),
+                    new CallableAccessor('configuration', static fn(Typo3FileNode $node) => $node->getConfiguration(), static fn(Typo3FileNode $node, ?CollectionNode $configuration) => $node->withConfiguration($configuration)),
+                    new CallableAccessor('command', static fn(Typo3FileNode $node) => $node->getCommand(), static fn(Typo3FileNode $node, ?CollectionNode $command) => $node->withCommand($command)),
+            ])
+        );
+
+        $registry->register(
+            ViewHelperNode::class,
+            new SubnodeList([
+                    new CallableListField('documentation', static fn(ViewHelperNode $node) => $node->getDocumentation(), static fn(ViewHelperNode $node, array $documentation) => $node->withDocumentation($documentation)),
+            ])
+        );
     }
 }

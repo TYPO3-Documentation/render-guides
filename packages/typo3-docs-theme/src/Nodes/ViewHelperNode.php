@@ -12,10 +12,6 @@ use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
 final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNode, OptionalLinkTargetsNode, PrefixedLinkTargetNode
 {
-    use CompiledPropertiesTrait {
-        removeNode as private removeCompiledNode;
-    }
-
     private const DESCRIPTION = 'description';
     private const SECTION = 'section';
     private const EXAMPLE = 'example';
@@ -164,6 +160,15 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
         return $this->documentation;
     }
 
+    public function withDocumentation(array $documentation): self
+    {
+        $result = clone $this;
+        $result->value = array_values($documentation);
+        $result->documentation = array_values($documentation);
+
+        return $result;
+    }
+
     public function getXmlNamespace(): string
     {
         return $this->xmlNamespace;
@@ -231,39 +236,6 @@ final class ViewHelperNode extends GeneralDirectiveNode implements LinkTargetNod
     public function getGitHubLink(): string
     {
         return $this->gitHubLink;
-    }
-
-    /** @return list<string> */
-    protected function compiledProperties(): array
-    {
-        return ['documentation'];
-    }
-
-    /**
-     * Only the documentation the ViewHelper shows: with ":display: description"
-     * its sections are not on the page, and must not become sections of it.
-     */
-    protected function compilesItem(string $property, int|string $key): bool
-    {
-        if (in_array('documentation', $this->display, true)) {
-            return true;
-        }
-        $role = $this->roles[$key] ?? '';
-
-        return $role !== '' && in_array(self::DISPLAYED_AS[$role], $this->display, true);
-    }
-
-    public function removeNode(int $key): static
-    {
-        // The index in the documentation, which is not the position among the
-        // children when a part is not shown.
-        $index = $this->propertySlot($key)[1] ?? null;
-        $result = $this->removeCompiledNode($key);
-        if (is_int($index)) {
-            array_splice($result->roles, $index, 1);
-        }
-
-        return $result;
     }
 
     /** @return Node[] the nodes of the documentation shown as this part */

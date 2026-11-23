@@ -15,6 +15,9 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 return static function (ContainerConfigurator $container): void {
+    $container->parameters()
+        ->set('phpdoc.guides.parser.rst.disable_character_split', true);
+
     $container->services()
         ->defaults()
         ->autowire()
